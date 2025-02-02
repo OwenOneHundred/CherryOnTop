@@ -9,9 +9,7 @@ using UnityEngine;
 /// Also holds the type of this topping in an enum (that is not implemented)
 /// </summary>
 [CreateAssetMenu(menuName ="Toppings/Topping")]
-public class Topping : ScriptableObject
+public class Topping : Item
 {
-    public List<ToppingEffect> toppingEffects;
-    public int price = 5;
-    public GameObject gameObject;
+    public GameObject towerPrefab;
 }

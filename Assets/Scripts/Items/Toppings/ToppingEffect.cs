@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="Toppings/Effect")]
-public class ToppingEffect : ScriptableObject
+public class ItemEffect : ScriptableObject
 {
     [Header("When")]
     public List<When> when;

@@ -11,10 +11,5 @@ public class CherryMovement : MonoBehaviour
     /// track path adjustments. However, there should be a way to freeze cherries normal movement and have them
     /// "jump" to a new location. That's how they will move to a new layer, and it is important for level design.
     
-    [SerializeField] float baseSpeed = 10;
-
-    private void Move()
-    {
-
-    }
+    
 }

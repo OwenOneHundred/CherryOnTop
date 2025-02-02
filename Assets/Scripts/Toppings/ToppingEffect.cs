@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="Toppings/ToppingEffect")]
+[CreateAssetMenu(menuName ="Toppings/Effect")]
 public class ToppingEffect : ScriptableObject
 {
     [Header("When")]
@@ -18,7 +18,7 @@ public class ToppingEffect : ScriptableObject
     [Header("Perform")]
     public Perform perform;
 
-    public void Init()
+    public void Init(Topping owner)
     {
         foreach (When w in when)
         {
@@ -33,6 +33,8 @@ public class ToppingEffect : ScriptableObject
                 case When.onSellThisTopping: WhenEvents.onSellThisTopping += OnTriggered; break;
                 case When.roundEnds: WhenEvents.roundEnds += OnTriggered; break;
                 case When.roundStarts: WhenEvents.roundStarts += OnTriggered; break;
+                case When.thisKillsACherry: WhenEvents.roundEnds += OnTriggered; break;
+                case When.thisDamagesACherry: WhenEvents.roundStarts += OnTriggered; break;
                 default: break;
             }
         }
@@ -58,6 +60,8 @@ public class ToppingEffect : ScriptableObject
         none,
         cherryDies,
         cherryDamaged,
+        thisKillsACherry,
+        thisDamagesACherry,
         roundEnds,
         roundStarts,
         onBuyAnyTopping,

@@ -1,7 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 
-public class ShopObj : MonoBehaviour
+public abstract class ShopObj : MonoBehaviour
 {
     [SerializeField] Image image;
     [SerializeField] TMPro.TextMeshProUGUI nameText;

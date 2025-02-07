@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7cb45ee341b35481391a6855a1343349
+guid: c0e9323d771244e5a992daec58a541e6
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,18 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: celshade_CAKE
-    second: {fileID: 2100000, guid: 1a29b1bd04fa54d4f8e72e8297273a4d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: celshade_DECO
-    second: {fileID: 2100000, guid: dd3bd899d95cf4b26a943586071e90b1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: celshade_TRACK
-    second: {fileID: 2100000, guid: c7c0d6c74dc994fb889069cc7776128d, type: 2}
+      name: Cake_MAT
+    second: {fileID: 2100000, guid: c340a2d85063544cebdbc89fac5d6251, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -57,7 +47,7 @@ ModelImporter:
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
-    importLights: 1
+    importLights: 0
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0

@@ -13,12 +13,9 @@ public class PlayButton : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("Awake:" + SceneManager.GetActiveScene().name);
-
         // Ensure the script is not deleted while loading.
         if (!created)
         {
-            DontDestroyOnLoad(this.gameObject);
             created = true;
         }
         else

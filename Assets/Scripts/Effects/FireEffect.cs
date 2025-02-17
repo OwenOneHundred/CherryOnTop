@@ -6,11 +6,7 @@ public class FireEffect : MonoBehaviour
 {
     [SerializeField] GameObject prefab;
     private List<Effect> activeEffects = new List<Effect>();
-
-    void Start()
-    {
-        StartNewIndefiniteFireEffect("TheFire", UnityEngine.Random.Range(0, 2) == 0 ? Color.red : Color.blue);
-    }
+    
     private void RemoveEffect(Effect effect)
     {
         activeEffects.Remove(effect);

@@ -6,10 +6,8 @@ public class PlayButton : MonoBehaviour
 {
 
     public Button playButton;
-    private static bool created = false;
+    private bool created = false;
     [SerializeField] private string sceneName;
-
-
 
     void Awake()
     {

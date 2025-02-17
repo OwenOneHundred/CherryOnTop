@@ -128,6 +128,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scene Change Button
       objectReference: {fileID: 0}
+    - target: {fileID: 4829941980000832944, guid: 0e38a2b878937a94da91744a88026120, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2733497728075049477}
+    - target: {fileID: 4829941980000832944, guid: 0e38a2b878937a94da91744a88026120, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5776828033651085547, guid: 0e38a2b878937a94da91744a88026120, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -234,3 +242,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5776828033651085547, guid: 0e38a2b878937a94da91744a88026120, type: 3}
   m_PrefabInstance: {fileID: 8259060672609091100}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2733497728075049477 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6300894727856411673, guid: 0e38a2b878937a94da91744a88026120, type: 3}
+  m_PrefabInstance: {fileID: 8259060672609091100}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff305b711526af40ae3ca51f3c74a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

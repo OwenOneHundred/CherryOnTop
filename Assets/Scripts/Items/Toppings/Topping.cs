@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
 
 /// <summary>
 /// Holds all the information for this topping, including:
@@ -12,4 +14,5 @@ using UnityEngine;
 public class Topping : Item
 {
     public GameObject towerPrefab;
+    public ToppingTypes.Flags flags;
 }

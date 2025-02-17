@@ -27,7 +27,9 @@ public class SwitchLevelPreview : MonoBehaviour
     {
         Destroy(loadedLevel);
         levelIndex = (levelIndex + 1);
+        
         LoadLevelBox(500);
+        
         SlideBox(loadedLevel);
 
         if (levelIndex == level.Length - 1) { gameObject.SetActive(false); }
@@ -51,17 +53,36 @@ public class SwitchLevelPreview : MonoBehaviour
     }
 
     void LoadLevelBox(int xpos) {
-        
-        GameObject newLevel = Instantiate(level[levelIndex], new Vector3(xpos, 0, 0), Quaternion.identity, transform.parent.transform);
+
+        GameObject newLevel = Instantiate(level[levelIndex], new Vector3(xpos, 0, 0), Quaternion.identity, canvasTransform);
         loadedLevel = newLevel;
         newLevel.transform.localPosition = new Vector3(xpos, 0, 0); // Set local position relative to the parent
 
-        //Instantiate(debugObject, Vector3.zero, Quaternion.identity, newLevel.transform.Find("Panel"));
         // Debugging: Log the hierarchy of the instantiated newLevel
         Debug.Log("NewLevel instantiated with children:");
         foreach (Transform child in newLevel.transform)
         {
             Debug.Log("Child: " + child.name);
+        }
+
+        // Find the "Panel" child within the newLevel
+        Transform panelTransform = newLevel.transform.Find("Panel");
+        if (panelTransform != null)
+        {
+            // Instantiate additional buttons as children of the "Panel"
+            Instantiate(sceneChangeButton, Vector3.zero, Quaternion.identity, panelTransform);
+            Instantiate(debugObject, Vector3.zero, Quaternion.identity, panelTransform);
+
+            // Debugging: Log the hierarchy after adding buttons
+            Debug.Log("After adding buttons to Panel:");
+            foreach (Transform child in panelTransform)
+            {
+                Debug.Log("Child: " + child.name);
+            }
+        }
+        else
+        {
+            Debug.LogError("Panel not found in the newLevel prefab.");
         }
     }
 
@@ -80,5 +101,17 @@ public class SwitchLevelPreview : MonoBehaviour
         box.transform.localPosition = new Vector3(0, 0, 0);
 
     }
-    
+
+    void DisableAllButtons()
+    {
+        backButton.SetActive(false);
+        forwardsButton.SetActive(false);
+    }
+
+    void EnableAllButtons()
+    {
+        backButton.SetActive(true);
+        forwardsButton.SetActive(true);
+    }
+
 }

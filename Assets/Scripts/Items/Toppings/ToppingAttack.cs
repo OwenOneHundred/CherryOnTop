@@ -6,18 +6,27 @@ using UnityEngine;
 public class ToppingAttack : MonoBehaviour
 {
     // Keeps track of the current targeted cherry. Should be null if there are no cherries in range
+    [SerializeField]
     GameObject targetedCherry;
+
+    // Stores a reference to the prefab used as the projectile
+    [SerializeField]
+    GameObject projectile;
+
     // Represents the number of seconds to wait before attacking
+    [SerializeField]
     float attackRate;
+
+    // Represents the speed of the projectiles shot by this topping
+    [SerializeField]
+    float projectileSpeed;
+
     // Keeps track of when the last attack was to time the next one
-    float timer;
+    float timer = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        this.targetedCherry = null;
-        this.attackRate = 0;
-        this.timer = 0;
         Debug.Log("Topping attack system initialized.");
     }
 
@@ -26,7 +35,7 @@ public class ToppingAttack : MonoBehaviour
     {
         if (targetedCherry != null) {
             if (timer >= attackRate) {
-                attackCherry();
+                AttackCherry();
                 timer = 0;
             }
             timer += Time.deltaTime;
@@ -35,19 +44,37 @@ public class ToppingAttack : MonoBehaviour
         }
     }
 
-    void setTargetedCherry(GameObject targetedCherry) {
+    void SetTargetedCherry(GameObject targetedCherry) {
         this.targetedCherry = targetedCherry;
     }
 
-    void setAttackRate(int attackRate) {
+    void SetAttackRate(float attackRate) {
         this.attackRate = attackRate;
     }
 
-    GameObject getTargetedCherry() {
+    void SetProjectileSpeed(float projectileSpeed) {
+        this.projectileSpeed = projectileSpeed;
+    }
+
+    GameObject GetTargetedCherry() {
         return this.targetedCherry;
     }
 
-    void attackCherry() {
-        // to do
+    void AttackCherry() {
+        GameObject projectile = Instantiate(this.projectile, transform.position, Quaternion.identity);
+        projectile.GetComponent<Rigidbody>().linearVelocity = FindTargetVector();
+
+        Destroy(projectile, 8);
     }
+
+    Vector3 FindTargetVector(){
+        if (targetedCherry == null) {
+            return new Vector3(0, projectileSpeed, 0);
+        }
+
+        Vector3 targetDirection = targetedCherry.transform.position - transform.position;
+        targetDirection.Normalize();
+        return projectileSpeed * targetDirection;
+    }
+
 }

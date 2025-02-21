@@ -63,6 +63,8 @@ public class ToppingAttack : MonoBehaviour
     void AttackCherry() {
         GameObject projectile = Instantiate(this.projectile, transform.position, Quaternion.identity);
         projectile.GetComponent<Rigidbody>().linearVelocity = FindTargetVector();
+
+        Destroy(projectile, 8);
     }
 
     Vector3 FindTargetVector(){

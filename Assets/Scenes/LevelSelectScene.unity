@@ -476,10 +476,10 @@ MonoBehaviour:
   loadedLevel: {fileID: 0}
   backButton: {fileID: 185816704}
   forwardsButton: {fileID: 516144771}
-  sceneChangeButton: {fileID: 3460362468533624432, guid: 0e38a2b878937a94da91744a88026120, type: 3}
-  debugObject: {fileID: 3451017408013534754, guid: 7371b38d43df5294d86ad947fcac94f6, type: 3}
   levelIndex: 0
   canvasTransform: {fileID: 1260255682}
+  boxLoadDistance: 500
+  slideTime: 1
 --- !u!1 &870543223
 GameObject:
   m_ObjectHideFlags: 0

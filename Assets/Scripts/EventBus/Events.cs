@@ -24,4 +24,5 @@ namespace EventBus
     // Create other event structs here to indicate kinds of different events
     // For each new IEvent struct declared, a new EventBus<?> will be created, where
     // ? is the type of IEvent struct declared.
+
 }

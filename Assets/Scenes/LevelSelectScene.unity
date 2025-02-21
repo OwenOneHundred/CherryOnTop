@@ -470,9 +470,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwards: 1
   moveButton: {fileID: 516144773}
-  level:
-  - {fileID: 32540288963936364, guid: 47e4d9512852f024e98a90f608180e61, type: 3}
-  - {fileID: 6031070612142676923, guid: 11a807e547497d74ea18d8a1bac24fa0, type: 3}
+  levelPreviews:
+  - {fileID: 11400000, guid: 828818fcc873e4940b239d59e81417d6, type: 2}
+  - {fileID: 11400000, guid: 828818fcc873e4940b239d59e81417d6, type: 2}
   loadedLevel: {fileID: 0}
   backButton: {fileID: 185816704}
   forwardsButton: {fileID: 516144771}

@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -9,7 +10,8 @@ public class SwitchLevelPreview : MonoBehaviour
 {
     [SerializeField] private bool forwards;
     public UnityEngine.UI.Button moveButton;
-    public GameObject[] level;
+    public LevelPreview[] levelPreviews;
+    private GameObject[] level;
     [SerializeField] private GameObject loadedLevel;
     public GameObject backButton;
     public GameObject forwardsButton;
@@ -24,9 +26,27 @@ public class SwitchLevelPreview : MonoBehaviour
 
     void Start()
     {
+        level = new GameObject[levelPreviews.Length];
+        
         moveButton.onClick.AddListener(OnForwardsButtonClick);
         InstantiateBaseBox();
         backButton.SetActive(false);
+        for (int i = 0; i < levelPreviews.Length; i++)
+        {
+            
+            Spawn(levelPreviews[i]);
+            Instantiate(levelPreviews[i].emptyLevelPrefab, Vector3.zero, Quaternion.identity, canvasTransform);
+            level[i] = levelPreviews[i].emptyLevelPrefab;
+            
+        }
+    }
+
+    public void Spawn(LevelPreview preview)
+    {
+        GameObject panel = preview.emptyLevelPrefab.transform.GetChild(0).gameObject;
+        panel.GetComponent<UnityEngine.UI.Image>().sprite = preview.levelImage;
+        GameObject sceneChangeButton = preview.emptyLevelPrefab.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+        sceneChangeButton.GetComponent<PlayButton>().sceneName = preview.sceneNameInEditor;
     }
 
     private void FixedUpdate()

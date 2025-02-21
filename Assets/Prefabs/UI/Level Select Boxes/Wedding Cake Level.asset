@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bca449c41526da54d8ee91be640a2ef8, type: 3}
-  m_Name: Level
+  m_Name: Wedding Cake Level
   m_EditorClassIdentifier: 
   emptyLevelPrefab: {fileID: 6031070612142676923, guid: 11a807e547497d74ea18d8a1bac24fa0, type: 3}
   levelImage: {fileID: 21300000, guid: f2c42e67f938ec54aa17bf75326c176e, type: 3}

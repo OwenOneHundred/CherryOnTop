@@ -6,7 +6,7 @@ public class PlayButton : MonoBehaviour
 {
 
     public Button playButton;
-    [SerializeField] private string sceneName;
+    public string sceneName;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

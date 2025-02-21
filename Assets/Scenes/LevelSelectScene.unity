@@ -478,7 +478,7 @@ MonoBehaviour:
   forwardsButton: {fileID: 516144771}
   levelIndex: 0
   canvasTransform: {fileID: 1260255682}
-  boxLoadDistance: 500
+  boxLoadDistance: 1250
   slideTime: 1
 --- !u!1 &870543223
 GameObject:

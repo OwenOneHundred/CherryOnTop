@@ -27,17 +27,13 @@ public class SwitchLevelPreview : MonoBehaviour
     void Start()
     {
         level = new GameObject[levelPreviews.Length];
-        
         moveButton.onClick.AddListener(OnForwardsButtonClick);
         InstantiateBaseBox();
         backButton.SetActive(false);
         for (int i = 0; i < levelPreviews.Length; i++)
         {
-            
             Spawn(levelPreviews[i]);
-            Instantiate(levelPreviews[i].emptyLevelPrefab, Vector3.zero, Quaternion.identity, canvasTransform);
             level[i] = levelPreviews[i].emptyLevelPrefab;
-            
         }
     }
 

@@ -6,23 +6,10 @@ public class PlayButton : MonoBehaviour
 {
 
     public Button playButton;
-    private bool created = false;
-    [SerializeField] private string sceneName;
+    public string sceneName;
 
-    void Awake()
-    {
-        // Ensure the script is not deleted while loading.
-        if (!created)
-        {
-            created = true;
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }   
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+    void Start()
     {
         playButton.onClick.AddListener(PlayGame);
     }

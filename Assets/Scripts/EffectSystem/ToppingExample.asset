@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ToppingExample
   m_EditorClassIdentifier: 
   price: 5
-  shopSprite: {fileID: 0}
+  shopSprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   effectsAndWhen:
   - effectSOs:
     - {fileID: 11400000, guid: d926ad6ad0c4f41f28cc00d3c1eadb51, type: 2}

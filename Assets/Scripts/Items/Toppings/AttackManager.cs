@@ -2,15 +2,15 @@ using UnityEngine;
 
 /**
  * Script that handles the attack cycle for a Topping. When a Topping is initialized, it must be given an attack type
- * using GetComponent<AttackManager>().SetAttack(attack);
+ * using the SetAttack method.
  */
 public class AttackManager : MonoBehaviour
 {
-    // Represents the type of attack to use, which holds information about the Topping's attack cooldown behaviour
+    // Represents the type of attack to use, which holds information about the Topping's attack behaviour
     [SerializeField]
     ToppingAttack attack;
 
-    // Keeps track of the current targeted cherry. Should be null if there are no cherries in range
+    // Keeps track of the current targeted Cherry. Should be null if there are no Cherries in range
     [SerializeField]
     GameObject targetedCherry;
 
@@ -40,24 +40,39 @@ public class AttackManager : MonoBehaviour
         }
     }
 
+    /**
+     * Switches targets to a new Cherry or to null if appropriate.
+     */
     void UpdateTargetedCherry(GameObject targetedCherry) {
         if (this.targetedCherry != targetedCherry) {
             this.targetedCherry = targetedCherry;
-            attack.OnNewCherryFound(this.targetedCherry);
+            if (this.targetedCherry != null) {
+                attack.OnNewCherryFound(this.targetedCherry);
+            }
         }       
     }
 
+    /**
+     * Sets this Topping's attack type to a specified ToppingAttack.
+     */
     void SetAttack(ToppingAttack attack) {
-        this.attack = attack;
-        if (this.attack != null) {
+        if (this.attack != attack) {
+            this.attack = attack;
             this.attack.OnStart();
         }
     }
 
+    /** 
+     * Sets this Topping's attack cooldown to a specified value.
+     */
     void SetAttackCooldown(float cooldown) {
         this.attack.cooldown = cooldown;
     }
 
+    /**
+     * Returns a reference to the Cherry currently being targeted by the Topping. Returns null if no Cherries are
+     * being targeted.
+     */
     GameObject GetTargetedCherry() {
         return this.targetedCherry;
     }

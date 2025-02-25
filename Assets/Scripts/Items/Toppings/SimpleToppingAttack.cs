@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/**
+ * Simple attack type that shoots a projectile in the direction of the target Cherry.
+ */
 public class SimpleToppingAttack : ToppingAttack
 {
     // Stores a reference to the prefab used as the projectile
@@ -30,6 +33,9 @@ public class SimpleToppingAttack : ToppingAttack
         AttackCherry(targetedCherry);
     }
 
+    /**
+     * Fires a projectile in the direction of the current targeted Cherry
+     */
     private void AttackCherry(GameObject targetedCherry) {
         GameObject projectile = Instantiate(this.projectile, topping.transform.position, Quaternion.identity);
         projectile.GetComponent<Rigidbody>().linearVelocity = FindTargetVector(targetedCherry);
@@ -37,6 +43,10 @@ public class SimpleToppingAttack : ToppingAttack
         Destroy(projectile, 8);
     }
 
+    /**
+     * Finds and returns the vector pointing from the Topping to the target Cherry with a magnitude corresponding to
+     * projectileSpeed
+     */
     private Vector3 FindTargetVector(GameObject targetedCherry){
         if (targetedCherry == null) {
             return new Vector3(0, projectileSpeed, 0);

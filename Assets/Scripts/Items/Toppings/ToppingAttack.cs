@@ -25,7 +25,7 @@ public abstract class ToppingAttack : ScriptableObject
     public abstract void OnNewCherryFound(GameObject newTargetedCherry);
 
     /// <summary> 
-    /// Specifies what the ToppingAttack should do every n seconds, where n is the Topping's cooldown. The targeted Cherry'
+    /// Specifies what the ToppingAttack should do every n seconds, where n is the Topping's cooldown. The targeted Cherry
     /// is passed as a parameter when called.
     /// </summary>
     public abstract void OnCycle(GameObject targetedCherry);

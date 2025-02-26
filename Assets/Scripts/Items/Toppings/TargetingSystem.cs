@@ -46,9 +46,10 @@ public class TargetingSystem : MonoBehaviour
         {
             Debug.DrawRay(transform.position, direction * hit.distance, Color.red);
             return false; // Blocked by Cake
-        }
+        } else {
 
         Debug.DrawRay(transform.position, direction * distance, Color.yellow);
         return true; // Clear sight to Cherry
+        }
     }
 }

@@ -1,9 +1,9 @@
 using UnityEngine;
 
-/**
- * Script that handles the attack cycle for a Topping. When a Topping is initialized, it must be given an attack type
- * using the SetAttack method.
- */
+/// <summary>
+/// Script that handles the attack cycle for a Topping. When a Topping is initialized, it must be given an attack type
+/// using the SetAttack method.
+/// </summary>
 public class AttackManager : MonoBehaviour
 {
     // Represents the type of attack to use, which holds information about the Topping's attack behaviour
@@ -40,14 +40,11 @@ public class AttackManager : MonoBehaviour
         }
     }
 
-    // Note to Tony from Owen: These methods are all private (private is the default)
-    // They are not called from within this class either so they are unusable. They should probably be public.
-    // Your Visual Studio Code would tell you that if you had it set up.
-
-    /**
-     * Switches targets to a new Cherry or to null if appropriate.
-     */
-    void UpdateTargetedCherry(GameObject targetedCherry) {
+    /// <summary>
+    /// Switches targets to a new Cherry or to null if appropriate.
+    /// </summary>
+    /// <param name="targetedCherry"></param> 
+    public void UpdateTargetedCherry(GameObject targetedCherry) {
         if (this.targetedCherry != targetedCherry) {
             this.targetedCherry = targetedCherry;
             if (this.targetedCherry != null) {
@@ -56,28 +53,33 @@ public class AttackManager : MonoBehaviour
         }       
     }
 
-    /**
-     * Sets this Topping's attack type to a specified ToppingAttack.
-     */
-    void SetAttack(ToppingAttack attack) {
+    /// <summary>
+    /// Sets this Topping's attack type to a specified ToppingAttack.
+    /// </summary>
+    /// <param name="attack"></param>
+    public void SetAttack(ToppingAttack attack) {
         if (this.attack != attack) {
             this.attack = attack;
             this.attack.OnStart();
         }
     }
 
-    /** 
-     * Sets this Topping's attack cooldown to a specified value.
-     */
-    void SetAttackCooldown(float cooldown) {
+    /// <summary> 
+    /// Sets this Topping's attack cooldown to a specified value.
+    /// </summary>
+    /// <param name="cooldown"></param>
+    public void SetAttackCooldown(float cooldown) {
         this.attack.cooldown = cooldown;
     }
 
-    /**
-     * Returns a reference to the Cherry currently being targeted by the Topping. Returns null if no Cherries are
-     * being targeted.
-     */
-    GameObject GetTargetedCherry() {
+    /// <summary>
+    /// Returns a reference to the Cherry currently being targeted by the Topping. Returns null if no Cherries are
+    /// being targeted.
+    /// </summary>
+    /// <returns>
+    /// A reference to the targeted Cherry as a GameObject
+    /// </returns>
+    public GameObject GetTargetedCherry() {
         return this.targetedCherry;
     }
 

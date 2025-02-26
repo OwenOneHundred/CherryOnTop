@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
 
-[CreateAssetMenu(menuName = "Slow")]
+[CreateAssetMenu(menuName = "CherryDebuff/Slow")]
 public class SlowDownEffect : CherryDebuff
 {
     public override void EveryFrame()

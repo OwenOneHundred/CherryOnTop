@@ -54,8 +54,13 @@ public class Inventory : MonoBehaviour
         if (item.price > money) { return false; } // can't afford
         if (0 > inventoryEffectManager.GetLimit<LimitBuying>()) { return false; } // TODO replace 0 with shop manager purchases count 
 
-        ownedItems.Add(item);
+        AddItem(item);
         Money -= item.price;
         return true;
+    }
+
+    public void AddItem(Item item)
+    {
+        ownedItems.Add(item);
     }
 }

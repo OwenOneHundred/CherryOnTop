@@ -10,7 +10,7 @@ using System;
 /// the toppings' ingame version once they are placed, so this can hold data and handle events in menus.
 /// Also holds the type of this topping in an enum (that is not implemented)
 /// </summary>
-[CreateAssetMenu(menuName ="Toppings/Topping")]
+[CreateAssetMenu(menuName = "Items/Topping")]
 public class Topping : Item
 {
     public GameObject towerPrefab;

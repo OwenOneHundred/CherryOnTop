@@ -1,80 +1,33 @@
 using UnityEngine;
 
 /**
- * Script that attacks a targeted cherry at a specified rate.
+ * An abstract class representing an attack by a Topping. Child classes should override the methods in
+ * this class to implement a type of attack on a Cherry.
  */
-public class ToppingAttack : MonoBehaviour
+public abstract class ToppingAttack : ScriptableObject
 {
-    // Keeps track of the current targeted cherry. Should be null if there are no cherries in range
-    [SerializeField]
-    GameObject targetedCherry;
+    // Represents the Topping object that the ToppingAttack instance is assigned to.
+    public GameObject topping;
 
-    // Stores a reference to the prefab used as the projectile
-    [SerializeField]
-    GameObject projectile;
+    // Represents the number of seconds the Topping should wait between attacks.
+    public float cooldown;
 
-    // Represents the number of seconds to wait before attacking
-    [SerializeField]
-    float attackRate;
+    /** 
+     * Specifies what the ToppingAttack should do as soon as it is assigned to a Topping. The topping it is assigned to
+     * is passed as a parameter when called.
+     */
+    public abstract void OnStart();
 
-    // Represents the speed of the projectiles shot by this topping
-    [SerializeField]
-    float projectileSpeed;
+    /** 
+     * Specifies what the ToppingAttack should do when it first sees a Cherry enter its attack radius or switches targets.
+     * The new target Cherry is passed as a parameter when called. 
+     */
+    public abstract void OnNewCherryFound(GameObject newTargetedCherry);
 
-    // Keeps track of when the last attack was to time the next one
-    float timer = 0;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        Debug.Log("Topping attack system initialized.");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (targetedCherry != null) {
-            if (timer >= attackRate) {
-                AttackCherry();
-                timer = 0;
-            }
-            timer += Time.deltaTime;
-        } else {
-            timer = 0;
-        }
-    }
-
-    void SetTargetedCherry(GameObject targetedCherry) {
-        this.targetedCherry = targetedCherry;
-    }
-
-    void SetAttackRate(float attackRate) {
-        this.attackRate = attackRate;
-    }
-
-    void SetProjectileSpeed(float projectileSpeed) {
-        this.projectileSpeed = projectileSpeed;
-    }
-
-    GameObject GetTargetedCherry() {
-        return this.targetedCherry;
-    }
-
-    void AttackCherry() {
-        GameObject projectile = Instantiate(this.projectile, transform.position, Quaternion.identity);
-        projectile.GetComponent<Rigidbody>().linearVelocity = FindTargetVector();
-
-        Destroy(projectile, 8);
-    }
-
-    Vector3 FindTargetVector(){
-        if (targetedCherry == null) {
-            return new Vector3(0, projectileSpeed, 0);
-        }
-
-        Vector3 targetDirection = targetedCherry.transform.position - transform.position;
-        targetDirection.Normalize();
-        return projectileSpeed * targetDirection;
-    }
+    /** 
+     * Specifies what the ToppingAttack should do every n seconds, where n is the Topping's cooldown. The targeted Cherry'
+     * is passed as a parameter when called.
+     */
+    public abstract void OnCycle(GameObject targetedCherry);
 
 }

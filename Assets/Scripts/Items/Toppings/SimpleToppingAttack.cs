@@ -18,8 +18,7 @@ public class SimpleToppingAttack : ToppingAttack
     }
 
     public override void OnNewCherryFound(GameObject newTargetedCherry) {
-        // to do
-        Debug.Log("OnNewCherryFound");
+        Debug.Log("New Cherry Targeted");
     }
 
     public override void OnCycle(GameObject targetedCherry) {
@@ -31,10 +30,11 @@ public class SimpleToppingAttack : ToppingAttack
     /// </summary>
     /// <param name="targetedCherry"></param>
     private void AttackCherry(GameObject targetedCherry) {
-        GameObject projectile = Instantiate(this.projectile, topping.transform.position, Quaternion.identity);
-        projectile.GetComponent<Rigidbody>().linearVelocity = FindTargetVector(targetedCherry);
+        GameObject newProjectile = Instantiate(this.projectile, topping.transform.position, Quaternion.identity);
+        newProjectile.GetComponent<Rigidbody>().linearVelocity = FindTargetVector(targetedCherry);
 
-        Destroy(projectile, 8);
+        // Destroy the projectile after 8 seconds in case it misses the target
+        Destroy(newProjectile, 8);
     }
 
     /// <summary>

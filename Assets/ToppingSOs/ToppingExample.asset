@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: ToppingExample
   m_EditorClassIdentifier: 
   price: 5
-  shopSprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  shopSprite: {fileID: 21300000, guid: 3eeafb416c65142af84c37a56f6f2506, type: 3}
   effectsAndWhen:
   - effectSOs:
     - {fileID: 11400000, guid: d926ad6ad0c4f41f28cc00d3c1eadb51, type: 2}
     eventSOs:
     - {fileID: 11400000, guid: 620991bfa613e41dd933dca05f321b23, type: 2}
-  towerPrefab: {fileID: 0}
+  towerPrefab: {fileID: 1854520228839802959, guid: 2bf54e0493afd4845b7e8d58ddc044b1, type: 3}
   flags: 0

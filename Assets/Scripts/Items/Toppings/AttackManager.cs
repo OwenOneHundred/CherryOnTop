@@ -40,6 +40,10 @@ public class AttackManager : MonoBehaviour
         }
     }
 
+    // Note to Tony from Owen: These methods are all private (private is the default)
+    // They are not called from within this class either so they are unusable. They should probably be public.
+    // Your Visual Studio Code would tell you that if you had it set up.
+
     /**
      * Switches targets to a new Cherry or to null if appropriate.
      */

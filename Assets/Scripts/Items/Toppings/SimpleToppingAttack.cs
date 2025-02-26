@@ -13,6 +13,8 @@ public class SimpleToppingAttack : ToppingAttack
     [SerializeField]
     float projectileSpeed;
 
+    // Note to Tony from Owen: ScriptableObject classes do not support constructors. Using this constructor
+    // would either error or cause a memory leak. 
     public SimpleToppingAttack(GameObject topping, float cooldown, GameObject projectile, float projectileSpeed) {
         this.topping = topping;
         this.cooldown = cooldown;

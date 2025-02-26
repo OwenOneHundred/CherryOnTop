@@ -12,10 +12,14 @@ public abstract class ToppingAttack : ScriptableObject
     // Represents the number of seconds the Topping should wait between attacks.
     public float cooldown;
 
-    /** 
-     * Specifies what the ToppingAttack should do as soon as it is assigned to a Topping. The topping it is assigned to
-     * is passed as a parameter when called.
-     */
+    // Note to Tony from Owen: C# supports asterisk comment blocks, but it actually has a built in documentation system.
+    // Press / three times to make a summary block, and text entered there is viewable by hovering that keyword. This is standard.
+    // I've switched your documentation on the function below to that format.
+
+    /// <summary>
+    /// Specifies what the ToppingAttack should do as soon as it is assigned to a Topping. The topping it is assigned to
+    /// is passed as a parameter when called.
+    /// </summary>
     public abstract void OnStart();
 
     /** 

@@ -3,6 +3,7 @@ using UnityEngine;
 /// <summary>
 /// A ToppingAttack that shoots a shockwave in all directions if a Cherry is in range.
 /// </summary>
+[CreateAssetMenu(menuName = "Attacks/Shockwave Attack")]
 public class ShockwaveAttack : ToppingAttack
 {
     // Stores a reference to the prefab used as the shockwave

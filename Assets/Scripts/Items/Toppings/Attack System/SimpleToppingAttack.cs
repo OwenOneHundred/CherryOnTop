@@ -3,6 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Simple attack type that shoots a projectile in the direction of the target Cherry.
 /// </summary>
+[CreateAssetMenu(menuName = "Attacks/Simple Attack")]
 public class SimpleToppingAttack : ToppingAttack
 {
     // Stores a reference to the prefab used as the projectile

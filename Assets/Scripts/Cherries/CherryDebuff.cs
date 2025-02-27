@@ -26,5 +26,5 @@ public abstract class CherryDebuff : ScriptableObject
     /// Called when debuff is removed. Expected to remove VFX from cherry.
     /// Should not error if cherry gameObject is null when this call happens.
     /// </summary>
-    public abstract void OnRemoved();
+    public abstract void OnRemoved(GameObject cherry);
 }

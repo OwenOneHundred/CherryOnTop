@@ -11,38 +11,40 @@ public class CherryMovement : MonoBehaviour
     /// track path adjustments. However, there should be a way to freeze cherries normal movement and have them
     /// "jump" to a new location. That's how they will move to a new layer, and it is important for level design.
 
-
+    private GameObject track;
     public LineRenderer lineRenderer;
     public Vector3[] linePositions;
     private int currentTarget;
     public int currentPosition;
-    public float progress = 0f;
+    public int currentTrack;
     public float speed = 1f;
     private int positionsAmount;
-    //private Vector3 actualPosition;
+    private int lineAmount;
+    public float distanceTraveled = 0f;
+    private Vector3 previousCoords;
 
-    [System.Obsolete]
     private void Start()
     {
-        lineRenderer = Object.FindAnyObjectByType<LineRenderer>();
+        track = GameObject.FindGameObjectWithTag("Track");
+        lineRenderer = track.transform.GetChild(0).GetComponent<LineRenderer>();
         positionsAmount = lineRenderer.positionCount;
         linePositions = new Vector3[positionsAmount];
         lineRenderer.GetPositions(linePositions);
         currentPosition = 0;
         currentTarget = currentPosition + 1;
+        currentTrack = 0;
         print("positionsAmount: " + positionsAmount);
-        //actualPosition = linePositions[currentPosition];
+        transform.position = linePositions[currentPosition];
+        previousCoords = transform.position;
     }
 
     private void Update()
     {
-        //Vector3 actualTarget = linePositions[currentTarget];
-        //actualTarget.y = Mathf.Cos(Time.deltaTime * 5) * 10;
-        transform.position = Vector3.Lerp(linePositions[currentPosition], linePositions[currentTarget], progress);
-        progress += Time.deltaTime * 1f;
-        if (progress >= 1f)
+        distanceTraveled += Vector3.Distance(previousCoords, transform.position);
+        transform.position = Vector3.MoveTowards(transform.position, linePositions[currentTarget], speed * Time.deltaTime);
+        if (transform.position == linePositions[currentTarget])
         {
-            progress = 0;
+            //progress = 0;
             currentPosition++;
             currentTarget++;
             if (currentTarget == positionsAmount) 
@@ -51,11 +53,23 @@ public class CherryMovement : MonoBehaviour
             }
             if (currentPosition == positionsAmount) 
             {
-                currentPosition = 0;
-                currentTarget = 1;
+                currentTrack++;
+                lineRenderer = track.transform.GetChild(currentTrack).GetComponent<LineRenderer>();
+                //If current position is -1, it is in the process of moving between lines.
+                setNewTrack();
+                currentPosition = -1;
+                currentTarget = 0;
             }
         }
+        previousCoords = transform.position;
 
+    }
+
+    private void setNewTrack() {
+        lineRenderer = track.transform.GetChild(currentTrack).GetComponent<LineRenderer>();
+        positionsAmount = lineRenderer.positionCount;
+        linePositions = new Vector3[positionsAmount];
+        lineRenderer.GetPositions(linePositions);
     }
 
 }

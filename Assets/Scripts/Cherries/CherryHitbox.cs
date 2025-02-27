@@ -34,4 +34,6 @@ public class CherryHitbox : MonoBehaviour
         cherryHealth -= debuffManager.GetDamageMultiplier() * damage;
     }
 
+
+
 }

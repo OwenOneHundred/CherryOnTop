@@ -2,7 +2,8 @@ using UnityEngine;
 
 
 public class Projectile : MonoBehaviour
-{
+{   
+    // Base damage that a projectile deals onto a cherry
     public float damage;
 
     public void Start()

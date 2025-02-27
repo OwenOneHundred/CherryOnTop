@@ -29,7 +29,7 @@ public class DebuffManager : MonoBehaviour
     public void AddDebuff(CherryDebuff debuff)
     {
         debuffs.Add(debuff);
-        //debuff.OnAdded();
+        debuff.OnAdded(gameObject);
     }
 
     /// <summary>
@@ -38,7 +38,7 @@ public class DebuffManager : MonoBehaviour
     public void RemoveDebuff(CherryDebuff debuff)
     {
         debuffs.Remove(debuff);
-        debuff.OnRemoved();
+        debuff.OnRemoved(gameObject);
     }
 
     /// <summary>

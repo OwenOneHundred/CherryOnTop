@@ -8,19 +8,19 @@ public class SlowDownEffect : CherryDebuff
     public override void EveryFrame()
     {
         // This is where effects would deal damage and operate logic.
-
+        
         throw new System.NotImplementedException();
     }
 
     public override void OnAdded(GameObject cherry)
     {
-        // Add VFX on cherry
+        // Add VFX to cherry
 
         // Set cherry field to the GameObject cherry argument
         throw new System.NotImplementedException();
     }
 
-    public override void OnRemoved()
+    public override void OnRemoved(GameObject cherry)
     {
         // Remove VFX from cherry
 

@@ -67,17 +67,31 @@ public class SwitchLevelPreview : MonoBehaviour
     {
         if (moving)
         {
-            if (slideLeft) { loadedLevel.transform.localPosition -= new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0); Debug.Log(loadedLevel.transform.localPosition); }
-            else { loadedLevel.transform.localPosition += new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0); }
+            if (slideLeft) { 
+                loadedLevel.transform.localPosition -= new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0); Debug.Log(loadedLevel.transform.localPosition);
+                if (loadedLevel.transform.localPosition.x <= 0) {
+                    StopMovingAndSnapToCenter();
+                }
+            }
+            else { 
+                loadedLevel.transform.localPosition += new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0);
+                if (loadedLevel.transform.localPosition.x >= 0)
+                {
+                    StopMovingAndSnapToCenter();
+                }
+            }
+            /*
             if ( loadedLevel.transform.localPosition.x >= -stopRadius && loadedLevel.transform.localPosition.x <= stopRadius) { 
                 moving = false;
                 loadedLevel.transform.localPosition = new Vector3(0, 0, 0);
             }
+            */
         }
     }
-    private void MoveBox()
+    private void StopMovingAndSnapToCenter()
     {
-            
+        moving = false;
+        loadedLevel.transform.localPosition = new Vector3(0, 0, 0);
 
     }
 

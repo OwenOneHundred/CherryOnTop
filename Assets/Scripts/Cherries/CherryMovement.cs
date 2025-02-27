@@ -40,8 +40,8 @@ public class CherryMovement : MonoBehaviour
 
     private void Update()
     {
-        distanceTraveled += Vector3.Distance(previousCoords, transform.position);
         transform.position = Vector3.MoveTowards(transform.position, linePositions[currentTarget], speed * Time.deltaTime);
+        distanceTraveled += Vector3.Distance(previousCoords, transform.position);
         if (transform.position == linePositions[currentTarget])
         {
             //progress = 0;

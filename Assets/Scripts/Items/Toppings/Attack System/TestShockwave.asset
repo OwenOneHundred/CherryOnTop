@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TestShockwave
   m_EditorClassIdentifier: 
   topping: {fileID: 0}
-  cooldown: 0
-  shockwave: {fileID: 0}
-  shockwaveSpeed: 0
+  cooldown: 5
+  shockwave: {fileID: 3823350122504170943, guid: 2abeddde98afa5742bfdac509558aec0, type: 3}
+  shockwaveSpeed: 1

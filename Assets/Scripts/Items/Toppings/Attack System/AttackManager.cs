@@ -8,7 +8,10 @@ public class AttackManager : MonoBehaviour
 {
     // Represents the type of attack to use, which holds information about the Topping's attack behaviour
     [SerializeField]
-    ToppingAttack attack;
+    ToppingAttack attackTemplate;
+
+    // Stores a copy of this attack for this particular Topping
+    private ToppingAttack attack;
 
     // Keeps track of the current targeted Cherry. Should be null if there are no Cherries in range
     [SerializeField]
@@ -20,6 +23,8 @@ public class AttackManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        this.attack = Instantiate(attackTemplate);
+        this.attack.topping = gameObject;
         if (this.attack != null) {
             this.attack.OnStart();
         }

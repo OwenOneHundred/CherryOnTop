@@ -57,7 +57,12 @@ public class InventoryRenderer : MonoBehaviour
 
     public void AddItemToDisplay(Item item)
     {
+        if (item is not Topping topping) { return; } // TODO make ingredients visible also
         GameObject newIcon = Instantiate(iconPrefab, iconParent);
+
+        InventoryIconControl inventoryIconControl = newIcon.GetComponent<InventoryIconControl>();
+        inventoryIconControl.assignedTopping = topping;
+        newIcon.GetComponent<Image>().sprite = topping.shopSprite;
 
         ItemAndObj itemAndObj = new ItemAndObj(item, newIcon);
         displayList.Add(itemAndObj);

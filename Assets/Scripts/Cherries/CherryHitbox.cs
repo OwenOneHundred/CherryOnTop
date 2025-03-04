@@ -6,28 +6,34 @@ using UnityEngine;
 public class CherryHitbox : MonoBehaviour
 {
     public float cherryHealth = 100;
-    public float damage = 5;
     DebuffManager debuffManager;
 
     public void Start()
     {
-        
+        // Checks if cherry is big or not, then set cherryHealth.
+        // May need to edit based on how big cherries are implemented.
+        if (gameObject.transform.localScale == new Vector3(2, 2, 2))
+        {
+            cherryHealth = 75;
+        }
+        else
+        {
+            cherryHealth = 50;
+        }
     }
 
     public void Update()
     {   
         if (cherryHealth == 0) {
-            // delete cherry
+            Destroy(gameObject);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void TakeDamage(float damage)
     {
-        // checking if "other" is a projectile(?)
-        if (other)
-        {
-            cherryHealth -= debuffManager.GetDamageMultiplier() * damage;
-        }
+        cherryHealth -= debuffManager.GetDamageMultiplier() * damage;
     }
+
+
 
 }

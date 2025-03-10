@@ -3,7 +3,9 @@ guid: 74bb26ef8e56377499445ec33b5dc2db
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - attackTemplate: {instanceID: 0}
+  - targetedCherry: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

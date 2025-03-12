@@ -9,7 +9,6 @@ public class SlowDownEffect : CherryDebuff
     {
         // Slow down effect doesn't really do anything every frame
 
-
     }
 
     public override void OnAdded(GameObject cherry)
@@ -18,7 +17,7 @@ public class SlowDownEffect : CherryDebuff
 
         // Set cherry field to the GameObject cherry argument
         this.cherry = cherry;
-        cherry.GetComponent<CherryMovement>().speed *= 0.5f;
+        movementSpeedMultiplier = 0.5f;
     }
 
     public override void OnRemoved(GameObject cherry)

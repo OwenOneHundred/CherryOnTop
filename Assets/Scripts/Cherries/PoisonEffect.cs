@@ -8,7 +8,7 @@ public class PoisonEffect : CherryDebuff
     public override void EveryFrame()
     {
         // This is where effects would deal damage and operate logic.
-        this.cherry.GetComponent<CherryHitbox>().TakeDamage(10);
+        this.cherry.GetComponent<CherryHitbox>().TakeDamage(1);
     }
 
     public override void OnAdded(GameObject cherry)
@@ -17,6 +17,7 @@ public class PoisonEffect : CherryDebuff
 
         // Set cherry field to the GameObject cherry argument
         this.cherry = cherry;
+        this.damageMultiplier = 2;
     }
 
     public override void OnRemoved(GameObject cherry)

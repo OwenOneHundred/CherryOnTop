@@ -61,6 +61,10 @@ PrefabInstance:
       value: Cherry_2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e1de9132c00da447584f992308220c05, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e1de9132c00da447584f992308220c05, type: 3}
       propertyPath: m_TagString
       value: Cherry
       objectReference: {fileID: 0}
@@ -88,6 +92,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: e1de9132c00da447584f992308220c05, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -98,6 +106,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: e1de9132c00da447584f992308220c05, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5457541278587717885}
+    - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: e1de9132c00da447584f992308220c05, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2437474006813760486}
   m_SourcePrefab: {fileID: 100100000, guid: e1de9132c00da447584f992308220c05, type: 3}
 --- !u!1 &4085270106411668407 stripped
 GameObject:
@@ -140,3 +151,24 @@ MonoBehaviour:
   currentTrack: 0
   speed: 2
   distanceTraveled: 0
+--- !u!135 &2437474006813760486
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4988862917418150766}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.65
+  m_Center: {x: 0, y: 0.3, z: 0.17446049}

@@ -6,6 +6,7 @@ public class TargetingSystem : MonoBehaviour
 {
     [SerializeField] private float range = 5f;
     private LayerMask cherryLayer, cakeLayer;
+    [SerializeField] AttackManager attackManager;
 
     void Start()
     {
@@ -15,10 +16,11 @@ public class TargetingSystem : MonoBehaviour
 
     void Update()
     {
-        Search();
+        GameObject found = Search();
+        attackManager.UpdateTargetedCherry(found);
     }
 
-    void Search()
+    GameObject Search()
     {
         Collider[] cherries = Physics.OverlapSphere(transform.position, range, cherryLayer);
 
@@ -26,14 +28,11 @@ public class TargetingSystem : MonoBehaviour
         {
             if (HasClearLineOfSight(cherry.transform))
             {
-                Debug.Log("Target acquired: " + cherry.name);
-                // Here you can call Shoot() or another attack method
-            }
-            else
-            {
-                Debug.Log("Target blocked: " + cherry.name);
+                return cherry.gameObject;
             }
         }
+        
+        return null;
     }
 
     bool HasClearLineOfSight(Transform target)

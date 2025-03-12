@@ -15,5 +15,5 @@ MonoBehaviour:
   cooldown: 1
   projectile: {fileID: 1373519935423302513, guid: 4a93f91688e72d443a166bcaeddc5fde, type: 3}
   projectileSpeed: 2
-  quantity: 3
-  spreadAngle: 1.7
+  quantity: 6
+  spreadAngle: 3.14159265358979

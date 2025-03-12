@@ -10,16 +10,7 @@ public class CherryHitbox : MonoBehaviour
 
     public void Start()
     {
-        // Checks if cherry is big or not, then set cherryHealth.
-        // May need to edit based on how big cherries are implemented.
-        if (gameObject.transform.localScale == new Vector3(2, 2, 2))
-        {
-            cherryHealth = 75;
-        }
-        else
-        {
-            cherryHealth = 50;
-        }
+        debuffManager = GetComponent<DebuffManager>();
     }
 
     public void Update()
@@ -32,8 +23,6 @@ public class CherryHitbox : MonoBehaviour
     public void TakeDamage(float damage)
     {
         cherryHealth -= debuffManager.GetDamageMultiplier() * damage;
+        Debug.Log("Cherry health is now " + cherryHealth);
     }
-
-
-
 }

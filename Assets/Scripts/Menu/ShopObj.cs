@@ -25,15 +25,13 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         if (Input.GetMouseButtonDown(0) && hovered)
         {
-            addToInventory();
+            Inventory inv = FindFirstObjectByType<Inventory>();
+            if (inv.TryBuyItem(displayItem))
+            {
+                FindFirstObjectByType<InventoryRenderer>().UpdateAllIcons();
+            }
+            
         }
-    }
-
-    public void addToInventory()
-    {
-        InventoryRenderer inventory = FindFirstObjectByType<InventoryRenderer>();
-        inventory.AddItemToDisplay(displayItem);
-        inventory.UpdateAllIcons();
     }
 
     public void SetUp(Item item)
@@ -41,5 +39,6 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
         image.sprite = item.shopSprite;
         nameText.text = item.name;
         priceText.text = item.price + "";
+        displayItem = item;
     }
 }

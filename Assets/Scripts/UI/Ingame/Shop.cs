@@ -17,6 +17,7 @@ public class Shop : MonoBehaviour
 
     [SerializeField] GameObject shopObjPrefab;
     [SerializeField] List<Item> currentItems = new();
+    [SerializeField] List<Item> availableItems = new();
     [SerializeField] Transform itemParent;
 
     void Start()
@@ -58,7 +59,18 @@ public class Shop : MonoBehaviour
 
         moving = false;
 
+        if (currentItems.Count < 6) PopulateShop();
         UpdateAllIcons();
+    }
+
+    public void PopulateShop()
+    {
+        // Will probably be changed later idk
+        for (int i = 0; i < 6; i++)
+        {
+            int item = Random.Range(0, availableItems.Count);
+            currentItems.Add(availableItems[item]);
+        }
     }
 
     public void UpdateAllIcons()

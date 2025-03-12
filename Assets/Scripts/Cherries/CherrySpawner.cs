@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CherrySpawner : MonoBehaviour
 {
-    int roundNumber = 1;
+    [SerializeField] int roundNumber = 1;
 
     readonly float defaultTimeBetweenCherries = 1;
     readonly float defaultCherriesPerRound = 10;
@@ -22,6 +22,7 @@ public class CherrySpawner : MonoBehaviour
     void OnRoundStart()
     {
         StartCoroutine(RoundCoroutine());
+        roundNumber += 1;
     }
 
     IEnumerator RoundCoroutine()
@@ -37,5 +38,9 @@ public class CherrySpawner : MonoBehaviour
 
             yield return new WaitForSeconds(timeBetweenCherries);
         }
+
+        yield return new WaitForSeconds(3); // for testing
+
+        OnRoundStart(); // this too
     }
 }

@@ -780,6 +780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5343b79346942918b9124df4cf1d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryRenderer: {fileID: 1959055713}
   inventoryEffectManager: {fileID: 940206364}
 --- !u!4 &940206366
 Transform:
@@ -1417,6 +1418,17 @@ Transform:
   - {fileID: 1572731274}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1959055713 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6508363885407075222, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+  m_PrefabInstance: {fileID: 7121916051453279109}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03ee442093ce4b5e8eb93930fe3f38b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2073369608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1504,7 +1516,11 @@ PrefabInstance:
       objectReference: {fileID: 7875255754724816196, guid: 3f767271e52944b68bf819171116f8fa, type: 3}
     - target: {fileID: 2570986605581453165, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: currentItems.Array.size
-      value: 6
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570986605581453165, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: availableItems.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2570986605581453165, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: 'currentItems.Array.data[0]'
@@ -1530,6 +1546,14 @@ PrefabInstance:
       propertyPath: 'currentItems.Array.data[5]'
       value: 
       objectReference: {fileID: 11400000, guid: 32e3947f085444a0e8fe65b294b7f9d0, type: 2}
+    - target: {fileID: 2570986605581453165, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'availableItems.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 32e3947f085444a0e8fe65b294b7f9d0, type: 2}
+    - target: {fileID: 2570986605581453165, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'availableItems.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: fc8447cf6d7749e499d5a495ff33c615, type: 2}
     - target: {fileID: 4895827520771590193, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

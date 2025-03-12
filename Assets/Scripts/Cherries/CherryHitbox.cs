@@ -24,7 +24,7 @@ public class CherryHitbox : MonoBehaviour
 
     public void Update()
     {   
-        if (cherryHealth == 0) {
+        if (cherryHealth <= 0) {
             Destroy(gameObject);
         }
     }

@@ -18,10 +18,10 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Cherry"))
+        Debug.Log("Trigger enter: " + other.transform.root.name);
+        if (other.transform.root.TryGetComponent<CherryHitbox>(out CherryHitbox ch))
         {
-            CherryHitbox cherry = other.gameObject.GetComponent<CherryHitbox>();
-            cherry.TakeDamage(damage);
+            ch.TakeDamage(damage);
         }
     }
 }

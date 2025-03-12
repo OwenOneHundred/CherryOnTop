@@ -738,64 +738,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &940206363
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 940206366}
-  - component: {fileID: 940206365}
-  - component: {fileID: 940206364}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &940206364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 940206363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f15b8df2e924e4e7baaceb38238f66b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &940206365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 940206363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e5343b79346942918b9124df4cf1d3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryEffectManager: {fileID: 940206364}
---- !u!4 &940206366
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 940206363}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1010996032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,6 +1117,36 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 762437403}
   m_SourcePrefab: {fileID: 100100000, guid: 44771d6b126ab4cd18c3c8c672311b19, type: 3}
+--- !u!1 &1452439409 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2572070001336737110, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+  m_PrefabInstance: {fileID: 7121916051453279109}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1452439414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452439409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15b8df2e924e4e7baaceb38238f66b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1452439415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452439409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5343b79346942918b9124df4cf1d3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryEffectManager: {fileID: 1452439414}
 --- !u!1001 &1572731273
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1652,7 +1624,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2661400217726651603, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1787038138}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2572070001336737110, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1452439415}
+    - targetCorrespondingSourceObject: {fileID: 2572070001336737110, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1452439414}
   m_SourcePrefab: {fileID: 100100000, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -1667,4 +1645,3 @@ SceneRoots:
   - {fileID: 7121916051453279109}
   - {fileID: 814254362}
   - {fileID: 1928339911}
-  - {fileID: 940206366}

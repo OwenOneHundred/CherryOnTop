@@ -5,7 +5,7 @@ using UnityEngine;
 /// </summary>
 public class CherryHitbox : MonoBehaviour
 {
-    public float cherryHealth = 100;
+    public float cherryHealth;
     DebuffManager debuffManager;
 
     public void Start()

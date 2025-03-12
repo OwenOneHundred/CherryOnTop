@@ -10,11 +10,6 @@ public class DebuffManager : MonoBehaviour
 {
     List<CherryDebuff> debuffs = new List<CherryDebuff>();
 
-    private void Start()
-    {
-        
-    }
-
     private void Update()
     {
         for (int i = 0; i < debuffs.Count; i++)

@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cherry_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e1de9132c00da447584f992308220c05, type: 3}
+      propertyPath: m_TagString
+      value: Cherry
+      objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: e1de9132c00da447584f992308220c05, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.3

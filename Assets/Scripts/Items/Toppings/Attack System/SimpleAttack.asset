@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa5ddee62ca0e145b2a85463bea3cdf, type: 3}
   m_Name: SimpleAttack
   m_EditorClassIdentifier: 
-  topping: {fileID: 0}
   cooldown: 0.25
   projectile: {fileID: 1373519935423302513, guid: 4a93f91688e72d443a166bcaeddc5fde, type: 3}
-  projectileSpeed: 10
+  projectileSpeed: 25

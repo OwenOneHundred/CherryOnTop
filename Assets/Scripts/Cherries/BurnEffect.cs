@@ -16,6 +16,7 @@ public class BurnEffect : CherryDebuff
     {
         // Add VFX to cherry
 
+
         // Set cherry field to the GameObject cherry argument
         throw new System.NotImplementedException();
     }

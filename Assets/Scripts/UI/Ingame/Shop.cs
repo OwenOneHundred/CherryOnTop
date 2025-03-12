@@ -12,7 +12,6 @@ public class Shop : MonoBehaviour
     readonly float openPos = -230;
     RectTransform rect;
 
-    [SerializeField] int rows = 2;
     [SerializeField] int columns = 3;
     [SerializeField] int iconSpacing = 100;
 

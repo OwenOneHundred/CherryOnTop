@@ -62,7 +62,7 @@ public class InventoryRenderer : MonoBehaviour
 
         InventoryIconControl inventoryIconControl = newIcon.GetComponent<InventoryIconControl>();
         inventoryIconControl.assignedTopping = topping;
-        newIcon.GetComponent<Image>().sprite = topping.shopSprite;
+        newIcon.GetComponent<InventoryIconControl>().SetSprite(topping.shopSprite);
 
         ItemAndObj itemAndObj = new ItemAndObj(item, newIcon);
         displayList.Add(itemAndObj);

@@ -43,7 +43,7 @@ public class SimpleToppingAttack : ToppingAttack
     /// projectileSpeed
     /// </summary>
     /// <param name="targetedCherry"></param>
-    /// <returns> 
+    /// <returns>
     /// A Vector3 object
     /// </returns>
     private Vector3 FindTargetVector(GameObject targetedCherry){

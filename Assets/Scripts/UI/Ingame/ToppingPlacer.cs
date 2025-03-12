@@ -10,6 +10,7 @@ public class ToppingPlacer : MonoBehaviour
     [SerializeField] Material red;
     [SerializeField] Material white;
     [SerializeField] GameObject placePreview;
+    InventoryIconControl iconControl;
     bool placingTopping = false;
     Vector3 testPos;
     Vector3 testExtents;
@@ -43,9 +44,11 @@ public class ToppingPlacer : MonoBehaviour
         transparentObject.SetActive(false);
     }
 
-    public void StartPlacingTopping(Topping topping)
+    public void StartPlacingTopping(Topping topping, InventoryIconControl iic)
     {
         PlacingTopping = true;
+        iconControl = iic;
+        iic.beingPlaced = true;
 
         StartCoroutine(StartPlace(topping));
     }
@@ -104,7 +107,7 @@ public class ToppingPlacer : MonoBehaviour
         {
             PlaceTopping(topping, cakePos);
         }
-        transparentObject.SetActive(false);
+        StopPlacingTopping();
     }
 
     private bool CheckIfPlacementValid(MeshFilter prefabMeshFilter, Vector3 pos, Mesh mesh)
@@ -129,9 +132,17 @@ public class ToppingPlacer : MonoBehaviour
         return scaledDistanceFromCenter;
     }
 
+    private void StopPlacingTopping()
+    {
+        iconControl.beingPlaced = false;
+        iconControl = null;
+        transparentObject.SetActive(false);
+    }
+
     private void PlaceTopping(Topping topping, Vector3 position)
     {
         Instantiate(topping.towerPrefab, position, Quaternion.identity);
+        Inventory.inventory.RemoveItem(topping);
     }
 
     private void OnDrawGizmos()

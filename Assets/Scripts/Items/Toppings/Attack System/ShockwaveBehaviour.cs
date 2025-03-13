@@ -14,6 +14,7 @@ public class ShockwaveBehaviour : MonoBehaviour
     void Start()
     {
         Debug.Log("Shockwave manager initialized for shockwave with speed " + this.shockwaveSpeed + ".");
+        gameObject.GetComponent<SphereCollider>().radius = 0;
     }
 
     // Update is called once per frame
@@ -23,6 +24,6 @@ public class ShockwaveBehaviour : MonoBehaviour
     }
 
     private void IncreaseRadius() {
-        gameObject.GetComponent<SphereCollider>().radius += shockwaveSpeed;
+        gameObject.GetComponent<SphereCollider>().radius += Time.deltaTime * shockwaveSpeed;
     }
 }

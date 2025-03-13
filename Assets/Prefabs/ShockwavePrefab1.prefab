@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6912377409216151806}
   - component: {fileID: 7898384215015635142}
+  - component: {fileID: 1270520718622568064}
+  - component: {fileID: 6268610268667288001}
   m_Layer: 0
   m_Name: ShockwavePrefab1
   m_TagString: Untagged
@@ -53,3 +55,29 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.01
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1270520718622568064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5503282234501958175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ffbfc5935e22c446b70b94061b6d981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shockwaveSpeed: 1
+--- !u!114 &6268610268667288001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5503282234501958175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50b66ae6ac329946adb2eb7caca01f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10

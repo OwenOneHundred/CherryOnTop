@@ -23,5 +23,9 @@ public class Projectile : MonoBehaviour
         {
             ch.TakeDamage(damage);
         }
+        else 
+        {
+            Debug.Log("Hit cherry but it didn't have a cherry hitbox");
+        }
     }
 }

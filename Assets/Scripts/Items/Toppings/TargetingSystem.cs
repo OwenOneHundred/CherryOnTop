@@ -7,6 +7,7 @@ public class TargetingSystem : MonoBehaviour
     [SerializeField] private float range = 5f;
     private LayerMask cherryLayer, cakeLayer;
     [SerializeField] AttackManager attackManager;
+ 
 
     void Start()
     {
@@ -20,20 +21,29 @@ public class TargetingSystem : MonoBehaviour
         attackManager.UpdateTargetedCherry(found);
     }
 
-    GameObject Search()
+   GameObject Search()
     {
+        GameObject bestCherry = null;
+        float highestDistance = -1f;
+
         Collider[] cherries = Physics.OverlapSphere(transform.position, range, cherryLayer);
 
         foreach (Collider cherry in cherries)
         {
-            if (HasClearLineOfSight(cherry.transform))
+            CherryMovement cherryMovement = cherry.GetComponent<CherryMovement>();
+            if (cherryMovement != null && HasClearLineOfSight(cherry.transform))
             {
-                return cherry.gameObject;
+                if (cherryMovement.distanceTraveled > highestDistance)
+                {
+                    highestDistance = cherryMovement.distanceTraveled;
+                    bestCherry = cherry.gameObject;
+                }
             }
         }
-        
-        return null;
+
+        return bestCherry;
     }
+
 
     bool HasClearLineOfSight(Transform target)
     {
@@ -51,4 +61,5 @@ public class TargetingSystem : MonoBehaviour
         return true; // Clear sight to Cherry
         }
     }
+
 }

@@ -26,22 +26,27 @@ public class SwitchLevelPreview : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("preview length: " + levelPreviews.Length);
         level = new GameObject[levelPreviews.Length];
         moveButton.onClick.AddListener(OnForwardsButtonClick);
-        InstantiateBaseBox();
+        
         backButton.SetActive(false);
         for (int i = 0; i < levelPreviews.Length; i++)
         {
             Spawn(levelPreviews[i]);
-            level[i] = levelPreviews[i].emptyLevelPrefab;
+            Debug.Log(levelPreviews[i]);
+            level[i] = levelPreviews[i].levelPrefab;
+            
         }
+        InstantiateBaseBox();
     }
 
     public void Spawn(LevelPreview preview)
     {
-        GameObject panel = preview.emptyLevelPrefab.transform.GetChild(0).gameObject;
+        preview.levelPrefab = Instantiate(preview.emptyLevelPrefab);
+        GameObject panel = preview.levelPrefab.transform.GetChild(0).gameObject;
         panel.GetComponent<UnityEngine.UI.Image>().sprite = preview.levelImage;
-        GameObject sceneChangeButton = preview.emptyLevelPrefab.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+        GameObject sceneChangeButton = preview.levelPrefab.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
         sceneChangeButton.GetComponent<PlayButton>().sceneName = preview.sceneNameInEditor;
     }
 
@@ -62,17 +67,31 @@ public class SwitchLevelPreview : MonoBehaviour
     {
         if (moving)
         {
-            if (slideLeft) { loadedLevel.transform.localPosition -= new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0); Debug.Log(loadedLevel.transform.localPosition); }
-            else { loadedLevel.transform.localPosition += new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0); }
+            if (slideLeft) { 
+                loadedLevel.transform.localPosition -= new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0); Debug.Log(loadedLevel.transform.localPosition);
+                if (loadedLevel.transform.localPosition.x <= 0) {
+                    StopMovingAndSnapToCenter();
+                }
+            }
+            else { 
+                loadedLevel.transform.localPosition += new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0);
+                if (loadedLevel.transform.localPosition.x >= 0)
+                {
+                    StopMovingAndSnapToCenter();
+                }
+            }
+            /*
             if ( loadedLevel.transform.localPosition.x >= -stopRadius && loadedLevel.transform.localPosition.x <= stopRadius) { 
                 moving = false;
                 loadedLevel.transform.localPosition = new Vector3(0, 0, 0);
             }
+            */
         }
     }
-    private void MoveBox()
+    private void StopMovingAndSnapToCenter()
     {
-            
+        moving = false;
+        loadedLevel.transform.localPosition = new Vector3(0, 0, 0);
 
     }
 

@@ -5,29 +5,23 @@ using UnityEngine;
 /// </summary>
 public class CherryHitbox : MonoBehaviour
 {
-    public float cherryHealth = 100;
-    public float damage = 5;
+    public float cherryHealth;
     DebuffManager debuffManager;
 
     public void Start()
     {
-        
+        debuffManager = GetComponent<DebuffManager>();
     }
 
     public void Update()
     {   
-        if (cherryHealth == 0) {
-            // delete cherry
+        if (cherryHealth <= 0) {
+            Destroy(gameObject);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void TakeDamage(float damage)
     {
-        // checking if "other" is a projectile(?)
-        if (other)
-        {
-            cherryHealth -= debuffManager.GetDamageMultiplier() * damage;
-        }
+        cherryHealth -= debuffManager.GetDamageMultiplier() * damage;
     }
-
 }

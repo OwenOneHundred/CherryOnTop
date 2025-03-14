@@ -12,7 +12,7 @@ public class ShockwaveAttack : ToppingAttack
 
     // Represents the speed of the shockwave produced by this attack, in radius units per second
     [SerializeField]
-    float shockwaveSpeed;
+    float range;
 
     // Represents the maximum radius this shockwave can have
     [SerializeField]
@@ -36,7 +36,7 @@ public class ShockwaveAttack : ToppingAttack
 
     private void AttackCherry(GameObject targetedCherry) {
         GameObject newShockwave = Instantiate(this.shockwave, topping.transform.position, Quaternion.identity);
-        newShockwave.GetComponent<ShockwaveBehaviour>().shockwaveSpeed = this.shockwaveSpeed;
+        newShockwave.GetComponent<ShockwaveBehaviour>().range = range;
 
         float shockwaveDuration = shockwaveReach / shockwaveSpeed;
         Destroy(newShockwave, shockwaveDuration);

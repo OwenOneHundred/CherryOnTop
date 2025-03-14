@@ -1,5 +1,3 @@
-using System.Net.NetworkInformation;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TargetingSystem : MonoBehaviour

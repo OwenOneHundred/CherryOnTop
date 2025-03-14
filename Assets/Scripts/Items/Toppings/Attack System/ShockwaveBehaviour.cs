@@ -6,14 +6,16 @@ using UnityEngine;
 /// </summary>
 public class ShockwaveBehaviour : MonoBehaviour
 {
-    // Represents the rate at which the radius of the Shockwave increases.
-    [SerializeField]
-    public float shockwaveSpeed;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [System.NonSerialized] public float range;
+    private float lifetime;
+    readonly float speed = 2.9f;
+
     void Start()
     {
-        Debug.Log("Shockwave manager initialized for shockwave with speed " + this.shockwaveSpeed + ".");
+        transform.GetChild(0).GetComponent<ShockwaveParticleSystem>().SetUp(range);
+
+        lifetime = (range / speed);
+        Destroy(gameObject, lifetime);
     }
 
     // Update is called once per frame
@@ -22,7 +24,8 @@ public class ShockwaveBehaviour : MonoBehaviour
         IncreaseRadius();
     }
 
-    private void IncreaseRadius() {
-        gameObject.GetComponent<SphereCollider>().radius += shockwaveSpeed;
+    private void IncreaseRadius()
+    {
+        gameObject.GetComponent<SphereCollider>().radius += speed * Time.deltaTime;
     }
 }

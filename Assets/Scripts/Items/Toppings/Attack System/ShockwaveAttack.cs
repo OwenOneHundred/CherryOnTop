@@ -12,7 +12,7 @@ public class ShockwaveAttack : ToppingAttack
 
     // Represents the speed of the shockwave produced by this attack
     [SerializeField]
-    float shockwaveSpeed;
+    float range;
 
     public override void OnStart() {
         Debug.Log("Simple attack with a cooldown of " + this.cooldown + " assigned to topping " + this.topping.name + ".");
@@ -28,7 +28,7 @@ public class ShockwaveAttack : ToppingAttack
 
     private void AttackCherry(GameObject targetedCherry) {
         GameObject newShockwave = Instantiate(this.shockwave, topping.transform.position, Quaternion.identity);
-        newShockwave.GetComponent<ShockwaveBehaviour>().shockwaveSpeed = this.shockwaveSpeed;
+        newShockwave.GetComponent<ShockwaveBehaviour>().range = range;
 
         Destroy(newShockwave, 8);
     }

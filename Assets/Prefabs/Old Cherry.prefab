@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 89674661074591280}
   - component: {fileID: 1996896809466923644}
   m_Layer: 0
-  m_Name: Cherry
+  m_Name: Old Cherry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

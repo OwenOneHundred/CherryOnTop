@@ -18,14 +18,9 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger enter: " + other.transform.root.name);
         if (other.transform.root.TryGetComponent<CherryHitbox>(out CherryHitbox ch))
         {
             ch.TakeDamage(damage);
-        }
-        else 
-        {
-            Debug.Log("Hit cherry but it didn't have a cherry hitbox");
         }
     }
 }

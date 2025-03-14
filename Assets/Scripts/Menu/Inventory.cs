@@ -15,20 +15,23 @@ public class Inventory : MonoBehaviour
         else if (inventory != this)
         {
             Destroy(gameObject);
+            return;
         }
     }
 
     public InventoryRenderer inventoryRenderer;
 
     public InventoryEffectManager inventoryEffectManager;
+    public IngameUI ingameUI;
     void Start()
     {
         inventoryEffectManager = GetComponent<InventoryEffectManager>();
+        ingameUI = GameObject.FindAnyObjectByType<IngameUI>();
     }
 
     List<Item> ownedItems = new List<Item>();
 
-    int money = 69;
+    int money = 0;
     public int Money
     {
         get { return money; }
@@ -42,13 +45,18 @@ public class Inventory : MonoBehaviour
             {
                 money = value;
             }
+            ingameUI.SetMoney(value);
         }
     }
     int cakePoints = 0;
     public int CakePoints
     {
         get { return cakePoints; }
-        set { cakePoints = value; }
+        set
+        {
+            cakePoints = value;
+            ingameUI.SetCakeScore(value);
+        }
     }
     
     public bool TryBuyItem(Item item)

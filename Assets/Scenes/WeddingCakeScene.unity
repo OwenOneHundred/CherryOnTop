@@ -1105,6 +1105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryRenderer: {fileID: 0}
   inventoryEffectManager: {fileID: 1452439414}
+  ingameUI: {fileID: 0}
 --- !u!1001 &1572731273
 PrefabInstance:
   m_ObjectHideFlags: 0

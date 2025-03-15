@@ -888,6 +888,7 @@ MonoBehaviour:
   red: {fileID: 2100000, guid: 29550d14bba044847b4b023848ab1681, type: 2}
   white: {fileID: 2100000, guid: 96e18d5064f354e41984c66302d36894, type: 2}
   placePreview: {fileID: 6845720622537204174, guid: 3e739adb791234faeb6ad798cbaba722, type: 3}
+  toppingPlaceEffect: {fileID: 7649228073842828853, guid: df90ad80c9e3b442d9558e2588fbf510, type: 3}
 --- !u!1 &2572070001336737110
 GameObject:
   m_ObjectHideFlags: 0

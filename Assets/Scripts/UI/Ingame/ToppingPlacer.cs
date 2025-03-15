@@ -16,6 +16,7 @@ public class ToppingPlacer : MonoBehaviour
     public static ToppingPlacer toppingPlacer;
 
     GameObject transparentObject;
+    [SerializeField] GameObject toppingPlaceEffect;
 
     readonly Vector3 checkAreaVerticalOffset = new Vector3(0, 0.02f, 0);
     public bool PlacingTopping
@@ -138,6 +139,7 @@ public class ToppingPlacer : MonoBehaviour
     private void PlaceTopping(Topping topping, Vector3 position)
     {
         Instantiate(topping.towerPrefab, position, Quaternion.identity);
+        Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 6);
         Inventory.inventory.RemoveItem(topping);
     }
 }

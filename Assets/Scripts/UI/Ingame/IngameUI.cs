@@ -9,7 +9,7 @@ public class IngameUI : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI goalScoreText;
     public void SetMoney(int money)
     {
-        moneyText.text = "Money: $" + moneyText;
+        moneyText.text = "Money: $" + money;
     }
 
     public void SetCakeScore(int cakeScore)

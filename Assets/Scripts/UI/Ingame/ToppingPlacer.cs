@@ -12,8 +12,6 @@ public class ToppingPlacer : MonoBehaviour
     [SerializeField] GameObject placePreview;
     InventoryIconControl iconControl;
     bool placingTopping = false;
-    Vector3 testPos;
-    Vector3 testExtents;
 
     public static ToppingPlacer toppingPlacer;
 
@@ -115,9 +113,7 @@ public class ToppingPlacer : MonoBehaviour
         Bounds bounds = mesh.bounds;
         Vector3 extents = prefabMeshFilter.transform.rotation * Vector3.Scale(bounds.extents, prefabMeshFilter.transform.lossyScale);
         var result = Physics.OverlapBox(pos + checkAreaVerticalOffset, extents, Quaternion.identity, layersThatBlockPlacement);
-        testPos = pos + checkAreaVerticalOffset;
-        testExtents = extents;
-
+        
         return result.Count() == 0;
     }
 
@@ -143,10 +139,5 @@ public class ToppingPlacer : MonoBehaviour
     {
         Instantiate(topping.towerPrefab, position, Quaternion.identity);
         Inventory.inventory.RemoveItem(topping);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(testPos, testExtents * 2);
     }
 }

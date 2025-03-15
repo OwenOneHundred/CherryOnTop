@@ -66,7 +66,7 @@ public class Inventory : MonoBehaviour
 
         AddItem(item);
         Money -= item.price;
-        inventoryRenderer.UpdateAllIcons();
+        inventoryRenderer.UpdateAllIconPositions();
         return true;
     }
 

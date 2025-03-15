@@ -7,6 +7,6 @@ public class ChangeMoney : EffectSO
 
     public override void OnTriggered()
     {
-        GameInfo.money += amountToChangeMoney;
+        Inventory.inventory.Money += amountToChangeMoney;
     }
 }

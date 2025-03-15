@@ -28,7 +28,7 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
             Inventory inv = FindFirstObjectByType<Inventory>();
             if (inv.TryBuyItem(displayItem))
             {
-                FindFirstObjectByType<InventoryRenderer>().UpdateAllIcons();
+                FindFirstObjectByType<InventoryRenderer>().UpdateAllIconPositions();
             }
             
         }

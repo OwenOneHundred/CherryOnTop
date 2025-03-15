@@ -48,6 +48,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 62427ec7ef89d40d0a3b4139156d2630, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 62427ec7ef89d40d0a3b4139156d2630, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5372e7f38400f4d8cbaee6eb0ff6387d, type: 2}
     - target: {fileID: 919132149155446097, guid: 62427ec7ef89d40d0a3b4139156d2630, type: 3}
       propertyPath: m_Name
       value: Cupcake

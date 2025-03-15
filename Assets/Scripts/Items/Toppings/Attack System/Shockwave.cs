@@ -4,7 +4,7 @@ using UnityEngine;
 /// Handles the behaviour of a Shockwave, which is a GameObject with a spherical hitbox radius which expands at
 /// a specified speed. This script should be a component of all Shockwave GameObjects.
 /// </summary>
-public class ShockwaveBehaviour : MonoBehaviour
+public class Shockwave : MonoBehaviour
 {
     [System.NonSerialized] public float range;
     private float lifetime;

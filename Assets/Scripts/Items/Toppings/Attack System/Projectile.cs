@@ -21,6 +21,11 @@ public class Projectile : MonoBehaviour
         if (other.transform.root.TryGetComponent<CherryHitbox>(out CherryHitbox ch))
         {
             ch.TakeDamage(damage);
+            OnHitCherry(ch);
         }
+    }
+
+    public virtual void OnHitCherry(CherryHitbox ch) {
+        //
     }
 }

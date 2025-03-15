@@ -8,6 +8,8 @@ public abstract class Item : ScriptableObject
 
     public List<EffectAndWhen> effectsAndWhen = new List<EffectAndWhen>();
 
+    [TextArea] public string description;
+
     public void RegisterEffects()
     {
         foreach (EffectAndWhen effectAndWhen in effectsAndWhen)

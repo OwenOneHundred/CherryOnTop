@@ -11,6 +11,15 @@ namespace EventBus
         public uint roundNumber;
     }
 
+    public struct BuyEvent : IEvent
+    {
+        public BuyEvent(Item item)
+        {
+            this.item = item;
+        }
+        public Item item;
+    }
+
     public struct TowerPlacedEvent : IEvent
     {
         // add variable corresponding to a tower

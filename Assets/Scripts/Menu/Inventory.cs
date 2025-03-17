@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using EventBus;
 using Unity.Collections;
 using UnityEngine;
 
@@ -67,6 +68,7 @@ public class Inventory : MonoBehaviour
         AddItem(item);
         Money -= item.price;
         inventoryRenderer.UpdateAllIconPositions();
+        EventBus<BuyEvent>.Raise(new BuyEvent(item));
         return true;
     }
 

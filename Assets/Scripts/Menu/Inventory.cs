@@ -7,6 +7,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public static Inventory inventory;
+    [SerializeField] List<Item> startingInventoryItems;
     private void Awake()
     {
         if (inventory == null)
@@ -28,6 +29,11 @@ public class Inventory : MonoBehaviour
     {
         inventoryEffectManager = GetComponent<InventoryEffectManager>();
         ingameUI = GameObject.FindAnyObjectByType<IngameUI>();
+
+        foreach (Item item in startingInventoryItems) // add starting items to inventory display
+        {
+            inventoryRenderer.AddItemToDisplay(item);
+        }
     }
 
     List<Item> ownedItems = new List<Item>();

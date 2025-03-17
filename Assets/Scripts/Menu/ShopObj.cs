@@ -41,4 +41,11 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
         priceText.text = item.price + "";
         displayItem = item;
     }
+
+    public void UpdateInfo()
+    {
+        image.sprite = displayItem.shopSprite;
+        nameText.text = displayItem.name;
+        priceText.text = displayItem.price + "";
+    }
 }

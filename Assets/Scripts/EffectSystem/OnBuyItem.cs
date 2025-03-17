@@ -2,7 +2,7 @@ using UnityEngine;
 using EventBus;
 using System.Collections.Generic;
 
-[CreateAssetMenu(menuName = "Event/OnRoundStart")]
+[CreateAssetMenu(menuName = "Event/OnBuyItem")]
 public class OnBuyItem : EventSO
 {
     List<EventBinding<BuyEvent>> events = new();

@@ -8,6 +8,10 @@ namespace EventBus
 
     public struct RoundStartEvent : IEvent
     {
+        public RoundStartEvent(uint roundNumber)
+        {
+            this.roundNumber = roundNumber;
+        }
         public uint roundNumber;
     }
 

@@ -1,10 +1,11 @@
+using EventBus;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class RoundManager : MonoBehaviour
 {
     public RoundState roundState;
-    public int roundNumber = 0;
+    public uint roundNumber = 0;
 
     [System.NonSerialized] public int totalCherriesThisRound = 10;
     int cherriesKilledThisRoundCount = 0;
@@ -33,6 +34,9 @@ public class RoundManager : MonoBehaviour
         ingameUI.SetRound(roundNumber);
         roundState = RoundState.cherries;
         nextRoundButton.interactable = false;
+
+        EventBus<RoundStartEvent>.Raise(new RoundStartEvent(roundNumber));
+
         GameObject.FindAnyObjectByType<CherrySpawner>().OnRoundStart();
     }
 

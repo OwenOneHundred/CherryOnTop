@@ -1,0 +1,19 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MakeToppingFree : EffectSO
+{
+    [SerializeField] string toppingName;
+
+    public override void OnTriggered()
+    {
+        List<Item> shopItems = GameObject.FindAnyObjectByType<Shop>().currentItems;
+        foreach (Item item in shopItems)
+        {
+            if (item.name == toppingName)
+            {
+                item.price = 0;
+            }
+        }
+    }
+}

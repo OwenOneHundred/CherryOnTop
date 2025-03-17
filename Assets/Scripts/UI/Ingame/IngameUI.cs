@@ -17,7 +17,7 @@ public class IngameUI : MonoBehaviour
         cakeScoreText.text = "Cake Score: " + cakeScore;
     }
 
-    public void SetRound(int roundNumber)
+    public void SetRound(uint roundNumber)
     {
         roundNumberText.text = "Round " + roundNumber;
     }

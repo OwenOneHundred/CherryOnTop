@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 025147059f0e94e75b664242a92a8b0f, type: 3}
   m_Name: CandyCanesFree
   m_EditorClassIdentifier: 
-  toppingName: 
+  toppingName: Candy Cane

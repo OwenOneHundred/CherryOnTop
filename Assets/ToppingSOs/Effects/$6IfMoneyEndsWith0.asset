@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: $6IfMoneyEndsWith0
   m_EditorClassIdentifier: 
   endingNumber: 48
-  moneyChange: 4
+  moneyChange: 6

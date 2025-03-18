@@ -18,6 +18,8 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public InventoryRenderer inventoryRenderer;
+
     public InventoryEffectManager inventoryEffectManager;
     void Start()
     {
@@ -26,7 +28,7 @@ public class Inventory : MonoBehaviour
 
     List<Item> ownedItems = new List<Item>();
 
-    int money = 0;
+    int money = 69;
     public int Money
     {
         get { return money; }
@@ -51,17 +53,19 @@ public class Inventory : MonoBehaviour
     
     public bool TryBuyItem(Item item)
     {
-        if (item.price > money) { return false; } // can't afford
+        if (item.price > money) { Debug.Log(money + " " + item.price);  return false; } // can't afford
         if (0 > inventoryEffectManager.GetLimit<LimitBuying>()) { return false; } // TODO replace 0 with shop manager purchases count 
 
         AddItem(item);
         Money -= item.price;
+        inventoryRenderer.UpdateAllIcons();
         return true;
     }
 
     public void AddItem(Item item)
     {
         ownedItems.Add(item);
+        inventoryRenderer.AddItemToDisplay(item);
     }
 
     public void RemoveItem(Item item)

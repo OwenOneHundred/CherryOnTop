@@ -23,6 +23,5 @@ public class CherryHitbox : MonoBehaviour
     public void TakeDamage(float damage)
     {
         cherryHealth -= debuffManager.GetDamageMultiplier() * damage;
-        Debug.Log("Cherry health is now " + cherryHealth);
     }
 }

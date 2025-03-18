@@ -4,7 +4,7 @@ using UnityEngine;
 /// Simple attack type that shoots a projectile in the direction of the target Cherry.
 /// </summary>
 [CreateAssetMenu(menuName = "Attacks/Simple Attack")]
-public class SimpleToppingAttack : ToppingAttack
+public class SimpleAttack : ToppingAttack
 {
     // Stores a reference to the prefab used as the projectile
     [SerializeField]
@@ -43,7 +43,7 @@ public class SimpleToppingAttack : ToppingAttack
     /// projectileSpeed
     /// </summary>
     /// <param name="targetedCherry"></param>
-    /// <returns> 
+    /// <returns>
     /// A Vector3 object
     /// </returns>
     private Vector3 FindTargetVector(GameObject targetedCherry){

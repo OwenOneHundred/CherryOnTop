@@ -22,6 +22,7 @@ public class CherrySpawner : MonoBehaviour
     void OnRoundStart()
     {
         StartCoroutine(RoundCoroutine());
+        roundNumber += 1;
     }
 
     IEnumerator RoundCoroutine()
@@ -37,5 +38,9 @@ public class CherrySpawner : MonoBehaviour
 
             yield return new WaitForSeconds(timeBetweenCherries);
         }
+
+        yield return new WaitForSeconds(3); // for testing
+
+        OnRoundStart(); // this too
     }
 }

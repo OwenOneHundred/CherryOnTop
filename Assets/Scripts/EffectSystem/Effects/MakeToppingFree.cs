@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName ="Effects/MakeToppingFree")]
 public class MakeToppingFree : EffectSO
 {
     [SerializeField] string toppingName;

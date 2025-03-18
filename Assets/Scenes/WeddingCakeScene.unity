@@ -635,11 +635,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 44771d6b126ab4cd18c3c8c672311b19, type: 3}
---- !u!224 &774984364 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2661400217726651603, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-  m_PrefabInstance: {fileID: 7121916051453279109}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &814254361
 GameObject:
   m_ObjectHideFlags: 0
@@ -1146,6 +1141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5343b79346942918b9124df4cf1d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryRenderer: {fileID: 0}
   inventoryEffectManager: {fileID: 1452439414}
 --- !u!1001 &1572731273
 PrefabInstance:
@@ -1283,7 +1279,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 774984364}
+  m_Father: {fileID: 7121916051453279110}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1621,7 +1617,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2661400217726651603, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 5964487472042778191, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1787038138}
     m_AddedComponents:
@@ -1632,6 +1628,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1452439414}
   m_SourcePrefab: {fileID: 100100000, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+--- !u!224 &7121916051453279110 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5964487472042778191, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+  m_PrefabInstance: {fileID: 7121916051453279109}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

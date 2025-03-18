@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CherrySpawner : MonoBehaviour
 {
-    int roundNumber = 1;
+    [SerializeField] int roundNumber = 1;
 
     readonly float defaultTimeBetweenCherries = 1;
     readonly float defaultCherriesPerRound = 10;

@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 6259744886963452987}
   - component: {fileID: 3392977787045670734}
   - component: {fileID: 2446293633280834808}
+  - component: {fileID: 2216534911100263379}
   m_Layer: 12
   m_Name: Mesh
   m_TagString: Untagged
@@ -99,7 +100,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: aa9bebbb776344a48a2dec901e810cb0, type: 2}
-  - {fileID: 2100000, guid: 440eb6359706a4a8e8318081e29a427b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -133,6 +133,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 386ff9d1013244464af733aa78caae0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2216534911100263379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7950584445644482870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d73df01279b254c72ab306e3c78b7675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infoPopupPrefab: {fileID: 5143935969253856157, guid: 8366678d3fd414bfcb7312b4366fb4bf, type: 3}
 --- !u!1 &8780444211603820160
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,5 +205,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bed86883be0e64bc39b458dfbff47e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 5
+  range: 3
   attackManager: {fileID: 3242621880762221844}

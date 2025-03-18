@@ -8,7 +8,20 @@ namespace EventBus
 
     public struct RoundStartEvent : IEvent
     {
+        public RoundStartEvent(uint roundNumber)
+        {
+            this.roundNumber = roundNumber;
+        }
         public uint roundNumber;
+    }
+
+    public struct BuyEvent : IEvent
+    {
+        public BuyEvent(Item item)
+        {
+            this.item = item;
+        }
+        public Item item;
     }
 
     public struct TowerPlacedEvent : IEvent

@@ -532,7 +532,6 @@ GameObject:
   - component: {fileID: 813089716}
   - component: {fileID: 813089715}
   - component: {fileID: 813089714}
-  - component: {fileID: 813089717}
   - component: {fileID: 813089718}
   m_Layer: 5
   m_Name: SettingsButton
@@ -605,8 +604,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 813089717}
-        m_TargetAssemblyTypeName: DeactivateAllGameobjectsInCanvas, Assembly-CSharp
+      - m_Target: {fileID: 813089718}
+        m_TargetAssemblyTypeName: LevelSelectSettings, Assembly-CSharp
         m_MethodName: Deactivate
         m_Mode: 6
         m_Arguments:
@@ -667,18 +666,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813089711}
   m_CullTransparentMesh: 1
---- !u!114 &813089717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 813089711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b307244de4dc47545a9e0e52ee837752, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &813089718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,7 +678,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83b41b6f6e597b7488c9224d2b75c867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deactiveScript: {fileID: 813089717}
 --- !u!1 &870543223
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,9 +1465,37 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 813089711}
+    - target: {fileID: 1461601384100657347, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333696763320562053, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333696763320562053, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -70
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899235945510753775, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3181088761205223646, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
       propertyPath: m_Name
-      value: Settings Popup
+      value: Main Menu Settings Popup
+      objectReference: {fileID: 0}
+    - target: {fileID: 3181088761205223646, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4987531159127680303, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4987531159127680303, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -70
       objectReference: {fileID: 0}
     - target: {fileID: 7088423251718573688, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
       propertyPath: m_Pivot.x

@@ -26,7 +26,7 @@ public class SwitchLevelPreview : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("preview length: " + levelPreviews.Length);
+        
         level = new GameObject[levelPreviews.Length];
         moveButton.onClick.AddListener(OnForwardsButtonClick);
         
@@ -34,7 +34,7 @@ public class SwitchLevelPreview : MonoBehaviour
         for (int i = 0; i < levelPreviews.Length; i++)
         {
             Spawn(levelPreviews[i]);
-            Debug.Log(levelPreviews[i]);
+            
             level[i] = levelPreviews[i].levelPrefab;
             
         }

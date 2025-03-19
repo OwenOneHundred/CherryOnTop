@@ -299,6 +299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1261438764303226893}
   - component: {fileID: 8759114289087427388}
+  - component: {fileID: 8392582136422224834}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -338,6 +339,18 @@ MonoBehaviour:
   moneyOnRoundEnd: 10
   nextRoundButton: {fileID: 1390693133404687419}
   ingameUI: {fileID: 5165441279755291159}
+--- !u!114 &8392582136422224834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621407052771409201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b57459ec67c14f87afa4bfbceefcc53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1997559020666774139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,9 +1015,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5343b79346942918b9124df4cf1d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryRenderer: {fileID: 0}
+  startingInventoryItems:
+  - {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}
+  - {fileID: 11400000, guid: fc8447cf6d7749e499d5a495ff33c615, type: 2}
+  inventoryRenderer: {fileID: 6508363885407075222}
   inventoryEffectManager: {fileID: 2718221458188522715}
-  ingameUI: {fileID: 0}
+  ingameUI: {fileID: 5165441279755291159}
 --- !u!114 &2718221458188522715
 MonoBehaviour:
   m_ObjectHideFlags: 0

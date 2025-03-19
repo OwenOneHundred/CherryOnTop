@@ -12,7 +12,7 @@ public abstract class ProjectileAttack : ToppingAttack
     // Represents the speed of the projectiles shot by this ToppingAttack
     [SerializeField]
     float projectileSpeed;
-    
+
     /// <summary>
     /// Spawn a projectile with an initial position, velocity, rotation, and damage.
     /// </summary>
@@ -23,5 +23,5 @@ public abstract class ProjectileAttack : ToppingAttack
     /// <param name="velocity"></param>
     /// <param name="rotation"></param>
     /// <param name="damage"></param>
-    public abstract void SpawnProjectile(GameObejct projectile, Vector3 position, Vector3 velocity, Quaternion rotation, float damage);
+    public abstract void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, float damage);
 }

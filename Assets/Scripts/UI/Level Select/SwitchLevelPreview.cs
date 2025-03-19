@@ -55,7 +55,7 @@ public class SwitchLevelPreview : MonoBehaviour
         if (moving)
         {
             if (slideLeft) { 
-                loadedLevel.transform.localPosition -= new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0); Debug.Log(loadedLevel.transform.localPosition);
+                loadedLevel.transform.localPosition -= new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0); 
                 if (loadedLevel.transform.localPosition.x <= 0) {
                     StopMovingAndSnapToCenter();
                 }

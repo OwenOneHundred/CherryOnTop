@@ -142,7 +142,7 @@ public class ToppingPlacer : MonoBehaviour
     {
         GameObject newToppingObj = Instantiate(topping.towerPrefab, position, Quaternion.identity); // spawn obj
         ToppingRegistry.toppingRegistry.RegisterPlacedTopping(Instantiate(topping), newToppingObj); // register
-        EventBus<TowerPlacedEvent>.Raise(new TowerPlacedEvent(topping, newToppingObj));
+        EventBus<TowerPlacedEvent>.Raise(new TowerPlacedEvent(topping, newToppingObj)); // call placed tower event
         Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 6); // create particle effect
         Inventory.inventory.RemoveItem(topping); // remove from inventory
     }

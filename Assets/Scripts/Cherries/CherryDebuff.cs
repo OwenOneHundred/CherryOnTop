@@ -6,7 +6,10 @@ using UnityEngine;
 public abstract class CherryDebuff : ScriptableObject
 {
     public float movementSpeedMultiplier = 1; // this is read by DebuffManager, so debuffs can slow cherries.
+
+    public ToppingTypes.Flags typesThatGetDamageMultiplier;
     public float damageMultiplier = 1; // this is read by DebuffManager, so debuffs can put multipliers on damage.
+    
     [System.NonSerialized] public GameObject cherry; // should be set in OnAdd, 
     // so it can be read in EveryFrame to perform actions on the cherry this debuff is on
 

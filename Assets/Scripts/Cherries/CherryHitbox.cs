@@ -14,9 +14,9 @@ public class CherryHitbox : MonoBehaviour
         debuffManager = GetComponent<DebuffManager>();
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, Topping attacker)
     {
-        float actualDamage = debuffManager.GetDamageMultiplier() * damage;
+        float actualDamage = debuffManager.GetDamageMultiplier(attacker) * damage;
         cherryHealth -= actualDamage;
 
         if (cherryHealth <= 0)

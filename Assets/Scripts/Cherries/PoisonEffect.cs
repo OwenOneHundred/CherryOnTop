@@ -2,13 +2,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
 
-[CreateAssetMenu(menuName = "CherryDebuff/Slow")]
+[CreateAssetMenu(menuName = "CherryDebuff/Poison")]
 public class PoisonEffect : CherryDebuff
 {
     public override void EveryFrame()
     {
         // This is where effects would deal damage and operate logic.
-        this.cherry.GetComponent<CherryHitbox>().TakeDamage(1);
+        this.cherry.GetComponent<CherryHitbox>().TakeDamage(1, null);
     }
 
     public override void OnAdded(GameObject cherry)

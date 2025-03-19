@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: SimpleAttack
   m_EditorClassIdentifier: 
   cooldown: 0.25
+  damage: 0
   projectile: {fileID: 1373519935423302513, guid: 4a93f91688e72d443a166bcaeddc5fde, type: 3}
-  projectileSpeed: 25
+  projectileSpeed: 5

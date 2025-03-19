@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74bb26ef8e56377499445ec33b5dc2db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackTemplate: {fileID: 11400000, guid: adc8db3348ff6ef409d2a45ce5a5edf8, type: 2}
+  attackTemplate: {fileID: 11400000, guid: d97bcee4d31ad44409cdadb440b2930c, type: 2}
   targetedCherry: {fileID: 859783087}
 --- !u!135 &412143654
 SphereCollider:
@@ -512,6 +512,8 @@ GameObject:
   - component: {fileID: 859783090}
   - component: {fileID: 859783089}
   - component: {fileID: 859783088}
+  - component: {fileID: 859783092}
+  - component: {fileID: 859783093}
   m_Layer: 0
   m_Name: TestCherry
   m_TagString: Untagged
@@ -608,6 +610,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &859783092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859783087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3110e51ac7dc047b99c4aa2cd690bb0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cherryHealth: 10
+--- !u!114 &859783093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859783087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 957e516219b6e42c8838c0379bf7394c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

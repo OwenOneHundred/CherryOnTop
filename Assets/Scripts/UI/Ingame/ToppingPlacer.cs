@@ -142,9 +142,6 @@ public class ToppingPlacer : MonoBehaviour
     {
         GameObject newToppingObj = Instantiate(topping.towerPrefab, position, Quaternion.identity); // spawn obj
 
-        Debug.Log(ToppingRegistry.toppingRegistry);
-        ToppingRegistry.toppingRegistry.RegisterPlacedTopping(null, null);
-
         ToppingRegistry.toppingRegistry.RegisterPlacedTopping(Instantiate(topping), newToppingObj); // register
         
         EventBus<TowerPlacedEvent>.Raise(new TowerPlacedEvent(topping, newToppingObj)); // call placed tower event

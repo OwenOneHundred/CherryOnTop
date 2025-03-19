@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Linq;
+using EventBus;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class ToppingPlacer : MonoBehaviour
@@ -10,13 +12,13 @@ public class ToppingPlacer : MonoBehaviour
     [SerializeField] Material red;
     [SerializeField] Material white;
     [SerializeField] GameObject placePreview;
+    InventoryIconControl iconControl;
     bool placingTopping = false;
-    Vector3 testPos;
-    Vector3 testExtents;
 
     public static ToppingPlacer toppingPlacer;
 
     GameObject transparentObject;
+    [SerializeField] GameObject toppingPlaceEffect;
 
     readonly Vector3 checkAreaVerticalOffset = new Vector3(0, 0.02f, 0);
     public bool PlacingTopping
@@ -43,9 +45,11 @@ public class ToppingPlacer : MonoBehaviour
         transparentObject.SetActive(false);
     }
 
-    public void StartPlacingTopping(Topping topping)
+    public void StartPlacingTopping(Topping topping, InventoryIconControl iic)
     {
         PlacingTopping = true;
+        iconControl = iic;
+        iic.beingPlaced = true;
 
         StartCoroutine(StartPlace(topping));
     }
@@ -104,7 +108,7 @@ public class ToppingPlacer : MonoBehaviour
         {
             PlaceTopping(topping, cakePos);
         }
-        transparentObject.SetActive(false);
+        StopPlacingTopping();
     }
 
     private bool CheckIfPlacementValid(MeshFilter prefabMeshFilter, Vector3 pos, Mesh mesh)
@@ -112,9 +116,7 @@ public class ToppingPlacer : MonoBehaviour
         Bounds bounds = mesh.bounds;
         Vector3 extents = prefabMeshFilter.transform.rotation * Vector3.Scale(bounds.extents, prefabMeshFilter.transform.lossyScale);
         var result = Physics.OverlapBox(pos + checkAreaVerticalOffset, extents, Quaternion.identity, layersThatBlockPlacement);
-        testPos = pos + checkAreaVerticalOffset;
-        testExtents = extents;
-
+        
         return result.Count() == 0;
     }
 
@@ -129,13 +131,21 @@ public class ToppingPlacer : MonoBehaviour
         return scaledDistanceFromCenter;
     }
 
-    private void PlaceTopping(Topping topping, Vector3 position)
+    private void StopPlacingTopping()
     {
-        Instantiate(topping.towerPrefab, position, Quaternion.identity);
+        iconControl.beingPlaced = false;
+        iconControl = null;
+        transparentObject.SetActive(false);
     }
 
-    private void OnDrawGizmos()
+    private void PlaceTopping(Topping topping, Vector3 position)
     {
-        Gizmos.DrawWireCube(testPos, testExtents * 2);
+        GameObject newToppingObj = Instantiate(topping.towerPrefab, position, Quaternion.identity); // spawn obj
+
+        ToppingRegistry.toppingRegistry.RegisterPlacedTopping(Instantiate(topping), newToppingObj); // register
+        
+        EventBus<TowerPlacedEvent>.Raise(new TowerPlacedEvent(topping, newToppingObj)); // call placed tower event
+        Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 6); // create particle effect
+        Inventory.inventory.RemoveItem(topping); // remove from inventory
     }
 }

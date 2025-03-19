@@ -2,6 +2,7 @@ using EventBus;
 using UnityEngine;
 
 // This class is an example of using the events
+// This class is NOT used ingame
 public class RoundEventCaller : MonoBehaviour
 {
     // have an event to register for the type of RoundStartEvent

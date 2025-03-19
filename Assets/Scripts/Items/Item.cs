@@ -8,6 +8,11 @@ public abstract class Item : ScriptableObject
 
     public List<EffectAndWhen> effectsAndWhen = new List<EffectAndWhen>();
 
+    [TextArea] public string description;
+
+    /// <summary>
+    /// Should be called when the item is purchased. Registers the events in the effects list.
+    /// </summary>
     public void RegisterEffects()
     {
         foreach (EffectAndWhen effectAndWhen in effectsAndWhen)
@@ -22,6 +27,9 @@ public abstract class Item : ScriptableObject
         }
     }
 
+    /// <summary>
+    /// Should be called when the item is sold, destroyed, or otherwise removed from the inventory or the map.
+    /// </summary>
     public void DeregisterEffects()
     {
         foreach (EffectAndWhen effectAndWhen in effectsAndWhen)
@@ -36,7 +44,14 @@ public abstract class Item : ScriptableObject
     [System.Serializable]
     public class EffectAndWhen
     {
+        /// <summary>
+        /// What happens when any of the events occur
+        /// </summary>
         public List<EffectSO> effectSOs;
+
+        /// <summary>
+        /// What events trigger the above effects
+        /// </summary>
         public List<EventSO> eventSOs;
     }
 }

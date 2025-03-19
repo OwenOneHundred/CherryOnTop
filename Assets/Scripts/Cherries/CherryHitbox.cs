@@ -5,35 +5,27 @@ using UnityEngine;
 /// </summary>
 public class CherryHitbox : MonoBehaviour
 {
-    public float cherryHealth = 100;
+    public float cherryHealth;
     DebuffManager debuffManager;
+    [SerializeField] AudioFile deathSound;
 
     public void Start()
     {
-        // Checks if cherry is big or not, then set cherryHealth.
-        // May need to edit based on how big cherries are implemented.
-        if (gameObject.transform.localScale == new Vector3(2, 2, 2))
-        {
-            cherryHealth = 75;
-        }
-        else
-        {
-            cherryHealth = 50;
-        }
+        debuffManager = GetComponent<DebuffManager>();
     }
 
-    public void Update()
-    {   
-        if (cherryHealth == 0) {
+    public void TakeDamage(int damage, Topping attacker)
+    {
+        float actualDamage = debuffManager.GetDamageMultiplier(attacker) * damage;
+        cherryHealth -= actualDamage;
+
+        if (cherryHealth <= 0)
+        {
+            CherryManager.Instance.OnCherryKilled(GetComponent<CherryMovement>());
+            SoundEffectManager.sfxmanager.PlayOneShot(deathSound);
             Destroy(gameObject);
         }
+
+        debuffManager.OnDamaged(damage);
     }
-
-    public void TakeDamage(float damage)
-    {
-        cherryHealth -= debuffManager.GetDamageMultiplier() * damage;
-    }
-
-
-
 }

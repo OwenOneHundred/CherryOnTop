@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "CherryDebuff/Fondue")]
 public class FondueDebuff : CherryDebuff
 {
     public override void EveryFrame()

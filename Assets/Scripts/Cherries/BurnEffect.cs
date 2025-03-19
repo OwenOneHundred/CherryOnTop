@@ -9,7 +9,7 @@ public class BurnEffect : CherryDebuff
     {
         // This is where effects would deal damage and operate logic.
 
-        this.cherry.GetComponent<CherryHitbox>().TakeDamage(1);
+        this.cherry.GetComponent<CherryHitbox>().TakeDamage(1, null);
     }
 
     public override void OnAdded(GameObject cherry)

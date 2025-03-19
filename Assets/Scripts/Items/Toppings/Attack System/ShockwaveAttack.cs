@@ -36,6 +36,7 @@ public class ShockwaveAttack : ToppingAttack
 
     private void AttackCherry(GameObject targetedCherry) {
         GameObject newShockwave = Instantiate(this.shockwave, topping.transform.position, Quaternion.identity);
+        newShockwave.GetComponent<Shockwave>().damage = damage;
         newShockwave.GetComponent<Shockwave>().range = range;
 
         float duration = range / speed;

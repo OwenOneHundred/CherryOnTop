@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// Abstract parent for debuffs. Children should override the functions below to perform their function.
@@ -30,4 +31,17 @@ public abstract class CherryDebuff : ScriptableObject
     /// Should not error if cherry gameObject is null when this call happens.
     /// </summary>
     public abstract void OnRemoved(GameObject cherry);
+
+    public virtual void OnCherryDamaged(int damage) { }
+
+    public void RemoveSelf()
+    {
+        if (cherry == null)
+        {
+            Debug.LogWarning("Debuff " + name + " tried to remove itself before its cherry was set.");
+            return;
+        }
+
+        cherry.GetComponentInChildren<DebuffManager>().RemoveDebuff(this);
+    }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {   
     // Base damage that a projectile deals onto a cherry
-    public float damage;
+    public int damage = 20;
     public Topping owner; // TODO this is never set, so it's always null. Set this when fired.
     [SerializeField] List<CherryDebuff> cherryDebuffs;
 
@@ -14,7 +14,7 @@ public class Projectile : MonoBehaviour
         SetDamage(damage);
     }
 
-    public void SetDamage(float damage)
+    public void SetDamage(int damage)
     {
         this.damage = damage;
     }

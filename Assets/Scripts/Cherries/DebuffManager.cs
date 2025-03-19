@@ -69,5 +69,12 @@ public class DebuffManager : MonoBehaviour
         return damageMultiplier; // return the product of all debuff damageMultipliers
     }
 
+    public void OnDamaged(int damage)
+    {
+        foreach (CherryDebuff debuff in debuffs)
+        {
+            debuff.OnCherryDamaged(damage);
+        }
+    }
     
 }

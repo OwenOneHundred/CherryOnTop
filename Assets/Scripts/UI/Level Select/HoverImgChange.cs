@@ -12,10 +12,11 @@ public class HoverImgChange : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     void Start()
     {
         deselectSprite = buttonImg.sprite;
+        buttonImg.alphaHitTestMinimumThreshold = 1;
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("selected!!!!!");
+        
         buttonImg.sprite = hoverSprite;
 
     }

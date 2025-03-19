@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TestSimpleAttack
   m_EditorClassIdentifier: 
   cooldown: 2
-  damage: 0
+  damage: 0.2
   projectile: {fileID: 5839106881226788209, guid: 3d8faed27383d7141870bb263f58e762, type: 3}
   projectileSpeed: 2

@@ -10,12 +10,20 @@ public class ShockwaveAttack : ToppingAttack
     [SerializeField]
     GameObject shockwave;
 
-    // Represents the speed of the shockwave produced by this attack
+    // Represents the speed of the shockwave produced by this attack, in radius units per second
     [SerializeField]
-    float shockwaveSpeed;
+    float speed;
+
+    // Represents the maximum radius this shockwave can have
+    [SerializeField]
+    float range;
 
     public override void OnStart() {
-        Debug.Log("Simple attack with a cooldown of " + this.cooldown + " assigned to topping " + this.topping.name + ".");
+        Debug.Log("Shockwave attack with a cooldown of " + this.cooldown + " assigned to topping " + this.topping.name + ".");
+        if (speed == 0) {
+            Debug.Log("Shockwave speed cannot be 0. Setting the speed to 1 by default.");
+            speed = 1;
+        }
     }
 
     public override void OnNewCherryFound(GameObject newTargetedCherry) {
@@ -28,8 +36,9 @@ public class ShockwaveAttack : ToppingAttack
 
     private void AttackCherry(GameObject targetedCherry) {
         GameObject newShockwave = Instantiate(this.shockwave, topping.transform.position, Quaternion.identity);
-        newShockwave.GetComponent<ShockwaveBehaviour>().shockwaveSpeed = this.shockwaveSpeed;
+        newShockwave.GetComponent<Shockwave>().range = range;
 
-        Destroy(newShockwave, 8);
+        float duration = range / speed;
+        Destroy(newShockwave, duration);
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -15,16 +16,11 @@ public class InventoryRenderer : MonoBehaviour
     [SerializeField] Transform iconParent;
     RectTransform iconParentRect;
     [SerializeField] float scrollMultiplier = 0.5f;
-    [SerializeField] List<Item> testItems = new();
 
     float scrollAmount = 0;
 
     void Start()
     {
-        foreach (Item item in testItems)
-        {
-            AddItemToDisplay(item);
-        }   
         iconParentRect = iconParent.GetComponent<RectTransform>();
     }
 
@@ -67,10 +63,20 @@ public class InventoryRenderer : MonoBehaviour
         ItemAndObj itemAndObj = new ItemAndObj(item, newIcon);
         displayList.Add(itemAndObj);
 
-        UpdateAllIcons();
+        UpdateAllIconPositions();
     }
 
-    public void UpdateAllIcons()
+    public void RemoveItemFromDisplay(Item item)
+    {
+        if (item is not Topping topping) { return; } // Remove this once there's functionality for ingredients in display
+        ItemAndObj itemAndObj = displayList.First(x => x.item == topping);
+        Destroy(itemAndObj.obj);
+        displayList.Remove(itemAndObj);
+
+        UpdateAllIconPositions();
+    }
+
+    public void UpdateAllIconPositions()
     {
         int budgetEnum = 0;
         foreach (ItemAndObj itemAndObj in displayList)

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4baf0569fe9ee744e925815b297fe6a1, type: 3}
   m_Name: TestShockwave
   m_EditorClassIdentifier: 
-  cooldown: 5
+  cooldown: 0.7
   shockwave: {fileID: 5503282234501958175, guid: dc48c3d6bc7d142288cd1a46b1e61d55, type: 3}
-  shockwaveSpeed: 1
+  range: 1

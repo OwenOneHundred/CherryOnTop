@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74bb26ef8e56377499445ec33b5dc2db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackTemplate: {fileID: 11400000, guid: da234f38b35972044ae5c1d93b68e7a4, type: 2}
+  attackTemplate: {fileID: 11400000, guid: adc8db3348ff6ef409d2a45ce5a5edf8, type: 2}
   targetedCherry: {fileID: 859783087}
 --- !u!135 &412143654
 SphereCollider:

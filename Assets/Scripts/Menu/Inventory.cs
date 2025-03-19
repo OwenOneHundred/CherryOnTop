@@ -91,7 +91,6 @@ public class Inventory : MonoBehaviour
     {
         ownedItems.Remove(item);
         inventoryRenderer.RemoveItemFromDisplay(item);
-        item.DeregisterEffects();
     }
 
     public void Update()

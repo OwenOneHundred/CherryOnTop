@@ -80,12 +80,7 @@ public class SwitchLevelPreview : MonoBehaviour
                     StopMovingAndSnapToCenter();
                 }
             }
-            /*
-            if ( loadedLevel.transform.localPosition.x >= -stopRadius && loadedLevel.transform.localPosition.x <= stopRadius) { 
-                moving = false;
-                loadedLevel.transform.localPosition = new Vector3(0, 0, 0);
-            }
-            */
+            
         }
     }
     private void StopMovingAndSnapToCenter()

@@ -1,11 +1,11 @@
-using System.Net.NetworkInformation;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TargetingSystem : MonoBehaviour
 {
     [SerializeField] private float range = 5f;
     private LayerMask cherryLayer, cakeLayer;
+    [SerializeField] AttackManager attackManager;
+ 
 
     void Start()
     {
@@ -15,26 +15,33 @@ public class TargetingSystem : MonoBehaviour
 
     void Update()
     {
-        Search();
+        GameObject found = Search();
+        attackManager.UpdateTargetedCherry(found);
     }
 
-    void Search()
+   GameObject Search()
     {
+        GameObject bestCherry = null;
+        float highestDistance = -1f;
+
         Collider[] cherries = Physics.OverlapSphere(transform.position, range, cherryLayer);
 
         foreach (Collider cherry in cherries)
         {
-            if (HasClearLineOfSight(cherry.transform))
+            CherryMovement cherryMovement = cherry.GetComponent<CherryMovement>();
+            if (cherryMovement != null && HasClearLineOfSight(cherry.transform))
             {
-                Debug.Log("Target acquired: " + cherry.name);
-                // Here you can call Shoot() or another attack method
-            }
-            else
-            {
-                Debug.Log("Target blocked: " + cherry.name);
+                if (cherryMovement.distanceTraveled > highestDistance)
+                {
+                    highestDistance = cherryMovement.distanceTraveled;
+                    bestCherry = cherry.gameObject;
+                }
             }
         }
+
+        return bestCherry;
     }
+
 
     bool HasClearLineOfSight(Transform target)
     {
@@ -52,4 +59,5 @@ public class TargetingSystem : MonoBehaviour
         return true; // Clear sight to Cherry
         }
     }
+
 }

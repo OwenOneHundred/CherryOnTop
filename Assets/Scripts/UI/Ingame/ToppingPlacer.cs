@@ -10,13 +10,13 @@ public class ToppingPlacer : MonoBehaviour
     [SerializeField] Material red;
     [SerializeField] Material white;
     [SerializeField] GameObject placePreview;
+    InventoryIconControl iconControl;
     bool placingTopping = false;
-    Vector3 testPos;
-    Vector3 testExtents;
 
     public static ToppingPlacer toppingPlacer;
 
     GameObject transparentObject;
+    [SerializeField] GameObject toppingPlaceEffect;
 
     readonly Vector3 checkAreaVerticalOffset = new Vector3(0, 0.02f, 0);
     public bool PlacingTopping
@@ -43,9 +43,11 @@ public class ToppingPlacer : MonoBehaviour
         transparentObject.SetActive(false);
     }
 
-    public void StartPlacingTopping(Topping topping)
+    public void StartPlacingTopping(Topping topping, InventoryIconControl iic)
     {
         PlacingTopping = true;
+        iconControl = iic;
+        iic.beingPlaced = true;
 
         StartCoroutine(StartPlace(topping));
     }
@@ -104,7 +106,7 @@ public class ToppingPlacer : MonoBehaviour
         {
             PlaceTopping(topping, cakePos);
         }
-        transparentObject.SetActive(false);
+        StopPlacingTopping();
     }
 
     private bool CheckIfPlacementValid(MeshFilter prefabMeshFilter, Vector3 pos, Mesh mesh)
@@ -112,9 +114,7 @@ public class ToppingPlacer : MonoBehaviour
         Bounds bounds = mesh.bounds;
         Vector3 extents = prefabMeshFilter.transform.rotation * Vector3.Scale(bounds.extents, prefabMeshFilter.transform.lossyScale);
         var result = Physics.OverlapBox(pos + checkAreaVerticalOffset, extents, Quaternion.identity, layersThatBlockPlacement);
-        testPos = pos + checkAreaVerticalOffset;
-        testExtents = extents;
-
+        
         return result.Count() == 0;
     }
 
@@ -129,13 +129,17 @@ public class ToppingPlacer : MonoBehaviour
         return scaledDistanceFromCenter;
     }
 
+    private void StopPlacingTopping()
+    {
+        iconControl.beingPlaced = false;
+        iconControl = null;
+        transparentObject.SetActive(false);
+    }
+
     private void PlaceTopping(Topping topping, Vector3 position)
     {
         Instantiate(topping.towerPrefab, position, Quaternion.identity);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(testPos, testExtents * 2);
+        Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 6);
+        Inventory.inventory.RemoveItem(topping);
     }
 }

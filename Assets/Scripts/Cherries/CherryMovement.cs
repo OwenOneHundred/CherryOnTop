@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -33,7 +34,7 @@ public class CherryMovement : MonoBehaviour
         currentPosition = 0;
         currentTarget = currentPosition + 1;
         currentTrack = 0;
-        print("positionsAmount: " + positionsAmount);
+
         transform.position = linePositions[currentPosition];
         previousCoords = transform.position;
     }
@@ -54,6 +55,7 @@ public class CherryMovement : MonoBehaviour
             if (currentPosition == positionsAmount) 
             {
                 currentTrack++;
+                if (track.transform.childCount <= currentTrack) { return; } // how does this not stop it wtf
                 lineRenderer = track.transform.GetChild(currentTrack).GetComponent<LineRenderer>();
                 //If current position is -1, it is in the process of moving between lines.
                 setNewTrack();

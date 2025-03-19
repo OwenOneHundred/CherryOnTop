@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Linq;
+using EventBus;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class ToppingPlacer : MonoBehaviour
@@ -138,8 +140,15 @@ public class ToppingPlacer : MonoBehaviour
 
     private void PlaceTopping(Topping topping, Vector3 position)
     {
-        Instantiate(topping.towerPrefab, position, Quaternion.identity);
-        Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 6);
-        Inventory.inventory.RemoveItem(topping);
+        GameObject newToppingObj = Instantiate(topping.towerPrefab, position, Quaternion.identity); // spawn obj
+
+        Debug.Log(ToppingRegistry.toppingRegistry);
+        ToppingRegistry.toppingRegistry.RegisterPlacedTopping(null, null);
+
+        ToppingRegistry.toppingRegistry.RegisterPlacedTopping(Instantiate(topping), newToppingObj); // register
+        
+        EventBus<TowerPlacedEvent>.Raise(new TowerPlacedEvent(topping, newToppingObj)); // call placed tower event
+        Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 6); // create particle effect
+        Inventory.inventory.RemoveItem(topping); // remove from inventory
     }
 }

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Soda Can
   m_EditorClassIdentifier: 
   price: 5
-  shopSprite: {fileID: 21300000, guid: 8c173ad15c8b51946980ff955e4966f1, type: 3}
+  shopSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   effectsAndWhen: []
   description: 
   towerPrefab: {fileID: 2933751060363198294, guid: 14da4d4e816a64f249bf4affff275d09, type: 3}
-  flags: 0
+  flags: 128

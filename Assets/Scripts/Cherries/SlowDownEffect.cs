@@ -5,10 +5,10 @@ using UnityEngine.VFX;
 [CreateAssetMenu(menuName = "CherryDebuff/Slow")]
 public class SlowDownEffect : CherryDebuff
 {
-    private float effectDuration;
+    private float effectDuration; // this should be in the parent
     private float timeSinceTick;
 
-    public override void EveryFrame()
+    public override void EveryFrame() // this would result in cherries rapidly slowing down and then moving backward
     {
         // Cherries speed slows down every tick
         this.timeSinceTick += Time.deltaTime;

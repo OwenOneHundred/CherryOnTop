@@ -5,7 +5,7 @@ using UnityEngine;
 public class ToppingRegistry : MonoBehaviour
 {
     public static ToppingRegistry toppingRegistry;
-    [SerializeField] List<ItemInfo> placedToppings = new();
+    [SerializeField] List<ItemInfo> placedToppings;
     private void Awake()
     {
         if (toppingRegistry == null)
@@ -21,7 +21,6 @@ public class ToppingRegistry : MonoBehaviour
 
     public void RegisterPlacedTopping(Topping topping, GameObject gameObject)
     {
-        Debug.Log("here");
         placedToppings.Add(new ItemInfo(topping, gameObject));
     }   
 

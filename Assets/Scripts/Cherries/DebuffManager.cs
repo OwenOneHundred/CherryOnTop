@@ -21,11 +21,10 @@ public class DebuffManager : MonoBehaviour
     /// <summary>
     /// Adds a debuff to a cherry
     /// </summary>
-    public void AddDebuff(CherryDebuff debuffCopy)
+    public void AddDebuff(CherryDebuff debuff)
     {
-        debuffs.Add(debuffCopy);
-        debuffCopy.cherry = gameObject;
-        debuffCopy.OnAdded(gameObject);
+        debuffs.Add(debuff);
+        debuff.OnAdded(gameObject);
     }
 
     /// <summary>
@@ -51,30 +50,15 @@ public class DebuffManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Returns damage multiplier for an attacker.
+    /// Returns the damage multiplier
     /// </summary>
-    /// <param name="attacker">The attacking topping. Null if damage is not dealt by a topping (IE: debuff).</param>
-    /// <returns></returns>
-    public float GetDamageMultiplier(Topping attacker)
+    public float GetDamageMultiplier()
     {
-        if (attacker == null) { return 1; }
         float damageMultiplier = 1.0f;
         for (int i = 0; i < debuffs.Count; i++)
         {
-            if (debuffs[i].typesThatGetDamageMultiplier.HasAny(attacker.flags))
-            {
-                damageMultiplier *= debuffs[i].damageMultiplier;
-            }
+            damageMultiplier *= debuffs[i].damageMultiplier;
         }
         return damageMultiplier; // return the product of all debuff damageMultipliers
     }
-
-    public void OnDamaged(int damage)
-    {
-        foreach (CherryDebuff debuff in debuffs)
-        {
-            debuff.OnCherryDamaged(damage);
-        }
-    }
-    
 }

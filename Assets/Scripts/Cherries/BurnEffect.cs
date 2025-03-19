@@ -14,7 +14,7 @@ public class BurnEffect : CherryDebuff
         if (this.timeSinceTick >= this.effectDuration)
         {
             this.timeSinceTick = 0;
-            this.cherry.GetComponent<CherryHitbox>().TakeDamage(1, null);
+            this.cherry.GetComponent<CherryHitbox>().TakeDamage(1);
         }
     }
 

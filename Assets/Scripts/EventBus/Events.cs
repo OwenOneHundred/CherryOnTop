@@ -26,13 +26,7 @@ namespace EventBus
 
     public struct TowerPlacedEvent : IEvent
     {
-        public TowerPlacedEvent(Topping topping, GameObject newToppingObj)
-        {
-            this.topping = topping;
-            this.newToppingObj = newToppingObj;
-        }
-        public Topping topping;
-        public GameObject newToppingObj;
+        // add variable corresponding to a tower
     }
 
     public struct CherryHitEvent : IEvent

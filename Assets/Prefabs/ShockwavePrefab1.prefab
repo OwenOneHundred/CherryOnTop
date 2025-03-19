@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1270520718622568064}
   - component: {fileID: 6268610268667288001}
   m_Layer: 0
-  m_Name: ShockwaveDefault
+  m_Name: ShockwavePrefab1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
-  cherryDebuffs: []
 --- !u!1001 &578801312520867968
 PrefabInstance:
   m_ObjectHideFlags: 0

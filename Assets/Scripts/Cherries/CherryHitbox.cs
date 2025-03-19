@@ -14,9 +14,9 @@ public class CherryHitbox : MonoBehaviour
         debuffManager = GetComponent<DebuffManager>();
     }
 
-    public void TakeDamage(int damage, Topping attacker)
+    public void TakeDamage(float damage)
     {
-        float actualDamage = debuffManager.GetDamageMultiplier(attacker) * damage;
+        float actualDamage = debuffManager.GetDamageMultiplier() * damage;
         cherryHealth -= actualDamage;
 
         if (cherryHealth <= 0)
@@ -25,7 +25,5 @@ public class CherryHitbox : MonoBehaviour
             SoundEffectManager.sfxmanager.PlayOneShot(deathSound);
             Destroy(gameObject);
         }
-
-        debuffManager.OnDamaged(damage);
     }
 }

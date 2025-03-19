@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonImg: {fileID: 185816707}
-  hoverSprite: {fileID: 21300000, guid: 605bfe87383e64b43afc2398f1f64755, type: 3}
+  hoverSprite: {fileID: 21300000, guid: 31d3beb6b140a9c4ba24302e04815c96, type: 3}
 --- !u!1 &516144771
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,7 +388,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2400, y: 1859}
+  m_SizeDelta: {x: 2400.5247, y: 1859.0001}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &516144773
 MonoBehaviour:
@@ -419,7 +419,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: d413e49be7a230049bd3ab42ef1ba84e, type: 3}
     m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -509,7 +509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonImg: {fileID: 516144774}
-  hoverSprite: {fileID: 21300000, guid: d413e49be7a230049bd3ab42ef1ba84e, type: 3}
+  hoverSprite: {fileID: 21300000, guid: a3b48b3f28a03b54ab7be1c21e0b55ee, type: 3}
 --- !u!1 &694185262 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3181088761205223646, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}

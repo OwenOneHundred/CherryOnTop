@@ -132,7 +132,9 @@ public class SwitchLevelPreview : MonoBehaviour
         moving = true;
         yield return new WaitForSeconds(slideTime);
         //Snaps the level to the center if it is not already there
-        box.transform.localPosition = new Vector3(0, 0, 0);
+        if (box != null) { 
+            box.transform.localPosition = new Vector3(0, 0, 0);
+        }
     }
 
     void DisableAllComponentsExceptThis(bool disable)

@@ -73,10 +73,10 @@ public class Inventory : MonoBehaviour
         if (item.price > money) { Debug.Log(money + " " + item.price);  return false; } // can't afford
         if (0 > inventoryEffectManager.GetLimit<LimitBuying>()) { return false; } // TODO replace 0 with shop manager purchases count 
 
-        AddItem(item);
         Money -= item.price;
-        inventoryRenderer.UpdateAllIconPositions();
         EventBus<BuyEvent>.Raise(new BuyEvent(item));
+
+        AddItem(item);
         return true;
     }
 
@@ -84,11 +84,14 @@ public class Inventory : MonoBehaviour
     {
         ownedItems.Add(item);
         inventoryRenderer.AddItemToDisplay(item);
+        item.RegisterEffects();
     }
 
     public void RemoveItem(Item item)
     {
         ownedItems.Remove(item);
+        inventoryRenderer.RemoveItemFromDisplay(item);
+        item.DeregisterEffects();
     }
 
     public void Update()

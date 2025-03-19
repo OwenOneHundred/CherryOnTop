@@ -48,7 +48,7 @@ public class SpreadAttack : ProjectileAttack
                 offsetAngle = ((double) i / (quantity - 1) - 0.5) * spreadAngle;
             }
 
-            SpawnProjectile(this.projectile, topping.transform.position, FindTargetVector(targetedCherry, offsetAngle), Quaternion.identity, this.damage);
+            SpawnProjectile(this.projectile, topping.transform.position, FindTargetVector(targetedCherry, offsetAngle), Quaternion.identity, (int)this.damage);
         }
     }
 

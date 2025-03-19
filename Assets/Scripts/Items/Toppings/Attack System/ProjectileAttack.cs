@@ -21,5 +21,6 @@ public abstract class ProjectileAttack : ToppingAttack
     /// <param name="velocity"></param>
     /// <param name="rotation"></param>
     /// <param name="damage"></param>
-    public abstract void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, float damage);
+    public abstract void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, int damage);
+    
 }

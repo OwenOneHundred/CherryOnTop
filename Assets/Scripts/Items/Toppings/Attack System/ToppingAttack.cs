@@ -14,7 +14,7 @@ public abstract class ToppingAttack : ScriptableObject
     public float cooldown;
 
     // Represents the amount of damage each attack should do to affected Cherries.
-    public float damage;
+    public int damage;
 
     /// <summary>
     /// Specifies what the ToppingAttack should do as soon as it is assigned to a Topping. The topping it is assigned to

@@ -6,12 +6,10 @@ using UnityEngine;
 public abstract class ProjectileAttack : ToppingAttack
 {
     // Stores a reference to the prefab used as the projectile
-    [SerializeField]
-    GameObject projectile;
+    public GameObject projectile;
 
     // Represents the speed of the projectiles shot by this ToppingAttack
-    [SerializeField]
-    float projectileSpeed;
+    public float projectileSpeed;
 
     /// <summary>
     /// Spawn a projectile with an initial position, velocity, rotation, and damage.

@@ -29,7 +29,7 @@ public class SpreadAttack : ProjectileAttack
 
     public override void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, float damage) {
         GameObject newProjectile = Instantiate(projectile, position, rotation);
-        newProjectile.GetComponent<Rigidbidy>().linearVelocity = velocity;
+        newProjectile.GetComponent<Rigidbody>().linearVelocity = velocity;
         newProjectile.GetComponent<Projectile>().damage = damage;
 
         // Destroy the projectile after 8 seconds in case it misses the target

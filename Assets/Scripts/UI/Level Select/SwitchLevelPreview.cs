@@ -22,6 +22,7 @@ public class SwitchLevelPreview : MonoBehaviour
     public float slideTime;
     private bool moving = false;
     private int stopRadius = 10;
+    public Sprite backButtonImg;
 
 
     void Start()
@@ -101,6 +102,7 @@ public class SwitchLevelPreview : MonoBehaviour
         else { backButton.SetActive(true); }
         if (levelIndex == level.Length - 1) { DisableAllComponentsExceptThis(true); }
         else { DisableAllComponentsExceptThis(false); }
+        backButton.GetComponent<UnityEngine.UI.Image>().sprite = backButtonImg;
 
     }
 

@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public class Shockwave : MonoBehaviour
 {
-    public float damage;
+    public int damage;
     [System.NonSerialized] public float range;
     private float lifetime;
     readonly float speed = 2.9f;
@@ -29,7 +29,7 @@ public class Shockwave : MonoBehaviour
     {
         if (other.transform.root.TryGetComponent<CherryHitbox>(out CherryHitbox ch))
         {
-            ch.TakeDamage(damage);
+            ch.TakeDamage(damage,null);
             //OnHitCherry(ch);
         }
     }

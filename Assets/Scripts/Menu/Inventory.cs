@@ -84,7 +84,7 @@ public class Inventory : MonoBehaviour
     {
         ownedItems.Add(item);
         inventoryRenderer.AddItemToDisplay(item);
-        item.RegisterEffects();
+        item.Initialize();
     }
 
     public void RemoveItem(Item item)

@@ -6,7 +6,7 @@ public class MakeToppingFree : EffectSO
 {
     [SerializeField] string toppingName;
 
-    public override void OnTriggered()
+    public override void OnTriggered(EventBus.IEvent eventObject)
     {
         List<Item> shopItems = GameObject.FindAnyObjectByType<Shop>().currentItems;
         foreach (Item item in shopItems)

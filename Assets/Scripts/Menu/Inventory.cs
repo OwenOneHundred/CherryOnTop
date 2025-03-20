@@ -33,7 +33,7 @@ public class Inventory : MonoBehaviour
 
         foreach (Item item in startingInventoryItems) // add starting items to inventory display
         {
-            inventoryRenderer.AddItemToDisplay(item);
+            AddItem(item);
         }
     }
 
@@ -82,6 +82,8 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(Item item)
     {
+        item = Instantiate(item); // Item SOs are currently instantiated here, when added to inventory.
+
         ownedItems.Add(item);
         inventoryRenderer.AddItemToDisplay(item);
         item.Initialize();

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class SettingsManager : MonoBehaviour
 
     public void GotoMainMenu()
     {
-        //SceneLoader.Instance.LoadMainMenu();
+        SceneManager.LoadScene("MenuScene");
     }
 
 

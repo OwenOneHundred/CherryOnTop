@@ -21,6 +21,7 @@ public class Inventory : MonoBehaviour
             return;
         }
     }
+    [SerializeField] float minTimeBetweenMoneyChanges = 0.25f;
 
     public InventoryRenderer inventoryRenderer;
 
@@ -33,7 +34,7 @@ public class Inventory : MonoBehaviour
 
         foreach (Item item in startingInventoryItems) // add starting items to inventory display
         {
-            inventoryRenderer.AddItemToDisplay(item);
+            AddItem(item);
         }
     }
 
@@ -67,51 +68,64 @@ public class Inventory : MonoBehaviour
             ingameUI.SetCakeScore(value);
         }
     }
+    [SerializeField] MoneyChangeDisplay moneyChangeDisplay;
 
     public bool TryBuyItem(Item item)
     {
         if (item.price > money) { Debug.Log(money + " " + item.price);  return false; } // can't afford
         if (0 > inventoryEffectManager.GetLimit<LimitBuying>()) { return false; } // TODO replace 0 with shop manager purchases count 
 
-        AddItem(item);
         Money -= item.price;
-        inventoryRenderer.UpdateAllIconPositions();
         EventBus<BuyEvent>.Raise(new BuyEvent(item));
+
+        AddItem(item);
         return true;
     }
 
     public void AddItem(Item item)
     {
+        item = Instantiate(item); // Item SOs are currently instantiated here, when added to inventory.
+
         ownedItems.Add(item);
         inventoryRenderer.AddItemToDisplay(item);
+        item.Initialize();
     }
 
     public void RemoveItem(Item item)
     {
         ownedItems.Remove(item);
+        inventoryRenderer.RemoveItemFromDisplay(item);
     }
+
+    float moneyChangeTimer = 0;
 
     public void Update()
     {
+        moneyChangeTimer += Time.deltaTime;
         ManageBufferedMoneyChanges();
     }
 
     private void ManageBufferedMoneyChanges()
     {
-        if (bufferedMoneyChanges.Count != 0)
+        if (moneyChangeTimer > minTimeBetweenMoneyChanges)
         {
-            foreach (int moneyChange in bufferedMoneyChanges)
+            if (bufferedMoneyChanges.Count != 0)
             {
-                ApplyMoneyChange(moneyChange);
+                foreach (int moneyChange in bufferedMoneyChanges)
+                {
+                    ApplyMoneyChange(moneyChange);
+                }
+                bufferedMoneyChanges.Clear();
+                ingameUI.SetMoney(Money);
             }
-            bufferedMoneyChanges.Clear();
-            ingameUI.SetMoney(Money);
+            moneyChangeTimer = 0;
         }
     }
 
     private void ApplyMoneyChange(int moneyChange)
     {
         money += moneyChange;
+        moneyChangeDisplay.AddToDisplay(moneyChange);
     }
 
     private void BufferMoneyChange(int change)

@@ -8,7 +8,8 @@ public class OnRoundStartSO : EventSO
     List<EventBinding<RoundStartEvent>> events = new();
     public override void RegisterEffect(EffectSO effectSO)
     {
-        EventBinding<RoundStartEvent> roundStartBinding = new EventBinding<RoundStartEvent>(effectSO.OnTriggered);
+        EventBinding<RoundStartEvent> roundStartBinding =
+            new EventBinding<RoundStartEvent>((e) => effectSO.OnTriggered(e));
         EventBus<RoundStartEvent>.Register(roundStartBinding);
     }
 

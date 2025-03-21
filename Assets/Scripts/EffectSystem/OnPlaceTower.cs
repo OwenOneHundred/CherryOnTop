@@ -8,7 +8,7 @@ public class OnPlaceTower : EventSO
     List<EventBinding<TowerPlacedEvent>> events = new();
     public override void RegisterEffect(EffectSO effectSO)
     {
-        EventBinding<TowerPlacedEvent> towerPlacedBinding = new EventBinding<TowerPlacedEvent>(effectSO.OnTriggered);
+        EventBinding<TowerPlacedEvent> towerPlacedBinding = new EventBinding<TowerPlacedEvent>((e) => effectSO.OnTriggered(e));
         EventBus<TowerPlacedEvent>.Register(towerPlacedBinding);
     }
 

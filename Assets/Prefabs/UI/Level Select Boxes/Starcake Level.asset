@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfa5ddee62ca0e145b2a85463bea3cdf, type: 3}
-  m_Name: TestSimpleAttack
+  m_Script: {fileID: 11500000, guid: bca449c41526da54d8ee91be640a2ef8, type: 3}
+  m_Name: Starcake Level
   m_EditorClassIdentifier: 
-  cooldown: 2
-  damage: 20
-  projectile: {fileID: 5839106881226788209, guid: 3d8faed27383d7141870bb263f58e762, type: 3}
-  projectileSpeed: 2
+  emptyLevelPrefab: {fileID: 6031070612142676923, guid: 11a807e547497d74ea18d8a1bac24fa0, type: 3}
+  levelImage: {fileID: 0}
+  sceneNameInEditor: StarcakeScene

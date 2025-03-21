@@ -24,6 +24,13 @@ public class CherryManager : MonoBehaviour
             cherries.Add(cherry);
     }
 
+    // called when a cherry dies
+    public void OnCherryKilled(CherryMovement cherryMovement)
+    {
+        RemoveCherry(cherryMovement);
+        RoundManager.roundManager.OnCherryKilled();
+    }
+
     // Remove a cherry when it dies or leaves the scene
     public void RemoveCherry(CherryMovement cherry)
     {
@@ -32,7 +39,6 @@ public class CherryManager : MonoBehaviour
     }
 
     // Sort cherries by distance traveled (highest first)
-
     private void UpdateCherryOrder()
     {     
         cherries.Sort((a, b) => b.distanceTraveled.CompareTo(a.distanceTraveled)); 

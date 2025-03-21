@@ -28,7 +28,7 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
             Inventory inv = FindFirstObjectByType<Inventory>();
             if (inv.TryBuyItem(displayItem))
             {
-                FindFirstObjectByType<InventoryRenderer>().UpdateAllIcons();
+                FindFirstObjectByType<InventoryRenderer>().UpdateAllIconPositions();
             }
             
         }
@@ -40,5 +40,12 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
         nameText.text = item.name;
         priceText.text = item.price + "";
         displayItem = item;
+    }
+
+    public void UpdateInfo()
+    {
+        image.sprite = displayItem.shopSprite;
+        nameText.text = displayItem.name;
+        priceText.text = displayItem.price + "";
     }
 }

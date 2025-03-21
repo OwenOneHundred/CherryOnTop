@@ -26,7 +26,7 @@ public class SwitchLevelPreview : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("preview length: " + levelPreviews.Length);
+        
         level = new GameObject[levelPreviews.Length];
         moveButton.onClick.AddListener(OnForwardsButtonClick);
         
@@ -34,7 +34,7 @@ public class SwitchLevelPreview : MonoBehaviour
         for (int i = 0; i < levelPreviews.Length; i++)
         {
             Spawn(levelPreviews[i]);
-            Debug.Log(levelPreviews[i]);
+            
             level[i] = levelPreviews[i].levelPrefab;
             
         }
@@ -50,25 +50,12 @@ public class SwitchLevelPreview : MonoBehaviour
         sceneChangeButton.GetComponent<PlayButton>().sceneName = preview.sceneNameInEditor;
     }
 
-    private void FixedUpdate()
-    {
-        /*
-        if(moving)
-        {
-
-            if (slideLeft) { loadedLevel.transform.localPosition -= new Vector3(boxLoadDistance / (40 / slideTime), 0, 0); Debug.Log("sliding left"); }
-            else { loadedLevel.transform.localPosition += new Vector3(boxLoadDistance / (40 / slideTime), 0, 0); Debug.Log("sliding right"); }
-            
-        }
-        */
-
-    }
     private void Update()
     {
         if (moving)
         {
             if (slideLeft) { 
-                loadedLevel.transform.localPosition -= new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0); Debug.Log(loadedLevel.transform.localPosition);
+                loadedLevel.transform.localPosition -= new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0); 
                 if (loadedLevel.transform.localPosition.x <= 0) {
                     StopMovingAndSnapToCenter();
                 }
@@ -80,12 +67,7 @@ public class SwitchLevelPreview : MonoBehaviour
                     StopMovingAndSnapToCenter();
                 }
             }
-            /*
-            if ( loadedLevel.transform.localPosition.x >= -stopRadius && loadedLevel.transform.localPosition.x <= stopRadius) { 
-                moving = false;
-                loadedLevel.transform.localPosition = new Vector3(0, 0, 0);
-            }
-            */
+            
         }
     }
     private void StopMovingAndSnapToCenter()
@@ -101,7 +83,6 @@ public class SwitchLevelPreview : MonoBehaviour
         Destroy(loadedLevel);
         levelIndex = (levelIndex + 1);
         LoadLevelBox(boxLoadDistance);
-        //SlideBox(loadedLevel);
         StartCoroutine(SlideLevelSelectBox(loadedLevel));
         if (levelIndex == level.Length - 1) { DisableAllComponentsExceptThis(true); }
         else { DisableAllComponentsExceptThis(false); }
@@ -159,7 +140,7 @@ public class SwitchLevelPreview : MonoBehaviour
         // Log the type of each component
         foreach (Component component in components)
         {
-            Debug.Log("Component: " + component.GetType());
+           
             if (component is UnityEngine.UI.Image image)
             {
                 image.enabled = !disable;

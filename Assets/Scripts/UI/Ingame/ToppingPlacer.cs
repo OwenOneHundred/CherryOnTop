@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Linq;
+using EventBus;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class ToppingPlacer : MonoBehaviour
@@ -12,12 +14,11 @@ public class ToppingPlacer : MonoBehaviour
     [SerializeField] GameObject placePreview;
     InventoryIconControl iconControl;
     bool placingTopping = false;
-    Vector3 testPos;
-    Vector3 testExtents;
 
     public static ToppingPlacer toppingPlacer;
 
     GameObject transparentObject;
+    [SerializeField] GameObject toppingPlaceEffect;
 
     readonly Vector3 checkAreaVerticalOffset = new Vector3(0, 0.02f, 0);
     public bool PlacingTopping
@@ -115,9 +116,7 @@ public class ToppingPlacer : MonoBehaviour
         Bounds bounds = mesh.bounds;
         Vector3 extents = prefabMeshFilter.transform.rotation * Vector3.Scale(bounds.extents, prefabMeshFilter.transform.lossyScale);
         var result = Physics.OverlapBox(pos + checkAreaVerticalOffset, extents, Quaternion.identity, layersThatBlockPlacement);
-        testPos = pos + checkAreaVerticalOffset;
-        testExtents = extents;
-
+        
         return result.Count() == 0;
     }
 
@@ -141,12 +140,12 @@ public class ToppingPlacer : MonoBehaviour
 
     private void PlaceTopping(Topping topping, Vector3 position)
     {
-        Instantiate(topping.towerPrefab, position, Quaternion.identity);
-        Inventory.inventory.RemoveItem(topping);
-    }
+        GameObject newToppingObj = Instantiate(topping.towerPrefab, position, Quaternion.identity); // spawn obj
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(testPos, testExtents * 2);
+        ToppingRegistry.toppingRegistry.RegisterPlacedTopping(Instantiate(topping), newToppingObj); // register
+        
+        EventBus<TowerPlacedEvent>.Raise(new TowerPlacedEvent(topping, newToppingObj)); // call placed tower event
+        Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 6); // create particle effect
+        Inventory.inventory.RemoveItem(topping); // remove from inventory
     }
 }

@@ -27,7 +27,7 @@ public class SpreadAttack : ProjectileAttack
         AttackCherry(targetedCherry);
     }
 
-    public override void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, float damage) {
+    public override void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, int damage) {
         GameObject newProjectile = Instantiate(projectile, position, rotation);
         newProjectile.GetComponent<Rigidbody>().linearVelocity = velocity;
         newProjectile.GetComponent<Projectile>().damage = damage;
@@ -48,7 +48,7 @@ public class SpreadAttack : ProjectileAttack
                 offsetAngle = ((double) i / (quantity - 1) - 0.5) * spreadAngle;
             }
 
-            SpawnProjectile(this.projectile, topping.transform.position, FindTargetVector(targetedCherry, offsetAngle), Quaternion.identity, this.damage);
+            SpawnProjectile(this.projectile, topping.transform.position, FindTargetVector(targetedCherry, offsetAngle), Quaternion.identity, (int)this.damage);
         }
     }
 

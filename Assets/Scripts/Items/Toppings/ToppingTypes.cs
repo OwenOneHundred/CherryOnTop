@@ -36,4 +36,7 @@ public static class ToppingTypes
             ocean           = 1 << 13 | animal,
             bird            = 1 << 14 | animal,
     }
+
+    public static bool HasAny(this ToppingTypes.Flags value, ToppingTypes.Flags any)
+        => (value & any) != 0;
 }

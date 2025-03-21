@@ -150,6 +150,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cherryHealth: 50
+  deathSound:
+    volume: 0.9
+    clip: {fileID: 8300000, guid: 1a721d67063d14f578a286bbadf93210, type: 3}
 --- !u!114 &1015859626595762296
 MonoBehaviour:
   m_ObjectHideFlags: 0

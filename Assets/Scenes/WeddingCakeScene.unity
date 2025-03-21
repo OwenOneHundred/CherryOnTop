@@ -1282,6 +1282,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5176896722681871329, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
+      propertyPath: defaultSong.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 79b645254f14c432d8eea0d5ef166aea, type: 3}
+    - target: {fileID: 5176896722681871329, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
       propertyPath: defaultSong.volume
       value: 0.328
       objectReference: {fileID: 0}
@@ -1442,11 +1446,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: moneyChangeDisplay
+      value: 
+      objectReference: {fileID: 7121916051453279112}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+--- !u!114 &7121916051453279112 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5669446689808392542, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+  m_PrefabInstance: {fileID: 7121916051453279109}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 233dcee636f504098b00f7cd86e0315b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

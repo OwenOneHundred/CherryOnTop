@@ -1018,9 +1018,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingInventoryItems:
   - {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}
+  minTimeBetweenMoneyChanges: 0.25
   inventoryRenderer: {fileID: 6508363885407075222}
   inventoryEffectManager: {fileID: 2718221458188522715}
   ingameUI: {fileID: 5165441279755291159}
+  moneyChangeDisplay: {fileID: 0}
 --- !u!114 &2718221458188522715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2483,6 +2485,7 @@ GameObject:
   - component: {fileID: 3029052820199018723}
   - component: {fileID: 2205333547624738251}
   - component: {fileID: 4422191411312919656}
+  - component: {fileID: 5669446689808392542}
   m_Layer: 5
   m_Name: GetMoney
   m_TagString: Untagged
@@ -2548,6 +2551,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5669446689808392542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6951020159833462981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 233dcee636f504098b00f7cd86e0315b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 391600351391938476}
+  coinPSPrefab: {fileID: 2993670778262019103, guid: 63d6a5d1f167849a184378b42cd91dd7, type: 3}
 --- !u!1 &6997839299754830553
 GameObject:
   m_ObjectHideFlags: 0

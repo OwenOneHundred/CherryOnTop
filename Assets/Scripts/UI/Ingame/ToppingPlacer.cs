@@ -140,7 +140,7 @@ public class ToppingPlacer : MonoBehaviour
 
     private void PlaceTopping(Topping topping, Vector3 position)
     {
-        GameObject newToppingObj = Instantiate(topping.towerPrefab, position, Quaternion.identity); // spawn obj
+        GameObject newToppingObj = Instantiate(topping.towerPrefab, position, topping.towerPrefab.transform.rotation); // spawn obj
 
         ToppingRegistry.toppingRegistry.RegisterPlacedTopping(topping, newToppingObj); // register
         

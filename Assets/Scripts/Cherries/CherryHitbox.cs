@@ -5,29 +5,27 @@ using UnityEngine;
 /// </summary>
 public class CherryHitbox : MonoBehaviour
 {
-    public float cherryHealth = 100;
-    public float damage = 5;
+    public float cherryHealth;
     DebuffManager debuffManager;
+    [SerializeField] AudioFile deathSound;
 
     public void Start()
     {
-        
+        debuffManager = GetComponent<DebuffManager>();
     }
 
-    public void Update()
-    {   
-        if (cherryHealth == 0) {
-            // delete cherry
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
+    public void TakeDamage(int damage, Topping attacker)
     {
-        // checking if "other" is a projectile(?)
-        if (other)
-        {
-            cherryHealth -= debuffManager.GetDamageMultiplier() * damage;
-        }
-    }
+        float actualDamage = debuffManager.GetDamageMultiplier(attacker) * damage;
+        cherryHealth -= actualDamage;
 
+        if (cherryHealth <= 0)
+        {
+            CherryManager.Instance.OnCherryKilled(GetComponent<CherryMovement>());
+            SoundEffectManager.sfxmanager.PlayOneShot(deathSound);
+            Destroy(gameObject);
+        }
+
+        debuffManager.OnDamaged(damage);
+    }
 }

@@ -5,22 +5,31 @@ using UnityEngine.VFX;
 [CreateAssetMenu(menuName = "CherryDebuff/Slow")]
 public class SlowDownEffect : CherryDebuff
 {
-    public override void EveryFrame()
-    {
-        // This is where effects would deal damage and operate logic.
+    private float effectDuration; // this should be in the parent
+    private float timeSinceTick;
 
-        throw new System.NotImplementedException();
+    public override void EveryFrame() // this would result in cherries rapidly slowing down and then moving backward
+    {
+        // Cherries speed slows down every tick
+        this.timeSinceTick += Time.deltaTime;
+        if (this.timeSinceTick >= this.effectDuration)
+        {
+            this.timeSinceTick = 0;
+            movementSpeedMultiplier -= 0.1f;
+        }
     }
 
     public override void OnAdded(GameObject cherry)
     {
-        // Add VFX on cherry
+        // Add VFX to cherry
 
         // Set cherry field to the GameObject cherry argument
-        throw new System.NotImplementedException();
+        this.cherry = cherry;
+        movementSpeedMultiplier = 1f;
+        this.effectDuration = 10f;
     }
 
-    public override void OnRemoved()
+    public override void OnRemoved(GameObject cherry)
     {
         // Remove VFX from cherry
 

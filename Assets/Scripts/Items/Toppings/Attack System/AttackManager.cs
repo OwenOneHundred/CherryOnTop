@@ -30,11 +30,6 @@ public class AttackManager : MonoBehaviour
             this.attack.OnStart();
         }
         Debug.Log("Topping attack system initialized.");
-
-        // FOR TESTING
-        for (int i = 0; i < 600; i++) {
-            StartCoroutine(Trigger(i));
-        }
     }
 
     // Update is called once per frame
@@ -92,11 +87,6 @@ public class AttackManager : MonoBehaviour
     /// </returns>
     public GameObject GetTargetedCherry() {
         return this.targetedCherry;
-    }
-
-    private IEnumerator Trigger(float waitTime) {
-        yield return new WaitForSeconds(waitTime);
-        attack.OnNewCherryFound(this.targetedCherry);
     }
 
 }

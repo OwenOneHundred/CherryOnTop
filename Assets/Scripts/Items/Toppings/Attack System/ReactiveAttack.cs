@@ -15,24 +15,24 @@ public class ReactiveAttack : ProjectileAttack
     [SerializeField]
     float firingDelay;
 
-    // Represents whether the Topping is free to attack (false) or is hindered by its cooldown (true)
-    private bool onCooldown = false;
+    // Represents whether the current targeted Cherry has been attacked at least once so far.
+    private bool attackSuccessful = false;
 
     public override void OnStart() {
         Debug.Log("Reactive attack with a cooldown of " + this.cooldown + " seconds assigned to topping " + this.topping.name + ".");
     }
 
     public override void OnNewCherryFound(GameObject newTargetedCherry) {
-        if (!onCooldown) {
-            for (int i = 0; i < burstQuantity; i++) {
-                this.topping.GetComponent<AttackManager>().StartCoroutine(DelayedAttack(newTargetedCherry, i * firingDelay));
-            }
-            onCooldown = true;
-        }
+        attackSuccessful = false;
     }
 
     public override void OnCycle(GameObject targetedCherry) {
-        onCooldown = false;
+        if (!attackSuccessful) {
+            for (int i = 0; i < burstQuantity; i++) {
+                this.topping.GetComponent<AttackManager>().StartCoroutine(DelayedAttack(newTargetedCherry, i * firingDelay));
+            }
+            attackSuccessful = true;
+        }
     }
 
     public override void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, int damage) {

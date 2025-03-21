@@ -55,7 +55,7 @@ public class CherryMovement : MonoBehaviour
             if (currentPosition == positionsAmount) 
             {
                 currentTrack++;
-                if (track.transform.childCount <= currentTrack) { return; } // how does this not stop it wtf
+                if (track.transform.childCount <= currentTrack) { OnReachEnd(); return; }
                 lineRenderer = track.transform.GetChild(currentTrack).GetComponent<LineRenderer>();
                 //If current position is -1, it is in the process of moving between lines.
                 setNewTrack();
@@ -64,7 +64,12 @@ public class CherryMovement : MonoBehaviour
             }
         }
         previousCoords = transform.position;
+    }
 
+    private void OnReachEnd()
+    {
+        GameOverControl.gameOverControl.OnGameOver();
+        Destroy(gameObject);
     }
 
     private void setNewTrack() {
@@ -73,5 +78,4 @@ public class CherryMovement : MonoBehaviour
         linePositions = new Vector3[positionsAmount];
         lineRenderer.GetPositions(linePositions);
     }
-
 }

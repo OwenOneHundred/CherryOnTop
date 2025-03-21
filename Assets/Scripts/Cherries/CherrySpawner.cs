@@ -11,6 +11,12 @@ public class CherrySpawner : MonoBehaviour
     readonly float evenNumberCherrySpacingMultiplier = 1.5f;
     [SerializeField] GameObject cherryPrefab;
     [SerializeField] Vector3 cherryStartPos;
+    CherryManager cherryManager;
+
+    private void Start()
+    {
+        cherryManager = GetComponent<CherryManager>();
+    }
     
     public void OnRoundStart()
     {
@@ -27,7 +33,8 @@ public class CherrySpawner : MonoBehaviour
 
         for (int i = 0; i < totalCherries; i++)
         {
-            Instantiate(cherryPrefab, cherryStartPos, Quaternion.identity);
+            GameObject newCherry = Instantiate(cherryPrefab, cherryStartPos, Quaternion.identity);
+            cherryManager.RegisterCherry(newCherry.GetComponentInChildren<CherryMovement>());
 
             yield return new WaitForSeconds(timeBetweenCherries);
         }

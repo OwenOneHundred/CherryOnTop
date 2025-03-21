@@ -23,11 +23,16 @@ public class CherryHitbox : MonoBehaviour
 
         if (cherryHealth <= 0)
         {
-            CherryManager.Instance.OnCherryKilled(GetComponent<CherryMovement>());
-            SoundEffectManager.sfxmanager.PlayOneShot(deathSound);
-            Destroy(gameObject);
+            Die();
         }
 
         debuffManager.OnDamaged(damage);
+    }
+
+    private void Die()
+    {
+        CherryManager.Instance.OnCherryKilled(GetComponent<CherryMovement>());
+        SoundEffectManager.sfxmanager.PlayOneShot(deathSound);
+        Destroy(gameObject);
     }
 }

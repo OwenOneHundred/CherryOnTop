@@ -15,7 +15,12 @@ public class SlowDownEffect : CherryDebuff
         if (this.timeSinceTick >= this.effectDuration)
         {
             this.timeSinceTick = 0;
-            movementSpeedMultiplier -= 0.1f;
+            this.movementSpeedMultiplier -= 0.1f;
+            this.effectDuration -= Time.deltaTime;
+        }
+        if (this.effectDuration <= 0)
+        {
+            this.RemoveSelf();
         }
     }
 
@@ -25,15 +30,16 @@ public class SlowDownEffect : CherryDebuff
 
         // Set cherry field to the GameObject cherry argument
         this.cherry = cherry;
-        movementSpeedMultiplier = 1f;
+        this.movementSpeedMultiplier = 1f;
         this.effectDuration = 10f;
     }
 
     public override void OnRemoved(GameObject cherry)
     {
         // Remove VFX from cherry
-
         // Should not error when object is null
         throw new System.NotImplementedException();
+
     }
+
 }

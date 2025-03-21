@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 /// <summary>
 /// Script that handles the attack cycle for a Topping. When a Topping is initialized, it must be given an attack type

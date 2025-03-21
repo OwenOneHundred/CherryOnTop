@@ -21,6 +21,7 @@ public class Inventory : MonoBehaviour
             return;
         }
     }
+    [SerializeField] float minTimeBetweenMoneyChanges = 0.25f;
 
     public InventoryRenderer inventoryRenderer;
 
@@ -67,6 +68,7 @@ public class Inventory : MonoBehaviour
             ingameUI.SetCakeScore(value);
         }
     }
+    [SerializeField] MoneyChangeDisplay moneyChangeDisplay;
 
     public bool TryBuyItem(Item item)
     {
@@ -95,27 +97,35 @@ public class Inventory : MonoBehaviour
         inventoryRenderer.RemoveItemFromDisplay(item);
     }
 
+    float moneyChangeTimer = 0;
+
     public void Update()
     {
+        moneyChangeTimer += Time.deltaTime;
         ManageBufferedMoneyChanges();
     }
 
     private void ManageBufferedMoneyChanges()
     {
-        if (bufferedMoneyChanges.Count != 0)
+        if (moneyChangeTimer > minTimeBetweenMoneyChanges)
         {
-            foreach (int moneyChange in bufferedMoneyChanges)
+            if (bufferedMoneyChanges.Count != 0)
             {
-                ApplyMoneyChange(moneyChange);
+                foreach (int moneyChange in bufferedMoneyChanges)
+                {
+                    ApplyMoneyChange(moneyChange);
+                }
+                bufferedMoneyChanges.Clear();
+                ingameUI.SetMoney(Money);
             }
-            bufferedMoneyChanges.Clear();
-            ingameUI.SetMoney(Money);
+            moneyChangeTimer = 0;
         }
     }
 
     private void ApplyMoneyChange(int moneyChange)
     {
         money += moneyChange;
+        moneyChangeDisplay.AddToDisplay(moneyChange);
     }
 
     private void BufferMoneyChange(int change)

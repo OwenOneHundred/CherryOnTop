@@ -24,6 +24,7 @@ public class AttackManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        timer = this.cooldown;
         this.attack = Instantiate(attackTemplate);
         this.attack.topping = gameObject;
         if (this.attack != null) {
@@ -35,13 +36,13 @@ public class AttackManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
         if (targetedCherry != null) {
             if (timer >= attack.cooldown) {
                 timer = 0;
                 attack.OnCycle(this.targetedCherry);
             }
-            timer += Time.deltaTime;
-        } else {
+        } else if (timer >= attack.cooldown) {
             timer = 0;
         }
     }

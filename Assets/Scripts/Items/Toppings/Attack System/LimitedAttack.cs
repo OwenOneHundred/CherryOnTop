@@ -15,8 +15,8 @@ public class LimitedAttack : DirectAttack
     [SerializeField]
     float attackDelay;
 
-    // Represents whether the Topping is free to attack (true) or is hindered by its cooldown (false)
-    private bool onCooldown = false;
+    // Represents whether the current targeted Cherry has been attacked at least once so far.
+    private bool attackSuccessful = false;
 
     // Represents the number of attacks that have been performed by this topping
     private int attacks;
@@ -26,19 +26,14 @@ public class LimitedAttack : DirectAttack
     }
 
     public override void OnNewCherryFound(GameObject newTargetedCherry) {
-        if (attacks < attackLimit) {
-            // These if statements are nested in case we want to do something special when the topping runs out of attacks.
-            if (!onCooldown) {
-                this.topping.GetComponent<AttackManager>().StartCoroutine(DelayedConditionalAttack(newTargetedCherry, attackDelay));
-                onCooldown = true;
-            }
-        } else {
-            // Do something here?
-        }
+        attackSuccessful = false;
     }
 
     public override void OnCycle(GameObject targetedCherry) {
-        onCooldown = false;
+        if (!attackSuccessful) {
+            this.topping.GetComponent<AttackManager>().StartCoroutine(DelayedConditionalAttack(targetedCherry, attackDelay));
+            attackSuccessful = true;
+        }
     }
 
     public override void DealDamage(GameObject targetedCherry) {

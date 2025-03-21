@@ -20,6 +20,17 @@ public class AttackManager : MonoBehaviour
     // Keeps track of when the last attack was to time the next one
     private float timer = 0;
 
+    int attackDamage = 0;
+    public int AttackDamage
+    {
+        get { return attackDamage; }
+        set
+        {
+            attack.damage = value;
+            attackDamage = value;
+        }
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

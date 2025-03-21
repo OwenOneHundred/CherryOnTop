@@ -2,5 +2,6 @@ using UnityEngine;
 
 public abstract class EffectSO : ScriptableObject
 {
-    public abstract void OnTriggered();
+    public GameObject toppingObj;
+    public abstract void OnTriggered(EventBus.IEvent eventObject);
 }

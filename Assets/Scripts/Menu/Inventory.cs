@@ -33,7 +33,7 @@ public class Inventory : MonoBehaviour
 
         foreach (Item item in startingInventoryItems) // add starting items to inventory display
         {
-            inventoryRenderer.AddItemToDisplay(item);
+            AddItem(item);
         }
     }
 
@@ -73,22 +73,26 @@ public class Inventory : MonoBehaviour
         if (item.price > money) { Debug.Log(money + " " + item.price);  return false; } // can't afford
         if (0 > inventoryEffectManager.GetLimit<LimitBuying>()) { return false; } // TODO replace 0 with shop manager purchases count 
 
-        AddItem(item);
         Money -= item.price;
-        inventoryRenderer.UpdateAllIconPositions();
         EventBus<BuyEvent>.Raise(new BuyEvent(item));
+
+        AddItem(item);
         return true;
     }
 
     public void AddItem(Item item)
     {
+        item = Instantiate(item); // Item SOs are currently instantiated here, when added to inventory.
+
         ownedItems.Add(item);
         inventoryRenderer.AddItemToDisplay(item);
+        item.Initialize();
     }
 
     public void RemoveItem(Item item)
     {
         ownedItems.Remove(item);
+        inventoryRenderer.RemoveItemFromDisplay(item);
     }
 
     public void Update()

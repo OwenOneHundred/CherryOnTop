@@ -4,16 +4,8 @@ using UnityEngine;
 /// Simple attack type that shoots a projectile in the direction of the target Cherry.
 /// </summary>
 [CreateAssetMenu(menuName = "Attacks/Simple Attack")]
-public class SimpleAttack : ToppingAttack
+public class SimpleAttack : ProjectileAttack
 {
-    // Stores a reference to the prefab used as the projectile
-    [SerializeField]
-    GameObject projectile;
-
-    // Represents the speed of the projectiles shot by this ToppingAttack
-    [SerializeField]
-    float projectileSpeed;
-
     public override void OnStart() {
         Debug.Log("Simple attack with a cooldown of " + this.cooldown + " seconds assigned to topping " + this.topping.name + ".");
     }
@@ -26,16 +18,21 @@ public class SimpleAttack : ToppingAttack
         AttackCherry(targetedCherry);
     }
 
+    public override void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, int damage) {
+        GameObject newProjectile = Instantiate(projectile, position, rotation);
+        newProjectile.GetComponent<Rigidbody>().linearVelocity = velocity;
+        newProjectile.GetComponent<Projectile>().damage = damage;
+
+        // Destroy the projectile after 8 seconds in case it misses the target
+        Destroy(newProjectile, 8);
+    }
+
     /// <summary>
     /// Fires a projectile in the direction of the current targeted Cherry
     /// </summary>
     /// <param name="targetedCherry"></param>
     private void AttackCherry(GameObject targetedCherry) {
-        GameObject newProjectile = Instantiate(this.projectile, topping.transform.position, Quaternion.identity);
-        newProjectile.GetComponent<Rigidbody>().linearVelocity = FindTargetVector(targetedCherry);
-
-        // Destroy the projectile after 8 seconds in case it misses the target
-        Destroy(newProjectile, 8);
+        SpawnProjectile(this.projectile, topping.transform.position, FindTargetVector(targetedCherry), Quaternion.identity, this.damage);
     }
 
     /// <summary>

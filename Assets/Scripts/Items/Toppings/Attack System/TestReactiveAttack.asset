@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: TestReactiveAttack
   m_EditorClassIdentifier: 
   cooldown: 1
+  damage: 10
   projectile: {fileID: 1373519935423302513, guid: 4a93f91688e72d443a166bcaeddc5fde, type: 3}
   projectileSpeed: 2
   burstQuantity: 3

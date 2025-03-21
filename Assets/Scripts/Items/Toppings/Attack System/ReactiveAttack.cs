@@ -5,16 +5,8 @@ using System.Collections;
 /// A ToppingAttack that fires a burst of projectiles whenever it begins targeting a new Cherry.
 /// </summary>
 [CreateAssetMenu(menuName = "Attacks/Reactive Attack")]
-public class ReactiveAttack : ToppingAttack
+public class ReactiveAttack : ProjectileAttack
 {
-    // Stores a reference to the prefab used as the projectile
-    [SerializeField]
-    GameObject projectile;
-
-    // Represents the speed of the projectiles shot by this ToppingAttack
-    [SerializeField]
-    float projectileSpeed;
-
     // Represents the total number of projectiles to shoot towards the target Cherry
     [SerializeField]
     int burstQuantity;
@@ -43,16 +35,21 @@ public class ReactiveAttack : ToppingAttack
         canAttack = true;
     }
 
+    public override void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, int damage) {
+        GameObject newProjectile = Instantiate(projectile, position, rotation);
+        newProjectile.GetComponent<Rigidbody>().linearVelocity = velocity;
+        newProjectile.GetComponent<Projectile>().damage = damage;
+
+        // Destroy the projectile after 8 seconds in case it misses the target
+        Destroy(newProjectile, 8);
+    }
+
     /// <summary>
     /// Fires a stream of projectiles in the direction of the current targeted Cherry
     /// </summary>
     /// <param name="targetedCherry"></param>
     private void AttackCherry(GameObject targetedCherry) {
-        GameObject newProjectile = Instantiate(this.projectile, topping.transform.position, Quaternion.identity);
-        newProjectile.GetComponent<Rigidbody>().linearVelocity = FindTargetVector(targetedCherry);
-
-        // Destroy the projectile after 8 seconds in case it misses the target
-        Destroy(newProjectile, 8);
+        SpawnProjectile(this.projectile, topping.transform.position, FindTargetVector(targetedCherry), Quaternion.identity, this.damage);
     }
 
     /// <summary>

@@ -5,16 +5,8 @@ using UnityEngine;
 /// spread angle.
 /// </summary>
 [CreateAssetMenu(menuName = "Attacks/Spread Attack")]
-public class SpreadAttack : ToppingAttack
+public class SpreadAttack : ProjectileAttack
 {
-    // Stores a reference to the prefab used as the projectile
-    [SerializeField]
-    GameObject projectile;
-
-    // Represents the speed of the projectiles shot by this ToppingAttack
-    [SerializeField]
-    float projectileSpeed;
-
     // Represents the total number of projectiles to shoot towards the target Cherry
     [SerializeField]
     int quantity;
@@ -35,23 +27,28 @@ public class SpreadAttack : ToppingAttack
         AttackCherry(targetedCherry);
     }
 
+    public override void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, int damage) {
+        GameObject newProjectile = Instantiate(projectile, position, rotation);
+        newProjectile.GetComponent<Rigidbody>().linearVelocity = velocity;
+        newProjectile.GetComponent<Projectile>().damage = damage;
+
+        // Destroy the projectile after 8 seconds in case it misses the target
+        Destroy(newProjectile, 8);
+    }
+
     /// <summary>
     /// Shoots one or more projectiles in the direction of the targeted Cherry
     /// </summary>
     /// <param name="targetedCherry"></param>
     private void AttackCherry(GameObject targetedCherry) {
         for (int i = 0; i < quantity; i++) {
-            GameObject newProjectile = Instantiate(this.projectile, topping.transform.position, Quaternion.identity);
 
             double offsetAngle = 0;
             if (quantity != 1) {
                 offsetAngle = ((double) i / (quantity - 1) - 0.5) * spreadAngle;
             }
 
-            newProjectile.GetComponent<Rigidbody>().linearVelocity = FindTargetVector(targetedCherry, offsetAngle);
-
-            // Destroy the projectile after 8 seconds in case it misses the target
-            Destroy(newProjectile, 8);
+            SpawnProjectile(this.projectile, topping.transform.position, FindTargetVector(targetedCherry, offsetAngle), Quaternion.identity, (int)this.damage);
         }
     }
 

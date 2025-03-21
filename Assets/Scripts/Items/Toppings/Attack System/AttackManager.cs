@@ -74,11 +74,15 @@ public class AttackManager : MonoBehaviour
     }
 
     /// <summary> 
-    /// Sets this Topping's attack cooldown to a specified value.
+    /// Sets this Topping's attack cooldown to a specified value. If the new value is different to the previous
+    /// value, the timer is reset (the Topping waits the full length of the cooldown before attacking again).
     /// </summary>
     /// <param name="cooldown"></param>
     public void SetAttackCooldown(float cooldown) {
-        this.attack.cooldown = cooldown;
+        if (cooldown != this.attack.cooldown) {
+            this.attack.cooldown = cooldown;
+            timer = 0;
+        }
     }
 
     /// <summary>

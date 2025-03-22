@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -21,9 +22,12 @@ public class DebuffManager : MonoBehaviour
     /// <summary>
     /// Adds a debuff to a cherry
     /// </summary>
-    public void AddDebuff(CherryDebuff debuffCopy)
+    public void AddDebuff(CherryDebuff debuffTemplate, bool allowDuplicates = false)
     {
-        Debug.Log(debuffCopy.movementSpeedMultiplier);
+        if (!allowDuplicates && debuffs.Any(x => x.template == debuffTemplate)) { return; }
+
+        CherryDebuff debuffCopy = CherryDebuff.CreateInstance(debuffTemplate);
+        
         debuffs.Add(debuffCopy);
         debuffCopy.cherry = gameObject;
         debuffCopy.OnAdded(gameObject);

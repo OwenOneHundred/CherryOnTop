@@ -30,8 +30,7 @@ public class Projectile : MonoBehaviour
 
             foreach (CherryDebuff originalDebuff in cherryDebuffs)
             {
-                CherryDebuff debuffCopy = Instantiate(originalDebuff);
-                other.transform.root.GetComponentInChildren<DebuffManager>().AddDebuff(debuffCopy);
+                other.transform.root.GetComponentInChildren<DebuffManager>().AddDebuff(originalDebuff);
             }
         }
     }

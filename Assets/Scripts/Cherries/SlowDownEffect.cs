@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -7,7 +6,7 @@ public class SlowDownEffect : CherryDebuff
 {
     public override void EveryFrame()
     {
-        
+
     }
 
     public override void OnAdded(GameObject cherry)

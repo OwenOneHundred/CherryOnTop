@@ -1,0 +1,22 @@
+using UnityEngine;
+
+[CreateAssetMenu(menuName ="DebuffModifier")]
+public class DebuffModifier : ScriptableObject
+{
+    public CherryDebuff.DebuffType modifiedType = CherryDebuff.DebuffType.none;
+    public float movementSpeedMultiplier = 1;
+    // public float DPSmulitplier; this can't be implemented now, need to change debuff parent structure
+    public float durationMultiplier = 1;
+    public float damageMultiplier = 1;
+
+    public void ApplyModifiersToDebuff(CherryDebuff debuff)
+    {
+        if (!HasAny(debuff.debuffType, modifiedType)) { return; }
+        debuff.movementSpeedMultiplier *= movementSpeedMultiplier;
+        debuff.effectDuration *= durationMultiplier;
+        debuff.damageMultiplier *= damageMultiplier;
+    }
+
+    static bool HasAny(CherryDebuff.DebuffType value, CherryDebuff.DebuffType any)
+        => (value & any) != 0;
+}

@@ -22,6 +22,5 @@ public class SlowDownEffect : CherryDebuff
         // Remove VFX from cherry
 
         // Should not error when object is null
-        throw new System.NotImplementedException();
     }
 }

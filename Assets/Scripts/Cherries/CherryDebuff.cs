@@ -10,6 +10,8 @@ public abstract class CherryDebuff : ScriptableObject
 
     public ToppingTypes.Flags typesThatGetDamageMultiplier;
     public float damageMultiplier = 1; // this is read by DebuffManager, so debuffs can put multipliers on damage.
+
+    public DebuffType debuffType = DebuffType.none;
     
     [System.NonSerialized] public GameObject cherry; // should be set in OnAdd, 
     // so it can be read in EveryFrame to perform actions on the cherry this debuff is on
@@ -55,5 +57,11 @@ public abstract class CherryDebuff : ScriptableObject
         instance.template = template;
 
         return instance;
+    }
+
+    
+    [System.Flags] public enum DebuffType
+    {
+        none, fire, freeze, poison
     }
 }

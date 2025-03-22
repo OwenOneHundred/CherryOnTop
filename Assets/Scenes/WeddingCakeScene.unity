@@ -1332,6 +1332,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 391600351391938476, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.11792451
+      objectReference: {fileID: 0}
+    - target: {fileID: 391600351391938476, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.87207144
+      objectReference: {fileID: 0}
+    - target: {fileID: 391600351391938476, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2453157323036994659, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: m_Name
       value: IngameUI
@@ -1451,7 +1463,7 @@ PrefabInstance:
     - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: 'startingInventoryItems.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 5d4c3a01cf4e74901ba2a080092b0c86, type: 2}
+      objectReference: {fileID: 11400000, guid: ed367cf4325964f17ae8515110ffb0e4, type: 2}
     - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: 'startingInventoryItems.Array.data[2]'
       value: 

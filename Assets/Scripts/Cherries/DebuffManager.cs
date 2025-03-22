@@ -1,6 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -34,6 +33,8 @@ public class DebuffManager : MonoBehaviour
         if (!allowDuplicates && debuffs.Any(x => x.template == debuffTemplate)) { return; }
 
         CherryDebuff debuffCopy = CherryDebuff.CreateInstance(debuffTemplate);
+
+        DebuffModifierManager.Instance.ApplyDebuffModifiersToDebuff(debuffCopy);
         
         debuffs.Add(debuffCopy);
         debuffCopy.cherry = gameObject;
@@ -88,5 +89,4 @@ public class DebuffManager : MonoBehaviour
             debuff.OnCherryDamaged(damage);
         }
     }
-    
 }

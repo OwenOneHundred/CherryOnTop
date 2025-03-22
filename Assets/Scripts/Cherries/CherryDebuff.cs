@@ -14,7 +14,7 @@ public abstract class CherryDebuff : ScriptableObject
     [System.NonSerialized] public GameObject cherry; // should be set in OnAdd, 
     // so it can be read in EveryFrame to perform actions on the cherry this debuff is on
 
-    public CherryDebuff template;
+    [System.NonSerialized] public CherryDebuff template;
 
     /// <summary>
     /// Called every frame. This is where effects would deal damage and operate logic.

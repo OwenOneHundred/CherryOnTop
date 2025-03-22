@@ -1,7 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using EventBus;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class ToppingPlacer : MonoBehaviour
@@ -18,6 +18,8 @@ public class ToppingPlacer : MonoBehaviour
 
     GameObject transparentObject;
     [SerializeField] GameObject toppingPlaceEffect;
+
+    List<List<Vector3>> trackPoints = new();
 
     readonly Vector3 checkAreaVerticalOffset = new Vector3(0, 0.02f, 0);
     public bool PlacingTopping
@@ -42,6 +44,19 @@ public class ToppingPlacer : MonoBehaviour
     {
         transparentObject = Instantiate(placePreview);
         transparentObject.SetActive(false);
+
+        StoreAllTrackPositions();
+    }
+
+    private void StoreAllTrackPositions()
+    {
+        foreach (Transform track in GameObject.FindGameObjectWithTag("Track").transform)
+        {
+            LineRenderer lr = track.GetComponent<LineRenderer>();
+            var linePoints = new Vector3[lr.positionCount];
+            lr.GetPositions(linePoints);
+            trackPoints.Add(new List<Vector3>(linePoints));
+        }
     }
 
     public void StartPlacingTopping(Topping topping, InventoryIconControl iic)
@@ -93,7 +108,7 @@ public class ToppingPlacer : MonoBehaviour
                 transparentObject.SetActive(true);
                 transparentObject.transform.position = objCenter;
 
-                placementValidCheck = CheckIfPlacementValid(toppingMeshFilter, objCenter, toppingMeshFilter.sharedMesh);
+                placementValidCheck = CheckIfPlacementValid(toppingMeshFilter, objCenter, toppingMeshFilter.sharedMesh, cakePos);
                 meshRenderer.material = placementValidCheck ? white : red;
             }
             else
@@ -110,13 +125,50 @@ public class ToppingPlacer : MonoBehaviour
         StopPlacingTopping();
     }
 
-    private bool CheckIfPlacementValid(MeshFilter prefabMeshFilter, Vector3 pos, Mesh mesh)
+    private bool CheckIfPlacementValid(MeshFilter prefabMeshFilter, Vector3 pos, Mesh mesh, Vector3 cakePos)
     {
         Bounds bounds = mesh.bounds;
         Vector3 extents = prefabMeshFilter.transform.rotation * Vector3.Scale(bounds.extents, prefabMeshFilter.transform.lossyScale);
-        var result = Physics.OverlapBox(pos + checkAreaVerticalOffset, extents, Quaternion.identity, layersThatBlockPlacement);
-        
-        return result.Count() == 0;
+        var result = Physics.OverlapBox(pos + checkAreaVerticalOffset, extents * 0.8f, Quaternion.identity, layersThatBlockPlacement);
+
+        bool notOverlappingAnything = result.Count() == 0;
+
+        //bool tooCloseToTrack = CheckIfTooCloseToTrack(cakePos); this doesn't work, idk why
+        bool tooCloseToTrack = false;
+
+        return notOverlappingAnything && (!tooCloseToTrack);
+    }
+
+    private bool CheckIfTooCloseToTrack(Vector3 cakePos, float acceptableDistance = 0.525f)
+    {
+        foreach (List<Vector3> trackPositions in trackPoints)
+        {
+            for (int i = 0; i < trackPositions.Count - 1; i++)
+            {
+                Vector3 startPos = trackPositions[i];
+                Vector3 endPos = trackPositions[i + 1];
+                
+
+                Vector3 closestOnPoints = ClosestPointOnLineSegment(startPos, endPos, cakePos);
+                float distance = Vector3.Distance(cakePos, closestOnPoints);
+
+                //Debug.Log("startpos: " + startPos + " endpos: " + endPos + " closestPoint: " + closestOnPoints + " distance: " + distance + " obj pos: " + cakePos);
+
+                if (distance < acceptableDistance)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    Vector3 ClosestPointOnLineSegment(Vector3 A, Vector3 B, Vector3 target)
+    {
+        Vector3 fromAtoB = B - A;
+        Vector3 fromAtoTarget = target - A;
+        float t = Mathf.Clamp01(Vector2.Dot(fromAtoTarget, fromAtoB) / fromAtoB.sqrMagnitude);
+        return A + t * fromAtoB;
     }
 
     private float GetLowestPointOffset(Bounds bounds, Vector3 groundDirection, float scale)

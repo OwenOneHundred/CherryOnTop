@@ -15,4 +15,4 @@ MonoBehaviour:
   cooldown: 0.2
   damage: 10
   projectile: {fileID: 1373519935423302513, guid: 5acfe20873535488eb1bc6c7c714ad6a, type: 3}
-  projectileSpeed: 5
+  projectileSpeed: 10

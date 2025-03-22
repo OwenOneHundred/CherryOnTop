@@ -85,7 +85,6 @@ public class CherryMovement : MonoBehaviour
 
     private float GetSpeed()
     {
-        Debug.Log("Movement speed: " + baseSpeed * debuffManager.GetMovementSpeedMultiplier());
         return baseSpeed * debuffManager.GetMovementSpeedMultiplier();
     }
 }

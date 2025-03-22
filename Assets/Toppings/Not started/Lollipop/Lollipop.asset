@@ -20,5 +20,5 @@ MonoBehaviour:
     eventSOs:
     - {fileID: 11400000, guid: 96555b3ac10af430da30e6926ffff4c6, type: 2}
   description: 
-  towerPrefab: {fileID: 0}
+  towerPrefab: {fileID: 1478077881328383843, guid: f640ac6974e5e4f42a985a4cf477a74d, type: 3}
   flags: 384

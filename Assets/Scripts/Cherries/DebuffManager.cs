@@ -15,7 +15,14 @@ public class DebuffManager : MonoBehaviour
     {
         for (int i = 0; i < debuffs.Count; i++)
         {
-            debuffs[i].EveryFrame();
+            CherryDebuff currentDebuff = debuffs[i];
+            currentDebuff.EveryFrame();
+
+            currentDebuff.effectDuration -= Time.deltaTime;
+            if (currentDebuff.effectDuration <= 0)
+            {
+                currentDebuff.RemoveSelf();
+            }
         }
     }
 
@@ -50,7 +57,6 @@ public class DebuffManager : MonoBehaviour
         float movementSpeedMultiplier = 1.0f;
         for (int i = 0; i < debuffs.Count; i++)
         {
-            Debug.Log(debuffs[i].movementSpeedMultiplier);
             movementSpeedMultiplier *= debuffs[i].movementSpeedMultiplier;
         }
         return movementSpeedMultiplier; // return the product of all debuff movementSpeedMultipliers
@@ -75,7 +81,7 @@ public class DebuffManager : MonoBehaviour
         return damageMultiplier; // return the product of all debuff damageMultipliers
     }
 
-    public void OnDamaged(int damage)
+    public void OnDamaged(float damage)
     {
         foreach (CherryDebuff debuff in debuffs)
         {

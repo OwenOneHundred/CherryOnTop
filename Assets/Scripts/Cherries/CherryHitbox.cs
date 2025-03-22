@@ -15,15 +15,15 @@ public class CherryHitbox : MonoBehaviour
         debuffManager = GetComponent<DebuffManager>();
     }
 
-    public void TakeDamage(int damage, Topping attacker, Vector3 directionOfDamage = default)
+    public void TakeDamage(float damage, Topping attacker, Vector3 directionOfDamage = default)
     {
         if (cherryHealth <= 0) { return; }
         
         float actualDamage = debuffManager.GetDamageMultiplier(attacker) * damage;
         cherryHealth -= actualDamage;
-        GameObject newOnDamagedPS = Instantiate(onDamagedPS, transform.position, Quaternion.identity);
-        if (directionOfDamage != Vector3.zero)
+        if (directionOfDamage != default)
         {
+            GameObject newOnDamagedPS = Instantiate(onDamagedPS, transform.position, Quaternion.identity);
             newOnDamagedPS.transform.rotation = Quaternion.LookRotation(directionOfDamage);
         }
 

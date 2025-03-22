@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfa5ddee62ca0e145b2a85463bea3cdf, type: 3}
-  m_Name: SodaCanAttack
+  m_Script: {fileID: 11500000, guid: 4baf0569fe9ee744e925815b297fe6a1, type: 3}
+  m_Name: CandleShockwave
   m_EditorClassIdentifier: 
-  cooldown: 0.2
-  damage: 10
-  projectile: {fileID: 1373519935423302513, guid: 5acfe20873535488eb1bc6c7c714ad6a, type: 3}
-  projectileSpeed: 10
+  cooldown: 0.65
+  damage: 1
+  shockwave: {fileID: 5503282234501958175, guid: 37b709b7845194afdadf2f2b34c7114b, type: 3}
+  speed: 1
+  range: 1

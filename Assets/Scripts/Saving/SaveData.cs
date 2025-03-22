@@ -10,18 +10,64 @@ namespace GameSaves
     {
         public static string _saveFolderName = "Saves";
 
-        public static void AssertSavesFolderExists()
+        public static string AssertSavesFolderExists()
         {
-            string savesPath = Application.persistentDataPath + _saveFolderName;
+            string savesPath = Application.persistentDataPath + Path.DirectorySeparatorChar + _saveFolderName;
             if (!Directory.Exists(savesPath))
             {
                 Directory.CreateDirectory(savesPath);
                 Debug.Log("Saves folder created at path: " + savesPath);
             }
+            return savesPath;
+        }
+
+        public static string GetSaveFilePath(string filename)
+        {
+            return AssertSavesFolderExists() + Path.DirectorySeparatorChar + filename + _saveFileExtension;
         }
 
         public static string _defaultSaveFile = "savefile";
-        public static string _saveFileExtension = "cot";
+        public static string _saveFileExtension = ".cot";
+
+        public static Dictionary<string, string> ReadJson(string filename)
+        {
+            Dictionary<string, string> valueDict = new Dictionary<string, string>();
+            string filepath = GetSaveFilePath(filename);
+            if (!File.Exists(filepath))
+            {
+                Debug.LogError("Filepath does not exists! Using new SaveData. Given filepath: " + filepath);
+                return valueDict;
+            }
+            DataWrapper wrapper = JsonUtility.FromJson<DataWrapper>(File.ReadAllText(filepath));
+            foreach (StringDataEntry s in wrapper.entries)
+            {
+                valueDict.Add(s.dataName, s.dataValue);
+            }
+
+            Debug.Log("Finished reading save data from filepath: " + filepath);
+
+            return valueDict;
+        }
+
+        public static void WriteJson(SaveData data, string filename)
+        {
+            //Dictionary<string, string> valueDict = new Dictionary<string, string>();
+            DataWrapper wrapper = new DataWrapper();
+            foreach (string key in data.data.Keys)
+            {
+                DataEntry entry = data.data[key];
+                if (entry == null) continue;
+                string val = WriteDataFrom(entry);
+                StringDataEntry s = new StringDataEntry();
+                s.dataName = key;
+                s.dataValue = val;
+                wrapper.entries.Add(s);
+            }
+
+            string filepath = GetSaveFilePath(filename);
+            string json = JsonUtility.ToJson(wrapper);
+            File.WriteAllText(filepath, json);
+        }
 
         public static bool TryReadDataAs<T> (string data, out T dataEntry) where T:DataEntry
         {
@@ -48,6 +94,10 @@ namespace GameSaves
             {
                 typedValue = untypedValue as T;
                 return typedValue != null;
+            } else if (rawData.TryGetValue(dataName, out string raw) && TryReadDataAs(raw, out typedValue))
+            {
+                data.Add(dataName, typedValue);
+                return true;
             }
             typedValue = null;
             return false;
@@ -87,25 +137,53 @@ namespace GameSaves
             return null;
         }
 
-        public static SaveData CreateData()
+        public static SaveData CreateData(string datapathName)
         {
-            return null;
+            SaveData data = new SaveData(datapathName);
+            return data;
         }
 
-        public static SaveData LoadData()
+        public static SaveData LoadData(string datapathName)
         {
-            return null;
+            SaveData data = new SaveData(datapathName, true);
+            return data;
         }
 
+        public static void WriteData(SaveData data)
+        {
+            WriteData(data, data.saveFile);
+        }
+
+        public static void WriteData(SaveData data, string datapathName)
+        {
+            WriteJson(data, datapathName);
+        }
+
+        protected string saveFile;
         protected SaveData(string saveFile, bool load = false)
         {
-
+            this.saveFile = saveFile;
+            rawData = load ? ReadJson(saveFile) : new Dictionary<string, string>();
+            data = new Dictionary<string, DataEntry>();
         }
 
         Dictionary<string, string> rawData;
         Dictionary<string, DataEntry> data;
 
 
+    }
+
+    [System.Serializable]
+    public class DataWrapper
+    {
+        [SerializeField] public List<StringDataEntry> entries = new List<StringDataEntry>();
+    }
+
+    [System.Serializable]
+    public class StringDataEntry
+    {
+        [SerializeField] public string dataName = "";
+        [SerializeField] public string dataValue = "";
     }
 
     [System.Serializable]
@@ -125,12 +203,12 @@ namespace GameSaves
     }
 
     [System.Serializable]
-    public class DETransform : DataEntry
+    public class DEPosition : DataEntry
     {
-        [SerializeField] public Transform transformData;
-        public DETransform(string dataName, Transform transform) : base(dataName)
+        [SerializeField] public Vector3 positionData;
+        public DEPosition(string dataName, Vector3 positionData) : base(dataName)
         {
-            transformData = transform;
+            this.positionData = positionData;
         }
     }
 

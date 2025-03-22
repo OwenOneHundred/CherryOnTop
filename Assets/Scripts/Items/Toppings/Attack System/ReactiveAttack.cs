@@ -29,7 +29,7 @@ public class ReactiveAttack : ProjectileAttack
     public override void OnCycle(GameObject targetedCherry) {
         if (!attackSuccessful) {
             for (int i = 0; i < burstQuantity; i++) {
-                this.topping.GetComponent<AttackManager>().StartCoroutine(DelayedAttack(newTargetedCherry, i * firingDelay));
+                this.topping.GetComponent<AttackManager>().StartCoroutine(DelayedAttack(targetedCherry, i * firingDelay));
             }
             attackSuccessful = true;
         }

@@ -15,24 +15,24 @@ public class ReactiveAttack : ProjectileAttack
     [SerializeField]
     float firingDelay;
 
-    // Represents whether the Topping is free to attack (true) or is hindered by its cooldown (false)
-    private bool canAttack;
+    // Represents whether the current targeted Cherry has been attacked at least once so far.
+    private bool attackSuccessful = false;
 
     public override void OnStart() {
         Debug.Log("Reactive attack with a cooldown of " + this.cooldown + " seconds assigned to topping " + this.topping.name + ".");
     }
 
     public override void OnNewCherryFound(GameObject newTargetedCherry) {
-        if (canAttack) {
-            for (int i = 0; i < burstQuantity; i++) {
-                this.topping.GetComponent<AttackManager>().StartCoroutine(WaitAndAttack(newTargetedCherry, i * firingDelay));
-            }
-            canAttack = false;
-        }
+        attackSuccessful = false;
     }
 
     public override void OnCycle(GameObject targetedCherry) {
-        canAttack = true;
+        if (!attackSuccessful) {
+            for (int i = 0; i < burstQuantity; i++) {
+                this.topping.GetComponent<AttackManager>().StartCoroutine(DelayedAttack(newTargetedCherry, i * firingDelay));
+            }
+            attackSuccessful = true;
+        }
     }
 
     public override void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, int damage) {
@@ -76,8 +76,8 @@ public class ReactiveAttack : ProjectileAttack
     /// <param name="targetedCherry"></param>
     /// <param name="waitTime"></param>
     /// <returns></returns>
-    private IEnumerator WaitAndAttack(GameObject targetedCherry, float waitTime) {
-        yield return new WaitForSeconds(waitTime);
+    private IEnumerator DelayedAttack(GameObject targetedCherry, float delay) {
+        yield return new WaitForSeconds(delay);
         AttackCherry(targetedCherry);
     }
 }

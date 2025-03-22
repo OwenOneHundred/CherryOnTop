@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// Script that handles the attack cycle for a Topping. When a Topping is initialized, it must be given an attack type
@@ -39,6 +40,9 @@ public class AttackManager : MonoBehaviour
         if (this.attack != null) {
             this.attack.OnStart();
         }
+
+        timer = attack.cooldown;
+
         Debug.Log("Topping attack system initialized.");
     }
 
@@ -50,9 +54,9 @@ public class AttackManager : MonoBehaviour
                 timer = 0;
                 attack.OnCycle(this.targetedCherry);
             }
+        }
+        if (timer <= attack.cooldown) {
             timer += Time.deltaTime;
-        } else {
-            timer = 0;
         }
     }
 
@@ -81,11 +85,15 @@ public class AttackManager : MonoBehaviour
     }
 
     /// <summary> 
-    /// Sets this Topping's attack cooldown to a specified value.
+    /// Sets this Topping's attack cooldown to a specified value. If the new value is different to the previous
+    /// value, the timer is reset (the Topping waits the full length of the cooldown before attacking again).
     /// </summary>
     /// <param name="cooldown"></param>
     public void SetAttackCooldown(float cooldown) {
-        this.attack.cooldown = cooldown;
+        if (cooldown != this.attack.cooldown) {
+            this.attack.cooldown = cooldown;
+            timer = 0;
+        }
     }
 
     /// <summary>

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetingSystem : MonoBehaviour
@@ -5,7 +6,9 @@ public class TargetingSystem : MonoBehaviour
     [SerializeField] private float range = 5f;
     private LayerMask cherryLayer, cakeLayer;
     [SerializeField] AttackManager attackManager;
-    public bool targetCherryOnce = false;
+
+    protected GameObject currentCherry;
+    private List<GameObject> targetedCherries = new List<GameObject>();
 
     void Start()
     {
@@ -17,6 +20,7 @@ public class TargetingSystem : MonoBehaviour
     {
         GameObject found = Search();
         attackManager.UpdateTargetedCherry(found);
+        currentCherry = found;
     }
 
    GameObject Search()
@@ -60,8 +64,16 @@ public class TargetingSystem : MonoBehaviour
         }
     }
 
-    bool setTargetCherryOnce(bool input) {
-        return targetCherryOnce = input;
+    public void AddTargetedCherry(GameObject cherry)
+    {
+        if (!targetedCherries.Contains(cherry))
+        {
+            targetedCherries.Add(cherry);
+        }
     }
 
+    public List<GameObject> GetTargetedCherries()
+    {
+        return targetedCherries;
+    }   
 }

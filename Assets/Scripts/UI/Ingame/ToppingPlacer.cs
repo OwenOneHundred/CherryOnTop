@@ -106,7 +106,7 @@ public class ToppingPlacer : MonoBehaviour
 
         if (placementValidCheck)
         {
-            PlaceTopping(topping, cakePos);
+            PlaceTopping(topping, cakePos + new Vector3(0, lowestPointOffset, 0));
         }
         StopPlacingTopping();
     }

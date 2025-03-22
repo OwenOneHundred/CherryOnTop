@@ -28,7 +28,7 @@ public class TargetingSystem : MonoBehaviour
 
         foreach (Collider cherry in cherries)
         {
-            CherryMovement cherryMovement = cherry.GetComponent<CherryMovement>();
+            CherryMovement cherryMovement = cherry.transform.root.GetComponent<CherryMovement>();
             if (cherryMovement != null && HasClearLineOfSight(cherry.transform))
             {
                 if (cherryMovement.distanceTraveled > highestDistance)

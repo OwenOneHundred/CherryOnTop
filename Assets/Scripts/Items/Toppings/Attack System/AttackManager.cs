@@ -15,7 +15,6 @@ public class AttackManager : MonoBehaviour
     private ToppingAttack attack;
 
     // Keeps track of the current targeted Cherry. Should be null if there are no Cherries in range
-    [SerializeField]
     GameObject targetedCherry;
 
     // Keeps track of when the last attack was to time the next one

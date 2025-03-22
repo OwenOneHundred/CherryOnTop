@@ -37,7 +37,7 @@ public class LimitedAttack : DirectAttack
     }
 
     public override void DealDamage(GameObject targetedCherry) {
-        targetedCherry.GetComponent<CherryHitbox>().TakeDamage(this.damage, null);
+        targetedCherry.GetComponent<CherryHitbox>().TakeDamage(this.damage, null, Vector3.zero);
     }
 
     /// <summary>

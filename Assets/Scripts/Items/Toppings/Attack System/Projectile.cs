@@ -8,9 +8,11 @@ public class Projectile : MonoBehaviour
     [System.NonSerialized] public int damage = 20;
     public Topping owner; // TODO this is never set, so it's always null. Set this when fired.
     [SerializeField] List<CherryDebuff> cherryDebuffs;
+    Rigidbody rb;
 
-    public void Start()
+    public void Awake()
     {
+        rb = GetComponent<Rigidbody>();
         SetDamage(damage);
     }
 
@@ -19,11 +21,11 @@ public class Projectile : MonoBehaviour
         this.damage = damage;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.transform.root.TryGetComponent<CherryHitbox>(out CherryHitbox ch))
         {
-            ch.TakeDamage(damage, owner);
+            ch.TakeDamage(damage, owner, GetAttackDirection(other.gameObject));
             OnHitCherry(ch);
 
             foreach (CherryDebuff originalDebuff in cherryDebuffs)
@@ -36,5 +38,10 @@ public class Projectile : MonoBehaviour
 
     public virtual void OnHitCherry(CherryHitbox ch) {
         //
+    }
+
+    public virtual Vector3 GetAttackDirection(GameObject attackedObject)
+    {
+        return rb.linearVelocity;
     }
 }

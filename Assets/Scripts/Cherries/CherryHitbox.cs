@@ -8,18 +8,24 @@ public class CherryHitbox : MonoBehaviour
     public float cherryHealth;
     DebuffManager debuffManager;
     [SerializeField] AudioFile deathSound;
+    [SerializeField] GameObject onDamagedPS;
 
     public void Start()
     {
         debuffManager = GetComponent<DebuffManager>();
     }
 
-    public void TakeDamage(int damage, Topping attacker)
+    public void TakeDamage(int damage, Topping attacker, Vector3 directionOfDamage = default)
     {
         if (cherryHealth <= 0) { return; }
         
         float actualDamage = debuffManager.GetDamageMultiplier(attacker) * damage;
         cherryHealth -= actualDamage;
+        GameObject newOnDamagedPS = Instantiate(onDamagedPS, transform.position, Quaternion.identity);
+        if (directionOfDamage != Vector3.zero)
+        {
+            newOnDamagedPS.transform.rotation = Quaternion.LookRotation(directionOfDamage);
+        }
 
         if (cherryHealth <= 0)
         {

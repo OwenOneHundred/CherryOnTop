@@ -23,6 +23,7 @@ public class DebuffManager : MonoBehaviour
     /// </summary>
     public void AddDebuff(CherryDebuff debuffCopy)
     {
+        Debug.Log(debuffCopy.movementSpeedMultiplier);
         debuffs.Add(debuffCopy);
         debuffCopy.cherry = gameObject;
         debuffCopy.OnAdded(gameObject);
@@ -45,6 +46,7 @@ public class DebuffManager : MonoBehaviour
         float movementSpeedMultiplier = 1.0f;
         for (int i = 0; i < debuffs.Count; i++)
         {
+            Debug.Log(debuffs[i].movementSpeedMultiplier);
             movementSpeedMultiplier *= debuffs[i].movementSpeedMultiplier;
         }
         return movementSpeedMultiplier; // return the product of all debuff movementSpeedMultipliers

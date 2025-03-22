@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {   
     // Base damage that a projectile deals onto a cherry
     [System.NonSerialized] public int damage = 20;
-    public Topping owner; // TODO this is never set, so it's always null. Set this when fired.
+    [System.NonSerialized] public Topping owner; // TODO this is never set, so it's always null. Set this when fired.
     [SerializeField] List<CherryDebuff> cherryDebuffs;
     Rigidbody rb;
 
@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
             foreach (CherryDebuff originalDebuff in cherryDebuffs)
             {
                 CherryDebuff debuffCopy = Instantiate(originalDebuff);
-                other.GetComponentInChildren<DebuffManager>().AddDebuff(debuffCopy);
+                other.transform.root.GetComponentInChildren<DebuffManager>().AddDebuff(debuffCopy);
             }
         }
     }

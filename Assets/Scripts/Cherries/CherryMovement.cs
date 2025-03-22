@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// Attached to Cherries. Moves them along the track. Should only interact with the debuff manager on this Cherry,
@@ -18,14 +19,17 @@ public class CherryMovement : MonoBehaviour
     private int currentTarget;
     public int currentPosition;
     public int currentTrack;
-    public float speed = 1f;
+    public float baseSpeed = 1f;
     private int positionsAmount;
-    private int lineAmount;
     public float distanceTraveled = 0f;
     private Vector3 previousCoords;
 
+    DebuffManager debuffManager;
+
     private void Start()
     {
+        debuffManager = GetComponent<DebuffManager>();
+
         track = GameObject.FindGameObjectWithTag("Track");
         lineRenderer = track.transform.GetChild(0).GetComponent<LineRenderer>();
         positionsAmount = lineRenderer.positionCount;
@@ -41,7 +45,7 @@ public class CherryMovement : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, linePositions[currentTarget], speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, linePositions[currentTarget], GetSpeed() * Time.deltaTime);
         distanceTraveled += Vector3.Distance(previousCoords, transform.position);
         if (transform.position == linePositions[currentTarget])
         {
@@ -77,5 +81,11 @@ public class CherryMovement : MonoBehaviour
         positionsAmount = lineRenderer.positionCount;
         linePositions = new Vector3[positionsAmount];
         lineRenderer.GetPositions(linePositions);
+    }
+
+    private float GetSpeed()
+    {
+        Debug.Log("Movement speed: " + baseSpeed * debuffManager.GetMovementSpeedMultiplier());
+        return baseSpeed * debuffManager.GetMovementSpeedMultiplier();
     }
 }

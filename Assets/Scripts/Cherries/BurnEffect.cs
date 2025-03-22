@@ -25,8 +25,6 @@ public class BurnEffect : CherryDebuff
 
         // Set cherry field to the GameObject cherry argument
         this.cherry = cherry;
-        this.damageMultiplier = 2;
-        this.effectDuration = 10f;
     }
 
     public override void OnRemoved(GameObject cherry)

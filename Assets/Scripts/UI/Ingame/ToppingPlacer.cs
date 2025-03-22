@@ -92,7 +92,7 @@ public class ToppingPlacer : MonoBehaviour
                 objCenter = cakePos + new Vector3(0, lowestPointOffset, 0);
 
                 transparentObject.SetActive(true);
-                transparentObject.transform.position = cakePos;
+                transparentObject.transform.position = objCenter;
 
                 placementValidCheck = CheckIfPlacementValid(toppingMeshFilter, objCenter, toppingMeshFilter.sharedMesh);
                 meshRenderer.material = placementValidCheck ? white : red;

@@ -7,7 +7,7 @@ using UnityEngine;
 public class SimpleAttack : ProjectileAttack
 {
     public override void OnStart() {
-        Debug.Log("Simple attack with a cooldown of " + this.cooldown + " seconds assigned to topping " + this.topping.name + ".");
+        
     }
 
     public override void OnNewCherryFound(GameObject newTargetedCherry) {

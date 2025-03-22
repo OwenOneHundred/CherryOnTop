@@ -23,4 +23,5 @@ public abstract class ProjectileAttack : ToppingAttack
     /// <param name="damage"></param>
     public abstract void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, int damage);
     
+    // define default implementation of this method to avoid code duplication ^
 }

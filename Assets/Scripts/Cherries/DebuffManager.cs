@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -14,15 +15,26 @@ public class DebuffManager : MonoBehaviour
     {
         for (int i = 0; i < debuffs.Count; i++)
         {
-            debuffs[i].EveryFrame();
+            CherryDebuff currentDebuff = debuffs[i];
+            currentDebuff.EveryFrame();
+
+            currentDebuff.effectDuration -= Time.deltaTime;
+            if (currentDebuff.effectDuration <= 0)
+            {
+                currentDebuff.RemoveSelf();
+            }
         }
     }
 
     /// <summary>
     /// Adds a debuff to a cherry
     /// </summary>
-    public void AddDebuff(CherryDebuff debuffCopy)
+    public void AddDebuff(CherryDebuff debuffTemplate, bool allowDuplicates = false)
     {
+        if (!allowDuplicates && debuffs.Any(x => x.template == debuffTemplate)) { return; }
+
+        CherryDebuff debuffCopy = CherryDebuff.CreateInstance(debuffTemplate);
+        
         debuffs.Add(debuffCopy);
         debuffCopy.cherry = gameObject;
         debuffCopy.OnAdded(gameObject);
@@ -69,7 +81,7 @@ public class DebuffManager : MonoBehaviour
         return damageMultiplier; // return the product of all debuff damageMultipliers
     }
 
-    public void OnDamaged(int damage)
+    public void OnDamaged(float damage)
     {
         foreach (CherryDebuff debuff in debuffs)
         {

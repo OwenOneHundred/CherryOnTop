@@ -10,11 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
-  m_Name: Poprocks
+  m_Name: Lollipop
   m_EditorClassIdentifier: 
-  price: 5
-  shopSprite: {fileID: 21300000, guid: 8c173ad15c8b51946980ff955e4966f1, type: 3}
-  effectsAndWhen: []
+  price: 10
+  shopSprite: {fileID: 21300000, guid: f2c42e67f938ec54aa17bf75326c176e, type: 3}
+  effectsAndWhen:
+  - effectSOs:
+    - {fileID: 11400000, guid: 3eb231dcc12194ad980d5be504a0a482, type: 2}
+    eventSOs:
+    - {fileID: 11400000, guid: 96555b3ac10af430da30e6926ffff4c6, type: 2}
   description: 
-  towerPrefab: {fileID: 1885589363587769194, guid: 5677b7d09691c4a97952c8546e955e0b, type: 3}
+  towerPrefab: {fileID: 1478077881328383843, guid: f640ac6974e5e4f42a985a4cf477a74d, type: 3}
   flags: 384

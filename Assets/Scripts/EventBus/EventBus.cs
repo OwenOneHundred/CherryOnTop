@@ -38,7 +38,6 @@ namespace EventBus
 
         static void Clear()
         {
-            Debug.Log($"Clearing {typeof(T).Name} bindings");
             bindings.Clear();
         }
     }

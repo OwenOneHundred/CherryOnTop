@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
-  m_Name: Hourglass
+  m_Name: Candle
   m_EditorClassIdentifier: 
   price: 5
-  shopSprite: {fileID: 21300000, guid: 8c173ad15c8b51946980ff955e4966f1, type: 3}
+  shopSprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   effectsAndWhen: []
   description: 
-  towerPrefab: {fileID: 8844320974030995347, guid: 160ad15137fab478bb9643fe5eb7f2d3, type: 3}
-  flags: 0
+  towerPrefab: {fileID: 4121351870975325631, guid: 88d16022baf0243cb96e02b5b025f7aa, type: 3}
+  flags: 1030

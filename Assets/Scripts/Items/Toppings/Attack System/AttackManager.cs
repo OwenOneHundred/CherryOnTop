@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 /// <summary>
 /// Script that handles the attack cycle for a Topping. When a Topping is initialized, it must be given an attack type
@@ -15,7 +14,6 @@ public class AttackManager : MonoBehaviour
     private ToppingAttack attack;
 
     // Keeps track of the current targeted Cherry. Should be null if there are no Cherries in range
-    [SerializeField]
     GameObject targetedCherry;
 
     // Keeps track of when the last attack was to time the next one

@@ -14,6 +14,9 @@ public abstract class CherryDebuff : ScriptableObject
     [System.NonSerialized] public GameObject cherry; // should be set in OnAdd, 
     // so it can be read in EveryFrame to perform actions on the cherry this debuff is on
 
+    [System.NonSerialized] public CherryDebuff template;
+    public float effectDuration = 1;
+
     /// <summary>
     /// Called every frame. This is where effects would deal damage and operate logic.
     /// </summary>
@@ -32,7 +35,7 @@ public abstract class CherryDebuff : ScriptableObject
     /// </summary>
     public abstract void OnRemoved(GameObject cherry);
 
-    public virtual void OnCherryDamaged(int damage) { }
+    public virtual void OnCherryDamaged(float damage) { }
 
     public void RemoveSelf()
     {
@@ -43,5 +46,14 @@ public abstract class CherryDebuff : ScriptableObject
         }
 
         cherry.GetComponentInChildren<DebuffManager>().RemoveDebuff(this);
+    }
+
+    public static CherryDebuff CreateInstance(CherryDebuff template)
+    {
+        CherryDebuff instance = Instantiate(template);
+
+        instance.template = template;
+
+        return instance;
     }
 }

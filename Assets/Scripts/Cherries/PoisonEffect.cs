@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -16,6 +15,12 @@ public class PoisonEffect : CherryDebuff
         {
             this.timeSinceTick = 0;
             this.cherry.GetComponent<CherryHitbox>().TakeDamage(1, null);
+            this.effectDuration -= Time.deltaTime;
+            Debug.Log("Poison damage");
+        }
+        if (this.effectDuration <= 0)
+        {
+            this.RemoveSelf();
         }
 
     }
@@ -26,8 +31,6 @@ public class PoisonEffect : CherryDebuff
         
         // Set cherry field to the GameObject cherry argument
         this.cherry = cherry;
-        this.damageMultiplier = 2;
-        this.effectDuration = 10f;
     }
 
     public override void OnRemoved(GameObject cherry)

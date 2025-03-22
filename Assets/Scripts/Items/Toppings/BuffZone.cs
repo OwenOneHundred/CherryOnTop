@@ -76,7 +76,7 @@ public class BuffZone : MonoBehaviour
     {
         if (buffType == BuffType.CooldownReduction)
         {
-            attackManager.SetAttackCooldown(originalCooldown);
+            // attackManager.SetAttackCooldown(originalCooldown); TODO: I commented this out because it is not compiling. This should probably be uncommented.
         }
         // Extend with more buffs as needed
     }

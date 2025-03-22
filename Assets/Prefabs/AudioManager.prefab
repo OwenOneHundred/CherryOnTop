@@ -189,8 +189,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnAwake: 1
   defaultSong:
-    volume: 0.5
-    clip: {fileID: 8300000, guid: 33d577fb267ea437e836b50bd7683dba, type: 3}
+    volume: 0.328
+    clip: {fileID: 8300000, guid: 79b645254f14c432d8eea0d5ef166aea, type: 3}
     loopStartTime: 0
     timeCutOffFromEnd: 0.075
 --- !u!82 &1741885517659912224
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 6776618716937067022}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: AudioManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

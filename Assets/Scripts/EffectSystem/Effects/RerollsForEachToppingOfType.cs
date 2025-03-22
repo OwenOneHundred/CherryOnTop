@@ -6,7 +6,6 @@ using UnityEngine;
 public class RerollsForEachToppingOfType : EffectSO
 {
     [SerializeField] char endingNumber;
-    [SerializeField] int moneyChange = 4;
     [SerializeField] ToppingTypes.Flags flag;
     public override void OnTriggered(EventBus.IEvent eventObject)
     {

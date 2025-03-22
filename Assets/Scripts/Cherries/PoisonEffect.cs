@@ -15,6 +15,12 @@ public class PoisonEffect : CherryDebuff
         {
             this.timeSinceTick = 0;
             this.cherry.GetComponent<CherryHitbox>().TakeDamage(1, null);
+            this.effectDuration -= Time.deltaTime;
+            Debug.Log("Poison damage");
+        }
+        if (this.effectDuration <= 0)
+        {
+            this.RemoveSelf();
         }
 
     }

@@ -5,7 +5,7 @@ public class TargetingSystem : MonoBehaviour
     [SerializeField] private float range = 5f;
     private LayerMask cherryLayer, cakeLayer;
     [SerializeField] AttackManager attackManager;
- 
+    public bool targetCherryOnce = false;
 
     void Start()
     {
@@ -58,6 +58,10 @@ public class TargetingSystem : MonoBehaviour
         Debug.DrawRay(transform.position, direction * distance, Color.yellow);
         return true; // Clear sight to Cherry
         }
+    }
+
+    bool setTargetCherryOnce(bool input) {
+        return targetCherryOnce = input;
     }
 
 }

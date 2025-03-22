@@ -1,16 +1,22 @@
+using System.Collections.Generic;
+using EventBus;
 using UnityEngine;
 
-public class OnSellAnyTopping : MonoBehaviour
+[CreateAssetMenu(menuName = "Event/OnSell")]
+public class OnSellAnyTopping : EventSO
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    List<EventBinding<SellEvent>> events = new();
+    public override void RegisterEffect(EffectSO effectSO)
     {
-        
+        EventBinding<SellEvent> sellBinding = new EventBinding<SellEvent>((e) => effectSO.OnTriggered(e));
+        EventBus<SellEvent>.Register(sellBinding);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void DeregisterAllEffects()
     {
-        
+        foreach (EventBinding<SellEvent> sellEvent in events)
+        {
+            EventBus<SellEvent>.Deregister(sellEvent);
+        }
     }
 }

@@ -14,7 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 5
   shopSprite: {fileID: 0}
-  effectsAndWhen: []
+  effectsAndWhen:
+  - effectSOs:
+    - {fileID: 11400000, guid: a4979401553864e66925adc18f219e6f, type: 2}
+    eventSOs:
+    - {fileID: 11400000, guid: a0cf5250f9b024f6d8365ad5e2540551, type: 2}
+  - effectSOs:
+    - {fileID: 11400000, guid: 3e56e59f1409a4b5b915b6d6ac3461e0, type: 2}
+    eventSOs:
+    - {fileID: 11400000, guid: 5c002f4c4c477426aaac7cb591501e67, type: 2}
   description: 
   towerPrefab: {fileID: 5457713735334105415, guid: cca15b7e192b3437eb4a661205934afc, type: 3}
   flags: 20480

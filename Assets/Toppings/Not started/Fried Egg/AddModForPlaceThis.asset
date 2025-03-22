@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbbc0bbc81d684b9388869f2a244e211, type: 3}
-  m_Name: RemoveModifier
+  m_Script: {fileID: 11500000, guid: 688bfef35c2b84b8e89afb9b428d7ef5, type: 3}
+  m_Name: AddModForPlaceThis
   m_EditorClassIdentifier: 
-  debuffModifier: {fileID: 0}
+  debuffModifier: {fileID: 11400000, guid: 293d5cfd220e649309c33fb72ba99306, type: 2}

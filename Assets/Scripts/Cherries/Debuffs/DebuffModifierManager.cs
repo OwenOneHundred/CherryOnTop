@@ -10,7 +10,7 @@ public class DebuffModifierManager : MonoBehaviour
         else { Destroy(gameObject); return; }
     }
 
-    private List<DebuffModifier> debuffModifiers;
+    private List<DebuffModifier> debuffModifiers = new();
 
     public void ApplyDebuffModifiersToDebuff(CherryDebuff cherryDebuff)
     {

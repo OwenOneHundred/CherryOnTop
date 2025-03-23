@@ -1,43 +1,36 @@
+using System.Net;
 using UnityEngine;
 using UnityEngine.VFX;
 
 [CreateAssetMenu(menuName = "CherryDebuff/PoisonEffect")]
 public class PoisonEffect : CherryDebuff
 {
-    private float timeSinceTick;
-    private float effectDuration;
+    [SerializeField] float dps = 3;
+    CherryHitbox cherryHitbox;
+    [SerializeField] GameObject poisonParticleSystemPrefab;
+    GameObject poisonPSObj;
 
     public override void EveryFrame()
     {
         // Cherries take damage every tick
-        this.timeSinceTick += Time.deltaTime;
-        if (this.timeSinceTick >= this.effectDuration)
-        {
-            this.timeSinceTick = 0;
-            this.cherry.GetComponent<CherryHitbox>().TakeDamage(1, null);
-            this.effectDuration -= Time.deltaTime;
-            Debug.Log("Poison damage");
-        }
-        if (this.effectDuration <= 0)
-        {
-            this.RemoveSelf();
-        }
+        cherryHitbox.TakeDamage(dps * Time.deltaTime, null);
 
     }
 
     public override void OnAdded(GameObject cherry)
     {
-        // Add VFX to cherry
-        
-        // Set cherry field to the GameObject cherry argument
+        // Adding particles to cherry
         this.cherry = cherry;
+        poisonPSObj = Instantiate(poisonParticleSystemPrefab, this.cherry.transform.position, Quaternion.identity, this.cherry.transform);
+        poisonPSObj.transform.localScale = this.cherry.transform.GetChild(0).lossyScale;
+
     }
 
     public override void OnRemoved(GameObject cherry)
     {
         // Remove VFX from cherry
-
-        // Should not error when object is null
-        throw new System.NotImplementedException();
+        poisonPSObj.transform.parent = null;
+        poisonPSObj.GetComponent<ParticleSystem>().Stop();
+        Destroy(poisonPSObj, 2);
     }
 }

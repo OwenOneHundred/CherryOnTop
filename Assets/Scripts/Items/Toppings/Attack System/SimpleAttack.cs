@@ -4,18 +4,10 @@ using UnityEngine;
 /// Simple attack type that shoots a projectile in the direction of the target Cherry.
 /// </summary>
 [CreateAssetMenu(menuName = "Attacks/Simple Attack")]
-public class SimpleAttack : ToppingAttack
+public class SimpleAttack : ProjectileAttack
 {
-    // Stores a reference to the prefab used as the projectile
-    [SerializeField]
-    GameObject projectile;
-
-    // Represents the speed of the projectiles shot by this ToppingAttack
-    [SerializeField]
-    float projectileSpeed;
-
     public override void OnStart() {
-        Debug.Log("Simple attack with a cooldown of " + this.cooldown + " seconds assigned to topping " + this.topping.name + ".");
+        
     }
 
     public override void OnNewCherryFound(GameObject newTargetedCherry) {
@@ -31,11 +23,7 @@ public class SimpleAttack : ToppingAttack
     /// </summary>
     /// <param name="targetedCherry"></param>
     private void AttackCherry(GameObject targetedCherry) {
-        GameObject newProjectile = Instantiate(this.projectile, topping.transform.position, Quaternion.identity);
-        newProjectile.GetComponent<Rigidbody>().linearVelocity = FindTargetVector(targetedCherry);
-
-        // Destroy the projectile after 8 seconds in case it misses the target
-        Destroy(newProjectile, 8);
+        SpawnProjectile(this.projectile, toppingObj.transform.position, FindTargetVector(targetedCherry), Quaternion.identity, this.damage);
     }
 
     /// <summary>
@@ -51,7 +39,7 @@ public class SimpleAttack : ToppingAttack
             return new Vector3(0, projectileSpeed, 0);
         }
 
-        Vector3 targetDirection = targetedCherry.transform.position - topping.transform.position;
+        Vector3 targetDirection = targetedCherry.transform.position - toppingObj.transform.position;
         targetDirection.Normalize();
         return projectileSpeed * targetDirection;
     }

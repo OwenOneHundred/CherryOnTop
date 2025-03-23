@@ -1,10 +1,7 @@
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class SwitchLevelPreview : MonoBehaviour
 {
@@ -22,6 +19,7 @@ public class SwitchLevelPreview : MonoBehaviour
     public float slideTime;
     private bool moving = false;
     private int stopRadius = 10;
+    public Sprite backButtonImg;
 
 
     void Start()
@@ -101,6 +99,7 @@ public class SwitchLevelPreview : MonoBehaviour
         else { backButton.SetActive(true); }
         if (levelIndex == level.Length - 1) { DisableAllComponentsExceptThis(true); }
         else { DisableAllComponentsExceptThis(false); }
+        backButton.GetComponent<UnityEngine.UI.Image>().sprite = backButtonImg;
 
     }
 
@@ -130,7 +129,9 @@ public class SwitchLevelPreview : MonoBehaviour
         moving = true;
         yield return new WaitForSeconds(slideTime);
         //Snaps the level to the center if it is not already there
-        box.transform.localPosition = new Vector3(0, 0, 0);
+        if (box != null) { 
+            box.transform.localPosition = new Vector3(0, 0, 0);
+        }
     }
 
     void DisableAllComponentsExceptThis(bool disable)

@@ -5,16 +5,8 @@ using UnityEngine;
 /// spread angle.
 /// </summary>
 [CreateAssetMenu(menuName = "Attacks/Spread Attack")]
-public class SpreadAttack : ToppingAttack
+public class SpreadAttack : ProjectileAttack
 {
-    // Stores a reference to the prefab used as the projectile
-    [SerializeField]
-    GameObject projectile;
-
-    // Represents the speed of the projectiles shot by this ToppingAttack
-    [SerializeField]
-    float projectileSpeed;
-
     // Represents the total number of projectiles to shoot towards the target Cherry
     [SerializeField]
     int quantity;
@@ -24,7 +16,7 @@ public class SpreadAttack : ToppingAttack
     double spreadAngle;
 
     public override void OnStart() {
-        Debug.Log("Spread attack with a cooldown of " + this.cooldown + " assigned to topping " + this.topping.name + ".");
+        Debug.Log("Spread attack with a cooldown of " + this.cooldown + " assigned to topping " + this.toppingObj.name + ".");
     }
 
     public override void OnNewCherryFound(GameObject newTargetedCherry) {
@@ -41,17 +33,13 @@ public class SpreadAttack : ToppingAttack
     /// <param name="targetedCherry"></param>
     private void AttackCherry(GameObject targetedCherry) {
         for (int i = 0; i < quantity; i++) {
-            GameObject newProjectile = Instantiate(this.projectile, topping.transform.position, Quaternion.identity);
 
             double offsetAngle = 0;
             if (quantity != 1) {
                 offsetAngle = ((double) i / (quantity - 1) - 0.5) * spreadAngle;
             }
 
-            newProjectile.GetComponent<Rigidbody>().linearVelocity = FindTargetVector(targetedCherry, offsetAngle);
-
-            // Destroy the projectile after 8 seconds in case it misses the target
-            Destroy(newProjectile, 8);
+            SpawnProjectile(this.projectile, toppingObj.transform.position, FindTargetVector(targetedCherry, offsetAngle), Quaternion.identity, (int)this.damage);
         }
     }
 
@@ -69,7 +57,7 @@ public class SpreadAttack : ToppingAttack
         }
 
         // Finds and normalizes the direction directly to the Cherry
-        Vector3 targetDirection = targetedCherry.transform.position - topping.transform.position;
+        Vector3 targetDirection = targetedCherry.transform.position - toppingObj.transform.position;
         targetDirection.Normalize();
 
         // Calculates the offset vector based on offsetAngle

@@ -5,7 +5,7 @@ public class ChangeMoney : EffectSO
 {
     [SerializeField] int amountToChangeMoney = 5;
 
-    public override void OnTriggered()
+    public override void OnTriggered(EventBus.IEvent eventObject)
     {
         Inventory.inventory.Money += amountToChangeMoney;
     }

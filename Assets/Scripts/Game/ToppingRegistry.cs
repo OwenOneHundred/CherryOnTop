@@ -21,7 +21,6 @@ public class ToppingRegistry : MonoBehaviour
 
     public void RegisterPlacedTopping(Topping topping, GameObject gameObject)
     {
-        Debug.Log("here");
         placedToppings.Add(new ItemInfo(topping, gameObject));
     }   
 

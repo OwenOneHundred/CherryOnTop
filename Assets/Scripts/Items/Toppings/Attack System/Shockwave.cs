@@ -4,7 +4,7 @@ using UnityEngine;
 /// Handles the behaviour of a Shockwave, which is a GameObject with a spherical hitbox radius which expands at
 /// a specified speed. This script should be a component of all Shockwave GameObjects.
 /// </summary>
-public class Shockwave : MonoBehaviour
+public class Shockwave : Projectile
 {
     [System.NonSerialized] public float range;
     private float lifetime;
@@ -27,5 +27,10 @@ public class Shockwave : MonoBehaviour
     private void IncreaseRadius()
     {
         gameObject.GetComponent<SphereCollider>().radius += speed * Time.deltaTime;
+    }
+
+    public override Vector3 GetAttackDirection(GameObject attackedObject)
+    {
+        return (attackedObject.transform.position - transform.position).normalized;
     }
 }

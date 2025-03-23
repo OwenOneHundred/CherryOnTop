@@ -1,7 +1,7 @@
 using EventBus;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "effectExample/gameeffect")]
+//[CreateAssetMenu(menuName = "effectExample/gameeffect")]
 public class GameEffectExample : ScriptableObject
 {
     [SerializeField] TowerEffectExample effect;

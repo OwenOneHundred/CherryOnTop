@@ -18,7 +18,7 @@ public class FondueDebuff : CherryDebuff
         
     }
 
-    public override void OnCherryDamaged(int damage)
+    public override void OnCherryDamaged(float damage)
     {
         RemoveSelf();
     }

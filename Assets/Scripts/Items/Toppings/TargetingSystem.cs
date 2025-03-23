@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetingSystem : MonoBehaviour
@@ -5,7 +6,9 @@ public class TargetingSystem : MonoBehaviour
     [SerializeField] private float range = 5f;
     private LayerMask cherryLayer, cakeLayer;
     [SerializeField] AttackManager attackManager;
- 
+
+    protected GameObject currentCherry;
+    private List<GameObject> targetedCherries = new List<GameObject>();
 
     void Start()
     {
@@ -17,6 +20,7 @@ public class TargetingSystem : MonoBehaviour
     {
         GameObject found = Search();
         attackManager.UpdateTargetedCherry(found);
+        currentCherry = found;
     }
 
    GameObject Search()
@@ -28,7 +32,7 @@ public class TargetingSystem : MonoBehaviour
 
         foreach (Collider cherry in cherries)
         {
-            CherryMovement cherryMovement = cherry.GetComponent<CherryMovement>();
+            CherryMovement cherryMovement = cherry.transform.root.GetComponent<CherryMovement>();
             if (cherryMovement != null && HasClearLineOfSight(cherry.transform))
             {
                 if (cherryMovement.distanceTraveled > highestDistance)
@@ -60,4 +64,16 @@ public class TargetingSystem : MonoBehaviour
         }
     }
 
+    public void AddTargetedCherry(GameObject cherry)
+    {
+        if (!targetedCherries.Contains(cherry))
+        {
+            targetedCherries.Add(cherry);
+        }
+    }
+
+    public List<GameObject> GetTargetedCherries()
+    {
+        return targetedCherries;
+    }   
 }

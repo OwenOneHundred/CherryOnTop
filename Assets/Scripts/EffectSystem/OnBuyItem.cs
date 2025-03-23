@@ -8,7 +8,7 @@ public class OnBuyItem : EventSO
     List<EventBinding<BuyEvent>> events = new();
     public override void RegisterEffect(EffectSO effectSO)
     {
-        EventBinding<BuyEvent> buyBinding = new EventBinding<BuyEvent>(effectSO.OnTriggered);
+        EventBinding<BuyEvent> buyBinding = new EventBinding<BuyEvent>((e) => effectSO.OnTriggered(e));
         EventBus<BuyEvent>.Register(buyBinding);
     }
 

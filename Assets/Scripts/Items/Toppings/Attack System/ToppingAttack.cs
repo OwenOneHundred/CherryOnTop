@@ -8,10 +8,13 @@ public abstract class ToppingAttack : ScriptableObject
 {
     // A reference to the Topping object that the ToppingAttack instance is assigned to.
     [System.NonSerialized]
-    public GameObject topping;
+    public GameObject toppingObj;
 
     // Represents the number of seconds the Topping should wait between attacks.
     public float cooldown;
+
+    // Represents the amount of damage each attack should do to affected Cherries.
+    public int damage;
 
     /// <summary>
     /// Specifies what the ToppingAttack should do as soon as it is assigned to a Topping. The topping it is assigned to

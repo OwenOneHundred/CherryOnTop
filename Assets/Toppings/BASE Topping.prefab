@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6939634604882509038}
+  - component: {fileID: 1751406142148302725}
   m_Layer: 12
   m_Name: BASE Topping
   m_TagString: Untagged
@@ -33,6 +34,20 @@ Transform:
   - {fileID: 1797199309833350724}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1751406142148302725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7811689376462688174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6136d99c678034430b795eb394ddd09b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onPlaced: []
+  onSell: []
 --- !u!1 &7950584445644482870
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,7 +207,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackTemplate: {fileID: 11400000, guid: b447f93c19bcc4387b383247c64c5393, type: 2}
-  targetedCherry: {fileID: 0}
 --- !u!114 &5543599703770907884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,3 +221,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 3
   attackManager: {fileID: 3242621880762221844}
+  targetCherryOnce: 0

@@ -22,7 +22,7 @@ public class LimitedAttack : DirectAttack
     private int attacks;
 
     public override void OnStart() {
-        Debug.Log("Limited attack with a cooldown of " + this.cooldown + " seconds assigned to topping " + this.topping.name + ".");
+        Debug.Log("Limited attack with a cooldown of " + this.cooldown + " seconds assigned to topping " + this.toppingObj.name + ".");
     }
 
     public override void OnNewCherryFound(GameObject newTargetedCherry) {
@@ -31,7 +31,7 @@ public class LimitedAttack : DirectAttack
 
     public override void OnCycle(GameObject targetedCherry) {
         if (!attackSuccessful) {
-            this.topping.GetComponent<AttackManager>().StartCoroutine(DelayedConditionalAttack(targetedCherry, attackDelay));
+            this.toppingObj.GetComponent<AttackManager>().StartCoroutine(DelayedConditionalAttack(targetedCherry, attackDelay));
             attackSuccessful = true;
         }
     }
@@ -57,7 +57,7 @@ public class LimitedAttack : DirectAttack
     /// <returns></returns>
     private IEnumerator DelayedConditionalAttack(GameObject targetedCherry, float delay) {
         yield return new WaitForSeconds(delay);
-        if (targetedCherry == this.topping.GetComponent<AttackManager>().GetTargetedCherry()) {
+        if (targetedCherry == this.toppingObj.GetComponent<AttackManager>().GetTargetedCherry()) {
             AttackCherry(targetedCherry);
         }
     }

@@ -15,3 +15,5 @@ MonoBehaviour:
   movementSpeedMultiplier: 1
   typesThatGetDamageMultiplier: 2
   damageMultiplier: 2
+  debuffType: 0
+  effectDuration: 1

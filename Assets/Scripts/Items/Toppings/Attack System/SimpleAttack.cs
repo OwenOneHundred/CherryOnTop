@@ -18,21 +18,12 @@ public class SimpleAttack : ProjectileAttack
         AttackCherry(targetedCherry);
     }
 
-    public override void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, int damage) {
-        GameObject newProjectile = Instantiate(projectile, position, rotation);
-        newProjectile.GetComponent<Rigidbody>().linearVelocity = velocity;
-        newProjectile.GetComponent<Projectile>().damage = damage;
-
-        // Destroy the projectile after 8 seconds in case it misses the target
-        Destroy(newProjectile, 8);
-    }
-
     /// <summary>
     /// Fires a projectile in the direction of the current targeted Cherry
     /// </summary>
     /// <param name="targetedCherry"></param>
     private void AttackCherry(GameObject targetedCherry) {
-        SpawnProjectile(this.projectile, topping.transform.position, FindTargetVector(targetedCherry), Quaternion.identity, this.damage);
+        SpawnProjectile(this.projectile, toppingObj.transform.position, FindTargetVector(targetedCherry), Quaternion.identity, this.damage);
     }
 
     /// <summary>
@@ -48,7 +39,7 @@ public class SimpleAttack : ProjectileAttack
             return new Vector3(0, projectileSpeed, 0);
         }
 
-        Vector3 targetDirection = targetedCherry.transform.position - topping.transform.position;
+        Vector3 targetDirection = targetedCherry.transform.position - toppingObj.transform.position;
         targetDirection.Normalize();
         return projectileSpeed * targetDirection;
     }

@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: SodaCanDebuff
   m_EditorClassIdentifier: 
   movementSpeedMultiplier: 2
+  typesThatGetDamageMultiplier: 0
   damageMultiplier: 1
+  debuffType: 0
+  effectDuration: 2

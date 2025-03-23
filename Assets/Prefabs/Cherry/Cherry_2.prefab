@@ -186,7 +186,7 @@ MonoBehaviour:
   linePositions: []
   currentPosition: 0
   currentTrack: 0
-  speed: 2
+  baseSpeed: 1.5
   distanceTraveled: 0
 --- !u!1 &4988862917418150766 stripped
 GameObject:

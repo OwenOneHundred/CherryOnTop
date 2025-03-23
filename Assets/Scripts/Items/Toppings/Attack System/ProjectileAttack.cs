@@ -21,7 +21,25 @@ public abstract class ProjectileAttack : ToppingAttack
     /// <param name="velocity"></param>
     /// <param name="rotation"></param>
     /// <param name="damage"></param>
-    public abstract void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, int damage);
-    
-    // define default implementation of this method to avoid code duplication ^
+    public virtual void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, int damage)
+    {
+        GameObject newProjectile = Instantiate(projectile, position, rotation);
+        newProjectile.GetComponent<Rigidbody>().linearVelocity = velocity;
+        newProjectile.GetComponent<Projectile>().damage = damage;
+        newProjectile.GetComponent<Projectile>().owner = toppingObj.GetComponent<ToppingObjectScript>().topping;
+
+        // Destroy the projectile after 8 seconds in case it misses the target
+        Destroy(newProjectile, 8);
+
+        CustomProjectileActions(newProjectile);
+    }
+
+    /// <summary>
+    /// Automatically called by SpawnProjectile. Override this instead of SpawnProjectile to add additional actions if possible.
+    /// </summary>
+    /// <param name="projectile"></param>
+    public virtual void CustomProjectileActions(GameObject projectile)
+    {
+
+    }
 }

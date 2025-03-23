@@ -34,14 +34,12 @@ public class AttackManager : MonoBehaviour
     void Start()
     {
         this.attack = Instantiate(attackTemplate);
-        this.attack.topping = gameObject;
+        this.attack.toppingObj = gameObject;
         if (this.attack != null) {
             this.attack.OnStart();
         }
 
         timer = attack.cooldown;
-
-        Debug.Log("Topping attack system initialized.");
     }
 
     // Update is called once per frame

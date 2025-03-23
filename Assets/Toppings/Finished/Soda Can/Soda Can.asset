@@ -15,6 +15,7 @@ MonoBehaviour:
   price: 5
   shopSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   effectsAndWhen: []
-  description: 
+  description: Rapidly fires high damage projectiles, but hit cherries are given
+    a speed boost of 2x for 2 seconds.
   towerPrefab: {fileID: 2933751060363198294, guid: 14da4d4e816a64f249bf4affff275d09, type: 3}
   flags: 128

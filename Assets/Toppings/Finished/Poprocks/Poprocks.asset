@@ -15,6 +15,6 @@ MonoBehaviour:
   price: 5
   shopSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   effectsAndWhen: []
-  description: 
+  description: Fires large high damage projectiles over a long range.
   towerPrefab: {fileID: 1885589363587769194, guid: 5677b7d09691c4a97952c8546e955e0b, type: 3}
   flags: 384

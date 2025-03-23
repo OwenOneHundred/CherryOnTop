@@ -194,6 +194,8 @@ public class ToppingPlacer : MonoBehaviour
         GameObject newToppingObj = Instantiate(topping.towerPrefab, position, topping.towerPrefab.transform.rotation); // spawn obj
 
         ToppingRegistry.toppingRegistry.RegisterPlacedTopping(topping, newToppingObj); // register
+
+        newToppingObj.GetComponent<ToppingObjectScript>().topping = topping; // set topping on object to be read later
         
         EventBus<TowerPlacedEvent>.Raise(new TowerPlacedEvent(topping, newToppingObj)); // call placed tower event
         Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 6); // create particle effect

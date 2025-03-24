@@ -189,7 +189,7 @@ public class ToppingPlacer : MonoBehaviour
         transparentObject.SetActive(false);
     }
 
-    private void PlaceTopping(Topping topping, Vector3 position)
+    public void PlaceTopping(Topping topping, Vector3 position)
     {
         GameObject newToppingObj = Instantiate(topping.towerPrefab, position, topping.towerPrefab.transform.rotation); // spawn obj
 

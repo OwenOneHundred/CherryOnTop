@@ -120,7 +120,7 @@ public class ToppingPlacer : MonoBehaviour
 
         if (placementValidCheck)
         {
-            PlaceTopping(topping, cakePos + new Vector3(0, lowestPointOffset, 0));
+            PlaceTopping(topping, cakePos + new Vector3(0, lowestPointOffset, 0), topping.towerPrefab.transform.rotation);
         }
         StopPlacingTopping();
     }
@@ -189,9 +189,9 @@ public class ToppingPlacer : MonoBehaviour
         transparentObject.SetActive(false);
     }
 
-    public void PlaceTopping(Topping topping, Vector3 position)
+    public void PlaceTopping(Topping topping, Vector3 position, Quaternion rotation)
     {
-        GameObject newToppingObj = Instantiate(topping.towerPrefab, position, topping.towerPrefab.transform.rotation); // spawn obj
+        GameObject newToppingObj = Instantiate(topping.towerPrefab, position, rotation); // spawn obj
 
         ToppingRegistry.toppingRegistry.RegisterPlacedTopping(topping, newToppingObj); // register
 

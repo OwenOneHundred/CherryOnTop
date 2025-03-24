@@ -25,6 +25,7 @@ public class Shop : MonoBehaviour
     void Start()
     {
         rect = GetComponent<RectTransform>();
+        RerollItems();
     }
 
     public void ToggleOpen()
@@ -61,7 +62,7 @@ public class Shop : MonoBehaviour
 
         moving = false;
 
-        UpdateAllIconPositions();
+        UpdateAllIcons();
     }
 
     public void OnRoundEnd()
@@ -88,9 +89,10 @@ public class Shop : MonoBehaviour
             int item = Random.Range(0, availableItems.Count);
             currentItems.Add(availableItems[item]);
         }
+        UpdateAllIcons();
     }
 
-    public void UpdateAllIconPositions()
+    public void UpdateAllIcons()
     {
         for (int i = 0; i < currentItems.Count; i++) {
             GameObject newIcon = Instantiate(shopObjPrefab, itemParent);

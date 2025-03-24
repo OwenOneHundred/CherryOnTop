@@ -25,6 +25,7 @@ public class CherryHitbox : MonoBehaviour
         if (directionOfDamage != default)
         {
             GameObject newOnDamagedPS = Instantiate(onDamagedPS, transform.position, Quaternion.identity);
+            Destroy(newOnDamagedPS, 4);
             newOnDamagedPS.transform.rotation = Quaternion.LookRotation(directionOfDamage);
         }
 

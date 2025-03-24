@@ -16,6 +16,6 @@ MonoBehaviour:
   typesThatGetDamageMultiplier: 0
   damageMultiplier: 1
   debuffType: 4
-  effectDuration: 3
-  dps: 2
+  effectDuration: 4
+  dps: 3
   poisonParticleSystemPrefab: {fileID: 8237643331648977366, guid: 513b3fd3fe193fb45bc10485188a2985, type: 3}

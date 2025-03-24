@@ -17,5 +17,5 @@ MonoBehaviour:
   damageMultiplier: 1
   debuffType: 1
   effectDuration: 2
-  dps: 5
+  dps: 7.5
   fireParticleSystemPrefab: {fileID: 8237643331648977366, guid: 44a19c97d7004499589177abf49009c7, type: 3}

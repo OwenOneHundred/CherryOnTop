@@ -62,6 +62,9 @@ public abstract class CherryDebuff : ScriptableObject
     
     [System.Flags] public enum DebuffType
     {
-        none, fire, freeze, poison
+        none = 0,
+        fire = 1,
+        freeze = 2,
+        poison = 4,
     }
 }

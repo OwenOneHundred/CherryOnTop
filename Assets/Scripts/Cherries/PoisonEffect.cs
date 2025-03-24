@@ -14,16 +14,15 @@ public class PoisonEffect : CherryDebuff
     {
         // Cherries take damage every tick
         cherryHitbox.TakeDamage(dps * Time.deltaTime, null);
-
     }
 
     public override void OnAdded(GameObject cherry)
     {
         // Adding particles to cherry
         this.cherry = cherry;
+        cherryHitbox = cherry.transform.root.GetComponent<CherryHitbox>();
         poisonPSObj = Instantiate(poisonParticleSystemPrefab, this.cherry.transform.position, Quaternion.identity, this.cherry.transform);
         poisonPSObj.transform.localScale = this.cherry.transform.GetChild(0).lossyScale;
-
     }
 
     public override void OnRemoved(GameObject cherry)

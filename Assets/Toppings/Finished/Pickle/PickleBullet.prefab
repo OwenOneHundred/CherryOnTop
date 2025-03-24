@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7735933043339609696}
   - component: {fileID: -3878458074383126042}
   - component: {fileID: 2124930081709902980}
-  - component: {fileID: 5913028201832770118}
+  - component: {fileID: 6942737531587729481}
   m_Layer: 0
-  m_Name: DefaultBullet
+  m_Name: PickleBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +137,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5913028201832770118
+--- !u!114 &6942737531587729481
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,7 +146,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1373519935423302513}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f50b66ae6ac329946adb2eb7caca01f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 55387dbe8188b48919815f91f1d2bf04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cherryDebuffs: []
+  cherryDebuffs:
+  - {fileID: 11400000, guid: 016fa7d056386b34591cfa4abc1b7d0d, type: 2}
+  bounceSeekDistance: 3
+  cherryLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  reboundVelocity: 10

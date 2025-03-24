@@ -8,7 +8,9 @@ public class Projectile : MonoBehaviour
     [System.NonSerialized] public int damage = 20;
     [System.NonSerialized] public Topping owner; // TODO this is never set, so it's always null. Set this when fired.
     [SerializeField] List<CherryDebuff> cherryDebuffs;
-    Rigidbody rb;
+    [System.NonSerialized] public Rigidbody rb;
+    [SerializeField] int maxHits = 5;
+    int hitCount = 0;
 
     public void Awake()
     {
@@ -32,6 +34,12 @@ public class Projectile : MonoBehaviour
             {
                 other.transform.root.GetComponentInChildren<DebuffManager>().AddDebuff(originalDebuff);
             }
+
+            hitCount += 1;
+            if (hitCount >= maxHits)
+            {
+                SelfDestruct();
+            }
         }
     }
 
@@ -42,5 +50,10 @@ public class Projectile : MonoBehaviour
     public virtual Vector3 GetAttackDirection(GameObject attackedObject)
     {
         return rb.linearVelocity;
+    }
+
+    public virtual void SelfDestruct()
+    {
+        Destroy(gameObject);
     }
 }

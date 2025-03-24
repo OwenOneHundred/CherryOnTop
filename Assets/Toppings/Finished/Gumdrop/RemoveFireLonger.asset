@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42c00125cf7347a682b612f07c2ba99, type: 3}
+  m_Name: RemoveFireLonger
+  m_EditorClassIdentifier: 
+  debuffModifier: {fileID: 11400000, guid: 6ceaa7837f5444be0aa6e8a7e00884ee, type: 2}

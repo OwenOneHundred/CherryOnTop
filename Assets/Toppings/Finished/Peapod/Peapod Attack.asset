@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa5ddee62ca0e145b2a85463bea3cdf, type: 3}
+  m_Name: Peapod Attack
+  m_EditorClassIdentifier: 
+  cooldown: 2
+  damage: 15
+  projectile: {fileID: 5639995158584697843, guid: 2dfdb3d545ea54e9abf39a257e1c2968, type: 3}
+  projectileSpeed: 0

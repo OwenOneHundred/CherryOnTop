@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
-  m_Name: Gumdrop
+  m_Script: {fileID: 11500000, guid: a42c00125cf7347a682b612f07c2ba99, type: 3}
+  m_Name: RemoveFireLonger
   m_EditorClassIdentifier: 
-  price: 5
-  shopSprite: {fileID: 0}
-  effectsAndWhen: []
-  description: 
-  towerPrefab: {fileID: 7133461406448433772, guid: a81335b5946c742a5bc3d4799e5a0319, type: 3}
-  flags: 0
+  debuffModifier: {fileID: 11400000, guid: 6ceaa7837f5444be0aa6e8a7e00884ee, type: 2}

@@ -149,5 +149,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f50b66ae6ac329946adb2eb7caca01f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
   cherryDebuffs: []

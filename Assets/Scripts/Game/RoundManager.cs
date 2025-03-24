@@ -14,6 +14,7 @@ public class RoundManager : MonoBehaviour
     public static RoundManager roundManager; // Singleton
     [SerializeField] Button nextRoundButton;
     [SerializeField] IngameUI ingameUI;
+    [SerializeField] Shop shop;
 
     void Awake()
     {
@@ -38,6 +39,7 @@ public class RoundManager : MonoBehaviour
         EventBus<RoundStartEvent>.Raise(new RoundStartEvent(roundNumber));
 
         GameObject.FindAnyObjectByType<CherrySpawner>().OnRoundStart();
+        shop.OnRoundEnd();
     }
 
     public void EndRound() // called by OnCherryKilled when last cherry dies

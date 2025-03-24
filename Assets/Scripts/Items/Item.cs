@@ -41,7 +41,7 @@ public abstract class Item : ScriptableObject
         {
             foreach (EffectSO effectSO in effectAndWhen.effectSOs)
             {
-                foreach (EventSO eventSO in effectAndWhen.eventSOs)
+                foreach (BaseEventSO eventSO in effectAndWhen.eventSOs)
                 {
                     eventSO.RegisterEffect(effectSO);
                 }
@@ -56,7 +56,7 @@ public abstract class Item : ScriptableObject
     {
         foreach (EffectAndWhen effectAndWhen in effectsAndWhen)
         {
-            foreach (EventSO eventSO in effectAndWhen.eventSOs)
+            foreach (BaseEventSO eventSO in effectAndWhen.eventSOs)
             {
                 eventSO.DeregisterAllEffects();
             }
@@ -74,6 +74,6 @@ public abstract class Item : ScriptableObject
         /// <summary>
         /// What events trigger the above effects
         /// </summary>
-        public List<EventSO> eventSOs;
+        public List<BaseEventSO> eventSOs;
     }
 }

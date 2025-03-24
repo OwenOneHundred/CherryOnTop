@@ -26,7 +26,7 @@ public abstract class ProjectileAttack : ToppingAttack
         GameObject newProjectile = Instantiate(projectile, position, rotation);
         newProjectile.GetComponent<Rigidbody>().linearVelocity = velocity;
         newProjectile.GetComponent<Projectile>().damage = damage;
-        newProjectile.GetComponent<Projectile>().owner = toppingObj.GetComponent<ToppingObjectScript>().topping;
+        newProjectile.GetComponent<Projectile>().owner = toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping;
 
         // Destroy the projectile after 8 seconds in case it misses the target
         Destroy(newProjectile, 8);

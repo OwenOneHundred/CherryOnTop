@@ -3,20 +3,6 @@ using EventBus;
 using System.Collections.Generic;
 
 [CreateAssetMenu(menuName = "Event/OnBuyItem")]
-public class OnBuyItem : EventSO
+public class OnBuyItem : EventSO <BuyEvent>
 {
-    List<EventBinding<BuyEvent>> events = new();
-    public override void RegisterEffect(EffectSO effectSO)
-    {
-        EventBinding<BuyEvent> buyBinding = new EventBinding<BuyEvent>((e) => effectSO.OnTriggered(e));
-        EventBus<BuyEvent>.Register(buyBinding);
-    }
-
-    public override void DeregisterAllEffects()
-    {
-        foreach (EventBinding<BuyEvent> buyEvent in events)
-        {
-            EventBus<BuyEvent>.Deregister(buyEvent);
-        }
-    }
 }

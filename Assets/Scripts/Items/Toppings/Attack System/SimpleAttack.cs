@@ -11,7 +11,7 @@ public class SimpleAttack : ProjectileAttack
     }
 
     public override void OnNewCherryFound(GameObject newTargetedCherry) {
-        Debug.Log("New Cherry Targeted");
+        
     }
 
     public override void OnCycle(GameObject targetedCherry) {

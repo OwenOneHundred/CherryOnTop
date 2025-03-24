@@ -28,7 +28,7 @@ public class MoneyChangeDisplay : MonoBehaviour
         active = true;
         timeActive = 0;
         gameObject.SetActive(true);
-        text.text = (displayedMoney < 0 ? "-" : "+") + displayedMoney;
+        text.text = (displayedMoney < 0 ? "" : "+") + displayedMoney;
 
         if (moneyChange > 0)
         {

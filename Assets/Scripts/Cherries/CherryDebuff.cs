@@ -18,6 +18,7 @@ public abstract class CherryDebuff : ScriptableObject
 
     [System.NonSerialized] public CherryDebuff template;
     public float effectDuration = 1;
+    public AudioFile onAppliedSFX;
 
     /// <summary>
     /// Called every frame. This is where effects would deal damage and operate logic.
@@ -62,6 +63,9 @@ public abstract class CherryDebuff : ScriptableObject
     
     [System.Flags] public enum DebuffType
     {
-        none, fire, freeze, poison
+        none = 0,
+        fire = 1,
+        freeze = 2,
+        poison = 4,
     }
 }

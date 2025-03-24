@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shockwave (Cot candy)
   m_EditorClassIdentifier: 
   cooldown: 1.65
-  damage: 1
+  damage: 5
   shockwave: {fileID: 5503282234501958175, guid: 7dee0616547dc4bbc84cb62faa648519, type: 3}
   speed: 1
   range: 1.5

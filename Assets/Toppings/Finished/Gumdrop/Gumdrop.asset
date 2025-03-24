@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
-  m_Name: Pickle
+  m_Name: Gumdrop
   m_EditorClassIdentifier: 
   price: 5
-  shopSprite: {fileID: 21300000, guid: 8c173ad15c8b51946980ff955e4966f1, type: 3}
+  shopSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   effectsAndWhen: []
-  description: 
-  towerPrefab: {fileID: 5022506260897932333, guid: 9b0ae75c193b84d7cb53689b8c55fa59, type: 3}
-  flags: 48
+  description: No attack. Burning cherries burn a stacking 10% longer and take 10%
+    more damage from other attacks.
+  towerPrefab: {fileID: 7133461406448433772, guid: a81335b5946c742a5bc3d4799e5a0319, type: 3}
+  flags: 0

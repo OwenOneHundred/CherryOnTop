@@ -69,6 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cherryDebuffs:
   - {fileID: 11400000, guid: 3de39f3ddbb8440eb9c8f962e4f274c6, type: 2}
+  maxHits: 3
 --- !u!1001 &578801312520867968
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fried Egg
   m_EditorClassIdentifier: 
   price: 5
-  shopSprite: {fileID: 0}
+  shopSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   effectsAndWhen: []
   description: Fires small weak projectiles. All fire effects also inflict a stacking
     20% slow.

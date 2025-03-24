@@ -8,6 +8,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public static Inventory inventory;
+    [SerializeField] int initialMoney = 20;
     [SerializeField] List<Item> startingInventoryItems;
     private void Awake()
     {
@@ -29,6 +30,8 @@ public class Inventory : MonoBehaviour
     public IngameUI ingameUI;
     void Start()
     {
+        Money = initialMoney;
+
         inventoryEffectManager = GetComponent<InventoryEffectManager>();
         ingameUI = GameObject.FindAnyObjectByType<IngameUI>();
 
@@ -72,7 +75,7 @@ public class Inventory : MonoBehaviour
 
     public bool TryBuyItem(Item item)
     {
-        if (item.price > money) { Debug.Log(money + " " + item.price);  return false; } // can't afford
+        if (item.price > money) { Debug.Log("only have " + money + ", this costs " + item.price);  return false; } // can't afford
         if (0 > inventoryEffectManager.GetLimit<LimitBuying>()) { return false; } // TODO replace 0 with shop manager purchases count 
 
         Money -= item.price;

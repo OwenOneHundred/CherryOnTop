@@ -206,9 +206,35 @@ namespace GameSaves
     public class DEPosition : DataEntry
     {
         [SerializeField] public Vector3 positionData;
-        public DEPosition(string dataName, Vector3 positionData) : base(dataName)
+        [SerializeField] public Vector3 eulers;
+        [SerializeField] public Vector3 scale;
+        public DEPosition(string dataName, Vector3 positionData, Vector3 eulers, Vector3 scale) : base(dataName)
         {
             this.positionData = positionData;
+            this.eulers = eulers;
+            this.scale = scale;
+        }
+    }
+
+    [System.Serializable]
+    public class DETowerPlaced : DataEntry
+    {
+        [SerializeField] public int towerIndex;
+        [SerializeField] public DEPosition pos;
+        public DETowerPlaced(string dataName, int towerIndex, DEPosition pos) : base(dataName)
+        {
+            this.towerIndex = towerIndex;
+            this.pos = pos;
+        }
+    }
+
+    [System.Serializable]
+    public class DEAllTowers : DataEntry
+    {
+        [SerializeField] public List<DETowerPlaced> towers;
+        public DEAllTowers(string dataName, List<DETowerPlaced> towers) : base(dataName)
+        {
+            this.towers = towers;
         }
     }
 

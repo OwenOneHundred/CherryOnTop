@@ -17,9 +17,9 @@ public class Shop : MonoBehaviour
 
     [SerializeField] GameObject shopObjPrefab;
     public List<Item> currentItems = new();
-    [SerializeField] List<Item> availableItems = new();
+    public List<Item> availableItems = new();
     [SerializeField] Transform itemParent;
-    List<ShopObj> shopObjs = new();
+    public List<ShopObj> shopObjs = new();
     public int rerolls = 0;
 
     void Start()

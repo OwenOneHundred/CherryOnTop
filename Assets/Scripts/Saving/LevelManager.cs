@@ -97,27 +97,49 @@ public class LevelManager : MonoBehaviour
 
     public void SaveLevel()
     {
-        // TODO
-        // loop through currently placed toppings in level
-        // and add them as DETowerPlaced to the DEAllTowers save data entry
+        List<DETowerPlaced> allTowers = new List<DETowerPlaced>();
         List<ToppingRegistry.ItemInfo> toppings = toppingRegistery.GetAllPlacedToppings();
-        // List<Topping> potentialToppings = shop.availableItems;
+        List<Item> potentialItems = shop.availableItems;
+        List<Topping> potentialToppings = new List<Topping>();
+        foreach (Item item in potentialItems)
+        {
+            Topping topping = item as Topping;
+            if (topping != null)
+            {
+                potentialToppings.Add(topping);
+            }
+        }
+        Dictionary<string, int> toppingIndex = new Dictionary<string, int>();
+        for (int i = 0; i < potentialToppings.Count; i++)
+        {
+            toppingIndex.Add(potentialToppings[i].name, i);
+        }
         foreach (ToppingRegistry.ItemInfo item in toppings)
         {
-
-            //item.topping
+            allTowers.Add(new DETowerPlaced("topping" + item.topping.towerPrefab.name, toppingIndex[item.topping.name], new DEPosition("pos", item.obj.transform.position, item.obj.transform.rotation.eulerAngles)));
+            
         }
+        DEAllTowers towers = new DEAllTowers("alltowers", allTowers);
+        saveData.SetData(towers, true);
+        SaveData.WriteData(saveData);
     }
 
     public void LoadLevel()
     {
+        List<Item> potentialItems = shop.availableItems;
+        List<Topping> potentialToppings = new List<Topping>();
+        foreach (Item item in potentialItems)
+        {
+            Topping topping = item as Topping;
+            if (topping != null)
+            {
+                potentialToppings.Add(topping);
+            }
+        }
         if (saveData.TryGetData("alltowers", out DEAllTowers towerWrapper)) {
             foreach (DETowerPlaced tower in towerWrapper.towers)
             {
-                // TODO
-                // place topping using tower data
-                // Topping topping = shop.availableItems[tower.towerIndex];
-                // toppingPlacer.PlaceTopping(topping, pos.positionData, pos.eulers, pos.scale);
+                toppingPlacer.PlaceTopping(potentialToppings[tower.towerIndex], tower.pos.positionData, Quaternion.Euler(tower.pos.eulers));
             }
         }
     }

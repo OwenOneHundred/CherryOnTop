@@ -207,12 +207,10 @@ namespace GameSaves
     {
         [SerializeField] public Vector3 positionData;
         [SerializeField] public Vector3 eulers;
-        [SerializeField] public Vector3 scale;
-        public DEPosition(string dataName, Vector3 positionData, Vector3 eulers, Vector3 scale) : base(dataName)
+        public DEPosition(string dataName, Vector3 positionData, Vector3 eulers) : base(dataName)
         {
             this.positionData = positionData;
             this.eulers = eulers;
-            this.scale = scale;
         }
     }
 

@@ -10,6 +10,7 @@ public abstract class EventSO <T> : BaseEventSO where T : IEvent
     {
         EventBinding<T> towerPlacedBinding = new EventBinding<T>((e) => effectSO.OnTriggered(e));
         EventBus<T>.Register(towerPlacedBinding);
+        events.Add(towerPlacedBinding);
     }
 
     public override void DeregisterAllEffects()

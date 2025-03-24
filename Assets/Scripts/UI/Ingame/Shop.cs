@@ -21,6 +21,7 @@ public class Shop : MonoBehaviour
     [SerializeField] Transform itemParent;
     public List<ShopObj> shopObjs = new();
     public int rerolls = 0;
+    public int rerollPrice = 4;
 
     void Start()
     {
@@ -65,6 +66,25 @@ public class Shop : MonoBehaviour
         UpdateAllIcons();
     }
 
+    public void OnClickReroll()
+    {
+        if (rerolls > 0)
+        {
+            rerolls -= 1;
+            RerollItems();
+        }
+        else if (Inventory.inventory.Money > rerollPrice)
+        {
+            Debug.Log("rerollPrice: " + rerollPrice);
+            Inventory.inventory.Money -= rerollPrice;
+            RerollItems();
+        }
+        else 
+        {
+            // can't afford reroll
+        }
+    }
+
     public void OnRoundEnd()
     {
         RerollItems();
@@ -77,8 +97,9 @@ public class Shop : MonoBehaviour
             Destroy(shopObj.gameObject);
         }
         shopObjs.Clear();
+        currentItems.Clear();
         PopulateShop();
-        Debug.Log("here");
+        UpdateAllIcons();
     }
 
     public void PopulateShop()
@@ -89,7 +110,6 @@ public class Shop : MonoBehaviour
             int item = Random.Range(0, availableItems.Count);
             currentItems.Add(availableItems[item]);
         }
-        UpdateAllIcons();
     }
 
     public void UpdateAllIcons()

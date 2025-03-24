@@ -22,12 +22,15 @@ public class Inventory : MonoBehaviour
             return;
         }
     }
-    [SerializeField] float minTimeBetweenMoneyChanges = 0.25f;
+    [SerializeField] float minTimeBetweenMoneyChanges = 0.35f;
 
     public InventoryRenderer inventoryRenderer;
 
     public InventoryEffectManager inventoryEffectManager;
     public IngameUI ingameUI;
+    [SerializeField] AudioFile getMoneySFX;
+    [SerializeField] AudioFile buySFX;
+    [SerializeField] AudioFile error;
     void Start()
     {
         Money = initialMoney;
@@ -56,7 +59,14 @@ public class Inventory : MonoBehaviour
         {
             int limitedValue = inventoryEffectManager.ApplyLimit<LimitMoney>(value);
             int change = limitedValue - money;
-            BufferMoneyChange(change);
+            if (change > 0)
+            {
+                BufferMoneyChange(change);
+            }
+            else 
+            {
+                ApplyMoneyChange(change);
+            }
         }
     }
     List<int> bufferedMoneyChanges = new();
@@ -75,11 +85,17 @@ public class Inventory : MonoBehaviour
 
     public bool TryBuyItem(Item item)
     {
-        if (item.price > money) { Debug.Log("only have " + money + ", this costs " + item.price);  return false; } // can't afford
+        if (item.price > money)
+        {
+            SoundEffectManager.sfxmanager.PlayOneShot(error);
+            return false;
+        } 
+
         if (0 > inventoryEffectManager.GetLimit<LimitBuying>()) { return false; } // TODO replace 0 with shop manager purchases count 
 
         Money -= item.price;
         EventBus<BuyEvent>.Raise(new BuyEvent(item));
+        SoundEffectManager.sfxmanager.PlayOneShot(buySFX);
 
         AddItem(item);
         return true;
@@ -119,7 +135,6 @@ public class Inventory : MonoBehaviour
                     ApplyMoneyChange(moneyChange);
                 }
                 bufferedMoneyChanges.Clear();
-                ingameUI.SetMoney(Money);
             }
             moneyChangeTimer = 0;
         }
@@ -129,6 +144,11 @@ public class Inventory : MonoBehaviour
     {
         money += moneyChange;
         moneyChangeDisplay.AddToDisplay(moneyChange);
+        ingameUI.SetMoney(Money);
+        if (moneyChange > 0)
+        {
+            SoundEffectManager.sfxmanager.PlayOneShot(getMoneySFX);
+        }
     }
 
     private void BufferMoneyChange(int change)

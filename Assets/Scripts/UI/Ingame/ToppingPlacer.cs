@@ -11,6 +11,10 @@ public class ToppingPlacer : MonoBehaviour
     [SerializeField] Material red;
     [SerializeField] Material white;
     [SerializeField] GameObject placePreview;
+    [SerializeField] AudioFile placeSound;
+    [SerializeField] AudioFile dragOutSound;
+    [SerializeField] float inventoryXPos = 1460f;
+
     InventoryIconControl iconControl;
     bool placingTopping = false;
 
@@ -98,6 +102,7 @@ public class ToppingPlacer : MonoBehaviour
 
         while (Input.GetMouseButton(0))
         {
+            Debug.Log(Input.mousePosition);
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100, placeableLayers))
@@ -120,7 +125,7 @@ public class ToppingPlacer : MonoBehaviour
 
         if (placementValidCheck)
         {
-            PlaceTopping(topping, cakePos + new Vector3(0, lowestPointOffset, 0), topping.towerPrefab.transform.rotation);
+            PlaceTopping(topping, cakePos + new Vector3(0, lowestPointOffset, 0), topping.towerPrefab.transform.rotation, true);
         }
         StopPlacingTopping();
     }
@@ -189,7 +194,7 @@ public class ToppingPlacer : MonoBehaviour
         transparentObject.SetActive(false);
     }
 
-    public void PlaceTopping(Topping topping, Vector3 position, Quaternion rotation)
+    public void PlaceTopping(Topping topping, Vector3 position, Quaternion rotation, bool playSound = false)
     {
         GameObject newToppingObj = Instantiate(topping.towerPrefab, position, rotation); // spawn obj
 
@@ -201,6 +206,8 @@ public class ToppingPlacer : MonoBehaviour
         Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 6); // create particle effect
 
         topping.SetGameObjectOnEffects(newToppingObj);
+
+        if (playSound) { SoundEffectManager.sfxmanager.PlayOneShot(placeSound); }
 
         Inventory.inventory.RemoveItem(topping); // remove from inventory
     }

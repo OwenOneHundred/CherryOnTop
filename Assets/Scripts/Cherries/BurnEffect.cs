@@ -15,6 +15,8 @@ public class BurnEffect : CherryDebuff
 
     public override void OnAdded(GameObject cherry)
     {
+        SoundEffectManager.sfxmanager.PlayOneShot(onAppliedSFX);
+        
         // Set cherry field to the GameObject cherry argument
         this.cherry = cherry;
         cherryHitbox = cherry.GetComponent<CherryHitbox>();

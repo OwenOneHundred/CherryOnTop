@@ -1336,6 +1336,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: IngameUI
       objectReference: {fileID: 0}
+    - target: {fileID: 4056779447078315208, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: inventoryXPos
+      value: 1460
+      objectReference: {fileID: 0}
+    - target: {fileID: 4056779447078315208, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: placeSound.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8bc3c85b47a184ed4a3b231b852e686d, type: 3}
+    - target: {fileID: 4056779447078315208, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: dragOutSound.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 94559303172804f93a531cfb142f5873, type: 3}
     - target: {fileID: 4895827520771590193, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1441,8 +1453,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: startingInventoryItems.Array.size
-      value: 0
+      propertyPath: error.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 382894518adea457bb5d9b53857b6c9d, type: 3}
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: error.volume
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

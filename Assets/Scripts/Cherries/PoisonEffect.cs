@@ -18,6 +18,8 @@ public class PoisonEffect : CherryDebuff
 
     public override void OnAdded(GameObject cherry)
     {
+        SoundEffectManager.sfxmanager.PlayOneShot(onAppliedSFX);
+        
         // Adding particles to cherry
         this.cherry = cherry;
         cherryHitbox = cherry.transform.root.GetComponent<CherryHitbox>();

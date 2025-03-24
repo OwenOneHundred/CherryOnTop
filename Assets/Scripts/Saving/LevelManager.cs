@@ -101,7 +101,9 @@ public class LevelManager : MonoBehaviour
         // loop through currently placed toppings in level
         // and add them as DETowerPlaced to the DEAllTowers save data entry
         List<ToppingRegistry.ItemInfo> toppings = toppingRegistery.GetAllPlacedToppings();
-        // List<Topping> potentialToppings = shop.availableItems;
+        //List<Topping> potentialToppings = shop.availableItems;
+        Dictionary<string, int> toppingIndex = new Dictionary<string, int>();
+        
         foreach (ToppingRegistry.ItemInfo item in toppings)
         {
 

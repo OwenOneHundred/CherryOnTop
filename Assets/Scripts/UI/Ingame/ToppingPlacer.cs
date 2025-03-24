@@ -13,7 +13,7 @@ public class ToppingPlacer : MonoBehaviour
     [SerializeField] GameObject placePreview;
     [SerializeField] AudioFile placeSound;
     [SerializeField] AudioFile dragOutSound;
-    [SerializeField] float inventoryXPos = 1460f;
+    readonly float inventoryXPos = 1460f;
 
     InventoryIconControl iconControl;
     bool placingTopping = false;
@@ -100,8 +100,20 @@ public class ToppingPlacer : MonoBehaviour
 
         bool placementValidCheck = false;
 
+        bool mouseIsInSidebar;
+        bool mouseLeftSidebar = false;
+
         while (Input.GetMouseButton(0))
         {
+            mouseIsInSidebar = Input.mousePosition.x > inventoryXPos;
+
+            if (!mouseLeftSidebar && !mouseIsInSidebar) { SoundEffectManager.sfxmanager.PlayOneShot(dragOutSound); }
+            
+            if (mouseLeftSidebar && mouseIsInSidebar) { StopPlacingTopping(); yield break; }
+
+            if (!mouseIsInSidebar) { mouseLeftSidebar = true; } 
+
+
             Debug.Log(Input.mousePosition);
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;

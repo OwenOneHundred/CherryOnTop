@@ -9,6 +9,7 @@ namespace EventBus
         public Action OnEventNoArgs { get; set; }
     }
 
+    [System.Serializable]
     public class EventBinding<T> : IEventBinding<T> where T : IEvent
     {
         Action<T> onEvent = _ => { };

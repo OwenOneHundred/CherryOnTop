@@ -19,7 +19,8 @@ public class Shop : MonoBehaviour
     public List<Item> currentItems = new();
     [SerializeField] List<Item> availableItems = new();
     [SerializeField] Transform itemParent;
-    List<ShopObj> shopObjs;
+    List<ShopObj> shopObjs = new();
+    public int rerolls = 0;
 
     void Start()
     {
@@ -60,8 +61,23 @@ public class Shop : MonoBehaviour
 
         moving = false;
 
-        if (currentItems.Count < 6) PopulateShop();
         UpdateAllIconPositions();
+    }
+
+    public void OnRoundEnd()
+    {
+        RerollItems();
+    }
+
+    public void RerollItems()
+    {
+        foreach (ShopObj shopObj in shopObjs)
+        {
+            Destroy(shopObj.gameObject);
+        }
+        shopObjs.Clear();
+        PopulateShop();
+        Debug.Log("here");
     }
 
     public void PopulateShop()

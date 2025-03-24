@@ -475,6 +475,7 @@ MonoBehaviour:
   moneyOnRoundEnd: 10
   nextRoundButton: {fileID: 1390693133404687419}
   ingameUI: {fileID: 5165441279755291159}
+  shop: {fileID: 8966158542567257680}
 --- !u!114 &8392582136422224834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,9 +584,17 @@ MonoBehaviour:
   shopObjPrefab: {fileID: 7875255754724816196, guid: 3f767271e52944b68bf819171116f8fa, type: 3}
   currentItems: []
   availableItems:
-  - {fileID: 11400000, guid: 32e3947f085444a0e8fe65b294b7f9d0, type: 2}
-  - {fileID: 11400000, guid: fc8447cf6d7749e499d5a495ff33c615, type: 2}
+  - {fileID: 11400000, guid: ecabe900cc5204aa6b3ca5af6e6d11f3, type: 2}
+  - {fileID: 11400000, guid: 0ce4de383c30c46d39d7c8a1ff38e9fc, type: 2}
+  - {fileID: 11400000, guid: ff21dc747abbb42c2b330e3d098473ee, type: 2}
+  - {fileID: 11400000, guid: ef112ccab09004451a087619f5391a65, type: 2}
+  - {fileID: 11400000, guid: 9ca9f78176f7b49b696bc2b6c5c7b0ee, type: 2}
+  - {fileID: 11400000, guid: f91ebb90466a44f10a53f18e6b00baec, type: 2}
+  - {fileID: 11400000, guid: 64164d5af1743421fa7ffd2e6df4b48a, type: 2}
+  - {fileID: 11400000, guid: ed367cf4325964f17ae8515110ffb0e4, type: 2}
+  - {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}
   itemParent: {fileID: 7862030300564659347}
+  rerolls: 0
 --- !u!1 &2081781367253558207
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,6 +1036,7 @@ GameObject:
   - component: {fileID: 1204338498259045828}
   - component: {fileID: 1212870366175251150}
   - component: {fileID: 4056779447078315208}
+  - component: {fileID: 3727381933882899095}
   m_Layer: 5
   m_Name: IngameUI
   m_TagString: Untagged
@@ -1053,7 +1063,6 @@ RectTransform:
   - {fileID: 8994662675897757257}
   - {fileID: 2018362670908286748}
   - {fileID: 6830749032049405005}
-  - {fileID: 3590037534324156400}
   - {fileID: 3459166160992311004}
   - {fileID: 3029052820199018723}
   - {fileID: 3380142434394094614}
@@ -1167,6 +1176,18 @@ MonoBehaviour:
   white: {fileID: 2100000, guid: 96e18d5064f354e41984c66302d36894, type: 2}
   placePreview: {fileID: 6845720622537204174, guid: 3e739adb791234faeb6ad798cbaba722, type: 3}
   toppingPlaceEffect: {fileID: 7649228073842828853, guid: df90ad80c9e3b442d9558e2588fbf510, type: 3}
+--- !u!114 &3727381933882899095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2453157323036994659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 148c41a2ab74c4a36aa1a7c54ded3875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2572070001336737110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,8 +1301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5343b79346942918b9124df4cf1d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingInventoryItems:
-  - {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}
+  initialMoney: 20
+  startingInventoryItems: []
   minTimeBetweenMoneyChanges: 0.25
   inventoryRenderer: {fileID: 6508363885407075222}
   inventoryEffectManager: {fileID: 2718221458188522715}
@@ -1778,41 +1799,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &3373532375442414214
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3590037534324156400}
-  m_Layer: 5
-  m_Name: ShopItemHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &3590037534324156400
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3373532375442414214}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5964487472042778191}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: 100}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3889536256513622992
 GameObject:
   m_ObjectHideFlags: 0
@@ -3040,7 +3026,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278255364
-  m_fontColor: {r: 0.014359474, g: 1, b: 0, a: 1}
+  m_fontColor: {r: 1, g: 0.87207144, b: 0.11792451, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

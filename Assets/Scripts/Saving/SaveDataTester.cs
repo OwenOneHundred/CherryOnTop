@@ -28,7 +28,7 @@ public class SaveDataTester : MonoBehaviour
             Debug.Log("Found pos with data: " + pos.positionData.ToString());
         } else
         {
-            saveData.SetData("pos", new DEPosition("pos", writeThis));
+            saveData.SetData("pos", new DEPosition("pos", writeThis, Vector3.zero, Vector3.zero));
         }
         SaveData.WriteData(saveData);
     }

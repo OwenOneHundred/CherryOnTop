@@ -19,6 +19,7 @@ public abstract class EventSO <T> : BaseEventSO where T : IEvent
         {
             EventBus<T>.Deregister(towerPlacedEvent);
         }
+        events.Clear();
     }
 }
 

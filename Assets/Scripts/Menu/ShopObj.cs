@@ -14,11 +14,13 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void OnPointerEnter(PointerEventData eventData)
     {
         hovered = true;
+        Shop.shop.shopInfoPanel.SetUp(displayItem);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         hovered = false;
+        Shop.shop.shopInfoPanel.Clear();
     }
 
     private void Update()

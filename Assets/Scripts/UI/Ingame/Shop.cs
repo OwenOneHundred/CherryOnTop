@@ -22,6 +22,13 @@ public class Shop : MonoBehaviour
     public List<ShopObj> shopObjs = new();
     public int rerolls = 0;
     public int rerollPrice = 4;
+    public static Shop shop;
+    public ShopInfoPanel shopInfoPanel;
+    public void Awake()
+    {
+        if (shop == this || shop == null) { shop = this; }
+        else { Destroy(gameObject); return; }
+    }
 
     void Start()
     {

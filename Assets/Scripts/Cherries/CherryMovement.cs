@@ -101,7 +101,6 @@ public class CherryMovement : MonoBehaviour
         goalJumpTime = Mathf.Clamp(Vector3.Distance(goalJumpPosition, jumpStartPosition), 1.5f, 8) / 3;
         
         velocityY = CalculateInitialVelocityKinFormula(Mathf.Abs(goalJumpY - jumpStartPosition.y), -gravity, goalJumpTime);
-        Debug.Log(velocityY);
 
         jumpHorizontalSpeed = Vector2.Distance(new Vector2(goalJumpPosition.x, goalJumpPosition.z), new Vector2(jumpStartPosition.x, jumpStartPosition.z)) / goalJumpTime;
 

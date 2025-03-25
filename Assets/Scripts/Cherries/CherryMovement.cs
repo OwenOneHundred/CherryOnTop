@@ -1,4 +1,5 @@
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -26,6 +27,8 @@ public class CherryMovement : MonoBehaviour
 
     DebuffManager debuffManager;
 
+    bool movingToNewTrack = false;
+
     private void Start()
     {
         debuffManager = GetComponent<DebuffManager>();
@@ -45,38 +48,115 @@ public class CherryMovement : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, linePositions[currentTarget], GetSpeed() * Time.deltaTime);
-        distanceTraveled += Vector3.Distance(previousCoords, transform.position);
-        if (transform.position == linePositions[currentTarget])
+        if (movingToNewTrack)
         {
-            //progress = 0;
+            WhileJumping();
+        }
+        else
+        {
+            MoveAlongTrack();
+        }
+
+        RecordChangeInDistance();
+    }
+
+    void MoveAlongTrack()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, linePositions[currentTarget], GetSpeed() * Time.deltaTime);
+
+        if (transform.position == linePositions[currentTarget]) // if reached target position
+        {
             currentPosition++;
             currentTarget++;
-            if (currentTarget == positionsAmount) 
+            if (currentTarget == positionsAmount) // at last position, targeting non-existent position
             {
                 currentTarget = 0;
             }
-            if (currentPosition == positionsAmount) 
+            if (currentPosition == positionsAmount) // returned to position 0
             {
-                currentTrack++;
-                if (track.transform.childCount <= currentTrack) { OnReachEnd(); return; }
-                lineRenderer = track.transform.GetChild(currentTrack).GetComponent<LineRenderer>();
-                //If current position is -1, it is in the process of moving between lines.
-                setNewTrack();
-                currentPosition = -1;
-                currentTarget = 0;
+                OnReachEndOfTrack();
             }
         }
+    }
+
+    Vector3 goalJumpPosition;
+    Vector3 jumpStartPosition;
+    float goalJumpY;
+    float goalJumpTime;
+    readonly float verticalJumpClearance = 1.5f;
+    float velocityY;
+    float jumpHorizontalSpeed;
+    float gravity = 9.8f;
+    float timer = 0;
+    void StartJump() // set goal height, decceleration, calculate time based on distance, calculate initial velocity based on others
+    {
+        timer = 0; 
+
+        goalJumpPosition = linePositions[currentTarget];
+        jumpStartPosition = transform.position;
+
+        float heighestYBetweenGoalAndStart = (jumpStartPosition.y > goalJumpPosition.y) ? jumpStartPosition.y : goalJumpPosition.y;
+        goalJumpY = heighestYBetweenGoalAndStart + verticalJumpClearance;
+
+        goalJumpTime = Mathf.Clamp(Vector3.Distance(goalJumpPosition, jumpStartPosition), 1.5f, 8) / 3;
+        
+        velocityY = CalculateInitialVelocityKinFormula(Mathf.Abs(goalJumpY - jumpStartPosition.y), -gravity, goalJumpTime);
+        Debug.Log(velocityY);
+
+        jumpHorizontalSpeed = Vector2.Distance(new Vector2(goalJumpPosition.x, goalJumpPosition.z), new Vector2(jumpStartPosition.x, jumpStartPosition.z)) / goalJumpTime;
+
+        static float CalculateInitialVelocityKinFormula(float distance, float acceleration, float time)
+        {
+            return (distance - (0.5f * acceleration * (time * time))) / time;
+        }
+    }
+    void WhileJumping()
+    {
+        timer += Time.deltaTime;
+        if (timer >= goalJumpTime * 0.9f && transform.position.y < goalJumpPosition.y)
+        {
+            transform.position = goalJumpPosition;
+            movingToNewTrack = false;
+        }
+
+        Vector2 xzMovement = (new Vector2(goalJumpPosition.x, goalJumpPosition.z) - new Vector2(transform.position.x, transform.position.z)).normalized * jumpHorizontalSpeed * Time.deltaTime;
+        transform.position += new Vector3(xzMovement.x, velocityY * Time.deltaTime, xzMovement.y);
+        velocityY -= gravity * Time.deltaTime;
+    }
+
+    void RecordChangeInDistance()
+    {
+        distanceTraveled += Vector3.Distance(previousCoords, transform.position);
         previousCoords = transform.position;
     }
 
-    private void OnReachEnd()
+    void OnReachEndOfTrack()
+    {
+        currentTrack++;
+        if (track.transform.childCount <= currentTrack)
+        {
+            OnReachEndOfMap();
+            return;
+        }
+
+        lineRenderer = track.transform.GetChild(currentTrack).GetComponent<LineRenderer>();
+
+        SetNewTrack();
+
+        movingToNewTrack = true;
+        currentPosition = -1;
+        currentTarget = 0;
+
+        StartJump();
+    }
+
+    private void OnReachEndOfMap()
     {
         GameOverControl.gameOverControl.OnGameOver();
         Destroy(gameObject);
     }
 
-    private void setNewTrack() {
+    private void SetNewTrack() {
         lineRenderer = track.transform.GetChild(currentTrack).GetComponent<LineRenderer>();
         positionsAmount = lineRenderer.positionCount;
         linePositions = new Vector3[positionsAmount];

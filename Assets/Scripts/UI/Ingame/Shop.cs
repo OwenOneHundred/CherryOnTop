@@ -123,7 +123,7 @@ public class Shop : MonoBehaviour
         }
     }
 
-    public void UpdateAllIcons()
+    public void UpdateAllIcons() // TODO: this function spawns copies of icons on top of each other when shop is opened and closed
     {
         for (int i = 0; i < currentItems.Count; i++) {
             GameObject newIcon = Instantiate(shopObjPrefab, itemParent);

@@ -29,6 +29,7 @@ public class SwitchLevelPreview : MonoBehaviour
         level = new GameObject[levelPreviews.Length];
         moveButton.onClick.AddListener(OnForwardsButtonClick);
         
+        
         backButton.SetActive(false);
         for (int i = 0; i < levelPreviews.Length; i++)
         {
@@ -51,18 +52,26 @@ public class SwitchLevelPreview : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.RightArrow) && forwardsButton.activeSelf == true && moving == false)
+        {
+            OnForwardsButtonClick();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && backButton.activeSelf == true && moving == false)
+        {
+            OnBackButtonClick();
+        }
         if (moving)
         {
             if (slideLeft) { 
                 loadedLevel.transform.localPosition -= new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0);
-                previousLoadedLevel.transform.localPosition -= new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0);
+                previousLoadedLevel.transform.localPosition -= new Vector3((boxLoadDistance / slideTime * Time.deltaTime) * 1.5f, 0, 0);
                 if (loadedLevel.transform.localPosition.x <= 0) {
                     StopMovingAndSnapToCenter();
                 }
             }
             else { 
                 loadedLevel.transform.localPosition += new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0);
-                previousLoadedLevel.transform.localPosition += new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0);
+                previousLoadedLevel.transform.localPosition += new Vector3((boxLoadDistance / slideTime * Time.deltaTime) * 1.5f, 0, 0);
                 if (loadedLevel.transform.localPosition.x >= 0)
                 {
                     StopMovingAndSnapToCenter();

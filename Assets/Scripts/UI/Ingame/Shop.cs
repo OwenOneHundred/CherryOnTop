@@ -17,13 +17,16 @@ public class Shop : MonoBehaviour
 
     [SerializeField] GameObject shopObjPrefab;
     public List<Item> currentItems = new();
-    [SerializeField] List<Item> availableItems = new();
+    public List<Item> availableItems = new();
     [SerializeField] Transform itemParent;
-    List<ShopObj> shopObjs;
+    public List<ShopObj> shopObjs = new();
+    public int rerolls = 0;
+    public int rerollPrice = 4;
 
     void Start()
     {
         rect = GetComponent<RectTransform>();
+        RerollItems();
     }
 
     public void ToggleOpen()
@@ -60,8 +63,43 @@ public class Shop : MonoBehaviour
 
         moving = false;
 
-        if (currentItems.Count < 6) PopulateShop();
-        UpdateAllIconPositions();
+        UpdateAllIcons();
+    }
+
+    public void OnClickReroll()
+    {
+        if (rerolls > 0)
+        {
+            rerolls -= 1;
+            RerollItems();
+        }
+        else if (Inventory.inventory.Money > rerollPrice)
+        {
+            Debug.Log("rerollPrice: " + rerollPrice);
+            Inventory.inventory.Money -= rerollPrice;
+            RerollItems();
+        }
+        else 
+        {
+            // can't afford reroll
+        }
+    }
+
+    public void OnRoundEnd()
+    {
+        RerollItems();
+    }
+
+    public void RerollItems()
+    {
+        foreach (ShopObj shopObj in shopObjs)
+        {
+            Destroy(shopObj.gameObject);
+        }
+        shopObjs.Clear();
+        currentItems.Clear();
+        PopulateShop();
+        UpdateAllIcons();
     }
 
     public void PopulateShop()
@@ -74,7 +112,7 @@ public class Shop : MonoBehaviour
         }
     }
 
-    public void UpdateAllIconPositions()
+    public void UpdateAllIcons()
     {
         for (int i = 0; i < currentItems.Count; i++) {
             GameObject newIcon = Instantiate(shopObjPrefab, itemParent);

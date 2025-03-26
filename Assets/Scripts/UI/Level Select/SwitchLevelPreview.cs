@@ -1,10 +1,7 @@
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class SwitchLevelPreview : MonoBehaviour
 {

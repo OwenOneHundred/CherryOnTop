@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: TestShockwave
   m_EditorClassIdentifier: 
   cooldown: 0.7
+  damage: 20
   shockwave: {fileID: 5503282234501958175, guid: dc48c3d6bc7d142288cd1a46b1e61d55, type: 3}
+  speed: 1
   range: 1

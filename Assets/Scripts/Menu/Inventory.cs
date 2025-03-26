@@ -8,6 +8,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public static Inventory inventory;
+    [SerializeField] int initialMoney = 20;
     [SerializeField] List<Item> startingInventoryItems;
     private void Awake()
     {
@@ -21,19 +22,25 @@ public class Inventory : MonoBehaviour
             return;
         }
     }
+    [SerializeField] float minTimeBetweenMoneyChanges = 0.35f;
 
     public InventoryRenderer inventoryRenderer;
 
     public InventoryEffectManager inventoryEffectManager;
     public IngameUI ingameUI;
+    [SerializeField] AudioFile getMoneySFX;
+    [SerializeField] AudioFile buySFX;
+    [SerializeField] AudioFile error;
     void Start()
     {
+        Money = initialMoney;
+
         inventoryEffectManager = GetComponent<InventoryEffectManager>();
         ingameUI = GameObject.FindAnyObjectByType<IngameUI>();
 
         foreach (Item item in startingInventoryItems) // add starting items to inventory display
         {
-            inventoryRenderer.AddItemToDisplay(item);
+            AddItem(item);
         }
     }
 
@@ -52,7 +59,14 @@ public class Inventory : MonoBehaviour
         {
             int limitedValue = inventoryEffectManager.ApplyLimit<LimitMoney>(value);
             int change = limitedValue - money;
-            BufferMoneyChange(change);
+            if (change > 0)
+            {
+                BufferMoneyChange(change);
+            }
+            else 
+            {
+                ApplyMoneyChange(change);
+            }
         }
     }
     List<int> bufferedMoneyChanges = new();
@@ -67,14 +81,21 @@ public class Inventory : MonoBehaviour
             ingameUI.SetCakeScore(value);
         }
     }
+    [SerializeField] MoneyChangeDisplay moneyChangeDisplay;
 
     public bool TryBuyItem(Item item)
     {
-        if (item.price > money) { Debug.Log(money + " " + item.price);  return false; } // can't afford
+        if (item.price > money)
+        {
+            SoundEffectManager.sfxmanager.PlayOneShot(error);
+            return false;
+        } 
+
         if (0 > inventoryEffectManager.GetLimit<LimitBuying>()) { return false; } // TODO replace 0 with shop manager purchases count 
 
         Money -= item.price;
         EventBus<BuyEvent>.Raise(new BuyEvent(item));
+        SoundEffectManager.sfxmanager.PlayOneShot(buySFX);
 
         AddItem(item);
         return true;
@@ -82,9 +103,11 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(Item item)
     {
+        item = Instantiate(item); // Item SOs are currently instantiated here, when added to inventory.
+
         ownedItems.Add(item);
         inventoryRenderer.AddItemToDisplay(item);
-        item.RegisterEffects();
+        item.Initialize();
     }
 
     public void RemoveItem(Item item)
@@ -93,27 +116,39 @@ public class Inventory : MonoBehaviour
         inventoryRenderer.RemoveItemFromDisplay(item);
     }
 
+    float moneyChangeTimer = 0;
+
     public void Update()
     {
+        moneyChangeTimer += Time.deltaTime;
         ManageBufferedMoneyChanges();
     }
 
     private void ManageBufferedMoneyChanges()
     {
-        if (bufferedMoneyChanges.Count != 0)
+        if (moneyChangeTimer > minTimeBetweenMoneyChanges)
         {
-            foreach (int moneyChange in bufferedMoneyChanges)
+            if (bufferedMoneyChanges.Count != 0)
             {
-                ApplyMoneyChange(moneyChange);
+                foreach (int moneyChange in bufferedMoneyChanges)
+                {
+                    ApplyMoneyChange(moneyChange);
+                }
+                bufferedMoneyChanges.Clear();
             }
-            bufferedMoneyChanges.Clear();
-            ingameUI.SetMoney(Money);
+            moneyChangeTimer = 0;
         }
     }
 
     private void ApplyMoneyChange(int moneyChange)
     {
         money += moneyChange;
+        moneyChangeDisplay.AddToDisplay(moneyChange);
+        ingameUI.SetMoney(Money);
+        if (moneyChange > 0)
+        {
+            SoundEffectManager.sfxmanager.PlayOneShot(getMoneySFX);
+        }
     }
 
     private void BufferMoneyChange(int change)

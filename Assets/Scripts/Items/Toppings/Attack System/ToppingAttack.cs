@@ -8,7 +8,7 @@ public abstract class ToppingAttack : ScriptableObject
 {
     // A reference to the Topping object that the ToppingAttack instance is assigned to.
     [System.NonSerialized]
-    public GameObject topping;
+    public GameObject toppingObj;
 
     // Represents the number of seconds the Topping should wait between attacks.
     public float cooldown;

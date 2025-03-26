@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Globalization;
 
 public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -21,12 +23,13 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
     public void SetUp(Item item, GameObject toppingObj)
     {
+        Debug.Log("set up info popup: " + item);
         this.item = item;
         this.toppingObj = toppingObj;
         if (item == null) { return; }
         if (item is Topping topping)
         {
-            toppingType.text = topping.flags.ToString();
+            toppingType.text = ToTitleCase(topping.flags.ToString());
             itemType.text = "Topping";
         }
         else
@@ -34,7 +37,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             itemType.text = "Ingredient";
         }
 
-        nameText.text = item.name;
+        nameText.text = item.name.Replace("(Clone)", "");
         description.text = item.description;
         sellPrice.text = "Sell " + (item.price / 2);
     }
@@ -70,5 +73,10 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void OnPointerEnter(PointerEventData eventData)
     {
        hovered = true;
+    }
+
+    public static string ToTitleCase(string title)
+    {
+        return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(title.ToLower()); 
     }
 }

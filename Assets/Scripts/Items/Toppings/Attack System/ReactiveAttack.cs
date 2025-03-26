@@ -15,33 +15,24 @@ public class ReactiveAttack : ProjectileAttack
     [SerializeField]
     float firingDelay;
 
-    // Represents whether the Topping is free to attack (true) or is hindered by its cooldown (false)
-    private bool canAttack;
+    // Represents whether the current targeted Cherry has been attacked at least once so far.
+    private bool attackSuccessful = false;
 
     public override void OnStart() {
-        Debug.Log("Reactive attack with a cooldown of " + this.cooldown + " seconds assigned to topping " + this.topping.name + ".");
+        Debug.Log("Reactive attack with a cooldown of " + this.cooldown + " seconds assigned to topping " + this.toppingObj.name + ".");
     }
 
     public override void OnNewCherryFound(GameObject newTargetedCherry) {
-        if (canAttack) {
-            for (int i = 0; i < burstQuantity; i++) {
-                this.topping.GetComponent<AttackManager>().StartCoroutine(WaitAndAttack(newTargetedCherry, i * firingDelay));
-            }
-            canAttack = false;
-        }
+        attackSuccessful = false;
     }
 
     public override void OnCycle(GameObject targetedCherry) {
-        canAttack = true;
-    }
-
-    public override void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, int damage) {
-        GameObject newProjectile = Instantiate(projectile, position, rotation);
-        newProjectile.GetComponent<Rigidbody>().linearVelocity = velocity;
-        newProjectile.GetComponent<Projectile>().damage = damage;
-
-        // Destroy the projectile after 8 seconds in case it misses the target
-        Destroy(newProjectile, 8);
+        if (!attackSuccessful) {
+            for (int i = 0; i < burstQuantity; i++) {
+                this.toppingObj.GetComponent<AttackManager>().StartCoroutine(DelayedAttack(targetedCherry, i * firingDelay));
+            }
+            attackSuccessful = true;
+        }
     }
 
     /// <summary>
@@ -49,7 +40,7 @@ public class ReactiveAttack : ProjectileAttack
     /// </summary>
     /// <param name="targetedCherry"></param>
     private void AttackCherry(GameObject targetedCherry) {
-        SpawnProjectile(this.projectile, topping.transform.position, FindTargetVector(targetedCherry), Quaternion.identity, this.damage);
+        SpawnProjectile(this.projectile, toppingObj.transform.position, FindTargetVector(targetedCherry), Quaternion.identity, this.damage);
     }
 
     /// <summary>
@@ -65,7 +56,7 @@ public class ReactiveAttack : ProjectileAttack
             return new Vector3(0, projectileSpeed, 0);
         }
 
-        Vector3 targetDirection = targetedCherry.transform.position - topping.transform.position;
+        Vector3 targetDirection = targetedCherry.transform.position - toppingObj.transform.position;
         targetDirection.Normalize();
         return projectileSpeed * targetDirection;
     }
@@ -76,8 +67,8 @@ public class ReactiveAttack : ProjectileAttack
     /// <param name="targetedCherry"></param>
     /// <param name="waitTime"></param>
     /// <returns></returns>
-    private IEnumerator WaitAndAttack(GameObject targetedCherry, float waitTime) {
-        yield return new WaitForSeconds(waitTime);
+    private IEnumerator DelayedAttack(GameObject targetedCherry, float delay) {
+        yield return new WaitForSeconds(delay);
         AttackCherry(targetedCherry);
     }
 }

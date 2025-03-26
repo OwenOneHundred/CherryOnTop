@@ -3,20 +3,6 @@ using System.Collections.Generic;
 using EventBus;
 
 [CreateAssetMenu(menuName = "Event/OnTowerPlaced")]
-public class OnPlaceTower : EventSO
+public class OnPlaceTower : EventSO <TowerPlacedEvent>
 {
-    List<EventBinding<TowerPlacedEvent>> events = new();
-    public override void RegisterEffect(EffectSO effectSO)
-    {
-        EventBinding<TowerPlacedEvent> towerPlacedBinding = new EventBinding<TowerPlacedEvent>(effectSO.OnTriggered);
-        EventBus<TowerPlacedEvent>.Register(towerPlacedBinding);
-    }
-
-    public override void DeregisterAllEffects()
-    {
-        foreach (EventBinding<TowerPlacedEvent> towerPlacedEvent in events)
-        {
-            EventBus<TowerPlacedEvent>.Deregister(towerPlacedEvent);
-        }
-    }
 }

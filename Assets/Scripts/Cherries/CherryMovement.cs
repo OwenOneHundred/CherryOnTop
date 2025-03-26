@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// Attached to Cherries. Moves them along the track. Should only interact with the debuff manager on this Cherry,
@@ -18,14 +19,17 @@ public class CherryMovement : MonoBehaviour
     private int currentTarget;
     public int currentPosition;
     public int currentTrack;
-    public float speed = 1f;
+    public float baseSpeed = 1f;
     private int positionsAmount;
-    private int lineAmount;
     public float distanceTraveled = 0f;
     private Vector3 previousCoords;
 
+    DebuffManager debuffManager;
+
     private void Start()
     {
+        debuffManager = GetComponent<DebuffManager>();
+
         track = GameObject.FindGameObjectWithTag("Track");
         lineRenderer = track.transform.GetChild(0).GetComponent<LineRenderer>();
         positionsAmount = lineRenderer.positionCount;
@@ -41,7 +45,7 @@ public class CherryMovement : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, linePositions[currentTarget], speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, linePositions[currentTarget], GetSpeed() * Time.deltaTime);
         distanceTraveled += Vector3.Distance(previousCoords, transform.position);
         if (transform.position == linePositions[currentTarget])
         {
@@ -55,7 +59,7 @@ public class CherryMovement : MonoBehaviour
             if (currentPosition == positionsAmount) 
             {
                 currentTrack++;
-                if (track.transform.childCount <= currentTrack) { return; } // how does this not stop it wtf
+                if (track.transform.childCount <= currentTrack) { OnReachEnd(); return; }
                 lineRenderer = track.transform.GetChild(currentTrack).GetComponent<LineRenderer>();
                 //If current position is -1, it is in the process of moving between lines.
                 setNewTrack();
@@ -64,7 +68,12 @@ public class CherryMovement : MonoBehaviour
             }
         }
         previousCoords = transform.position;
+    }
 
+    private void OnReachEnd()
+    {
+        GameOverControl.gameOverControl.OnGameOver();
+        Destroy(gameObject);
     }
 
     private void setNewTrack() {
@@ -74,4 +83,8 @@ public class CherryMovement : MonoBehaviour
         lineRenderer.GetPositions(linePositions);
     }
 
+    private float GetSpeed()
+    {
+        return baseSpeed * debuffManager.GetMovementSpeedMultiplier();
+    }
 }

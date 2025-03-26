@@ -1,8 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using EventBus;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class ToppingPlacer : MonoBehaviour
@@ -12,6 +11,10 @@ public class ToppingPlacer : MonoBehaviour
     [SerializeField] Material red;
     [SerializeField] Material white;
     [SerializeField] GameObject placePreview;
+    [SerializeField] AudioFile placeSound;
+    [SerializeField] AudioFile dragOutSound;
+    readonly float inventoryXPos = 1460f;
+
     InventoryIconControl iconControl;
     bool placingTopping = false;
 
@@ -19,6 +22,8 @@ public class ToppingPlacer : MonoBehaviour
 
     GameObject transparentObject;
     [SerializeField] GameObject toppingPlaceEffect;
+
+    List<List<Vector3>> trackPoints = new();
 
     readonly Vector3 checkAreaVerticalOffset = new Vector3(0, 0.02f, 0);
     public bool PlacingTopping
@@ -43,6 +48,19 @@ public class ToppingPlacer : MonoBehaviour
     {
         transparentObject = Instantiate(placePreview);
         transparentObject.SetActive(false);
+
+        StoreAllTrackPositions();
+    }
+
+    private void StoreAllTrackPositions()
+    {
+        foreach (Transform track in GameObject.FindGameObjectWithTag("Track").transform)
+        {
+            LineRenderer lr = track.GetComponent<LineRenderer>();
+            var linePoints = new Vector3[lr.positionCount];
+            lr.GetPositions(linePoints);
+            trackPoints.Add(new List<Vector3>(linePoints));
+        }
     }
 
     public void StartPlacingTopping(Topping topping, InventoryIconControl iic)
@@ -82,8 +100,21 @@ public class ToppingPlacer : MonoBehaviour
 
         bool placementValidCheck = false;
 
+        bool mouseIsInSidebar;
+        bool mouseLeftSidebar = false;
+
         while (Input.GetMouseButton(0))
         {
+            mouseIsInSidebar = Input.mousePosition.x > inventoryXPos;
+
+            if (!mouseLeftSidebar && !mouseIsInSidebar) { SoundEffectManager.sfxmanager.PlayOneShot(dragOutSound); }
+            
+            if (mouseLeftSidebar && mouseIsInSidebar) { StopPlacingTopping(); yield break; }
+
+            if (!mouseIsInSidebar) { mouseLeftSidebar = true; } 
+
+
+            Debug.Log(Input.mousePosition);
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100, placeableLayers))
@@ -92,9 +123,9 @@ public class ToppingPlacer : MonoBehaviour
                 objCenter = cakePos + new Vector3(0, lowestPointOffset, 0);
 
                 transparentObject.SetActive(true);
-                transparentObject.transform.position = cakePos;
+                transparentObject.transform.position = objCenter;
 
-                placementValidCheck = CheckIfPlacementValid(toppingMeshFilter, objCenter, toppingMeshFilter.sharedMesh);
+                placementValidCheck = CheckIfPlacementValid(toppingMeshFilter, objCenter, toppingMeshFilter.sharedMesh, cakePos);
                 meshRenderer.material = placementValidCheck ? white : red;
             }
             else
@@ -106,18 +137,55 @@ public class ToppingPlacer : MonoBehaviour
 
         if (placementValidCheck)
         {
-            PlaceTopping(topping, cakePos);
+            PlaceTopping(topping, cakePos + new Vector3(0, lowestPointOffset, 0), topping.towerPrefab.transform.rotation, true);
         }
         StopPlacingTopping();
     }
 
-    private bool CheckIfPlacementValid(MeshFilter prefabMeshFilter, Vector3 pos, Mesh mesh)
+    private bool CheckIfPlacementValid(MeshFilter prefabMeshFilter, Vector3 pos, Mesh mesh, Vector3 cakePos)
     {
         Bounds bounds = mesh.bounds;
         Vector3 extents = prefabMeshFilter.transform.rotation * Vector3.Scale(bounds.extents, prefabMeshFilter.transform.lossyScale);
-        var result = Physics.OverlapBox(pos + checkAreaVerticalOffset, extents, Quaternion.identity, layersThatBlockPlacement);
-        
-        return result.Count() == 0;
+        var result = Physics.OverlapBox(pos + checkAreaVerticalOffset, extents * 0.8f, Quaternion.identity, layersThatBlockPlacement);
+
+        bool notOverlappingAnything = result.Count() == 0;
+
+        //bool tooCloseToTrack = CheckIfTooCloseToTrack(cakePos); this doesn't work, idk why
+        bool tooCloseToTrack = false;
+
+        return notOverlappingAnything && (!tooCloseToTrack);
+    }
+
+    private bool CheckIfTooCloseToTrack(Vector3 cakePos, float acceptableDistance = 0.525f)
+    {
+        foreach (List<Vector3> trackPositions in trackPoints)
+        {
+            for (int i = 0; i < trackPositions.Count - 1; i++)
+            {
+                Vector3 startPos = trackPositions[i];
+                Vector3 endPos = trackPositions[i + 1];
+                
+
+                Vector3 closestOnPoints = ClosestPointOnLineSegment(startPos, endPos, cakePos);
+                float distance = Vector3.Distance(cakePos, closestOnPoints);
+
+                //Debug.Log("startpos: " + startPos + " endpos: " + endPos + " closestPoint: " + closestOnPoints + " distance: " + distance + " obj pos: " + cakePos);
+
+                if (distance < acceptableDistance)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    Vector3 ClosestPointOnLineSegment(Vector3 A, Vector3 B, Vector3 target)
+    {
+        Vector3 fromAtoB = B - A;
+        Vector3 fromAtoTarget = target - A;
+        float t = Mathf.Clamp01(Vector2.Dot(fromAtoTarget, fromAtoB) / fromAtoB.sqrMagnitude);
+        return A + t * fromAtoB;
     }
 
     private float GetLowestPointOffset(Bounds bounds, Vector3 groundDirection, float scale)
@@ -138,14 +206,21 @@ public class ToppingPlacer : MonoBehaviour
         transparentObject.SetActive(false);
     }
 
-    private void PlaceTopping(Topping topping, Vector3 position)
+    public void PlaceTopping(Topping topping, Vector3 position, Quaternion rotation, bool playSound = false)
     {
-        GameObject newToppingObj = Instantiate(topping.towerPrefab, position, Quaternion.identity); // spawn obj
+        GameObject newToppingObj = Instantiate(topping.towerPrefab, position, rotation); // spawn obj
 
-        ToppingRegistry.toppingRegistry.RegisterPlacedTopping(Instantiate(topping), newToppingObj); // register
+        ToppingRegistry.toppingRegistry.RegisterPlacedTopping(topping, newToppingObj); // register
+
+        newToppingObj.GetComponent<ToppingObjectScript>().topping = topping; // set topping on object to be read later
         
         EventBus<TowerPlacedEvent>.Raise(new TowerPlacedEvent(topping, newToppingObj)); // call placed tower event
         Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 6); // create particle effect
+
+        topping.SetGameObjectOnEffects(newToppingObj);
+
+        if (playSound) { SoundEffectManager.sfxmanager.PlayOneShot(placeSound); }
+
         Inventory.inventory.RemoveItem(topping); // remove from inventory
     }
 }

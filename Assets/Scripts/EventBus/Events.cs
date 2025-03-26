@@ -24,6 +24,17 @@ namespace EventBus
         public Item item;
     }
 
+    public struct SellEvent : IEvent
+    {
+        public SellEvent(Item item, GameObject toppingObj)
+        {
+            this.item = item;
+            this.toppingObj = toppingObj;
+        }
+        public Item item;
+        public GameObject toppingObj; // null if ingredient
+    }
+
     public struct TowerPlacedEvent : IEvent
     {
         public TowerPlacedEvent(Topping topping, GameObject newToppingObj)

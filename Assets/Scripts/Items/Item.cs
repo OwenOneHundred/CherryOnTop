@@ -10,16 +10,38 @@ public abstract class Item : ScriptableObject
 
     [TextArea] public string description;
 
+    public void Initialize()
+    {
+        SetUpEffectsAndWhen();
+
+        RegisterEffects();
+    }
+
+    private void SetUpEffectsAndWhen()
+    {
+        for (int i = 0; i < effectsAndWhen.Count; i++)
+        {
+            for (int j = 0; j < effectsAndWhen[i].effectSOs.Count; j++)
+            {   
+                effectsAndWhen[i].effectSOs[j] = Instantiate(effectsAndWhen[i].effectSOs[j]);
+            }
+            for (int p = 0; p < effectsAndWhen[i].eventSOs.Count; p++)
+            {   
+                effectsAndWhen[i].eventSOs[p] = Instantiate(effectsAndWhen[i].eventSOs[p]);
+            }
+        }
+    }
+
     /// <summary>
     /// Should be called when the item is purchased. Registers the events in the effects list.
     /// </summary>
-    public void RegisterEffects()
+    private void RegisterEffects()
     {
         foreach (EffectAndWhen effectAndWhen in effectsAndWhen)
         {
             foreach (EffectSO effectSO in effectAndWhen.effectSOs)
             {
-                foreach (EventSO eventSO in effectAndWhen.eventSOs)
+                foreach (BaseEventSO eventSO in effectAndWhen.eventSOs)
                 {
                     eventSO.RegisterEffect(effectSO);
                 }
@@ -34,7 +56,7 @@ public abstract class Item : ScriptableObject
     {
         foreach (EffectAndWhen effectAndWhen in effectsAndWhen)
         {
-            foreach (EventSO eventSO in effectAndWhen.eventSOs)
+            foreach (BaseEventSO eventSO in effectAndWhen.eventSOs)
             {
                 eventSO.DeregisterAllEffects();
             }
@@ -52,6 +74,6 @@ public abstract class Item : ScriptableObject
         /// <summary>
         /// What events trigger the above effects
         /// </summary>
-        public List<EventSO> eventSOs;
+        public List<BaseEventSO> eventSOs;
     }
 }

@@ -16,7 +16,7 @@ public class SpreadAttack : ProjectileAttack
     double spreadAngle;
 
     public override void OnStart() {
-        Debug.Log("Spread attack with a cooldown of " + this.cooldown + " assigned to topping " + this.topping.name + ".");
+        Debug.Log("Spread attack with a cooldown of " + this.cooldown + " assigned to topping " + this.toppingObj.name + ".");
     }
 
     public override void OnNewCherryFound(GameObject newTargetedCherry) {
@@ -25,15 +25,6 @@ public class SpreadAttack : ProjectileAttack
 
     public override void OnCycle(GameObject targetedCherry) {
         AttackCherry(targetedCherry);
-    }
-
-    public override void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, int damage) {
-        GameObject newProjectile = Instantiate(projectile, position, rotation);
-        newProjectile.GetComponent<Rigidbody>().linearVelocity = velocity;
-        newProjectile.GetComponent<Projectile>().damage = damage;
-
-        // Destroy the projectile after 8 seconds in case it misses the target
-        Destroy(newProjectile, 8);
     }
 
     /// <summary>
@@ -48,7 +39,7 @@ public class SpreadAttack : ProjectileAttack
                 offsetAngle = ((double) i / (quantity - 1) - 0.5) * spreadAngle;
             }
 
-            SpawnProjectile(this.projectile, topping.transform.position, FindTargetVector(targetedCherry, offsetAngle), Quaternion.identity, (int)this.damage);
+            SpawnProjectile(this.projectile, toppingObj.transform.position, FindTargetVector(targetedCherry, offsetAngle), Quaternion.identity, (int)this.damage);
         }
     }
 
@@ -66,7 +57,7 @@ public class SpreadAttack : ProjectileAttack
         }
 
         // Finds and normalizes the direction directly to the Cherry
-        Vector3 targetDirection = targetedCherry.transform.position - topping.transform.position;
+        Vector3 targetDirection = targetedCherry.transform.position - toppingObj.transform.position;
         targetDirection.Normalize();
 
         // Calculates the offset vector based on offsetAngle

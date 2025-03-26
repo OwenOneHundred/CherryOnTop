@@ -19,7 +19,7 @@ public class ShockwaveAttack : ToppingAttack
     float range;
 
     public override void OnStart() {
-        Debug.Log("Shockwave attack with a cooldown of " + this.cooldown + " assigned to topping " + this.topping.name + ".");
+        Debug.Log("Shockwave attack with a cooldown of " + this.cooldown + " assigned to topping " + this.toppingObj.name + ".");
         if (speed == 0) {
             Debug.Log("Shockwave speed cannot be 0. Setting the speed to 1 by default.");
             speed = 1;
@@ -35,7 +35,7 @@ public class ShockwaveAttack : ToppingAttack
     }
 
     private void AttackCherry(GameObject targetedCherry) {
-        GameObject newShockwave = Instantiate(this.shockwave, topping.transform.position, Quaternion.identity);
+        GameObject newShockwave = Instantiate(this.shockwave, toppingObj.transform.position, Quaternion.identity);
         newShockwave.GetComponent<Shockwave>().damage = damage;
         newShockwave.GetComponent<Shockwave>().range = range;
 

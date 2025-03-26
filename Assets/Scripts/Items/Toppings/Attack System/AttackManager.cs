@@ -14,21 +14,32 @@ public class AttackManager : MonoBehaviour
     private ToppingAttack attack;
 
     // Keeps track of the current targeted Cherry. Should be null if there are no Cherries in range
-    [SerializeField]
     GameObject targetedCherry;
 
     // Keeps track of when the last attack was to time the next one
     private float timer = 0;
 
+    int attackDamage = 0;
+    public int AttackDamage
+    {
+        get { return attackDamage; }
+        set
+        {
+            attack.damage = value;
+            attackDamage = value;
+        }
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         this.attack = Instantiate(attackTemplate);
-        this.attack.topping = gameObject;
+        this.attack.toppingObj = gameObject;
         if (this.attack != null) {
             this.attack.OnStart();
         }
-        Debug.Log("Topping attack system initialized.");
+
+        timer = attack.cooldown;
     }
 
     // Update is called once per frame
@@ -39,9 +50,9 @@ public class AttackManager : MonoBehaviour
                 timer = 0;
                 attack.OnCycle(this.targetedCherry);
             }
+        }
+        if (timer <= attack.cooldown) {
             timer += Time.deltaTime;
-        } else {
-            timer = 0;
         }
     }
 
@@ -70,11 +81,15 @@ public class AttackManager : MonoBehaviour
     }
 
     /// <summary> 
-    /// Sets this Topping's attack cooldown to a specified value.
+    /// Sets this Topping's attack cooldown to a specified value. If the new value is different to the previous
+    /// value, the timer is reset (the Topping waits the full length of the cooldown before attacking again).
     /// </summary>
     /// <param name="cooldown"></param>
     public void SetAttackCooldown(float cooldown) {
-        this.attack.cooldown = cooldown;
+        if (cooldown != this.attack.cooldown) {
+            this.attack.cooldown = cooldown;
+            timer = 0;
+        }
     }
 
     /// <summary>

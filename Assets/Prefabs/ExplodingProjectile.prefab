@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cherryDebuffs: []
   maxHits: 5
-  shockwave: {fileID: 5503282234501958175, guid: dc48c3d6bc7d142288cd1a46b1e61d55, type: 3}
+  shockwave: {fileID: 5503282234501958175, guid: cbb54be6e3f98914e96f60c0c841d525, type: 3}
   shockwaveDamage: 2
   shockwaveRange: 10
   particleEmitter: {fileID: 5264425488194388157, guid: ad873efea0561ad4193ea162af251ea7, type: 3}

@@ -113,8 +113,6 @@ public class ToppingPlacer : MonoBehaviour
 
             if (!mouseIsInSidebar) { mouseLeftSidebar = true; } 
 
-
-            Debug.Log(Input.mousePosition);
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100, placeableLayers))

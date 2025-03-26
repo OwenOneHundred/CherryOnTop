@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Poprocks Attack
   m_EditorClassIdentifier: 
   cooldown: 2
-  damage: 30
+  damage: 25
   projectile: {fileID: 1373519935423302513, guid: 4b249323f92ee455d95dabd24130312f, type: 3}
   projectileSpeed: 40

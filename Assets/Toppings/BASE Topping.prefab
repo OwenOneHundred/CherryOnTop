@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 3392977787045670734}
   - component: {fileID: 2446293633280834808}
   - component: {fileID: 2216534911100263379}
+  - component: {fileID: 2910716949551422463}
   m_Layer: 12
   m_Name: Mesh
   m_TagString: Untagged
@@ -161,6 +162,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoPopupPrefab: {fileID: 5143935969253856157, guid: 8366678d3fd414bfcb7312b4366fb4bf, type: 3}
+--- !u!114 &2910716949551422463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7950584445644482870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eda816da5c7418bb5a81d8add2ae5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 8237643331648977366, guid: 47d1541770e2e4ae88a1c86dc468f310, type: 3}
 --- !u!1 &8780444211603820160
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,4 +235,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 3
   attackManager: {fileID: 3242621880762221844}
-  targetCherryOnce: 0

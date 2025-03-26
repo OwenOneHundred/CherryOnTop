@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Peapod Attack
   m_EditorClassIdentifier: 
   cooldown: 2
-  damage: 15
+  damage: 11
   projectile: {fileID: 5639995158584697843, guid: 2dfdb3d545ea54e9abf39a257e1c2968, type: 3}
   projectileSpeed: 0

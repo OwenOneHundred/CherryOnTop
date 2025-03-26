@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cotton Candy
   m_EditorClassIdentifier: 
   price: 5
-  shopSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  shopSprite: {fileID: 21300000, guid: d56704194755546bb8b03e997f7ea238, type: 3}
   effectsAndWhen: []
   description: Fires a shockwave at a slow rate that massively slows hit cherries.
   towerPrefab: {fileID: 393780810997626349, guid: d83fdd6fa5fcb43b79839c399a7b8f44, type: 3}

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PopupMenuSpawner : MonoBehaviour
 {
@@ -13,9 +14,11 @@ public class PopupMenuSpawner : MonoBehaviour
 
     public void OnMouseDown()
     {
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+
         infoPopup = Instantiate(infoPopupPrefab, canvas.transform);
         RectTransform rect = infoPopup.GetComponent<RectTransform>();
         rect.position = Camera.main.WorldToScreenPoint(transform.position) + (Vector3.up * 400);
-        infoPopup.GetComponent<InfoPopup>().SetUp(GetComponentInParent<ToppingObjectScript>().topping, gameObject);
+        infoPopup.GetComponent<InfoPopup>().SetUp(GetComponentInParent<ToppingObjectScript>().topping);
     }
 }

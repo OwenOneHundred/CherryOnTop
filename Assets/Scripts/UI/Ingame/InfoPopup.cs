@@ -14,18 +14,15 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     bool hovered = false;
     bool isFirstFrame = true;
     Item item;
-    GameObject toppingObj;
 
     void Awake()
     {
         eventSystem = GameObject.FindAnyObjectByType<EventSystem>();
         if (eventSystem == null) { Debug.LogWarning("No event system in scene."); }
     }
-    public void SetUp(Item item, GameObject toppingObj)
+    public void SetUp(Item item)
     {
-        Debug.Log("set up info popup: " + item);
         this.item = item;
-        this.toppingObj = toppingObj;
         if (item == null) { return; }
         if (item is Topping topping)
         {
@@ -40,6 +37,16 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         nameText.text = item.name.Replace("(Clone)", "");
         description.text = item.description;
         sellPrice.text = "Sell " + (item.price / 2);
+    }
+
+    public void Clear()
+    {
+        nameText.text = "";
+        description.text = "";
+        sellPrice.text = "";
+        itemType.text = "";
+        toppingType.text = "";
+        item = null;
     }
 
     public void Update()

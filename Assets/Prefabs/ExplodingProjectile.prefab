@@ -52,8 +52,8 @@ MonoBehaviour:
   maxHits: 5
   shockwave: {fileID: 5503282234501958175, guid: cbb54be6e3f98914e96f60c0c841d525, type: 3}
   shockwaveDamage: 2
+  shockwaveSpeed: 5
   shockwaveRange: 10
-  particleEmitter: {fileID: 5264425488194388157, guid: ad873efea0561ad4193ea162af251ea7, type: 3}
 --- !u!54 &6399938703496829079
 Rigidbody:
   m_ObjectHideFlags: 0

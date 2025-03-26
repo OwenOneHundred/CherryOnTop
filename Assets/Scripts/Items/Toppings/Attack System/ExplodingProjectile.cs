@@ -12,6 +12,9 @@ public class ExplodingProjectile : Projectile
     int shockwaveDamage;
 
     [SerializeField]
+    float shockwaveSpeed;
+
+    [SerializeField]
     float shockwaveRange;
 
     //[SerializeField]
@@ -24,6 +27,7 @@ public class ExplodingProjectile : Projectile
 
     private void Explode() {
         GameObject newShockwave = Instantiate(shockwave, transform.position, Quaternion.identity);
+        newShockwave.GetComponent<Shockwave>().speed = shockwaveSpeed;
         newShockwave.GetComponent<Shockwave>().range = shockwaveRange;
         newShockwave.GetComponent<Shockwave>().SetDamage(shockwaveDamage);
         //GameObject newParticleEmitter = Instantiate(particleEmitter, transform.position, Quaternion.identity);

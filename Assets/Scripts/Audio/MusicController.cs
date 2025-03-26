@@ -19,6 +19,7 @@ public class MusicController : MonoBehaviour
         RecalculateSamples(defaultSong);
 
         audioSource.clip = defaultSong.clip;
+        audioSource.volume = defaultSong.volume;
         if (playOnAwake)
         {
             audioSource.Play();

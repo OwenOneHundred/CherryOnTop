@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Poprocks
   m_EditorClassIdentifier: 
-  price: 5
+  price: 4
   shopSprite: {fileID: 21300000, guid: 1a14c870bf4a84693bba64380702c3c2, type: 3}
   effectsAndWhen: []
   description: Fires large high damage projectiles over a long range.

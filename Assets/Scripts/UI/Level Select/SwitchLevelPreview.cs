@@ -10,6 +10,7 @@ public class SwitchLevelPreview : MonoBehaviour
     public LevelPreview[] levelPreviews;
     private GameObject[] level;
     [SerializeField] private GameObject loadedLevel;
+    [SerializeField] private GameObject previousLoadedLevel;
     public GameObject backButton;
     public GameObject forwardsButton;
     [SerializeField] private int levelIndex = 0;
@@ -53,13 +54,15 @@ public class SwitchLevelPreview : MonoBehaviour
         if (moving)
         {
             if (slideLeft) { 
-                loadedLevel.transform.localPosition -= new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0); 
+                loadedLevel.transform.localPosition -= new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0);
+                previousLoadedLevel.transform.localPosition -= new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0);
                 if (loadedLevel.transform.localPosition.x <= 0) {
                     StopMovingAndSnapToCenter();
                 }
             }
             else { 
                 loadedLevel.transform.localPosition += new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0);
+                previousLoadedLevel.transform.localPosition += new Vector3(boxLoadDistance / slideTime * Time.deltaTime, 0, 0);
                 if (loadedLevel.transform.localPosition.x >= 0)
                 {
                     StopMovingAndSnapToCenter();
@@ -72,13 +75,14 @@ public class SwitchLevelPreview : MonoBehaviour
     {
         moving = false;
         loadedLevel.transform.localPosition = new Vector3(0, 0, 0);
+        Destroy(previousLoadedLevel);
 
     }
 
     void OnForwardsButtonClick()
     {
         slideLeft = true;
-        Destroy(loadedLevel);
+        //Destroy(loadedLevel);
         levelIndex = (levelIndex + 1);
         LoadLevelBox(boxLoadDistance);
         StartCoroutine(SlideLevelSelectBox(loadedLevel));
@@ -91,7 +95,7 @@ public class SwitchLevelPreview : MonoBehaviour
     public void OnBackButtonClick()
     {
         slideLeft = false;
-        Destroy(loadedLevel);
+        //Destroy(loadedLevel);
         levelIndex = (levelIndex - 1);
         LoadLevelBox(-boxLoadDistance);
         SlideBox(loadedLevel);
@@ -106,6 +110,7 @@ public class SwitchLevelPreview : MonoBehaviour
     void LoadLevelBox(int xpos) {
 
         GameObject newLevel = Instantiate(level[levelIndex], new Vector3(xpos, 0, 0), Quaternion.identity, canvasTransform);
+        previousLoadedLevel = loadedLevel;
         loadedLevel = newLevel;
         newLevel.transform.localPosition = new Vector3(xpos, 0, 0); // Set local position relative to the parent
     }

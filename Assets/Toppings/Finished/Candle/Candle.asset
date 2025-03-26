@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Candle
   m_EditorClassIdentifier: 
-  price: 5
-  shopSprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  price: 2
+  shopSprite: {fileID: 21300000, guid: 75f41e6df26cf42ac9b2cee963b3ce57, type: 3}
   effectsAndWhen: []
   description: Fires a close range shockwave that sets cherries on fire for 3 seconds.
   towerPrefab: {fileID: 4121351870975325631, guid: 88d16022baf0243cb96e02b5b025f7aa, type: 3}

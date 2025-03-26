@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class FireEffect : MonoBehaviour
+public class ToppingActivatedGlow : MonoBehaviour
 {
     [SerializeField] GameObject prefab;
     private List<Effect> activeEffects = new List<Effect>();

@@ -9,6 +9,8 @@ public class CherryHitbox : MonoBehaviour
     DebuffManager debuffManager;
     [SerializeField] AudioFile deathSound;
     [SerializeField] GameObject onDamagedPS;
+    [SerializeField] GameObject damageNumberPrefab;
+    [SerializeField] bool spawnDamageNumbers = true;
     bool dead = false;
 
     public void Start()
@@ -34,7 +36,16 @@ public class CherryHitbox : MonoBehaviour
             Die();
         }
 
+        if (spawnDamageNumbers) { SpawnDamageNumbers(Mathf.FloorToInt(damage)); }
+
         debuffManager.OnDamaged(damage);
+    }
+
+    private void SpawnDamageNumbers(int damage)
+    {
+        GameObject newNumber = Instantiate(damageNumberPrefab);
+        newNumber.GetComponent<DamageNumber>().SetDisplay(damage);
+        newNumber.transform.position = transform.position + new Vector3 (0, 1, 0);
     }
 
     private void Die()

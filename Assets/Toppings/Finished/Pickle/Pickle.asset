@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Pickle
   m_EditorClassIdentifier: 
-  price: 5
-  shopSprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  price: 7
+  shopSprite: {fileID: 21300000, guid: 255907d676512414585134c0d09a9bfc, type: 3}
   effectsAndWhen: []
-  description: 
+  description: Fires projectiles that bounce between 5 cherries, dealing low damage
+    and inflicting poison.
   towerPrefab: {fileID: 5022506260897932333, guid: 9b0ae75c193b84d7cb53689b8c55fa59, type: 3}
   flags: 48

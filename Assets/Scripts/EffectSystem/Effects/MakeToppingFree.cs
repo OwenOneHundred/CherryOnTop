@@ -13,6 +13,7 @@ public class MakeToppingFree : EffectSO
         {
             if (item.name == toppingName)
             {
+                GetToppingActivatedGlow().StartNewFireEffect("MakeToppingFree", Color.blue, 3);
                 item.price = 0;
             }
         }

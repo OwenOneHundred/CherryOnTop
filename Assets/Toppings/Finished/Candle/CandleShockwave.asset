@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CandleShockwave
   m_EditorClassIdentifier: 
   cooldown: 0.65
-  damage: 5
+  damage: 1
   shockwave: {fileID: 5503282234501958175, guid: 37b709b7845194afdadf2f2b34c7114b, type: 3}
   speed: 1
   range: 1

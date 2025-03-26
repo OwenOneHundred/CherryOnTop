@@ -11,6 +11,7 @@ public class MoneyIfMoneyEndsWithNumber : EffectSO
         if (Inventory.inventory.Money.ToString().Last() == endingNumber)
         {
             Inventory.inventory.Money += moneyChange;
+            GetToppingActivatedGlow().StartNewFireEffect("EndingNum $" + moneyChange, Color.red, 3);
         }
     }
 }

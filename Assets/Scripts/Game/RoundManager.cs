@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class RoundManager : MonoBehaviour
 {
-    public RoundState roundState;
+    public RoundState roundState = RoundState.shop;
     public uint roundNumber = 0;
 
     [System.NonSerialized] public int totalCherriesThisRound = 10;
@@ -26,6 +26,15 @@ public class RoundManager : MonoBehaviour
         {
             Destroy(gameObject);
             return;
+        }
+        roundState = RoundState.shop;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && roundState == RoundState.shop)
+        {
+            StartNextRound();
         }
     }
 

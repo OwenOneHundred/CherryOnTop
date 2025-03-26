@@ -1,10 +1,12 @@
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     bool hovered = false;
+    bool purchased = false;
     Item displayItem;
 
     [SerializeField] Image image;
@@ -25,12 +27,16 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && hovered)
+        if (Input.GetMouseButtonDown(0) && hovered && !purchased)
         {
             Inventory inv = FindFirstObjectByType<Inventory>();
             if (inv.TryBuyItem(displayItem))
             {
                 FindFirstObjectByType<InventoryRenderer>().UpdateAllIconPositions();
+                GetComponent<Image>().color = Color.gray;
+                nameText.text = "Purchased";
+                priceText.enabled = false;
+                purchased = true;
             }
             
         }

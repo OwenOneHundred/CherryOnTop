@@ -17,9 +17,6 @@ public class ExplodingProjectile : Projectile
     [SerializeField]
     float shockwaveRange;
 
-    //[SerializeField]
-    //GameObject particleEmitter;
-
     public override void OnHitCherry(CherryHitbox ch) {
         Destroy(gameObject);
         Explode();
@@ -30,8 +27,5 @@ public class ExplodingProjectile : Projectile
         newShockwave.GetComponent<Shockwave>().speed = shockwaveSpeed;
         newShockwave.GetComponent<Shockwave>().range = shockwaveRange;
         newShockwave.GetComponent<Shockwave>().SetDamage(shockwaveDamage);
-        //GameObject newParticleEmitter = Instantiate(particleEmitter, transform.position, Quaternion.identity);
-
-        //Destroy(newParticleEmitter, 5);
     }
 }

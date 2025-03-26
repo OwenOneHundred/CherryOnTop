@@ -48,7 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a684fe4bf105654cb52a02538eb008f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  cherryDebuffs: []
+  maxHits: 5
+  shockwave: {fileID: 5503282234501958175, guid: dc48c3d6bc7d142288cd1a46b1e61d55, type: 3}
+  shockwaveDamage: 2
+  shockwaveRange: 10
   particleEmitter: {fileID: 5264425488194388157, guid: ad873efea0561ad4193ea162af251ea7, type: 3}
 --- !u!54 &6399938703496829079
 Rigidbody:

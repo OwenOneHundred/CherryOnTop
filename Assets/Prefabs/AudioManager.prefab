@@ -189,7 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnAwake: 1
   defaultSong:
-    volume: 0.328
+    volume: 0.2
     clip: {fileID: 8300000, guid: 79b645254f14c432d8eea0d5ef166aea, type: 3}
     loopStartTime: 0
     timeCutOffFromEnd: 0.075

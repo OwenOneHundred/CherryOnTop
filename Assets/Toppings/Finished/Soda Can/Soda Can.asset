@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Soda Can
   m_EditorClassIdentifier: 
   price: 5
-  shopSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  shopSprite: {fileID: 21300000, guid: d4a4434ebf7e5454d8c08d1ccab23ad0, type: 3}
   effectsAndWhen: []
   description: Rapidly fires high damage projectiles, but hit cherries are given
     a speed boost of 2x for 2 seconds.

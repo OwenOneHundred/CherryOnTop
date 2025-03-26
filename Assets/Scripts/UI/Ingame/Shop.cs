@@ -22,6 +22,9 @@ public class Shop : MonoBehaviour
     public List<ShopObj> shopObjs = new();
     public int rerolls = 0;
     public int rerollPrice = 4;
+    [SerializeField] AudioFile error;
+    [SerializeField] AudioFile openShop;
+    [SerializeField] AudioFile closeShop;
     public static Shop shop;
     public ShopInfoPanel shopInfoPanel;
     public void Awake()
@@ -48,6 +51,8 @@ public class Shop : MonoBehaviour
         {
             if (open == value) { return; }
             if (moving) { return; }
+
+            SoundEffectManager.sfxmanager.PlayOneShot(!open ? openShop : closeShop);
 
             open = value;
             moving = true;
@@ -80,15 +85,14 @@ public class Shop : MonoBehaviour
             rerolls -= 1;
             RerollItems();
         }
-        else if (Inventory.inventory.Money > rerollPrice)
+        else if (Inventory.inventory.Money >= rerollPrice)
         {
-            Debug.Log("rerollPrice: " + rerollPrice);
             Inventory.inventory.Money -= rerollPrice;
             RerollItems();
         }
         else 
         {
-            // can't afford reroll
+            SoundEffectManager.sfxmanager.PlayOneShot(error);
         }
     }
 

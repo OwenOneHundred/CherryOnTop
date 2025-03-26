@@ -62,7 +62,7 @@ public class CherryManager : MonoBehaviour
 
         if (farthestCherryCoveredTrackPercentage < 0.9f) { farthestCherryCoveredTrackPercentage = 0;}
 
-        audioManager.SetLowpass(farthestCherryCoveredTrackPercentage / 1.4f);
+        audioManager.SetLowpass(farthestCherryCoveredTrackPercentage);
     }
 
     // Get the top cherry (highest traveled distance)

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gumdrop
   m_EditorClassIdentifier: 
   price: 5
-  shopSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  shopSprite: {fileID: 21300000, guid: 39b1d984d48254e448925a3534b7dd15, type: 3}
   effectsAndWhen: []
   description: No attack. Burning cherries burn a stacking 10% longer and take 10%
     more damage from other attacks.

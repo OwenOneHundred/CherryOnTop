@@ -14,7 +14,7 @@ public class MoneyChangeDisplay : MonoBehaviour
         {
             timeActive += Time.deltaTime;
 
-            if (timeActive > 3.5f)
+            if (timeActive > 1f)
             {
                 gameObject.SetActive(false);
                 displayedMoney = 0;

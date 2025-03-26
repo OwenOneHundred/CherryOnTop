@@ -27,6 +27,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    [SerializeField] protected bool _encryptData = true;
     [SerializeField] protected string _saveFileName = "levelsave";
     protected SaveData _saveData = null;
     public SaveData saveData
@@ -98,6 +99,7 @@ public class LevelManager : MonoBehaviour
 
     public void SaveLevel()
     {
+        Debug.Log("Saving level data...");
         List<DETowerPlaced> allTowers = new List<DETowerPlaced>();
         List<ToppingRegistry.ItemInfo> toppings = toppingRegistery.GetAllPlacedToppings();
         List<Item> potentialItems = shop.availableItems;
@@ -133,11 +135,14 @@ public class LevelManager : MonoBehaviour
         DEAllItemsInventory items = new DEAllItemsInventory("allinventory", allInventory);
         saveData.SetData(towers, true);
         saveData.SetData(items, true);
+        SaveData._useEncryptions = _encryptData;
         SaveData.WriteData(saveData);
+        Debug.Log("Done saving level data!");
     }
 
     public void LoadLevel()
     {
+        Debug.Log("Loading level data...");
         List<Item> potentialItems = shop.availableItems;
         List<Topping> potentialToppings = new List<Topping>();
         foreach (Item item in potentialItems)
@@ -161,5 +166,6 @@ public class LevelManager : MonoBehaviour
                 Inventory.inventory.AddItem(potentialItems[item.itemIndex]);
             }
         }
+        Debug.Log("Done saving level data!");
     }
 }

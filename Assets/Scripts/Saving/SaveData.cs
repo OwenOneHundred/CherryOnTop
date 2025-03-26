@@ -236,4 +236,24 @@ namespace GameSaves
         }
     }
 
+    [System.Serializable]
+    public class DEItemInventory : DataEntry
+    {
+        [SerializeField] public int itemIndex;
+        public DEItemInventory(string dataName, int itemIndex) : base(dataName)
+        {
+            this.itemIndex = itemIndex;
+        }
+    }
+
+    [System.Serializable]
+    public class DEAllItemsInventory : DataEntry
+    {
+        [SerializeField] public List<DEItemInventory> items;
+        public DEAllItemsInventory(string dataName, List<DEItemInventory> items) : base(dataName)
+        {
+            this.items = items;
+        }
+    }
+
 }

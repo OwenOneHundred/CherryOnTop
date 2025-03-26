@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using GameSaves;
 using NUnit.Framework;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -101,6 +102,7 @@ public class LevelManager : MonoBehaviour
         List<ToppingRegistry.ItemInfo> toppings = toppingRegistery.GetAllPlacedToppings();
         List<Item> potentialItems = shop.availableItems;
         List<Topping> potentialToppings = new List<Topping>();
+        List<DEItemInventory> allInventory = new List<DEItemInventory>();
         foreach (Item item in potentialItems)
         {
             Topping topping = item as Topping;
@@ -110,17 +112,27 @@ public class LevelManager : MonoBehaviour
             }
         }
         Dictionary<string, int> toppingIndex = new Dictionary<string, int>();
+        Dictionary<string, int> itemIndex = new Dictionary<string, int>();
         for (int i = 0; i < potentialToppings.Count; i++)
         {
             toppingIndex.Add(potentialToppings[i].name, i);
         }
+        for (int i = 0; i < potentialItems.Count; i++)
+        {
+            itemIndex.Add(potentialItems[i].name, i);
+        }
         foreach (ToppingRegistry.ItemInfo item in toppings)
         {
             allTowers.Add(new DETowerPlaced("topping" + item.topping.towerPrefab.name, toppingIndex[item.topping.name], new DEPosition("pos", item.obj.transform.position, item.obj.transform.rotation.eulerAngles)));
-            
+        }
+        foreach (Item item in Inventory.inventory.ownedItems)
+        {
+            allInventory.Add(new DEItemInventory("item" + item.name, itemIndex[item.name]));
         }
         DEAllTowers towers = new DEAllTowers("alltowers", allTowers);
+        DEAllItemsInventory items = new DEAllItemsInventory("allinventory", allInventory);
         saveData.SetData(towers, true);
+        saveData.SetData(items, true);
         SaveData.WriteData(saveData);
     }
 
@@ -140,6 +152,13 @@ public class LevelManager : MonoBehaviour
             foreach (DETowerPlaced tower in towerWrapper.towers)
             {
                 toppingPlacer.PlaceTopping(potentialToppings[tower.towerIndex], tower.pos.positionData, Quaternion.Euler(tower.pos.eulers));
+            }
+        }
+        if (saveData.TryGetData("allinventory", out DEAllItemsInventory itemsWrapper))
+        {
+            foreach (DEItemInventory item in  itemsWrapper.items)
+            {
+                Inventory.inventory.AddItem(potentialItems[item.itemIndex]);
             }
         }
     }

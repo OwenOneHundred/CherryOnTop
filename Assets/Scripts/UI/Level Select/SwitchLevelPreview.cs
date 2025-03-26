@@ -117,7 +117,9 @@ public class SwitchLevelPreview : MonoBehaviour
     }
 
     void LoadLevelBox(int xpos) {
-
+        if (level[levelIndex] == null) { 
+            return; 
+        }
         GameObject newLevel = Instantiate(level[levelIndex], new Vector3(xpos, 0, 0), Quaternion.identity, canvasTransform);
         previousLoadedLevel = loadedLevel;
         loadedLevel = newLevel;

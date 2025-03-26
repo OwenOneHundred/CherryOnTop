@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PickleAttack
   m_EditorClassIdentifier: 
   cooldown: 0.65
-  damage: 3
+  damage: 6
   projectile: {fileID: 1373519935423302513, guid: 83ea15285234c45ec972d92e0efa281b, type: 3}
   projectileSpeed: 14

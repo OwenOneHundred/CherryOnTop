@@ -19,8 +19,18 @@ public class Shop : MonoBehaviour
     public List<Item> currentItems = new();
     public List<Item> availableItems = new();
     [SerializeField] Transform itemParent;
+    [SerializeField] TMPro.TextMeshProUGUI rerollsText;
     public List<ShopObj> shopObjs = new();
-    public int rerolls = 0;
+    int rerolls = 0;
+    public int Rerolls
+    {
+        get { return rerolls; }
+        set
+        { 
+            rerollsText.text = "Free rerolls: " + value;
+            rerolls = value;
+        }
+    }
     public int rerollPrice = 4;
     [SerializeField] AudioFile error;
     [SerializeField] AudioFile openShop;

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// A DirectAttack that can only perform a limited number of attacks before stopping (idle)
@@ -14,6 +15,7 @@ public class LimitedAttack : DirectAttack
     // Represents the amount of time to wait before dealing damage.
     [SerializeField]
     float attackDelay;
+    [SerializeField] List<CherryDebuff> debuffs;
 
     // Represents whether the current targeted Cherry has been attacked at least once so far.
     private bool attackSuccessful = false;
@@ -38,7 +40,11 @@ public class LimitedAttack : DirectAttack
     }
 
     public override void DealDamage(GameObject targetedCherry) {
-        targetedCherry.GetComponent<CherryHitbox>().TakeDamage(this.damage, null, Vector3.zero);
+        targetedCherry.GetComponentInParent<CherryHitbox>().TakeDamage(
+            this.damage,
+            toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping,
+            targetedCherry.transform.position - toppingObj.transform.position);
+        targetedCherry.GetComponentInParent<DebuffManager>().AddDebuffs(debuffs);
     }
 
     /// <summary>
@@ -46,8 +52,11 @@ public class LimitedAttack : DirectAttack
     /// </summary>
     /// <param name="targetedCherry"></param>
     private void AttackCherry(GameObject targetedCherry) {
-        DealDamage(targetedCherry);
-        attacks++;
+        if (attacks < attackLimit)
+        {
+            DealDamage(targetedCherry);
+            attacks++;
+        }
     }
 
     /// <summary>

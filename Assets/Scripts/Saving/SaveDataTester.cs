@@ -5,6 +5,7 @@ public class SaveDataTester : MonoBehaviour
 {
 
     [SerializeField] string savename = "save1";
+    [SerializeField] bool _useEncryption = true;
     protected SaveData _saveData = null;
     public SaveData saveData
     {
@@ -26,10 +27,10 @@ public class SaveDataTester : MonoBehaviour
         if (saveData.TryGetData("pos", out DEPosition pos))
         {
             Debug.Log("Found pos with data: " + pos.positionData.ToString());
-        } else
-        {
-            saveData.SetData("pos", new DEPosition("pos", writeThis, Vector3.zero));
         }
+        saveData.SetData("pos", new DEPosition("pos", writeThis, Vector3.zero), true);
+        Debug.Log("Writing pos to data: " + writeThis.ToString());
+        SaveData._useEncryptions = _useEncryption;
         SaveData.WriteData(saveData);
     }
 

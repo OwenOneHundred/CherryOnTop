@@ -9,6 +9,7 @@ namespace GameSaves
     public class SaveData
     {
         public static string _saveFolderName = "Saves";
+        public static bool _useEncryptions = true;
 
         public static string AssertSavesFolderExists()
         {
@@ -33,25 +34,27 @@ namespace GameSaves
         {
             Dictionary<string, string> valueDict = new Dictionary<string, string>();
             string filepath = GetSaveFilePath(filename);
+            Debug.Log("Reading save data from filepath... " + filepath);
             if (!File.Exists(filepath))
             {
-                Debug.LogError("Filepath does not exists! Using new SaveData. Given filepath: " + filepath);
+                Debug.LogWarning("Filepath does not exists! Using new SaveData. Given filepath: " + filepath);
                 return valueDict;
             }
-            DataWrapper wrapper = JsonUtility.FromJson<DataWrapper>(File.ReadAllText(filepath));
+            byte[] encryptedData = File.ReadAllBytes(filepath);
+            string jsonText = EncryptionUtility.DecryptFile(encryptedData, out byte fileFlags);
+            DataWrapper wrapper = JsonUtility.FromJson<DataWrapper>(jsonText);
             foreach (StringDataEntry s in wrapper.entries)
             {
                 valueDict.Add(s.dataName, s.dataValue);
             }
-
             Debug.Log("Finished reading save data from filepath: " + filepath);
-
             return valueDict;
         }
 
-        public static void WriteJson(SaveData data, string filename)
+        public static void WriteJson(SaveData data, string filename, bool useEncryption = true)
         {
-            //Dictionary<string, string> valueDict = new Dictionary<string, string>();
+            string filepath = GetSaveFilePath(filename);
+            Debug.Log("Writing save data from filepath... " + filepath);
             DataWrapper wrapper = new DataWrapper();
             foreach (string key in data.data.Keys)
             {
@@ -64,9 +67,10 @@ namespace GameSaves
                 wrapper.entries.Add(s);
             }
 
-            string filepath = GetSaveFilePath(filename);
             string json = JsonUtility.ToJson(wrapper);
-            File.WriteAllText(filepath, json);
+            byte[] encryptedData = EncryptionUtility.EncryptFile(json, useEncryption);
+            File.WriteAllBytes(filepath, encryptedData);
+            Debug.Log("Finished writing save data from filepath: " + filepath);
         }
 
         public static bool TryReadDataAs<T> (string data, out T dataEntry) where T:DataEntry
@@ -112,13 +116,13 @@ namespace GameSaves
             return null;
         }
 
-        public DataEntry SetData<T>(T dataEntry, bool overwrite = false) where T : DataEntry
+        public DataEntry SetData<T>(T dataEntry, bool overwrite = true) where T : DataEntry
         {
             if (dataEntry == null) return null;
             return SetData(dataEntry.DataName, dataEntry, overwrite);
         }
 
-        public DataEntry SetData<T>(string dataName, T dataEntry, bool overwrite = false) where T:DataEntry
+        public DataEntry SetData<T>(string dataName, T dataEntry, bool overwrite = true) where T:DataEntry
         {
             if (dataEntry == null) return null;
             if (data.TryGetValue(dataEntry.DataName, out DataEntry previousEntry))
@@ -156,7 +160,7 @@ namespace GameSaves
 
         public static void WriteData(SaveData data, string datapathName)
         {
-            WriteJson(data, datapathName);
+            WriteJson(data, datapathName, SaveData._useEncryptions);
         }
 
         protected string saveFile;
@@ -233,6 +237,26 @@ namespace GameSaves
         public DEAllTowers(string dataName, List<DETowerPlaced> towers) : base(dataName)
         {
             this.towers = towers;
+        }
+    }
+
+    [System.Serializable]
+    public class DEItemInventory : DataEntry
+    {
+        [SerializeField] public int itemIndex;
+        public DEItemInventory(string dataName, int itemIndex) : base(dataName)
+        {
+            this.itemIndex = itemIndex;
+        }
+    }
+
+    [System.Serializable]
+    public class DEAllItemsInventory : DataEntry
+    {
+        [SerializeField] public List<DEItemInventory> items;
+        public DEAllItemsInventory(string dataName, List<DEItemInventory> items) : base(dataName)
+        {
+            this.items = items;
         }
     }
 

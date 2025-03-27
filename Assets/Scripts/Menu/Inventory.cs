@@ -44,7 +44,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    List<Item> ownedItems = new List<Item>();
+    public List<Item> ownedItems = new List<Item>();
 
     /// <summary>
     /// Money is not changed directly, because the animation has play first.

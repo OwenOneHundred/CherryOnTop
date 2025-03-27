@@ -143,8 +143,11 @@ public class ToppingPlacer : MonoBehaviour
     private bool CheckIfPlacementValid(MeshFilter prefabMeshFilter, Vector3 pos, Mesh mesh, Vector3 cakePos)
     {
         Bounds bounds = mesh.bounds;
-        Vector3 extents = prefabMeshFilter.transform.rotation * Vector3.Scale(bounds.extents, prefabMeshFilter.transform.lossyScale);
-        var result = Physics.OverlapBox(pos + checkAreaVerticalOffset, extents * 0.8f, Quaternion.identity, layersThatBlockPlacement);
+
+        Vector3 worldExtents = Vector3.Scale(bounds.extents, prefabMeshFilter.transform.lossyScale);
+
+        var result = Physics.OverlapBox(pos + checkAreaVerticalOffset, worldExtents * 0.8f, prefabMeshFilter.transform.rotation, layersThatBlockPlacement);
+        
 
         bool notOverlappingAnything = result.Count() == 0;
 

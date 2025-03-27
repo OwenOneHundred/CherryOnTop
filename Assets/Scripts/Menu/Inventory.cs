@@ -9,6 +9,9 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory inventory;
     [SerializeField] int initialMoney = 20;
+    [SerializeField] float baseTimeBetweenMoneyChanges = 0.35f;
+    float scalingMoneyGainTime = 0;
+    float moneyGainPitch = 1;
     [SerializeField] List<Item> startingInventoryItems;
     private void Awake()
     {
@@ -21,8 +24,9 @@ public class Inventory : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        scalingMoneyGainTime = baseTimeBetweenMoneyChanges;
     }
-    [SerializeField] float minTimeBetweenMoneyChanges = 0.35f;
 
     public InventoryRenderer inventoryRenderer;
 
@@ -126,18 +130,27 @@ public class Inventory : MonoBehaviour
 
     private void ManageBufferedMoneyChanges()
     {
-        if (moneyChangeTimer > minTimeBetweenMoneyChanges)
+        if (moneyChangeTimer > scalingMoneyGainTime)
         {
             if (bufferedMoneyChanges.Count != 0)
             {
-                foreach (int moneyChange in bufferedMoneyChanges)
-                {
-                    ApplyMoneyChange(moneyChange);
-                }
-                bufferedMoneyChanges.Clear();
+                ApplyMoneyChange(bufferedMoneyChanges[0]);
+                bufferedMoneyChanges.RemoveAt(0);
+                scalingMoneyGainTime = Mathf.Clamp(scalingMoneyGainTime - 0.02f, 0.02f, 1);
+                moneyGainPitch = Mathf.Clamp(moneyGainPitch + 0.04f, 1, 2.5f);
+            }
+            else
+            {
+                ResetMoneyGainScaling();
             }
             moneyChangeTimer = 0;
         }
+    }
+
+    private void ResetMoneyGainScaling()
+    {
+        scalingMoneyGainTime = baseTimeBetweenMoneyChanges;
+        moneyGainPitch = 1;
     }
 
     private void ApplyMoneyChange(int moneyChange)
@@ -147,7 +160,7 @@ public class Inventory : MonoBehaviour
         ingameUI.SetMoney(Money);
         if (moneyChange > 0)
         {
-            SoundEffectManager.sfxmanager.PlayOneShot(getMoneySFX);
+            SoundEffectManager.sfxmanager.PlayOneShotWithPitch(getMoneySFX, moneyGainPitch);
         }
     }
 

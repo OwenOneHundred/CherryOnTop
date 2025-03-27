@@ -12,14 +12,10 @@ public class ExplodingProjectile : Projectile
     int shockwaveDamage;
 
     [SerializeField]
-    float shockwaveRange;
+    float shockwaveSpeed;
 
     [SerializeField]
-    GameObject particleEmitter;
-
-    [SerializeField] float cameraShakeViolence = 1;
-    [SerializeField] float cameraShakeLength = 0;
-    [SerializeField] AudioFile onHitSound;
+    float shockwaveRange;
 
     public override void OnHitCherry(CherryHitbox ch) {
         Destroy(gameObject);
@@ -28,20 +24,8 @@ public class ExplodingProjectile : Projectile
 
     private void Explode() {
         GameObject newShockwave = Instantiate(shockwave, transform.position, Quaternion.identity);
-        Shockwave shockwaveComponent = newShockwave.GetComponent<Shockwave>();
-        shockwaveComponent.range = shockwaveRange;
-        shockwaveComponent.SetDamage(shockwaveDamage);
-        shockwaveComponent.owner = owner;
-        if (particleEmitter != null)
-        {
-            GameObject newParticleEmitter = Instantiate(particleEmitter, transform.position, Quaternion.identity);
-
-            Destroy(newParticleEmitter, 5);
-        }
-        if (cameraShakeLength > 0)
-        {
-            Camera.main.transform.parent.GetComponent<CameraControl>().ApplyCameraShake(cameraShakeLength, cameraShakeViolence);
-        }
-        SoundEffectManager.sfxmanager.PlayOneShot(onHitSound);
+        newShockwave.GetComponent<Shockwave>().speed = shockwaveSpeed;
+        newShockwave.GetComponent<Shockwave>().range = shockwaveRange;
+        newShockwave.GetComponent<Shockwave>().SetDamage(shockwaveDamage);
     }
 }

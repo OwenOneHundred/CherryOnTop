@@ -8,11 +8,11 @@ public class Shockwave : Projectile
 {
     [System.NonSerialized] public float range;
     private float lifetime;
-    readonly float speed = 2.9f;
+    [System.NonSerialized] public float speed = 2.9f;
 
     void Start()
     {
-        transform.GetChild(0).GetComponent<ShockwaveParticleSystem>().SetUp(range);
+        transform.GetChild(0).GetComponent<ShockwaveParticleSystem>().SetUp(range, speed);
 
         lifetime = (range / speed);
         Destroy(gameObject, lifetime);

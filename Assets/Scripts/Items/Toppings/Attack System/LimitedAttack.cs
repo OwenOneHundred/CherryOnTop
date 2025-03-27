@@ -32,7 +32,6 @@ public class LimitedAttack : DirectAttack
     public override void OnCycle(GameObject targetedCherry) {
         if (!attackSuccessful) {
             this.toppingObj.GetComponent<AttackManager>().StartCoroutine(DelayedConditionalAttack(targetedCherry, attackDelay));
-            this.toppingObj.GetComponent<TargetingSystem>().AddTargetedCherry(targetedCherry);
             attackSuccessful = true;
         }
     }
@@ -60,6 +59,7 @@ public class LimitedAttack : DirectAttack
         yield return new WaitForSeconds(delay);
         if (targetedCherry == this.toppingObj.GetComponent<AttackManager>().GetTargetedCherry()) {
             AttackCherry(targetedCherry);
+            this.toppingObj.GetComponent<TargetingSystem>().AddTargetedCherry(targetedCherry);
         }
     }
 }

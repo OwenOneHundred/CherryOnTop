@@ -19,6 +19,6 @@ public class PopupMenuSpawner : MonoBehaviour
         infoPopup = Instantiate(infoPopupPrefab, canvas.transform);
         RectTransform rect = infoPopup.GetComponent<RectTransform>();
         rect.position = Camera.main.WorldToScreenPoint(transform.position) + (Vector3.up * 400);
-        infoPopup.GetComponent<InfoPopup>().SetUp(GetComponentInParent<ToppingObjectScript>().topping);
+        infoPopup.GetComponent<InfoPopup>().SetUp(GetComponentInParent<ToppingObjectScript>().topping, gameObject.transform.root.gameObject);
     }
 }

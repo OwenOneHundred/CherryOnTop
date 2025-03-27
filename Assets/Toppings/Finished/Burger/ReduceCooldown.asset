@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fac9d4a6dbff4e97a8c3377718722ad, type: 3}
-  m_Name: OnSell
+  m_Script: {fileID: 11500000, guid: fc44cab6a576d4a50965dc53c8596af8, type: 3}
+  m_Name: ReduceCooldown
   m_EditorClassIdentifier: 
-  events: []
+  cooldownPercentChange: -0.05

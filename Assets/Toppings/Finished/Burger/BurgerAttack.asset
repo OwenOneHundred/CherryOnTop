@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fac9d4a6dbff4e97a8c3377718722ad, type: 3}
-  m_Name: OnSell
+  m_Script: {fileID: 11500000, guid: cfa5ddee62ca0e145b2a85463bea3cdf, type: 3}
+  m_Name: BurgerAttack
   m_EditorClassIdentifier: 
-  events: []
+  cooldown: 0.5
+  damage: 10
+  projectile: {fileID: 8446781529688628737, guid: c0997f13448f84fa9a10100a748215b5, type: 3}
+  projectileSpeed: 5

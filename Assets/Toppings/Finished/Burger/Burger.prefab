@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3242621880762221844, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
+      propertyPath: attackTemplate
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c44dd20b8bfa4fb2bc81624cdae8b64, type: 2}
     - target: {fileID: 3392977787045670734, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -34,15 +38,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6939634604882509038, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.53
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6939634604882509038, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6939634604882509038, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.11
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6939634604882509038, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -78,11 +82,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8322384436291518144, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.29
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8322384436291518144, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.23
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

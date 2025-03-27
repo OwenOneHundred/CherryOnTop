@@ -1,24 +1,26 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Effects/ChangeDamageEveryRound")]
-public class GetWeakerEveryRound : EffectSO
+[CreateAssetMenu(menuName = "Effects/ChangeFireRate")]
+public class ChangeFireRate : EffectSO
 {
     bool firstTimeTriggered = true;
-    int damage = 0;
-    [SerializeField] int damageChangePerRound = -2;
+    float cooldown = 0;
+    [SerializeField] float cooldownPercentChange = -0.075f;
     AttackManager attackManager;
     public override void OnTriggered(EventBus.IEvent eventObject)
     {
         if (toppingObj == null) { return; }
         if (firstTimeTriggered)
         {
+            Debug.Log(toppingObj);
             attackManager = toppingObj.GetComponentInChildren<AttackManager>();
-            damage = attackManager.AttackDamage;
+            cooldown = attackManager.GetAttackCooldown();
             firstTimeTriggered = false;
         }
 
-        damage = Mathf.Clamp(damage + damageChangePerRound, 0, int.MaxValue);
-        attackManager.AttackDamage = damage;
+        cooldown += cooldown * cooldownPercentChange;
+
+        attackManager.SetAttackCooldown(cooldown);
     }
 }

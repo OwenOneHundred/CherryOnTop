@@ -1449,6 +1449,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8759114289087427388, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: roundNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8759114289087427388, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: moneyOnRoundEnd
       value: 5
       objectReference: {fileID: 0}

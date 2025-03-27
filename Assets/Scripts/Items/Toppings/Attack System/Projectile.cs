@@ -27,8 +27,8 @@ public class Projectile : MonoBehaviour
     {
         if (other.transform.root.TryGetComponent<CherryHitbox>(out CherryHitbox ch))
         {
-            ch.TakeDamage(damage, owner, GetAttackDirection(other.gameObject));
             OnHitCherry(ch);
+            ch.TakeDamage(damage, owner, GetAttackDirection(other.gameObject));
 
             foreach (CherryDebuff originalDebuff in cherryDebuffs)
             {

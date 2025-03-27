@@ -6,6 +6,15 @@ using UnityEngine;
 public class ExplodingProjectile : Projectile
 {
     [SerializeField]
+    GameObject shockwave;
+
+    [SerializeField]
+    int shockwaveDamage;
+
+    [SerializeField]
+    float shockwaveRange;
+
+    [SerializeField]
     GameObject particleEmitter;
 
     public override void OnHitCherry(CherryHitbox ch) {
@@ -14,6 +23,9 @@ public class ExplodingProjectile : Projectile
     }
 
     private void Explode() {
+        GameObject newShockwave = Instantiate(shockwave, transform.position, Quaternion.identity);
+        newShockwave.GetComponent<Shockwave>().range = shockwaveRange;
+        newShockwave.GetComponent<Shockwave>().SetDamage(shockwaveDamage);
         GameObject newParticleEmitter = Instantiate(particleEmitter, transform.position, Quaternion.identity);
 
         Destroy(newParticleEmitter, 5);

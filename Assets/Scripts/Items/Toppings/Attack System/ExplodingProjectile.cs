@@ -28,8 +28,10 @@ public class ExplodingProjectile : Projectile
 
     private void Explode() {
         GameObject newShockwave = Instantiate(shockwave, transform.position, Quaternion.identity);
-        newShockwave.GetComponent<Shockwave>().range = shockwaveRange;
-        newShockwave.GetComponent<Shockwave>().SetDamage(shockwaveDamage);
+        Shockwave shockwaveComponent = newShockwave.GetComponent<Shockwave>();
+        shockwaveComponent.range = shockwaveRange;
+        shockwaveComponent.SetDamage(shockwaveDamage);
+        shockwaveComponent.owner = owner;
         if (particleEmitter != null)
         {
             GameObject newParticleEmitter = Instantiate(particleEmitter, transform.position, Quaternion.identity);

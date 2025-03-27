@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b7f10648b564f540acf981452be05be, type: 3}
-  m_Name: RedFlagAttack
+  m_Script: {fileID: 11500000, guid: 21bc99cdf540a4c78ac3827dfe947dbb, type: 3}
+  m_Name: OnRoundEnd
   m_EditorClassIdentifier: 
-  cooldown: 0
-  damage: 500
-  attackLimit: 5
-  attackDelay: 0
-  debuffs: []
+  events: []

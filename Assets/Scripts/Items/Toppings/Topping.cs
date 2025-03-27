@@ -26,4 +26,30 @@ public class Topping : Item
             }
         }
     }
+
+    public int killsThisRound = 0;
+    [SerializeField] List<EffectSO> onHitCherry = new List<EffectSO>();
+    [SerializeField] List<EffectSO> onKillCherry = new List<EffectSO>();
+
+    public void OnHitCherry(CherryHitbox cherry)
+    {
+        foreach (EffectSO effectSO in onHitCherry)
+        {
+            effectSO.OnTriggered(null);
+        }
+    }
+
+    public void OnKillCherry(CherryHitbox cherry)
+    {
+        killsThisRound += 1;
+        foreach (EffectSO effectSO in onKillCherry)
+        {
+            effectSO.OnTriggered(null);
+        }
+    }
+
+    public void OnRoundEnd()
+    {
+        killsThisRound = 0;
+    }
 }

@@ -18,9 +18,9 @@ public class CherryHitbox : MonoBehaviour
         debuffManager = GetComponent<DebuffManager>();
     }
 
-    public void TakeDamage(float damage, Topping attacker, Vector3 directionOfDamage = default)
+    public float TakeDamage(float damage, Topping attacker, Vector3 directionOfDamage = default)
     {
-        if (dead) { return; }
+        if (dead) { return 0; }
         
         float actualDamage = debuffManager.GetDamageMultiplier(attacker) * damage;
         cherryHealth -= actualDamage;
@@ -39,6 +39,8 @@ public class CherryHitbox : MonoBehaviour
         if (spawnDamageNumbers) { SpawnDamageNumbers(Mathf.FloorToInt(damage)); }
 
         debuffManager.OnDamaged(damage);
+
+        return cherryHealth;
     }
 
     private void SpawnDamageNumbers(int damage)

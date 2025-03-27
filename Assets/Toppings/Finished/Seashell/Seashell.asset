@@ -14,9 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 5
   shopSprite: {fileID: 21300000, guid: 8c173ad15c8b51946980ff955e4966f1, type: 3}
-  effectsAndWhen: []
+  effectsAndWhen:
+  - effectSOs:
+    - {fileID: 11400000, guid: a875b5eb19ecc40218018f1afeb6fb20, type: 2}
+    eventSOs:
+    - {fileID: 11400000, guid: 21a2b2029de304a2e9b962c8cd1956a1, type: 2}
   description: Launches a shockwave that pierces up to 20 cherries that does low
-    damage freezes them for one second. At the end of a round, if this topping didn't
-    attack that round, gain $3.
+    damage and freezes them for one second. At the end of a round, if this topping
+    didn't attack, gain $3.
   towerPrefab: {fileID: 6377077709395372548, guid: ac419a874cdda4d68be71afb0e2630d0, type: 3}
   flags: 12288
+  killsThisRound: 0
+  onHitCherry: []
+  onKillCherry: []

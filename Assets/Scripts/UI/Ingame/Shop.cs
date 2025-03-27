@@ -75,7 +75,7 @@ public class Shop : MonoBehaviour
 
         moving = false;
 
-        UpdateAllIcons();
+        //UpdateAllIcons();
     }
 
     public void OnClickReroll()
@@ -103,11 +103,6 @@ public class Shop : MonoBehaviour
 
     public void RerollItems()
     {
-        foreach (ShopObj shopObj in shopObjs)
-        {
-            Destroy(shopObj.gameObject);
-        }
-        shopObjs.Clear();
         currentItems.Clear();
         PopulateShop();
         UpdateAllIcons();
@@ -125,6 +120,10 @@ public class Shop : MonoBehaviour
 
     public void UpdateAllIcons() // TODO: this function spawns copies of icons on top of each other when shop is opened and closed
     {
+        // Also resets the purchase status of shop items
+        // Not sure if this needs to be fixed
+        foreach (ShopObj shopObj in shopObjs) Destroy(shopObj.gameObject);
+        shopObjs.Clear();
         for (int i = 0; i < currentItems.Count; i++) {
             GameObject newIcon = Instantiate(shopObjPrefab, itemParent);
             ShopObj shopObj = newIcon.GetComponent<ShopObj>();

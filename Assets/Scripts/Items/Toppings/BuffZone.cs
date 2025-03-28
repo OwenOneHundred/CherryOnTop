@@ -33,19 +33,20 @@ public class BuffZone : MonoBehaviour
         foreach (Collider col in toppings)
         {
             BuffManager buffManager = col.GetComponent<BuffManager>();
-            if (buffManager != null)
+            if (buffManager != null && col != this)
             {
                 currentTowers.Add(buffManager);
                 if (!affectedToppings.Contains(buffManager))
                 {
-                    buffManager.AddBuff(this);
+                    //Error line
+                    //buffManager.AddBuff(this);
                 }
             }
         }
 
         foreach (BuffManager buffManager in new HashSet<BuffManager>(affectedToppings))
         {
-            if (!currentTowers.Contains(buffManager))
+            if (!currentTowers.Contains(buffManager) && buffManager != this)
             {
                 buffManager.RemoveBuff(this);
                 affectedToppings.Remove(buffManager);

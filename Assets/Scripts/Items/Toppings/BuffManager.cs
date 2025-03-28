@@ -19,8 +19,8 @@ public class BuffManager : MonoBehaviour
 
         if (attackManager != null)
         {
-            baseDamage = attackManager.AttackDamage;
-            baseCooldown = attackManager.GetAttackCooldown();
+            //baseDamage = attackManager.AttackDamage;
+            //baseCooldown = attackManager.GetAttackCooldown();
         }
 
         if (targetingSystem != null)
@@ -71,7 +71,7 @@ public class BuffManager : MonoBehaviour
 
         if (attackManager != null)
         {
-            attackManager.SetAttackCooldown(baseCooldown * cooldownMultiplier);
+            //attackManager.SetAttackCooldown(baseCooldown * cooldownMultiplier);
             attackManager.AttackDamage = Mathf.RoundToInt(baseDamage * damageMultiplier);
         }
 

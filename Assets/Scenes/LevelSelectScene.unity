@@ -490,13 +490,18 @@ MonoBehaviour:
   levelPreviews:
   - {fileID: 11400000, guid: 828818fcc873e4940b239d59e81417d6, type: 2}
   - {fileID: 11400000, guid: dadc265120f2abd41a78ee4837c5e127, type: 2}
+  - {fileID: 11400000, guid: 0468a5e41170fa54b99e6583f5ac7fc3, type: 2}
+  - {fileID: 11400000, guid: 0468a5e41170fa54b99e6583f5ac7fc3, type: 2}
+  - {fileID: 11400000, guid: 0468a5e41170fa54b99e6583f5ac7fc3, type: 2}
+  - {fileID: 11400000, guid: 0468a5e41170fa54b99e6583f5ac7fc3, type: 2}
   loadedLevel: {fileID: 0}
+  previousLoadedLevel: {fileID: 0}
   backButton: {fileID: 185816704}
   forwardsButton: {fileID: 516144771}
   levelIndex: 0
   canvasTransform: {fileID: 1260255682}
   boxLoadDistance: 1250
-  slideTime: 1
+  slideTime: 0.4
   backButtonImg: {fileID: 21300000, guid: 009648ae9fc1c8c45bd400135900b674, type: 3}
 --- !u!114 &516144777
 MonoBehaviour:

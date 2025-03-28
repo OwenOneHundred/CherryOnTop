@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Seashell
   m_EditorClassIdentifier: 
   price: 5
-  shopSprite: {fileID: 21300000, guid: 8c173ad15c8b51946980ff955e4966f1, type: 3}
+  shopSprite: {fileID: 21300000, guid: e91d130b32afb4bb7a8660ff9fea4d4a, type: 3}
   effectsAndWhen:
   - effectSOs:
     - {fileID: 11400000, guid: a875b5eb19ecc40218018f1afeb6fb20, type: 2}

@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Donut
   m_EditorClassIdentifier: 
   price: 5
-  shopSprite: {fileID: 21300000, guid: 8c173ad15c8b51946980ff955e4966f1, type: 3}
+  shopSprite: {fileID: 21300000, guid: c840ed9dd2be44be490df85cef993368, type: 3}
   effectsAndWhen: []
   description: 
   towerPrefab: {fileID: 3406790196994260652, guid: 93f79efea4ce94de7a2676349fcc064d, type: 3}
   flags: 128
+  killsThisRound: 0
+  onHitCherry: []
+  onKillCherry: []

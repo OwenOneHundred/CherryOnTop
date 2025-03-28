@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedFlagAttack
   m_EditorClassIdentifier: 
   cooldown: 0
-  damage: 500
+  damage: 200
   attackLimit: 5
   attackDelay: 0
   debuffs: []

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Burger
   m_EditorClassIdentifier: 
   price: 13
-  shopSprite: {fileID: 21300000, guid: f2c42e67f938ec54aa17bf75326c176e, type: 3}
+  shopSprite: {fileID: 21300000, guid: 63aed9e651eb34232b58d65af0de45d0, type: 3}
   effectsAndWhen:
   - effectSOs:
     - {fileID: 11400000, guid: 42a6e8c1af8244020ac70372804f1d41, type: 2}

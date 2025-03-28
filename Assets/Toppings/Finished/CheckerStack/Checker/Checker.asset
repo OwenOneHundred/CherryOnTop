@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Checker
   m_EditorClassIdentifier: 
   price: 1
-  shopSprite: {fileID: 0}
+  shopSprite: {fileID: 21300000, guid: e85354cbc3e2a45a284b6a415f6572f3, type: 3}
   effectsAndWhen: []
   description: Fires a low-damage, close range shockwave at cherries.
   towerPrefab: {fileID: 8395863746058329212, guid: 40830f852de554ddcbf772e6a4927731, type: 3}

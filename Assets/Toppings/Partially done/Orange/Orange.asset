@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 5
   shopSprite: {fileID: 21300000, guid: 3eeafb416c65142af84c37a56f6f2506, type: 3}
-  effectsAndWhen:
-  - effectSOs:
-    - {fileID: 11400000, guid: 4b8896024c60f47629bf3f15159c88a8, type: 2}
-    eventSOs:
-    - {fileID: 11400000, guid: c4f78434cba0e4cf283cc2b0bc11b1d2, type: 2}
+  effectsAndWhen: []
+  description: Attacks slowly with a weak projectile. Every time this tower gets
+    a kill, 10% chance to get $1.
   towerPrefab: {fileID: 1854520228839802959, guid: 2bf54e0493afd4845b7e8d58ddc044b1, type: 3}
   flags: 80
+  killsThisRound: 0
+  onHitCherry: []
+  onKillCherry:
+  - {fileID: 11400000, guid: 398fd239b47924259af2f76b7dbe3b2c, type: 2}

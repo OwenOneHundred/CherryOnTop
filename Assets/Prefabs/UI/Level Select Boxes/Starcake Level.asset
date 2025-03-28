@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Starcake Level
   m_EditorClassIdentifier: 
   emptyLevelPrefab: {fileID: 6031070612142676923, guid: 11a807e547497d74ea18d8a1bac24fa0, type: 3}
-  levelImage: {fileID: 0}
+  levelImage: {fileID: 21300000, guid: 4931357cd00073647a803affaeaf6511, type: 3}
   sceneNameInEditor: StarcakeScene

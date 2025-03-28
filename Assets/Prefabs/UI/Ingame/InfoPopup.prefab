@@ -233,7 +233,7 @@ MonoBehaviour:
   itemType: {fileID: 5227215707401606333}
   description: {fileID: 8623645480919947562}
   toppingType: {fileID: 8518837703621735628}
-  sellPrice: {fileID: 6931955805643139684}
+  sellPriceText: {fileID: 6931955805643139684}
 --- !u!1 &6603704608921646238
 GameObject:
   m_ObjectHideFlags: 0

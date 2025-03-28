@@ -116,6 +116,10 @@ public class AttackManager : MonoBehaviour
         }
     }
 
+    public float GetAttackCooldown() {
+        return attack.cooldown;
+    }
+
     /// <summary>
     /// Returns a reference to the Cherry currently being targeted by the Topping. Returns null if no Cherries are
     /// being targeted.

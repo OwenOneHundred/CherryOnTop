@@ -10,6 +10,7 @@ public class GetWeakerEveryRound : EffectSO
     AttackManager attackManager;
     public override void OnTriggered(EventBus.IEvent eventObject)
     {
+        if (toppingObj == null) { return; }
         if (firstTimeTriggered)
         {
             attackManager = toppingObj.GetComponentInChildren<AttackManager>();

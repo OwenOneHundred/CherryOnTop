@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fac9d4a6dbff4e97a8c3377718722ad, type: 3}
   m_Name: OnSell
   m_EditorClassIdentifier: 
+  events: []

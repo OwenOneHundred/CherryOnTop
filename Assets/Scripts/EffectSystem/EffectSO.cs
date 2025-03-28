@@ -7,6 +7,7 @@ public abstract class EffectSO : ScriptableObject
 
     public ToppingActivatedGlow GetToppingActivatedGlow()
     {
+        if (toppingObj == null) { Debug.LogWarning("Failed to get toppingactivatedglow. ToppingObj is: " + toppingObj);}
         return toppingObj.GetComponentInChildren<ToppingActivatedGlow>();
     }
 }

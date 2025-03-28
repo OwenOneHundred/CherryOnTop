@@ -78,7 +78,6 @@ namespace EventBus
         /// </summary>
         public static void ClearAllBuses()
         {
-            Debug.Log("Clearing all buses...");
             for (int i = 0; i < EventBusTypes.Count; i++)
             {
                 var busType = EventBusTypes[i];

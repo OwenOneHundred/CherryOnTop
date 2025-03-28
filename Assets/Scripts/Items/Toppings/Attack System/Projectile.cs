@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 
@@ -6,7 +7,7 @@ public class Projectile : MonoBehaviour
 {   
     // Base damage that a projectile deals onto a cherry
     [System.NonSerialized] public int damage = 20;
-    [System.NonSerialized] public Topping owner; // TODO this is never set, so it's always null. Set this when fired.
+    [System.NonSerialized] public Topping owner;
     [SerializeField] List<CherryDebuff> cherryDebuffs;
     [System.NonSerialized] public Rigidbody rb;
     [SerializeField] int maxHits = 5;
@@ -28,7 +29,14 @@ public class Projectile : MonoBehaviour
         if (other.transform.root.TryGetComponent<CherryHitbox>(out CherryHitbox ch))
         {
             OnHitCherry(ch);
-            ch.TakeDamage(damage, owner, GetAttackDirection(other.gameObject));
+            float remainingCherryHealth = ch.TakeDamage(damage, owner, GetAttackDirection(other.gameObject));
+            
+            if (owner != null)
+            {
+                owner.OnHitCherry(ch);
+            }
+            
+            if (remainingCherryHealth <= 0) { owner.OnKillCherry(ch); }
 
             foreach (CherryDebuff originalDebuff in cherryDebuffs)
             {

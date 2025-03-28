@@ -22,10 +22,22 @@ public class ExplodingProjectile : Projectile
         Explode();
     }
 
+    [SerializeField] float cameraShakeViolence = 1;
+    [SerializeField] float cameraShakeLength = 0;
+    [SerializeField] AudioFile onHitSound;
+
     private void Explode() {
         GameObject newShockwave = Instantiate(shockwave, transform.position, Quaternion.identity);
+        Shockwave shockwaveComponent = newShockwave.GetComponent<Shockwave>();
         newShockwave.GetComponent<Shockwave>().speed = shockwaveSpeed;
-        newShockwave.GetComponent<Shockwave>().range = shockwaveRange;
-        newShockwave.GetComponent<Shockwave>().SetDamage(shockwaveDamage);
+        shockwaveComponent.range = shockwaveRange;
+        shockwaveComponent.SetDamage(shockwaveDamage);
+        shockwaveComponent.owner = owner;
+        
+        if (cameraShakeLength > 0)
+        {
+            Camera.main.transform.parent.GetComponent<CameraControl>().ApplyCameraShake(cameraShakeLength, cameraShakeViolence);
+        }
+        SoundEffectManager.sfxmanager.PlayOneShot(onHitSound);
     }
 }

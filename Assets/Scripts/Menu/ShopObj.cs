@@ -1,10 +1,13 @@
+using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     bool hovered = false;
+    bool purchased = false;
     Item displayItem;
 
     [SerializeField] Image image;
@@ -15,24 +18,53 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         hovered = true;
         Shop.shop.shopInfoPanel.SetUp(displayItem);
+        StartCoroutine(SelectAnim());
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         hovered = false;
         Shop.shop.shopInfoPanel.Clear();
+        StartCoroutine(DeselectAnim());
+    }
+
+    public IEnumerator SelectAnim()
+    {
+        float speed = 5f;
+        Vector3 goal = new Vector3(1.2f, 1.2f, 1.2f);
+        while (image.transform.localScale != goal && hovered && !purchased)
+        {
+            image.transform.localScale = Vector3.Lerp(image.transform.localScale, goal, Time.deltaTime * speed);
+            yield return null;
+        }
+    }
+
+    public IEnumerator DeselectAnim()
+    {
+        float speed = 5f;
+        Vector3 goal = new Vector3(1f, 1f, 1f);
+        while (image.transform.localScale != goal && (!hovered || purchased))
+        {
+            image.transform.localScale = Vector3.Lerp(image.transform.localScale, goal, Time.deltaTime * speed);
+            yield return null;
+        }
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && hovered)
+        if (Input.GetMouseButtonDown(0) && hovered && !purchased)
         {
             Inventory inv = FindFirstObjectByType<Inventory>();
             if (inv.TryBuyItem(displayItem))
             {
                 FindFirstObjectByType<InventoryRenderer>().UpdateAllIconPositions();
+                image.color = Color.gray;
+                nameText.text = "Purchased";
+                priceText.enabled = false;
+                purchased = true;
+                StartCoroutine(DeselectAnim());
             }
-            
+
         }
     }
 
@@ -40,7 +72,7 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         image.sprite = item.shopSprite;
         nameText.text = item.name;
-        priceText.text = item.price + "";
+        priceText.text = "$" + item.price;
         displayItem = item;
     }
 

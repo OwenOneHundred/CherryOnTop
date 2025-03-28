@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfa5ddee62ca0e145b2a85463bea3cdf, type: 3}
-  m_Name: SodaCanAttack
+  m_Name: OrangeAttack
   m_EditorClassIdentifier: 
-  cooldown: 0.3
-  damage: 9
-  projectile: {fileID: 1373519935423302513, guid: 5acfe20873535488eb1bc6c7c714ad6a, type: 3}
-  projectileSpeed: 10
+  cooldown: 0.7
+  damage: 5
+  projectile: {fileID: 1373519935423302513, guid: 4a93f91688e72d443a166bcaeddc5fde, type: 3}
+  projectileSpeed: 5

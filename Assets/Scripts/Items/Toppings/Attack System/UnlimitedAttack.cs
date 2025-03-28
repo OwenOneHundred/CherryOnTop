@@ -17,7 +17,7 @@ public class UnlimitedAttack : DirectAttack
     }
 
     public override void OnCycle(GameObject targetedCherry) {
-        AttackAllCherries(toppingObj.GetComponent<TargetingSystem>().GetVisibleCherries());
+        //AttackAllCherries(toppingObj.GetComponent<TargetingSystem>().GetVisibleCherries());
     }
 
     /// <summary>

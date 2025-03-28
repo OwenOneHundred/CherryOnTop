@@ -131,4 +131,12 @@ public class AttackManager : MonoBehaviour
         return this.targetedCherry;
     }
 
+    /// <summary>
+    /// Returns true if this Topping is stunned and false otherwise.
+    /// </summary>
+    /// <returns></returns>
+    public bool IsStunned() {
+        return this.isStunned;
+    }
+
 }

@@ -17,8 +17,14 @@ public class AttackManager : MonoBehaviour
     // Keeps track of the current targeted Cherry. Should be null if there are no Cherries in range
     GameObject targetedCherry;
 
+    // Represents whether the Topping is stunned or not. When stunned, Toppings cannot attack and their cooldown resets.
+    private bool isStunned;
+
     // Keeps track of when the last attack was to time the next one
     private float timer = 0;
+
+    // Keeps track of how many seconds are left before this Topping is no longer stunned.
+    private float stunTimer = 0;
 
     int attackDamage = 0;
     public int AttackDamage
@@ -46,14 +52,22 @@ public class AttackManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (targetedCherry != null) {
-            if (timer >= attack.cooldown) {
-                timer = 0;
-                attack.OnCycle(this.targetedCherry);
+        if (!isStunned) {
+            if (targetedCherry != null) {
+                if (timer >= attack.cooldown) {
+                    timer = 0;
+                    attack.OnCycle(this.targetedCherry);
+                }
             }
-        }
-        if (timer <= attack.cooldown) {
-            timer += Time.deltaTime;
+            if (timer <= attack.cooldown) {
+                timer += Time.deltaTime;
+            }
+        } else {
+            stunTimer -= Time.deltaTime;
+            if (stunTimer <= 0) {
+                stunTimer = 0;
+                isStunned = false;
+            }
         }
     }
 
@@ -68,6 +82,15 @@ public class AttackManager : MonoBehaviour
                 attack.OnNewCherryFound(this.targetedCherry);
             }
         }       
+    }
+
+    /// <summary>
+    /// Stun this Topping for a specified number of seconds.
+    /// </summary>
+    /// <param name="duration"></param>
+    public void Stun(float duration) {
+        this.isStunned = true;
+        this.stunTimer = duration;
     }
 
     /// <summary>
@@ -106,6 +129,14 @@ public class AttackManager : MonoBehaviour
     /// </returns>
     public GameObject GetTargetedCherry() {
         return this.targetedCherry;
+    }
+
+    /// <summary>
+    /// Returns true if this Topping is stunned and false otherwise.
+    /// </summary>
+    /// <returns></returns>
+    public bool IsStunned() {
+        return this.isStunned;
     }
 
 }

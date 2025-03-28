@@ -9,7 +9,6 @@ public class TargetingSystem : MonoBehaviour
     [SerializeField] AttackManager attackManager;
 
     protected GameObject currentCherry;
-    private List<Collider> visibleCherries = new List<Collider>();
     private List<Collider> targetedCherries = new List<Collider>();
 
     void Start()
@@ -25,7 +24,7 @@ public class TargetingSystem : MonoBehaviour
         currentCherry = found;
     }
 
-    GameObject Search()
+   GameObject Search()
     {
         GameObject bestCherry = null;
         float highestDistance = -1f;
@@ -37,17 +36,12 @@ public class TargetingSystem : MonoBehaviour
         foreach (Collider cherry in cherries)
         {
             CherryMovement cherryMovement = cherry.transform.root.GetComponent<CherryMovement>();
-            if (HasClearLineOfSight(cherry.transform)) 
+            if (cherryMovement != null && HasClearLineOfSight(cherry.transform))
             {
-                visibleCherries.Add(cherry);
-            
-                if (cherryMovement != null)
+                if (cherryMovement.distanceTraveled > highestDistance)
                 {
-                    if (cherryMovement.distanceTraveled > highestDistance)
-                    {
-                        highestDistance = cherryMovement.distanceTraveled;
-                        bestCherry = cherry.gameObject;
-                    }
+                    highestDistance = cherryMovement.distanceTraveled;
+                    bestCherry = cherry.gameObject;
                 }
             }
         }
@@ -84,10 +78,15 @@ public class TargetingSystem : MonoBehaviour
     public List<Collider> GetTargetedCherries()
     {
         return targetedCherries;
+    }  
+
+    public float GetRange()
+    {
+        return range;
     }
 
-    public List<Collider> GetVisibleCherries()
+    public void SetRange(float newRange)
     {
-        return visibleCherries;
+        range = newRange;
     }
 }

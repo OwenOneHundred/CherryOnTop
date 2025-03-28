@@ -1,78 +1,66 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuffZone : MonoBehaviour {
+public class BuffZone : MonoBehaviour
+{
     [SerializeField] private float buffRadius = 5f;
-    [SerializeField] private string targetTag = "Sweet";
+    [SerializeField] private ToppingTypes.Flags flag = ToppingTypes.Flags.sweet;
     [SerializeField] private BuffType buffType;
-    [SerializeField] private float buffValue = 0.67f;
+    [SerializeField] private float buffValue = 0.6f; // Buffs should be >1 for increase
 
-    private LayerMask towerLayer;
-    private HashSet<AttackManager> affectedTowers = new HashSet<AttackManager>();
+    private LayerMask toppingLayer;
+    private HashSet<BuffManager> affectedToppings = new HashSet<BuffManager>();
 
     public BuffType BuffType => buffType;
     public float BuffValue => buffValue;
 
     void Start()
     {
-        towerLayer = LayerMask.GetMask("Tower");
+        toppingLayer = LayerMask.GetMask("Topping");
         UpdateBuffs();
     }
 
     void Update()
     {
-        // Continuously check and apply buffs to nearby towers
         UpdateBuffs();
     }
 
     void UpdateBuffs()
     {
-        
-         if (BuffManager.Instance == null)
-        {
-            Debug.LogWarning("BuffManager instance not found!");
-            return;
-        }
-        
+        Collider[] toppings = Physics.OverlapSphere(transform.position, buffRadius, toppingLayer);
+        HashSet<BuffManager> currentTowers = new HashSet<BuffManager>();
 
-        Collider[] towers = Physics.OverlapSphere(transform.position, buffRadius, towerLayer);
-        HashSet<AttackManager> currentTowers = new HashSet<AttackManager>();
-
-        foreach (Collider col in towers)
+        foreach (Collider col in toppings)
         {
-            if (col.CompareTag(targetTag))
+            BuffManager buffManager = col.GetComponent<BuffManager>();
+            if (buffManager != null && col != this)
             {
-                AttackManager am = col.GetComponent<AttackManager>();
-                if (am != null)
+                currentTowers.Add(buffManager);
+                if (!affectedToppings.Contains(buffManager))
                 {
-                    currentTowers.Add(am);
-                    if (!affectedTowers.Contains(am))
-                    {
-                        BuffManager.Instance.AddBuff(am, this);
-                    }
+                    //Error line
+                    buffManager.AddBuff(this);
                 }
             }
         }
 
-        // Remove towers that left the range
-        foreach (AttackManager am in new HashSet<AttackManager>(affectedTowers))
+        foreach (BuffManager buffManager in new HashSet<BuffManager>(affectedToppings))
         {
-            if (!currentTowers.Contains(am))
+            if (!currentTowers.Contains(buffManager) && buffManager != this)
             {
-                BuffManager.Instance.RemoveBuff(am, this);
-                affectedTowers.Remove(am);
+                buffManager.RemoveBuff(this);
+                affectedToppings.Remove(buffManager);
             }
         }
 
-        affectedTowers = currentTowers;
+        affectedToppings = currentTowers;
     }
-    
 
     void OnDestroy()
     {
-        foreach (AttackManager am in affectedTowers)
+        foreach (BuffManager buffManager in affectedToppings)
         {
-            BuffManager.Instance.RemoveBuff(am, this);
+            buffManager.RemoveBuff(this);
         }
     }
 

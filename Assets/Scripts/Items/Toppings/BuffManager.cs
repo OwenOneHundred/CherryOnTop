@@ -3,46 +3,57 @@ using System.Collections.Generic;
 
 public class BuffManager : MonoBehaviour
 {
+    private AttackManager attackManager;
+    private TargetingSystem targetingSystem;
 
-public static BuffManager Instance;
+    private float baseCooldown;
+    private int baseDamage;
+    private float baseRange;
 
-    private Dictionary<AttackManager, List<BuffZone>> activeBuffs = 
-        new Dictionary<AttackManager, List<BuffZone>>();
+    private List<BuffZone> activeBuffs = new List<BuffZone>();
 
-    void Awake() {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
-    }
-
-    public void AddBuff(AttackManager tower, BuffZone buffSource)
+    void Start()
     {
-        if (!activeBuffs.ContainsKey(tower))
+        attackManager = GetComponent<AttackManager>();
+        targetingSystem = GetComponent<TargetingSystem>();
+
+        if (attackManager != null)
         {
-            activeBuffs[tower] = new List<BuffZone>();
+            baseDamage = attackManager.AttackDamage;
+            //baseCooldown = attackManager.GetAttackCooldown();
         }
 
-        if (!activeBuffs[tower].Contains(buffSource))
+        if (targetingSystem != null)
         {
-            activeBuffs[tower].Add(buffSource);
-            UpdateTowerStats(tower);
+            baseRange = targetingSystem.GetRange();
         }
     }
 
-    public void RemoveBuff(AttackManager tower, BuffZone buffSource)
+    public void AddBuff(BuffZone buffZone)
     {
-        if (activeBuffs.ContainsKey(tower))
+        if (!activeBuffs.Contains(buffZone))
         {
-            activeBuffs[tower].Remove(buffSource);
-            UpdateTowerStats(tower);
+            activeBuffs.Add(buffZone);
+            RecalculateTowerStats();
         }
     }
 
-    void UpdateTowerStats(AttackManager tower)
+    public void RemoveBuff(BuffZone buffZone)
+    {
+        if (activeBuffs.Contains(buffZone))
+        {
+            activeBuffs.Remove(buffZone);
+            RecalculateTowerStats();
+        }
+    }
+
+    void RecalculateTowerStats()
     {
         float cooldownMultiplier = 1f;
         float damageMultiplier = 1f;
+        float rangeMultiplier = 1f;
 
-        foreach (BuffZone buff in activeBuffs[tower])
+        foreach (BuffZone buff in activeBuffs)
         {
             switch (buff.BuffType)
             {
@@ -52,10 +63,26 @@ public static BuffManager Instance;
                 case BuffType.DamageBoost:
                     damageMultiplier *= buff.BuffValue;
                     break;
+                case BuffType.RangeIncrease:
+                    rangeMultiplier *= buff.BuffValue;
+                    break;
             }
         }
 
-        //tower.attack.damage = (tower.BaseCooldown * cooldownMultiplier);
-        //tower.SetEffectiveDamage(Mathf.RoundToInt(tower.BaseDamage * damageMultiplier));
+        if (attackManager != null)
+        {
+            //attackManager.SetAttackCooldown(baseCooldown * cooldownMultiplier);
+            //attackManager.AttackDamage = Mathf.RoundToInt(baseDamage * damageMultiplier);
+        }
+
+        if (targetingSystem != null)
+        {
+            targetingSystem.SetRange(baseRange * rangeMultiplier);
+        }
+
+        Debug.Log($"Tower {gameObject.name} Buff Update: " +
+                  $"Cooldown: {cooldownMultiplier}, " +
+                  $"Damage: {damageMultiplier}, " +
+                  $"Range: {rangeMultiplier}");
     }
 }

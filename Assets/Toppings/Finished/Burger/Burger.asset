@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Burger
   m_EditorClassIdentifier: 
-  price: 10
+  price: 13
   shopSprite: {fileID: 21300000, guid: f2c42e67f938ec54aa17bf75326c176e, type: 3}
   effectsAndWhen:
   - effectSOs:
@@ -23,3 +23,6 @@ MonoBehaviour:
     a tower is sold.
   towerPrefab: {fileID: 3295862008953742197, guid: d9df9e44457e94fa38fd07df340caf2e, type: 3}
   flags: 0
+  killsThisRound: 0
+  onHitCherry: []
+  onKillCherry: []

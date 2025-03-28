@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BurgerAttack
   m_EditorClassIdentifier: 
   cooldown: 0.5
-  damage: 10
+  damage: 15
   projectile: {fileID: 8446781529688628737, guid: c0997f13448f84fa9a10100a748215b5, type: 3}
   projectileSpeed: 5

@@ -6,7 +6,7 @@ public class BuffZone : MonoBehaviour
     [SerializeField] private float buffRadius = 5f;
     [SerializeField] private ToppingTypes.Flags flag = ToppingTypes.Flags.sweet;
     [SerializeField] private BuffType buffType;
-    [SerializeField] private float buffValue = 1.5f; // Buffs should be >1 for increase
+    [SerializeField] private float buffValue = 0.6f; // Buffs should be >1 for increase
 
     private LayerMask toppingLayer;
     private HashSet<BuffManager> affectedToppings = new HashSet<BuffManager>();
@@ -39,7 +39,7 @@ public class BuffZone : MonoBehaviour
                 if (!affectedToppings.Contains(buffManager))
                 {
                     //Error line
-                    //buffManager.AddBuff(this);
+                    buffManager.AddBuff(this);
                 }
             }
         }

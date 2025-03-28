@@ -11,5 +11,4 @@ public abstract class DirectAttack : ToppingAttack
     /// </summary>
     /// <param name="targetedCherry"></param>
     public abstract void DealDamage(GameObject targetedCherry);
-
 }

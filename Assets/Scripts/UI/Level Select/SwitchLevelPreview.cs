@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class SwitchLevelPreview : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class SwitchLevelPreview : MonoBehaviour
     public Sprite backButtonImg;
     public HoverImgChange forwardHover;
     public HoverImgChange backHover;
-
+    float heldIntervalToMove = 0.5f;
 
     void Start()
     {
@@ -55,21 +56,28 @@ public class SwitchLevelPreview : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow) && forwardsButton.activeSelf == true && moving == false)
+        float leftKeyHeldTimer = 0;
+        float rightKeyHeldTimer = 0;
+        
+        if (Input.GetKeyDown(KeyCode.RightArrow) && moving == false)
         {
+            rightKeyHeldTimer += Time.deltaTime;
             forwardHover.OnPointerEnter(null);
         }
-        if (Input.GetKeyUp(KeyCode.RightArrow) && forwardsButton.activeSelf == true && moving == false)
+        if (Input.GetKeyUp(KeyCode.RightArrow) && moving == false)
         {
+            rightKeyHeldTimer = 0;
             forwardHover.OnPointerExit(null);
             OnForwardsButtonClick();
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && backButton.activeSelf == true && moving == false)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && moving == false)
         {
+            leftKeyHeldTimer += Time.deltaTime;
             backHover.OnPointerEnter(null);
         }
-        if (Input.GetKeyUp(KeyCode.LeftArrow) && backButton.activeSelf == true && moving == false)
+        if (Input.GetKeyUp(KeyCode.LeftArrow) && moving == false)
         {
+            leftKeyHeldTimer = 0;
             backHover.OnPointerExit(null);
             OnBackButtonClick();
         }
@@ -107,7 +115,7 @@ public class SwitchLevelPreview : MonoBehaviour
         levelIndex = Mathf.Clamp((levelIndex + 1), 0, levelPreviews.Length - 1);
         
         slideLeft = true;
-        LoadLevelBox(boxLoadDistance);
+        LoadLevelBox((int) loadedLevel.transform.position.x + boxLoadDistance);
         StartCoroutine(SlideLevelSelectBox(loadedLevel));
         if (levelIndex == level.Length - 1) { DisableAllComponentsExceptThis(true); }
         else { DisableAllComponentsExceptThis(false); }
@@ -121,7 +129,7 @@ public class SwitchLevelPreview : MonoBehaviour
         levelIndex = Mathf.Clamp((levelIndex - 1), 0, levelPreviews.Length - 1);
         
         slideLeft = false;
-        LoadLevelBox(-boxLoadDistance);
+        LoadLevelBox((int)loadedLevel.transform.position.x - boxLoadDistance);
         SlideBox(loadedLevel);
         if (levelIndex == 0) { backButton.SetActive(false); }
         else { backButton.SetActive(true); }

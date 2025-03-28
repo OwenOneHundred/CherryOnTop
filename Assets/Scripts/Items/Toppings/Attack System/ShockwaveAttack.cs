@@ -4,7 +4,7 @@ using UnityEngine;
 /// A ToppingAttack that shoots a shockwave in all directions if a Cherry is in range.
 /// </summary>
 [CreateAssetMenu(menuName = "Attacks/Shockwave Attack")]
-public class ShockwaveAttack : ToppingAttack
+public class ShockwaveAttack : ProjectileAttack
 {
     // Stores a reference to the prefab used as the shockwave
     [SerializeField]
@@ -34,12 +34,17 @@ public class ShockwaveAttack : ToppingAttack
         AttackCherry(targetedCherry);
     }
 
-    private void AttackCherry(GameObject targetedCherry) {
+    public override void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, int damage) {
         GameObject newShockwave = Instantiate(this.shockwave, toppingObj.transform.position, Quaternion.identity);
         newShockwave.GetComponent<Shockwave>().damage = damage;
         newShockwave.GetComponent<Shockwave>().range = range;
+        newShockwave.GetComponent<Shockwave>().owner = toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping;
 
         float duration = range / speed;
         Destroy(newShockwave, duration);
+    }
+
+    private void AttackCherry(GameObject targetedCherry) {
+        SpawnProjectile(this.shockwave, toppingObj.transform.position, Vector3.zero, Quaternion.identity, this.damage);
     }
 }

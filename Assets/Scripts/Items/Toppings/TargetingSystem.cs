@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TargetingSystem : MonoBehaviour
@@ -8,7 +9,7 @@ public class TargetingSystem : MonoBehaviour
     [SerializeField] AttackManager attackManager;
 
     protected GameObject currentCherry;
-    private List<GameObject> targetedCherries = new List<GameObject>();
+    private List<Collider> targetedCherries = new List<Collider>();
 
     void Start()
     {
@@ -28,7 +29,9 @@ public class TargetingSystem : MonoBehaviour
         GameObject bestCherry = null;
         float highestDistance = -1f;
 
-        Collider[] cherries = Physics.OverlapSphere(transform.position, range, cherryLayer);
+        List<Collider> cherries = Physics.OverlapSphere(transform.position, range, cherryLayer).ToList();
+        //Check to see if cherries are only cherries not in targetedCherries
+        cherries.RemoveAll(cherry => targetedCherries.Contains(cherry));
 
         foreach (Collider cherry in cherries)
         {
@@ -66,13 +69,13 @@ public class TargetingSystem : MonoBehaviour
 
     public void AddTargetedCherry(GameObject cherry)
     {
-        if (!targetedCherries.Contains(cherry))
+        if (!targetedCherries.Contains(cherry.GetComponent<Collider>()))
         {
-            targetedCherries.Add(cherry);
+            targetedCherries.Add(cherry.GetComponent<Collider>());
         }
     }
 
-    public List<GameObject> GetTargetedCherries()
+    public List<Collider> GetTargetedCherries()
     {
         return targetedCherries;
     }   

@@ -1,13 +1,14 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// A DirectAttack that attacks all Cherries in its target radius at once.
 /// </summary>
+[CreateAssetMenu(menuName = "Attacks/Unlimited Attack")]
 public class UnlimitedAttack : DirectAttack
 {
-    [SerializeField] List<CherryDebuff> debuffs;
-
-    public override void Start() {
+    public override void OnStart() {
         Debug.Log("Unlimited attack with a cooldown of " + this.cooldown + " seconds assigned to topping " + this.toppingObj.name + ".");
     }
 
@@ -17,14 +18,6 @@ public class UnlimitedAttack : DirectAttack
 
     public override void OnCycle(GameObject targetedCherry) {
         AttackAllCherries(toppingObj.GetComponent<TargetingSystem>().GetVisibleCherries());
-    }
-
-    public override void DealDamage(GameObject targetedCherry) {
-        targetedCherry.GetComponentInParent<CherryHitbox>().TakeDamage(
-            this.damage,
-            toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping,
-            targetedCherry.transform.position - toppingObj.transform.position);
-        targetedCherry.GetComponentInParent<DebuffManager>().AddDebuffs(debuffs);
     }
 
     /// <summary>

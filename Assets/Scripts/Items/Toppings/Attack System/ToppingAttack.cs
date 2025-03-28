@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// An abstract class representing an attack by a Topping. Child classes should override the methods in
@@ -15,6 +17,9 @@ public abstract class ToppingAttack : ScriptableObject
 
     // Represents the amount of damage each attack should do to affected Cherries.
     public int damage;
+
+    // The list of debuffs this ToppingAttack might inflict when it attacks a Cherry.
+    public List<CherryDebuff> debuffs;
 
     /// <summary>
     /// Specifies what the ToppingAttack should do as soon as it is assigned to a Topping. The topping it is assigned to

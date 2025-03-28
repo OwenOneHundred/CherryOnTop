@@ -10,5 +10,11 @@ public abstract class DirectAttack : ToppingAttack
     /// Deal damage to the targeted Cherry directly.
     /// </summary>
     /// <param name="targetedCherry"></param>
-    public abstract void DealDamage(GameObject targetedCherry);
+    protected void DealDamage(GameObject targetedCherry) {
+        targetedCherry.GetComponentInParent<CherryHitbox>().TakeDamage(
+            this.damage,
+            toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping,
+            targetedCherry.transform.position - toppingObj.transform.position);
+        targetedCherry.GetComponentInParent<DebuffManager>().AddDebuffs(debuffs);
+    }
 }

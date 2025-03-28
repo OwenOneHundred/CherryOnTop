@@ -15,7 +15,6 @@ public class LimitedAttack : DirectAttack
     // Represents the amount of time to wait before dealing damage.
     [SerializeField]
     float attackDelay;
-    [SerializeField] List<CherryDebuff> debuffs;
 
     // Represents whether the current targeted Cherry has been attacked at least once so far.
     private bool attackSuccessful = false;
@@ -36,14 +35,6 @@ public class LimitedAttack : DirectAttack
             this.toppingObj.GetComponent<AttackManager>().StartCoroutine(DelayedConditionalAttack(targetedCherry, attackDelay));
             attackSuccessful = true;
         }
-    }
-
-    public override void DealDamage(GameObject targetedCherry) {
-        targetedCherry.GetComponentInParent<CherryHitbox>().TakeDamage(
-            this.damage,
-            toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping,
-            targetedCherry.transform.position - toppingObj.transform.position);
-        targetedCherry.GetComponentInParent<DebuffManager>().AddDebuffs(debuffs);
     }
 
     /// <summary>

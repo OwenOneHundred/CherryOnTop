@@ -78,5 +78,15 @@ public class TargetingSystem : MonoBehaviour
     public List<Collider> GetTargetedCherries()
     {
         return targetedCherries;
-    }   
+    }  
+
+    public float GetRange()
+    {
+        return range;
+    }
+
+    public void SetRange(float newRange)
+    {
+        range = newRange;
+    }
 }

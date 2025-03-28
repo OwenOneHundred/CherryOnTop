@@ -21,11 +21,14 @@ public class SwitchLevelPreview : MonoBehaviour
     private bool moving = false;
     private int stopRadius = 10;
     public Sprite backButtonImg;
+    public HoverImgChange forwardHover;
+    public HoverImgChange backHover;
 
 
     void Start()
     {
-        
+        forwardHover = GetComponent<HoverImgChange>();
+        backHover = backButton.GetComponent<HoverImgChange>();
         level = new GameObject[levelPreviews.Length];
         moveButton.onClick.AddListener(OnForwardsButtonClick);
         
@@ -54,10 +57,20 @@ public class SwitchLevelPreview : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.RightArrow) && forwardsButton.activeSelf == true && moving == false)
         {
+            forwardHover.OnPointerEnter(null);
+        }
+        if (Input.GetKeyUp(KeyCode.RightArrow) && forwardsButton.activeSelf == true && moving == false)
+        {
+            forwardHover.OnPointerExit(null);
             OnForwardsButtonClick();
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) && backButton.activeSelf == true && moving == false)
         {
+            backHover.OnPointerEnter(null);
+        }
+        if (Input.GetKeyUp(KeyCode.LeftArrow) && backButton.activeSelf == true && moving == false)
+        {
+            backHover.OnPointerExit(null);
             OnBackButtonClick();
         }
         if (moving)
@@ -90,9 +103,10 @@ public class SwitchLevelPreview : MonoBehaviour
 
     void OnForwardsButtonClick()
     {
+        if (levelIndex + 1 == level.Length) { return; }
+        levelIndex = Mathf.Clamp((levelIndex + 1), 0, levelPreviews.Length - 1);
+        
         slideLeft = true;
-        //Destroy(loadedLevel);
-        levelIndex = (levelIndex + 1);
         LoadLevelBox(boxLoadDistance);
         StartCoroutine(SlideLevelSelectBox(loadedLevel));
         if (levelIndex == level.Length - 1) { DisableAllComponentsExceptThis(true); }
@@ -103,9 +117,10 @@ public class SwitchLevelPreview : MonoBehaviour
 
     public void OnBackButtonClick()
     {
+        if (levelIndex == 0) { return; }
+        levelIndex = Mathf.Clamp((levelIndex - 1), 0, levelPreviews.Length - 1);
+        
         slideLeft = false;
-        //Destroy(loadedLevel);
-        levelIndex = (levelIndex - 1);
         LoadLevelBox(-boxLoadDistance);
         SlideBox(loadedLevel);
         if (levelIndex == 0) { backButton.SetActive(false); }

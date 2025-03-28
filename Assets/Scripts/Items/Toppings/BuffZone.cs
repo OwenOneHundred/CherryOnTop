@@ -12,7 +12,7 @@ public class BuffZone : MonoBehaviour {
 
     public BuffType BuffType => buffType;
     public float BuffValue => buffValue;
-    
+
     void Start()
     {
         towerLayer = LayerMask.GetMask("Tower");
@@ -27,13 +27,13 @@ public class BuffZone : MonoBehaviour {
 
     void UpdateBuffs()
     {
-        /*
+        
          if (BuffManager.Instance == null)
         {
             Debug.LogWarning("BuffManager instance not found!");
             return;
         }
-        */
+        
 
         Collider[] towers = Physics.OverlapSphere(transform.position, buffRadius, towerLayer);
         HashSet<AttackManager> currentTowers = new HashSet<AttackManager>();
@@ -48,7 +48,7 @@ public class BuffZone : MonoBehaviour {
                     currentTowers.Add(am);
                     if (!affectedTowers.Contains(am))
                     {
-                        //BuffManager.Instance.AddBuff(am, this);
+                        BuffManager.Instance.AddBuff(am, this);
                     }
                 }
             }
@@ -59,7 +59,7 @@ public class BuffZone : MonoBehaviour {
         {
             if (!currentTowers.Contains(am))
             {
-                //BuffManager.Instance.RemoveBuff(am, this);
+                BuffManager.Instance.RemoveBuff(am, this);
                 affectedTowers.Remove(am);
             }
         }
@@ -72,7 +72,7 @@ public class BuffZone : MonoBehaviour {
     {
         foreach (AttackManager am in affectedTowers)
         {
-            //BuffManager.Instance.RemoveBuff(am, this);
+            BuffManager.Instance.RemoveBuff(am, this);
         }
     }
 

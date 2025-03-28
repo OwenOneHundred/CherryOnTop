@@ -3,19 +3,15 @@ using System.Collections.Generic;
 
 public class BuffManager : MonoBehaviour
 {
-    public static BuffManager Instance { get; private set; }
+
+public static BuffManager Instance;
 
     private Dictionary<AttackManager, List<BuffZone>> activeBuffs = 
         new Dictionary<AttackManager, List<BuffZone>>();
 
-    void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-            return;
-        }
-        Instance = this;
+    void Awake() {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
     public void AddBuff(AttackManager tower, BuffZone buffSource)
@@ -59,7 +55,7 @@ public class BuffManager : MonoBehaviour
             }
         }
 
-        //tower.SetEffectiveCooldown(tower.BaseCooldown * cooldownMultiplier);
+        //tower.attack.damage = (tower.BaseCooldown * cooldownMultiplier);
         //tower.SetEffectiveDamage(Mathf.RoundToInt(tower.BaseDamage * damageMultiplier));
     }
 }

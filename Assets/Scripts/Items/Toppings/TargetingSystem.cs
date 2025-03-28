@@ -34,12 +34,14 @@ public class TargetingSystem : MonoBehaviour
         //Check to see if cherries are only cherries not in targetedCherries
         cherries.RemoveAll(cherry => targetedCherries.Contains(cherry));
 
+        List<Collider> newVisibleCherries = new List<Collider>();
+
         foreach (Collider cherry in cherries)
         {
             CherryMovement cherryMovement = cherry.transform.root.GetComponent<CherryMovement>();
-            if (HasClearLineOfSight(cherry.transform)) 
+            if (HasClearLineOfSight(cherry.transform))
             {
-                visibleCherries.Add(cherry);
+                newVisibleCherries.Add(cherry);
             
                 if (cherryMovement != null)
                 {
@@ -51,6 +53,8 @@ public class TargetingSystem : MonoBehaviour
                 }
             }
         }
+
+        visibleCherries = newVisibleCherries;
 
         return bestCherry;
     }

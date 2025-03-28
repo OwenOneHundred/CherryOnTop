@@ -76,6 +76,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         Inventory.inventory.Money += sellPrice;
         EventBus<SellEvent>.Raise(new SellEvent(item, toppingObj));
+        item.DeregisterEffects();
 
         Destroy(gameObject);
         Destroy(toppingObj);

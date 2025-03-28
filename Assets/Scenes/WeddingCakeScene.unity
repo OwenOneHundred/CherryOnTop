@@ -1454,20 +1454,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: startingInventoryItems.Array.size
-      value: 11
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: 'startingInventoryItems.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}
+      objectReference: {fileID: 11400000, guid: 1a7d1419538e34493891572cced33a96, type: 2}
     - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: 'startingInventoryItems.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}
+      objectReference: {fileID: 11400000, guid: 1a7d1419538e34493891572cced33a96, type: 2}
     - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: 'startingInventoryItems.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}
+      objectReference: {fileID: 11400000, guid: 1a7d1419538e34493891572cced33a96, type: 2}
     - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: 'startingInventoryItems.Array.data[3]'
       value: 

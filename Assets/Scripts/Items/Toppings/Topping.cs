@@ -22,7 +22,6 @@ public class Topping : Item
         {
             for (int j = 0; j < effectsAndWhen[i].effectSOs.Count; j++)
             {   
-                Debug.Log("Setting up " + effectsAndWhen[i].effectSOs[j].name + " with obj " + obj.name);
                 effectsAndWhen[i].effectSOs[j].toppingObj = obj;
             }
         }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 621aa339e9106416292156a407407f11, type: 3}
-  m_Name: GetReroll
+  m_Name: GetReroll50%
   m_EditorClassIdentifier: 
   rerolls: 1
   chanceOfHappening0to1: 0.5

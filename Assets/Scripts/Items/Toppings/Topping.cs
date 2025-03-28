@@ -16,13 +16,14 @@ public class Topping : Item
     public GameObject towerPrefab;
     public ToppingTypes.Flags flags;
 
-    public void SetGameObjectOnEffects(GameObject prefab)
+    public void SetGameObjectOnEffects(GameObject obj)
     {
         for (int i = 0; i < effectsAndWhen.Count; i++)
         {
             for (int j = 0; j < effectsAndWhen[i].effectSOs.Count; j++)
             {   
-                effectsAndWhen[i].effectSOs[j].toppingObj = prefab;
+                Debug.Log("Setting up " + effectsAndWhen[i].effectSOs[j].name + " with obj " + obj.name);
+                effectsAndWhen[i].effectSOs[j].toppingObj = obj;
             }
         }
     }

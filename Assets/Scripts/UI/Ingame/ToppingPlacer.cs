@@ -218,9 +218,10 @@ public class ToppingPlacer : MonoBehaviour
         EventBus<TowerPlacedEvent>.Raise(new TowerPlacedEvent(topping, newToppingObj)); // call placed tower event
         Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 6); // create particle effect
 
-        topping.SetGameObjectOnEffects(newToppingObj);
-
         if (playSound) { SoundEffectManager.sfxmanager.PlayOneShot(placeSound); }
+
+        topping.RegisterEffects();
+        topping.SetGameObjectOnEffects(newToppingObj);
 
         Inventory.inventory.RemoveItem(topping); // remove from inventory
     }

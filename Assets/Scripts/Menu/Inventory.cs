@@ -108,10 +108,10 @@ public class Inventory : MonoBehaviour
     public void AddItem(Item item)
     {
         item = Instantiate(item); // Item SOs are currently instantiated here, when added to inventory.
+        item.SetUpEffectsAndWhen(); // Item SOs' effects are instantiated here.
 
         ownedItems.Add(item);
         inventoryRenderer.AddItemToDisplay(item);
-        item.Initialize();
     }
 
     public void RemoveItem(Item item)

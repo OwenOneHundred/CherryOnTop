@@ -1283,10 +1283,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5176896722681871329, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
-      propertyPath: defaultSong.volume
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 8855493245014057152, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -1336,6 +1332,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 429883016145418252, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9056604
+      objectReference: {fileID: 0}
+    - target: {fileID: 429883016145418252, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8554435
+      objectReference: {fileID: 0}
+    - target: {fileID: 429883016145418252, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_Color.r
+      value: 0.83303666
+      objectReference: {fileID: 0}
     - target: {fileID: 2453157323036994659, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: m_Name
       value: IngameUI
@@ -1352,6 +1360,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4895827520771590193, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5240731520611939880, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1362,6 +1374,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5240731520611939880, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5240731520611939880, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5964487472042778191, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
@@ -1445,12 +1461,64 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: initialMoney
-      value: 10
+      propertyPath: startingInventoryItems.Array.size
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8759114289087427388, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: moneyOnRoundEnd
-      value: 5
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'startingInventoryItems.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 37436afdd3ed94eccb945b18ff3f93d3, type: 2}
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'startingInventoryItems.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1a7d1419538e34493891572cced33a96, type: 2}
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'startingInventoryItems.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1a7d1419538e34493891572cced33a96, type: 2}
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'startingInventoryItems.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'startingInventoryItems.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'startingInventoryItems.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'startingInventoryItems.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'startingInventoryItems.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'startingInventoryItems.Array.data[8]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'startingInventoryItems.Array.data[9]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'startingInventoryItems.Array.data[10]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8628b5031472646ae86561ad2d59b776, type: 2}
+    - target: {fileID: 6519976679556402251, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519976679556402251, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519976679556402251, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Globalization;
+using UnityEditor.PackageManager;
+using EventBus;
 
 public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -9,18 +11,20 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     [SerializeField] TMPro.TextMeshProUGUI itemType;
     [SerializeField] TMPro.TextMeshProUGUI description;
     [SerializeField] TMPro.TextMeshProUGUI toppingType;
-    [SerializeField] TMPro.TextMeshProUGUI sellPrice;
+    [SerializeField] TMPro.TextMeshProUGUI sellPriceText;
     EventSystem eventSystem;
     bool hovered = false;
     bool isFirstFrame = true;
     Item item;
+    GameObject toppingObj;
+    int sellPrice = 0;
 
     void Awake()
     {
         eventSystem = GameObject.FindAnyObjectByType<EventSystem>();
         if (eventSystem == null) { Debug.LogWarning("No event system in scene."); }
     }
-    public void SetUp(Item item)
+    public void SetUp(Item item, GameObject toppingObj)
     {
         this.item = item;
         if (item == null) { return; }
@@ -36,14 +40,16 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         nameText.text = item.name.Replace("(Clone)", "");
         description.text = item.description;
-        sellPrice.text = "Sell " + (item.price / 2);
+        sellPrice = item.price / 2;
+        sellPriceText.text = "Sell: $" + sellPrice;
+        this.toppingObj = toppingObj;
     }
 
     public void Clear()
     {
         nameText.text = "";
         description.text = "";
-        sellPrice.text = "";
+        sellPriceText.text = "";
         itemType.text = "";
         toppingType.text = "";
         item = null;
@@ -68,8 +74,12 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnSell()
     {
-        Destroy(gameObject);
+        Inventory.inventory.Money += sellPrice;
+        EventBus<SellEvent>.Raise(new SellEvent(item, toppingObj));
+        item.DeregisterEffects();
 
+        Destroy(gameObject);
+        Destroy(toppingObj);
     }
 
     public void OnPointerExit(PointerEventData eventData)

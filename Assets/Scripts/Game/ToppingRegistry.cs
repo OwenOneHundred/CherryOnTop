@@ -29,6 +29,11 @@ public class ToppingRegistry : MonoBehaviour
         return placedToppings;
     }
 
+    public GameObject GetToppingObj(Topping topping)
+    {
+        return placedToppings.First(x => x.topping == topping).obj;
+    }
+
     public struct ItemInfo
     {
         public Topping topping;

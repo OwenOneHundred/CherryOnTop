@@ -16,14 +16,40 @@ public class Topping : Item
     public GameObject towerPrefab;
     public ToppingTypes.Flags flags;
 
-    public void SetGameObjectOnEffects(GameObject prefab)
+    public void SetGameObjectOnEffects(GameObject obj)
     {
         for (int i = 0; i < effectsAndWhen.Count; i++)
         {
             for (int j = 0; j < effectsAndWhen[i].effectSOs.Count; j++)
             {   
-                effectsAndWhen[i].effectSOs[j].toppingObj = prefab;
+                effectsAndWhen[i].effectSOs[j].toppingObj = obj;
             }
         }
+    }
+
+    public int killsThisRound = 0;
+    [SerializeField] List<EffectSO> onHitCherry = new List<EffectSO>();
+    [SerializeField] List<EffectSO> onKillCherry = new List<EffectSO>();
+
+    public void OnHitCherry(CherryHitbox cherry)
+    {
+        foreach (EffectSO effectSO in onHitCherry)
+        {
+            effectSO.OnTriggered(null);
+        }
+    }
+
+    public void OnKillCherry(CherryHitbox cherry)
+    {
+        killsThisRound += 1;
+        foreach (EffectSO effectSO in onKillCherry)
+        {
+            effectSO.OnTriggered(null);
+        }
+    }
+
+    public void OnRoundEnd()
+    {
+        killsThisRound = 0;
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using EventBus;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -93,11 +94,13 @@ public class Shop : MonoBehaviour
         if (rerolls > 0)
         {
             rerolls -= 1;
+            EventBus<RerollEvent>.Raise(new RerollEvent());
             RerollItems();
         }
         else if (Inventory.inventory.Money >= rerollPrice)
         {
             Inventory.inventory.Money -= rerollPrice;
+            EventBus<RerollEvent>.Raise(new RerollEvent());
             RerollItems();
         }
         else 

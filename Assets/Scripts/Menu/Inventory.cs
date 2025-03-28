@@ -105,6 +105,13 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
+    public void GetItemForFree(Item item)
+    {
+        SoundEffectManager.sfxmanager.PlayOneShot(buySFX);
+
+        AddItem(item);
+    }
+
     public void AddItem(Item item)
     {
         item = Instantiate(item); // Item SOs are currently instantiated here, when added to inventory.

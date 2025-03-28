@@ -46,15 +46,15 @@ namespace EventBus
         public GameObject newToppingObj;
     }
 
-    public struct CherryHitEvent : IEvent
-    {
-        public CherryHitbox cherry; // replace with better reference to the cherry
-    }
-
     public struct RoundEndEvent : IEvent
     {
 
     }
+
+    public struct RerollEvent : IEvent
+    {
+
+    }   
 
     // Create other event structs here to indicate kinds of different events
     // For each new IEvent struct declared, a new EventBus<?> will be created, where

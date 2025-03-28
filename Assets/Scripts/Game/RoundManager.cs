@@ -57,6 +57,14 @@ public class RoundManager : MonoBehaviour
         nextRoundButton.interactable = true;
         Inventory.inventory.Money += moneyOnRoundEnd;
         cherriesKilledThisRoundCount = 0;
+
+        // This is sort of bad code but oh well
+        foreach (ToppingRegistry.ItemInfo itemInfo in ToppingRegistry.toppingRegistry.GetAllPlacedToppings())
+        {
+            itemInfo.topping.OnRoundEnd();
+        }
+        EventBus<RoundEndEvent>.Raise(new RoundEndEvent());
+
     }
 
     public void OnCherryKilled()

@@ -41,6 +41,14 @@ public class DebuffManager : MonoBehaviour
         debuffCopy.OnAdded(gameObject);
     }
 
+    public void AddDebuffs(List<CherryDebuff> cherryDebuffs)
+    {
+        foreach (CherryDebuff cherryDebuff in cherryDebuffs)
+        {
+            AddDebuff(cherryDebuff);
+        }
+    }
+
     /// <summary>
     /// Removes a debuff from a cherry
     /// </summary>

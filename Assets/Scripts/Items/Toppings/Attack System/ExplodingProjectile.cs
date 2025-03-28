@@ -6,16 +6,38 @@ using UnityEngine;
 public class ExplodingProjectile : Projectile
 {
     [SerializeField]
-    GameObject particleEmitter;
+    GameObject shockwave;
+
+    [SerializeField]
+    int shockwaveDamage;
+
+    [SerializeField]
+    float shockwaveSpeed;
+
+    [SerializeField]
+    float shockwaveRange;
 
     public override void OnHitCherry(CherryHitbox ch) {
         Destroy(gameObject);
         Explode();
     }
 
-    private void Explode() {
-        GameObject newParticleEmitter = Instantiate(particleEmitter, transform.position, Quaternion.identity);
+    [SerializeField] float cameraShakeViolence = 1;
+    [SerializeField] float cameraShakeLength = 0;
+    [SerializeField] AudioFile onHitSound;
 
-        Destroy(newParticleEmitter, 5);
+    private void Explode() {
+        GameObject newShockwave = Instantiate(shockwave, transform.position, Quaternion.identity);
+        Shockwave shockwaveComponent = newShockwave.GetComponent<Shockwave>();
+        newShockwave.GetComponent<Shockwave>().speed = shockwaveSpeed;
+        shockwaveComponent.range = shockwaveRange;
+        shockwaveComponent.SetDamage(shockwaveDamage);
+        shockwaveComponent.owner = owner;
+        
+        if (cameraShakeLength > 0)
+        {
+            Camera.main.transform.parent.GetComponent<CameraControl>().ApplyCameraShake(cameraShakeLength, cameraShakeViolence);
+        }
+        SoundEffectManager.sfxmanager.PlayOneShot(onHitSound);
     }
 }

@@ -13,6 +13,7 @@ public class AttackManager : MonoBehaviour
     // Stores a copy of this attack for this particular Topping
     private ToppingAttack attack;
 
+    [SerializeField]
     // Keeps track of the current targeted Cherry. Should be null if there are no Cherries in range
     GameObject targetedCherry;
 
@@ -90,6 +91,10 @@ public class AttackManager : MonoBehaviour
             this.attack.cooldown = cooldown;
             timer = 0;
         }
+    }
+
+    public float GetAttackCooldown() {
+        return attack.cooldown;
     }
 
     /// <summary>

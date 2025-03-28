@@ -15,6 +15,10 @@ MonoBehaviour:
   price: 5
   shopSprite: {fileID: 0}
   effectsAndWhen: []
-  description: 
+  description: Deals a massive 200 damage to the first 5 cherries to come near each
+    round.
   towerPrefab: {fileID: 8950779018285670198, guid: b14f1f4b256964b0697ed15529a76a74, type: 3}
   flags: 1024
+  killsThisRound: 0
+  onHitCherry: []
+  onKillCherry: []

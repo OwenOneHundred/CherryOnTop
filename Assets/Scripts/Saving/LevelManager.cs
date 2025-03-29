@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour
         {
             if (_saveData == null)
             {
-                _saveData = SaveData.LoadData(_saveFileName);
+                _saveData = SaveDataUtility.LoadSaveData(_saveFileName, "defaultlevel");
             }
             return _saveData;
         }
@@ -133,10 +133,10 @@ public class LevelManager : MonoBehaviour
         }
         DEAllTowers towers = new DEAllTowers("alltowers", allTowers);
         DEAllItemsInventory items = new DEAllItemsInventory("allinventory", allInventory);
-        saveData.SetData(towers, true);
-        saveData.SetData(items, true);
-        SaveData._useEncryptions = _encryptData;
-        SaveData.WriteData(saveData);
+        saveData.SetDataEntry(towers, true);
+        saveData.SetDataEntry(items, true);
+        SaveDataUtility._useEncryptions = _encryptData;
+        SaveDataUtility.WriteSaveData(saveData);
         Debug.Log("Done saving level data!");
     }
 
@@ -153,13 +153,13 @@ public class LevelManager : MonoBehaviour
                 potentialToppings.Add(topping);
             }
         }
-        if (saveData.TryGetData("alltowers", out DEAllTowers towerWrapper)) {
+        if (saveData.TryGetDataEntry("alltowers", out DEAllTowers towerWrapper)) {
             foreach (DETowerPlaced tower in towerWrapper.towers)
             {
                 toppingPlacer.PlaceTopping(potentialToppings[tower.towerIndex], tower.pos.positionData, Quaternion.Euler(tower.pos.eulers));
             }
         }
-        if (saveData.TryGetData("allinventory", out DEAllItemsInventory itemsWrapper))
+        if (saveData.TryGetDataEntry("allinventory", out DEAllItemsInventory itemsWrapper))
         {
             foreach (DEItemInventory item in  itemsWrapper.items)
             {

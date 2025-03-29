@@ -26,8 +26,8 @@ public class CherrySpawner : MonoBehaviour
     {
         bool roundNumberIsOdd = RoundManager.roundManager.roundNumber % 2 == 1;
         float scaleFactor = (Mathf.Pow(RoundManager.roundManager.roundNumber, 1.1f) / 2.5f) + 0.6f;
-        float totalCherries = scaleFactor * defaultCherriesPerRound * (roundNumberIsOdd ? oddNumberCherryCountMultiplier : 1);
-        RoundManager.roundManager.totalCherriesThisRound = Mathf.RoundToInt(totalCherries);
+        int totalCherries = Mathf.RoundToInt(scaleFactor * defaultCherriesPerRound * (roundNumberIsOdd ? oddNumberCherryCountMultiplier : 1));
+        RoundManager.roundManager.totalCherriesThisRound = totalCherries;
         float timeBetweenCherries = defaultTimeBetweenCherries / (scaleFactor * (roundNumberIsOdd ? 1 : evenNumberCherrySpacingMultiplier));
 
         for (int i = 0; i < totalCherries; i++)

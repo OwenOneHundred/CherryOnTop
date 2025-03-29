@@ -44,6 +44,7 @@ public class RoundManager : MonoBehaviour
         ingameUI.SetRound(roundNumber);
         roundState = RoundState.cherries;
         nextRoundButton.interactable = false;
+        cherriesKilledThisRoundCount = 0;
 
         EventBus<RoundStartEvent>.Raise(new RoundStartEvent(roundNumber));
 

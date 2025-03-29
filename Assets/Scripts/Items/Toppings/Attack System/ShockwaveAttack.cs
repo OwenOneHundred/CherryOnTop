@@ -19,7 +19,7 @@ public class ShockwaveAttack : ProjectileAttack
     float range;
 
     public override void OnStart() {
-        Debug.Log("Shockwave attack with a cooldown of " + this.cooldown + " assigned to topping " + this.toppingObj.name + ".");
+        
         if (speed == 0) {
             Debug.Log("Shockwave speed cannot be 0. Setting the speed to 1 by default.");
             speed = 1;
@@ -27,7 +27,7 @@ public class ShockwaveAttack : ProjectileAttack
     }
 
     public override void OnNewCherryFound(GameObject newTargetedCherry) {
-        Debug.Log("New Cherry Targeted");
+
     }
 
     public override void OnCycle(GameObject targetedCherry) {

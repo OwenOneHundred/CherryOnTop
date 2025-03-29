@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class TargetingSystem : MonoBehaviour
@@ -83,6 +84,16 @@ public class TargetingSystem : MonoBehaviour
         {
             targetedCherries.Add(cherry.GetComponent<Collider>());
         }
+    }
+
+    public float GetRange()
+    {
+        return range;
+    }
+
+    public void SetRange(float range)
+    {
+        this.range = range;
     }
 
     public List<Collider> GetTargetedCherries()

@@ -202,7 +202,7 @@ public class ToppingPlacer : MonoBehaviour
 
     private void StopPlacingTopping()
     {
-        iconControl.beingPlaced = false;
+        iconControl.StopPlacing();
         iconControl = null;
         transparentObject.SetActive(false);
     }

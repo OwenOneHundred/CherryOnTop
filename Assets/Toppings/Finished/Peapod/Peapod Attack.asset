@@ -19,4 +19,4 @@ MonoBehaviour:
   projectileSpeed: 0
   fireSound:
     volume: 0.25
-    clip: {fileID: 8300000, guid: 8bc3c85b47a184ed4a3b231b852e686d, type: 3}
+    clip: {fileID: 8300000, guid: 5ba3203a8ddc54ad8b3902c70ab5d827, type: 3}

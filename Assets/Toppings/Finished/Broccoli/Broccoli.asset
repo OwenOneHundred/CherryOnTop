@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
+  m_Name: Broccoli
+  m_EditorClassIdentifier: 
+  price: 6
+  shopSprite: {fileID: 21300000, guid: b7a5c9c5035f64a788a3ce420e057ee4, type: 3}
+  effectsAndWhen:
+  - effectSOs:
+    - {fileID: 11400000, guid: 1a76f09b0e3c8415f88d5b66b7d5bb22, type: 2}
+    eventSOs:
+    - {fileID: 11400000, guid: 21a2b2029de304a2e9b962c8cd1956a1, type: 2}
+  description: Shoots big, slow balls of broccoli. For each produce topping on the
+    cake at the end of the round, 1/4 chance to get a free reroll.
+  towerPrefab: {fileID: 4464501068049243858, guid: 79fb4d51bc47149e4936c5862b0a6627, type: 3}
+  flags: 48
+  cakePoints: 10
+  onHitCherry: []
+  onKillCherry: []

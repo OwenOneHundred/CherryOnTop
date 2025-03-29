@@ -166,8 +166,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assignedTopping: {fileID: 0}
+  beingPlaced: 0
   image: {fileID: 3344438937773902819}
   outline: {fileID: 7352315080489180363}
+  infoPopupPrefab: {fileID: 5143935969253856157, guid: 8366678d3fd414bfcb7312b4366fb4bf, type: 3}
 --- !u!1 &8775753773478501105
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,11 +16,11 @@ public class SpreadAttack : ProjectileAttack
     double spreadAngle;
 
     public override void OnStart() {
-        Debug.Log("Spread attack with a cooldown of " + this.cooldown + " assigned to topping " + this.toppingObj.name + ".");
+        
     }
 
     public override void OnNewCherryFound(GameObject newTargetedCherry) {
-         Debug.Log("New Cherry Targeted");
+
     }
 
     public override void OnCycle(GameObject targetedCherry) {

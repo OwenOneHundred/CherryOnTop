@@ -34,6 +34,11 @@ public class ToppingRegistry : MonoBehaviour
         return placedToppings.First(x => x.topping == topping).obj;
     }
 
+    public List<ItemInfo> GetAllToppingsOfType(ToppingTypes.Flags flags)
+    {
+        return placedToppings.Where(x => x.topping.flags.HasAny(flags)).ToList();
+    } 
+
     public struct ItemInfo
     {
         public Topping topping;

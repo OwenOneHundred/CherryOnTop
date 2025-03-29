@@ -12,7 +12,7 @@ public class ExplodingProjectile : Projectile
     int shockwaveDamage;
 
     [SerializeField]
-    float shockwaveSpeed;
+    float shockwaveSpeed = 1;
 
     [SerializeField]
     float shockwaveRange;

@@ -18,6 +18,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     Item item;
     GameObject toppingObj;
     int sellPrice = 0;
+    bool isInventoryItem = false;
 
     void Awake()
     {
@@ -26,6 +27,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
     public void SetUp(Item item, GameObject toppingObj)
     {
+        isInventoryItem = false;
         this.item = item;
         if (item == null) { return; }
         if (item is Topping topping)
@@ -43,6 +45,27 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         sellPrice = item.price / 2;
         sellPriceText.text = "Sell: $" + sellPrice;
         this.toppingObj = toppingObj;
+    }
+
+    public void SetUpForInventoryItem(Item item)
+    {
+        isInventoryItem = true;
+        this.item = item;
+        if (item == null) { return; }
+        if (item is Topping topping)
+        {
+            toppingType.text = ToTitleCase(topping.flags.ToString());
+            itemType.text = "Topping";
+        }
+        else
+        {
+            itemType.text = "Ingredient";
+        }
+
+        nameText.text = item.name.Replace("(Clone)", "");
+        description.text = item.description;
+        sellPrice = item.price / 2;
+        sellPriceText.text = "Sell: $" + sellPrice;
     }
 
     public void Clear()
@@ -79,7 +102,14 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         item.DeregisterEffects();
 
         Destroy(gameObject);
-        Destroy(toppingObj);
+        if (toppingObj != null)
+        {
+            Destroy(toppingObj);
+        }
+        if (isInventoryItem)
+        {
+            Inventory.inventory.RemoveItem(item);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)

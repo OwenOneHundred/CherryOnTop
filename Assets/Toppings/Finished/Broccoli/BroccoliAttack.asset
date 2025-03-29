@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfa5ddee62ca0e145b2a85463bea3cdf, type: 3}
-  m_Name: OrangeAttack
+  m_Name: BroccoliAttack
   m_EditorClassIdentifier: 
-  cooldown: 1.3
-  damage: 5
+  cooldown: 1.2
+  damage: 16
   debuffs: []
-  projectile: {fileID: 1373519935423302513, guid: 4a93f91688e72d443a166bcaeddc5fde, type: 3}
-  projectileSpeed: 5
+  projectile: {fileID: 1373519935423302513, guid: 337208d6d59e04b22a185e29c0bbb273, type: 3}
+  projectileSpeed: 3
   fireSound:
     volume: 0.5
     clip: {fileID: 0}

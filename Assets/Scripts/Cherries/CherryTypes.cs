@@ -1,12 +1,23 @@
+using System.Drawing;
 using UnityEngine;
 
 public class CherryTypes : MonoBehaviour
 {
     public CherrySize cherrySize;
     public CherryType cherryType;
-    public float cherryHealth;
-    public float cherrySpeed;
+    //public float cherryHealth;
+    //public float cherrySpeed;
+    public CherryHitbox cherryHitbox;
+    public CherryMovement cherryMovement;
 
+    public void Start()
+    {
+        cherryHitbox = GetComponent<CherryHitbox>();
+        cherryMovement = GetComponent<CherryMovement>();
+        //cherryHealth = cherryHitbox.cherryHealth;
+        //cherrySpeed = cherryMovement.baseSpeed;
+        SetCherryHealthAndSpeed();
+    }
 
     public enum CherrySize
     {
@@ -25,33 +36,26 @@ public class CherryTypes : MonoBehaviour
         CherryBlossom = 3
     }
 
-    public void SetCherryProperties(CherrySize size, CherryType type)
-    {
-        cherrySize = size;
-        cherryType = type;
-        SetCherryHealthAndSpeed();
-    }
-
     // Sets Cherry Health and Speed based on a cherry's given size
     public void SetCherryHealthAndSpeed()
     {
         switch (cherrySize)
         {
             case CherrySize.Small:
-                cherryHealth *= 0.75f;
-                cherrySpeed *= 1.5f;
+                cherryHitbox.cherryHealth *= 0.75f;
+                cherryMovement.baseSpeed *= 1.5f;
                 break;
             case CherrySize.Normal:
-                cherryHealth *= 1.0f;
-                cherrySpeed *= 1.0f;
+                cherryHitbox.cherryHealth *= 1.0f;
+                cherryMovement.baseSpeed *= 1.0f;
                 break;
             case CherrySize.Large:
-                cherryHealth *= 1.5f;
-                cherrySpeed *= 0.75f;
+                cherryHitbox.cherryHealth *= 1.5f;
+                cherryMovement.baseSpeed *= 0.75f;
                 break;
             case CherrySize.SuperLarge:
-                cherryHealth *= 2.0f;
-                cherrySpeed *= 0.5f;
+                cherryHitbox.cherryHealth *= 2.0f;
+                cherryMovement.baseSpeed *= 0.5f;
                 break;
         }
     }

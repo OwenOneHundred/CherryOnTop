@@ -36,6 +36,7 @@ public class Shop : MonoBehaviour
     [SerializeField] AudioFile error;
     [SerializeField] AudioFile openShop;
     [SerializeField] AudioFile closeShop;
+    [SerializeField] AudioFile rerollSound;
     public static Shop shop;
     public ShopInfoPanel shopInfoPanel;
     public void Awake()
@@ -91,16 +92,18 @@ public class Shop : MonoBehaviour
 
     public void OnClickReroll()
     {
-        if (rerolls > 0)
+        if (Rerolls > 0)
         {
-            rerolls -= 1;
+            Rerolls -= 1;
             EventBus<RerollEvent>.Raise(new RerollEvent());
+            SoundEffectManager.sfxmanager.PlayOneShot(rerollSound);
             RerollItems();
         }
         else if (Inventory.inventory.Money >= rerollPrice)
         {
             Inventory.inventory.Money -= rerollPrice;
             EventBus<RerollEvent>.Raise(new RerollEvent());
+            SoundEffectManager.sfxmanager.PlayOneShot(rerollSound);
             RerollItems();
         }
         else 

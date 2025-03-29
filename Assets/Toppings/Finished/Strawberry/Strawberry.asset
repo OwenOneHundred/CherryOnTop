@@ -22,6 +22,6 @@ MonoBehaviour:
   description: No attack. Gain $6 if money ends with 0 at round start.
   towerPrefab: {fileID: 3168703936671645054, guid: 9637d26c2e2d74f2cae7d29bc25a49d4, type: 3}
   flags: 208
-  killsThisRound: 0
+  cakePoints: 45
   onHitCherry: []
   onKillCherry: []

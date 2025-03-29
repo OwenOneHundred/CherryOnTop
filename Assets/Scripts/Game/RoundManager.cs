@@ -58,13 +58,12 @@ public class RoundManager : MonoBehaviour
         Inventory.inventory.Money += moneyOnRoundEnd;
         cherriesKilledThisRoundCount = 0;
 
+        EventBus<RoundEndEvent>.Raise(new RoundEndEvent()); // the order of this and OnRoundEnd DOES matter
         // This is sort of bad code but oh well
         foreach (ToppingRegistry.ItemInfo itemInfo in ToppingRegistry.toppingRegistry.GetAllPlacedToppings())
         {
             itemInfo.topping.OnRoundEnd();
         }
-        EventBus<RoundEndEvent>.Raise(new RoundEndEvent());
-
     }
 
     public void OnCherryKilled()

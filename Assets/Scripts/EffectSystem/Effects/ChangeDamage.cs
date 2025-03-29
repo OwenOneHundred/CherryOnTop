@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Effects/ChangeDamageEveryRound")]
-public class GetWeakerEveryRound : EffectSO
+public class ChangeDamage : EffectSO
 {
     bool firstTimeTriggered = true;
     int damage = 0;
-    [SerializeField] int damageChangePerRound = -2;
+    [SerializeField] int damageChange = -2;
     AttackManager attackManager;
     public override void OnTriggered(EventBus.IEvent eventObject)
     {
@@ -18,7 +19,7 @@ public class GetWeakerEveryRound : EffectSO
             firstTimeTriggered = false;
         }
 
-        damage = Mathf.Clamp(damage + damageChangePerRound, 0, int.MaxValue);
+        damage = Mathf.Clamp(damage + damageChange, 0, int.MaxValue);
         attackManager.AttackDamage = damage;
     }
 }

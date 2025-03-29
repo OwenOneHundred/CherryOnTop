@@ -23,6 +23,6 @@ MonoBehaviour:
     Whenever you buy something, 50% chance to get a free reroll.
   towerPrefab: {fileID: 3673782625892268231, guid: d87b9ee14a62b48b8b83d22653e30792, type: 3}
   flags: 0
-  killsThisRound: 0
+  cakePoints: -40
   onHitCherry: []
   onKillCherry: []

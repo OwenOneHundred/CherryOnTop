@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Checker Stack
   m_EditorClassIdentifier: 
-  price: 5
+  price: 10
   shopSprite: {fileID: 21300000, guid: c7e541db5672f4971bba0ae3c5eeb567, type: 3}
   effectsAndWhen:
   - effectSOs:
@@ -23,6 +23,6 @@ MonoBehaviour:
     you reroll, also get a checker topping.
   towerPrefab: {fileID: 4272828566230276255, guid: edaa62ffa6eae4a19843dcc012197090, type: 3}
   flags: 0
-  killsThisRound: 0
+  cakePoints: 5
   onHitCherry: []
   onKillCherry: []

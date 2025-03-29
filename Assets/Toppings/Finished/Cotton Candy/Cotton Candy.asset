@@ -18,3 +18,6 @@ MonoBehaviour:
   description: Fires a shockwave at a slow rate that massively slows hit cherries.
   towerPrefab: {fileID: 393780810997626349, guid: d83fdd6fa5fcb43b79839c399a7b8f44, type: 3}
   flags: 384
+  cakePoints: 0
+  onHitCherry: []
+  onKillCherry: []

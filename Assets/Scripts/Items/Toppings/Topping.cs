@@ -26,13 +26,16 @@ public class Topping : Item
             }
         }
     }
+    [SerializeField] float cakePoints = 10;
 
-    public int killsThisRound = 0;
+    [System.NonSerialized] public int killsThisRound = 0;
+    [System.NonSerialized] public int damagedCherriesThisRound = 0;
     [SerializeField] List<EffectSO> onHitCherry = new List<EffectSO>();
     [SerializeField] List<EffectSO> onKillCherry = new List<EffectSO>();
 
     public void OnHitCherry(CherryHitbox cherry)
     {
+        damagedCherriesThisRound += 1;
         foreach (EffectSO effectSO in onHitCherry)
         {
             effectSO.OnTriggered(null);
@@ -51,5 +54,6 @@ public class Topping : Item
     public void OnRoundEnd()
     {
         killsThisRound = 0;
+        damagedCherriesThisRound = 0;
     }
 }

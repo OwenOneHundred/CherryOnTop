@@ -23,6 +23,6 @@ MonoBehaviour:
     round.
   towerPrefab: {fileID: 8844320974030995347, guid: 160ad15137fab478bb9643fe5eb7f2d3, type: 3}
   flags: 0
-  killsThisRound: 0
+  cakePoints: -30
   onHitCherry: []
   onKillCherry: []

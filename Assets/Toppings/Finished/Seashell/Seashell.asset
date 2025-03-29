@@ -16,7 +16,7 @@ MonoBehaviour:
   shopSprite: {fileID: 21300000, guid: e91d130b32afb4bb7a8660ff9fea4d4a, type: 3}
   effectsAndWhen:
   - effectSOs:
-    - {fileID: 11400000, guid: a875b5eb19ecc40218018f1afeb6fb20, type: 2}
+    - {fileID: 11400000, guid: b97402e9d1e964033b8e35a7612707ce, type: 2}
     eventSOs:
     - {fileID: 11400000, guid: 21a2b2029de304a2e9b962c8cd1956a1, type: 2}
   description: Launches a shockwave that pierces up to 20 cherries that does low
@@ -24,6 +24,6 @@ MonoBehaviour:
     didn't attack, gain $3.
   towerPrefab: {fileID: 6377077709395372548, guid: ac419a874cdda4d68be71afb0e2630d0, type: 3}
   flags: 12288
-  killsThisRound: 0
+  cakePoints: 30
   onHitCherry: []
   onKillCherry: []

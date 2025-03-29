@@ -26,18 +26,15 @@ public class AttackManager : MonoBehaviour
     // Keeps track of how many seconds are left before this Topping is no longer stunned.
     private float stunTimer = 0;
 
-    int attackDamage = 0;
     public int AttackDamage
     {
-        get { return attackDamage; }
+        get { return attack.damage; }
         set
         {
             attack.damage = value;
-            attackDamage = value;
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         this.attack = Instantiate(attackTemplate);
@@ -49,7 +46,6 @@ public class AttackManager : MonoBehaviour
         timer = attack.cooldown;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!isStunned) {

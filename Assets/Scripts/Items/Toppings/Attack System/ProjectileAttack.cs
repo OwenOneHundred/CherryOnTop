@@ -33,7 +33,7 @@ public abstract class ProjectileAttack : ToppingAttack
         // Destroy the projectile after 8 seconds in case it misses the target
         Destroy(newProjectile, 8);
 
-        if (fireSound != null) { SoundEffectManager.sfxmanager.PlayOneShot(fireSound);}
+        if (fireSound != null && fireSound.clip != null) { SoundEffectManager.sfxmanager.PlayOneShot(fireSound);}
 
         CustomProjectileActions(newProjectile);
     }

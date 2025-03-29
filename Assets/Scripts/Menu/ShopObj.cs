@@ -14,6 +14,9 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [SerializeField] TMPro.TextMeshProUGUI nameText;
     [SerializeField] TMPro.TextMeshProUGUI priceText;
 
+    [SerializeField] float selectedSize = 1.5f;
+    [SerializeField] float deselectedSize = 1.25f;
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         hovered = true;
@@ -31,7 +34,7 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public IEnumerator SelectAnim()
     {
         float speed = 5f;
-        Vector3 goal = new Vector3(1.2f, 1.2f, 1.2f);
+        Vector3 goal = new Vector3(selectedSize, selectedSize, selectedSize);
         while (image.transform.localScale != goal && hovered && !purchased)
         {
             image.transform.localScale = Vector3.Lerp(image.transform.localScale, goal, Time.deltaTime * speed);
@@ -42,7 +45,7 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public IEnumerator DeselectAnim()
     {
         float speed = 5f;
-        Vector3 goal = new Vector3(1f, 1f, 1f);
+        Vector3 goal = new Vector3(deselectedSize, deselectedSize, deselectedSize);
         while (image.transform.localScale != goal && (!hovered || purchased))
         {
             image.transform.localScale = Vector3.Lerp(image.transform.localScale, goal, Time.deltaTime * speed);

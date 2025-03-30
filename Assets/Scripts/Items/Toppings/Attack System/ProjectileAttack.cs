@@ -11,6 +11,8 @@ public abstract class ProjectileAttack : ToppingAttack
     // Represents the speed of the projectiles shot by this ToppingAttack
     public float projectileSpeed;
 
+    [SerializeField] AudioFile fireSound;
+
     /// <summary>
     /// Spawn a projectile with an initial position, velocity, rotation, and damage.
     /// </summary>
@@ -30,6 +32,8 @@ public abstract class ProjectileAttack : ToppingAttack
 
         // Destroy the projectile after 8 seconds in case it misses the target
         Destroy(newProjectile, 8);
+
+        if (fireSound != null && fireSound.clip != null) { SoundEffectManager.sfxmanager.PlayOneShot(fireSound);}
 
         CustomProjectileActions(newProjectile);
     }

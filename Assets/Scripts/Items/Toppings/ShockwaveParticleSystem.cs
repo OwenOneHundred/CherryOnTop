@@ -10,9 +10,10 @@ public class ShockwaveParticleSystem : MonoBehaviour
         main = ps.main;
     }
 
-    public void SetUp(float range)
+    public void SetUp(float range, float speed)
     {
-        main.startLifetime = range / 3f;
+        main.startSpeed = speed;
+        main.startLifetime = range / speed;
         ps.Play();
     }
 }

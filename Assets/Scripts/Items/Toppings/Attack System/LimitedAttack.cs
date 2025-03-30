@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// A DirectAttack that can only perform a limited number of attacks before stopping (idle)
@@ -36,17 +37,16 @@ public class LimitedAttack : DirectAttack
         }
     }
 
-    public override void DealDamage(GameObject targetedCherry) {
-        targetedCherry.GetComponent<CherryHitbox>().TakeDamage(this.damage, null, Vector3.zero);
-    }
-
     /// <summary>
     /// Attacks the targeted Cherry.
     /// </summary>
     /// <param name="targetedCherry"></param>
     private void AttackCherry(GameObject targetedCherry) {
-        DealDamage(targetedCherry);
-        attacks++;
+        if (attacks < attackLimit)
+        {
+            DealDamage(targetedCherry);
+            attacks++;
+        }
     }
 
     /// <summary>
@@ -59,6 +59,7 @@ public class LimitedAttack : DirectAttack
         yield return new WaitForSeconds(delay);
         if (targetedCherry == this.toppingObj.GetComponent<AttackManager>().GetTargetedCherry()) {
             AttackCherry(targetedCherry);
+            this.toppingObj.GetComponent<TargetingSystem>().AddTargetedCherry(targetedCherry);
         }
     }
 }

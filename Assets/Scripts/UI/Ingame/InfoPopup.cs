@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Globalization;
+using UnityEditor.PackageManager;
+using EventBus;
 
 public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -9,12 +11,14 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     [SerializeField] TMPro.TextMeshProUGUI itemType;
     [SerializeField] TMPro.TextMeshProUGUI description;
     [SerializeField] TMPro.TextMeshProUGUI toppingType;
-    [SerializeField] TMPro.TextMeshProUGUI sellPrice;
+    [SerializeField] TMPro.TextMeshProUGUI sellPriceText;
     EventSystem eventSystem;
     bool hovered = false;
     bool isFirstFrame = true;
     Item item;
     GameObject toppingObj;
+    int sellPrice = 0;
+    bool isInventoryItem = false;
 
     void Awake()
     {
@@ -23,9 +27,8 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
     public void SetUp(Item item, GameObject toppingObj)
     {
-        Debug.Log("set up info popup: " + item);
+        isInventoryItem = false;
         this.item = item;
-        this.toppingObj = toppingObj;
         if (item == null) { return; }
         if (item is Topping topping)
         {
@@ -39,7 +42,40 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         nameText.text = item.name.Replace("(Clone)", "");
         description.text = item.description;
-        sellPrice.text = "Sell " + (item.price / 2);
+        sellPrice = item.price / 2;
+        sellPriceText.text = "Sell: $" + sellPrice;
+        this.toppingObj = toppingObj;
+    }
+
+    public void SetUpForInventoryItem(Item item)
+    {
+        isInventoryItem = true;
+        this.item = item;
+        if (item == null) { return; }
+        if (item is Topping topping)
+        {
+            toppingType.text = ToTitleCase(topping.flags.ToString());
+            itemType.text = "Topping";
+        }
+        else
+        {
+            itemType.text = "Ingredient";
+        }
+
+        nameText.text = item.name.Replace("(Clone)", "");
+        description.text = item.description;
+        sellPrice = item.price / 2;
+        sellPriceText.text = "Sell: $" + sellPrice;
+    }
+
+    public void Clear()
+    {
+        nameText.text = "";
+        description.text = "";
+        sellPriceText.text = "";
+        itemType.text = "";
+        toppingType.text = "";
+        item = null;
     }
 
     public void Update()
@@ -61,8 +97,19 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnSell()
     {
-        Destroy(gameObject);
+        Inventory.inventory.Money += sellPrice;
+        EventBus<SellEvent>.Raise(new SellEvent(item, toppingObj));
+        item.DeregisterEffects();
 
+        Destroy(gameObject);
+        if (toppingObj != null)
+        {
+            Destroy(toppingObj);
+        }
+        if (isInventoryItem)
+        {
+            Inventory.inventory.RemoveItem(item);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)

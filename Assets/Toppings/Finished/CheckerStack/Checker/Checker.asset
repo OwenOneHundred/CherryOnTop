@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
+  m_Name: Checker
+  m_EditorClassIdentifier: 
+  price: 1
+  shopSprite: {fileID: 21300000, guid: e85354cbc3e2a45a284b6a415f6572f3, type: 3}
+  effectsAndWhen: []
+  description: Fires a low-damage, close range shockwave at cherries.
+  towerPrefab: {fileID: 8395863746058329212, guid: 40830f852de554ddcbf772e6a4927731, type: 3}
+  flags: 0
+  killsThisRound: 0
+  onHitCherry: []
+  onKillCherry: []

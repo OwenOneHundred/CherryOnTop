@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class TargetingSystem : MonoBehaviour
@@ -8,7 +10,8 @@ public class TargetingSystem : MonoBehaviour
     [SerializeField] AttackManager attackManager;
 
     protected GameObject currentCherry;
-    private List<GameObject> targetedCherries = new List<GameObject>();
+    private List<Collider> visibleCherries = new List<Collider>();
+    private List<Collider> targetedCherries = new List<Collider>();
 
     void Start()
     {
@@ -23,25 +26,36 @@ public class TargetingSystem : MonoBehaviour
         currentCherry = found;
     }
 
-   GameObject Search()
+    GameObject Search()
     {
         GameObject bestCherry = null;
         float highestDistance = -1f;
 
-        Collider[] cherries = Physics.OverlapSphere(transform.position, range, cherryLayer);
+        List<Collider> cherries = Physics.OverlapSphere(transform.position, range, cherryLayer).ToList();
+        //Check to see if cherries are only cherries not in targetedCherries
+        cherries.RemoveAll(cherry => targetedCherries.Contains(cherry));
+
+        List<Collider> newVisibleCherries = new List<Collider>();
 
         foreach (Collider cherry in cherries)
         {
             CherryMovement cherryMovement = cherry.transform.root.GetComponent<CherryMovement>();
-            if (cherryMovement != null && HasClearLineOfSight(cherry.transform))
+            if (HasClearLineOfSight(cherry.transform))
             {
-                if (cherryMovement.distanceTraveled > highestDistance)
+                newVisibleCherries.Add(cherry);
+            
+                if (cherryMovement != null)
                 {
-                    highestDistance = cherryMovement.distanceTraveled;
-                    bestCherry = cherry.gameObject;
+                    if (cherryMovement.distanceTraveled > highestDistance)
+                    {
+                        highestDistance = cherryMovement.distanceTraveled;
+                        bestCherry = cherry.gameObject;
+                    }
                 }
             }
         }
+
+        visibleCherries = newVisibleCherries;
 
         return bestCherry;
     }
@@ -66,14 +80,29 @@ public class TargetingSystem : MonoBehaviour
 
     public void AddTargetedCherry(GameObject cherry)
     {
-        if (!targetedCherries.Contains(cherry))
+        if (!targetedCherries.Contains(cherry.GetComponent<Collider>()))
         {
-            targetedCherries.Add(cherry);
+            targetedCherries.Add(cherry.GetComponent<Collider>());
         }
     }
 
-    public List<GameObject> GetTargetedCherries()
+    public float GetRange()
+    {
+        return range;
+    }
+
+    public void SetRange(float range)
+    {
+        this.range = range;
+    }
+
+    public List<Collider> GetTargetedCherries()
     {
         return targetedCherries;
-    }   
+    }
+
+    public List<Collider> GetVisibleCherries()
+    {
+        return visibleCherries;
+    }
 }

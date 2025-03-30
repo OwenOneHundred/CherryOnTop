@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PopupMenuSpawner : MonoBehaviour
 {
@@ -13,9 +14,12 @@ public class PopupMenuSpawner : MonoBehaviour
 
     public void OnMouseDown()
     {
+        if (Shop.shop.Open) { return; }
+
         infoPopup = Instantiate(infoPopupPrefab, canvas.transform);
         RectTransform rect = infoPopup.GetComponent<RectTransform>();
-        rect.position = Camera.main.WorldToScreenPoint(transform.position) + (Vector3.up * 400);
-        infoPopup.GetComponent<InfoPopup>().SetUp(GetComponentInParent<ToppingObjectScript>().topping, gameObject);
+        bool aboveScreenCenter = Camera.main.WorldToScreenPoint(transform.position).y > (Screen.height / 2f);
+        rect.position = Camera.main.WorldToScreenPoint(transform.position) + (aboveScreenCenter ? (Vector3.down * 350) : (Vector3.up * 350));
+        infoPopup.GetComponent<InfoPopup>().SetUp(GetComponentInParent<ToppingObjectScript>().topping, gameObject.transform.root.gameObject);
     }
 }

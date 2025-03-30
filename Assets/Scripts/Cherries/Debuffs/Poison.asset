@@ -18,7 +18,7 @@ MonoBehaviour:
   debuffType: 4
   effectDuration: 4
   onAppliedSFX:
-    volume: 0.5
+    volume: 0.25
     clip: {fileID: 8300000, guid: 30842a2ca05ae4275a5af8f740c5bce2, type: 3}
   dps: 3
   poisonParticleSystemPrefab: {fileID: 8237643331648977366, guid: 513b3fd3fe193fb45bc10485188a2985, type: 3}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using EventBus;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -19,9 +20,30 @@ public class Shop : MonoBehaviour
     public List<Item> currentItems = new();
     public List<Item> availableItems = new();
     [SerializeField] Transform itemParent;
+    [SerializeField] TMPro.TextMeshProUGUI rerollsText;
     public List<ShopObj> shopObjs = new();
-    public int rerolls = 0;
+    int rerolls = 0;
+    public int Rerolls
+    {
+        get { return rerolls; }
+        set
+        { 
+            rerollsText.text = "Free rerolls: " + value;
+            rerolls = value;
+        }
+    }
     public int rerollPrice = 4;
+    [SerializeField] AudioFile error;
+    [SerializeField] AudioFile openShop;
+    [SerializeField] AudioFile closeShop;
+    [SerializeField] AudioFile rerollSound;
+    public static Shop shop;
+    public ShopInfoPanel shopInfoPanel;
+    public void Awake()
+    {
+        if (shop == this || shop == null) { shop = this; }
+        else { Destroy(gameObject); return; }
+    }
 
     void Start()
     {
@@ -41,6 +63,8 @@ public class Shop : MonoBehaviour
         {
             if (open == value) { return; }
             if (moving) { return; }
+
+            SoundEffectManager.sfxmanager.PlayOneShot(!open ? openShop : closeShop);
 
             open = value;
             moving = true;
@@ -63,25 +87,28 @@ public class Shop : MonoBehaviour
 
         moving = false;
 
-        UpdateAllIcons();
+        //UpdateAllIcons();
     }
 
     public void OnClickReroll()
     {
-        if (rerolls > 0)
+        if (Rerolls > 0)
         {
-            rerolls -= 1;
+            Rerolls -= 1;
+            EventBus<RerollEvent>.Raise(new RerollEvent());
+            SoundEffectManager.sfxmanager.PlayOneShot(rerollSound);
             RerollItems();
         }
-        else if (Inventory.inventory.Money > rerollPrice)
+        else if (Inventory.inventory.Money >= rerollPrice)
         {
-            Debug.Log("rerollPrice: " + rerollPrice);
             Inventory.inventory.Money -= rerollPrice;
+            EventBus<RerollEvent>.Raise(new RerollEvent());
+            SoundEffectManager.sfxmanager.PlayOneShot(rerollSound);
             RerollItems();
         }
         else 
         {
-            // can't afford reroll
+            SoundEffectManager.sfxmanager.PlayOneShot(error);
         }
     }
 
@@ -92,11 +119,6 @@ public class Shop : MonoBehaviour
 
     public void RerollItems()
     {
-        foreach (ShopObj shopObj in shopObjs)
-        {
-            Destroy(shopObj.gameObject);
-        }
-        shopObjs.Clear();
         currentItems.Clear();
         PopulateShop();
         UpdateAllIcons();
@@ -112,8 +134,12 @@ public class Shop : MonoBehaviour
         }
     }
 
-    public void UpdateAllIcons()
+    public void UpdateAllIcons() // TODO: this function spawns copies of icons on top of each other when shop is opened and closed
     {
+        // Also resets the purchase status of shop items
+        // Not sure if this needs to be fixed
+        foreach (ShopObj shopObj in shopObjs) Destroy(shopObj.gameObject);
+        shopObjs.Clear();
         for (int i = 0; i < currentItems.Count; i++) {
             GameObject newIcon = Instantiate(shopObjPrefab, itemParent);
             ShopObj shopObj = newIcon.GetComponent<ShopObj>();

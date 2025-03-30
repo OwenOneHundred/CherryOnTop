@@ -7,48 +7,26 @@ using UnityEngine.UI;
 public class InventoryRenderer : MonoBehaviour
 {
     [SerializeField] GameObject iconPrefab;
-    [SerializeField] Slider slider;
-    [SerializeField] int columns = 2;
+    [SerializeField] int columns = 3;
+    [SerializeField] int rows = 7;
     [SerializeField] Vector2 iconStartPos;
     [SerializeField] float bottomDistance = 488;
     [SerializeField] Vector2 iconDistances;
     private List<ItemAndObj> displayList = new List<ItemAndObj>();
     [SerializeField] Transform iconParent;
     RectTransform iconParentRect;
-    [SerializeField] float scrollMultiplier = 0.5f;
 
-    float scrollAmount = 0;
+    int pages = 1;
+    int currentPage = 1;
+    int amountPerPage = 21;
+    [SerializeField] GameObject leftArrow;
+    [SerializeField] GameObject rightArrow;
 
     void Start()
     {
         iconParentRect = iconParent.GetComponent<RectTransform>();
-    }
-
-    private void Update()
-    {
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
-        if (scroll != 0)
-        {
-            UpdateScroll(scroll);
-        }
-    }
-
-    public void UpdateScroll(float scroll)
-    {   
-        int rowCount = Mathf.CeilToInt(displayList.Count / (float) columns);
-        float scrollDistance = (rowCount * iconDistances.y) - bottomDistance;
-        if (scrollDistance <= 0) { scrollDistance = 0; }
-        scrollAmount = Mathf.Clamp(scrollAmount - (scroll * scrollMultiplier), 0, scrollDistance);
-        iconParentRect.anchoredPosition = new Vector2(0, scrollAmount);
-
-        if (scrollDistance == 0)
-        {
-            slider.value = 0;
-        }
-        else
-        {
-            slider.value = scrollAmount / scrollDistance;
-        }
+        amountPerPage = columns * rows;
+        UpdatePageCount();
     }
 
     public void AddItemToDisplay(Item item)
@@ -63,6 +41,7 @@ public class InventoryRenderer : MonoBehaviour
         ItemAndObj itemAndObj = new ItemAndObj(item, newIcon);
         displayList.Add(itemAndObj);
 
+        UpdatePageCount();
         UpdateAllIconPositions();
     }
 
@@ -73,18 +52,85 @@ public class InventoryRenderer : MonoBehaviour
         Destroy(itemAndObj.obj);
         displayList.Remove(itemAndObj);
 
+        UpdatePageCount();
         UpdateAllIconPositions();
     }
 
     public void UpdateAllIconPositions()
     {
-        int budgetEnum = 0;
         foreach (ItemAndObj itemAndObj in displayList)
         {
+            itemAndObj.obj.SetActive(false);
+        }
+
+        List<ItemAndObj> itemsOnPage = new();
+        int start = amountPerPage * (currentPage - 1);
+        int totalItems = displayList.Count;
+        for (int i = start; i < start + amountPerPage; i++)
+        {
+            if (totalItems <= i) { break; }
+
+            itemsOnPage.Add(displayList[i]);
+        }
+
+        int budgetEnum = 0;
+        foreach (ItemAndObj itemAndObj in itemsOnPage)
+        {
+            itemAndObj.obj.SetActive(true);
             itemAndObj.rect.anchoredPosition = iconStartPos +
                 new Vector2(iconDistances.x * (budgetEnum % columns), -iconDistances.y * (budgetEnum / columns));
             budgetEnum += 1;
         }
+    }
+
+    public void NextPage()
+    {
+        currentPage += 1;
+        if (currentPage > pages)
+        {
+            currentPage = 1;
+        }
+
+        UpdateAllIconPositions();
+        UpdateArrows();
+    }
+
+    public void PreviousPage()
+    {
+        currentPage -= 1;
+        if (currentPage < 0)
+        {
+            currentPage = pages;
+        }
+
+        UpdateAllIconPositions();
+        UpdateArrows();
+    }
+    
+    private void UpdatePageCount()
+    {
+        pages = (Inventory.inventory.ownedItems.Count() / amountPerPage) + 1;
+        if (currentPage > pages)
+        {
+            currentPage = pages;
+        }
+
+        UpdateArrows();
+    }
+
+    private void UpdateArrows()
+    {
+        if (currentPage == pages)
+        {
+            rightArrow.SetActive(false);
+        }
+        else { rightArrow.SetActive(true); }
+
+        if (currentPage == 1)
+        {
+            leftArrow.SetActive(false);
+        }
+        else { leftArrow.SetActive(true); }
     }
 
     private struct ItemAndObj

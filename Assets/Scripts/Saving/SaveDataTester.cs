@@ -5,6 +5,7 @@ public class SaveDataTester : MonoBehaviour
 {
 
     [SerializeField] string savename = "save1";
+    [SerializeField] bool _useEncryption = true;
     protected SaveData _saveData = null;
     public SaveData saveData
     {
@@ -12,7 +13,7 @@ public class SaveDataTester : MonoBehaviour
         {
             if (_saveData == null)
             {
-                _saveData = SaveData.LoadData(savename);
+                _saveData = SaveDataUtility.LoadSaveData(savename, "testsave");
             }
             return _saveData;
         }
@@ -23,14 +24,21 @@ public class SaveDataTester : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (saveData.TryGetData("pos", out DEPosition pos))
+        if (SaveDataUtility.GetSaveFileNameIfExists("", out string saveFilePath, out string saveFileName))
         {
-            Debug.Log("Found pos with data: " + pos.positionData.ToString());
+            Debug.Log("Found save file at path: " + saveFilePath);
         } else
         {
-            saveData.SetData("pos", new DEPosition("pos", writeThis, Vector3.zero));
+            Debug.Log("No file found at path: " + saveFilePath);
         }
-        SaveData.WriteData(saveData);
+        if (saveData.TryGetDataEntry("pos", out DEPosition pos))
+        {
+            Debug.Log("Found pos with data: " + pos.positionData.ToString());
+        }
+        saveData.SetDataEntry("pos", new DEPosition("pos", writeThis, Vector3.zero), true);
+        Debug.Log("Writing pos to data: " + writeThis.ToString());
+        SaveDataUtility._useEncryptions = _useEncryption;
+        SaveDataUtility.WriteSaveData(saveData);
     }
 
     [System.Serializable]

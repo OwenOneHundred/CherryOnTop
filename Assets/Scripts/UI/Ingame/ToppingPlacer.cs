@@ -113,8 +113,6 @@ public class ToppingPlacer : MonoBehaviour
 
             if (!mouseIsInSidebar) { mouseLeftSidebar = true; } 
 
-
-            Debug.Log(Input.mousePosition);
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100, placeableLayers))
@@ -145,8 +143,11 @@ public class ToppingPlacer : MonoBehaviour
     private bool CheckIfPlacementValid(MeshFilter prefabMeshFilter, Vector3 pos, Mesh mesh, Vector3 cakePos)
     {
         Bounds bounds = mesh.bounds;
-        Vector3 extents = prefabMeshFilter.transform.rotation * Vector3.Scale(bounds.extents, prefabMeshFilter.transform.lossyScale);
-        var result = Physics.OverlapBox(pos + checkAreaVerticalOffset, extents * 0.8f, Quaternion.identity, layersThatBlockPlacement);
+
+        Vector3 worldExtents = Vector3.Scale(bounds.extents, prefabMeshFilter.transform.lossyScale);
+
+        var result = Physics.OverlapBox(pos + checkAreaVerticalOffset, worldExtents * 0.8f, prefabMeshFilter.transform.rotation, layersThatBlockPlacement);
+        
 
         bool notOverlappingAnything = result.Count() == 0;
 
@@ -201,7 +202,7 @@ public class ToppingPlacer : MonoBehaviour
 
     private void StopPlacingTopping()
     {
-        iconControl.beingPlaced = false;
+        iconControl.StopPlacing();
         iconControl = null;
         transparentObject.SetActive(false);
     }
@@ -217,9 +218,10 @@ public class ToppingPlacer : MonoBehaviour
         EventBus<TowerPlacedEvent>.Raise(new TowerPlacedEvent(topping, newToppingObj)); // call placed tower event
         Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 6); // create particle effect
 
-        topping.SetGameObjectOnEffects(newToppingObj);
-
         if (playSound) { SoundEffectManager.sfxmanager.PlayOneShot(placeSound); }
+
+        topping.RegisterEffects();
+        topping.SetGameObjectOnEffects(newToppingObj);
 
         Inventory.inventory.RemoveItem(topping); // remove from inventory
     }

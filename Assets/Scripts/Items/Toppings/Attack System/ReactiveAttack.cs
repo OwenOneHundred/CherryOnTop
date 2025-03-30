@@ -30,6 +30,7 @@ public class ReactiveAttack : ProjectileAttack
         if (!attackSuccessful) {
             for (int i = 0; i < burstQuantity; i++) {
                 this.toppingObj.GetComponent<AttackManager>().StartCoroutine(DelayedAttack(targetedCherry, i * firingDelay));
+                this.toppingObj.GetComponent<TargetingSystem>().AddTargetedCherry(targetedCherry);
             }
             attackSuccessful = true;
         }

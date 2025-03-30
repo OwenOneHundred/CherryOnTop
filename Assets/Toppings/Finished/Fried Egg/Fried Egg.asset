@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Fried Egg
   m_EditorClassIdentifier: 
-  price: 5
-  shopSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  price: 6
+  shopSprite: {fileID: 21300000, guid: 2b58c3923b9cd4937891dd7fc05b203a, type: 3}
   effectsAndWhen: []
-  description: Fires small weak projectiles. All fire effects also inflict a stacking
-    20% slow.
+  description: No attack. All fire effects also inflict a stacking 20% slow.
   towerPrefab: {fileID: 5457713735334105415, guid: cca15b7e192b3437eb4a661205934afc, type: 3}
   flags: 20480
+  cakePoints: -30
+  onHitCherry: []
+  onKillCherry: []

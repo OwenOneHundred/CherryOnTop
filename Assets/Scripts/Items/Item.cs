@@ -10,14 +10,7 @@ public abstract class Item : ScriptableObject
 
     [TextArea] public string description;
 
-    public void Initialize()
-    {
-        SetUpEffectsAndWhen();
-
-        RegisterEffects();
-    }
-
-    private void SetUpEffectsAndWhen()
+    public void SetUpEffectsAndWhen()
     {
         for (int i = 0; i < effectsAndWhen.Count; i++)
         {
@@ -35,7 +28,7 @@ public abstract class Item : ScriptableObject
     /// <summary>
     /// Should be called when the item is purchased. Registers the events in the effects list.
     /// </summary>
-    private void RegisterEffects()
+    public void RegisterEffects()
     {
         foreach (EffectAndWhen effectAndWhen in effectsAndWhen)
         {

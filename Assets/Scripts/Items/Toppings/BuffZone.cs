@@ -4,91 +4,70 @@ using UnityEngine;
 public class BuffZone : MonoBehaviour
 {
     [SerializeField] private float buffRadius = 5f;
-    [SerializeField] private string targetTag = "Sweet"; // Affects only towers with this tag
+    [SerializeField] private ToppingTypes.Flags flag = ToppingTypes.Flags.sweet;
     [SerializeField] private BuffType buffType;
-    [SerializeField] private float buffValue = 0.67f; // Default: cooldown multiplier (1.5x fire rate = 0.67 cooldown)
+    [SerializeField] private float buffValue = 0.6f; // Buffs should be >1 for increase
 
-    private LayerMask towerLayer;
-    private HashSet<AttackManager> buffedTowers = new HashSet<AttackManager>();
+    private LayerMask toppingLayer;
+    private HashSet<BuffManager> affectedToppings = new HashSet<BuffManager>();
+
+    public BuffType BuffType => buffType;
+    public float BuffValue => buffValue;
 
     void Start()
     {
-        towerLayer = LayerMask.GetMask("Tower"); 
-        ApplyBuffToNearbyTowers();
+        toppingLayer = LayerMask.GetMask("Topping");
+        UpdateBuffs();
     }
 
     void Update()
     {
-        CheckForNewTowers();
+        UpdateBuffs();
     }
 
-    void ApplyBuffToNearbyTowers()
+    void UpdateBuffs()
     {
-        Collider[] towersInRange = Physics.OverlapSphere(transform.position, buffRadius, towerLayer);
+        Collider[] toppings = Physics.OverlapSphere(transform.position, buffRadius, toppingLayer);
+        HashSet<BuffManager> currentTowers = new HashSet<BuffManager>();
 
-        foreach (Collider col in towersInRange)
+        foreach (Collider col in toppings)
         {
-            AttackManager attackManager = col.GetComponent<AttackManager>();
-            if (attackManager != null && col.CompareTag(targetTag) && !buffedTowers.Contains(attackManager))
+            BuffManager buffManager = col.GetComponent<BuffManager>();
+            if (buffManager != null && col != this)
             {
-                ApplyBuff(attackManager);
-                buffedTowers.Add(attackManager);
-            }
-        }
-    }
-
-    void CheckForNewTowers()
-    {
-        Collider[] towersInRange = Physics.OverlapSphere(transform.position, buffRadius, towerLayer);
-
-        foreach (Collider col in towersInRange)
-        {
-            AttackManager attackManager = col.GetComponent<AttackManager>();
-            if (attackManager != null && col.CompareTag(targetTag) && !buffedTowers.Contains(attackManager))
-            {
-                ApplyBuff(attackManager);
-                buffedTowers.Add(attackManager);
+                currentTowers.Add(buffManager);
+                if (!affectedToppings.Contains(buffManager))
+                {
+                    //Error line
+                    buffManager.AddBuff(this);
+                }
             }
         }
 
-        // Remove buff if a tower moves out of range
-        buffedTowers.RemoveWhere(tower =>
+        foreach (BuffManager buffManager in new HashSet<BuffManager>(affectedToppings))
         {
-            if (tower == null || Vector3.Distance(transform.position, tower.transform.position) > buffRadius)
+            if (!currentTowers.Contains(buffManager) && buffManager != this)
             {
-                RemoveBuff(tower);
-                return true;
+                buffManager.RemoveBuff(this);
+                affectedToppings.Remove(buffManager);
             }
-            return false;
-        });
+        }
+
+        affectedToppings = currentTowers;
     }
 
-    void ApplyBuff(AttackManager attackManager)
+    void OnDestroy()
     {
-        if (buffType == BuffType.CooldownReduction)
+        foreach (BuffManager buffManager in affectedToppings)
         {
-            attackManager.SetAttackCooldown(buffValue);
+            buffManager.RemoveBuff(this);
         }
-        // Extend with more buffs as needed
     }
 
-    void RemoveBuff(AttackManager attackManager)
+    void OnDrawGizmosSelected()
     {
-        if (buffType == BuffType.CooldownReduction)
-        {
-            // attackManager.SetAttackCooldown(originalCooldown); TODO: I commented this out because it is not compiling. This should probably be uncommented.
-        }
-        // Extend with more buffs as needed
-    }
-
-    private void OnDestroy()
-    {
-        // Remove buff when tower is destroyed
-        foreach (AttackManager tower in buffedTowers)
-        {
-            RemoveBuff(tower);
-        }
-        buffedTowers.Clear();
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, buffRadius);
     }
 }
 

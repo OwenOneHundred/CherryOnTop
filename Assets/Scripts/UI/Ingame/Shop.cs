@@ -9,7 +9,7 @@ public class Shop : MonoBehaviour
     public float speed = 10;
     bool open;
     bool moving;
-    readonly float closedPos = -1690;
+    readonly float closedPos = -1780;
     readonly float openPos = -230;
     RectTransform rect;
 

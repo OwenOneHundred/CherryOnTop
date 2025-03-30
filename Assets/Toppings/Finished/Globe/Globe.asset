@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Globe
   m_EditorClassIdentifier: 
-  price: 5
+  price: 12
   shopSprite: {fileID: 0}
   effectsAndWhen:
   - effectSOs:

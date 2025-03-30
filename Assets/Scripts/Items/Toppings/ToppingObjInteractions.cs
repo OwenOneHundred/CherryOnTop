@@ -86,4 +86,9 @@ public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPoin
     {
         hovered = true;
     }
+
+    public void OnDestroy()
+    {
+        OnClickedOff();
+    }
 }

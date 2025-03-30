@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa5ddee62ca0e145b2a85463bea3cdf, type: 3}
   m_Name: GlobeAttack
   m_EditorClassIdentifier: 
-  cooldown: 0.4
+  cooldown: 0.6
   damage: 20
   debuffs:
   - {fileID: 11400000, guid: 10e00d44ac0fd42718be3b94836287e4, type: 2}
-  projectile: {fileID: 1373519935423302513, guid: 4a93f91688e72d443a166bcaeddc5fde, type: 3}
+  projectile: {fileID: 1373519935423302513, guid: 4b249323f92ee455d95dabd24130312f, type: 3}
   projectileSpeed: 4
   fireSound:
     volume: 0.5

@@ -29,6 +29,9 @@ public class ArrowMover : MonoBehaviour
 
         transform.position = linePositions[currentPosition];
         previousCoords = transform.position;
+
+        Vector3 newDirection = Vector3.RotateTowards(-transform.forward, linePositions[currentTarget] - transform.position, 100, 0.0f);
+        transform.rotation = Quaternion.LookRotation(-newDirection);
     }
 
     private void Update()

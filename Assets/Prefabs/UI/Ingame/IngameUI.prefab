@@ -439,12 +439,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32.4
+  m_fontSize: 32
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 32
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -1488,8 +1488,8 @@ MonoBehaviour:
   bottomDistance: 810
   iconDistances: {x: 190, y: 193}
   iconParent: {fileID: 5570748389306598569}
-  leftArrow: {fileID: 0}
-  rightArrow: {fileID: 0}
+  leftArrow: {fileID: 5898699295424254840}
+  rightArrow: {fileID: 5755211354560946303}
 --- !u!114 &6429006251798782917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3496,7 +3496,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2820896994411768054}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6508363885407075222}
+        m_TargetAssemblyTypeName: InventoryRenderer, Assembly-CSharp
+        m_MethodName: NextPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5898699295424254840
 GameObject:
   m_ObjectHideFlags: 0
@@ -3616,7 +3628,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6218594200932651827}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6508363885407075222}
+        m_TargetAssemblyTypeName: InventoryRenderer, Assembly-CSharp
+        m_MethodName: PreviousPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6642707267255062058
 GameObject:
   m_ObjectHideFlags: 0

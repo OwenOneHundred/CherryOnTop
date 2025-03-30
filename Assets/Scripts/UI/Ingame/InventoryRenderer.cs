@@ -66,7 +66,6 @@ public class InventoryRenderer : MonoBehaviour
         List<ItemAndObj> itemsOnPage = new();
         int start = amountPerPage * (currentPage - 1);
         int totalItems = displayList.Count;
-        Debug.Log("Displaying: " + start + " to " + (start + amountPerPage));
         for (int i = start; i < start + amountPerPage; i++)
         {
             if (totalItems <= i) { break; }

@@ -14,7 +14,7 @@ public class PopupMenuSpawner : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (EventSystem.current.IsPointerOverGameObject()) return;
+        if (Shop.shop.Open) { return; }
 
         infoPopup = Instantiate(infoPopupPrefab, canvas.transform);
         RectTransform rect = infoPopup.GetComponent<RectTransform>();

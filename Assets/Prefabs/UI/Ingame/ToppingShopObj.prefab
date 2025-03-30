@@ -242,9 +242,9 @@ RectTransform:
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 234778100296225658}
   - {fileID: 3129118428717865443}
   - {fileID: 2606054030521364392}
+  - {fileID: 234778100296225658}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -267,6 +267,8 @@ MonoBehaviour:
   image: {fileID: 4899926302616251323}
   nameText: {fileID: 4347423710312424700}
   priceText: {fileID: 7107878117756353710}
+  selectedSize: 1.5
+  deselectedSize: 1.25
 --- !u!222 &8842151935230682953
 CanvasRenderer:
   m_ObjectHideFlags: 0

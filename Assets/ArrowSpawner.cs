@@ -14,6 +14,7 @@ public class ArrowSpawner : MonoBehaviour
     void Start()
     {
         trackStartPos = GameObject.FindGameObjectWithTag("Track").transform.GetChild(0).GetComponent<LineRenderer>().GetPosition(0);
+        timer = timeBetweenArrowSets / 2;
     }
 
     void Update()

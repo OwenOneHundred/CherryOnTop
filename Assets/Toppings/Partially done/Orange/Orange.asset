@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Orange
   m_EditorClassIdentifier: 
   price: 4
-  shopSprite: {fileID: 21300000, guid: 3eeafb416c65142af84c37a56f6f2506, type: 3}
+  shopSprite: {fileID: 21300000, guid: 34ce793ecdb094116a650a5b410120cb, type: 3}
   effectsAndWhen: []
   description: Attacks slowly with a weak projectile. Every time this tower gets
     a kill, 10% chance to get $1.

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a5fb5b5bf2de543f0b64b57fb913cacf
+guid: 0327eb3137b2b487ba710ddd2baeb382
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: b8d688e216ade497fbed1982155ec29b, type: 2}
+      name: Sushi_MAT
+    second: {fileID: 2100000, guid: 304ff17649d4942b0b491e0f77c506a3, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -707,6 +707,7 @@ GameObject:
   - component: {fileID: 1261438764303226893}
   - component: {fileID: 8759114289087427388}
   - component: {fileID: 8392582136422224834}
+  - component: {fileID: 7835569952325439666}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -759,6 +760,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b57459ec67c14f87afa4bfbceefcc53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7835569952325439666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621407052771409201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 056f8e6ec75c542babb71b69b30681c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cakePointsThresholdDivisor: 3
+  howOftenThreshold: 10
 --- !u!1 &1997559020666774139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,7 +1321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyText: {fileID: 4731558992170389664}
-  cakeScoreText: {fileID: 3648948228174029427}
+  cakePointsText: {fileID: 3648948228174029427}
   roundNumberText: {fileID: 312049013074346797}
   goalRoundText: {fileID: 8762700298128969942}
   goalScoreText: {fileID: 8131357198590211462}

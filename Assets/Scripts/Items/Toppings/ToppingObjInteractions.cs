@@ -59,9 +59,12 @@ public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPoin
 
     private void SetUpRadiusCircle()
     {
-        radiusCircle = Instantiate(radiusCirclePrefab, transform.position + radiusCircleOffset, Quaternion.identity);
-        float range = transform.parent.GetChild(1).GetComponent<TargetingSystem>().GetRange();
-        radiusCircle.transform.localScale = new Vector3(range, range, range);
+        if (transform.parent.GetChild(1).TryGetComponent(out TargetingSystem targetingSystem))
+        {
+            radiusCircle = Instantiate(radiusCirclePrefab, transform.position + radiusCircleOffset, Quaternion.identity);
+            float range = targetingSystem.GetRange();
+            radiusCircle.transform.localScale = new Vector3(range, range, range);
+        }
     }
 
     private void DestroyRadiusCircle()

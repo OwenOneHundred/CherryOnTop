@@ -74,17 +74,7 @@ public class Inventory : MonoBehaviour
         }
     }
     List<int> bufferedMoneyChanges = new();
-
-    int cakePoints = 0;
-    public int CakePoints
-    {
-        get { return cakePoints; }
-        set
-        {
-            cakePoints = value;
-            ingameUI.SetCakeScore(value);
-        }
-    }
+    
     [SerializeField] MoneyChangeDisplay moneyChangeDisplay;
 
     public bool TryBuyItem(Item item)

@@ -3,7 +3,7 @@ using UnityEngine;
 public class IngameUI : MonoBehaviour
 {
     [SerializeField] TMPro.TextMeshProUGUI moneyText;
-    [SerializeField] TMPro.TextMeshProUGUI cakeScoreText;
+    [SerializeField] TMPro.TextMeshProUGUI cakePointsText;
     [SerializeField] TMPro.TextMeshProUGUI roundNumberText;
     [SerializeField] TMPro.TextMeshProUGUI goalRoundText;
     [SerializeField] TMPro.TextMeshProUGUI goalScoreText;
@@ -12,9 +12,9 @@ public class IngameUI : MonoBehaviour
         moneyText.text = "Money: $" + money;
     }
 
-    public void SetCakeScore(int cakeScore)
+    public void SetCakePoints(int cakePoints)
     {
-        cakeScoreText.text = "Cake Score: " + cakeScore;
+        cakePointsText.text = "Cake Points: " + cakePoints;
     }
 
     public void SetRound(uint roundNumber)

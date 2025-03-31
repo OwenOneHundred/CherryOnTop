@@ -80,6 +80,8 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         itemType.text = "";
         toppingType.text = "";
         item = null;
+        toppingObj = null;
+        if (sellButton == null) { return; }
         sellButton.SetActive(false);
     }
 
@@ -89,7 +91,6 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         EventBus<SellEvent>.Raise(new SellEvent(item, toppingObj));
         item.DeregisterEffects();
 
-        Clear();
         if (toppingObj != null)
         {
             Destroy(toppingObj);
@@ -98,6 +99,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {
             Inventory.inventory.RemoveItem(item);
         }
+        Clear();
     }
 
     public void OnPointerExit(PointerEventData eventData)

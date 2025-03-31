@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e4837ccdce3441d59834a200593f6ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBetweenSounds: 0.03
 --- !u!82 &4075003723360062448
 AudioSource:
   m_ObjectHideFlags: 0

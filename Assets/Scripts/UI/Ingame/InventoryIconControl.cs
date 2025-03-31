@@ -42,7 +42,7 @@ public class InventoryIconControl : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (hovered && !selected)
+            if (hovered)
             {
                 OnClicked();
             }

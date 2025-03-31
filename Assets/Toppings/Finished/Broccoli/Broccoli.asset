@@ -21,6 +21,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 21a2b2029de304a2e9b962c8cd1956a1, type: 2}
   description: Shoots big, slow balls of broccoli. For each produce topping on the
     cake at the end of the round, 1/4 chance to get a free reroll.
+  rarity: 1
   towerPrefab: {fileID: 4464501068049243858, guid: 79fb4d51bc47149e4936c5862b0a6627, type: 3}
   flags: 48
   cakePoints: 10

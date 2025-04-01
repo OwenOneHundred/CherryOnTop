@@ -16,7 +16,6 @@ public class CherryTypes : MonoBehaviour
         cherryMovement = GetComponent<CherryMovement>();
         cherryHealth = cherryHitbox.cherryHealth;
         cherrySpeed = cherryMovement.baseSpeed;
-        SetCherryHealthAndSpeed();
     }
 
     public enum CherrySize
@@ -52,12 +51,12 @@ public class CherryTypes : MonoBehaviour
                 transform.localScale *= 1f;
                 break;
             case CherrySize.Large:
-                cherryHitbox.cherryHealth *= 4f;
+                cherryHitbox.cherryHealth *= 8f;
                 cherryMovement.baseSpeed *= 0.75f;
                 transform.localScale *= 2f;
                 break;
             case CherrySize.SuperLarge:
-                cherryHitbox.cherryHealth *= 8.0f;
+                cherryHitbox.cherryHealth *= 40f;
                 cherryMovement.baseSpeed *= 0.5f;
                 transform.localScale *= 6f;
                 break;

@@ -59,6 +59,10 @@ public class CherrySpawner : MonoBehaviour
         {
             cherryTypes.cherrySize = CherryTypes.CherrySize.SuperLarge;
         }
+        else
+        {
+            cherryTypes.cherrySize = CherryTypes.CherrySize.Normal;
+        }
         
         cherryTypes.SetCherryHealthAndSpeed();
     }

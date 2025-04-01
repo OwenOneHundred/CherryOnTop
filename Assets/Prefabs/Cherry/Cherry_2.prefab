@@ -207,6 +207,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cherrySize: 0
   cherryType: 0
+  cherryHealth: 0
+  cherrySpeed: 0
   cherryHitbox: {fileID: 5343877452891195099}
   cherryMovement: {fileID: 3678773368687669692}
 --- !u!1 &4988862917418150766 stripped

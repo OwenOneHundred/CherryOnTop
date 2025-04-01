@@ -81,6 +81,36 @@ public class TrackFunctions : MonoBehaviour
         return closestPoints;
     }
 
+    public List<LineSegment> GetAllLineSegmentsThatIntersectCircle(Vector3 center, float radius)
+    {
+        List<LineSegment> lineSegments = new();
+        int trackEnum = 0;
+        foreach (Vector3[] trackPoints in trackPositions)
+        {
+            for (int posNum = 1; posNum < trackPoints.Length; posNum++)
+            {
+                PointID previous = new PointID(trackPoints[posNum - 1], trackEnum, posNum - 1, 0);
+                PointID current = new PointID(trackPoints[posNum], trackEnum, posNum, 0);
+                float distance = GetDistanceToLineSegment2D(previous.position.x, previous.position.z, current.position.x, current.position.z, center.x, center.z);
+                if (distance < radius) { lineSegments.Add( new LineSegment(previous, current, distance)); }
+            }
+            trackEnum += 1;
+        }
+        return lineSegments.OrderBy(x => x.distanceAway).ToList();
+    }   
+
+    public static float GetDistanceToLineSegment2D(float ax, float ay, float bx, float by, float x, float y)
+    {
+        if ((ax-bx)*(x-bx)+(ay-by)*(y-by) <= 0)
+            return Mathf.Sqrt((x - bx) * (x - bx) + (y - by) * (y - by));
+        
+        if ((bx-ax)*(x-ax)+(by-ay)*(y-ay) <= 0)
+            return Mathf.Sqrt((x - ax) * (x - ax) + (y - ay) * (y - ay));
+        
+        return Mathf.Abs((by - ay)*x - (bx - ax)*y + bx*ay - by*ax) /
+            Mathf.Sqrt((ay - by) * (ay - by) + (ax - bx) * (ax - bx));
+    }
+
     public Vector3 GetPositionByIndex(int track, int index)
     {
         return trackPositions[track][index];
@@ -137,6 +167,20 @@ public class TrackFunctions : MonoBehaviour
             this.trackNumber = trackNumber;
             this.index = index;
             initialized = true;
+            this.distanceAway = distanceAway;
+        }
+    }
+
+    public struct LineSegment
+    {
+        public PointID pointA;
+        public PointID pointB;
+        public float distanceAway;
+
+        public LineSegment(PointID pointA, PointID pointB, float distanceAway)
+        {
+            this.pointA = pointA;
+            this.pointB = pointB;
             this.distanceAway = distanceAway;
         }
     }

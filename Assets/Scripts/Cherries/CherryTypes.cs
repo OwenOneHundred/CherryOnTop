@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class CherryTypes : MonoBehaviour
 {
-    public CherrySize cherrySize;
-    public CherryType cherryType;
+    public CherrySize cherrySize = CherrySize.Normal;
+    public CherryType cherryType = CherryType.DefaultCherry;
     public float cherryHealth;
     public float cherrySpeed;
     public CherryHitbox cherryHitbox;

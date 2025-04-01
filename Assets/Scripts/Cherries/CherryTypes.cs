@@ -5,8 +5,8 @@ public class CherryTypes : MonoBehaviour
 {
     public CherrySize cherrySize;
     public CherryType cherryType;
-    //public float cherryHealth;
-    //public float cherrySpeed;
+    public float cherryHealth;
+    public float cherrySpeed;
     public CherryHitbox cherryHitbox;
     public CherryMovement cherryMovement;
 
@@ -14,8 +14,8 @@ public class CherryTypes : MonoBehaviour
     {
         cherryHitbox = GetComponent<CherryHitbox>();
         cherryMovement = GetComponent<CherryMovement>();
-        //cherryHealth = cherryHitbox.cherryHealth;
-        //cherrySpeed = cherryMovement.baseSpeed;
+        cherryHealth = cherryHitbox.cherryHealth;
+        cherrySpeed = cherryMovement.baseSpeed;
         SetCherryHealthAndSpeed();
     }
 
@@ -43,19 +43,23 @@ public class CherryTypes : MonoBehaviour
         {
             case CherrySize.Small:
                 cherryHitbox.cherryHealth *= 0.75f;
-                cherryMovement.baseSpeed *= 1.5f;
+                cherryMovement.baseSpeed *= 2f;
+                transform.localScale *= 0.6f;
                 break;
             case CherrySize.Normal:
                 cherryHitbox.cherryHealth *= 1.0f;
                 cherryMovement.baseSpeed *= 1.0f;
+                transform.localScale *= 1f;
                 break;
             case CherrySize.Large:
-                cherryHitbox.cherryHealth *= 1.5f;
+                cherryHitbox.cherryHealth *= 4f;
                 cherryMovement.baseSpeed *= 0.75f;
+                transform.localScale *= 2f;
                 break;
             case CherrySize.SuperLarge:
-                cherryHitbox.cherryHealth *= 2.0f;
+                cherryHitbox.cherryHealth *= 8.0f;
                 cherryMovement.baseSpeed *= 0.5f;
+                transform.localScale *= 6f;
                 break;
         }
     }

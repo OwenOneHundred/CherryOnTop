@@ -39,4 +39,10 @@ public static class ToppingTypes
 
     public static bool HasAny(this ToppingTypes.Flags value, ToppingTypes.Flags any)
         => (value & any) != 0;
+
+    [System.Serializable]
+    public enum Rarity
+    {
+        common, uncommon, rare
+    }
 }

@@ -2,20 +2,19 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InventoryIconControl : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class InventoryIconControl : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Topping assignedTopping;
     bool hovered = false;
+    bool selected = false;
     public bool beingPlaced = false;
     [SerializeField] Image image;
     [SerializeField] GameObject outline;
-    [SerializeField] GameObject infoPopupPrefab;
-    GameObject infoPopup;
-    Canvas canvas;
+    InfoPopup infoPopup;
 
     private void Start()
     {
-        canvas = GameObject.FindAnyObjectByType<Canvas>();
+        infoPopup = GameObject.FindGameObjectWithTag("InfoPanel").GetComponent<InfoPopup>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -28,20 +27,25 @@ public class InventoryIconControl : MonoBehaviour, IPointerEnterHandler, IPointe
         hovered = false;
     }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        infoPopup = Instantiate(infoPopupPrefab, canvas.transform);
-        RectTransform rect = infoPopup.GetComponent<RectTransform>();
-        rect.anchoredPosition = new Vector3(196, 259, 0);
-        infoPopup.GetComponent<InfoPopup>().SetUpForInventoryItem(assignedTopping);
-    }
-
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && hovered)
+        if (Input.GetMouseButtonDown(0))
         {
-            ToppingPlacer.toppingPlacer.StartPlacingTopping(assignedTopping, this);
-            StartPlacing();
+            if (!hovered && !infoPopup.hovered)
+            {
+                OnClickedOff();
+            }
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (hovered)
+            {
+                OnClicked();
+            }
         }
     }
 
@@ -49,14 +53,34 @@ public class InventoryIconControl : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         beingPlaced = true;
         image.color = Color.gray;
-        outline.SetActive(true);
     }
 
-    public void StopPlacing()
+    public void StopPlacing() // called by topping placer
     {
         beingPlaced = false;
         image.color = Color.white;
+    }
+
+    public void OnClicked()
+    {
+        selected = true;
+        ToppingPlacer.toppingPlacer.StartPlacingTopping(assignedTopping, this);
+        StartPlacing();
+        infoPopup.SetUpForInventoryItem(assignedTopping);
+        outline.SetActive(true);
+    }
+
+    public void OnClickedOff()
+    {
+        if (!selected) { return; }
+        infoPopup.Clear();
+        selected = false;
         outline.SetActive(false);
+    }
+
+    public void OnDestroy()
+    {
+        OnClickedOff();
     }
 
     public void SetSprite(Sprite sprite)

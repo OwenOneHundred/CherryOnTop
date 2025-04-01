@@ -161,7 +161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d73df01279b254c72ab306e3c78b7675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infoPopupPrefab: {fileID: 5143935969253856157, guid: 8366678d3fd414bfcb7312b4366fb4bf, type: 3}
+  radiusCirclePrefab: {fileID: 3012567605006781236, guid: c0f227daa690a41dd9e7928132e96fdc, type: 3}
+  radiusCircleOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &2910716949551422463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackTemplate: {fileID: 11400000, guid: b447f93c19bcc4387b383247c64c5393, type: 2}
+  targetedCherry: {fileID: 0}
 --- !u!114 &5543599703770907884
 MonoBehaviour:
   m_ObjectHideFlags: 0

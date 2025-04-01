@@ -26,7 +26,7 @@ public class Topping : Item
             }
         }
     }
-    [SerializeField] float cakePoints = 10;
+    public int cakePoints = 10;
 
     [System.NonSerialized] public int killsThisRound = 0;
     [System.NonSerialized] public int damagedCherriesThisRound = 0;

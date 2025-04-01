@@ -64,4 +64,9 @@ public class Projectile : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    public virtual void SetTarget(Vector3 target)
+    {
+
+    }
 }

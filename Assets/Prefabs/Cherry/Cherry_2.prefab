@@ -191,7 +191,7 @@ MonoBehaviour:
   linePositions: []
   currentPosition: 0
   currentTrack: 0
-  baseSpeed: 1.5
+  baseSpeed: 1.3
   distanceTraveled: 0
 --- !u!114 &6635548703197320697
 MonoBehaviour:

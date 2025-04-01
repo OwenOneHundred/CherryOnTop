@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338a1bfe1cdf572469652e493d472c9e, type: 3}
+  m_Name: ShoeSlow
+  m_EditorClassIdentifier: 
+  movementSpeedMultiplier: 0.7
+  typesThatGetDamageMultiplier: 0
+  damageMultiplier: 1
+  debuffType: 0
+  effectDuration: 1
+  onAppliedSFX:
+    volume: 0.5
+    clip: {fileID: 0}

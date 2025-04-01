@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cherryDebuffs: []
-  maxHits: 20
+  maxHits: 4
 --- !u!1001 &7101100515732822799
 PrefabInstance:
   m_ObjectHideFlags: 0

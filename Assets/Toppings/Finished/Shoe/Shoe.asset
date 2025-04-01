@@ -15,7 +15,7 @@ MonoBehaviour:
   price: 5
   shopSprite: {fileID: 21300000, guid: 746328103dc3b4ca7881a07e3d268c68, type: 3}
   effectsAndWhen: []
-  description: 
+  description: Stomps on the track, slowing hit cherries.
   rarity: 0
   towerPrefab: {fileID: 2566917137482711036, guid: 721b16340da0e4de5862599db7d4fc70, type: 3}
   flags: 0

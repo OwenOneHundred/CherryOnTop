@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TrackFunctions : MonoBehaviour
@@ -45,7 +46,39 @@ public class TrackFunctions : MonoBehaviour
             }
             trackEnum += 1;
         }
-        return new PointID(closestPoint, trackNumber, index);
+        return new PointID(closestPoint, trackNumber, index, closestDistance);
+    }
+
+    public List<PointID> GetClosestPointsOnTrack(Vector3 pos, int count)
+    {
+        List<PointID> closestPoints = new();
+
+        int trackEnum = 0;
+        foreach (Vector3[] track in trackPositions)
+        {
+            int indexEnum = 0;
+            foreach (Vector3 position in track)
+            {
+                float distance = Vector3.Distance(pos, position);
+                PointID newPoint = new PointID(position, trackEnum, indexEnum, distance);
+
+                if (closestPoints.Count < count) // don't have enough points yet
+                {
+                    closestPoints.Add(newPoint);
+                    closestPoints.Sort((a, b) => a.distanceAway.CompareTo(b.distanceAway)); // sort so last is worst
+                }
+                else if (distance < closestPoints[^1].distanceAway) // worse than worst point
+                {
+                    closestPoints[^1] = newPoint;
+                    closestPoints.Sort((a, b) => a.distanceAway.CompareTo(b.distanceAway)); // sort so last is worst
+                }
+
+                indexEnum += 1;
+            }
+            trackEnum += 1;
+        }
+
+        return closestPoints;
     }
 
     public Vector3 GetPositionByIndex(int track, int index)
@@ -95,12 +128,16 @@ public class TrackFunctions : MonoBehaviour
         public Vector3 position;
         public int trackNumber;
         public int index;
+        public bool initialized;
+        public float distanceAway;
 
-        public PointID(Vector3 position, int trackNumber, int index)
+        public PointID(Vector3 position, int trackNumber, int index, float distanceAway)
         {
             this.position = position;
             this.trackNumber = trackNumber;
             this.index = index;
+            initialized = true;
+            this.distanceAway = distanceAway;
         }
     }
 }

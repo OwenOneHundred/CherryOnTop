@@ -15,7 +15,7 @@ MonoBehaviour:
   price: 5
   shopSprite: {fileID: 21300000, guid: 450b357d753084d9ab6206c9727c3ff8, type: 3}
   effectsAndWhen: []
-  description: Rapidly lobs low damage sushi at cherries.
+  description: Rapidly lobs inaccurate, low damage sushi at cherries.
   rarity: 0
   towerPrefab: {fileID: 6283636531662423883, guid: 0ebf1797c28b44b7aab0e74c3d3663e1, type: 3}
   flags: 12336

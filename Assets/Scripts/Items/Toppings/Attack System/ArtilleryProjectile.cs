@@ -1,54 +1,47 @@
 using UnityEngine;
 
-public class ArtilleryProjectile : Projectile
+public class ArtilleryProjectile : ExplodingProjectile
 {
-    [SerializeField] GameObject explosionObject;
     [SerializeField] float initialUpwardSpeed = 10;
     float upwardSpeed = 10;
     float horizontalSpeed = 10;
     [SerializeField] float flyTimeSeconds = 2;
-    float targetY = 0;
-    CherryMovement target;
-    Vector2 directionToTarget;
+    Vector3 target;
     bool reachedTop = false;
+    [SerializeField] float gravity = 9.8f;
+    [SerializeField] float rotationSpeed = 0;
     
     void Start()
     {
-        target = CherryManager.Instance.GetHighestPriorityCherry();
-        if (target == null) { Explode(); }
+        if (target == Vector3.zero) { Explode(); }
 
         upwardSpeed = initialUpwardSpeed;
 
-        horizontalSpeed = Vector2.Distance(
-                new Vector2(rb.position.x, rb.position.z),
-                new Vector2(target.transform.position.x, target.transform.position.z)) / (flyTimeSeconds);
+        horizontalSpeed = Vector2.Distance(new Vector2(rb.position.x, rb.position.z), new Vector2(target.x, target.z)) / flyTimeSeconds;
+        if (rotationSpeed != 0)
+        {
+            rb.angularVelocity = new Vector3(rotationSpeed * Random.Range(-1f, 1f), rotationSpeed * Random.Range(-1f, 1f), rotationSpeed * Random.Range(-1f, 1f));
+        }
     }
 
     void FixedUpdate()
     {
-        if (target != null)
+        if (rb.position.y <= target.y && reachedTop)
         {
-            directionToTarget = (new Vector2(target.transform.position.x, target.transform.position.z) - new Vector2(rb.position.x, rb.position.z)).normalized;
-            targetY = target.transform.position.y;
-        }
-
-        upwardSpeed -= Time.deltaTime * (initialUpwardSpeed / (flyTimeSeconds / 2));
-        reachedTop = upwardSpeed < 0;
-        Debug.Log("Direction to target: " + directionToTarget);
-        
-        rb.position += new Vector3(directionToTarget.x * horizontalSpeed * Time.fixedDeltaTime, upwardSpeed * Time.fixedDeltaTime, directionToTarget.y * horizontalSpeed * Time.fixedDeltaTime);
-
-        if (rb.position.y < targetY && reachedTop)
-        {
-            Debug.Log("Didn't get anywhere");
             Explode();
+            return;
         }
+
+        reachedTop = upwardSpeed < 0;
+        
+        Vector2 xzMovement = (new Vector2(target.x, target.z) - new Vector2(transform.position.x, transform.position.z)).normalized * horizontalSpeed * Time.deltaTime;
+        transform.position += new Vector3(xzMovement.x, upwardSpeed * Time.deltaTime, xzMovement.y);
+
+        upwardSpeed -= Time.deltaTime * gravity; // this line is sus
     }
 
-    void Explode()
+    public override void SetTarget(Vector3 targetPosition)
     {
-        Destroy(gameObject);
-
-        Debug.Log("Exploded");
+        target = targetPosition;
     }
 }

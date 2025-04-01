@@ -564,6 +564,7 @@ GameObject:
   - component: {fileID: 814254363}
   - component: {fileID: 814254364}
   - component: {fileID: 814254365}
+  - component: {fileID: 814254366}
   m_Layer: 3
   m_Name: Track
   m_TagString: Track
@@ -630,6 +631,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowPrefab: {fileID: 7588956894528028818, guid: af52f04ff046745ce98fe27053a8bf26, type: 3}
+--- !u!114 &814254366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814254361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 045a3638afca84165bf7057717eab5ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1308,6 +1321,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: startingInventoryItems.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'startingInventoryItems.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: aad0b3e8494e34396bcd12d917efaa23, type: 2}
+    - target: {fileID: 8966158542567257680, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: availableItems.Array.size
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8966158542567257680, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'availableItems.Array.data[19]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b3cf5f9d2c2dd4002beb6cb1d5487960, type: 2}
+    - target: {fileID: 8966158542567257680, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'availableItems.Array.data[20]'
+      value: 
+      objectReference: {fileID: 11400000, guid: ed367cf4325964f17ae8515110ffb0e4, type: 2}
+    - target: {fileID: 8966158542567257680, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'availableItems.Array.data[21]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}
+    - target: {fileID: 8966158542567257680, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'availableItems.Array.data[22]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b08a3f95245044847afbd0298274bfb4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

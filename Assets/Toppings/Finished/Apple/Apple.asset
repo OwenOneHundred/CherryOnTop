@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
+  m_Name: Apple
+  m_EditorClassIdentifier: 
+  price: 5
+  shopSprite: {fileID: 21300000, guid: 9ecbeb0554da54474aba2d3a363b43c2, type: 3}
+  effectsAndWhen: []
+  description: Fires apple cores that fly upward and then fall on the track exploding
+    for splash damage.
+  rarity: 0
+  towerPrefab: {fileID: 2800392430929928222, guid: e8e3426b12d834bd796744e801bfaa2d, type: 3}
+  flags: 80
+  cakePoints: 0
+  onHitCherry: []
+  onKillCherry: []

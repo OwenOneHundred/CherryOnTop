@@ -150,4 +150,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cherryDebuffs: []
-  maxHits: 10
+  maxHits: 6

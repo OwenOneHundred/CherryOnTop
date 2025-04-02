@@ -1,4 +1,5 @@
 using UnityEngine;
+using EventBus;
 
 /// <summary>
 /// Registers hits from projectiles, reduces health, dies when at zero
@@ -54,6 +55,7 @@ public class CherryHitbox : MonoBehaviour
     {
         dead = true;
         CherryManager.Instance.OnCherryKilled(GetComponent<CherryMovement>());
+        EventBus<CherryDiesEvent>.Raise(new CherryDiesEvent(gameObject));
         SoundEffectManager.sfxmanager.PlayOneShot(deathSound);
         Destroy(gameObject);
     }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7347190134329842785
+--- !u!1001 &2680963056289832401
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,21 +8,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1751406142148302725, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
+      propertyPath: onPlaced.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1797199309833350724, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.69
+      objectReference: {fileID: 0}
     - target: {fileID: 3392977787045670734, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 1a4fe1cacb0804aefad75d919ea3db1a, type: 2}
+      objectReference: {fileID: 2100000, guid: b197f340ac73b4985a4375f2d7962daf, type: 2}
     - target: {fileID: 6259744886963452987, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -2432090755550338912, guid: 2739b19317f0a451f89417d4ed6ea174, type: 3}
+      objectReference: {fileID: -2432090755550338912, guid: f9cf4f8275dee4b7a8440b79e2608de7, type: 3}
+    - target: {fileID: 6939634604882509038, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6939634604882509038, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6939634604882509038, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6939634604882509038, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.17
       objectReference: {fileID: 0}
     - target: {fileID: 6939634604882509038, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.16
       objectReference: {fileID: 0}
     - target: {fileID: 6939634604882509038, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -58,9 +78,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7811689376462688174, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
       propertyPath: m_Name
-      value: Camera Variant
+      value: Clock Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3242621880762221844, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
+    - {fileID: 5543599703770907884, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -51,6 +51,15 @@ namespace EventBus
 
     }
 
+    public struct CherryDiesEvent : IEvent
+    {
+        public CherryDiesEvent(GameObject cherry)
+        {
+            this.cherry = cherry;
+        }
+        public GameObject cherry;
+    }
+
     public struct RerollEvent : IEvent
     {
 

@@ -92,6 +92,8 @@ public class Inventory : MonoBehaviour
         SoundEffectManager.sfxmanager.PlayOneShot(buySFX);
 
         AddItem(item);
+
+        Shop.shop.mostRecentlyBoughtItem = item;
         return true;
     }
 

@@ -38,6 +38,9 @@ public class Shop : MonoBehaviour
     [SerializeField] AudioFile openShop;
     [SerializeField] AudioFile closeShop;
     [SerializeField] AudioFile rerollSound;
+
+    public Item mostRecentlyBoughtItem { get; set; }
+
     public static Shop shop;
     public ShopInfoPanel shopInfoPanel;
     public void Awake()

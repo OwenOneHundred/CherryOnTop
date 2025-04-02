@@ -9,8 +9,19 @@ public class InventoryIconControl : MonoBehaviour, IPointerEnterHandler, IPointe
     bool selected = false;
     public bool beingPlaced = false;
     [SerializeField] Image image;
+    [SerializeField] TMPro.TextMeshProUGUI number;
     [SerializeField] GameObject outline;
     InfoPopup infoPopup;
+    int amountInStack = 1;
+    public int AmountInStack
+    {
+        get { return amountInStack; }
+        set 
+        {
+            number.text = value + "";
+            amountInStack = value;
+        }
+    }
 
     private void Start()
     {
@@ -83,8 +94,9 @@ public class InventoryIconControl : MonoBehaviour, IPointerEnterHandler, IPointe
         OnClickedOff();
     }
 
-    public void SetSprite(Sprite sprite)
+    public void SetUp(Sprite sprite)
     {
         image.sprite = sprite;
+        number.text = "";
     }
 }

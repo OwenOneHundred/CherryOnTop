@@ -13,7 +13,6 @@ public class ChangeFireRate : EffectSO
         if (toppingObj == null) { return; }
         if (firstTimeTriggered)
         {
-            Debug.Log(toppingObj);
             attackManager = toppingObj.GetComponentInChildren<AttackManager>();
             cooldown = attackManager.GetAttackCooldown();
             firstTimeTriggered = false;

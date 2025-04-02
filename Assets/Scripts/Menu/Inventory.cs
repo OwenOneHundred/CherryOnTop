@@ -111,10 +111,10 @@ public class Inventory : MonoBehaviour
         inventoryRenderer.AddItemToDisplay(item);
     }
 
-    public void RemoveItem(Item item)
+    public int RemoveOneOfItem(Item item)
     {
         ownedItems.Remove(item);
-        inventoryRenderer.RemoveItemFromDisplay(item);
+        return inventoryRenderer.RemoveOneFromItemFromDisplay(item); 
     }
 
     float moneyChangeTimer = 0;

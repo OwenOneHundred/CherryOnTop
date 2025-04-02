@@ -151,42 +151,15 @@ public class ToppingPlacer : MonoBehaviour
 
         bool notOverlappingAnything = result.Count() == 0;
 
-        //bool tooCloseToTrack = CheckIfTooCloseToTrack(cakePos); this doesn't work, idk why
+        //bool tooCloseToTrack = CheckIfTooCloseToTrack(cakePos);
         bool tooCloseToTrack = false;
 
         return notOverlappingAnything && (!tooCloseToTrack);
     }
 
-    private bool CheckIfTooCloseToTrack(Vector3 cakePos, float acceptableDistance = 0.525f)
+    private bool CheckIfOnTrack(Vector3 cakePos, float acceptableDistance = 0.525f)
     {
-        foreach (List<Vector3> trackPositions in trackPoints)
-        {
-            for (int i = 0; i < trackPositions.Count - 1; i++)
-            {
-                Vector3 startPos = trackPositions[i];
-                Vector3 endPos = trackPositions[i + 1];
-                
-
-                Vector3 closestOnPoints = ClosestPointOnLineSegment(startPos, endPos, cakePos);
-                float distance = Vector3.Distance(cakePos, closestOnPoints);
-
-                //Debug.Log("startpos: " + startPos + " endpos: " + endPos + " closestPoint: " + closestOnPoints + " distance: " + distance + " obj pos: " + cakePos);
-
-                if (distance < acceptableDistance)
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    Vector3 ClosestPointOnLineSegment(Vector3 A, Vector3 B, Vector3 target)
-    {
-        Vector3 fromAtoB = B - A;
-        Vector3 fromAtoTarget = target - A;
-        float t = Mathf.Clamp01(Vector2.Dot(fromAtoTarget, fromAtoB) / fromAtoB.sqrMagnitude);
-        return A + t * fromAtoB;
+        return TrackFunctions.trackFunctions.GetAllLineSegmentsThatIntersectCircle(cakePos, acceptableDistance).Count != 0;
     }
 
     private float GetLowestPointOffset(Bounds bounds, Vector3 groundDirection, float scale)
@@ -223,6 +196,6 @@ public class ToppingPlacer : MonoBehaviour
         topping.RegisterEffects();
         topping.SetGameObjectOnEffects(newToppingObj);
 
-        Inventory.inventory.RemoveItem(topping); // remove from inventory
+        Inventory.inventory.RemoveOneOfItem(topping); // remove from inventory
     }
 }

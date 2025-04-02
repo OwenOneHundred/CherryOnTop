@@ -197,17 +197,12 @@ namespace GameSaves
     }
 
     [System.Serializable]
-    public class DEItemIDProvider : DataEntry
+    public class DEFloatEntry : DataEntry
     {
-        [SerializeField] public int nextValue;
-        public DEItemIDProvider(string dataName) : base(dataName)
+        [SerializeField] public float value;
+        public DEFloatEntry(string dataName, float value) : base(dataName)
         {
-            nextValue = 0;
-        }
-
-        public int GetNextID()
-        {
-            return nextValue++;
+            this.value = value;
         }
     }
 

@@ -15,7 +15,6 @@ public class Shop : MonoBehaviour
 
     [SerializeField] int columns = 3;
     [SerializeField] int iconSpacing = 100;
-    [SerializeField] int totalItems = 4;
 
     [SerializeField] GameObject shopObjPrefab;
     public List<Item> currentItems = new();
@@ -130,9 +129,14 @@ public class Shop : MonoBehaviour
 
     public void PopulateShop()
     {
-        for (int i = 0; i < totalItems; i++)
+        // Create list of weights
+        List<float> weights = new();
+        foreach (Item item in availableItems) weights.Add(item.rarity.GetWeight());
+
+        // Populate the shop using the weights
+        for (int i = 0; i < 6; i++)
         {
-            int item = Random.Range(0, availableItems.Count);
+            int item = GeneralUtil.RandomWeighted(weights);
             currentItems.Add(availableItems[item]);
         }
     }
@@ -140,7 +144,7 @@ public class Shop : MonoBehaviour
     public void UpdateAllIcons() // TODO: this function spawns copies of icons on top of each other when shop is opened and closed
     {
         // Also resets the purchase status of shop items
-        // Not sure if this needs to be fixed
+        // Not sure if this needs to be changed
         foreach (ShopObj shopObj in shopObjs) Destroy(shopObj.gameObject);
         shopObjs.Clear();
         for (int i = 0; i < currentItems.Count; i++) {

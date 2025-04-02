@@ -1,8 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class BuffManager : MonoBehaviour
-{
+public class BuffManager : MonoBehaviour {
     private AttackManager attackManager;
     private TargetingSystem targetingSystem;
 

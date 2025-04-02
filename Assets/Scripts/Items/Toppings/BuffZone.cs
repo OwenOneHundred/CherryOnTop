@@ -33,12 +33,9 @@ public class BuffZone : MonoBehaviour
         foreach (Collider col in toppings)
         {
             BuffManager buffManager = col.GetComponent<BuffManager>();
-            if (buffManager != null && col != this)
-            {
+            if (buffManager != null && col != this.gameObject.GetComponent<Collider>()) {
                 currentTowers.Add(buffManager);
-                if (!affectedToppings.Contains(buffManager))
-                {
-                    //Error line
+                if (!affectedToppings.Contains(buffManager)) {
                     buffManager.AddBuff(this);
                 }
             }

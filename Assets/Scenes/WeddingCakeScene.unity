@@ -1074,6 +1074,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1412596904 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4712727569409509211, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+  m_PrefabInstance: {fileID: 7121916051453279109}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1583052397 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: d79d7a5e29d1545f99c080ccec791af5, type: 3}
@@ -1267,6 +1278,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: IngameUI
       objectReference: {fileID: 0}
+    - target: {fileID: 4145503549342962950, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4145503549342962950, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4145503549342962950, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712727569409509211, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712727569409509211, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712727569409509211, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712727569409509211, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4292072403
+      objectReference: {fileID: 0}
+    - target: {fileID: 5504906584443792048, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_Name
+      value: RerollButtonText
+      objectReference: {fileID: 0}
     - target: {fileID: 5964487472042778191, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1375,6 +1418,10 @@ PrefabInstance:
       propertyPath: nextRoundButton
       value: 
       objectReference: {fileID: 263657152}
+    - target: {fileID: 8966158542567257680, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: rerollButtonText
+      value: 
+      objectReference: {fileID: 1412596904}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

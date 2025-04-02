@@ -20,6 +20,7 @@ public class Shop : MonoBehaviour
     public List<Item> availableItems = new();
     [SerializeField] Transform itemParent;
     [SerializeField] TMPro.TextMeshProUGUI rerollsText;
+    [SerializeField] TMPro.TextMeshProUGUI rerollButtonText;
     public List<ShopObj> shopObjs = new();
     int rerolls = 0;
     public int Rerolls
@@ -28,6 +29,7 @@ public class Shop : MonoBehaviour
         set
         { 
             rerollsText.text = "Free rerolls: " + value;
+            rerollButtonText.text = (value > 0) ? "Free\nReroll" : "Reroll\n$4";
             rerolls = value;
         }
     }

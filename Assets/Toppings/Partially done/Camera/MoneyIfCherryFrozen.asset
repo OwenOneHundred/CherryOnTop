@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MoneyIfCherryFrozen
   m_EditorClassIdentifier: 
   amountToChangeMoney: 1
-  chanceOfHappening0to1: 1
+  chanceOfHappening0to1: 0.5
   useRadius: 1

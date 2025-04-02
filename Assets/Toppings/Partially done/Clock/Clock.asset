@@ -12,13 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Clock
   m_EditorClassIdentifier: 
-  price: 5
-  shopSprite: {fileID: 0}
-  effectsAndWhen: []
-  description: 
-  rarity: 0
-  towerPrefab: {fileID: 0}
-  flags: 0
+  price: 10
+  shopSprite: {fileID: 21300000, guid: 49e9bc48d2db54d8282e6d10ce67cd20, type: 3}
+  effectsAndWhen:
+  - effectSOs:
+    - {fileID: 11400000, guid: a0594187ccbfc4ad9aa231a2d9a15d56, type: 2}
+    eventSOs:
+    - {fileID: 11400000, guid: 61a179cbcbc324e68b5581dcdf2f2cb9, type: 2}
+  description: No attack. At the start of every round, make a copy of your most recently
+    bought topping.
+  rarity: 2
+  towerPrefab: {fileID: 5286104097913148031, guid: b5a1052e90ec64ff189325d8cb793534, type: 3}
+  flags: 2048
   cakePoints: 10
   onHitCherry: []
   onKillCherry: []

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a42c00125cf7347a682b612f07c2ba99, type: 3}
   m_Name: RemoveFrozenCherriesMoveBackward
   m_EditorClassIdentifier: 
-  debuffModifier: {fileID: 0}
+  debuffModifier: {fileID: 11400000, guid: bd2bea2a30c1e47f3a85f7e51fb8c144, type: 2}

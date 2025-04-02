@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec5ad868ef8ba4862889520c79ff9284, type: 3}
   m_Name: SushiArtillery
   m_EditorClassIdentifier: 
-  cooldown: 0.55
+  cooldown: 0.58
   damage: 1
   debuffs: []
   projectile: {fileID: 1373519935423302513, guid: c4d3ba91d63484e42a50d5958738b69d, type: 3}

@@ -33,7 +33,7 @@ public class CherrySpawner : MonoBehaviour
         RoundManager.roundManager.totalCherriesThisRound = totalCherries;
         float timeBetweenCherries = defaultTimeBetweenCherries / (scaleFactor * (roundNumberIsOdd ? 1 : evenNumberCherrySpacingMultiplier));
 
-        bigChance = Mathf.Clamp(bigChance * 1.2f, 0, 100);
+        bigChance = Mathf.Clamp(bigChance * 1.19f, 0, 100);
 
         for (int i = 0; i < totalCherries; i++)
         {
@@ -51,13 +51,13 @@ public class CherrySpawner : MonoBehaviour
 
         float rng = Random.Range(0, bigChance);
 
-        if (rng > 1)
-        {
-            cherryTypes.cherrySize = CherryTypes.CherrySize.Large;
-        }
-        else if (rng > 4)
+        if (rng > 4)
         {
             cherryTypes.cherrySize = CherryTypes.CherrySize.SuperLarge;
+        }
+        else if (rng > 1)
+        {
+            cherryTypes.cherrySize = CherryTypes.CherrySize.Large;
         }
         else
         {

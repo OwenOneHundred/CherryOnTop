@@ -868,6 +868,7 @@ MonoBehaviour:
   speed: 5500
   columns: 3
   iconSpacing: 365
+  totalItems: 6
   shopObjPrefab: {fileID: 6648261447245317029, guid: db4eb116f82b8c9458d9cbcd4b4baf22, type: 3}
   currentItems: []
   availableItems:
@@ -876,6 +877,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8628b5031472646ae86561ad2d59b776, type: 2}
   - {fileID: 11400000, guid: ecabe900cc5204aa6b3ca5af6e6d11f3, type: 2}
   - {fileID: 11400000, guid: 37436afdd3ed94eccb945b18ff3f93d3, type: 2}
+  - {fileID: 11400000, guid: 6ff2c491db4744e26b06477d3f38ec57, type: 2}
   - {fileID: 11400000, guid: 0ce4de383c30c46d39d7c8a1ff38e9fc, type: 2}
   - {fileID: 11400000, guid: 948a41667ff104a3abb8d512f4ace65d, type: 2}
   - {fileID: 11400000, guid: ff21dc747abbb42c2b330e3d098473ee, type: 2}

@@ -39,6 +39,18 @@ public static class ToppingTypes
 
     public static bool HasAny(this ToppingTypes.Flags value, ToppingTypes.Flags any)
         => (value & any) != 0;
+    
+    public static float GetWeight(this ToppingTypes.Rarity rarity)
+    {
+        switch (rarity)
+        {
+            case Rarity.common: return 1f;
+            case Rarity.uncommon: return 0.25f;
+            case Rarity.rare: return 0.1f;
+            default: return 1;
+        }
+    }
+        
 
     [System.Serializable]
     public enum Rarity

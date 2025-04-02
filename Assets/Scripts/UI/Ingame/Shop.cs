@@ -15,6 +15,7 @@ public class Shop : MonoBehaviour
 
     [SerializeField] int columns = 3;
     [SerializeField] int iconSpacing = 100;
+    [SerializeField] int totalItems = 4;
 
     [SerializeField] GameObject shopObjPrefab;
     public List<Item> currentItems = new();
@@ -126,8 +127,7 @@ public class Shop : MonoBehaviour
 
     public void PopulateShop()
     {
-        // Will probably be changed later idk
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < totalItems; i++)
         {
             int item = Random.Range(0, availableItems.Count);
             currentItems.Add(availableItems[item]);

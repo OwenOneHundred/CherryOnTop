@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Rock Candy Attack
   m_EditorClassIdentifier: 
   cooldown: 2
-  damage: 25
-  projectile: {fileID: 1373519935423302513, guid: 4b249323f92ee455d95dabd24130312f, type: 3}
+  damage: 45
+  debuffs: []
+  projectile: {fileID: 1373519935423302513, guid: 13fca35f01a6f4fab80e37062433d89b, type: 3}
   projectileSpeed: 40
+  fireSound:
+    volume: 0.5
+    clip: {fileID: 0}

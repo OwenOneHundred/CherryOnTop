@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class BuffManager : MonoBehaviour {
     private AttackManager attackManager;
@@ -10,9 +11,8 @@ public class BuffManager : MonoBehaviour {
     private float baseRange;
 
     private List<BuffZone> activeBuffs = new List<BuffZone>();
-
-    void Start()
-    {
+    
+    void Start() {
         Invoke(nameof(InitializeBuffManager), 0.1f);
     }
 
@@ -54,7 +54,7 @@ public class BuffManager : MonoBehaviour {
     }
 
     void RecalculateTowerStats() {
-        Debug.Log("Recalc Tower Stats");
+        Debug.Log($"Recalc Tower Stats for {gameObject.name}");
 
         float cooldownMultiplier = 1f;
         float damageMultiplier = 1f;
@@ -76,8 +76,7 @@ public class BuffManager : MonoBehaviour {
             }
         }
 
-        if (attackManager != null)
-        {
+        if (attackManager != null) {
             attackManager.SetAttackCooldown(baseCooldown * cooldownMultiplier);
             Debug.Log($"Tower {gameObject.name} Cooldown Update: {baseCooldown * cooldownMultiplier}");
 

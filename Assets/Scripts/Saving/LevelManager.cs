@@ -143,11 +143,13 @@ public class LevelManager : MonoBehaviour
         }
         foreach (ToppingRegistry.ItemInfo item in toppings)
         {
-            allTowers.Add(new DETowerPlaced("topping" + item.topping.towerPrefab.name, toppingIndex[item.topping.name], new DEPosition("pos", item.obj.transform.position, item.obj.transform.rotation.eulerAngles)));
+            string itemName = UnclonedName(item.topping.name);
+            allTowers.Add(new DETowerPlaced("topping" + itemName, toppingIndex[itemName], new DEPosition("pos", item.obj.transform.position, item.obj.transform.rotation.eulerAngles)));
         }
         foreach (Item item in Inventory.inventory.ownedItems)
         {
-            allInventory.Add(new DEItemInventory("item" + item.name, itemIndex[item.name]));
+            string itemName = UnclonedName(item.name);
+            allInventory.Add(new DEItemInventory("item" + itemName, itemIndex[itemName]));
         }
         DEAllTowers towers = new DEAllTowers("alltowers", allTowers);
         DEAllItemsInventory items = new DEAllItemsInventory("allinventory", allInventory);
@@ -185,5 +187,17 @@ public class LevelManager : MonoBehaviour
             }
         }
         Debug.Log("Done saving level data!");
+    }
+
+    public static string UnclonedName(string name)
+    {
+        string _cloneText = "(Clone)";
+        int index = name.IndexOf(_cloneText);
+        while (index >= 0)
+        {
+            name = name.Substring(0, index) + name.Substring(index + _cloneText.Length);
+            index = name.IndexOf(_cloneText);
+        }
+        return name;
     }
 }

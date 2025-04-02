@@ -14,17 +14,24 @@ public class BuffManager : MonoBehaviour
 
     void Start()
     {
+        Invoke(nameof(InitializeBuffManager), 0.1f);
+    }
+
+    void InitializeBuffManager() {
         attackManager = GetComponent<AttackManager>();
         targetingSystem = GetComponent<TargetingSystem>();
-
+        
         if (attackManager != null)
         {
             baseDamage = attackManager.AttackDamage;
-            //baseCooldown = attackManager.GetAttackCooldown();
+            Debug.Log($"Tower {gameObject.name} Base Damage: {baseDamage}");
+            baseCooldown = attackManager.GetAttackCooldown();
+            Debug.Log($"Tower {gameObject.name} Base Cooldown: {baseCooldown}"); 
         }
 
         if (targetingSystem != null)
         {
+             Debug.Log($"Tower {gameObject.name} Base Range: {targetingSystem.GetRange()}");
             baseRange = targetingSystem.GetRange();
         }
     }
@@ -47,8 +54,9 @@ public class BuffManager : MonoBehaviour
         }
     }
 
-    void RecalculateTowerStats()
-    {
+    void RecalculateTowerStats() {
+        Debug.Log("Recalc Tower Stats");
+
         float cooldownMultiplier = 1f;
         float damageMultiplier = 1f;
         float rangeMultiplier = 1f;
@@ -71,18 +79,16 @@ public class BuffManager : MonoBehaviour
 
         if (attackManager != null)
         {
-            //attackManager.SetAttackCooldown(baseCooldown * cooldownMultiplier);
-            //attackManager.AttackDamage = Mathf.RoundToInt(baseDamage * damageMultiplier);
+            attackManager.SetAttackCooldown(baseCooldown * cooldownMultiplier);
+            Debug.Log($"Tower {gameObject.name} Cooldown Update: {baseCooldown * cooldownMultiplier}");
+
+            attackManager.AttackDamage = Mathf.RoundToInt(baseDamage * damageMultiplier);
+            Debug.Log($"Tower {gameObject.name} Damage Update: {baseDamage * damageMultiplier}");
         }
 
-        if (targetingSystem != null)
-        {
+        if (targetingSystem != null) {
             targetingSystem.SetRange(baseRange * rangeMultiplier);
+            Debug.Log($"Tower {gameObject.name} Range Update: {targetingSystem.GetRange()}");
         }
-
-        Debug.Log($"Tower {gameObject.name} Buff Update: " +
-                  $"Cooldown: {cooldownMultiplier}, " +
-                  $"Damage: {damageMultiplier}, " +
-                  $"Range: {rangeMultiplier}");
     }
 }

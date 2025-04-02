@@ -104,10 +104,19 @@ public class Inventory : MonoBehaviour
         AddItem(item);
     }
 
-    public void AddItem(Item item)
+    public void AddItem(Item item, Guid id = default)
     {
         item = Instantiate(item); // Item SOs are currently instantiated here, when added to inventory.
         item.SetUpEffectsAndWhen(); // Item SOs' effects are instantiated here.
+        if (id == default)
+        {
+            item.ID = Guid.NewGuid();
+        }
+        else
+        {
+            item.ID = id;
+        }
+        
 
         ownedItems.Add(item);
         inventoryRenderer.AddItemToDisplay(item);

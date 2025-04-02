@@ -125,14 +125,14 @@ MonoBehaviour:
   cherryDebuffs: []
   maxHits: 1
   shockwave: {fileID: 9014841120415768667, guid: e153a66f9634a4dc68a586b890ec1b6b, type: 3}
-  shockwaveDamage: 5
+  shockwaveDamage: 3
   shockwaveSpeed: 4
   shockwaveRange: 0.75
   cameraShakeViolence: 0
   cameraShakeLength: 0
-  onHitSound:
+  explodeSound:
     volume: 0.5
-    clip: {fileID: 8300000, guid: 5ba3203a8ddc54ad8b3902c70ab5d827, type: 3}
+    clip: {fileID: 0}
 --- !u!54 &312522877162743773
 Rigidbody:
   m_ObjectHideFlags: 0

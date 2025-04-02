@@ -17,8 +17,9 @@ MonoBehaviour:
   effectsAndWhen: []
   description: No attack. Burning cherries burn a stacking 10% longer and take 10%
     more damage from other attacks.
+  rarity: 0
   towerPrefab: {fileID: 7133461406448433772, guid: a81335b5946c742a5bc3d4799e5a0319, type: 3}
-  flags: 0
+  flags: 384
   cakePoints: 20
   onHitCherry: []
   onKillCherry: []

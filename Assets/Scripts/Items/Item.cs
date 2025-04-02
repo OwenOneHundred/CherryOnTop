@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public abstract class Item : ScriptableObject
 {
     public int price = 5;
     public Sprite shopSprite;
+    public Guid ID;
 
     public List<EffectAndWhen> effectsAndWhen = new List<EffectAndWhen>();
 

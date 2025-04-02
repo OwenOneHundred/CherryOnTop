@@ -33,4 +33,9 @@ public class Shockwave : Projectile
     {
         return (attackedObject.transform.position - transform.position).normalized;
     }
+
+    public override void SelfDestruct()
+    {
+        Destroy(gameObject, lifetime);
+    }
 }

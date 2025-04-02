@@ -26,10 +26,9 @@ public class Projectile : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        if (hitCount >= maxHits) { return; }
         if (other.transform.root.TryGetComponent<CherryHitbox>(out CherryHitbox ch))
         {
-            if (hitCount >= maxHits) { return; }
-
             OnHitCherry(ch);
             float remainingCherryHealth = ch.TakeDamage(damage, owner, GetAttackDirection(other.gameObject));
             

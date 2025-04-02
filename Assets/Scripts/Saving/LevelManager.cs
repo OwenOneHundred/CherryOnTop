@@ -149,12 +149,12 @@ public class LevelManager : MonoBehaviour
         foreach (ToppingRegistry.ItemInfo item in toppings)
         {
             string itemName = UnclonedName(item.topping.name);
-            allTowers.Add(new DETowerPlaced("topping" + itemName, toppingIndex[itemName], new DEPosition("pos", item.obj.transform.position, item.obj.transform.rotation.eulerAngles), 0));
+            allTowers.Add(new DETowerPlaced("topping" + itemName, toppingIndex[itemName], new DEPosition("pos", item.obj.transform.position, item.obj.transform.rotation.eulerAngles), item.topping.ID.ToString()));
         }
         foreach (Item item in Inventory.inventory.ownedItems)
         {
             string itemName = UnclonedName(item.name);
-            allInventory.Add(new DEItemInventory("item" + itemName, itemIndex[itemName], 0));
+            allInventory.Add(new DEItemInventory("item" + itemName, itemIndex[itemName], item.ID.ToString()));
         }
 
         // Create the wrapper data entry items
@@ -199,8 +199,8 @@ public class LevelManager : MonoBehaviour
         if (saveData.TryGetDataEntry("alltowers", out DEAllTowers towerWrapper)) {
             foreach (DETowerPlaced tower in towerWrapper.towers)
             {
-                Topping topping = Instantiate(potentialToppings[tower.towerIndex]);
-                // TODO: set the GUID of the topping
+                Topping topping = Instantiate(potentialToppings[tower.towerIndex]); // instantiate it
+                topping.ID = new System.Guid(tower.towerID); // set the GUID
                 toppingPlacer.PlaceTopping(topping, tower.pos.positionData, Quaternion.Euler(tower.pos.eulers));
             }
         }
@@ -210,7 +210,7 @@ public class LevelManager : MonoBehaviour
         {
             foreach (DEItemInventory item in  itemsWrapper.items)
             {
-                Inventory.inventory.AddItem(potentialItems[item.itemIndex]);
+                Inventory.inventory.AddItem(potentialItems[item.itemIndex], new System.Guid(item.itemID)); // set the GUID
             }
         }
 

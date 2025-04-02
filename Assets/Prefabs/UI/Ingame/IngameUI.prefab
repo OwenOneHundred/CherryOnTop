@@ -1542,8 +1542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialMoney: 15
   baseTimeBetweenMoneyChanges: 0.35
-  startingInventoryItems:
-  - {fileID: 11400000, guid: 16b05512f6fba4e19bb9b8ffb5848e34, type: 2}
+  startingInventoryItems: []
   inventoryRenderer: {fileID: 6508363885407075222}
   inventoryEffectManager: {fileID: 2718221458188522715}
   ingameUI: {fileID: 5165441279755291159}

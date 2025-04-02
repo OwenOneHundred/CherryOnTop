@@ -11,6 +11,7 @@ public class CherrySpawner : MonoBehaviour
     readonly float evenNumberCherrySpacingMultiplier = 1.5f;
     [SerializeField] GameObject cherryPrefab;
     [SerializeField] Vector3 cherryStartPos;
+    [SerializeField] float difficultyScalingAmount = 1.16f;
     CherryManager cherryManager;
 
     float bigChance = 0.6f;
@@ -33,7 +34,7 @@ public class CherrySpawner : MonoBehaviour
         RoundManager.roundManager.totalCherriesThisRound = totalCherries;
         float timeBetweenCherries = defaultTimeBetweenCherries / (scaleFactor * (roundNumberIsOdd ? 1 : evenNumberCherrySpacingMultiplier));
 
-        bigChance = Mathf.Clamp(bigChance * 1.19f, 0, 100);
+        bigChance = Mathf.Clamp(bigChance * difficultyScalingAmount, 0, 100);
 
         for (int i = 0; i < totalCherries; i++)
         {

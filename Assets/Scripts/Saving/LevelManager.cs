@@ -3,11 +3,12 @@ using GameSaves;
 using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    protected LevelManager _instance;
-    public LevelManager Instance
+    protected static LevelManager _instance;
+    public static LevelManager Instance
     {
         get
         {
@@ -27,6 +28,11 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     [SerializeField] protected bool _encryptData = true;
     [SerializeField] protected string _saveFileName = "levelsave";
     protected SaveData _saveData = null;
@@ -34,10 +40,6 @@ public class LevelManager : MonoBehaviour
     {
         get
         {
-            if (_saveData == null)
-            {
-                _saveData = SaveDataUtility.LoadSaveData(_saveFileName, "defaultlevel");
-            }
             return _saveData;
         }
     }
@@ -95,6 +97,22 @@ public class LevelManager : MonoBehaviour
     {
         _validInstance = false;
         _instance = null;
+    }
+
+    public void Initialize(string levelName = "defaultlevel", bool loadSaveData = false)
+    {
+        if (_saveData == null)
+        {
+            if (loadSaveData)
+            {
+                _saveData = SaveDataUtility.LoadSaveData(_saveFileName, levelName);
+            } else
+            {
+                _saveData = SaveDataUtility.CreateSaveData(_saveFileName, levelName);
+            }
+            // SaveDataUtility.CreateSaveData(levelName)
+            //_saveData = 
+        }
     }
 
     public void SaveLevel()

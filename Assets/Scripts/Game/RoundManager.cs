@@ -1,7 +1,10 @@
 using EventBus;
+using GameSaves;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(LevelManager))]
 public class RoundManager : MonoBehaviour
 {
     public RoundState roundState = RoundState.shop;
@@ -15,6 +18,17 @@ public class RoundManager : MonoBehaviour
     [SerializeField] Button nextRoundButton;
     [SerializeField] IngameUI ingameUI;
     [SerializeField] Shop shop;
+
+    LevelManager _levelManager;
+    LevelManager levelManager
+    {
+        get
+        {
+            if (_levelManager == null)
+                _levelManager = GetComponent<LevelManager>();
+            return _levelManager;
+        }
+    }
 
     void Awake()
     {
@@ -38,8 +52,21 @@ public class RoundManager : MonoBehaviour
         }
     }
 
+    public void InitializeSave(bool loadLevel = false)
+    {
+        levelManager.Initialize(SceneManager.GetActiveScene().name, loadLevel);
+    }
+
+    public void SaveLevel()
+    {
+        InitializeSave();
+        levelManager.SaveLevel();
+    }
+
     public void StartNextRound() // called by start round button
     {
+        SaveLevel(); // save before round start things are finished
+
         roundNumber += 1;
         ingameUI.SetRound(roundNumber);
         roundState = RoundState.cherries;
@@ -66,6 +93,8 @@ public class RoundManager : MonoBehaviour
         }
 
         CakePointsManager.cakePointsManager.OnRoundEnd();
+
+        SaveLevel(); // save after all round end things are called
     }
 
     public void OnCherryKilled()

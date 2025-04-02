@@ -13,6 +13,7 @@ public class RoundManager : MonoBehaviour
 
     public static RoundManager roundManager; // Singleton
     [SerializeField] Button nextRoundButton;
+    [SerializeField] Button shopButton;
     [SerializeField] IngameUI ingameUI;
     [SerializeField] Shop shop;
 
@@ -44,7 +45,9 @@ public class RoundManager : MonoBehaviour
         ingameUI.SetRound(roundNumber);
         roundState = RoundState.cherries;
         nextRoundButton.interactable = false;
+        shopButton.interactable = false;
         cherriesKilledThisRoundCount = 0;
+        if (shop.Open) shop.ToggleOpen();
 
         EventBus<RoundStartEvent>.Raise(new RoundStartEvent(roundNumber));
 
@@ -56,6 +59,7 @@ public class RoundManager : MonoBehaviour
     {
         roundState = RoundState.shop;
         nextRoundButton.interactable = true;
+        shopButton.interactable = true;
         Inventory.inventory.Money += moneyOnRoundEnd;
         cherriesKilledThisRoundCount = 0;
 

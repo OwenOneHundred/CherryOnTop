@@ -13,7 +13,7 @@ public class BuffZone : MonoBehaviour
 
     public BuffType BuffType => buffType;
     public float BuffValue => buffValue;
-
+    public Collider collider => GetComponent<Collider>();
     void Start()
     {
         toppingLayer = LayerMask.GetMask("Topping");
@@ -33,9 +33,10 @@ public class BuffZone : MonoBehaviour
         foreach (Collider col in toppings)
         {
             BuffManager buffManager = col.GetComponent<BuffManager>();
-            if (buffManager != null && col != this.gameObject.GetComponent<Collider>()) {
+            if (buffManager != null && col != collider) {
                 currentTowers.Add(buffManager);
-                if (!affectedToppings.Contains(buffManager)) {
+                Debug.Log($"BuffZone {gameObject.name} found {buffManager.gameObject.name}");
+                if (!affectedToppings.Contains(buffManager) && col.GetComponent<AttackManager>() != null){
                     buffManager.AddBuff(this);
                 }
             }

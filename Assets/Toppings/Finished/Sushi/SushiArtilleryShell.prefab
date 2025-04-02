@@ -155,8 +155,8 @@ MonoBehaviour:
   shockwaveDamage: 7
   shockwaveSpeed: 2
   shockwaveRange: 1
-  cameraShakeViolence: 0.15
-  cameraShakeLength: 0.125
+  cameraShakeViolence: 0
+  cameraShakeLength: 0
   explodeSound:
     volume: 0.4
     clip: {fileID: 8300000, guid: 18054a612a34c4273abaf93d10887d42, type: 3}

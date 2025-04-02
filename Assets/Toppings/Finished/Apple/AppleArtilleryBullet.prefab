@@ -155,11 +155,12 @@ MonoBehaviour:
   shockwaveDamage: 23
   shockwaveSpeed: 2
   shockwaveRange: 1
-  cameraShakeViolence: 0.5
+  cameraShakeViolence: 0.2
   cameraShakeLength: 0.15
-  onHitSound:
+  explodeSound:
     volume: 0.5
     clip: {fileID: 0}
   initialUpwardSpeed: 10
   flyTimeSeconds: 2
   gravity: 13
+  rotationSpeed: 0

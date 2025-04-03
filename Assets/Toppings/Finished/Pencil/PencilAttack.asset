@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PencilAttack
   m_EditorClassIdentifier: 
   cooldown: 0.7
-  damage: 27
+  damage: 35
   debuffs: []
   projectile: {fileID: 5639995158584697843, guid: 3560d60aa1d4b4f4ebf24c937e25641c, type: 3}
   projectileSpeed: 0

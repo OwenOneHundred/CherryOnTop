@@ -91,6 +91,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         EventBus<SellEvent>.Raise(new SellEvent(item, toppingObj));
         item.DeregisterEffects();
         ToppingRegistry.toppingRegistry.DeregisterTopping(item);
+        Debug.Log("Sell item: " + item);
 
         if (toppingObj != null)
         {

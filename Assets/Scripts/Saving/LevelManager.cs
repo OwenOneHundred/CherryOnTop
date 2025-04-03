@@ -149,6 +149,7 @@ public class LevelManager : MonoBehaviour
         List<DEItemInventory> allInventory = new List<DEItemInventory>();
         foreach (ToppingRegistry.ItemInfo item in toppings)
         {
+            if (item.obj == null) { Debug.LogWarning("Null item in topping registry: " + item.topping); continue; }
             string itemName = UnclonedName(item.topping.name);
             allTowers.Add(new DETowerPlaced("topping" + itemName, toppingIndex[itemName], new DEPosition("pos", item.obj.transform.position, item.obj.transform.rotation.eulerAngles), item.topping.ID.ToString()));
         }

@@ -7,6 +7,7 @@ public class ToppingRegistry : MonoBehaviour
 {
     public static ToppingRegistry toppingRegistry;
     [SerializeField] List<ItemInfo> placedToppings = new();
+    public List<Item> allItems = new();
     private void Awake()
     {
         if (toppingRegistry == null)
@@ -28,6 +29,8 @@ public class ToppingRegistry : MonoBehaviour
     public void DeregisterTopping(Item item)
     {
         ItemInfo itemInfo = placedToppings.FirstOrDefault(x => x.topping.name == item.name);
+        if (itemInfo.obj != null) { Debug.Log("Remove topping: " + itemInfo.obj); } else { Debug.LogWarning("Couldn't find " + item.name + " in toppingregistry."); }
+        
         if (itemInfo.obj != null)
         {
             placedToppings.Remove(itemInfo);

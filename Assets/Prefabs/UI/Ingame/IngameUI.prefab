@@ -747,6 +747,7 @@ MonoBehaviour:
   roundNumber: 0
   moneyOnRoundEnd: 5
   nextRoundButton: {fileID: 1390693133404687419}
+  shopButton: {fileID: 1848900876542587564}
   ingameUI: {fileID: 5165441279755291159}
   shop: {fileID: 8966158542567257680}
 --- !u!114 &8392582136422224834
@@ -761,6 +762,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b57459ec67c14f87afa4bfbceefcc53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allItems:
+  - {fileID: 11400000, guid: b08a3f95245044847afbd0298274bfb4, type: 2}
+  - {fileID: 11400000, guid: ed367cf4325964f17ae8515110ffb0e4, type: 2}
+  - {fileID: 11400000, guid: b66a93231f1a446fab7f5b9321bc2f31, type: 2}
+  - {fileID: 11400000, guid: b3cf5f9d2c2dd4002beb6cb1d5487960, type: 2}
+  - {fileID: 11400000, guid: aad0b3e8494e34396bcd12d917efaa23, type: 2}
+  - {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}
+  - {fileID: 11400000, guid: 0161726ea9c1a42c38c3d1d029a3d981, type: 2}
+  - {fileID: 11400000, guid: f5bd03e1997664743af1946ac5321a88, type: 2}
+  - {fileID: 11400000, guid: 64164d5af1743421fa7ffd2e6df4b48a, type: 2}
+  - {fileID: 11400000, guid: 25ffcaf8f139f434d8e22a6a914363de, type: 2}
+  - {fileID: 11400000, guid: f91ebb90466a44f10a53f18e6b00baec, type: 2}
+  - {fileID: 11400000, guid: 9ca9f78176f7b49b696bc2b6c5c7b0ee, type: 2}
+  - {fileID: 11400000, guid: 1a7d1419538e34493891572cced33a96, type: 2}
+  - {fileID: 11400000, guid: 32e3947f085444a0e8fe65b294b7f9d0, type: 2}
+  - {fileID: 11400000, guid: f652f189027e742ac937041cf8e7bac1, type: 2}
+  - {fileID: 11400000, guid: fc8447cf6d7749e499d5a495ff33c615, type: 2}
+  - {fileID: 11400000, guid: 5d4c3a01cf4e74901ba2a080092b0c86, type: 2}
+  - {fileID: 11400000, guid: ef112ccab09004451a087619f5391a65, type: 2}
+  - {fileID: 11400000, guid: ee06e2caa2ef640ffab9f3ad485b71d0, type: 2}
+  - {fileID: 11400000, guid: d2d327fe9da5d41fdb40a4aea5474448, type: 2}
+  - {fileID: 11400000, guid: ff21dc747abbb42c2b330e3d098473ee, type: 2}
+  - {fileID: 11400000, guid: 948a41667ff104a3abb8d512f4ace65d, type: 2}
+  - {fileID: 11400000, guid: ecabe900cc5204aa6b3ca5af6e6d11f3, type: 2}
+  - {fileID: 11400000, guid: ae4fefe69d93241f1b60076ac179c686, type: 2}
+  - {fileID: 11400000, guid: aac752fa2360c40efa7b0f59ab189fa7, type: 2}
+  - {fileID: 11400000, guid: 6ff2c491db4744e26b06477d3f38ec57, type: 2}
+  - {fileID: 11400000, guid: 59eb2b5f8656e43adbffe6c00fee0e25, type: 2}
+  - {fileID: 11400000, guid: 37436afdd3ed94eccb945b18ff3f93d3, type: 2}
+  - {fileID: 11400000, guid: 32e7e2210ae904867831a2f00da2d7a0, type: 2}
+  - {fileID: 11400000, guid: 0ce4de383c30c46d39d7c8a1ff38e9fc, type: 2}
+  - {fileID: 11400000, guid: 8628b5031472646ae86561ad2d59b776, type: 2}
+  - {fileID: 11400000, guid: 515daecd140674cf09aa8e05f18ce435, type: 2}
+  - {fileID: 11400000, guid: 16b05512f6fba4e19bb9b8ffb5848e34, type: 2}
 --- !u!114 &7835569952325439666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -883,7 +918,6 @@ MonoBehaviour:
   speed: 5500
   columns: 3
   iconSpacing: 365
-  totalItems: 6
   shopObjPrefab: {fileID: 6648261447245317029, guid: db4eb116f82b8c9458d9cbcd4b4baf22, type: 3}
   currentItems: []
   availableItems:
@@ -914,6 +948,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b08a3f95245044847afbd0298274bfb4, type: 2}
   itemParent: {fileID: 7862030300564659347}
   rerollsText: {fileID: 4060922254059177220}
+  rerollButtonText: {fileID: 4712727569409509211}
   shopObjs: []
   rerollPrice: 4
   error:
@@ -3153,7 +3188,7 @@ GameObject:
   - component: {fileID: 1527982470137179466}
   - component: {fileID: 4712727569409509211}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: RerollButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Coin
   m_EditorClassIdentifier: 
-  price: 7
+  price: 10
   shopSprite: {fileID: 21300000, guid: 94bdbd11b74c84d6ebe8ebcce860fdf0, type: 3}
   effectsAndWhen:
   - effectSOs:
     - {fileID: 11400000, guid: c0e9cb0bfb83441aa9ac0657db66f837, type: 2}
     eventSOs:
     - {fileID: 11400000, guid: 21a2b2029de304a2e9b962c8cd1956a1, type: 2}
-  description: Gain $1 at the end of each round.
-  rarity: 0
+  description: Gain $5 at the end of each round.
+  rarity: 1
   towerPrefab: {fileID: 4737283054681329927, guid: 6c4fdfb2946fb49a1a3d71503ee2e9ab, type: 3}
   flags: 0
   cakePoints: -30

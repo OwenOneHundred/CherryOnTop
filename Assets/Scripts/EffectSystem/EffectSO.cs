@@ -1,3 +1,4 @@
+using GameSaves;
 using UnityEngine;
 
 public abstract class EffectSO : ScriptableObject
@@ -10,5 +11,20 @@ public abstract class EffectSO : ScriptableObject
     {
         if (toppingObj == null) { Debug.LogWarning("Failed to get toppingactivatedglow. ToppingObj is: " + toppingObj); return null; }
         return toppingObj.transform.root.GetComponentInChildren<ToppingActivatedGlow>();
+    }
+
+    public string GetID()
+    {
+        return toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping.ID.ToString();
+    }
+
+    public virtual void Save(SaveData saveData)
+    {
+
+    }
+
+    public virtual void Load(SaveData saveData)
+    {
+
     }
 }

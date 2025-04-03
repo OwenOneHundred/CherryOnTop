@@ -201,6 +201,7 @@ public class LevelManager : MonoBehaviour
             foreach (DETowerPlaced tower in towerWrapper.towers)
             {
                 Topping topping = Instantiate(potentialToppings[tower.towerIndex]); // instantiate it
+                topping.name = potentialToppings[tower.towerIndex].name;
                 topping.ID = new System.Guid(tower.towerID); // set the GUID
                 toppingPlacer.PlaceTopping(topping, tower.pos.positionData, Quaternion.Euler(tower.pos.eulers));
             }

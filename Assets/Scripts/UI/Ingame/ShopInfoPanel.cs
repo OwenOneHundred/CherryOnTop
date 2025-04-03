@@ -27,7 +27,7 @@ public class ShopInfoPanel : MonoBehaviour
             itemType.text = "Ingredient";
         }
 
-        nameText.text = item.name.Replace("(Clone)", "");
+        nameText.text = item.name;
         description.text = item.description;
     }
 

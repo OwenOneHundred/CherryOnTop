@@ -1,11 +1,12 @@
 using System;
 using EventBus;
+using GameSaves;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Effects/ChangeDamageIfBoughtSweet")]
 public class ChangeDamageIfBoughtSweet : EffectSO
 {
-    bool firstTimeTriggered = true;
+    bool initializeOnCall = true;
     int damage = 0;
     [SerializeField] int damageChange = -2;
     AttackManager attackManager;
@@ -18,11 +19,11 @@ public class ChangeDamageIfBoughtSweet : EffectSO
             return;
         }
 
-        if (firstTimeTriggered)
+        if (initializeOnCall)
         {
             attackManager = toppingObj.GetComponentInChildren<AttackManager>();
             damage = attackManager.AttackDamage;
-            firstTimeTriggered = false;
+            initializeOnCall = false;
         }
 
         damage = Mathf.Clamp(damage + damageChange, 0, int.MaxValue);
@@ -32,5 +33,26 @@ public class ChangeDamageIfBoughtSweet : EffectSO
     bool GetBoughtSweetTopping(IEvent eventObject)
     {
         return eventObject is BuyEvent buyEvent && buyEvent.item is Topping topping && topping.flags.HasFlag(ToppingTypes.Flags.sweet);
+    }
+
+    public override void Save(SaveData saveData)
+    {
+        DEIntEntry intEntry = new DEIntEntry(GetID() + "-Damage", this.damage);
+        saveData.SetDataEntry(intEntry, true);
+    }
+
+    public override void Load(SaveData saveData)
+    {
+        attackManager = toppingObj.GetComponent<AttackManager>();
+        initializeOnCall = false;
+        if (saveData.TryGetDataEntry(GetID() + "-Damage", out DEIntEntry intEntry))
+        {
+            this.damage = intEntry.value;
+            attackManager.AttackDamage = damage;
+        } 
+        else 
+        {
+            this.damage = attackManager.AttackDamage;
+        }
     }
 }

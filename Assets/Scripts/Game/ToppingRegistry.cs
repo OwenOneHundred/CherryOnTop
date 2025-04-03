@@ -27,7 +27,7 @@ public class ToppingRegistry : MonoBehaviour
 
     public void DeregisterTopping(Item item)
     {
-        ItemInfo itemInfo = placedToppings.FirstOrDefault(x => x.topping == item);
+        ItemInfo itemInfo = placedToppings.FirstOrDefault(x => x.topping.name == item.name);
         if (itemInfo.obj != null)
         {
             placedToppings.Remove(itemInfo);
@@ -36,7 +36,7 @@ public class ToppingRegistry : MonoBehaviour
 
     public void DeregisterTopping(GameObject obj)
     {
-        ItemInfo itemInfo = placedToppings.FirstOrDefault(x => x.obj == obj);
+        ItemInfo itemInfo = placedToppings.FirstOrDefault(x => x.obj.name == obj.name);
         if (itemInfo.obj != null)
         {
             placedToppings.Remove(itemInfo);
@@ -50,7 +50,7 @@ public class ToppingRegistry : MonoBehaviour
 
     public GameObject GetToppingObj(Topping topping)
     {
-        return placedToppings.First(x => x.topping == topping).obj;
+        return placedToppings.First(x => x.topping.name == topping.name).obj;
     }
 
     public List<ItemInfo> GetAllToppingsOfType(ToppingTypes.Flags flags)

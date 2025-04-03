@@ -16,7 +16,7 @@ public class BuffManager : MonoBehaviour {
     }
 
     void InitializeBuffManager() {
-        //attackManager = GetComponent<AttackManager>();
+        attackManager = GetComponent<AttackManager>();
         targetingSystem = GetComponent<TargetingSystem>();
         
         if (attackManager != null)
@@ -75,7 +75,7 @@ public class BuffManager : MonoBehaviour {
             }
         }
 
-        Debug.Log($"Tower {gameObject.name} and AttackMan {attackManager}");
+        Debug.Log($"Tower {gameObject.name} and AttackManager {attackManager}");
         if (attackManager != null) {
             attackManager.SetAttackCooldown(baseCooldown * cooldownMultiplier);
             Debug.Log($"Tower {gameObject.name} Cooldown Update: {baseCooldown * cooldownMultiplier}");

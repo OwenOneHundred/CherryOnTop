@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using GameSaves;
 using UnityEngine;
 
 public class ToppingRegistry : MonoBehaviour
@@ -38,6 +39,30 @@ public class ToppingRegistry : MonoBehaviour
     {
         return placedToppings.Where(x => x.topping.flags.HasAny(flags)).ToList();
     } 
+
+    public void SaveAll(SaveData saveData)
+    {
+        foreach (ItemInfo itemInfo in placedToppings)
+        {
+            itemInfo.topping.SaveToppingData(saveData);
+        }
+        foreach (Item item in Inventory.inventory.ownedItems)
+        {
+            item.SaveToppingData(saveData);
+        }
+    }
+
+    public void LoadAllToppingData(SaveData saveData)
+    {
+        foreach (ItemInfo itemInfo in placedToppings)
+        {
+            itemInfo.topping.LoadToppingData(saveData);
+        }
+        foreach (Item item in Inventory.inventory.ownedItems)
+        {
+            item.LoadToppingData(saveData);
+        }
+    }
 
     public struct ItemInfo
     {

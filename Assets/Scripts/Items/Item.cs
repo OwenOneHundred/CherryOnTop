@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using GameSaves;
 
 public abstract class Item : ScriptableObject
 {
@@ -57,6 +58,17 @@ public abstract class Item : ScriptableObject
                 eventSO.DeregisterAllEffects();
             }
         }
+    }
+
+    public virtual void LoadToppingData(SaveData saveData)
+    {
+        //if (saveData.TryGetDataEntry(ID.ToString(), out DEIntEntry intEntry))
+    }
+
+    public virtual void SaveToppingData(SaveData saveData)
+    {
+        //DEIntEntry intEntry = new DEIntEntry(ID.ToString(), this.damage);
+        //saveData.SetDataEntry(intEntry, true);
     }
 
     [System.Serializable]

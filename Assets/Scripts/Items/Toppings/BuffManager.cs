@@ -1,9 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 public class BuffManager : MonoBehaviour {
-    private AttackManager attackManager;
+    [SerializeField] AttackManager attackManager;
     private TargetingSystem targetingSystem;
 
     private float baseCooldown;
@@ -13,11 +12,11 @@ public class BuffManager : MonoBehaviour {
     private List<BuffZone> activeBuffs = new List<BuffZone>();
     
     void Start() {
-        Invoke(nameof(InitializeBuffManager), 0.1f);
+        InitializeBuffManager();
     }
 
     void InitializeBuffManager() {
-        attackManager = GetComponent<AttackManager>();
+        //attackManager = GetComponent<AttackManager>();
         targetingSystem = GetComponent<TargetingSystem>();
         
         if (attackManager != null)
@@ -76,6 +75,7 @@ public class BuffManager : MonoBehaviour {
             }
         }
 
+        Debug.Log($"Tower {gameObject.name} and AttackMan {attackManager}");
         if (attackManager != null) {
             attackManager.SetAttackCooldown(baseCooldown * cooldownMultiplier);
             Debug.Log($"Tower {gameObject.name} Cooldown Update: {baseCooldown * cooldownMultiplier}");

@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuffZone : MonoBehaviour
-{
+public class BuffZone : MonoBehaviour {
     [SerializeField] private float buffRadius = 5f;
     [SerializeField] private ToppingTypes.Flags flag = ToppingTypes.Flags.sweet;
     [SerializeField] private BuffType buffType;
@@ -25,27 +24,26 @@ public class BuffZone : MonoBehaviour
         UpdateBuffs();
     }
 
-    void UpdateBuffs()
-    {
+    void UpdateBuffs() {
         Collider[] toppings = Physics.OverlapSphere(transform.position, buffRadius, toppingLayer);
         HashSet<BuffManager> currentTowers = new HashSet<BuffManager>();
 
-        foreach (Collider col in toppings)
-        {
+        foreach (Collider col in toppings) {
             BuffManager buffManager = col.GetComponent<BuffManager>();
+
             if (buffManager != null && col != collider) {
+
                 currentTowers.Add(buffManager);
                 Debug.Log($"BuffZone {gameObject.name} found {buffManager.gameObject.name}");
+                
                 if (!affectedToppings.Contains(buffManager) && col.GetComponent<AttackManager>() != null){
                     buffManager.AddBuff(this);
                 }
             }
         }
 
-        foreach (BuffManager buffManager in new HashSet<BuffManager>(affectedToppings))
-        {
-            if (!currentTowers.Contains(buffManager) && buffManager != this)
-            {
+        foreach (BuffManager buffManager in new HashSet<BuffManager>(affectedToppings)) {
+            if (!currentTowers.Contains(buffManager) && buffManager != this) {
                 buffManager.RemoveBuff(this);
                 affectedToppings.Remove(buffManager);
             }
@@ -54,23 +52,20 @@ public class BuffZone : MonoBehaviour
         affectedToppings = currentTowers;
     }
 
-    void OnDestroy()
-    {
+    void OnDestroy() {
         foreach (BuffManager buffManager in affectedToppings)
         {
             buffManager.RemoveBuff(this);
         }
     }
 
-    void OnDrawGizmosSelected()
-    {
+    void OnDrawGizmosSelected() {
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, buffRadius);
     }
 }
 
-public enum BuffType
-{
+public enum BuffType {
     CooldownReduction,
     DamageBoost,
     RangeIncrease

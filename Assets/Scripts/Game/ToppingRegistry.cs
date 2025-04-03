@@ -25,6 +25,24 @@ public class ToppingRegistry : MonoBehaviour
         placedToppings.Add(new ItemInfo(topping, gameObject));
     }   
 
+    public void DeregisterTopping(Item item)
+    {
+        ItemInfo itemInfo = placedToppings.FirstOrDefault(x => x.topping == item);
+        if (itemInfo.obj != null)
+        {
+            placedToppings.Remove(itemInfo);
+        }
+    }
+
+    public void DeregisterTopping(GameObject obj)
+    {
+        ItemInfo itemInfo = placedToppings.FirstOrDefault(x => x.obj == obj);
+        if (itemInfo.obj != null)
+        {
+            placedToppings.Remove(itemInfo);
+        }
+    }
+
     public List<ItemInfo> GetAllPlacedToppings()
     {
         return placedToppings;

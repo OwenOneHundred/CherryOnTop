@@ -88,9 +88,9 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void OnSell()
     {
         Inventory.inventory.Money += sellPrice;
-        Debug.Log("on sell");
         EventBus<SellEvent>.Raise(new SellEvent(item, toppingObj));
         item.DeregisterEffects();
+        ToppingRegistry.toppingRegistry.DeregisterTopping(item);
 
         if (toppingObj != null)
         {

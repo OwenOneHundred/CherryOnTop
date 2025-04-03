@@ -2,12 +2,13 @@ using UnityEngine;
 
 public abstract class EffectSO : ScriptableObject
 {
-    [System.NonSerialized] public GameObject toppingObj;
+    [System.NonSerialized]
+    public GameObject toppingObj;
     public abstract void OnTriggered(EventBus.IEvent eventObject);
 
     public ToppingActivatedGlow GetToppingActivatedGlow()
     {
-        if (toppingObj == null) { Debug.LogWarning("Failed to get toppingactivatedglow. ToppingObj is: " + toppingObj);}
-        return toppingObj.GetComponentInChildren<ToppingActivatedGlow>();
+        if (toppingObj == null) { Debug.LogWarning("Failed to get toppingactivatedglow. ToppingObj is: " + toppingObj); return null; }
+        return toppingObj.transform.root.GetComponentInChildren<ToppingActivatedGlow>();
     }
 }

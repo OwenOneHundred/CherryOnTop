@@ -60,15 +60,26 @@ public abstract class Item : ScriptableObject
         }
     }
 
-    public virtual void LoadToppingData(SaveData saveData)
+    public void LoadToppingData(SaveData saveData)
     {
-        //if (saveData.TryGetDataEntry(ID.ToString(), out DEIntEntry intEntry))
+        foreach (EffectAndWhen effectAndWhen in effectsAndWhen)
+        {
+            foreach (EffectSO effectSO in effectAndWhen.effectSOs)
+            {
+                effectSO.Load(saveData);
+            }
+        }
     }
 
-    public virtual void SaveToppingData(SaveData saveData)
+    public void SaveToppingData(SaveData saveData)
     {
-        //DEIntEntry intEntry = new DEIntEntry(ID.ToString(), this.damage);
-        //saveData.SetDataEntry(intEntry, true);
+        foreach (EffectAndWhen effectAndWhen in effectsAndWhen)
+        {
+            foreach (EffectSO effectSO in effectAndWhen.effectSOs)
+            {
+                effectSO.Save(saveData);
+            }
+        }
     }
 
     [System.Serializable]

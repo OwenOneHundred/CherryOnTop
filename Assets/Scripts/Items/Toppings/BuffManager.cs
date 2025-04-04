@@ -19,10 +19,16 @@ public class BuffManager : MonoBehaviour {
         attackManager = GetComponent<AttackManager>();
         targetingSystem = GetComponent<TargetingSystem>();
 
-        baseDamage = attackManager.AttackDamage;
-        baseCooldown = attackManager.GetAttackCooldown();
+        if (attackManager != null)
+        {
+            baseDamage = attackManager.AttackDamage;
+            baseCooldown = attackManager.GetAttackCooldown();
+        }
 
-        baseRange = targetingSystem.GetRange();
+        if (targetingSystem != null)
+        {
+            baseRange = targetingSystem.GetRange();
+        }
     }
 
     public void AddBuff(BuffZone buffZone)

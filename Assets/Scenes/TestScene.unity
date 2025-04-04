@@ -579,7 +579,6 @@ MonoBehaviour:
   flag: 128
   buffType: 0
   buffValue: 0.1
-  coll: {fileID: 0}
 --- !u!114 &1328819798
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -159,7 +159,7 @@ public class ToppingPlacer : MonoBehaviour
 
     private bool CheckIfOnTrack(Vector3 cakePos, float acceptableDistance = 0.525f)
     {
-        return TrackFunctions.trackFunctions.GetAllLineSegmentsThatIntersectCircle(cakePos, acceptableDistance).Count != 0;
+        return TrackFunctions.trackFunctions.GetAllLineSegmentsThatIntersectSphere(cakePos, acceptableDistance).Count != 0;
     }
 
     private float GetLowestPointOffset(Bounds bounds, Vector3 groundDirection, float scale)

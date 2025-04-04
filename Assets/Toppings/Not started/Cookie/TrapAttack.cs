@@ -10,7 +10,7 @@ public class TrapAttack : ToppingAttack
     [SerializeField] protected GameObject trapPrefab;
     [SerializeField] protected float range = 2; // THIS IS BAD! All range amounts should be on Projectile.cs.
     // Putting them on the targeting system means everything must use a targeting system, which is not necessary.
-    List<TrackFunctions.LineSegment2D> lineSegments = new();
+    List<TrackFunctions.LineSegment3D> lineSegments = new();
     protected int activeTraps;
     protected float timer = 0;
     public virtual GameObject SpawnTrap(GameObject projectile, Vector3 goal, int damage, float lifetime)
@@ -56,7 +56,7 @@ public class TrapAttack : ToppingAttack
 
     public void SetLineSegments(Vector3 toppingPosition, float radius)
     {
-        lineSegments = TrackFunctions.trackFunctions.GetAllLineSegmentsThatIntersectCircle(toppingPosition, radius);
+        lineSegments = TrackFunctions.trackFunctions.GetAllLineSegmentsThatIntersectSphere(toppingPosition, radius);
     }
 
     /// <summary>
@@ -67,10 +67,10 @@ public class TrapAttack : ToppingAttack
     {
         float totalLength = 0;
         float[] newScaledLengths = new float[lineSegments.Count];
-        List<TrackFunctions.LineSegment2D> newLineSegments = new();
+        List<TrackFunctions.LineSegment3D> newLineSegments = new();
 
         for (int i = 0; i < lineSegments.Count; i++) {
-            newLineSegments[i] = FindNewSegment(lineSegments[i], new Vector2(toppingObj.transform.position.x, toppingObj.transform.position.z), range);
+            newLineSegments[i] = FindNewSegment(lineSegments[i], toppingObj.transform.position, range);
             totalLength += newLineSegments[i].length;
         }
         for (int i = 0; i < lineSegments.Count; i++) {
@@ -84,31 +84,31 @@ public class TrapAttack : ToppingAttack
             lsIndex++;
         } while (randomReal > 0);
 
-        return TrackFunctions.ToVector3D(FindPositionOnLine(newLineSegments[lsIndex - 1], randomReal, totalLength), toppingObj.transform.position.y);
+        return FindPositionOnLine(newLineSegments[lsIndex - 1], randomReal, totalLength);
     }
 
-    private Vector2 FindPositionOnLine(TrackFunctions.LineSegment2D ls, float remainder, float scale)
+    private Vector3 FindPositionOnLine(TrackFunctions.LineSegment3D ls, float remainder, float scale)
     {
         // remainder will always be <= 0 at this point. Start at end of segment and work backwards
-        Vector2 lsDirection = (ls.pointB - ls.pointA).normalized;
-        Vector2 position = ls.pointB + remainder * scale * lsDirection;
+        Vector3 lsDirection = (ls.pointB - ls.pointA).normalized;
+        Vector3 position = ls.pointB + remainder * scale * lsDirection;
         return position;
 
     }
 
-    private TrackFunctions.LineSegment2D FindNewSegment(TrackFunctions.LineSegment2D ls, Vector2 center, float radius)
+    private TrackFunctions.LineSegment3D FindNewSegment(TrackFunctions.LineSegment3D ls, Vector3 center, float radius)
     {
         bool startInRange = (ls.pointA - center).magnitude <= radius;
         bool endInRange = (ls.pointB - center).magnitude <= radius;
 
-        Vector2 newStart = ls.pointA;
-        Vector2 newEnd = ls.pointB;
-        Vector2 lsDirection = (ls.pointB - ls.pointA).normalized;
+        Vector3 newStart = ls.pointA;
+        Vector3 newEnd = ls.pointB;
+        Vector3 lsDirection = (ls.pointB - ls.pointA).normalized;
 
         if (!startInRange)
         {
-            TrackFunctions.LineSegment2D rls = TrackFunctions.GetSimplifiedLineSegment(center, ls);
-            Vector2 relVect = rls.pointA;
+            TrackFunctions.LineSegment3D rls = TrackFunctions.GetSimplifiedLineSegment3D(center, ls);
+            Vector3 relVect = rls.pointA;
             
             float cutLength = -1 * relVect.x - Mathf.Sqrt(radius * radius - relVect.y * relVect.y);
 
@@ -116,15 +116,15 @@ public class TrapAttack : ToppingAttack
         }
         if (!endInRange)
         {
-            TrackFunctions.LineSegment2D rls = TrackFunctions.GetSimplifiedLineSegment(center, ls);
-            Vector2 relVect = rls.pointB;
+            TrackFunctions.LineSegment3D rls = TrackFunctions.GetSimplifiedLineSegment3D(center, ls);
+            Vector3 relVect = rls.pointB;
             
             float cutLength = -1 * relVect.x - Mathf.Sqrt(radius * radius - relVect.y * relVect.y);
 
-            newEnd = ls.pointA + cutLength * lsDirection;
+            newEnd = ls.pointB + cutLength * lsDirection;
         }
 
-        return new TrackFunctions.LineSegment2D(newStart, newEnd);
+        return new TrackFunctions.LineSegment3D(newStart, newEnd);
     }
 
     public override void OnCycle(GameObject targetedCherry)

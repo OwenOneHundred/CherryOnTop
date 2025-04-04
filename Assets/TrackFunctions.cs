@@ -8,6 +8,9 @@ public class TrackFunctions : MonoBehaviour
     public int PositionsAmount { get; private set; }
     List<LineRenderer> tracks = new();
     public static TrackFunctions trackFunctions;
+
+    // Represents the maximum number of units up or down the track can be from the topping's location.
+    //private const float VERT_DISTANCE_THRESHOLD = 10;
     
     void Awake()
     {
@@ -50,8 +53,6 @@ public class TrackFunctions : MonoBehaviour
         return new PointID(closestPoint, trackNumber, index, closestDistance);
     }
     
-
-    /*
     public List<PointID> GetClosestPointsOnTrack(Vector3 pos, int count)
     {
         List<PointID> closestPoints = new();
@@ -83,8 +84,97 @@ public class TrackFunctions : MonoBehaviour
 
         return closestPoints;
     }
-    */
 
+
+    public List<LineSegment3D> GetAllLineSegmentsThatIntersectSphere(Vector3 center, float radius)
+    {
+        List<LineSegment3D> lineSegments = new();
+        foreach (Vector3[] trackPoints in trackPositions)
+        {
+            for (int i = 1; i < trackPoints.Length; i++)
+            {
+                Vector3 previous = trackPoints[i - 1];
+                Vector3 current = trackPoints[i];
+                float distance = GetDistanceToLineSegment3D(center, new LineSegment3D(previous, current));
+                if (distance < radius) { lineSegments.Add(new LineSegment3D(previous, current)); }
+            }
+        }
+        return lineSegments;
+    }
+
+    public static float GetDistanceToLineSegment3D(Vector3 origin, LineSegment3D ls)
+    {
+        return GetSimplifiedLineSegment3D(origin, ls).pointA.y;
+    }
+
+    public static LineSegment3D GetSimplifiedLineSegment3D(Vector3 origin, LineSegment3D ls)
+    {
+        Vector3 v = (ls.pointB - ls.pointA).normalized;
+        LineSegment3D transls = new LineSegment3D(ls.pointA - origin, ls.pointB - origin);
+
+        Vector3 normal = Vector3.Cross(transls.pointA.normalized, v);
+        Vector3[] basisVectors = {v, Vector3.Cross(v, normal), normal};
+        Matrix3D basis = new Matrix3D(basisVectors);
+
+        return new LineSegment3D(GetBasisCoordinates(basis, transls.pointA), GetBasisCoordinates(basis, transls.pointB));
+
+    }
+
+    public static Vector3 GetBasisCoordinates(Matrix3D basis, Vector3 targetVector)
+    {
+        return MatrixMultiply(MatrixAdjugate(basis), targetVector);
+    }
+
+    public static Vector3 MatrixMultiply(Matrix3D matrix3, Vector3 vector) 
+    {
+        float x = matrix3.array[0,0] * vector.x + matrix3.array[0,1] * vector.y + matrix3.array[0,2] * vector.z;
+        float y = matrix3.array[1,0] * vector.x + matrix3.array[1,1] * vector.y + matrix3.array[1,2] * vector.z;
+        float z = matrix3.array[2,0] * vector.x + matrix3.array[2,1] * vector.y + matrix3.array[2,2] * vector.z;
+        return new Vector3(x, y, z);
+    }
+
+    public static Matrix3D MatrixAdjugate(Matrix3D matrix3)
+    {
+        return MatrixTranspose(MatrixCofactor(matrix3));
+    }
+
+    public static Matrix3D MatrixTranspose(Matrix3D matrix3)
+    {
+        Matrix3D newMatrix = new Matrix3D();
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                newMatrix.array[i,j] = matrix3.array[j,i];
+            }
+        }
+        return newMatrix;
+    }
+
+    public static Matrix3D MatrixCofactor(Matrix3D matrix3)
+    {
+        Matrix3D cofactorMatrix = new Matrix3D(null);
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                float[,] matrix2 = {
+                { matrix3.array[(i + 1) % 3,(j + 1) % 3]  ,
+                  matrix3.array[(i + 1) % 3,(j + 2) % 3] },
+                { matrix3.array[(i + 2) % 3,(j + 1) % 3]  ,
+                  matrix3.array[(i + 2) % 3,(j + 2) % 3] }};
+                cofactorMatrix.array[i,j] = MatrixDeterminant(matrix2);
+            }
+        }
+        return cofactorMatrix;
+    }
+
+    public static float MatrixDeterminant(float[,] matrix2)
+    {
+        return matrix2[0,0] * matrix2[1,1] - matrix2[1,0] * matrix2[0,1];
+    }
+
+    /*
     public List<LineSegment2D> GetAllLineSegmentsThatIntersectCircle(Vector3 center, float radius)
     {
         List<LineSegment2D> lineSegments = new();
@@ -94,11 +184,14 @@ public class TrackFunctions : MonoBehaviour
                 Vector3 previous = trackPoints[i - 1];
                 Vector3 current = trackPoints[i];
                 float distance = GetDistanceToLineSegment(ToVector2D(center), new LineSegment2D(ToVector2D(previous), ToVector2D(current)));
-                if (distance < radius) { lineSegments.Add(new LineSegment2D(ToVector2D(previous), ToVector2D(current))); }
+                if (distance < radius && (Mathf.Abs(previous.y - center.y) < VERT_DISTANCE_THRESHOLD) || Mathf.Abs(current.y - center.y) < VERT_DISTANCE_THRESHOLD) {
+                    lineSegments.Add(new LineSegment2D(ToVector2D(previous), ToVector2D(current)));
+                }
             }
         }
         return lineSegments;
     }
+    */
 
     /*
     public List<LineSegment> GetAllLineSegmentsThatIntersectCircle(Vector3 center, float radius)
@@ -134,6 +227,7 @@ public class TrackFunctions : MonoBehaviour
     }
     */
 
+    /*
     public static Vector2 ToVector2D(Vector3 v)
     {
         return new Vector2(v.x, v.z);
@@ -143,7 +237,9 @@ public class TrackFunctions : MonoBehaviour
     {
         return new Vector3(v.x, y, v.y);
     }
+    */
 
+    /*
     public static LineSegment2D GetSimplifiedLineSegment(Vector2 origin, LineSegment2D ls)
     {
         Vector2[] ROTATION_MATRIX = {new Vector2(0, 1), new Vector2(-1, 0)};
@@ -154,15 +250,12 @@ public class TrackFunctions : MonoBehaviour
 
         return new LineSegment2D(GetBasisCoordinates(basis, transls.pointA), GetBasisCoordinates(basis, transls.pointB));
     }
+    */
 
+    /*
     public static float GetDistanceToLineSegment(Vector2 origin, LineSegment2D ls)
     {
         return GetSimplifiedLineSegment(origin, ls).pointA.y;
-    }
-
-    public static Vector2 GetBasisCoordinates(Vector2[] basis, Vector2 targetVector)
-    {
-        return MatrixMultiply(MatrixInverse(basis), targetVector);
     }
 
     public static Vector2[] MatrixInverse(Vector2[] matrix)
@@ -171,13 +264,7 @@ public class TrackFunctions : MonoBehaviour
         Vector2[] inverse = {(new Vector2(matrix[1].y, -1 * matrix[0].y)) / det, (new Vector2(-1 * matrix[1].x, matrix[0].x)) / det};
         return inverse;
     }
-
-    public static Vector2 MatrixMultiply(Vector2[] matrix, Vector2 vector) 
-    {
-        float x = matrix[0].x * vector.x + matrix[1].x * vector.y;
-        float y = matrix[0].y * vector.x + matrix[1].y * vector.y;
-        return new Vector2(x, y);
-    }
+    */
 
     /*
     public Vector3 GetPositionByIndex(int track, int index)
@@ -244,7 +331,7 @@ public class TrackFunctions : MonoBehaviour
         }
     }
     
-
+    /*
     public struct LineSegment2D
     {
         public Vector2 pointA;
@@ -257,6 +344,53 @@ public class TrackFunctions : MonoBehaviour
             this.pointB = pointB;
             this.length = (pointB - pointA).magnitude;
         }
+    }
+    */
+
+    public struct LineSegment3D
+    {
+        public Vector3 pointA;
+        public Vector3 pointB;
+        public float length;
+
+        public LineSegment3D(Vector3 pointA, Vector3 pointB)
+        {
+            this.pointA = pointA;
+            this.pointB = pointB;
+            this.length = (pointB - pointA).magnitude;
+        }
+    }
+
+    public struct Matrix3D
+    {
+        public float[,] array;
+            
+        public Matrix3D(Vector3[] vectors)
+        {
+            this.array = new float[3,3];
+            if (vectors != null) {
+                for (int i = 0; i < 3; i++)
+                {
+                    array[0,i] = vectors[i].x;
+                    array[1,i] = vectors[i].y;
+                    array[2,i] = vectors[i].z;
+                }
+            }
+        }
+
+        /*
+        public Vector3[] getVectors()
+        {
+            Vector3[] vectors = new Vector3[3];
+            for (int i = 0; i < 3; i++)
+            {
+                vectors[i].x = array[0,i];
+                vectors[i].y = array[1,i];
+                vectors[i].z = array[2,i];
+            }
+            return vectors;
+        }
+        */
     }
 
     /*

@@ -85,11 +85,28 @@ public class ToppingPlacer : MonoBehaviour
         MeshFilter transparentMeshFilter = transparentObject.GetComponent<MeshFilter>();
         MeshFilter toppingMeshFilter = topping.towerPrefab.GetComponentInChildren<MeshFilter>();
         MeshRenderer meshRenderer = transparentObject.GetComponent<MeshRenderer>();
+        Transform circleTransform = transparentObject.transform.GetChild(0);
+        LineRenderer circleLineRenderer = circleTransform.GetComponent<LineRenderer>();
+
+        // set up circle
+        TargetingSystem targetingSystem = topping.towerPrefab.GetComponentInChildren<TargetingSystem>();
+        if (targetingSystem != null)
+        {
+            float range = targetingSystem.GetRange();
+            circleTransform.transform.localScale = new Vector3(range, 1, range) / toppingMeshFilter.transform.lossyScale.x;
+        }
+        else
+        {
+            circleTransform.gameObject.SetActive(false);
+        }
 
         // set up transparent mesh
         transparentMeshFilter.mesh = toppingMeshFilter.sharedMesh; // set transparent mesh to topping mesh
         transparentObject.transform.localScale = toppingMeshFilter.transform.lossyScale; // set transparent obj scale
         transparentObject.transform.rotation = toppingMeshFilter.transform.rotation; // set transparent obj rotation
+
+        // re-rotate circle to flat
+        circleTransform.rotation = Quaternion.identity;
 
         transparentObject.SetActive(false);
 
@@ -127,6 +144,8 @@ public class ToppingPlacer : MonoBehaviour
 
                 placementValidCheck = CheckIfPlacementValid(toppingMeshFilter, objCenter, toppingMeshFilter.sharedMesh, cakePos);
                 meshRenderer.material = placementValidCheck ? white : red;
+                circleLineRenderer.startColor = placementValidCheck ? Color.white : Color.red;
+                circleLineRenderer.endColor = placementValidCheck ? Color.white : Color.red;
             }
             else
             {

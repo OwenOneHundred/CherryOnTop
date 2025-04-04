@@ -132,7 +132,7 @@ public class Shop : MonoBehaviour
     {
         // Create list of weights
         List<float> weights = new();
-        foreach (Item item in availableItems) weights.Add(item.rarity.GetWeight());
+        foreach (Item item in availableItems) { weights.Add(item.rarity.GetWeight()); }
 
         // Populate the shop using the weights
         for (int i = 0; i < 6; i++)

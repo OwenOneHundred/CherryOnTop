@@ -4,18 +4,18 @@ using UnityEngine;
 public abstract class EffectSO : ScriptableObject
 {
     [System.NonSerialized]
-    public GameObject toppingFirePointObj;
+    public GameObject toppingObj;
     public abstract void OnTriggered(EventBus.IEvent eventObject);
 
     public ToppingActivatedGlow GetToppingActivatedGlow()
     {
-        if (toppingFirePointObj == null) { Debug.LogWarning("Failed to get toppingactivatedglow. ToppingObj is: " + toppingFirePointObj.transform.root.name); return null; }
-        return toppingFirePointObj.transform.root.GetComponentInChildren<ToppingActivatedGlow>();
+        if (toppingObj == null) { Debug.LogWarning("Failed to get toppingactivatedglow. ToppingObj is: " + toppingObj.transform.root.name); return null; }
+        return toppingObj.transform.root.GetComponentInChildren<ToppingActivatedGlow>();
     }
 
     public string GetID()
     {
-        return toppingFirePointObj.transform.root.GetComponent<ToppingObjectScript>().topping.ID.ToString();
+        return toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping.ID.ToString();
     }
 
     public virtual void Save(SaveData saveData)

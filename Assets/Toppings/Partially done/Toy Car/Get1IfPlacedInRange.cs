@@ -8,7 +8,12 @@ public class Get1IfPlacedInRange : EffectSO
     {
         if (eventObject is TowerPlacedEvent towerPlacedEvent)
         {
-            if (Vector3.Distance(toppingFirePointObj.transform.position, towerPlacedEvent.newToppingObj.transform.position) <= toppingFirePointObj.GetComponent<TargetingSystem>().GetRange())
+            Debug.Log(toppingObj.name);
+            Debug.Log(toppingObj.GetComponent<TargetingSystem>());
+            Debug.Log(towerPlacedEvent.newToppingObj);
+            Debug.Log(toppingObj);
+
+            if (Vector3.Distance(toppingObj.transform.position, towerPlacedEvent.newToppingObj.transform.position) <= toppingObj.GetComponent<TargetingSystem>().GetRange())
             {
                 Inventory.inventory.Money += 1;
             }

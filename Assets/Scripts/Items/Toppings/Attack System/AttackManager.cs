@@ -35,15 +35,18 @@ public class AttackManager : MonoBehaviour
         }
     }
 
-    void Start()
+    void Awake()
     {
         this.attack = Instantiate(attackTemplate);
         this.attack.toppingObj = gameObject;
+        timer = attack.cooldown;
+    }
+
+    void Start()
+    {
         if (this.attack != null) {
             this.attack.OnStart();
         }
-
-        timer = attack.cooldown;
     }
 
     void Update()

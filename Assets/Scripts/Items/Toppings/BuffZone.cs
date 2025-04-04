@@ -11,12 +11,15 @@ public class BuffZone : MonoBehaviour {
     private HashSet<BuffManager> affectedToppings = new HashSet<BuffManager>();
 
     public BuffType BuffType => buffType;
-    public float BuffValue => buffValue;
-    public Collider collider => GetComponent<Collider>();
+    public float BuffValue => buffValue; // the comment below doesn't apply to these, they just make a mini function that returns the lowercase one
+    private Collider coll; // the => makes a lambda, so whatever you do after the => gets called whenever anyone accesses the variable.
+    // That means "coll => GetComponent<Collider>();" says "whenever you need the collider, run GetComponent." This is much slower than
+    // running GetComponent once and storing the value to be read directly whenever it's needed. I've changed the code to that way.
+
     void Start()
     {
+        coll = GetComponent<Collider>();
         toppingLayer = LayerMask.GetMask("Topping");
-        UpdateBuffs();
     }
 
     void Update()
@@ -26,17 +29,22 @@ public class BuffZone : MonoBehaviour {
 
     void UpdateBuffs() {
         Collider[] toppings = Physics.OverlapSphere(transform.position, buffRadius, toppingLayer);
-        HashSet<BuffManager> currentTowers = new HashSet<BuffManager>();
+        
+        // Running the overlap sphere every frame is slower than using OnTriggerEnter and OnTriggerExit
+        // and keeping a list of everything inside the collider.
 
-        foreach (Collider col in toppings) {
-            BuffManager buffManager = col.GetComponent<BuffManager>();
+        // Also, you're creating a hash set, creating a toppings array, moving everything from the array to the hash set, and then not using the array.
+        // You could use the toppings array for everything "current towers" does (they're identical), and then add/remove from affectedToppings
+        // so you don't have to delete and reallocate memory. 
 
-            if (buffManager != null && col != collider) {
+        HashSet<BuffManager> currentTowers = new HashSet<BuffManager>(); // holds everything found this frame
+
+        foreach (Collider foundCollider in toppings) {
+            if (foundCollider.TryGetComponent(out BuffManager buffManager) && foundCollider != coll) {
 
                 currentTowers.Add(buffManager);
-                Debug.Log($"BuffZone {gameObject.name} found {buffManager.gameObject.name}");
                 
-                if (!affectedToppings.Contains(buffManager) && col.GetComponent<AttackManager>() != null){
+                if (!affectedToppings.Contains(buffManager) && foundCollider.TryGetComponent(out AttackManager _)){
                     buffManager.AddBuff(this);
                 }
             }
@@ -45,14 +53,13 @@ public class BuffZone : MonoBehaviour {
         foreach (BuffManager buffManager in new HashSet<BuffManager>(affectedToppings)) {
             if (!currentTowers.Contains(buffManager) && buffManager != this) {
                 buffManager.RemoveBuff(this);
-                affectedToppings.Remove(buffManager);
             }
         }
 
         affectedToppings = currentTowers;
     }
 
-    void OnDestroy() {
+    void OnDestroy() { // nice
         foreach (BuffManager buffManager in affectedToppings)
         {
             buffManager.RemoveBuff(this);
@@ -65,7 +72,7 @@ public class BuffZone : MonoBehaviour {
     }
 }
 
-public enum BuffType {
+public enum BuffType { // nice
     CooldownReduction,
     DamageBoost,
     RangeIncrease

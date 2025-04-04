@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class BuffManager : MonoBehaviour {
-    [SerializeField] AttackManager attackManager;
+    AttackManager attackManager;
     private TargetingSystem targetingSystem;
 
     private float baseCooldown;
@@ -18,20 +18,11 @@ public class BuffManager : MonoBehaviour {
     void InitializeBuffManager() {
         attackManager = GetComponent<AttackManager>();
         targetingSystem = GetComponent<TargetingSystem>();
-        
-        if (attackManager != null)
-        {
-            baseDamage = attackManager.AttackDamage;
-            Debug.Log($"Tower {gameObject.name} Base Damage: {baseDamage}");
-            baseCooldown = attackManager.GetAttackCooldown();
-            Debug.Log($"Tower {gameObject.name} Base Cooldown: {baseCooldown}"); 
-        }
 
-        if (targetingSystem != null)
-        {
-             Debug.Log($"Tower {gameObject.name} Base Range: {targetingSystem.GetRange()}");
-            baseRange = targetingSystem.GetRange();
-        }
+        baseDamage = attackManager.AttackDamage;
+        baseCooldown = attackManager.GetAttackCooldown();
+
+        baseRange = targetingSystem.GetRange();
     }
 
     public void AddBuff(BuffZone buffZone)
@@ -53,8 +44,6 @@ public class BuffManager : MonoBehaviour {
     }
 
     void RecalculateTowerStats() {
-        Debug.Log($"Recalc Tower Stats for {gameObject.name}");
-
         float cooldownMultiplier = 1f;
         float damageMultiplier = 1f;
         float rangeMultiplier = 1f;
@@ -75,7 +64,6 @@ public class BuffManager : MonoBehaviour {
             }
         }
 
-        Debug.Log($"Tower {gameObject.name} and AttackManager {attackManager}");
         if (attackManager != null) {
             attackManager.SetAttackCooldown(baseCooldown * cooldownMultiplier);
             Debug.Log($"Tower {gameObject.name} Cooldown Update: {baseCooldown * cooldownMultiplier}");

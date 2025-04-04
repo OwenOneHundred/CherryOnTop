@@ -10,7 +10,7 @@ public static class GeneralUtil
     /// <returns>Index of chosen float.</returns>
     public static int RandomWeighted(List<float> values)
     {
-        float total = values.Sum(x => System.Convert.ToInt32(x));
+        float total = values.Sum(x => x);
         float randomValue = UnityEngine.Random.Range(0f, total);
         float tally = 0;
         for (int i = 0; i < values.Count; i++)

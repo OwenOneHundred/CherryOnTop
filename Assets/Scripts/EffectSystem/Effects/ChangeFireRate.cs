@@ -11,10 +11,10 @@ public class ChangeFireRate : EffectSO
     AttackManager attackManager;
     public override void OnTriggered(EventBus.IEvent eventObject)
     {
-        if (toppingObj == null) { return; }
+        if (toppingFirePointObj == null) { return; }
         if (initializeOnCall)
         {
-            attackManager = toppingObj.GetComponentInChildren<AttackManager>();
+            attackManager = toppingFirePointObj.GetComponentInChildren<AttackManager>();
             cooldown = attackManager.GetAttackCooldown();
             initializeOnCall = false;
         }
@@ -32,7 +32,7 @@ public class ChangeFireRate : EffectSO
 
     public override void Load(SaveData saveData)
     {
-        attackManager = toppingObj.GetComponent<AttackManager>();
+        attackManager = toppingFirePointObj.GetComponent<AttackManager>();
         initializeOnCall = false;
         if (saveData.TryGetDataEntry(GetID() + "-Cooldown", out DEFloatEntry floatEntry))
         {

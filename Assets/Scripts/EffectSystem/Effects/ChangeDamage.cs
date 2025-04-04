@@ -12,10 +12,10 @@ public class ChangeDamage : EffectSO
     AttackManager attackManager;
     public override void OnTriggered(EventBus.IEvent eventObject)
     {
-        if (toppingObj == null) { return; }
+        if (toppingFirePointObj == null) { return; }
         if (initializeOnCall)
         {
-            attackManager = toppingObj.GetComponentInChildren<AttackManager>();
+            attackManager = toppingFirePointObj.GetComponentInChildren<AttackManager>();
             damage = attackManager.AttackDamage;
             initializeOnCall = false;
         }
@@ -32,7 +32,7 @@ public class ChangeDamage : EffectSO
 
     public override void Load(SaveData saveData)
     {
-        attackManager = toppingObj.GetComponent<AttackManager>();
+        attackManager = toppingFirePointObj.GetComponent<AttackManager>();
         initializeOnCall = false;
         if (saveData.TryGetDataEntry(GetID() + "-Damage", out DEIntEntry intEntry))
         {

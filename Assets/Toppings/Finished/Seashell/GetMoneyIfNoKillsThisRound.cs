@@ -7,7 +7,7 @@ public class GetMoneyIfNoKillsThisRound : EffectSO
     [SerializeField] int money;
     public override void OnTriggered(IEvent eventObject)
     {
-        if (toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping.killsThisRound <= 0)
+        if (toppingFirePointObj.transform.root.GetComponent<ToppingObjectScript>().topping.killsThisRound <= 0)
         {
             Inventory.inventory.Money += money;
         }

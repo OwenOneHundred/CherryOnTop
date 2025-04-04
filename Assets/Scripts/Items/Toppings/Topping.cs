@@ -24,7 +24,7 @@ public class Topping : Item
         {
             for (int j = 0; j < effectsAndWhen[i].effectSOs.Count; j++)
             {   
-                effectsAndWhen[i].effectSOs[j].toppingObj = obj;
+                effectsAndWhen[i].effectSOs[j].toppingFirePointObj = obj;
             }
         }
     }

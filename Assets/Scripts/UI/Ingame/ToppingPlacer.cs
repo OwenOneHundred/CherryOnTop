@@ -200,4 +200,16 @@ public class ToppingPlacer : MonoBehaviour
 
         Inventory.inventory.RemoveOneOfItem(topping); // remove from inventory
     }
+
+    public void PlaceToppingViaLoad(Topping topping, Vector3 position, Quaternion rotation)
+    {
+        GameObject newToppingObj = Instantiate(topping.towerPrefab, position, rotation); // spawn obj
+
+        ToppingRegistry.toppingRegistry.RegisterPlacedTopping(topping, newToppingObj); // register
+
+        newToppingObj.GetComponent<ToppingObjectScript>().topping = topping; // set topping on object to be read later
+
+        topping.RegisterEffects();
+        topping.SetGameObjectOnEffects(newToppingObj);
+    }
 }

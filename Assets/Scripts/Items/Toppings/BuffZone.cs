@@ -22,8 +22,7 @@ public class BuffZone : MonoBehaviour {
         toppingLayer = LayerMask.GetMask("Topping");
     }
 
-    void Update()
-    {
+    void Update() {
         UpdateBuffs();
     }
 
@@ -72,7 +71,9 @@ public class BuffZone : MonoBehaviour {
     }
 }
 
-public enum BuffType { // nice
+//This enum is used to define the different types of buffs
+//that can be applied to the towers.
+public enum BuffType { 
     CooldownReduction,
     DamageBoost,
     RangeIncrease

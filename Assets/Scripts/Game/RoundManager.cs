@@ -19,6 +19,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] Button shopButton;
     [SerializeField] IngameUI ingameUI;
     [SerializeField] Shop shop;
+    [SerializeField] bool savingEnabled = true;
 
     LevelManager _levelManager;
     LevelManager levelManager
@@ -66,7 +67,10 @@ public class RoundManager : MonoBehaviour
 
     public void StartNextRound() // called by start round button
     {
-        SaveLevel(); // save before round start things are finished
+        if (savingEnabled)
+        {
+            SaveLevel(); // save before round start things are finished
+        }
 
         roundNumber += 1;
         ingameUI.SetRound(roundNumber);
@@ -98,7 +102,10 @@ public class RoundManager : MonoBehaviour
 
         CakePointsManager.cakePointsManager.OnRoundEnd();
 
-        SaveLevel(); // save after all round end things are called
+        if (savingEnabled)
+        {
+            SaveLevel(); // save after all round end things are called
+        }   
     }
 
     public void OnCherryKilled()

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
+  m_Name: Orange
+  m_EditorClassIdentifier: 
+  price: 4
+  shopSprite: {fileID: 21300000, guid: 34ce793ecdb094116a650a5b410120cb, type: 3}
+  effectsAndWhen: []
+  description: Attacks slowly with a weak projectile. Every time this tower gets
+    a kill, 25% chance to get $1.
+  towerPrefab: {fileID: 1854520228839802959, guid: 2bf54e0493afd4845b7e8d58ddc044b1, type: 3}
+  flags: 80
+  cakePoints: 10
+  onHitCherry: []
+  onKillCherry:
+  - {fileID: 11400000, guid: 398fd239b47924259af2f76b7dbe3b2c, type: 2}

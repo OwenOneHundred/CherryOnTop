@@ -14,7 +14,7 @@ public class CherryHitbox : MonoBehaviour
     [SerializeField] bool spawnDamageNumbers = true;
     bool dead = false;
 
-    public void Start()
+    public void Awake()
     {
         debuffManager = GetComponent<DebuffManager>();
     }
@@ -23,6 +23,8 @@ public class CherryHitbox : MonoBehaviour
     {
         if (dead) { return 0; }
         
+        Debug.Log(attacker);
+        Debug.Log(debuffManager);
         float actualDamage = debuffManager.GetDamageMultiplier(attacker) * damage;
         cherryHealth -= actualDamage;
         if (directionOfDamage != default)

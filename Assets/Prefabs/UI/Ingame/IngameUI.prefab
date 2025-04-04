@@ -750,6 +750,7 @@ MonoBehaviour:
   shopButton: {fileID: 1848900876542587564}
   ingameUI: {fileID: 5165441279755291159}
   shop: {fileID: 8966158542567257680}
+  savingEnabled: 1
 --- !u!114 &8392582136422224834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -796,6 +797,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8628b5031472646ae86561ad2d59b776, type: 2}
   - {fileID: 11400000, guid: 515daecd140674cf09aa8e05f18ce435, type: 2}
   - {fileID: 11400000, guid: 16b05512f6fba4e19bb9b8ffb5848e34, type: 2}
+  - {fileID: 11400000, guid: bdc0e671f2a424ab18e15947a2eb1e69, type: 2}
+  - {fileID: 11400000, guid: d96d45040cce94e72815229c5c2e88c2, type: 2}
+  - {fileID: 11400000, guid: 1635e4ff1811a452e914a7998974906b, type: 2}
+  - {fileID: 11400000, guid: c259efe27a1484004aa200566bb9b5d2, type: 2}
 --- !u!114 &7835569952325439666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -925,7 +930,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 515daecd140674cf09aa8e05f18ce435, type: 2}
   - {fileID: 11400000, guid: 8628b5031472646ae86561ad2d59b776, type: 2}
   - {fileID: 11400000, guid: ecabe900cc5204aa6b3ca5af6e6d11f3, type: 2}
+  - {fileID: 11400000, guid: 1635e4ff1811a452e914a7998974906b, type: 2}
   - {fileID: 11400000, guid: 37436afdd3ed94eccb945b18ff3f93d3, type: 2}
+  - {fileID: 11400000, guid: d96d45040cce94e72815229c5c2e88c2, type: 2}
+  - {fileID: 11400000, guid: aac752fa2360c40efa7b0f59ab189fa7, type: 2}
   - {fileID: 11400000, guid: 6ff2c491db4744e26b06477d3f38ec57, type: 2}
   - {fileID: 11400000, guid: 0ce4de383c30c46d39d7c8a1ff38e9fc, type: 2}
   - {fileID: 11400000, guid: 948a41667ff104a3abb8d512f4ace65d, type: 2}
@@ -945,6 +953,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ed367cf4325964f17ae8515110ffb0e4, type: 2}
   - {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}
   - {fileID: 11400000, guid: aad0b3e8494e34396bcd12d917efaa23, type: 2}
+  - {fileID: 11400000, guid: c259efe27a1484004aa200566bb9b5d2, type: 2}
+  - {fileID: 11400000, guid: bdc0e671f2a424ab18e15947a2eb1e69, type: 2}
   - {fileID: 11400000, guid: b08a3f95245044847afbd0298274bfb4, type: 2}
   itemParent: {fileID: 7862030300564659347}
   rerollsText: {fileID: 4060922254059177220}

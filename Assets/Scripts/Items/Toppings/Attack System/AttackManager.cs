@@ -65,6 +65,8 @@ public class AttackManager : MonoBehaviour
                 isStunned = false;
             }
         }
+
+        attack.EveryFrame(); // new call, so we can use Update in the Attacks
     }
 
     /// <summary>

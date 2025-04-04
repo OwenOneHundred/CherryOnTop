@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af58476a96724777a5456a6708a8634, type: 3}
   m_Name: RerollChanceForEachProduce
   m_EditorClassIdentifier: 
-  chanceOfHappening0to1: 0.25
+  chanceOfHappening0to1: 0.1
   type: 16

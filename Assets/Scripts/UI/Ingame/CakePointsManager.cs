@@ -15,8 +15,10 @@ public class CakePointsManager : MonoBehaviour
             ingameUI.SetCakePoints(value);
         }
     }
-    [SerializeField] float cakePointsThresholdDivisor = 3.75f;
+    [SerializeField] float cakePointsThresholdDivisor = 2.0f;
     [SerializeField] int howOftenThreshold = 10;
+    [SerializeField] float scalePower = 3;
+    [SerializeField] float b = 20;
     public static CakePointsManager cakePointsManager;
 
     void Awake()
@@ -56,7 +58,7 @@ public class CakePointsManager : MonoBehaviour
     public int GetNextCakePointsThreshold()
     {
         int roundNumberToCheck = GetNextThresholdRoundNumber();
-        return Mathf.FloorToInt((roundNumberToCheck * roundNumberToCheck) / cakePointsThresholdDivisor);
+        return Mathf.FloorToInt(b + (Mathf.Pow(roundNumberToCheck, scalePower) / cakePointsThresholdDivisor));
     }
 
     public int GetNextThresholdRoundNumber()

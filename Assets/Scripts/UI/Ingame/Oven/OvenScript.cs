@@ -27,9 +27,9 @@ public class OvenScript : MonoBehaviour
     {
         return rarity switch
         {
-            ToppingTypes.Rarity.common => 1,
-            ToppingTypes.Rarity.uncommon => 2,
-            ToppingTypes.Rarity.rare => 4,
+            ToppingTypes.Rarity.Common => 1,
+            ToppingTypes.Rarity.Uncommon => 2,
+            ToppingTypes.Rarity.Rare => 4,
             _ => 1
         };
     }

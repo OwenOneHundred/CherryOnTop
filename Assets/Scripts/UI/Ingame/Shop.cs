@@ -90,8 +90,6 @@ public class Shop : MonoBehaviour
         rect.anchoredPosition = new Vector2(goal, rect.anchoredPosition.y);
 
         moving = false;
-
-        //UpdateAllIcons();
     }
 
     public void OnClickReroll()

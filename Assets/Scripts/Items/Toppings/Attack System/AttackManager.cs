@@ -8,7 +8,7 @@ public class AttackManager : MonoBehaviour
 {
     // Represents the type of attack to use, which holds information about the Topping's attack behaviour
     [SerializeField]
-    ToppingAttack attackTemplate;
+    public ToppingAttack attackTemplate;
 
     // Stores a copy of this attack for this particular Topping
     private ToppingAttack attack;
@@ -103,6 +103,11 @@ public class AttackManager : MonoBehaviour
             this.attack = attack;
             this.attack.OnStart();
         }
+    }
+
+    public ToppingAttack GetAttack()
+    {
+        return attack;
     }
 
     /// <summary> 

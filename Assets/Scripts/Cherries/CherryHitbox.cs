@@ -23,8 +23,6 @@ public class CherryHitbox : MonoBehaviour
     {
         if (dead) { return 0; }
         
-        Debug.Log(attacker);
-        Debug.Log(debuffManager);
         float actualDamage = debuffManager.GetDamageMultiplier(attacker) * damage;
         cherryHealth -= actualDamage;
         if (directionOfDamage != default)

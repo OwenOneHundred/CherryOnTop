@@ -12,7 +12,7 @@ public abstract class Item : ScriptableObject
     public List<EffectAndWhen> effectsAndWhen = new List<EffectAndWhen>();
 
     [TextArea] public string description;
-    public ToppingTypes.Rarity rarity = ToppingTypes.Rarity.common;
+    public ToppingTypes.Rarity rarity = ToppingTypes.Rarity.Common;
 
     public void SetUpEffectsAndWhen()
     {

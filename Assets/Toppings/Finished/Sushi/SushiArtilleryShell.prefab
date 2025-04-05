@@ -160,7 +160,7 @@ MonoBehaviour:
   explodeSound:
     volume: 0.4
     clip: {fileID: 8300000, guid: 18054a612a34c4273abaf93d10887d42, type: 3}
-  initialUpwardSpeed: 10
-  flyTimeSeconds: 2
+  initialUpwardSpeed: 9
+  flyTimeSeconds: 1.6
   gravity: 13
   rotationSpeed: 30

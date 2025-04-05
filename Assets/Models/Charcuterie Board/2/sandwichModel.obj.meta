@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4e2f7e3ce845544ed88765714791e034
+guid: ba68110cf92e94dbe8c74c06a8a04f3c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: defaultMat
-    second: {fileID: 2100000, guid: 16c0e4a0195ee48f99d5b2ea641fcb2c, type: 2}
+      name: Sandwich_MAT
+    second: {fileID: 2100000, guid: fadd74ffb53af482482c9f7ee7db621d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

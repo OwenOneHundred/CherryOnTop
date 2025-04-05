@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
-  m_Name: ToyCar
+  m_Name: Toy Car
   m_EditorClassIdentifier: 
   price: 9
   shopSprite: {fileID: 21300000, guid: 1db26d79ffdbd4a8c86c6908b7364c1b, type: 3}

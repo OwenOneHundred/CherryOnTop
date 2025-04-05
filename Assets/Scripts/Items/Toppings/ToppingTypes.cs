@@ -44,9 +44,9 @@ public static class ToppingTypes
     {
         switch (rarity)
         {
-            case Rarity.common: return 1f;
-            case Rarity.uncommon: return 0.25f;
-            case Rarity.rare: return 0.1f;
+            case Rarity.Common: return 1f;
+            case Rarity.Uncommon: return 0.25f;
+            case Rarity.Rare: return 0.1f;
             default: return 1;
         }
     }
@@ -55,6 +55,6 @@ public static class ToppingTypes
     [System.Serializable]
     public enum Rarity
     {
-        common, uncommon, rare
+        Common, Uncommon, Rare
     }
 }

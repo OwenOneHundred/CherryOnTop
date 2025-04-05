@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb131385afd24b48ae11b24f8113865, type: 3}
+  m_Name: FondueEffect
+  m_EditorClassIdentifier: 
+  movementSpeedMultiplier: 1
+  typesThatGetDamageMultiplier: 2
+  damageMultiplier: 2
+  debuffType: 0
+  effectDuration: 1
+  onAppliedSFX:
+    volume: 0.5
+    clip: {fileID: 0}
+  removeOnHit: 0
+  particleSystemPrefab: {fileID: 8237643331648977366, guid: b827de13cf76a48579bd2acdb84ed2ab, type: 3}

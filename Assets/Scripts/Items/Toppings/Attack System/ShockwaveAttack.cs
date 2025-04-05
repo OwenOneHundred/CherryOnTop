@@ -34,7 +34,7 @@ public class ShockwaveAttack : ProjectileAttack
         AttackCherry(targetedCherry);
     }
 
-    public override void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, int damage) {
+    public override GameObject SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, int damage) {
         GameObject newShockwave = Instantiate(this.shockwave, toppingObj.transform.position, Quaternion.identity);
         newShockwave.GetComponent<Shockwave>().damage = damage;
         newShockwave.GetComponent<Shockwave>().range = range;
@@ -42,6 +42,8 @@ public class ShockwaveAttack : ProjectileAttack
 
         float duration = range / speed;
         Destroy(newShockwave, duration);
+
+        return newShockwave;
     }
 
     private void AttackCherry(GameObject targetedCherry) {

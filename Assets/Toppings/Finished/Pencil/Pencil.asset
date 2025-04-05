@@ -19,8 +19,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 23709365bb05e4022bd5f0d984868a2b, type: 2}
     eventSOs:
     - {fileID: 11400000, guid: 96555b3ac10af430da30e6926ffff4c6, type: 2}
-  description: Spawns erasers that slide backward down the track damaging cherries.
-    Whenever you buy something, 50% chance to get a free reroll.
+  description: Spawns erasers that slide backward down the track doing high damage
+    with no pierce. Whenever you buy something, 10% chance to get a free reroll.
+  rarity: 0
   towerPrefab: {fileID: 3673782625892268231, guid: d87b9ee14a62b48b8b83d22653e30792, type: 3}
   flags: 0
   cakePoints: -40

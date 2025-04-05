@@ -16,17 +16,14 @@ MonoBehaviour:
   shopSprite: {fileID: 21300000, guid: c840ed9dd2be44be490df85cef993368, type: 3}
   effectsAndWhen:
   - effectSOs:
-    - {fileID: 11400000, guid: dbf2f7929590b4c54acb6ad9af539fd8, type: 2}
-    eventSOs:
-    - {fileID: 11400000, guid: 5c002f4c4c477426aaac7cb591501e67, type: 2}
-  - effectSOs:
     - {fileID: 11400000, guid: 2672b7f2d1bcc4db19b832fe0b1b8d2d, type: 2}
     eventSOs:
     - {fileID: 11400000, guid: 96555b3ac10af430da30e6926ffff4c6, type: 2}
   description: Fires low damage exploding donut holes, and gains 1 damage every time
-    a sweet topping is bought. Lose $1 whenever you sell a topping.
+    a sweet topping is bought.
+  rarity: 1
   towerPrefab: {fileID: 3406790196994260652, guid: 93f79efea4ce94de7a2676349fcc064d, type: 3}
   flags: 128
-  cakePoints: 50
+  cakePoints: 40
   onHitCherry: []
   onKillCherry: []

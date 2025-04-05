@@ -26,6 +26,7 @@ public class Projectile : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        if (hitCount >= maxHits) { return; }
         if (other.transform.root.TryGetComponent<CherryHitbox>(out CherryHitbox ch))
         {
             OnHitCherry(ch);
@@ -63,5 +64,10 @@ public class Projectile : MonoBehaviour
     public virtual void SelfDestruct()
     {
         Destroy(gameObject);
+    }
+
+    public virtual void SetTarget(Vector3 target)
+    {
+
     }
 }

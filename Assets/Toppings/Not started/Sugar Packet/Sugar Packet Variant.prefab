@@ -20,10 +20,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.06
       objectReference: {fileID: 0}
+    - target: {fileID: 2216534911100263379, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
+      propertyPath: radiusCircleOffset.y
+      value: -0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242621880762221844, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
+      propertyPath: attackTemplate
+      value: 
+      objectReference: {fileID: 11400000, guid: 8d2242c71ba44426bb9213f2a92a0c5f, type: 2}
     - target: {fileID: 3392977787045670734, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 9c9803dac67cb48efab87870aaf8abee, type: 2}
+    - target: {fileID: 5543599703770907884, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
+      propertyPath: range
+      value: 1.7
+      objectReference: {fileID: 0}
     - target: {fileID: 6259744886963452987, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
       propertyPath: m_Mesh
       value: 

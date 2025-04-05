@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CherrySpawner : MonoBehaviour
@@ -10,7 +11,10 @@ public class CherrySpawner : MonoBehaviour
     readonly float evenNumberCherrySpacingMultiplier = 1.5f;
     [SerializeField] GameObject cherryPrefab;
     [SerializeField] Vector3 cherryStartPos;
+    [SerializeField] float difficultyScalingAmount = 1.16f;
     CherryManager cherryManager;
+
+    float bigChance = 0.6f;
 
     private void Start()
     {
@@ -30,12 +34,37 @@ public class CherrySpawner : MonoBehaviour
         RoundManager.roundManager.totalCherriesThisRound = totalCherries;
         float timeBetweenCherries = defaultTimeBetweenCherries / (scaleFactor * (roundNumberIsOdd ? 1 : evenNumberCherrySpacingMultiplier));
 
+        bigChance = Mathf.Clamp(bigChance * difficultyScalingAmount, 0, 100);
+
         for (int i = 0; i < totalCherries; i++)
         {
             GameObject newCherry = Instantiate(cherryPrefab, cherryStartPos, Quaternion.identity);
             cherryManager.RegisterCherry(newCherry.GetComponentInChildren<CherryMovement>());
+            ApplyVariants(newCherry);
 
             yield return new WaitForSeconds(timeBetweenCherries);
         }
+    }
+
+    void ApplyVariants(GameObject cherry)
+    {
+        CherryTypes cherryTypes = cherry.GetComponent<CherryTypes>();
+
+        float rng = Random.Range(0, bigChance);
+
+        if (rng > 4)
+        {
+            cherryTypes.cherrySize = CherryTypes.CherrySize.SuperLarge;
+        }
+        else if (rng > 1)
+        {
+            cherryTypes.cherrySize = CherryTypes.CherrySize.Large;
+        }
+        else
+        {
+            cherryTypes.cherrySize = CherryTypes.CherrySize.Normal;
+        }
+        
+        cherryTypes.SetCherryHealthAndSpeed();
     }
 }

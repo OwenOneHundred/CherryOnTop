@@ -8,7 +8,7 @@ public class AttackManager : MonoBehaviour
 {
     // Represents the type of attack to use, which holds information about the Topping's attack behaviour
     [SerializeField]
-    ToppingAttack attackTemplate;
+    public ToppingAttack attackTemplate;
 
     // Stores a copy of this attack for this particular Topping
     private ToppingAttack attack;
@@ -35,15 +35,18 @@ public class AttackManager : MonoBehaviour
         }
     }
 
-    void Start()
+    void Awake()
     {
         this.attack = Instantiate(attackTemplate);
         this.attack.toppingObj = gameObject;
+        timer = attack.cooldown;
+    }
+
+    void Start()
+    {
         if (this.attack != null) {
             this.attack.OnStart();
         }
-
-        timer = attack.cooldown;
     }
 
     void Update()
@@ -65,6 +68,8 @@ public class AttackManager : MonoBehaviour
                 isStunned = false;
             }
         }
+
+        attack.EveryFrame(); // new call, so we can use Update in the Attacks
     }
 
     /// <summary>
@@ -98,6 +103,11 @@ public class AttackManager : MonoBehaviour
             this.attack = attack;
             this.attack.OnStart();
         }
+    }
+
+    public ToppingAttack GetAttack()
+    {
+        return attack;
     }
 
     /// <summary> 

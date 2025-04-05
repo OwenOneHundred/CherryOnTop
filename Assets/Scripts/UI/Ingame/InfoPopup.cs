@@ -12,9 +12,9 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     [SerializeField] TMPro.TextMeshProUGUI description;
     [SerializeField] TMPro.TextMeshProUGUI toppingType;
     [SerializeField] TMPro.TextMeshProUGUI sellPriceText;
+    [SerializeField] GameObject sellButton;
     EventSystem eventSystem;
-    bool hovered = false;
-    bool isFirstFrame = true;
+    public bool hovered = false;
     Item item;
     GameObject toppingObj;
     int sellPrice = 0;
@@ -24,7 +24,9 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         eventSystem = GameObject.FindAnyObjectByType<EventSystem>();
         if (eventSystem == null) { Debug.LogWarning("No event system in scene."); }
+        Clear();
     }
+
     public void SetUp(Item item, GameObject toppingObj)
     {
         isInventoryItem = false;
@@ -40,11 +42,12 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             itemType.text = "Ingredient";
         }
 
-        nameText.text = item.name.Replace("(Clone)", "");
+        nameText.text = item.name;
         description.text = item.description;
         sellPrice = item.price / 2;
         sellPriceText.text = "Sell: $" + sellPrice;
         this.toppingObj = toppingObj;
+        sellButton.SetActive(true);
     }
 
     public void SetUpForInventoryItem(Item item)
@@ -62,10 +65,11 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             itemType.text = "Ingredient";
         }
 
-        nameText.text = item.name.Replace("(Clone)", "");
+        nameText.text = item.name;
         description.text = item.description;
         sellPrice = item.price / 2;
         sellPriceText.text = "Sell: $" + sellPrice;
+        sellButton.SetActive(true);
     }
 
     public void Clear()
@@ -76,23 +80,9 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         itemType.text = "";
         toppingType.text = "";
         item = null;
-    }
-
-    public void Update()
-    {
-        if (Input.GetMouseButtonDown(0) && !isFirstFrame)
-        {
-            if (!hovered)
-            {
-                OnClickedOff();
-            }
-        }
-        isFirstFrame = false;
-    }
-
-    private void OnClickedOff()
-    {
-        Destroy(gameObject);
+        toppingObj = null;
+        if (sellButton == null) { return; }
+        sellButton.SetActive(false);
     }
 
     public void OnSell()
@@ -100,16 +90,22 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Inventory.inventory.Money += sellPrice;
         EventBus<SellEvent>.Raise(new SellEvent(item, toppingObj));
         item.DeregisterEffects();
+        ToppingRegistry.toppingRegistry.DeregisterTopping(item);
+        Debug.Log("Sell item: " + item.name);
 
-        Destroy(gameObject);
         if (toppingObj != null)
         {
             Destroy(toppingObj);
+            Clear();
         }
         if (isInventoryItem)
         {
-            Inventory.inventory.RemoveItem(item);
+            if (Inventory.inventory.RemoveOneOfItem(item) <= 0)
+            {
+                Clear();
+            }
         }
+        
     }
 
     public void OnPointerExit(PointerEventData eventData)

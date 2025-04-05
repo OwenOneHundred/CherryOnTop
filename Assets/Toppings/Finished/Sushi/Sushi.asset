@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
+  m_Name: Sushi
+  m_EditorClassIdentifier: 
+  price: 5
+  shopSprite: {fileID: 21300000, guid: 450b357d753084d9ab6206c9727c3ff8, type: 3}
+  effectsAndWhen: []
+  description: Rapidly lobs inaccurate, low damage sushi at cherries.
+  rarity: 0
+  towerPrefab: {fileID: 6283636531662423883, guid: 0ebf1797c28b44b7aab0e74c3d3663e1, type: 3}
+  flags: 12336
+  cakePoints: 0
+  onHitCherry: []
+  onKillCherry: []

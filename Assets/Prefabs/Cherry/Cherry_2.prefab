@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7635826562936255635, guid: e1de9132c00da447584f992308220c05, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7635826562936255635, guid: e1de9132c00da447584f992308220c05, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
@@ -191,7 +191,7 @@ MonoBehaviour:
   linePositions: []
   currentPosition: 0
   currentTrack: 0
-  baseSpeed: 1.5
+  baseSpeed: 1.3
   distanceTraveled: 0
 --- !u!114 &6635548703197320697
 MonoBehaviour:
@@ -207,6 +207,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cherrySize: 0
   cherryType: 0
+  cherryHealth: 0
+  cherrySpeed: 0
   cherryHitbox: {fileID: 5343877452891195099}
   cherryMovement: {fileID: 3678773368687669692}
 --- !u!1 &4988862917418150766 stripped

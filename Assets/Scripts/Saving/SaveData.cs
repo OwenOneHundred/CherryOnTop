@@ -145,10 +145,12 @@ namespace GameSaves
     {
         [SerializeField] public int towerIndex;
         [SerializeField] public DEPosition pos;
-        public DETowerPlaced(string dataName, int towerIndex, DEPosition pos) : base(dataName)
+        [SerializeField] public string towerID;
+        public DETowerPlaced(string dataName, int towerIndex, DEPosition pos, string towerID) : base(dataName)
         {
             this.towerIndex = towerIndex;
             this.pos = pos;
+            this.towerID = towerID;
         }
     }
 
@@ -166,9 +168,11 @@ namespace GameSaves
     public class DEItemInventory : DataEntry
     {
         [SerializeField] public int itemIndex;
-        public DEItemInventory(string dataName, int itemIndex) : base(dataName)
+        [SerializeField] public string itemID;
+        public DEItemInventory(string dataName, int itemIndex, string itemID) : base(dataName)
         {
             this.itemIndex = itemIndex;
+            this.itemID = itemID;
         }
     }
 
@@ -179,6 +183,26 @@ namespace GameSaves
         public DEAllItemsInventory(string dataName, List<DEItemInventory> items) : base(dataName)
         {
             this.items = items;
+        }
+    }
+
+    [System.Serializable]
+    public class DEIntEntry : DataEntry
+    {
+        [SerializeField] public int value;
+        public DEIntEntry(string dataName, int value) : base(dataName)
+        {
+            this.value = value;
+        }
+    }
+
+    [System.Serializable]
+    public class DEFloatEntry : DataEntry
+    {
+        [SerializeField] public float value;
+        public DEFloatEntry(string dataName, float value) : base(dataName)
+        {
+            this.value = value;
         }
     }
 

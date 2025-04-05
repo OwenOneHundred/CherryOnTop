@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
+  m_Name: Camera
+  m_EditorClassIdentifier: 
+  price: 6
+  shopSprite: {fileID: 21300000, guid: c27fcd928f5164d1ea11b641e3555193, type: 3}
+  effectsAndWhen:
+  - effectSOs:
+    - {fileID: 11400000, guid: 7b14a28163d064317a51e744cadaaaab, type: 2}
+    eventSOs:
+    - {fileID: 11400000, guid: 2d615635485a64698bbc908c64183dc1, type: 2}
+  description: If a cherry dies while frozen, 50% chance to get $1.
+  rarity: 1
+  towerPrefab: {fileID: 693207556456993743, guid: 6c39197d521a14147aef013700384ac8, type: 3}
+  flags: 2048
+  cakePoints: 10
+  onHitCherry: []
+  onKillCherry: []

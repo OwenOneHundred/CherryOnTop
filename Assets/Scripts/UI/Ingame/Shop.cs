@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using EventBus;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Shop : MonoBehaviour
 {
     public float speed = 10;
     bool open;
     bool moving;
-    readonly float closedPos = -1690;
+    readonly float closedPos = -1780;
     readonly float openPos = -230;
     RectTransform rect;
 
@@ -21,6 +20,7 @@ public class Shop : MonoBehaviour
     public List<Item> availableItems = new();
     [SerializeField] Transform itemParent;
     [SerializeField] TMPro.TextMeshProUGUI rerollsText;
+    [SerializeField] TMPro.TextMeshProUGUI rerollButtonText;
     public List<ShopObj> shopObjs = new();
     int rerolls = 0;
     public int Rerolls
@@ -29,6 +29,7 @@ public class Shop : MonoBehaviour
         set
         { 
             rerollsText.text = "Free rerolls: " + value;
+            rerollButtonText.text = (value > 0) ? "Free\nReroll" : "Reroll\n$4";
             rerolls = value;
         }
     }
@@ -37,6 +38,9 @@ public class Shop : MonoBehaviour
     [SerializeField] AudioFile openShop;
     [SerializeField] AudioFile closeShop;
     [SerializeField] AudioFile rerollSound;
+
+    public Item mostRecentlyBoughtItem { get; set; }
+
     public static Shop shop;
     public ShopInfoPanel shopInfoPanel;
     public void Awake()
@@ -86,8 +90,6 @@ public class Shop : MonoBehaviour
         rect.anchoredPosition = new Vector2(goal, rect.anchoredPosition.y);
 
         moving = false;
-
-        //UpdateAllIcons();
     }
 
     public void OnClickReroll()
@@ -126,10 +128,14 @@ public class Shop : MonoBehaviour
 
     public void PopulateShop()
     {
-        // Will probably be changed later idk
+        // Create list of weights
+        List<float> weights = new();
+        foreach (Item item in availableItems) { weights.Add(item.rarity.GetWeight()); }
+
+        // Populate the shop using the weights
         for (int i = 0; i < 6; i++)
         {
-            int item = Random.Range(0, availableItems.Count);
+            int item = GeneralUtil.RandomWeighted(weights);
             currentItems.Add(availableItems[item]);
         }
     }
@@ -137,7 +143,7 @@ public class Shop : MonoBehaviour
     public void UpdateAllIcons() // TODO: this function spawns copies of icons on top of each other when shop is opened and closed
     {
         // Also resets the purchase status of shop items
-        // Not sure if this needs to be fixed
+        // Not sure if this needs to be changed
         foreach (ShopObj shopObj in shopObjs) Destroy(shopObj.gameObject);
         shopObjs.Clear();
         for (int i = 0; i < currentItems.Count; i++) {

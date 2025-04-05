@@ -15,6 +15,7 @@ public class ArrowMover : MonoBehaviour
 
     bool movingToNewTrack = false;
     [SerializeField] float speed = 10;
+    bool goBackToPosition0 = true;
 
     private void Start()
     {
@@ -32,6 +33,8 @@ public class ArrowMover : MonoBehaviour
 
         Vector3 newDirection = Vector3.RotateTowards(-transform.forward, linePositions[currentTarget] - transform.position, 100, 0.0f);
         transform.rotation = Quaternion.LookRotation(-newDirection);
+
+        goBackToPosition0 = track.GetComponent<ArrowSpawner>().goBackToPosition0;
     }
 
     private void Update()
@@ -62,6 +65,10 @@ public class ArrowMover : MonoBehaviour
             if (currentTarget == positionsAmount) // at last position, targeting non-existent position
             {
                 currentTarget = 0;
+                if (!goBackToPosition0)
+                {
+                    OnReachEndOfTrack();
+                }
             }
             if (currentPosition == positionsAmount) // returned to position 0
             {

@@ -7,6 +7,8 @@ TagManager:
   - Cherry
   - Track
   - AudioManager
+  - InfoPanel
+  - IngameUI
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - Cherry
   - Cake
   - 
-  - 
+  - Placeable
   - 
   - 
   - Topping

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -32,28 +33,70 @@ public class InventoryRenderer : MonoBehaviour
     public void AddItemToDisplay(Item item)
     {
         if (item is not Topping topping) { return; } // TODO make ingredients visible also
-        GameObject newIcon = Instantiate(iconPrefab, iconParent);
 
-        InventoryIconControl inventoryIconControl = newIcon.GetComponent<InventoryIconControl>();
-        inventoryIconControl.assignedTopping = topping;
-        newIcon.GetComponent<InventoryIconControl>().SetSprite(topping.shopSprite);
-
-        ItemAndObj itemAndObj = new ItemAndObj(item, newIcon);
-        displayList.Add(itemAndObj);
+        bool itemExists = DisplayHasItem(item, out ItemAndObj existingItem);
+        if (itemExists)
+        {
+            AddItemToStack(item, existingItem);
+        }
+        else
+        {
+            SpawnNewItem();
+        }
 
         UpdatePageCount();
         UpdateAllIconPositions();
+
+        void SpawnNewItem()
+        {
+            GameObject newIcon = Instantiate(iconPrefab, iconParent);
+
+            InventoryIconControl inventoryIconControl = newIcon.GetComponent<InventoryIconControl>();
+            inventoryIconControl.assignedTopping = topping;
+            newIcon.GetComponent<InventoryIconControl>().SetUp(topping.shopSprite);
+
+            ItemAndObj itemAndObj = new ItemAndObj(item, newIcon);
+            displayList.Add(itemAndObj);
+        }
+
+        void AddItemToStack(Item itemToAdd, ItemAndObj iconToAddTo)
+        {
+            iconToAddTo.obj.GetComponent<InventoryIconControl>().AmountInStack += 1;
+        }
     }
 
-    public void RemoveItemFromDisplay(Item item)
+    private bool DisplayHasItem(Item item, out ItemAndObj itemAndObj)
     {
-        if (item is not Topping topping) { return; } // Remove this once there's functionality for ingredients in display
+        foreach (ItemAndObj existingIcon in displayList)
+        {
+            itemAndObj = existingIcon;
+            if (existingIcon.item.name == item.name)
+            {
+                return true;
+            }
+        }
+        itemAndObj = default;
+        return false;
+    }
+
+    public int RemoveOneFromItemFromDisplay(Item item)
+    {
+        if (item is not Topping topping) { return 0; } // Remove this once there's functionality for ingredients in display
+
         ItemAndObj itemAndObj = displayList.First(x => x.item == topping);
-        Destroy(itemAndObj.obj);
-        displayList.Remove(itemAndObj);
+        InventoryIconControl iconControl = itemAndObj.obj.GetComponent<InventoryIconControl>();
+
+        iconControl.AmountInStack -= 1;
+        if (iconControl.AmountInStack <= 0)
+        {
+            Destroy(itemAndObj.obj);
+            displayList.Remove(itemAndObj);
+        }
 
         UpdatePageCount();
         UpdateAllIconPositions();
+
+        return iconControl.AmountInStack;
     }
 
     public void UpdateAllIconPositions()

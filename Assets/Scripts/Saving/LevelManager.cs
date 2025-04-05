@@ -3,11 +3,12 @@ using GameSaves;
 using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    protected LevelManager _instance;
-    public LevelManager Instance
+    protected static LevelManager _instance;
+    public static LevelManager Instance
     {
         get
         {
@@ -27,6 +28,12 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void RestartLevel()
+    {
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     [SerializeField] protected bool _encryptData = true;
     [SerializeField] protected string _saveFileName = "levelsave";
     protected SaveData _saveData = null;
@@ -34,10 +41,6 @@ public class LevelManager : MonoBehaviour
     {
         get
         {
-            if (_saveData == null)
-            {
-                _saveData = SaveDataUtility.LoadSaveData(_saveFileName, "defaultlevel");
-            }
             return _saveData;
         }
     }
@@ -97,14 +100,29 @@ public class LevelManager : MonoBehaviour
         _instance = null;
     }
 
+    public void Initialize(string levelName = "defaultlevel", bool loadSaveData = false)
+    {
+        if (_saveData == null)
+        {
+            if (loadSaveData)
+            {
+                _saveData = SaveDataUtility.LoadSaveData(_saveFileName, levelName);
+            } else
+            {
+                _saveData = SaveDataUtility.CreateSaveData(_saveFileName, levelName);
+            }
+            // SaveDataUtility.CreateSaveData(levelName)
+            //_saveData = 
+        }
+    }
+
     public void SaveLevel()
     {
         Debug.Log("Saving level data...");
-        List<DETowerPlaced> allTowers = new List<DETowerPlaced>();
-        List<ToppingRegistry.ItemInfo> toppings = toppingRegistery.GetAllPlacedToppings();
-        List<Item> potentialItems = shop.availableItems;
+
+        // Start: Create the index for the items and toppings
+        List<Item> potentialItems = ToppingRegistry.toppingRegistry.allItems;
         List<Topping> potentialToppings = new List<Topping>();
-        List<DEItemInventory> allInventory = new List<DEItemInventory>();
         foreach (Item item in potentialItems)
         {
             Topping topping = item as Topping;
@@ -123,18 +141,35 @@ public class LevelManager : MonoBehaviour
         {
             itemIndex.Add(potentialItems[i].name, i);
         }
+        // End: Create the index for the items and toppings
+
+        // Collect all of the towers and toppings, adding them to the data entries
+        List<ToppingRegistry.ItemInfo> toppings = toppingRegistery.GetAllPlacedToppings();
+        List<DETowerPlaced> allTowers = new List<DETowerPlaced>();
+        List<DEItemInventory> allInventory = new List<DEItemInventory>();
         foreach (ToppingRegistry.ItemInfo item in toppings)
         {
-            allTowers.Add(new DETowerPlaced("topping" + item.topping.towerPrefab.name, toppingIndex[item.topping.name], new DEPosition("pos", item.obj.transform.position, item.obj.transform.rotation.eulerAngles)));
+            if (item.obj == null) { Debug.LogWarning("Null item in topping registry: " + item.topping); continue; }
+            string itemName = UnclonedName(item.topping.name);
+            allTowers.Add(new DETowerPlaced("topping" + itemName, toppingIndex[itemName], new DEPosition("pos", item.obj.transform.position, item.obj.transform.rotation.eulerAngles), item.topping.ID.ToString()));
         }
         foreach (Item item in Inventory.inventory.ownedItems)
         {
-            allInventory.Add(new DEItemInventory("item" + item.name, itemIndex[item.name]));
+            string itemName = UnclonedName(item.name);
+            allInventory.Add(new DEItemInventory("item" + itemName, itemIndex[itemName], item.ID.ToString()));
         }
+
+        // Create the wrapper data entry items
         DEAllTowers towers = new DEAllTowers("alltowers", allTowers);
         DEAllItemsInventory items = new DEAllItemsInventory("allinventory", allInventory);
+        DEIntEntry money = new DEIntEntry("money", Inventory.inventory.Money);
+
+        // Set the data entries
         saveData.SetDataEntry(towers, true);
         saveData.SetDataEntry(items, true);
+        saveData.SetDataEntry(money, true);
+
+        // Use encryptions and write the data
         SaveDataUtility._useEncryptions = _encryptData;
         SaveDataUtility.WriteSaveData(saveData);
         Debug.Log("Done saving level data!");
@@ -143,6 +178,8 @@ public class LevelManager : MonoBehaviour
     public void LoadLevel()
     {
         Debug.Log("Loading level data...");
+
+        // Grab the lists of toppings and items
         List<Item> potentialItems = shop.availableItems;
         List<Topping> potentialToppings = new List<Topping>();
         foreach (Item item in potentialItems)
@@ -153,19 +190,45 @@ public class LevelManager : MonoBehaviour
                 potentialToppings.Add(topping);
             }
         }
+
+        // Set the money
+        if (saveData.TryGetDataEntry("money", out DEIntEntry moneyWrapper))
+        {
+            Inventory.inventory.Money = moneyWrapper.value;
+        }
+
+        // Place all of the toppings
         if (saveData.TryGetDataEntry("alltowers", out DEAllTowers towerWrapper)) {
             foreach (DETowerPlaced tower in towerWrapper.towers)
             {
-                toppingPlacer.PlaceTopping(potentialToppings[tower.towerIndex], tower.pos.positionData, Quaternion.Euler(tower.pos.eulers));
+                Topping topping = Instantiate(potentialToppings[tower.towerIndex]); // instantiate it
+                topping.name = potentialToppings[tower.towerIndex].name;
+                topping.ID = new System.Guid(tower.towerID); // set the GUID
+                toppingPlacer.PlaceTopping(topping, tower.pos.positionData, Quaternion.Euler(tower.pos.eulers));
             }
         }
+
+        // Add all of the inventory
         if (saveData.TryGetDataEntry("allinventory", out DEAllItemsInventory itemsWrapper))
         {
             foreach (DEItemInventory item in  itemsWrapper.items)
             {
-                Inventory.inventory.AddItem(potentialItems[item.itemIndex]);
+                Inventory.inventory.AddItem(potentialItems[item.itemIndex], new System.Guid(item.itemID)); // set the GUID
             }
         }
+
         Debug.Log("Done saving level data!");
+    }
+
+    public static string UnclonedName(string name)
+    {
+        string _cloneText = "(Clone)";
+        int index = name.IndexOf(_cloneText);
+        while (index >= 0)
+        {
+            name = name.Substring(0, index) + name.Substring(index + _cloneText.Length);
+            index = name.IndexOf(_cloneText);
+        }
+        return name;
     }
 }

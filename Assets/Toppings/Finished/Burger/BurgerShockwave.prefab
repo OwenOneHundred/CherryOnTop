@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cherryDebuffs: []
-  maxHits: 20
+  maxHits: 4
 --- !u!1001 &6460203906218070505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -83,7 +83,7 @@ PrefabInstance:
       objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 710304236122621181, guid: fbcccd660d72c40f5a09688f50c64f3b, type: 3}
       propertyPath: m_RenderMode
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1036716214731098439, guid: fbcccd660d72c40f5a09688f50c64f3b, type: 3}
       propertyPath: m_Name
@@ -157,6 +157,10 @@ PrefabInstance:
       propertyPath: InitialModule.startColor.minMaxState
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7488466033241125640, guid: fbcccd660d72c40f5a09688f50c64f3b, type: 3}
+      propertyPath: UVModule.sprites.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
     - target: {fileID: 7488466033241125640, guid: fbcccd660d72c40f5a09688f50c64f3b, type: 3}
       propertyPath: InitialModule.startColor.maxGradient.atime0
       value: 0

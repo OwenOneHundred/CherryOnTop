@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: SpreadAttackCheckerStack
   m_EditorClassIdentifier: 
   cooldown: 1
-  damage: 6
+  damage: 9
+  debuffs: []
   projectile: {fileID: 1373519935423302513, guid: d5c768a1ed5b246cb8593142c71b2751, type: 3}
   projectileSpeed: 8
+  fireSound:
+    volume: 0.5
+    clip: {fileID: 0}
   quantity: 4
   spreadAngle: 1

@@ -74,17 +74,7 @@ public class Inventory : MonoBehaviour
         }
     }
     List<int> bufferedMoneyChanges = new();
-
-    int cakePoints = 0;
-    public int CakePoints
-    {
-        get { return cakePoints; }
-        set
-        {
-            cakePoints = value;
-            ingameUI.SetCakeScore(value);
-        }
-    }
+    
     [SerializeField] MoneyChangeDisplay moneyChangeDisplay;
 
     public bool TryBuyItem(Item item)
@@ -102,6 +92,8 @@ public class Inventory : MonoBehaviour
         SoundEffectManager.sfxmanager.PlayOneShot(buySFX);
 
         AddItem(item);
+
+        Shop.shop.mostRecentlyBoughtItem = item;
         return true;
     }
 
@@ -112,19 +104,29 @@ public class Inventory : MonoBehaviour
         AddItem(item);
     }
 
-    public void AddItem(Item item)
+    public void AddItem(Item template, Guid id = default)
     {
-        item = Instantiate(item); // Item SOs are currently instantiated here, when added to inventory.
+        Item item = Instantiate(template); // Item SOs are currently instantiated here, when added to inventory.
         item.SetUpEffectsAndWhen(); // Item SOs' effects are instantiated here.
+        item.name = template.name;
+        
+        if (id == default)
+        {
+            item.ID = Guid.NewGuid();
+        }
+        else
+        {
+            item.ID = id;
+        }
 
         ownedItems.Add(item);
         inventoryRenderer.AddItemToDisplay(item);
     }
 
-    public void RemoveItem(Item item)
+    public int RemoveOneOfItem(Item item)
     {
         ownedItems.Remove(item);
-        inventoryRenderer.RemoveItemFromDisplay(item);
+        return inventoryRenderer.RemoveOneFromItemFromDisplay(item); 
     }
 
     float moneyChangeTimer = 0;

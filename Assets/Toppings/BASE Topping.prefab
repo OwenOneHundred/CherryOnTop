@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6939634604882509038}
   - component: {fileID: 1751406142148302725}
+  - component: {fileID: 3219388457440055397}
   m_Layer: 12
   m_Name: BASE Topping
   m_TagString: Untagged
@@ -48,6 +49,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPlaced: []
   onSell: []
+  topping: {fileID: 0}
+--- !u!114 &3219388457440055397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7811689376462688174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79f450c7d172347608faae69ca54cbc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7950584445644482870
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d73df01279b254c72ab306e3c78b7675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infoPopupPrefab: {fileID: 5143935969253856157, guid: 8366678d3fd414bfcb7312b4366fb4bf, type: 3}
+  radiusCirclePrefab: {fileID: 3012567605006781236, guid: c0f227daa690a41dd9e7928132e96fdc, type: 3}
+  radiusCircleOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &2910716949551422463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackTemplate: {fileID: 11400000, guid: b447f93c19bcc4387b383247c64c5393, type: 2}
+  targetedCherry: {fileID: 0}
 --- !u!114 &5543599703770907884
 MonoBehaviour:
   m_ObjectHideFlags: 0

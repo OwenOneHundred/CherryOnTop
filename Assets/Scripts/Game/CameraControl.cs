@@ -2,14 +2,16 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    [SerializeField] float speed = 10;
+    [SerializeField] float keyMovementSpeed = 10;
+    [SerializeField] float mouseScrollMovementSpeed = 10;
     float shakeTimer = 0;
     float shakeTime = 0;
     float shakeViolence = 0.2f;
     bool shaking = false;
     void Update()
     {
-        transform.Rotate(0, speed * Time.deltaTime * Input.GetAxisRaw("Horizontal"), 0);
+        transform.Rotate(0, keyMovementSpeed * Time.deltaTime * Input.GetAxisRaw("Horizontal"), 0);
+        transform.Rotate(0, mouseScrollMovementSpeed * Time.deltaTime * Input.mouseScrollDelta.y, 0);
 
         if (shaking)
         {

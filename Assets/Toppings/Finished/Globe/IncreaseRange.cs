@@ -14,7 +14,7 @@ public class IncreaseRange : EffectSO
     {
         if (firstCall)
         {
-            targetingSystem = toppingObj.GetComponent<TargetingSystem>();
+            targetingSystem = toppingObj.transform.root.GetComponentInChildren<TargetingSystem>();
             firstCall = false;
         }
         targetingSystem.SetRange(range * (1 + percentageToChangeRange));
@@ -32,7 +32,7 @@ public class IncreaseRange : EffectSO
 
     public override void Load(SaveData saveData)
     {
-        targetingSystem = toppingObj.GetComponent<TargetingSystem>();
+        targetingSystem = toppingObj.transform.root.GetComponentInChildren<TargetingSystem>();
         firstCall = false;
         if (saveData.TryGetDataEntry(GetID() + "-Range", out DEFloatEntry floatEntry))
         {

@@ -172,13 +172,13 @@ public class ToppingPlacer : MonoBehaviour
 
         bool notOverlappingAnything = result.Count() == 0;
 
-        //bool tooCloseToTrack = CheckIfTooCloseToTrack(cakePos);
-        bool tooCloseToTrack = false;
+        bool tooCloseToTrack = CheckIfOnTrack(cakePos);
+        //bool tooCloseToTrack = false;
 
         return notOverlappingAnything && (!tooCloseToTrack);
     }
 
-    private bool CheckIfOnTrack(Vector3 cakePos, float acceptableDistance = 0.525f)
+    private bool CheckIfOnTrack(Vector3 cakePos, float acceptableDistance = 0.26f)
     {
         return TrackFunctions.trackFunctions.GetAllLineSegmentsThatIntersectCircle(cakePos, acceptableDistance).Count != 0;
     }

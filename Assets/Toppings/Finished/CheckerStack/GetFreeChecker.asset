@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GetFreeChecker
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: ae4fefe69d93241f1b60076ac179c686, type: 2}
-  odds0to1: 1
+  odds0to1: 0.5

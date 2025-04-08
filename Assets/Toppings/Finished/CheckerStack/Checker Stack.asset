@@ -20,7 +20,7 @@ MonoBehaviour:
     eventSOs:
     - {fileID: 11400000, guid: 56cca92c935b3403e95bd7d8711c691b, type: 2}
   description: Launches a spread of small, low damage checkers at cherries. Whenever
-    you reroll, also get a checker topping.
+    you reroll, 50% chance to also get a checker topping.
   rarity: 1
   towerPrefab: {fileID: 4272828566230276255, guid: edaa62ffa6eae4a19843dcc012197090, type: 3}
   flags: 0

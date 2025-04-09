@@ -35,22 +35,18 @@ public class TrapAttack : ToppingAttack
 
     public override void OnStart()
     {
+        Debug.Log("here");
         SetLineSegments(toppingObj.transform.position, range);
     }
 
-    System.Collections.IEnumerator Runner() // this is only necessary until we can refactor OnCycle or something
-    {
-        EveryFrame();
-        yield return null;
-    }
-
-    void EveryFrame()
+    public override void EveryFrame()
     {
         timer += Time.deltaTime;
         if (timer > cooldown)
         {
             SpawnTrap(trapPrefab, GetGoalPosition(), damage, lifetime);
             timer = 0;
+            Debug.Log("spawn trap");
         }
     }
 

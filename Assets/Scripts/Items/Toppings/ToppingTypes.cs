@@ -22,19 +22,19 @@ public static class ToppingTypes
         none            = 0,
         cold            = 1 << 0,
         hot             = 1 << 1,
-            candle          = 1 << 2 | hot,
-                numberCandle    = 1 << 3 | candle,
+            candle          = 1 << 2,
+                numberCandle    = 1 << 3,
         produce         = 1 << 4,
-            vegetable       = 1 << 5 | produce,
-            fruit           = 1 << 6 | produce,
+            vegetable       = 1 << 5,
+            fruit           = 1 << 6,
         sweet           = 1 << 7,
-            candy           = 1 << 8 | sweet,
+            candy           = 1 << 8,
         figurine        = 1 << 9,
         decoration      = 1 << 10,
         electronics     = 1 << 11,
         animal          = 1 << 12,
-            ocean           = 1 << 13 | animal,
-            bird            = 1 << 14 | animal,
+            ocean           = 1 << 13,
+            bird            = 1 << 14,
     }
 
     public static bool HasAny(this ToppingTypes.Flags value, ToppingTypes.Flags any)
@@ -44,9 +44,9 @@ public static class ToppingTypes
     {
         switch (rarity)
         {
-            case Rarity.common: return 1f;
-            case Rarity.uncommon: return 0.25f;
-            case Rarity.rare: return 0.1f;
+            case Rarity.Common: return 1f;
+            case Rarity.Uncommon: return 0.25f;
+            case Rarity.Rare: return 0.1f;
             default: return 1;
         }
     }
@@ -55,6 +55,6 @@ public static class ToppingTypes
     [System.Serializable]
     public enum Rarity
     {
-        common, uncommon, rare
+        Common, Uncommon, Rare
     }
 }

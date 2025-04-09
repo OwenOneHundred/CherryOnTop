@@ -23,15 +23,15 @@ public class ItemReward : RewardItem
         ToppingTypes.Rarity rarity;
         if (totalValue > rareValueThreshold)
         {
-            rarity = ToppingTypes.Rarity.rare;
+            rarity = ToppingTypes.Rarity.Rare;
         }
         else if (totalValue > uncommonValueThreshold)
         {
-            rarity = ToppingTypes.Rarity.uncommon;
+            rarity = ToppingTypes.Rarity.Uncommon;
         }
         else
         {
-            rarity = ToppingTypes.Rarity.common;
+            rarity = ToppingTypes.Rarity.Common;
         }
 
         return rarity;

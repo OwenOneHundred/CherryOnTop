@@ -1,7 +1,10 @@
 using EventBus;
+using GameSaves;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(LevelManager))]
 public class RoundManager : MonoBehaviour
 {
     public RoundState roundState = RoundState.shop;
@@ -13,8 +16,21 @@ public class RoundManager : MonoBehaviour
 
     public static RoundManager roundManager; // Singleton
     [SerializeField] Button nextRoundButton;
+    [SerializeField] Button shopButton;
     [SerializeField] IngameUI ingameUI;
     [SerializeField] Shop shop;
+    [SerializeField] bool savingEnabled = true;
+
+    LevelManager _levelManager;
+    LevelManager levelManager
+    {
+        get
+        {
+            if (_levelManager == null)
+                _levelManager = GetComponent<LevelManager>();
+            return _levelManager;
+        }
+    }
 
     void Awake()
     {
@@ -38,13 +54,31 @@ public class RoundManager : MonoBehaviour
         }
     }
 
+    public void InitializeSave(bool loadLevel = false)
+    {
+        levelManager.Initialize(SceneManager.GetActiveScene().name, loadLevel);
+    }
+
+    public void SaveLevel()
+    {
+        InitializeSave();
+        levelManager.SaveLevel();
+    }
+
     public void StartNextRound() // called by start round button
     {
+        if (savingEnabled)
+        {
+            SaveLevel(); // save before round start things are finished
+        }
+
         roundNumber += 1;
         ingameUI.SetRound(roundNumber);
         roundState = RoundState.cherries;
         nextRoundButton.interactable = false;
+        shopButton.interactable = false;
         cherriesKilledThisRoundCount = 0;
+        if (shop.Open) shop.ToggleOpen();
 
         EventBus<RoundStartEvent>.Raise(new RoundStartEvent(roundNumber));
 
@@ -56,6 +90,7 @@ public class RoundManager : MonoBehaviour
     {
         roundState = RoundState.shop;
         nextRoundButton.interactable = true;
+        shopButton.interactable = true;
         Inventory.inventory.Money += moneyOnRoundEnd;
         cherriesKilledThisRoundCount = 0;
 
@@ -66,6 +101,11 @@ public class RoundManager : MonoBehaviour
         }
 
         CakePointsManager.cakePointsManager.OnRoundEnd();
+
+        if (savingEnabled)
+        {
+            SaveLevel(); // save after all round end things are called
+        }   
     }
 
     public void OnCherryKilled()

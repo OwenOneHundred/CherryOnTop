@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using EventBus;
+using UnityEditor;
 using UnityEngine;
+using System;
 
 public class ToppingPlacer : MonoBehaviour
 {
@@ -83,11 +85,28 @@ public class ToppingPlacer : MonoBehaviour
         MeshFilter transparentMeshFilter = transparentObject.GetComponent<MeshFilter>();
         MeshFilter toppingMeshFilter = topping.towerPrefab.GetComponentInChildren<MeshFilter>();
         MeshRenderer meshRenderer = transparentObject.GetComponent<MeshRenderer>();
+        Transform circleTransform = transparentObject.transform.GetChild(0);
+        LineRenderer circleLineRenderer = circleTransform.GetComponent<LineRenderer>();
+
+        // set up circle
+        TargetingSystem targetingSystem = topping.towerPrefab.GetComponentInChildren<TargetingSystem>();
+        if (targetingSystem != null)
+        {
+            float range = targetingSystem.GetRange();
+            circleTransform.transform.localScale = new Vector3(range, 1, range) / toppingMeshFilter.transform.lossyScale.x;
+        }
+        else
+        {
+            circleTransform.gameObject.SetActive(false);
+        }
 
         // set up transparent mesh
         transparentMeshFilter.mesh = toppingMeshFilter.sharedMesh; // set transparent mesh to topping mesh
         transparentObject.transform.localScale = toppingMeshFilter.transform.lossyScale; // set transparent obj scale
         transparentObject.transform.rotation = toppingMeshFilter.transform.rotation; // set transparent obj rotation
+
+        // re-rotate circle to flat
+        circleTransform.rotation = Quaternion.identity;
 
         transparentObject.SetActive(false);
 
@@ -125,6 +144,8 @@ public class ToppingPlacer : MonoBehaviour
 
                 placementValidCheck = CheckIfPlacementValid(toppingMeshFilter, objCenter, toppingMeshFilter.sharedMesh, cakePos);
                 meshRenderer.material = placementValidCheck ? white : red;
+                circleLineRenderer.startColor = placementValidCheck ? Color.white : Color.red;
+                circleLineRenderer.endColor = placementValidCheck ? Color.white : Color.red;
             }
             else
             {
@@ -151,13 +172,13 @@ public class ToppingPlacer : MonoBehaviour
 
         bool notOverlappingAnything = result.Count() == 0;
 
-        //bool tooCloseToTrack = CheckIfTooCloseToTrack(cakePos);
-        bool tooCloseToTrack = false;
+        bool tooCloseToTrack = CheckIfOnTrack(cakePos);
+        //bool tooCloseToTrack = false;
 
         return notOverlappingAnything && (!tooCloseToTrack);
     }
 
-    private bool CheckIfOnTrack(Vector3 cakePos, float acceptableDistance = 0.525f)
+    private bool CheckIfOnTrack(Vector3 cakePos, float acceptableDistance = 0.26f)
     {
         return TrackFunctions.trackFunctions.GetAllLineSegmentsThatIntersectSphere(cakePos, acceptableDistance).Count != 0;
     }
@@ -197,5 +218,17 @@ public class ToppingPlacer : MonoBehaviour
         topping.SetGameObjectOnEffects(newToppingObj);
 
         Inventory.inventory.RemoveOneOfItem(topping); // remove from inventory
+    }
+
+    public void PlaceToppingViaLoad(Topping topping, Vector3 position, Quaternion rotation)
+    {
+        GameObject newToppingObj = Instantiate(topping.towerPrefab, position, rotation); // spawn obj
+
+        ToppingRegistry.toppingRegistry.RegisterPlacedTopping(topping, newToppingObj); // register
+
+        newToppingObj.GetComponent<ToppingObjectScript>().topping = topping; // set topping on object to be read later
+
+        topping.RegisterEffects();
+        topping.SetGameObjectOnEffects(newToppingObj);
     }
 }

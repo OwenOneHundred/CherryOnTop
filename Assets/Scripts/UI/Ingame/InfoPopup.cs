@@ -42,7 +42,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             itemType.text = "Ingredient";
         }
 
-        nameText.text = item.name.Replace("(Clone)", "");
+        nameText.text = item.name;
         description.text = item.description;
         sellPrice = item.price / 2;
         sellPriceText.text = "Sell: $" + sellPrice;
@@ -65,7 +65,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             itemType.text = "Ingredient";
         }
 
-        nameText.text = item.name.Replace("(Clone)", "");
+        nameText.text = item.name;
         description.text = item.description;
         sellPrice = item.price / 2;
         sellPriceText.text = "Sell: $" + sellPrice;
@@ -88,9 +88,10 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void OnSell()
     {
         Inventory.inventory.Money += sellPrice;
-        Debug.Log("on sell");
         EventBus<SellEvent>.Raise(new SellEvent(item, toppingObj));
         item.DeregisterEffects();
+        ToppingRegistry.toppingRegistry.DeregisterTopping(item);
+        Debug.Log("Sell item: " + item.name);
 
         if (toppingObj != null)
         {

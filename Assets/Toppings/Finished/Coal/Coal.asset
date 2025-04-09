@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Coal
   m_EditorClassIdentifier: 
-  price: 5
+  price: 0
   shopSprite: {fileID: 744995806, guid: 8d430c9a2fff04f52b7adf9e11ebddb8, type: 3}
   effectsAndWhen: []
   description: Better luck next time!

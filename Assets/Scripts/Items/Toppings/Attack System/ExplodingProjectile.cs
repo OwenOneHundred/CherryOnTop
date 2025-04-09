@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 public class ExplodingProjectile : Projectile
 {
     [SerializeField]
-    GameObject shockwave;
+    protected GameObject shockwave;
 
     [SerializeField]
     int shockwaveDamage;
@@ -22,11 +22,11 @@ public class ExplodingProjectile : Projectile
         Explode();
     }
 
-    [SerializeField] float cameraShakeViolence = 1;
-    [SerializeField] float cameraShakeLength = 0;
-    [SerializeField] AudioFile explodeSound;
+    [SerializeField] protected float cameraShakeViolence = 1;
+    [SerializeField] protected float cameraShakeLength = 0;
+    [SerializeField] protected AudioFile explodeSound;
 
-    protected void Explode() {
+    protected virtual void Explode() {
         if (shockwave != null)
         {
             GameObject newShockwave = Instantiate(shockwave, transform.position, Quaternion.identity);

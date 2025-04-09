@@ -14,7 +14,7 @@ public class CherryHitbox : MonoBehaviour
     [SerializeField] bool spawnDamageNumbers = true;
     bool dead = false;
 
-    public void Start()
+    public void Awake()
     {
         debuffManager = GetComponent<DebuffManager>();
     }

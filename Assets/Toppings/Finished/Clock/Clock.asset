@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
+  m_Name: Clock
+  m_EditorClassIdentifier: 
+  price: 7
+  shopSprite: {fileID: 21300000, guid: 49e9bc48d2db54d8282e6d10ce67cd20, type: 3}
+  effectsAndWhen:
+  - effectSOs:
+    - {fileID: 11400000, guid: a0594187ccbfc4ad9aa231a2d9a15d56, type: 2}
+    eventSOs:
+    - {fileID: 11400000, guid: 61a179cbcbc324e68b5581dcdf2f2cb9, type: 2}
+  description: No attack. At the start of every round, if you have enough money,
+    buy your most recently bought topping again.
+  rarity: 2
+  towerPrefab: {fileID: 5286104097913148031, guid: b5a1052e90ec64ff189325d8cb793534, type: 3}
+  flags: 2048
+  cakePoints: 0
+  onHitCherry: []
+  onKillCherry: []

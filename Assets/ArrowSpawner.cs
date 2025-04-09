@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ArrowSpawner : MonoBehaviour
@@ -8,6 +11,7 @@ public class ArrowSpawner : MonoBehaviour
     readonly int arrowsPerSet = 3;
     int arrowsSpawnedThisSet = 0;
     [SerializeField] GameObject arrowPrefab;
+    public bool goBackToPosition0 = true;
 
     Vector3 trackStartPos;
 
@@ -15,6 +19,23 @@ public class ArrowSpawner : MonoBehaviour
     {
         trackStartPos = GameObject.FindGameObjectWithTag("Track").transform.GetChild(0).GetComponent<LineRenderer>().GetPosition(0);
         timer = timeBetweenArrowSets / 2;
+
+        //ResizeLineRenderer(1.14285714286f, false);
+    }
+
+    // I have this here as a utility in case I need it lol
+    private void ResizeLineRenderer(float newSize, bool includeY = false)
+    {
+        LineRenderer lineRenderer = GetComponentInChildren<LineRenderer>();
+        int positionsAmount = lineRenderer.positionCount;
+        var linePositions = new Vector3[positionsAmount];
+        lineRenderer.GetPositions(linePositions);
+        List<Vector3> posList = linePositions.ToList();
+        for (int i = 0; i < positionsAmount; i++)
+        {
+            posList[i] = new Vector3(posList[i].x * newSize, (includeY ? posList[i].y * newSize : posList[i].y), posList[i].z * newSize);
+        }
+        lineRenderer.SetPositions(posList.ToArray());
     }
 
     void Update()

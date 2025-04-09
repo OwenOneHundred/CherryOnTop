@@ -20,5 +20,5 @@ MonoBehaviour:
     clip: {fileID: 0}
   lifetime: 10
   maxTraps: 10
-  trapPrefab: {fileID: 0}
-  range: 1
+  trapPrefab: {fileID: 8297310373101223584, guid: 28cb94d55579548a894bd4798d0780af, type: 3}
+  range: 1.75

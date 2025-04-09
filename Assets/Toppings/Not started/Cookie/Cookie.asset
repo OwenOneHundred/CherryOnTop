@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Cookie
   m_EditorClassIdentifier: 
   price: 5
-  shopSprite: {fileID: 0}
+  shopSprite: {fileID: 21300000, guid: ae5633af7155042d093b3e4d6b86743e, type: 3}
   effectsAndWhen: []
   description: 
   rarity: 0
-  towerPrefab: {fileID: 0}
+  towerPrefab: {fileID: 1114585432037479074, guid: da55f14a184144548a3b9948534cdbfe, type: 3}
   flags: 0
   cakePoints: 10
   onHitCherry: []

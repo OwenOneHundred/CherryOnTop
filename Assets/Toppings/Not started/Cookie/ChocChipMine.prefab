@@ -81,9 +81,6 @@ PrefabInstance:
       addedObject: {fileID: 3217284743434117615}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4535c45ea7b2844cf8b1b4714efbb6a8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5865148846957490022}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4535c45ea7b2844cf8b1b4714efbb6a8, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 8151988836218065565}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4535c45ea7b2844cf8b1b4714efbb6a8, type: 3}
       insertIndex: -1
@@ -115,29 +112,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.3
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5865148846957490022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9010956486845237187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a684fe4bf105654cb52a02538eb008f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cherryDebuffs: []
-  maxHits: 5
-  shockwave: {fileID: 8297310373101223584, guid: 28cb94d55579548a894bd4798d0780af, type: 3}
-  shockwaveDamage: 20
-  shockwaveSpeed: 3
-  shockwaveRange: 1
-  cameraShakeViolence: 0.2
-  cameraShakeLength: 0.1
-  explodeSound:
-    volume: 0.5
-    clip: {fileID: 8300000, guid: 18054a612a34c4273abaf93d10887d42, type: 3}
 --- !u!54 &8151988836218065565
 Rigidbody:
   m_ObjectHideFlags: 0

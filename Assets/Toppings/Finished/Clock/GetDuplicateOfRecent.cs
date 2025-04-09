@@ -8,7 +8,7 @@ public class GetDuplicateOfRecent : EffectSO
     {
         if (Shop.shop.mostRecentlyBoughtItem != null)
         {
-            Inventory.inventory.AddItem(Shop.shop.mostRecentlyBoughtItem);
+            Inventory.inventory.TryBuyItem(Shop.shop.mostRecentlyBoughtItem);
             GetToppingActivatedGlow().StartNewFireEffect("Yellow", Color.yellow, 2);
         }
     }

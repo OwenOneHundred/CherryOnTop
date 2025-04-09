@@ -269,6 +269,9 @@ MonoBehaviour:
   priceText: {fileID: 7107878117756353710}
   selectedSize: 1.5
   deselectedSize: 1.25
+  commonBG: {fileID: -595146240, guid: 1a6c47459c6a54d229e2d578e590935c, type: 3}
+  uncommonBG: {fileID: 1383680594, guid: 1ecc66a5604914337b43eab13c8de41d, type: 3}
+  rareBG: {fileID: -165889043, guid: 8a1c3974cb8da4bfbbebdb081eb231c7, type: 3}
 --- !u!222 &8842151935230682953
 CanvasRenderer:
   m_ObjectHideFlags: 0

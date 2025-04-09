@@ -951,7 +951,11 @@ PrefabInstance:
     - target: {fileID: 5176896722681871329, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
       propertyPath: defaultSong.clip
       value: 
-      objectReference: {fileID: 8300000, guid: 009e533790d79419e924df30ce2834c0, type: 3}
+      objectReference: {fileID: 8300000, guid: 79b645254f14c432d8eea0d5ef166aea, type: 3}
+    - target: {fileID: 5176896722681871329, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
+      propertyPath: defaultSong.volume
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 8855493245014057152, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
       propertyPath: m_Name
       value: AudioManager

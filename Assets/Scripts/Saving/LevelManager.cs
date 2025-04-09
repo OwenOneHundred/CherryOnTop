@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(RoundManager))]
 public class LevelManager : MonoBehaviour
 {
     protected static LevelManager _instance;
@@ -89,6 +90,19 @@ public class LevelManager : MonoBehaviour
                 _toppingRegistery= FindAnyObjectByType<ToppingRegistry>(FindObjectsInactive.Include);
             }
             return _toppingRegistery;
+        }
+    }
+
+    protected RoundManager _roundManager = null;
+    public RoundManager roundManager
+    {
+        get
+        {
+            if (_roundManager == null)
+            {
+                _roundManager = GetComponent<RoundManager>();
+            }
+            return _roundManager;
         }
     }
 
@@ -185,11 +199,13 @@ public class LevelManager : MonoBehaviour
         DEAllTowers towers = new DEAllTowers("alltowers", allTowers);
         DEAllItemsInventory items = new DEAllItemsInventory("allinventory", allInventory);
         DEIntEntry money = new DEIntEntry("money", Inventory.inventory.Money);
+        DEUIntEntry round = new DEUIntEntry("round", roundManager.roundNumber);
 
         // Set the data entries
         saveData.SetDataEntry(towers, true);
         saveData.SetDataEntry(items, true);
         saveData.SetDataEntry(money, true);
+        saveData.SetDataEntry(round, true);
 
         toppingRegistery.SaveAll(saveData);
 
@@ -219,6 +235,11 @@ public class LevelManager : MonoBehaviour
         if (saveData.TryGetDataEntry("money", out DEIntEntry moneyWrapper))
         {
             Inventory.inventory.Money = moneyWrapper.value;
+        }
+
+        if (saveData.TryGetDataEntry("round", out DEUIntEntry roundWrapper))
+        {
+            roundManager.roundNumber = roundWrapper.value;
         }
 
         // Place all of the toppings

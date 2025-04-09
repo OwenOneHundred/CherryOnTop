@@ -202,6 +202,16 @@ namespace GameSaves
     }
 
     [System.Serializable]
+    public class DEUIntEntry : DataEntry
+    {
+        [SerializeField] public uint value;
+        public DEUIntEntry(string dataName, uint value) : base(dataName)
+        {
+            this.value = value;
+        }
+    }
+
+    [System.Serializable]
     public class DEFloatEntry : DataEntry
     {
         [SerializeField] public float value;

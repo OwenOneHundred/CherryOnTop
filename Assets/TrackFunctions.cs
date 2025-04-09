@@ -162,7 +162,8 @@ public class TrackFunctions : MonoBehaviour
     /// </summary>
     public static Matrix3D MatrixTranspose(Matrix3D matrix3)
     {
-        Matrix3D newMatrix = new Matrix3D();
+        Vector3[] zeroMatrix = {default, default, default};
+        Matrix3D newMatrix = new Matrix3D(zeroMatrix);
         for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < 3; j++)
@@ -178,7 +179,8 @@ public class TrackFunctions : MonoBehaviour
     /// </summary>
     public static Matrix3D MatrixCofactor(Matrix3D matrix3)
     {
-        Matrix3D cofactorMatrix = new Matrix3D(null);
+        Vector3[] zeroMatrix = {default, default, default};
+        Matrix3D cofactorMatrix = new Matrix3D(zeroMatrix);
         for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < 3; j++)

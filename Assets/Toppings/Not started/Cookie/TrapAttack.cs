@@ -35,22 +35,18 @@ public class TrapAttack : ToppingAttack
 
     public override void OnStart()
     {
+        Debug.Log("here");
         SetLineSegments(toppingObj.transform.position, range);
     }
 
-    System.Collections.IEnumerator Runner() // this is only necessary until we can refactor OnCycle or something
-    {
-        EveryFrame();
-        yield return null;
-    }
-
-    void EveryFrame()
+    public override void EveryFrame()
     {
         timer += Time.deltaTime;
         if (timer > cooldown)
         {
             SpawnTrap(trapPrefab, GetGoalPosition(), damage, lifetime);
             timer = 0;
+            Debug.Log("spawn trap");
         }
     }
 
@@ -70,7 +66,7 @@ public class TrapAttack : ToppingAttack
         List<TrackFunctions.LineSegment3D> newLineSegments = new();
 
         for (int i = 0; i < lineSegments.Count; i++) {
-            newLineSegments[i] = FindNewSegment(lineSegments[i], toppingObj.transform.position, range);
+            newLineSegments.Add(FindNewSegment(lineSegments[i], toppingObj.transform.position, range));
             totalLength += newLineSegments[i].length;
         }
         for (int i = 0; i < lineSegments.Count; i++) {

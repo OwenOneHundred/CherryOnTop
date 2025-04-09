@@ -100,6 +100,7 @@ public class Shop : MonoBehaviour
             EventBus<RerollEvent>.Raise(new RerollEvent());
             SoundEffectManager.sfxmanager.PlayOneShot(rerollSound);
             RerollItems();
+            PlayRerollAnim();
         }
         else if (Inventory.inventory.Money >= rerollPrice)
         {
@@ -107,6 +108,7 @@ public class Shop : MonoBehaviour
             EventBus<RerollEvent>.Raise(new RerollEvent());
             SoundEffectManager.sfxmanager.PlayOneShot(rerollSound);
             RerollItems();
+            PlayRerollAnim();
         }
         else 
         {
@@ -117,6 +119,15 @@ public class Shop : MonoBehaviour
     public void OnRoundEnd()
     {
         RerollItems();
+    }
+
+    public void PlayRerollAnim()
+    {
+        float iconAppearDelay = 0.05f;
+        for (int i = 0; i < shopObjs.Count; i++)
+        {
+            StartCoroutine(shopObjs[i].IconAppearAnim(i * iconAppearDelay));
+        }
     }
 
     public void RerollItems()

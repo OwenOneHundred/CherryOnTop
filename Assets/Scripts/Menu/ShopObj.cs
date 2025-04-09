@@ -85,6 +85,20 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
         displayItem = item;
     }
 
+    public IEnumerator IconAppearAnim(float delay)
+    {
+        float scaleSpeed = 10f;
+        Vector3 goal = transform.localScale;
+        transform.localScale = new Vector3(0, 0, 0);
+        yield return new WaitForSeconds(delay);
+
+        while (transform.localScale != goal)
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, goal, Time.deltaTime * scaleSpeed);
+            yield return null;
+        }
+    }
+
     public void UpdateInfo()
     {
         image.sprite = displayItem.shopSprite;

@@ -124,6 +124,12 @@ public class Shop : MonoBehaviour
         currentItems.Clear();
         PopulateShop();
         UpdateAllIcons();
+
+        float iconAppearDelay = 0.05f;
+        for (int i = 0; i < shopObjs.Count; i++)
+        {
+            StartCoroutine(shopObjs[i].IconAppearAnim(i * iconAppearDelay));
+        }
     }
 
     public void PopulateShop()

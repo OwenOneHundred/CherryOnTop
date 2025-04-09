@@ -5,13 +5,13 @@ using UnityEngine;
 public class CherrySpawner : MonoBehaviour
 {
     readonly float defaultTimeBetweenCherries = 1;
-    readonly float defaultCherriesPerRound = 10;
+    readonly float defaultCherriesPerRound = 8;
 
     readonly float oddNumberCherryCountMultiplier = 1.5f;
     readonly float evenNumberCherrySpacingMultiplier = 1.5f;
     [SerializeField] GameObject cherryPrefab;
     [SerializeField] Vector3 cherryStartPos;
-    [SerializeField] float difficultyScalingAmount = 1.16f;
+    [SerializeField] float difficultyScalingAmount = 1.25f;
     CherryManager cherryManager;
 
     float bigChance = 0.6f;

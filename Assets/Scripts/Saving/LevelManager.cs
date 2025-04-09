@@ -35,7 +35,18 @@ public class LevelManager : MonoBehaviour
     }
 
     [SerializeField] protected bool _encryptData = true;
-    [SerializeField] protected string _saveFileName = "levelsave";
+    protected string _saveFileName = null;
+    protected string saveFileName
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(_saveFileName))
+            {
+                _saveFileName = SaveDataUtility._defaultSaveFile;
+            }
+            return _saveFileName;
+        }
+    }
     protected SaveData _saveData = null;
     public SaveData saveData
     {
@@ -104,13 +115,24 @@ public class LevelManager : MonoBehaviour
     {
         if (_saveData == null)
         {
-            if (loadSaveData)
+            if (loadSaveData && SaveDataUtility.GetSaveFileNameIfExists(levelName, out string saveFilePath, out string saveFileName))
             {
-                _saveData = SaveDataUtility.LoadSaveData(_saveFileName, levelName);
+                int extIndex = saveFileName.IndexOf(SaveDataFileUtility._saveFileExtension);
+                while (extIndex >= 0)
+                {
+                    saveFileName = saveFileName.Substring(0, extIndex) + 
+                        (extIndex + SaveDataFileUtility._saveFileExtension.Length < saveFileName.Length 
+                            ? saveFileName.Substring(extIndex + SaveDataFileUtility._saveFileExtension.Length) 
+                            : "");
+                    extIndex = saveFileName.IndexOf(SaveDataFileUtility._saveFileExtension);
+                }
+                _saveFileName = saveFileName;
+                _saveData = SaveDataUtility.LoadSaveData(this.saveFileName, levelName);
             } else
             {
-                _saveData = SaveDataUtility.CreateSaveData(_saveFileName, levelName);
+                _saveData = SaveDataUtility.CreateSaveData(this.saveFileName, levelName);
             }
+            Debug.Log("Initialized save data to level name: " + levelName + ", file name: " + this.saveFileName);
             // SaveDataUtility.CreateSaveData(levelName)
             //_saveData = 
         }
@@ -121,7 +143,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Saving level data...");
 
         // Start: Create the index for the items and toppings
-        List<Item> potentialItems = ToppingRegistry.toppingRegistry.allItems;
+        List<Item> potentialItems = shop.availableItems;
         List<Topping> potentialToppings = new List<Topping>();
         foreach (Item item in potentialItems)
         {
@@ -169,6 +191,8 @@ public class LevelManager : MonoBehaviour
         saveData.SetDataEntry(items, true);
         saveData.SetDataEntry(money, true);
 
+        toppingRegistery.SaveAll(saveData);
+
         // Use encryptions and write the data
         SaveDataUtility._useEncryptions = _encryptData;
         SaveDataUtility.WriteSaveData(saveData);
@@ -199,13 +223,17 @@ public class LevelManager : MonoBehaviour
 
         // Place all of the toppings
         if (saveData.TryGetDataEntry("alltowers", out DEAllTowers towerWrapper)) {
+            Debug.Log("Read all towers data entry! Placing towers...");
             foreach (DETowerPlaced tower in towerWrapper.towers)
             {
                 Topping topping = Instantiate(potentialToppings[tower.towerIndex]); // instantiate it
                 topping.name = potentialToppings[tower.towerIndex].name;
                 topping.ID = new System.Guid(tower.towerID); // set the GUID
-                toppingPlacer.PlaceTopping(topping, tower.pos.positionData, Quaternion.Euler(tower.pos.eulers));
+                toppingPlacer.PlaceToppingViaLoad(topping, tower.pos.positionData, Quaternion.Euler(tower.pos.eulers));
             }
+        } else
+        {
+            Debug.Log("Did not find all towers data entry!");
         }
 
         // Add all of the inventory
@@ -216,6 +244,8 @@ public class LevelManager : MonoBehaviour
                 Inventory.inventory.AddItem(potentialItems[item.itemIndex], new System.Guid(item.itemID)); // set the GUID
             }
         }
+
+        toppingRegistery.LoadAllToppingData(saveData);
 
         Debug.Log("Done saving level data!");
     }

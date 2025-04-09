@@ -1352,6 +1352,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: IngameUI
       objectReference: {fileID: 0}
+    - target: {fileID: 2865202321287263778, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: _encryptData
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5964487472042778191, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: m_Pivot.x
       value: 0

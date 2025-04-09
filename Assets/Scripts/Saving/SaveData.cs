@@ -72,6 +72,11 @@ namespace GameSaves
             return null;
         }
 
+        public bool RemoveDataEntry<T>(string dataName) where T : DataEntry
+        {
+            return data.Remove(dataName);
+        }
+
         public string saveFileName { get; protected set; }
         public string saveLevelName { get;protected set; }
         public SaveData(string saveFile, bool load = false) : this(saveFile, null, load)

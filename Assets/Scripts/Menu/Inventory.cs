@@ -37,7 +37,10 @@ public class Inventory : MonoBehaviour
     [SerializeField] AudioFile error;
     void Start()
     {
-        Money = initialMoney;
+        if (Money == 0)
+        {
+            Money = initialMoney;
+        }
 
         inventoryEffectManager = GetComponent<InventoryEffectManager>();
         ingameUI = GameObject.FindAnyObjectByType<IngameUI>();

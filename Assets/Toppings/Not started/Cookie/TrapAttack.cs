@@ -66,7 +66,7 @@ public class TrapAttack : ToppingAttack
         List<TrackFunctions.LineSegment3D> newLineSegments = new();
 
         for (int i = 0; i < lineSegments.Count; i++) {
-            newLineSegments[i] = FindNewSegment(lineSegments[i], toppingObj.transform.position, range);
+            newLineSegments.Add(FindNewSegment(lineSegments[i], toppingObj.transform.position, range));
             totalLength += newLineSegments[i].length;
         }
         for (int i = 0; i < lineSegments.Count; i++) {

@@ -136,9 +136,10 @@ public class ToppingPlacer : MonoBehaviour
 
             if (!mouseIsInSidebar) { mouseLeftSidebar = true; } 
 
-            cameraControl.transform.position = Vector3.zero; // Holy fucking hack lmao part 1
+            Vector3 cameraPositionWithShake = cameraControl.transform.position;
+            cameraControl.transform.position = Vector3.zero; // Holy hack lmao part 1
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            cameraControl.transform.position = cameraControl.currentCameraShakeOffset; // Holy fucking hack lmao part 2
+            cameraControl.transform.position = cameraPositionWithShake; // Holy hack lmao part 2
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100, placeableLayers))
             {

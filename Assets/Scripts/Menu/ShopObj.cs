@@ -92,6 +92,11 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
         transform.localScale = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(delay);
 
+        if (displayItem.rarity == ToppingTypes.Rarity.Rare)
+        {
+            SoundEffectManager.sfxmanager.PlayOneShot(Shop.shop.onRollRare);
+        }
+
         while (transform.localScale != goal)
         {
             transform.localScale = Vector3.Lerp(transform.localScale, goal, Time.deltaTime * scaleSpeed);

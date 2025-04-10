@@ -705,7 +705,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fc8447cf6d7749e499d5a495ff33c615, type: 2}
   - {fileID: 11400000, guid: 5d4c3a01cf4e74901ba2a080092b0c86, type: 2}
   - {fileID: 11400000, guid: ef112ccab09004451a087619f5391a65, type: 2}
-  - {fileID: 11400000, guid: ee06e2caa2ef640ffab9f3ad485b71d0, type: 2}
   - {fileID: 11400000, guid: d2d327fe9da5d41fdb40a4aea5474448, type: 2}
   - {fileID: 11400000, guid: ff21dc747abbb42c2b330e3d098473ee, type: 2}
   - {fileID: 11400000, guid: 948a41667ff104a3abb8d512f4ace65d, type: 2}
@@ -724,6 +723,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d96d45040cce94e72815229c5c2e88c2, type: 2}
   - {fileID: 11400000, guid: 1635e4ff1811a452e914a7998974906b, type: 2}
   - {fileID: 11400000, guid: c259efe27a1484004aa200566bb9b5d2, type: 2}
+  - {fileID: 11400000, guid: d9067dbf9b6dd4062bdf28e4a0376b06, type: 2}
+  - {fileID: 11400000, guid: fee4fb20abbf746abb1a96d37a76028e, type: 2}
 --- !u!114 &7835569952325439666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -900,6 +901,9 @@ MonoBehaviour:
   rerollSound:
     volume: 0.25
     clip: {fileID: 8300000, guid: 03f382c3b6f5b4f43bfc892e8ba009fb, type: 3}
+  onRollRare:
+    volume: 0.667
+    clip: {fileID: 8300000, guid: f2af97ffae28d4641ab1b35c86cb5f9a, type: 3}
   shopInfoPanel: {fileID: 5917666770896241322}
 --- !u!1 &2081781367253558207
 GameObject:
@@ -1512,7 +1516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5343b79346942918b9124df4cf1d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialMoney: 15
+  initialMoney: 100
   baseTimeBetweenMoneyChanges: 0.35
   startingInventoryItems: []
   inventoryRenderer: {fileID: 6508363885407075222}

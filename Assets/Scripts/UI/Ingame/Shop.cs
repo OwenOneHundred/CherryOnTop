@@ -38,6 +38,7 @@ public class Shop : MonoBehaviour
     [SerializeField] AudioFile openShop;
     [SerializeField] AudioFile closeShop;
     [SerializeField] AudioFile rerollSound;
+    public AudioFile onRollRare;
 
     public Item mostRecentlyBoughtItem { get; set; }
 
@@ -151,7 +152,7 @@ public class Shop : MonoBehaviour
         }
     }
 
-    public void UpdateAllIcons() // TODO: this function spawns copies of icons on top of each other when shop is opened and closed
+    public void UpdateAllIcons()
     {
         // Also resets the purchase status of shop items
         // Not sure if this needs to be changed

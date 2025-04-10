@@ -12,7 +12,9 @@ public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPoin
     bool selected = false;
     private void Start()
     {
-        infoPopup = GameObject.FindGameObjectWithTag("InfoPanel").GetComponent<InfoPopup>();
+        infoPopup = Shop.shop.infoPopup;
+
+        OnClicked();
     }
 
     private void Update()

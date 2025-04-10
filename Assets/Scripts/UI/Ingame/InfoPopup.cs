@@ -24,6 +24,10 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         eventSystem = GameObject.FindAnyObjectByType<EventSystem>();
         if (eventSystem == null) { Debug.LogWarning("No event system in scene."); }
+    }
+
+    void Start()
+    {
         Clear();
     }
 
@@ -47,7 +51,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         sellPrice = item.price / 2;
         sellPriceText.text = "Sell: $" + sellPrice;
         this.toppingObj = toppingObj;
-        sellButton.SetActive(true);
+        gameObject.SetActive(true);
     }
 
     public void SetUpForInventoryItem(Item item)
@@ -69,7 +73,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         description.text = item.description;
         sellPrice = item.price / 2;
         sellPriceText.text = "Sell: $" + sellPrice;
-        sellButton.SetActive(true);
+        gameObject.SetActive(true);
     }
 
     public void Clear()
@@ -82,7 +86,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         item = null;
         toppingObj = null;
         if (sellButton == null) { return; }
-        sellButton.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public void OnSell()

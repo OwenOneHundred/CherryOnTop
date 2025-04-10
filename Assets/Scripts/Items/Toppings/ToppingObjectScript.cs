@@ -13,6 +13,8 @@ public class ToppingObjectScript : MonoBehaviour
         {
             effectSO.OnTriggered(null);
         }
+
+        
     }
 
     void OnDestroy()

@@ -41,6 +41,7 @@ public class Shop : MonoBehaviour
     [SerializeField] AudioFile closeShop;
     [SerializeField] AudioFile rerollSound;
     public AudioFile onRollRare;
+    public InfoPopup infoPopup; // shop probably shouldn't have this but it needs to be cached so whatever
 
     public Item mostRecentlyBoughtItem { get; set; }
 

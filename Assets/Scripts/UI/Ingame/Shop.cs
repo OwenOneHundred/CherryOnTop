@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using EventBus;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class Shop : MonoBehaviour
     [SerializeField] Transform itemParent;
     [SerializeField] TMPro.TextMeshProUGUI rerollsText;
     [SerializeField] TMPro.TextMeshProUGUI rerollButtonText;
+    [SerializeField] Button rerollButton;
     public List<ShopObj> shopObjs = new();
     int rerolls = 0;
     public int Rerolls
@@ -150,6 +152,11 @@ public class Shop : MonoBehaviour
             int item = GeneralUtil.RandomWeighted(weights);
             currentItems.Add(availableItems[item]);
         }
+    }
+
+    public void UpdateRerollButtonFadedness()
+    {
+        rerollButton.interactable = Inventory.inventory.Money >= rerollPrice;
     }
 
     public void UpdateAllIcons()

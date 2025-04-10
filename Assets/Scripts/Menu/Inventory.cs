@@ -174,6 +174,8 @@ public class Inventory : MonoBehaviour
         {
             SoundEffectManager.sfxmanager.PlayOneShotWithPitch(getMoneySFX, moneyGainPitch);
         }
+
+        Shop.shop.UpdateRerollButtonFadedness();
     }
 
     private void BufferMoneyChange(int change)

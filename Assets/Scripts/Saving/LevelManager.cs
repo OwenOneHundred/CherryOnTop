@@ -157,7 +157,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Saving level data...");
 
         // Start: Create the index for the items and toppings
-        List<Item> potentialItems = shop.availableItems;
+        List<Item> potentialItems = toppingRegistery.allItems;
         List<Topping> potentialToppings = new List<Topping>();
         foreach (Item item in potentialItems)
         {

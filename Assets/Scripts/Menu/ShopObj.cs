@@ -97,10 +97,12 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
             SoundEffectManager.sfxmanager.PlayOneShot(Shop.shop.onRollRare);
         }
 
+        if (this == null) { yield break; }
         while (transform.localScale != goal)
         {
             transform.localScale = Vector3.Lerp(transform.localScale, goal, Time.deltaTime * scaleSpeed);
             yield return null;
+            if (this == null) { yield break; }
         }
     }
 

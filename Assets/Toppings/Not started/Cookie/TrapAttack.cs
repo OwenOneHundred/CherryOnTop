@@ -8,7 +8,7 @@ public class TrapAttack : ToppingAttack
     [SerializeField] protected float lifetime;
     [SerializeField] protected int maxTraps;
     [SerializeField] protected GameObject trapPrefab;
-    [SerializeField] protected float range = 0.3f; // THIS IS BAD! All range amounts should be on Projectile.cs.
+    [SerializeField] protected float range = 1.1f; // THIS IS BAD! All range amounts should be on Projectile.cs.
     // Putting them on the targeting system means everything must use a targeting system, which is not necessary.
     List<TrackFunctions.LineSegment3D> lineSegments = new();
     protected int activeTraps;
@@ -53,13 +53,6 @@ public class TrapAttack : ToppingAttack
     public void SetLineSegments(Vector3 toppingPosition, float radius)
     {
         lineSegments = TrackFunctions.trackFunctions.GetAllLineSegmentsThatIntersectSphere(toppingPosition, radius);
-        Debug.Log("Line Segment");
-        Debug.Log(lineSegments[0].pointA);
-        Debug.Log(lineSegments[0].pointB);
-        foreach(TrackFunctions.LineSegment3D ls in lineSegments) {
-            Debug.DrawLine(ls.pointA, ls.pointB, Color.cyan, 1000f);
-        }
-        Debug.DrawLine(lineSegments[0].pointA + new Vector3(0, 0.1f, 0), lineSegments[0].pointB + new Vector3(0, 0.1f, 0), Color.red);
     }
 
     /// <summary>
@@ -87,10 +80,6 @@ public class TrapAttack : ToppingAttack
             lsIndex++;
         } while (randomReal > 0);
 
-        foreach(TrackFunctions.LineSegment3D ls in newLineSegments) {
-            Debug.DrawLine(ls.pointA, ls.pointB, Color.green, 1000f);
-        }
-
         return FindPositionOnLine(newLineSegments[lsIndex - 1], randomReal, totalLength);
     }
 
@@ -112,6 +101,7 @@ public class TrapAttack : ToppingAttack
         Vector3 newEnd = ls.pointB;
         Vector3 lsDirection = (ls.pointB - ls.pointA).normalized;
 
+        Debug.Log("Radius: " + radius);
         if (!startInRange)
         {
             TrackFunctions.LineSegment3D rls = TrackFunctions.GetSimplifiedLineSegment3D(center, ls);
@@ -126,7 +116,7 @@ public class TrapAttack : ToppingAttack
             TrackFunctions.LineSegment3D rls = TrackFunctions.GetSimplifiedLineSegment3D(center, ls);
             Vector3 relVect = rls.pointB;
             
-            float cutLength = -1 * relVect.x - Mathf.Sqrt(radius * radius - relVect.y * relVect.y);
+            float cutLength = -1 * relVect.x + Mathf.Sqrt(radius * radius - relVect.y * relVect.y);
 
             newEnd = ls.pointB + cutLength * lsDirection;
         }

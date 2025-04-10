@@ -123,7 +123,7 @@ public class Shop : MonoBehaviour
 
     public void PlayRerollAnim()
     {
-        float iconAppearDelay = 0.05f;
+        float iconAppearDelay = 0.0125f;
         for (int i = 0; i < shopObjs.Count; i++)
         {
             StartCoroutine(shopObjs[i].IconAppearAnim(i * iconAppearDelay));

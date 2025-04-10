@@ -87,7 +87,7 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public IEnumerator IconAppearAnim(float delay)
     {
-        float scaleSpeed = 10f;
+        float scaleSpeed = 30f;
         Vector3 goal = transform.localScale;
         transform.localScale = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(delay);

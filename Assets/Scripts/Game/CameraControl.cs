@@ -8,6 +8,7 @@ public class CameraControl : MonoBehaviour
     float shakeTime = 0;
     float shakeViolence = 0.2f;
     bool shaking = false;
+    public Vector3 currentCameraShakeOffset { get; private set; }
     void Update()
     {
         transform.Rotate(0, keyMovementSpeed * Time.deltaTime * Input.GetAxisRaw("Horizontal"), 0);
@@ -15,7 +16,8 @@ public class CameraControl : MonoBehaviour
 
         if (shaking)
         {
-            transform.position = Random.insideUnitCircle * shakeViolence;
+            currentCameraShakeOffset = Random.insideUnitCircle * shakeViolence;
+            transform.position = currentCameraShakeOffset;
             shakeTimer += Time.deltaTime;
             if (shakeTimer >= shakeTime)
             {
@@ -27,6 +29,7 @@ public class CameraControl : MonoBehaviour
         else
         {
             transform.position = Vector3.zero;
+            currentCameraShakeOffset = Vector3.zero;
         }
     }
 

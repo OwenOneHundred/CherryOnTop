@@ -27,6 +27,8 @@ public class ToppingPlacer : MonoBehaviour
 
     List<List<Vector3>> trackPoints = new();
 
+    CameraControl cameraControl;
+
     readonly Vector3 checkAreaVerticalOffset = new Vector3(0, 0.02f, 0);
     public bool PlacingTopping
     {
@@ -52,6 +54,8 @@ public class ToppingPlacer : MonoBehaviour
         transparentObject.SetActive(false);
 
         StoreAllTrackPositions();
+
+        cameraControl = Camera.main.transform.root.GetComponent<CameraControl>();
     }
 
     private void StoreAllTrackPositions()
@@ -132,7 +136,9 @@ public class ToppingPlacer : MonoBehaviour
 
             if (!mouseIsInSidebar) { mouseLeftSidebar = true; } 
 
+            cameraControl.transform.position = Vector3.zero; // Holy fucking hack lmao part 1
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            cameraControl.transform.position = cameraControl.currentCameraShakeOffset; // Holy fucking hack lmao part 2
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100, placeableLayers))
             {
@@ -173,7 +179,6 @@ public class ToppingPlacer : MonoBehaviour
         bool notOverlappingAnything = result.Count() == 0;
 
         bool tooCloseToTrack = CheckIfOnTrack(cakePos);
-        //bool tooCloseToTrack = false;
 
         return notOverlappingAnything && (!tooCloseToTrack);
     }

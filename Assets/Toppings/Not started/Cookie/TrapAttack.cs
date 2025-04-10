@@ -8,7 +8,7 @@ public class TrapAttack : ToppingAttack
     [SerializeField] protected float lifetime;
     [SerializeField] protected int maxTraps;
     [SerializeField] protected GameObject trapPrefab;
-    [SerializeField] protected float range = 1.1f; // THIS IS BAD! All range amounts should be on Projectile.cs.
+    [SerializeField] protected float range = 0; // THIS IS BAD! All range amounts should be on Projectile.cs.
     // Putting them on the targeting system means everything must use a targeting system, which is not necessary.
     List<TrackFunctions.LineSegment3D> lineSegments = new();
     protected int activeTraps;

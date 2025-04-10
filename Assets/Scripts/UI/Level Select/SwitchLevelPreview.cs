@@ -52,6 +52,8 @@ public class SwitchLevelPreview : MonoBehaviour
         panel.GetComponent<UnityEngine.UI.Image>().sprite = preview.levelImage;
         GameObject sceneChangeButton = preview.levelPrefab.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
         sceneChangeButton.GetComponent<PlayButton>().sceneName = preview.sceneNameInEditor;
+        LoadButton loadButton = preview.levelPrefab.GetComponentInChildren<LoadButton>();
+        loadButton.sceneName = preview.sceneNameInEditor;
     }
 
     private void Update()

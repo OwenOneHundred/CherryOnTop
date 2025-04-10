@@ -21,6 +21,11 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [SerializeField] Sprite uncommonBG;
     [SerializeField] Sprite rareBG;
 
+    void Start()
+    {
+        GetComponent<SparkleSpawner>().SetUp(displayItem.rarity);
+    }
+
 
     public void OnPointerEnter(PointerEventData eventData)
     {

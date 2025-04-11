@@ -725,6 +725,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c259efe27a1484004aa200566bb9b5d2, type: 2}
   - {fileID: 11400000, guid: d9067dbf9b6dd4062bdf28e4a0376b06, type: 2}
   - {fileID: 11400000, guid: fee4fb20abbf746abb1a96d37a76028e, type: 2}
+  - {fileID: 11400000, guid: c3beb3884c6234ce5964eb360b5ce8a9, type: 2}
+  - {fileID: 11400000, guid: 64d66b28711274a4ba1e912718499d1b, type: 2}
+  - {fileID: 11400000, guid: 9d3eb83265682496898d8e9bd7f73867, type: 2}
+  - {fileID: 11400000, guid: 49aa7e781e6674cd38869265dbf3554d, type: 2}
 --- !u!114 &7835569952325439666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -753,7 +757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e081e3c501cda4dad4c3413dbbf3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _encryptData: 1
+  _encryptData: 0
 --- !u!1 &1997559020666774139
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,6 +889,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bdc0e671f2a424ab18e15947a2eb1e69, type: 2}
   - {fileID: 11400000, guid: fc8447cf6d7749e499d5a495ff33c615, type: 2}
   - {fileID: 11400000, guid: b08a3f95245044847afbd0298274bfb4, type: 2}
+  - {fileID: 11400000, guid: 49aa7e781e6674cd38869265dbf3554d, type: 2}
   itemParent: {fileID: 7862030300564659347}
   rerollsText: {fileID: 4060922254059177220}
   rerollButtonText: {fileID: 4712727569409509211}
@@ -906,6 +911,7 @@ MonoBehaviour:
   onRollRare:
     volume: 0.75
     clip: {fileID: 8300000, guid: f2af97ffae28d4641ab1b35c86cb5f9a, type: 3}
+  infoPopup: {fileID: 3092324493037631681}
   shopInfoPanel: {fileID: 5917666770896241322}
 --- !u!1 &2081781367253558207
 GameObject:
@@ -1520,7 +1526,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialMoney: 15
   baseTimeBetweenMoneyChanges: 0.35
-  startingInventoryItems: []
+  startingInventoryItems:
+  - {fileID: 11400000, guid: 49aa7e781e6674cd38869265dbf3554d, type: 2}
   inventoryRenderer: {fileID: 6508363885407075222}
   inventoryEffectManager: {fileID: 2718221458188522715}
   ingameUI: {fileID: 5165441279755291159}
@@ -5518,6 +5525,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3497879248983649867, guid: 8366678d3fd414bfcb7312b4366fb4bf, type: 3}
   m_PrefabInstance: {fileID: 4510092937128540822}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3092324493037631681 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -7746977375065996713, guid: 8366678d3fd414bfcb7312b4366fb4bf, type: 3}
+  m_PrefabInstance: {fileID: 4510092937128540822}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a642a9e5d8cba4b23a2db2d597e82ccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4625715241946812136 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9126199537161139326, guid: 8366678d3fd414bfcb7312b4366fb4bf, type: 3}

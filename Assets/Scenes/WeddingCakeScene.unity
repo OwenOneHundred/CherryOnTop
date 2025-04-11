@@ -461,17 +461,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1775837715015091235, guid: be9de439ac6414e9ca0fe87ad73bc064, type: 3}
   m_PrefabInstance: {fileID: 1108220680}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &358018109 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3092324493037631681, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-  m_PrefabInstance: {fileID: 7121916051453279109}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a642a9e5d8cba4b23a2db2d597e82ccd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,7 +1244,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 009e533790d79419e924df30ce2834c0, type: 3}
     - target: {fileID: 6905921228865605854, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8855493245014057152, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
       propertyPath: m_Name
@@ -1367,10 +1356,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: IngameUI
       objectReference: {fileID: 0}
-    - target: {fileID: 2865202321287263778, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: _encryptData
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5964487472042778191, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1452,25 +1437,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: initialMoney
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: startingInventoryItems.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: 'startingInventoryItems.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 37436afdd3ed94eccb945b18ff3f93d3, type: 2}
-    - target: {fileID: 8966158542567257680, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: infoPopup
+      objectReference: {fileID: 11400000, guid: 49aa7e781e6674cd38869265dbf3554d, type: 2}
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'startingInventoryItems.Array.data[1]'
       value: 
-      objectReference: {fileID: 358018109}
+      objectReference: {fileID: 11400000, guid: 9d3eb83265682496898d8e9bd7f73867, type: 2}
     - target: {fileID: 8966158542567257680, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: onRollRare.volume
-      value: 0.75
+      propertyPath: availableItems.Array.size
+      value: 34
       objectReference: {fileID: 0}
+    - target: {fileID: 8966158542567257680, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'availableItems.Array.data[33]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9d3eb83265682496898d8e9bd7f73867, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

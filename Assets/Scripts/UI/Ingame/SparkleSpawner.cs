@@ -22,8 +22,8 @@ public class SparkleSpawner : MonoBehaviour
         }
         else if (rarity == ToppingTypes.Rarity.Uncommon)
         {
-            sizeMultiplier = 1;
-            cooldownMultiplier = 2f;
+            sizeMultiplier = 0.9f;
+            cooldownMultiplier = 2.15f;
             sparkleColor = new Color(0.92f, 0.92f, 0.92f, 0.7f);
         }
         else

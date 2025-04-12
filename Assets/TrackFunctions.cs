@@ -108,9 +108,9 @@ public class TrackFunctions : MonoBehaviour
     /// </summary>
     public static float GetDistanceToLineSegment3D(Vector3 origin, LineSegment3D ls)
     {
-        float orthogonalDistance = GetSimplifiedLineSegment3D(origin, ls).pointA.y;
+        float orthogonalDistance = 100;//GetSimplifiedLineSegment3D(origin, ls).pointA.y;
         float distanceToClosestEndpoint = Mathf.Min((ls.pointA - origin).magnitude, (ls.pointB - origin).magnitude);
-        return Mathf.Max(orthogonalDistance, distanceToClosestEndpoint);
+        return Mathf.Min(orthogonalDistance, distanceToClosestEndpoint);
     }
 
     /// <summary>
@@ -121,7 +121,7 @@ public class TrackFunctions : MonoBehaviour
         Vector3 v = (ls.pointB - ls.pointA).normalized;
         LineSegment3D transls = new LineSegment3D(ls.pointA - origin, ls.pointB - origin);
 
-        Vector3 normal = Vector3.Cross(transls.pointA.normalized, v);
+        Vector3 normal = Vector3.Cross(transls.pointA.normalized, v).normalized;
         Vector3[] basisVectors = {v, Vector3.Cross(v, normal), normal};
         Matrix3D basis = new Matrix3D(basisVectors);
 
@@ -135,11 +135,11 @@ public class TrackFunctions : MonoBehaviour
     /// </summary>
     public static Vector3 GetBasisCoordinates(Matrix3D basis, Vector3 targetVector)
     {
-        return MatrixMultiply(MatrixAdjugate(basis), targetVector);
+        return MatrixMultiply(MatrixInverse(basis), targetVector);
     }
 
     /// <summary>
-    /// Multiply two 3x3 matrices
+    /// Multiply a 3x3 matrix by a vector
     /// </summary>
     public static Vector3 MatrixMultiply(Matrix3D matrix3, Vector3 vector) 
     {
@@ -150,11 +150,11 @@ public class TrackFunctions : MonoBehaviour
     }
 
     /// <summary>
-    /// Find the adjugate of a matrix
+    /// Find the inverse of a matrix
     /// </summary>
-    public static Matrix3D MatrixAdjugate(Matrix3D matrix3)
+    public static Matrix3D MatrixInverse(Matrix3D matrix3)
     {
-        return MatrixTranspose(MatrixCofactor(matrix3));
+        return ScalarDivision(MatrixTranspose(MatrixCofactor(matrix3)), MatrixDeterminant3D(matrix3));
     }
 
     /// <summary>
@@ -190,7 +190,7 @@ public class TrackFunctions : MonoBehaviour
                   matrix3.array[(i + 1) % 3,(j + 2) % 3] },
                 { matrix3.array[(i + 2) % 3,(j + 1) % 3]  ,
                   matrix3.array[(i + 2) % 3,(j + 2) % 3] }};
-                cofactorMatrix.array[i,j] = MatrixDeterminant(matrix2);
+                cofactorMatrix.array[i,j] = MatrixDeterminant2D(matrix2);
             }
         }
         return cofactorMatrix;
@@ -199,9 +199,49 @@ public class TrackFunctions : MonoBehaviour
     /// <summary>
     /// Find the determinant of a 2x2 matrix
     /// </summary>
-    public static float MatrixDeterminant(float[,] matrix2)
+    public static float MatrixDeterminant2D(float[,] matrix2)
     {
         return matrix2[0,0] * matrix2[1,1] - matrix2[1,0] * matrix2[0,1];
+    }
+
+    /// <summary>
+    /// Find the determinant of a 3x3 matrix
+    /// </summary>
+    public static float MatrixDeterminant3D(Matrix3D matrix3)
+    {
+        Matrix3D cofactorMatrix = MatrixCofactor(matrix3);
+
+        float determinant = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            determinant += matrix3.array[0,i] * MatrixCofactor(matrix3).array[0,i];
+        }
+        Debug.Log("Determinant: " + determinant);
+
+        return determinant;
+
+    }
+
+    /// <summary>
+    /// Divide a matrix by a scalar divisor.
+    /// </summary>
+    public static Matrix3D ScalarDivision(Matrix3D matrix3, float divisor)
+    {
+        if (divisor == 0)
+        {
+            return matrix3;
+        }
+        Vector3[] zeroMatrix = {default, default, default};
+        Matrix3D newMatrix = new Matrix3D(zeroMatrix);
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                newMatrix.array[i,j] = matrix3.array[i,j] / divisor;
+            }
+        }
+
+        return newMatrix;
     }
 
     /*

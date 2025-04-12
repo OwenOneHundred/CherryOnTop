@@ -8,7 +8,7 @@ public class TrapAttack : ToppingAttack
     [SerializeField] protected float lifetime;
     [SerializeField] protected int maxTraps;
     [SerializeField] protected GameObject trapPrefab;
-    [SerializeField] protected float range = 2; // THIS IS BAD! All range amounts should be on Projectile.cs.
+    [SerializeField] protected float range = 0; // THIS IS BAD! All range amounts should be on Projectile.cs.
     // Putting them on the targeting system means everything must use a targeting system, which is not necessary.
     List<TrackFunctions.LineSegment3D> lineSegments = new();
     protected int activeTraps;
@@ -101,6 +101,7 @@ public class TrapAttack : ToppingAttack
         Vector3 newEnd = ls.pointB;
         Vector3 lsDirection = (ls.pointB - ls.pointA).normalized;
 
+        Debug.Log("Radius: " + radius);
         if (!startInRange)
         {
             TrackFunctions.LineSegment3D rls = TrackFunctions.GetSimplifiedLineSegment3D(center, ls);
@@ -115,7 +116,7 @@ public class TrapAttack : ToppingAttack
             TrackFunctions.LineSegment3D rls = TrackFunctions.GetSimplifiedLineSegment3D(center, ls);
             Vector3 relVect = rls.pointB;
             
-            float cutLength = -1 * relVect.x - Mathf.Sqrt(radius * radius - relVect.y * relVect.y);
+            float cutLength = -1 * relVect.x + Mathf.Sqrt(radius * radius - relVect.y * relVect.y);
 
             newEnd = ls.pointB + cutLength * lsDirection;
         }

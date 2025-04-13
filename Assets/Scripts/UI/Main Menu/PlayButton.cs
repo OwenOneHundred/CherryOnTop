@@ -16,6 +16,7 @@ public class PlayButton : MonoBehaviour
 
     void PlayGame()
     {
+        LevelManager.levelWasLoadedFromSave = false;
         SceneManager.LoadScene(sceneName);
     }
 }

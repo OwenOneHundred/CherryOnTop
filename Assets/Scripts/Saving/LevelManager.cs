@@ -106,6 +106,9 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    // set by PlayButton and LoadButton, and checked by inventory to see if it should add initial money
+    public static bool levelWasLoadedFromSave = false;
+
     private void Awake()
     {
         if (_instance == null)
@@ -220,7 +223,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Loading level data...");
 
         // Grab the lists of toppings and items
-        List<Item> potentialItems = shop.availableItems;
+        List<Item> potentialItems = toppingRegistery.allItems;
         List<Topping> potentialToppings = new List<Topping>();
         foreach (Item item in potentialItems)
         {

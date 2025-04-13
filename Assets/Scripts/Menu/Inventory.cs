@@ -8,7 +8,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public static Inventory inventory;
-    [SerializeField] int initialMoney = 20;
+    [SerializeField] int initialMoney = 15;
     [SerializeField] float baseTimeBetweenMoneyChanges = 0.35f;
     float scalingMoneyGainTime = 0;
     float moneyGainPitch = 1;
@@ -37,7 +37,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] AudioFile error;
     void Start()
     {
-        if (Money == 0)
+        if (!LevelManager.levelWasLoadedFromSave)
         {
             Money = initialMoney;
         }

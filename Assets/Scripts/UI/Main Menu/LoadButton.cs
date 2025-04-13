@@ -38,6 +38,7 @@ public class LoadButton : MonoBehaviour
         SceneManager.sceneLoaded -= LoadSceneData;
         if (SaveDataUtility.GetSaveFileNameIfExists(scene.name, out string saveFilePath, out string saveFileName))
         {
+            LevelManager.levelWasLoadedFromSave = true;
             LevelManager.Instance.Initialize(scene.name, true);
             LevelManager.Instance.LoadLevel();
         }

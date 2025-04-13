@@ -233,6 +233,7 @@ public class ToppingPlacer : MonoBehaviour
         ToppingRegistry.toppingRegistry.RegisterPlacedTopping(topping, newToppingObj); // register
 
         newToppingObj.GetComponent<ToppingObjectScript>().topping = topping; // set topping on object to be read later
+        newToppingObj.transform.root.GetComponentInChildren<ToppingObjInteractions>().OnClickedOff();
 
         topping.RegisterEffects();
         topping.SetGameObjectOnEffects(newToppingObj);

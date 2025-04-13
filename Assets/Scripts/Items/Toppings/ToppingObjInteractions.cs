@@ -10,7 +10,7 @@ public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPoin
     bool hovered = false;
     [SerializeField] Vector3 radiusCircleOffset = default;
     bool selected = false;
-    private void Start()
+    private void Awake()
     {
         infoPopup = Shop.shop.infoPopup;
 
@@ -47,7 +47,7 @@ public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPoin
         SetUpRadiusCircle();
     }
 
-    private void OnClickedOff()
+    public void OnClickedOff()
     {
         selected = false;
         DestroyRadiusCircle();

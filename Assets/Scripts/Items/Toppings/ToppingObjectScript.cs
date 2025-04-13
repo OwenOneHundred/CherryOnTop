@@ -21,6 +21,8 @@ public class ToppingObjectScript : MonoBehaviour
         {
             effectSO.OnTriggered(null);
         }
+
+        topping.DeregisterEffects();
     }
 
     public void SaveOnAllEffects(SaveData saveData)

@@ -31,7 +31,7 @@ public class LevelManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        
+        LevelManager.levelWasLoadedFromSave = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

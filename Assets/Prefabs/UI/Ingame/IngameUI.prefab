@@ -890,6 +890,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fc8447cf6d7749e499d5a495ff33c615, type: 2}
   - {fileID: 11400000, guid: b08a3f95245044847afbd0298274bfb4, type: 2}
   - {fileID: 11400000, guid: 49aa7e781e6674cd38869265dbf3554d, type: 2}
+  - {fileID: 11400000, guid: 9d3eb83265682496898d8e9bd7f73867, type: 2}
   itemParent: {fileID: 7862030300564659347}
   rerollsText: {fileID: 4060922254059177220}
   rerollButtonText: {fileID: 4712727569409509211}
@@ -1526,8 +1527,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialMoney: 15
   baseTimeBetweenMoneyChanges: 0.35
-  startingInventoryItems:
-  - {fileID: 11400000, guid: 49aa7e781e6674cd38869265dbf3554d, type: 2}
+  startingInventoryItems: []
   inventoryRenderer: {fileID: 6508363885407075222}
   inventoryEffectManager: {fileID: 2718221458188522715}
   ingameUI: {fileID: 5165441279755291159}

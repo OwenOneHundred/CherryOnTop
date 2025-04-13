@@ -13,7 +13,10 @@ public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPoin
     private void Awake()
     {
         infoPopup = Shop.shop.infoPopup;
+    }
 
+    private void Start()
+    {
         OnClicked();
     }
 

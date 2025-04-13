@@ -28,6 +28,8 @@ public class ToppingRegistry : MonoBehaviour
 
     public void DeregisterTopping(Item item)
     {
+        Debug_PrintAllPlacedToppings();
+        Debug.Log("|" + item.name + "|");
         ItemInfo itemInfo = placedToppings.FirstOrDefault(x => x.topping.name == item.name);
         if (itemInfo.obj != null) { Debug.Log("Remove topping: " + itemInfo.obj); } else { Debug.LogWarning("Couldn't find " + item.name + " in toppingregistry."); }
         
@@ -35,6 +37,16 @@ public class ToppingRegistry : MonoBehaviour
         {
             placedToppings.Remove(itemInfo);
         }
+    }
+
+    private void Debug_PrintAllPlacedToppings()
+    {
+        string allToppings = "|";
+        foreach (ItemInfo itemInfo in GetAllPlacedToppings())
+        {
+            allToppings += itemInfo.topping.name + "|, |";
+        }
+        Debug.Log(allToppings);
     }
 
     public void DeregisterTopping(GameObject obj)
@@ -48,6 +60,9 @@ public class ToppingRegistry : MonoBehaviour
 
     public List<ItemInfo> GetAllPlacedToppings()
     {
+        placedToppings.RemoveAll(x => x.obj == null); // this line should be unnecessary but I have spent 4 hours trying
+        // to figure out how things are null in this list and I'm just gonna manually remove them who cares
+        
         return placedToppings;
     }
 

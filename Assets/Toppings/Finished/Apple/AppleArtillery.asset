@@ -18,5 +18,5 @@ MonoBehaviour:
   projectile: {fileID: 1373519935423302513, guid: c58c1772c4e1149e49b88b4d3c5f2bd5, type: 3}
   projectileSpeed: 0
   fireSound:
-    volume: 0.5
-    clip: {fileID: 0}
+    volume: 0.2
+    clip: {fileID: 8300000, guid: 5ba3203a8ddc54ad8b3902c70ab5d827, type: 3}

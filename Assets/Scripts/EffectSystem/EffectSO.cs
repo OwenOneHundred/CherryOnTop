@@ -15,6 +15,7 @@ public abstract class EffectSO : ScriptableObject
 
     public string GetID()
     {
+        Debug.Log("Get ID on " + this.name + " on " + toppingObj);
         return toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping.ID.ToString();
     }
 

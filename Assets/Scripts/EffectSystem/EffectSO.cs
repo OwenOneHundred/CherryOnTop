@@ -9,7 +9,7 @@ public abstract class EffectSO : ScriptableObject
 
     public ToppingActivatedGlow GetToppingActivatedGlow()
     {
-        if (toppingObj == null) { Debug.LogWarning("Failed to get toppingactivatedglow. ToppingObj is: " + toppingObj.transform.root.name); return null; }
+        if (toppingObj == null) { Debug.LogWarning("Failed to get toppingactivatedglow. ToppingObj is null."); return null; }
         return toppingObj.transform.root.GetComponentInChildren<ToppingActivatedGlow>();
     }
 

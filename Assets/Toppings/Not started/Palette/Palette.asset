@@ -12,13 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Palette
   m_EditorClassIdentifier: 
-  price: 5
-  shopSprite: {fileID: 0}
-  effectsAndWhen: []
-  description: 
-  rarity: 0
-  towerPrefab: {fileID: 0}
+  price: 7
+  shopSprite: {fileID: 21300000, guid: f5716ff4f7f344f979dc44892ed3bf1b, type: 3}
+  effectsAndWhen:
+  - effectSOs:
+    - {fileID: 11400000, guid: 939a2b4b32e4d430b9b4643fbe634692, type: 2}
+    eventSOs:
+    - {fileID: 11400000, guid: 96555b3ac10af430da30e6926ffff4c6, type: 2}
+  description: No attack. Whenever you buy 4 unique items in a row from the shop,
+    get $8.
+  rarity: 1
+  towerPrefab: {fileID: 8809128202698678227, guid: 00e5555bfecca4169ba86ec11bc49392, type: 3}
   flags: 0
-  cakePoints: 10
+  cakePoints: -20
   onHitCherry: []
   onKillCherry: []

@@ -83,6 +83,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         toppingType.text = "";
         item = null;
         toppingObj = null;
+        hovered = false;
         if (sellButton == null) { return; }
         gameObject.SetActive(false);
     }

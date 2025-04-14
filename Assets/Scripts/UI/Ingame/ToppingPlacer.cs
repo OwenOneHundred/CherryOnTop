@@ -98,6 +98,7 @@ public class ToppingPlacer : MonoBehaviour
         {
             float range = targetingSystem.GetRange();
             circleTransform.transform.localScale = new Vector3(range, 1, range) / toppingMeshFilter.transform.lossyScale.x;
+            circleTransform.gameObject.SetActive(true);
         }
         else
         {

@@ -1,8 +1,6 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Globalization;
-using UnityEditor.PackageManager;
 using EventBus;
 
 public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler

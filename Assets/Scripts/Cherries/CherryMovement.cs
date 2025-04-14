@@ -24,6 +24,7 @@ public class CherryMovement : MonoBehaviour
     private int positionsAmount;
     public float distanceTraveled = 0f;
     private Vector3 previousCoords;
+    bool goBackToPosition0;
 
     DebuffManager debuffManager;
 
@@ -41,6 +42,7 @@ public class CherryMovement : MonoBehaviour
         currentPosition = 0;
         currentTarget = currentPosition + 1;
         currentTrack = 0;
+        goBackToPosition0 = track.GetComponent<ArrowSpawner>().goBackToPosition0;
 
         transform.position = linePositions[currentPosition];
         previousCoords = transform.position;
@@ -71,6 +73,10 @@ public class CherryMovement : MonoBehaviour
             if (currentTarget == positionsAmount) // at last position, targeting non-existent position
             {
                 currentTarget = 0;
+                if (!goBackToPosition0)
+                {
+                    OnReachEndOfTrack();
+                }
             }
             if (currentPosition == positionsAmount) // returned to position 0
             {

@@ -105,6 +105,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: ba68110cf92e94dbe8c74c06a8a04f3c, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: ba68110cf92e94dbe8c74c06a8a04f3c, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 440eb6359706a4a8e8318081e29a427b, type: 2}
     - target: {fileID: 919132149155446097, guid: ba68110cf92e94dbe8c74c06a8a04f3c, type: 3}
       propertyPath: m_Name
       value: Sandwich

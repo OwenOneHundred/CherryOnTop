@@ -13,13 +13,15 @@ public class OnBuyConsecutiveDifferentToppings : EffectSO
         if (eventObject is BuyEvent buyEvent && buyEvent.item is Topping topping)
         {
             recentToppings.Add(topping);
+            if (!CheckIfAllToppingsDifferent())
+            {
+                recentToppings.Clear();
+                return;
+            }
 
             if (recentToppings.Count == number)
             {
-                if (CheckIfAllToppingsDifferent())
-                {
-                    Inventory.inventory.Money += 8;
-                }
+                Inventory.inventory.Money += 8;
 
                 recentToppings.Clear();
             }
@@ -28,6 +30,6 @@ public class OnBuyConsecutiveDifferentToppings : EffectSO
 
     private bool CheckIfAllToppingsDifferent()
     {
-        return recentToppings.Distinct().Count() == recentToppings.Count();
+        return recentToppings.Select(x => x.name).Distinct().Count() == recentToppings.Count();
     }
 }

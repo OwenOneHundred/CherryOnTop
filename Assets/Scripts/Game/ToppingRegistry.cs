@@ -6,7 +6,16 @@ using UnityEngine;
 public class ToppingRegistry : MonoBehaviour
 {
     public static ToppingRegistry toppingRegistry;
-    [SerializeField] List<ItemInfo> placedToppings = new();
+    private List<ItemInfo> placedToppings = new();
+    public List<ItemInfo> PlacedToppings
+    {
+        get { 
+            placedToppings.RemoveAll(x => x.obj == null); // this line should be unnecessary but I have spent 4 hours trying
+            // to figure out how things are null in this list and I'm just gonna manually remove them who cares
+        
+            return placedToppings;
+        }
+    }
     public List<Item> allItems = new();
     private void Awake()
     {
@@ -23,50 +32,42 @@ public class ToppingRegistry : MonoBehaviour
 
     public void RegisterPlacedTopping(Topping topping, GameObject gameObject)
     {
-        placedToppings.Add(new ItemInfo(topping, gameObject));
+        PlacedToppings.Add(new ItemInfo(topping, gameObject));
     }   
 
     public void DeregisterTopping(Item item)
     {
-        ItemInfo itemInfo = placedToppings.FirstOrDefault(x => x.topping.name == item.name);
+        ItemInfo itemInfo = PlacedToppings.FirstOrDefault(x => x.topping.name == item.name);
         if (itemInfo.obj != null) { Debug.Log("Remove topping: " + itemInfo.obj); } else { Debug.LogWarning("Couldn't find " + item.name + " in toppingregistry."); }
         
         if (itemInfo.obj != null)
         {
-            placedToppings.Remove(itemInfo);
+            PlacedToppings.Remove(itemInfo);
         }
     }
 
     public void DeregisterTopping(GameObject obj)
     {
-        ItemInfo itemInfo = placedToppings.FirstOrDefault(x => x.obj.name == obj.name);
+        ItemInfo itemInfo = PlacedToppings.FirstOrDefault(x => x.obj.name == obj.name);
         if (itemInfo.obj != null)
         {
-            placedToppings.Remove(itemInfo);
+            PlacedToppings.Remove(itemInfo);
         }
-    }
-
-    public List<ItemInfo> GetAllPlacedToppings()
-    {
-        placedToppings.RemoveAll(x => x.obj == null); // this line should be unnecessary but I have spent 4 hours trying
-        // to figure out how things are null in this list and I'm just gonna manually remove them who cares
-        
-        return placedToppings;
     }
 
     public GameObject GetToppingObj(Topping topping)
     {
-        return placedToppings.First(x => x.topping.name == topping.name).obj;
+        return PlacedToppings.First(x => x.topping.name == topping.name).obj;
     }
 
     public List<ItemInfo> GetAllToppingsOfType(ToppingTypes.Flags flags)
     {
-        return placedToppings.Where(x => x.topping.flags.HasAny(flags)).ToList();
+        return PlacedToppings.Where(x => x.topping.flags.HasAny(flags)).ToList();
     } 
 
     public void SaveAll(SaveData saveData)
     {
-        foreach (ItemInfo itemInfo in GetAllPlacedToppings())
+        foreach (ItemInfo itemInfo in PlacedToppings)
         {
             itemInfo.topping.SaveToppingData(saveData);
         }
@@ -78,7 +79,7 @@ public class ToppingRegistry : MonoBehaviour
 
     public void LoadAllToppingData(SaveData saveData)
     {
-        foreach (ItemInfo itemInfo in GetAllPlacedToppings())
+        foreach (ItemInfo itemInfo in PlacedToppings)
         {
             itemInfo.topping.LoadToppingData(saveData);
         }

@@ -183,7 +183,7 @@ public class LevelManager : MonoBehaviour
         // End: Create the index for the items and toppings
 
         // Collect all of the towers and toppings, adding them to the data entries
-        List<ToppingRegistry.ItemInfo> toppings = toppingRegistery.GetAllPlacedToppings();
+        List<ToppingRegistry.ItemInfo> toppings = toppingRegistery.PlacedToppings;
         List<DETowerPlaced> allTowers = new List<DETowerPlaced>();
         List<DEItemInventory> allInventory = new List<DEItemInventory>();
         foreach (ToppingRegistry.ItemInfo item in toppings)

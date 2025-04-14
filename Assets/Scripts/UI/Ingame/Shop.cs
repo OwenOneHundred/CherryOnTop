@@ -157,7 +157,7 @@ public class Shop : MonoBehaviour
 
     public void UpdateRerollButtonFadedness()
     {
-        rerollButton.interactable = Inventory.inventory.Money >= rerollPrice;
+        rerollButton.interactable = Inventory.inventory.Money >= rerollPrice || Rerolls > 0;
     }
 
     public void UpdateAllIcons()

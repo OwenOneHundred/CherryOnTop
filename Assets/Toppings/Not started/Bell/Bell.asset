@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Bell
   m_EditorClassIdentifier: 
   price: 5
-  shopSprite: {fileID: 0}
+  shopSprite: {fileID: 21300000, guid: 16a1b009d82d94b7dbdf08518522f941, type: 3}
   effectsAndWhen: []
-  description: 
-  rarity: 0
-  towerPrefab: {fileID: 0}
-  flags: 0
+  description: Attacks once every 15 seconds with a large, powerful shockwave. Attacks
+    0.15s faster for each item in inventory.
+  rarity: 1
+  towerPrefab: {fileID: 6692871650783377581, guid: b93a3f886fe2943c4ba106666dff9eb9, type: 3}
+  flags: 1024
   cakePoints: 10
   onHitCherry: []
   onKillCherry: []

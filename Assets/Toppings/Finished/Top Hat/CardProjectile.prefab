@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cherryDebuffs: []
-  maxHits: 10
+  maxHits: 7
 --- !u!54 &200501601308514683
 Rigidbody:
   m_ObjectHideFlags: 0

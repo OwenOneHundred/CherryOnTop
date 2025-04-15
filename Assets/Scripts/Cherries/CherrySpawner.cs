@@ -28,7 +28,6 @@ public class CherrySpawner : MonoBehaviour
 
     IEnumerator RoundCoroutine()
     {
-        Debug.Log(difficultyScalingAmount);
         bool roundNumberIsOdd = RoundManager.roundManager.roundNumber % 2 == 1;
         float scaleFactor = (Mathf.Pow(RoundManager.roundManager.roundNumber, 1.1f) / 2.5f) + 0.6f;
         int totalCherries = Mathf.RoundToInt(scaleFactor * defaultCherriesPerRound * (roundNumberIsOdd ? oddNumberCherryCountMultiplier : 1));

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4baf0569fe9ee744e925815b297fe6a1, type: 3}
   m_Name: ChocolateShockwave
   m_EditorClassIdentifier: 
-  cooldown: 1
-  damage: 5
+  cooldown: 0.7
+  damage: 10
   debuffs: []
   projectile: {fileID: 0}
   projectileSpeed: 0
@@ -21,5 +21,5 @@ MonoBehaviour:
     volume: 0.5
     clip: {fileID: 0}
   shockwave: {fileID: 5503282234501958175, guid: 5921180e306e7469588b64667bbb8288, type: 3}
-  speed: 5
+  speed: 3
   range: 3.5

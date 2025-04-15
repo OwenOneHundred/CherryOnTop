@@ -673,7 +673,7 @@ MonoBehaviour:
   shopButton: {fileID: 1848900876542587564}
   ingameUI: {fileID: 5165441279755291159}
   shop: {fileID: 8966158542567257680}
-  savingEnabled: 1
+  savingEnabled: 0
 --- !u!114 &8392582136422224834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -886,11 +886,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aad0b3e8494e34396bcd12d917efaa23, type: 2}
   - {fileID: 11400000, guid: c259efe27a1484004aa200566bb9b5d2, type: 2}
   - {fileID: 11400000, guid: bdc0e671f2a424ab18e15947a2eb1e69, type: 2}
-  - {fileID: 11400000, guid: fc8447cf6d7749e499d5a495ff33c615, type: 2}
   - {fileID: 11400000, guid: b08a3f95245044847afbd0298274bfb4, type: 2}
   - {fileID: 11400000, guid: 49aa7e781e6674cd38869265dbf3554d, type: 2}
   - {fileID: 11400000, guid: 9d3eb83265682496898d8e9bd7f73867, type: 2}
   - {fileID: 11400000, guid: 64d66b28711274a4ba1e912718499d1b, type: 2}
+  - {fileID: 11400000, guid: c3beb3884c6234ce5964eb360b5ce8a9, type: 2}
   itemParent: {fileID: 7862030300564659347}
   rerollsText: {fileID: 4060922254059177220}
   rerollButtonText: {fileID: 4712727569409509211}

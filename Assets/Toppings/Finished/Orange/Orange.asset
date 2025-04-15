@@ -19,7 +19,7 @@ MonoBehaviour:
     a kill, 100% chance to get $1.
   rarity: 0
   towerPrefab: {fileID: 1854520228839802959, guid: 2bf54e0493afd4845b7e8d58ddc044b1, type: 3}
-  flags: 80
+  flags: 208
   cakePoints: 10
   onHitCherry: []
   onKillCherry:

@@ -67,8 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffbfc5935e22c446b70b94061b6d981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cherryDebuffs:
-  - {fileID: 11400000, guid: 90d3774de1467492ebd46061b8f2882f, type: 2}
+  cherryDebuffs: []
   maxHits: 4
 --- !u!1001 &6460203906218070505
 PrefabInstance:

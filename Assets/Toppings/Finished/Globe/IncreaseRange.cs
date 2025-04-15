@@ -15,6 +15,7 @@ public class IncreaseRange : EffectSO
         if (firstCall)
         {
             targetingSystem = toppingObj.transform.root.GetComponentInChildren<TargetingSystem>();
+            range = targetingSystem.GetRange();
             firstCall = false;
         }
         targetingSystem.SetRange(range * (1 + percentageToChangeRange));

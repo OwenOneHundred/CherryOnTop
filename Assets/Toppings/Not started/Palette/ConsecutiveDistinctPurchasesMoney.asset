@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841aea2e082be4749bbf9997bf76bd40, type: 3}
   m_Name: ConsecutiveDistinctPurchasesMoney
   m_EditorClassIdentifier: 
-  number: 4
+  number: 5

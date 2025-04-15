@@ -852,6 +852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5500
   columns: 3
+  totalItems: 6
   iconSpacing: 365
   shopObjPrefab: {fileID: 6648261447245317029, guid: db4eb116f82b8c9458d9cbcd4b4baf22, type: 3}
   currentItems: []
@@ -4761,7 +4762,6 @@ MonoBehaviour:
   - {fileID: 3841268930532751757}
   - {fileID: 1115719258144387701}
   - {fileID: 1918389889321406598}
-  difficultyValue: 1.16
 --- !u!1 &7780708509824392814
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,10 +13,9 @@ public class SplashObj : MonoBehaviour
         transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 10, cake))
+        if (Physics.BoxCast(transform.position + new Vector3(0, 2, 0), new Vector3(0.2f, 0.2f, 0.2f), Vector3.down, out hit, Quaternion.identity, 10, cake))
         {   
-            float distanceToGround = hit.distance;
-            transform.position -= new Vector3(0, distanceToGround - 0.1f, 0);
+            transform.position = hit.point + new Vector3(0, 0.1f, 0);
         }
         Destroy(gameObject, lifetime);
     }

@@ -18,5 +18,12 @@ public class PlayButton : MonoBehaviour
     {
         LevelManager.levelWasLoadedFromSave = false;
         SceneManager.LoadScene(sceneName);
+
+        DifficultyInfo.difficultyInfo.difficultyValue = GetDifficultyValue();
+    }
+
+    private float GetDifficultyValue()
+    {
+        return transform.root.GetComponentInChildren<DifficultySelect>().difficultyValue;
     }
 }

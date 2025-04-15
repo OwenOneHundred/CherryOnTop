@@ -18,13 +18,13 @@ public class DifficultySelect : MonoBehaviour
     {
         images[1].color = Color.white;
         images[2].color = Color.gray;
-        difficultyValue = 1.27f;
+        difficultyValue = 1.22f;
     }
 
     public void PressHard()
     {
         images[1].color = Color.white;
         images[2].color = Color.white;
-        difficultyValue = 1.42f;
+        difficultyValue = 1.29f;
     }
 }

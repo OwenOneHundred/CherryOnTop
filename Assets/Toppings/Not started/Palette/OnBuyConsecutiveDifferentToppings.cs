@@ -21,7 +21,7 @@ public class OnBuyConsecutiveDifferentToppings : EffectSO
 
             if (recentToppings.Count == number)
             {
-                Inventory.inventory.Money += 8;
+                Inventory.inventory.Money += 4;
 
                 recentToppings.Clear();
             }

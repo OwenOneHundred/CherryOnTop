@@ -7,6 +7,7 @@ public class PlayButton : MonoBehaviour
 
     public Button playButton;
     public string sceneName;
+    public bool alsoGetDifficulty = true;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,7 +20,10 @@ public class PlayButton : MonoBehaviour
         LevelManager.levelWasLoadedFromSave = false;
         SceneManager.LoadScene(sceneName);
 
-        DifficultyInfo.difficultyInfo.difficultyValue = GetDifficultyValue();
+        if (alsoGetDifficulty)
+        {
+            DifficultyInfo.difficultyInfo.difficultyValue = GetDifficultyValue();
+        }
     }
 
     private float GetDifficultyValue()

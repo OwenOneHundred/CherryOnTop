@@ -16,7 +16,7 @@ MonoBehaviour:
   shopSprite: {fileID: 21300000, guid: 34ce793ecdb094116a650a5b410120cb, type: 3}
   effectsAndWhen: []
   description: Attacks slowly with a weak projectile. Every time this tower gets
-    a kill, 50% chance to get $1.
+    a kill, 100% chance to get $1.
   rarity: 0
   towerPrefab: {fileID: 1854520228839802959, guid: 2bf54e0493afd4845b7e8d58ddc044b1, type: 3}
   flags: 80

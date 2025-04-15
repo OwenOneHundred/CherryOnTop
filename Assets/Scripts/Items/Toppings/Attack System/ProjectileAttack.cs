@@ -11,7 +11,7 @@ public abstract class ProjectileAttack : ToppingAttack
     // Represents the speed of the projectiles shot by this ToppingAttack
     public float projectileSpeed;
 
-    [SerializeField] AudioFile fireSound;
+    [SerializeField] protected AudioFile fireSound;
 
     /// <summary>
     /// Spawn a projectile with an initial position, velocity, rotation, and damage.

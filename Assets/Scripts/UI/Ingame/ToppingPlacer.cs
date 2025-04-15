@@ -27,6 +27,8 @@ public class ToppingPlacer : MonoBehaviour
 
     List<List<Vector3>> trackPoints = new();
 
+    CameraControl cameraControl;
+
     readonly Vector3 checkAreaVerticalOffset = new Vector3(0, 0.02f, 0);
     public bool PlacingTopping
     {
@@ -52,6 +54,8 @@ public class ToppingPlacer : MonoBehaviour
         transparentObject.SetActive(false);
 
         StoreAllTrackPositions();
+
+        cameraControl = Camera.main.transform.root.GetComponent<CameraControl>();
     }
 
     private void StoreAllTrackPositions()
@@ -94,6 +98,7 @@ public class ToppingPlacer : MonoBehaviour
         {
             float range = targetingSystem.GetRange();
             circleTransform.transform.localScale = new Vector3(range, 1, range) / toppingMeshFilter.transform.lossyScale.x;
+            circleTransform.gameObject.SetActive(true);
         }
         else
         {
@@ -132,7 +137,10 @@ public class ToppingPlacer : MonoBehaviour
 
             if (!mouseIsInSidebar) { mouseLeftSidebar = true; } 
 
+            Vector3 cameraPositionWithShake = cameraControl.transform.position;
+            cameraControl.transform.position = Vector3.zero; // Holy hack lmao part 1
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            cameraControl.transform.position = cameraPositionWithShake; // Holy hack lmao part 2
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100, placeableLayers))
             {
@@ -172,15 +180,14 @@ public class ToppingPlacer : MonoBehaviour
 
         bool notOverlappingAnything = result.Count() == 0;
 
-        //bool tooCloseToTrack = CheckIfTooCloseToTrack(cakePos);
-        bool tooCloseToTrack = false;
+        bool tooCloseToTrack = CheckIfOnTrack(cakePos);
 
         return notOverlappingAnything && (!tooCloseToTrack);
     }
 
-    private bool CheckIfOnTrack(Vector3 cakePos, float acceptableDistance = 0.525f)
+    private bool CheckIfOnTrack(Vector3 cakePos, float acceptableDistance = 0.26f)
     {
-        return TrackFunctions.trackFunctions.GetAllLineSegmentsThatIntersectCircle(cakePos, acceptableDistance).Count != 0;
+        return TrackFunctions.trackFunctions.GetAllLineSegmentsThatIntersectSphere(cakePos, acceptableDistance).Count != 0;
     }
 
     private float GetLowestPointOffset(Bounds bounds, Vector3 groundDirection, float scale)
@@ -227,6 +234,7 @@ public class ToppingPlacer : MonoBehaviour
         ToppingRegistry.toppingRegistry.RegisterPlacedTopping(topping, newToppingObj); // register
 
         newToppingObj.GetComponent<ToppingObjectScript>().topping = topping; // set topping on object to be read later
+        newToppingObj.transform.root.GetComponentInChildren<ToppingObjInteractions>().OnClickedOff();
 
         topping.RegisterEffects();
         topping.SetGameObjectOnEffects(newToppingObj);

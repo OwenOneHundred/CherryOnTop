@@ -8,7 +8,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public static Inventory inventory;
-    [SerializeField] int initialMoney = 20;
+    public int initialMoney = 15;
     [SerializeField] float baseTimeBetweenMoneyChanges = 0.35f;
     float scalingMoneyGainTime = 0;
     float moneyGainPitch = 1;
@@ -37,7 +37,10 @@ public class Inventory : MonoBehaviour
     [SerializeField] AudioFile error;
     void Start()
     {
-        Money = initialMoney;
+        if (!LevelManager.levelWasLoadedFromSave)
+        {
+            Money = initialMoney;
+        }
 
         inventoryEffectManager = GetComponent<InventoryEffectManager>();
         ingameUI = GameObject.FindAnyObjectByType<IngameUI>();
@@ -171,6 +174,8 @@ public class Inventory : MonoBehaviour
         {
             SoundEffectManager.sfxmanager.PlayOneShotWithPitch(getMoneySFX, moneyGainPitch);
         }
+
+        Shop.shop.UpdateRerollButtonFadedness();
     }
 
     private void BufferMoneyChange(int change)

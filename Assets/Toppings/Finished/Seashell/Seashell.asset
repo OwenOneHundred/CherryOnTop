@@ -20,8 +20,9 @@ MonoBehaviour:
     eventSOs:
     - {fileID: 11400000, guid: 21a2b2029de304a2e9b962c8cd1956a1, type: 2}
   description: Launches a shockwave that pierces up to 20 cherries that does low
-    damage and freezes them for one second. At the end of a round, if this topping
-    didn't attack, gain $2.
+    damage and freezes them. At the end of a round, if this topping didn't hit any
+    cherries, gain $2.
+  rarity: 0
   towerPrefab: {fileID: 6377077709395372548, guid: ac419a874cdda4d68be71afb0e2630d0, type: 3}
   flags: 12288
   cakePoints: 30

@@ -27,8 +27,7 @@ public class StompProjectile : Projectile
         {
             if (transform.position.y < target.y + stopHeightOffset)
             {
-                reachedGoal = true;
-                Destroy(gameObject, 0.1f);
+                ReachedGoalPosition();
             }
             transform.position += fallSpeed * Time.deltaTime * Vector3.down;
         }
@@ -37,6 +36,12 @@ public class StompProjectile : Projectile
     public override void SetTarget(Vector3 target)
     {
         this.target = target;
+    }
+
+    public virtual void ReachedGoalPosition()
+    {
+        reachedGoal = true;
+        Destroy(gameObject, 0.1f);
     }
 
     public override Vector3 GetAttackDirection(GameObject attackedObject)

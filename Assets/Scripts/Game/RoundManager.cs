@@ -95,7 +95,7 @@ public class RoundManager : MonoBehaviour
         cherriesKilledThisRoundCount = 0;
 
         EventBus<RoundEndEvent>.Raise(new RoundEndEvent()); // the order of this and OnRoundEnd DOES matter
-        foreach (ToppingRegistry.ItemInfo itemInfo in ToppingRegistry.toppingRegistry.GetAllPlacedToppings())
+        foreach (ToppingRegistry.ItemInfo itemInfo in ToppingRegistry.toppingRegistry.PlacedToppings)
         {
             itemInfo.topping.OnRoundEnd();
         }

@@ -10,9 +10,14 @@ public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPoin
     bool hovered = false;
     [SerializeField] Vector3 radiusCircleOffset = default;
     bool selected = false;
+    private void Awake()
+    {
+        infoPopup = Shop.shop.infoPopup;
+    }
+
     private void Start()
     {
-        infoPopup = GameObject.FindGameObjectWithTag("InfoPanel").GetComponent<InfoPopup>();
+        OnClicked();
     }
 
     private void Update()
@@ -45,7 +50,7 @@ public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPoin
         SetUpRadiusCircle();
     }
 
-    private void OnClickedOff()
+    public void OnClickedOff()
     {
         selected = false;
         DestroyRadiusCircle();

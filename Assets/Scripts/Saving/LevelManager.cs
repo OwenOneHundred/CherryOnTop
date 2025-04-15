@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(RoundManager))]
 public class LevelManager : MonoBehaviour
 {
     protected static LevelManager _instance;
@@ -30,12 +31,23 @@ public class LevelManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        
+        LevelManager.levelWasLoadedFromSave = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     [SerializeField] protected bool _encryptData = true;
-    [SerializeField] protected string _saveFileName = "levelsave";
+    protected string _saveFileName = null;
+    protected string saveFileName
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(_saveFileName))
+            {
+                _saveFileName = SaveDataUtility._defaultSaveFile;
+            }
+            return _saveFileName;
+        }
+    }
     protected SaveData _saveData = null;
     public SaveData saveData
     {
@@ -81,6 +93,22 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    protected RoundManager _roundManager = null;
+    public RoundManager roundManager
+    {
+        get
+        {
+            if (_roundManager == null)
+            {
+                _roundManager = GetComponent<RoundManager>();
+            }
+            return _roundManager;
+        }
+    }
+
+    // set by PlayButton and LoadButton, and checked by inventory to see if it should add initial money
+    public static bool levelWasLoadedFromSave = false;
+
     private void Awake()
     {
         if (_instance == null)
@@ -104,13 +132,24 @@ public class LevelManager : MonoBehaviour
     {
         if (_saveData == null)
         {
-            if (loadSaveData)
+            if (loadSaveData && SaveDataUtility.GetSaveFileNameIfExists(levelName, out string saveFilePath, out string saveFileName))
             {
-                _saveData = SaveDataUtility.LoadSaveData(_saveFileName, levelName);
+                int extIndex = saveFileName.IndexOf(SaveDataFileUtility._saveFileExtension);
+                while (extIndex >= 0)
+                {
+                    saveFileName = saveFileName.Substring(0, extIndex) + 
+                        (extIndex + SaveDataFileUtility._saveFileExtension.Length < saveFileName.Length 
+                            ? saveFileName.Substring(extIndex + SaveDataFileUtility._saveFileExtension.Length) 
+                            : "");
+                    extIndex = saveFileName.IndexOf(SaveDataFileUtility._saveFileExtension);
+                }
+                _saveFileName = saveFileName;
+                _saveData = SaveDataUtility.LoadSaveData(this.saveFileName, levelName);
             } else
             {
-                _saveData = SaveDataUtility.CreateSaveData(_saveFileName, levelName);
+                _saveData = SaveDataUtility.CreateSaveData(this.saveFileName, levelName);
             }
+            Debug.Log("Initialized save data to level name: " + levelName + ", file name: " + this.saveFileName);
             // SaveDataUtility.CreateSaveData(levelName)
             //_saveData = 
         }
@@ -121,7 +160,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Saving level data...");
 
         // Start: Create the index for the items and toppings
-        List<Item> potentialItems = ToppingRegistry.toppingRegistry.allItems;
+        List<Item> potentialItems = toppingRegistery.allItems;
         List<Topping> potentialToppings = new List<Topping>();
         foreach (Item item in potentialItems)
         {
@@ -144,7 +183,7 @@ public class LevelManager : MonoBehaviour
         // End: Create the index for the items and toppings
 
         // Collect all of the towers and toppings, adding them to the data entries
-        List<ToppingRegistry.ItemInfo> toppings = toppingRegistery.GetAllPlacedToppings();
+        List<ToppingRegistry.ItemInfo> toppings = toppingRegistery.PlacedToppings;
         List<DETowerPlaced> allTowers = new List<DETowerPlaced>();
         List<DEItemInventory> allInventory = new List<DEItemInventory>();
         foreach (ToppingRegistry.ItemInfo item in toppings)
@@ -163,11 +202,15 @@ public class LevelManager : MonoBehaviour
         DEAllTowers towers = new DEAllTowers("alltowers", allTowers);
         DEAllItemsInventory items = new DEAllItemsInventory("allinventory", allInventory);
         DEIntEntry money = new DEIntEntry("money", Inventory.inventory.Money);
+        DEUIntEntry round = new DEUIntEntry("round", roundManager.roundNumber);
 
         // Set the data entries
         saveData.SetDataEntry(towers, true);
         saveData.SetDataEntry(items, true);
         saveData.SetDataEntry(money, true);
+        saveData.SetDataEntry(round, true);
+
+        toppingRegistery.SaveAll(saveData);
 
         // Use encryptions and write the data
         SaveDataUtility._useEncryptions = _encryptData;
@@ -180,7 +223,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Loading level data...");
 
         // Grab the lists of toppings and items
-        List<Item> potentialItems = shop.availableItems;
+        List<Item> potentialItems = toppingRegistery.allItems;
         List<Topping> potentialToppings = new List<Topping>();
         foreach (Item item in potentialItems)
         {
@@ -197,15 +240,24 @@ public class LevelManager : MonoBehaviour
             Inventory.inventory.Money = moneyWrapper.value;
         }
 
+        if (saveData.TryGetDataEntry("round", out DEUIntEntry roundWrapper))
+        {
+            roundManager.roundNumber = roundWrapper.value;
+        }
+
         // Place all of the toppings
         if (saveData.TryGetDataEntry("alltowers", out DEAllTowers towerWrapper)) {
+            Debug.Log("Read all towers data entry! Placing towers...");
             foreach (DETowerPlaced tower in towerWrapper.towers)
             {
                 Topping topping = Instantiate(potentialToppings[tower.towerIndex]); // instantiate it
                 topping.name = potentialToppings[tower.towerIndex].name;
                 topping.ID = new System.Guid(tower.towerID); // set the GUID
-                toppingPlacer.PlaceTopping(topping, tower.pos.positionData, Quaternion.Euler(tower.pos.eulers));
+                toppingPlacer.PlaceToppingViaLoad(topping, tower.pos.positionData, Quaternion.Euler(tower.pos.eulers));
             }
+        } else
+        {
+            Debug.Log("Did not find all towers data entry!");
         }
 
         // Add all of the inventory
@@ -216,6 +268,8 @@ public class LevelManager : MonoBehaviour
                 Inventory.inventory.AddItem(potentialItems[item.itemIndex], new System.Guid(item.itemID)); // set the GUID
             }
         }
+
+        toppingRegistery.LoadAllToppingData(saveData);
 
         Debug.Log("Done saving level data!");
     }

@@ -21,5 +21,5 @@ MonoBehaviour:
     volume: 0.5
     clip: {fileID: 0}
   shockwave: {fileID: 5503282234501958175, guid: dc48c3d6bc7d142288cd1a46b1e61d55, type: 3}
-  speed: 1
+  speed: 3
   range: 1

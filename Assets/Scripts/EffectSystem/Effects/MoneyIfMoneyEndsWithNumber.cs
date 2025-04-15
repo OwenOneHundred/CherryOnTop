@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="Effects/MoneyIfMoneyEndsWith")]
+[CreateAssetMenu(menuName ="Effects/Money/MoneyIfMoneyEndsWith")]
 public class MoneyIfMoneyEndsWithNumber : EffectSO
 {
     [SerializeField] char endingNumber;

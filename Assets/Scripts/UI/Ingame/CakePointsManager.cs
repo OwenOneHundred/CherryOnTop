@@ -86,7 +86,7 @@ public class CakePointsManager : MonoBehaviour
 
     public void AddCakePointsForRound()
     {
-        foreach (Topping topping in ToppingRegistry.toppingRegistry.GetAllPlacedToppings().Select(x => x.topping))
+        foreach (Topping topping in ToppingRegistry.toppingRegistry.PlacedToppings.Select(x => x.topping))
         {
             CakePoints += topping.cakePoints;
         }

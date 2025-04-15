@@ -34,7 +34,7 @@ public class SimpleAttack : ProjectileAttack
     /// <returns>
     /// A Vector3 object
     /// </returns>
-    private Vector3 FindTargetVector(GameObject targetedCherry){
+    protected Vector3 FindTargetVector(GameObject targetedCherry){
         if (targetedCherry == null) {
             return new Vector3(0, projectileSpeed, 0);
         }

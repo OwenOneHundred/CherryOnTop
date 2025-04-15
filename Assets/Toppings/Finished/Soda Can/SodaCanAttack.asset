@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: SodaCanAttack
   m_EditorClassIdentifier: 
   cooldown: 0.26
-  damage: 9
+  damage: 13
   debuffs: []
   projectile: {fileID: 1373519935423302513, guid: 5acfe20873535488eb1bc6c7c714ad6a, type: 3}
-  projectileSpeed: 10
+  projectileSpeed: 11
   fireSound:
     volume: 0.5
     clip: {fileID: 0}

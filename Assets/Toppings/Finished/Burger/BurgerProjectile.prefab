@@ -50,15 +50,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cherryDebuffs: []
   maxHits: 2
-  shockwave: {fileID: 9014841120415768667, guid: 630a263d2b0554150bb299b9f72a8406, type: 3}
+  shockwave: {fileID: 9014841120415768667, guid: b3e49d07869644f1591e1d965f8b088d, type: 3}
   shockwaveDamage: 8
   shockwaveSpeed: 5
   shockwaveRange: 1.25
   cameraShakeViolence: 0.2
   cameraShakeLength: 0.1
-  onHitSound:
-    volume: 0.2
-    clip: {fileID: 8300000, guid: 5ba3203a8ddc54ad8b3902c70ab5d827, type: 3}
+  explodeSound:
+    volume: 0.5
+    clip: {fileID: 0}
 --- !u!54 &3606972242387748583
 Rigidbody:
   m_ObjectHideFlags: 0

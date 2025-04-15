@@ -1,8 +1,6 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Globalization;
-using UnityEditor.PackageManager;
 using EventBus;
 
 public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -24,6 +22,10 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         eventSystem = GameObject.FindAnyObjectByType<EventSystem>();
         if (eventSystem == null) { Debug.LogWarning("No event system in scene."); }
+    }
+
+    void Start()
+    {
         Clear();
     }
 
@@ -47,7 +49,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         sellPrice = item.price / 2;
         sellPriceText.text = "Sell: $" + sellPrice;
         this.toppingObj = toppingObj;
-        sellButton.SetActive(true);
+        gameObject.SetActive(true);
     }
 
     public void SetUpForInventoryItem(Item item)
@@ -69,7 +71,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         description.text = item.description;
         sellPrice = item.price / 2;
         sellPriceText.text = "Sell: $" + sellPrice;
-        sellButton.SetActive(true);
+        gameObject.SetActive(true);
     }
 
     public void Clear()
@@ -81,17 +83,15 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         toppingType.text = "";
         item = null;
         toppingObj = null;
+        hovered = false;
         if (sellButton == null) { return; }
-        sellButton.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public void OnSell()
     {
         Inventory.inventory.Money += sellPrice;
         EventBus<SellEvent>.Raise(new SellEvent(item, toppingObj));
-        item.DeregisterEffects();
-        ToppingRegistry.toppingRegistry.DeregisterTopping(item);
-        Debug.Log("Sell item: " + item.name);
 
         if (toppingObj != null)
         {

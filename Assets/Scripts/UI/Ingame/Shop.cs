@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using EventBus;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Shop : MonoBehaviour
     RectTransform rect;
 
     [SerializeField] int columns = 3;
+    public int totalItems = 6;
     [SerializeField] int iconSpacing = 100;
 
     [SerializeField] GameObject shopObjPrefab;
@@ -21,6 +23,7 @@ public class Shop : MonoBehaviour
     [SerializeField] Transform itemParent;
     [SerializeField] TMPro.TextMeshProUGUI rerollsText;
     [SerializeField] TMPro.TextMeshProUGUI rerollButtonText;
+    [SerializeField] Button rerollButton;
     public List<ShopObj> shopObjs = new();
     int rerolls = 0;
     public int Rerolls
@@ -38,6 +41,8 @@ public class Shop : MonoBehaviour
     [SerializeField] AudioFile openShop;
     [SerializeField] AudioFile closeShop;
     [SerializeField] AudioFile rerollSound;
+    public AudioFile onRollRare;
+    public InfoPopup infoPopup; // shop probably shouldn't have this but it needs to be cached so whatever
 
     public Item mostRecentlyBoughtItem { get; set; }
 
@@ -100,6 +105,7 @@ public class Shop : MonoBehaviour
             EventBus<RerollEvent>.Raise(new RerollEvent());
             SoundEffectManager.sfxmanager.PlayOneShot(rerollSound);
             RerollItems();
+            PlayRerollAnim();
         }
         else if (Inventory.inventory.Money >= rerollPrice)
         {
@@ -107,6 +113,7 @@ public class Shop : MonoBehaviour
             EventBus<RerollEvent>.Raise(new RerollEvent());
             SoundEffectManager.sfxmanager.PlayOneShot(rerollSound);
             RerollItems();
+            PlayRerollAnim();
         }
         else 
         {
@@ -117,6 +124,15 @@ public class Shop : MonoBehaviour
     public void OnRoundEnd()
     {
         RerollItems();
+    }
+
+    public void PlayRerollAnim()
+    {
+        float iconAppearDelay = 0.0125f;
+        for (int i = 0; i < shopObjs.Count; i++)
+        {
+            StartCoroutine(shopObjs[i].IconAppearAnim(i * iconAppearDelay));
+        }
     }
 
     public void RerollItems()
@@ -133,14 +149,19 @@ public class Shop : MonoBehaviour
         foreach (Item item in availableItems) { weights.Add(item.rarity.GetWeight()); }
 
         // Populate the shop using the weights
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < totalItems; i++)
         {
             int item = GeneralUtil.RandomWeighted(weights);
             currentItems.Add(availableItems[item]);
         }
     }
 
-    public void UpdateAllIcons() // TODO: this function spawns copies of icons on top of each other when shop is opened and closed
+    public void UpdateRerollButtonFadedness()
+    {
+        rerollButton.interactable = Inventory.inventory.Money >= rerollPrice || Rerolls > 0;
+    }
+
+    public void UpdateAllIcons()
     {
         // Also resets the purchase status of shop items
         // Not sure if this needs to be changed

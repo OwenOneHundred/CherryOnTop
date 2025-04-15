@@ -8,6 +8,7 @@ public class TrackTrap : Projectile
 
     void Update()
     {
+        Debug.Log(atGoal + " , target: " + target);
         if (!atGoal && target != Vector3.zero)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, slideSpeed * Time.deltaTime);
@@ -25,6 +26,7 @@ public class TrackTrap : Projectile
 
     public override void SetTarget(Vector3 target)
     {
+        Debug.Log(target);
         this.target = target;
     }
 }

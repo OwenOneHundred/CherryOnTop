@@ -58,7 +58,7 @@ public class BuffZone : MonoBehaviour {
         affectedToppings = currentTowers;
     }
 
-    void OnDestroy() { // nice
+    void OnDestroy() {
         foreach (BuffManager buffManager in affectedToppings)
         {
             buffManager.RemoveBuff(this);

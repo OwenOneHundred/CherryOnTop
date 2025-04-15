@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 6123849520480571360}
   - component: {fileID: 8842151935230682953}
   - component: {fileID: 8400480519912133780}
+  - component: {fileID: 4453096240856205335}
   m_Layer: 5
   m_Name: ToppingShopObj
   m_TagString: Untagged
@@ -269,6 +270,9 @@ MonoBehaviour:
   priceText: {fileID: 7107878117756353710}
   selectedSize: 1.5
   deselectedSize: 1.25
+  commonBG: {fileID: -595146240, guid: 1a6c47459c6a54d229e2d578e590935c, type: 3}
+  uncommonBG: {fileID: 1383680594, guid: 1ecc66a5604914337b43eab13c8de41d, type: 3}
+  rareBG: {fileID: -165889043, guid: 8a1c3974cb8da4bfbbebdb081eb231c7, type: 3}
 --- !u!222 &8842151935230682953
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -307,6 +311,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4453096240856205335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6648261447245317029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1490b5b1a23ce431582c5173ae6eb92d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sizeRange: {x: 0.8, y: 1.6}
+  cooldownRange: {x: 0.4, y: 1.2}
+  sparkleObj: {fileID: 5387383876450135958, guid: 68bc015c2f5c84399bca3d97900cd09b, type: 3}
+  backgroundArea: {fileID: 234778100296225658}
 --- !u!1 &7046002630365263484
 GameObject:
   m_ObjectHideFlags: 0

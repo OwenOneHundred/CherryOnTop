@@ -11,6 +11,7 @@ public class CDAttack : ToppingAttack
     float timer = 0;
     bool cherryInZone = false;
     GameObject vfxObj;
+    AudioSource audioSource;
 
     public override void OnCycle(GameObject targetedCherry)
     {
@@ -25,6 +26,7 @@ public class CDAttack : ToppingAttack
     public override void OnStart()
     {
         vfxObj = toppingObj.transform.root.GetChild(2).gameObject;
+        audioSource = toppingObj.transform.root.GetComponent<AudioSource>();
     }
 
     public override void EveryFrame()
@@ -63,6 +65,7 @@ public class CDAttack : ToppingAttack
     {
         if (vfxObj != null)
         {
+            audioSource.Play();
             vfxObj.SetActive(true);
         }
     }
@@ -71,6 +74,7 @@ public class CDAttack : ToppingAttack
     {
         if (vfxObj != null)
         {
+            audioSource.Stop();
             vfxObj.SetActive(false);
         }
     }

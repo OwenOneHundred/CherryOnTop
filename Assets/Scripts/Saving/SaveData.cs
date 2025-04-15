@@ -72,6 +72,11 @@ namespace GameSaves
             return null;
         }
 
+        public bool RemoveDataEntry<T>(string dataName) where T : DataEntry
+        {
+            return data.Remove(dataName);
+        }
+
         public string saveFileName { get; protected set; }
         public string saveLevelName { get;protected set; }
         public SaveData(string saveFile, bool load = false) : this(saveFile, null, load)
@@ -191,6 +196,16 @@ namespace GameSaves
     {
         [SerializeField] public int value;
         public DEIntEntry(string dataName, int value) : base(dataName)
+        {
+            this.value = value;
+        }
+    }
+
+    [System.Serializable]
+    public class DEUIntEntry : DataEntry
+    {
+        [SerializeField] public uint value;
+        public DEUIntEntry(string dataName, uint value) : base(dataName)
         {
             this.value = value;
         }

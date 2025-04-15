@@ -32,12 +32,17 @@ public class ShockwaveAttack : ProjectileAttack
 
     public override void OnCycle(GameObject targetedCherry) {
         AttackCherry(targetedCherry);
+        if (fireSound.clip != null)
+        {
+            SoundEffectManager.sfxmanager.PlayOneShot(fireSound);
+        }
     }
 
     public override GameObject SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, int damage) {
         GameObject newShockwave = Instantiate(this.shockwave, toppingObj.transform.position, Quaternion.identity);
         newShockwave.GetComponent<Shockwave>().damage = damage;
         newShockwave.GetComponent<Shockwave>().range = range;
+        newShockwave.GetComponent<Shockwave>().speed = speed;
         newShockwave.GetComponent<Shockwave>().owner = toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping;
 
         float duration = range / speed;

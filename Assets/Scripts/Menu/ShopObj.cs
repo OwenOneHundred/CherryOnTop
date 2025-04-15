@@ -17,6 +17,16 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [SerializeField] float selectedSize = 1.5f;
     [SerializeField] float deselectedSize = 1.25f;
 
+    [SerializeField] Sprite commonBG;
+    [SerializeField] Sprite uncommonBG;
+    [SerializeField] Sprite rareBG;
+
+    void Start()
+    {
+        GetComponent<SparkleSpawner>().SetUp(displayItem.rarity);
+    }
+
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         hovered = true;
@@ -76,7 +86,29 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
         image.sprite = item.shopSprite;
         nameText.text = item.name;
         priceText.text = "$" + item.price;
+        GetComponent<Image>().sprite = item.rarity == ToppingTypes.Rarity.Common ? commonBG : (item.rarity == ToppingTypes.Rarity.Uncommon ? uncommonBG : rareBG);
         displayItem = item;
+    }
+
+    public IEnumerator IconAppearAnim(float delay)
+    {
+        float scaleSpeed = 30f;
+        Vector3 goal = transform.localScale;
+        transform.localScale = new Vector3(0, 0, 0);
+        yield return new WaitForSeconds(delay);
+
+        if (displayItem.rarity == ToppingTypes.Rarity.Rare)
+        {
+            SoundEffectManager.sfxmanager.PlayOneShot(Shop.shop.onRollRare);
+        }
+
+        if (this == null) { yield break; }
+        while (transform.localScale != goal)
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, goal, Time.deltaTime * scaleSpeed);
+            yield return null;
+            if (this == null) { yield break; }
+        }
     }
 
     public void UpdateInfo()

@@ -24,7 +24,7 @@ public class BurnEffect : CherryDebuff
         firePSObj = Instantiate(fireParticleSystemPrefab, cherry.transform.position, Quaternion.identity, cherry.transform);
         ParticleSystem.ShapeModule shape = firePSObj.GetComponent<ParticleSystem>().shape;
         shape.mesh = cherry.transform.GetChild(0).GetComponent<MeshFilter>().sharedMesh;
-        firePSObj.transform.localScale = cherry.transform.GetChild(0).lossyScale;
+        firePSObj.transform.localScale = cherry.transform.GetChild(0).localScale;
     }
 
     public override void OnRemoved(GameObject cherry)

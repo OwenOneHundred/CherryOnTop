@@ -23,9 +23,9 @@ public class InventoryIconControl : MonoBehaviour, IPointerEnterHandler, IPointe
         }
     }
 
-    private void Start()
+    private void Awake()
     {
-        infoPopup = GameObject.FindGameObjectWithTag("InfoPanel").GetComponent<InfoPopup>();
+        infoPopup = Shop.shop.infoPopup;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -91,7 +91,9 @@ public class InventoryIconControl : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnDestroy()
     {
-        OnClickedOff();
+        if (!selected) { return; }
+        selected = false;
+        outline.SetActive(false);
     }
 
     public void SetUp(Sprite sprite)

@@ -15,7 +15,6 @@ public class InventoryRenderer : MonoBehaviour
     [SerializeField] Vector2 iconDistances;
     private List<ItemAndObj> displayList = new List<ItemAndObj>();
     [SerializeField] Transform iconParent;
-    RectTransform iconParentRect;
 
     int pages = 1;
     int currentPage = 1;
@@ -25,7 +24,6 @@ public class InventoryRenderer : MonoBehaviour
 
     void Start()
     {
-        iconParentRect = iconParent.GetComponent<RectTransform>();
         amountPerPage = columns * rows;
         UpdatePageCount();
     }

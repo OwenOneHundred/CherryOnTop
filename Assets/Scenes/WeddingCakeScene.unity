@@ -713,7 +713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cherryPrefab: {fileID: 4085270106411668407, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
   cherryStartPos: {x: 0, y: 0, z: 0}
-  difficultyScalingAmount: 1.16
+  difficultyScalingAmount: 1.14
 --- !u!114 &814254364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -741,6 +741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowPrefab: {fileID: 7588956894528028818, guid: af52f04ff046745ce98fe27053a8bf26, type: 3}
+  goBackToPosition0: 1
 --- !u!114 &814254366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1241,6 +1242,10 @@ PrefabInstance:
       propertyPath: defaultSong.clip
       value: 
       objectReference: {fileID: 8300000, guid: 009e533790d79419e924df30ce2834c0, type: 3}
+    - target: {fileID: 6905921228865605854, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8855493245014057152, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
       propertyPath: m_Name
       value: AudioManager

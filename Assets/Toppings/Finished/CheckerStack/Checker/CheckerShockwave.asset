@@ -14,6 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0.75
   damage: 4
+  debuffs: []
+  projectile: {fileID: 0}
+  projectileSpeed: 0
+  fireSound:
+    volume: 0.5
+    clip: {fileID: 0}
   shockwave: {fileID: 5503282234501958175, guid: a8f1617c01a0b4f91b9ab0b1dc2108d9, type: 3}
-  speed: 1
+  speed: 3
   range: 1

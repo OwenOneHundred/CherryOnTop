@@ -1003,6 +1003,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1741885517659912224, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741885517659912224, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741885517659912224, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 33d577fb267ea437e836b50bd7683dba, type: 3}
+    - target: {fileID: 1741885517659912224, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 33d577fb267ea437e836b50bd7683dba, type: 3}
+    - target: {fileID: 1741885517659912224, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075003723360062448, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 33d577fb267ea437e836b50bd7683dba, type: 3}
+    - target: {fileID: 4075003723360062448, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 33d577fb267ea437e836b50bd7683dba, type: 3}
     - target: {fileID: 5176896722681871329, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
       propertyPath: defaultSong.clip
       value: 
@@ -1011,11 +1039,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5176896722681871329, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8855493245014057152, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1924918430}
   m_SourcePrefab: {fileID: 100100000, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
+--- !u!1 &1924918429 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8855493245014057152, guid: 6e8c4918973e64894ba2318950dd67aa, type: 3}
+  m_PrefabInstance: {fileID: 1924918428}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1924918430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924918429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b856e6bd43454b50b822cd04bb21d1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3442312386389990152
 PrefabInstance:
   m_ObjectHideFlags: 0

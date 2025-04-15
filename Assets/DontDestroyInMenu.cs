@@ -15,6 +15,7 @@ public class DontDestroyInMenu : MonoBehaviour
         if (scene.name != "LevelSelectScene" && scene.name != "MenuScene")
         {
             Destroy(gameObject);
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }
 }

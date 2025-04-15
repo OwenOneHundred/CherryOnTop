@@ -7,6 +7,11 @@ public class DifficultySelect : MonoBehaviour
     [SerializeField] List<Image> images;
     public Difficulty difficulty;
 
+    void Start()
+    {
+        Difficulty difficulty = new Easy(1.16f);
+    }
+
     public void PressEasy()
     {
         images[1].color = Color.gray;
@@ -73,6 +78,7 @@ public class DifficultySelect : MonoBehaviour
         {
             Shop.shop.totalItems = 3;
             Inventory.inventory.initialMoney = 10;
+            Shop.shop.Rerolls += 1;
         }
     }
 }

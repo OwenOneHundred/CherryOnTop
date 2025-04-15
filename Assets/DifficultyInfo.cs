@@ -20,6 +20,7 @@ public class DifficultyInfo : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        difficulty = new DifficultySelect.Easy(1.16f);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)

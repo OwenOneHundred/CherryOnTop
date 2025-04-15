@@ -8,7 +8,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public static Inventory inventory;
-    [SerializeField] int initialMoney = 15;
+    public int initialMoney = 15;
     [SerializeField] float baseTimeBetweenMoneyChanges = 0.35f;
     float scalingMoneyGainTime = 0;
     float moneyGainPitch = 1;

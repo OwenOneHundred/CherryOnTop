@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DifficultyInfo : MonoBehaviour
 {
-    public float difficultyValue = 1.16f;
+    public DifficultySelect.Difficulty difficulty;
     public static DifficultyInfo difficultyInfo;
     void Awake()
     {
@@ -25,7 +26,30 @@ public class DifficultyInfo : MonoBehaviour
     {
         if (scene.name != "LevelSelectScene" && scene.name != "MenuScene")
         {
-            FindAnyObjectByType<CherrySpawner>().difficultyScalingAmount = difficultyValue;
+            OnLoadedGameScene();
         }
+    }
+
+    private void OnLoadedGameScene()
+    {
+        FindAnyObjectByType<CherrySpawner>().difficultyScalingAmount = difficulty.value;
+
+        Transform icons = GameObject.Find("DifficultyIcons").transform;
+        int budgetEnum = 0;
+        foreach (Transform trans in icons)
+        {
+            if (budgetEnum >= difficulty.number)
+            {
+                trans.GetComponent<Image>().color = Color.gray;
+            }
+            else
+            {
+                trans.GetComponent<Image>().color = Color.white;
+            }
+
+            budgetEnum += 1;
+        }
+
+        difficulty.OnRoundStart();
     }
 }

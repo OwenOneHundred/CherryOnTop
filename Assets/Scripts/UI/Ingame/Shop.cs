@@ -14,6 +14,7 @@ public class Shop : MonoBehaviour
     RectTransform rect;
 
     [SerializeField] int columns = 3;
+    public int totalItems = 6;
     [SerializeField] int iconSpacing = 100;
 
     [SerializeField] GameObject shopObjPrefab;
@@ -148,7 +149,7 @@ public class Shop : MonoBehaviour
         foreach (Item item in availableItems) { weights.Add(item.rarity.GetWeight()); }
 
         // Populate the shop using the weights
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < totalItems; i++)
         {
             int item = GeneralUtil.RandomWeighted(weights);
             currentItems.Add(availableItems[item]);

@@ -71,7 +71,6 @@ public class DifficultySelect : MonoBehaviour
 
         public override void OnRoundStart()
         {
-            Debug.Log("here");
             Shop.shop.totalItems = 3;
             Inventory.inventory.initialMoney = 10;
         }

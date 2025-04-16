@@ -71,10 +71,13 @@ public class ToppingRegistry : MonoBehaviour
         {
             itemInfo.topping.SaveToppingData(saveData);
         }
-        foreach (Item item in Inventory.inventory.ownedItems)
+        // Removed because:
+        // A) Items in inventory do not store save data
+        // B) Items saving in inventory attempt to access toppings which are null, causing crash
+        /*foreach (Item item in Inventory.inventory.ownedItems)
         {
             item.SaveToppingData(saveData);
-        }
+        }*/
     }
 
     public void LoadAllToppingData(SaveData saveData)

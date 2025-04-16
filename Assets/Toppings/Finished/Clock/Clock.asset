@@ -20,7 +20,7 @@ MonoBehaviour:
     eventSOs:
     - {fileID: 11400000, guid: 61a179cbcbc324e68b5581dcdf2f2cb9, type: 2}
   description: No attack. At the start of the round, get a free copy of your last
-    bought topping. Works 3 times.
+    bought topping (excludes clock). Works 3 times.
   rarity: 2
   towerPrefab: {fileID: 5286104097913148031, guid: b5a1052e90ec64ff189325d8cb793534, type: 3}
   flags: 2048

@@ -16,21 +16,21 @@ public class DifficultySelect : MonoBehaviour
     {
         images[1].color = Color.gray;
         images[2].color = Color.gray;
-        difficulty = new Easy(1.16f);
+        difficulty = new Easy(1.14f);
     }
 
     public void PressMedium()
     {
         images[1].color = Color.white;
         images[2].color = Color.gray;
-        difficulty = new Medium(1.25f);
+        difficulty = new Medium(1.2f);
     }
 
     public void PressHard()
     {
         images[1].color = Color.white;
         images[2].color = Color.white;
-        difficulty = new Hard(1.375f);
+        difficulty = new Hard(1.28f);
     }
 
     public class Difficulty

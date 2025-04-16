@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: 100%ChanceOf$1
   m_EditorClassIdentifier: 
   amountToChangeMoney: 1
-  chanceOfHappening0to1: 0.5
+  chanceOfHappening0to1: 1

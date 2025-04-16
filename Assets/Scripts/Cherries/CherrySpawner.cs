@@ -14,6 +14,7 @@ public class CherrySpawner : MonoBehaviour
     public float difficultyScalingAmount = 1.16f;
     CherryManager cherryManager;
 
+    readonly float initialBigChance = 0.6f;
     float bigChance = 0.6f;
 
     private void Start()
@@ -34,7 +35,7 @@ public class CherrySpawner : MonoBehaviour
         RoundManager.roundManager.totalCherriesThisRound = totalCherries;
         float timeBetweenCherries = defaultTimeBetweenCherries / (scaleFactor * (roundNumberIsOdd ? 1 : evenNumberCherrySpacingMultiplier));
 
-        bigChance = Mathf.Clamp(bigChance * difficultyScalingAmount, 0, 100);
+        bigChance = Mathf.Clamp(initialBigChance * Mathf.Pow(difficultyScalingAmount, RoundManager.roundManager.roundNumber - 1), 0, 100);
 
         for (int i = 0; i < totalCherries; i++)
         {

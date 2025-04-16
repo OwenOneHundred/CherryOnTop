@@ -3,6 +3,7 @@ using System.Linq;
 using EventBus;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Effects/Money/GetMoneyIfOddCoconuts")]
 public class GetMoneyIfOddCoconuts : EffectSO
 {
     [SerializeField] int moneyAmount = 4;

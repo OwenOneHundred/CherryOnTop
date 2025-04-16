@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
+  m_Name: Coconut
+  m_EditorClassIdentifier: 
+  price: 5
+  shopSprite: {fileID: 21300000, guid: 051918bed25284c26b0d431c7904400b, type: 3}
+  effectsAndWhen:
+  - effectSOs:
+    - {fileID: 11400000, guid: e34541bd4a8da4ffca7ae92b304d4d83, type: 2}
+    eventSOs:
+    - {fileID: 11400000, guid: 21a2b2029de304a2e9b962c8cd1956a1, type: 2}
+  description: No attack. At the end of a round, if you have an odd number of coconuts
+    on your cake, get $4.
+  rarity: 0
+  towerPrefab: {fileID: 6030404108161805170, guid: 125c492b4cdbf44d8854e41e0681cbb7, type: 3}
+  flags: 80
+  cakePoints: 10
+  onHitCherry: []
+  onKillCherry: []

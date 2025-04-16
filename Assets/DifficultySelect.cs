@@ -9,7 +9,7 @@ public class DifficultySelect : MonoBehaviour
 
     void Start()
     {
-        Difficulty difficulty = new Easy(1.16f);
+        difficulty = new Easy(1.16f);
     }
 
     public void PressEasy()

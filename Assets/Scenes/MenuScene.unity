@@ -1270,7 +1270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c1f62bbb8fb46aa808fe654a044c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetScrollSpeed: {x: 0.4, y: 0}
+  offsetScrollSpeed: {x: 0.25, y: 0}
 --- !u!114 &2119822405
 MonoBehaviour:
   m_ObjectHideFlags: 0

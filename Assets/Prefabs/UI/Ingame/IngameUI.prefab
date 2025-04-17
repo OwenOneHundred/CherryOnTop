@@ -1475,7 +1475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5343b79346942918b9124df4cf1d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialMoney: 400
+  initialMoney: 15
   baseTimeBetweenMoneyChanges: 0.35
   startingInventoryItems: []
   inventoryRenderer: {fileID: 6508363885407075222}

@@ -731,6 +731,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3e0ad8fdbfdaf4fd8a8f254ae88867c1, type: 2}
   - {fileID: 11400000, guid: 33aead3dbac0f433c9669456ab41b1b7, type: 2}
   - {fileID: 11400000, guid: 8ab36e68da999477ab33ff8f629f7968, type: 2}
+  - {fileID: 11400000, guid: 432eab5753cea4b9d8f3a7790056a8cb, type: 2}
 --- !u!114 &7835569952325439666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1472,7 +1473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5343b79346942918b9124df4cf1d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialMoney: 15
+  initialMoney: 400
   baseTimeBetweenMoneyChanges: 0.35
   startingInventoryItems: []
   inventoryRenderer: {fileID: 6508363885407075222}

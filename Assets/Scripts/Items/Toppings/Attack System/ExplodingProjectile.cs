@@ -23,7 +23,6 @@ public class ExplodingProjectile : Projectile
     public override void OnHitCherry(CherryHitbox ch) {
         if (explodeOnCherry)
         {
-            Debug.Log("here");
             Explode();
         }
     }
@@ -31,7 +30,6 @@ public class ExplodingProjectile : Projectile
     public override void OnTriggerEnter(UnityEngine.Collider other)
     {
         base.OnTriggerEnter(other);
-        Debug.Log("here2");
         if (explodeOnTerrain)
         {
             if (other.gameObject.layer == 7)

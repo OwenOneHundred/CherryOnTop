@@ -673,7 +673,7 @@ MonoBehaviour:
   shopButton: {fileID: 1848900876542587564}
   ingameUI: {fileID: 5165441279755291159}
   shop: {fileID: 8966158542567257680}
-  savingEnabled: 1
+  savingEnabled: 0
 --- !u!114 &8392582136422224834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,6 +732,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 33aead3dbac0f433c9669456ab41b1b7, type: 2}
   - {fileID: 11400000, guid: 8ab36e68da999477ab33ff8f629f7968, type: 2}
   - {fileID: 11400000, guid: 432eab5753cea4b9d8f3a7790056a8cb, type: 2}
+  - {fileID: 11400000, guid: 86dbcbf8bdcb846c39632dd0677ed90e, type: 2}
 --- !u!114 &7835569952325439666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -879,6 +880,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d2d327fe9da5d41fdb40a4aea5474448, type: 2}
   - {fileID: 11400000, guid: ef112ccab09004451a087619f5391a65, type: 2}
   - {fileID: 11400000, guid: 5d4c3a01cf4e74901ba2a080092b0c86, type: 2}
+  - {fileID: 11400000, guid: 86dbcbf8bdcb846c39632dd0677ed90e, type: 2}
   - {fileID: 11400000, guid: fee4fb20abbf746abb1a96d37a76028e, type: 2}
   - {fileID: 11400000, guid: 32e3947f085444a0e8fe65b294b7f9d0, type: 2}
   - {fileID: 11400000, guid: 64d66b28711274a4ba1e912718499d1b, type: 2}

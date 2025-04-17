@@ -27,7 +27,6 @@ public abstract class Item : ScriptableObject
                 effectsAndWhen[i].eventSOs[p] = Instantiate(effectsAndWhen[i].eventSOs[p]);
             }
         }
-        Debug.Log("instantiated effects");
     }
 
     /// <summary>

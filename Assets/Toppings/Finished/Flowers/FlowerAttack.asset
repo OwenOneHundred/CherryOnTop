@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e317524dacab9e4688ffe974ee817f2, type: 3}
   m_Name: FlowerAttack
   m_EditorClassIdentifier: 
-  cooldown: 0.6
-  damage: 8
+  cooldown: 0.65
+  damage: 6
   debuffs: []
   projectile: {fileID: 1373519935423302513, guid: b80d9abc0fe6243fa9af091e386ff28b, type: 3}
   projectileSpeed: 6.5
@@ -21,4 +21,4 @@ MonoBehaviour:
     volume: 0.15
     clip: {fileID: 8300000, guid: 598853bfa965343648b50593241c9aa9, type: 3}
   quantity: 3
-  spreadAngle: 0.8
+  spreadAngle: 0.75

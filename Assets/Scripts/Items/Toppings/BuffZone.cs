@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BuffZone : MonoBehaviour {
     [SerializeField] private float buffRadius = 5f;
-    [SerializeField] private ToppingTypes.Flags flag = ToppingTypes.Flags.sweet;
+    [SerializeField] private ToppingTypes.Flags flags;
     [SerializeField] private BuffType buffType;
     [SerializeField] private float buffValue = 0.6f; // Buffs should be >1 for increase
 
@@ -19,12 +19,19 @@ public class BuffZone : MonoBehaviour {
     void Start()
     {
         coll = GetComponent<Collider>();
+        if (coll == null) {
+            Debug.LogError("BuffZone needs a Collider component.");
+        } else {
+            coll.isTrigger = true; // Ensure it's a trigger.
+        }
         toppingLayer = LayerMask.GetMask("Topping");
     }
 
+/*
     void Update() {
         UpdateBuffs();
     }
+
 
     void UpdateBuffs() {
         Collider[] toppings = Physics.OverlapSphere(transform.position, buffRadius, toppingLayer);
@@ -56,6 +63,51 @@ public class BuffZone : MonoBehaviour {
         }
 
         affectedToppings = currentTowers;
+    }
+
+*/
+      // When an object enters the trigger zone:
+    void OnTriggerEnter(Collider other)
+    {
+        // Check that the object is on the topping layer.
+        if ((toppingLayer & (1 << other.gameObject.layer)) != 0)
+        {
+            // First, ensure the object has the correct type via its ToppingObjectScript.
+            if (other.TryGetComponent(out ToppingObjectScript toppingObj))
+            {
+                // Check if the object's topping flags include the required flag.
+                if ((toppingObj.topping.flags & flags) != 0)
+                {
+                    // Get its BuffManager.
+                    if (other.TryGetComponent(out BuffManager buffManager))
+                    {
+                        if (!affectedToppings.Contains(buffManager))
+                        {
+                            buffManager.AddBuff(this);
+                            affectedToppings.Add(buffManager);
+                            Debug.Log($"BuffZone {gameObject.name} applied {buffType} buff to {other.gameObject.name}");
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // When an object leaves the trigger zone:
+    void OnTriggerExit(Collider other)
+    {
+        if ((toppingLayer & (1 << other.gameObject.layer)) != 0)
+        {
+            if (other.TryGetComponent(out BuffManager buffManager))
+            {
+                if (affectedToppings.Contains(buffManager))
+                {
+                    buffManager.RemoveBuff(this);
+                    affectedToppings.Remove(buffManager);
+                    Debug.Log($"BuffZone {gameObject.name} removed {buffType} buff from {other.gameObject.name}");
+                }
+            }
+        }
     }
 
     void OnDestroy() {

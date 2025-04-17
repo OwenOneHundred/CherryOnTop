@@ -182,4 +182,9 @@ public class Inventory : MonoBehaviour
     {
         bufferedMoneyChanges.Add(change);
     }
+
+    public int GetStackCount()
+    {
+        return ownedItems.Select(x => x.name).Distinct().Count();
+    }
 }

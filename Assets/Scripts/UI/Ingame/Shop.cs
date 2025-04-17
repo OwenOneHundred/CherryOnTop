@@ -143,7 +143,6 @@ public class Shop : MonoBehaviour
         PopulateShop();
         UpdateAllIcons();
         UpdateAllIconText();
-        Debug.Log(Inventory.inventory.Money);
     }
 
     public void PopulateShop()

@@ -673,7 +673,7 @@ MonoBehaviour:
   shopButton: {fileID: 1848900876542587564}
   ingameUI: {fileID: 5165441279755291159}
   shop: {fileID: 8966158542567257680}
-  savingEnabled: 0
+  savingEnabled: 1
 --- !u!114 &8392582136422224834
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -180,7 +180,8 @@ public class ToppingPlacer : MonoBehaviour
 
         bool notOverlappingAnything = result.Count() == 0;
 
-        bool tooCloseToTrack = CheckIfOnTrack(cakePos);
+        //bool tooCloseToTrack = CheckIfOnTrack(cakePos);
+        bool tooCloseToTrack = false;
 
         return notOverlappingAnything && (!tooCloseToTrack);
     }

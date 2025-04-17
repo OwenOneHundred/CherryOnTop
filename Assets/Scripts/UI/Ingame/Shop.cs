@@ -78,6 +78,8 @@ public class Shop : MonoBehaviour
             open = value;
             moving = true;
 
+            UpdateAllIconText();
+
             StartCoroutine(Mover());
         }
     }
@@ -140,6 +142,8 @@ public class Shop : MonoBehaviour
         currentItems.Clear();
         PopulateShop();
         UpdateAllIcons();
+        UpdateAllIconText();
+        Debug.Log(Inventory.inventory.Money);
     }
 
     public void PopulateShop()
@@ -179,12 +183,8 @@ public class Shop : MonoBehaviour
 
     public void UpdateAllIconText()
     {
-        List<ShopObj> shopObjsCopy = new(shopObjs);
-        foreach (ShopObj shopObj in shopObjsCopy)
+        foreach (ShopObj shopObj in shopObjs)
         {
-            // hack to manage shopobj list. would be better if shop icons were better tracked, removable, etc
-            if (shopObj == null) { shopObjs.Remove(shopObj); continue; }
-            
             shopObj.UpdateInfo();
         }
     }

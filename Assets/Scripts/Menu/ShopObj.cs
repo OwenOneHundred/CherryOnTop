@@ -21,6 +21,9 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [SerializeField] Sprite uncommonBG;
     [SerializeField] Sprite rareBG;
 
+    [SerializeField] Color yesColor = new(255, 219, 231);
+    [SerializeField] Color noColor = new(210, 10, 0);
+
     void Start()
     {
         GetComponent<SparkleSpawner>().SetUp(displayItem.rarity);
@@ -67,10 +70,10 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         if (Input.GetMouseButtonDown(0) && hovered && !purchased)
         {
-            Inventory inv = FindFirstObjectByType<Inventory>();
-            if (inv.TryBuyItem(displayItem))
+            if (Inventory.inventory.TryBuyItem(displayItem))
             {
                 FindFirstObjectByType<InventoryRenderer>().UpdateAllIconPositions();
+                Shop.shop.UpdateAllIconText();
                 image.color = Color.gray;
                 nameText.text = "Purchased";
                 priceText.enabled = false;
@@ -83,16 +86,14 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void SetUp(Item item)
     {
-        image.sprite = item.shopSprite;
-        nameText.text = item.name;
-        priceText.text = "$" + item.price;
         GetComponent<Image>().sprite = item.rarity == ToppingTypes.Rarity.Common ? commonBG : (item.rarity == ToppingTypes.Rarity.Uncommon ? uncommonBG : rareBG);
         displayItem = item;
+        UpdateInfo();
     }
 
     public IEnumerator IconAppearAnim(float delay)
     {
-        float scaleSpeed = 30f;
+        float scaleSpeed = 20f;
         Vector3 goal = transform.localScale;
         transform.localScale = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(delay);
@@ -115,6 +116,8 @@ public abstract class ShopObj : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         image.sprite = displayItem.shopSprite;
         nameText.text = displayItem.name;
-        priceText.text = displayItem.price + "";
+        priceText.text = "$" + displayItem.price;
+        priceText.color = (Inventory.inventory.Money < displayItem.price) ? noColor : yesColor;
+        priceText.outlineColor = (Inventory.inventory.Money < displayItem.price) ? noColor : yesColor;
     }
 }

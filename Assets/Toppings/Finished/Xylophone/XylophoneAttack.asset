@@ -20,3 +20,4 @@ MonoBehaviour:
   fireSound:
     volume: 0.15
     clip: {fileID: 8300000, guid: b0a05782e4ffc43958f63bf34105c271, type: 3}
+  scaleAmountPerItem: 0.05

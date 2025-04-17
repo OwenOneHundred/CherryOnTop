@@ -15,7 +15,7 @@ MonoBehaviour:
   price: 8
   shopSprite: {fileID: 21300000, guid: 2ea0efb33d2614ec2aa8cd1a06a74721, type: 3}
   effectsAndWhen: []
-  description: Slowly attacks cherries with music notes. Attacks 10% faster for every
+  description: Slowly attacks cherries with music notes. Attacks 5% faster for every
     item in the largest stack of items in your inventory.
   rarity: 1
   towerPrefab: {fileID: 8848895756928665520, guid: 5ed52b5a156514cb7b04394cf2587f84, type: 3}

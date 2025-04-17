@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d680199ac2fe4cb78d4362155b01a37, type: 3}
   m_Name: Bell Shockwave Attack
   m_EditorClassIdentifier: 
-  cooldown: 15
+  cooldown: 16
   damage: 50
   debuffs: []
   projectile: {fileID: 0}

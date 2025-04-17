@@ -11,6 +11,6 @@ public class BellShockwave : ShockwaveAttack
     }
     public override void EveryFrame()
     {
-        cooldown = Mathf.Clamp(baseCooldown - (scaleAmountPerItem * Inventory.inventory.ownedItems.Count), 1f, cooldown);
+        cooldown = Mathf.Clamp(baseCooldown - (scaleAmountPerItem * Inventory.inventory.ownedItems.Count), 1f, baseCooldown);
     }
 }

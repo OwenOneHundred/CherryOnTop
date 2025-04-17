@@ -9,7 +9,9 @@ public class GetMoneyIfOddCoconuts : EffectSO
     [SerializeField] int moneyAmount = 4;
     public override void OnTriggered(IEvent eventObject)
     {
-        if (ToppingRegistry.toppingRegistry.allItems.Where(x => x.name == "Coconut").Count() % 2 == 1)
+        int onCake = ToppingRegistry.toppingRegistry.PlacedToppings.Where(x => x.topping.name == "Coconut").Count();
+        int inInventory = Inventory.inventory.ownedItems.Where(x => x.name == "Coconut").Count();
+        if ((onCake + inInventory) % 2 == 1)
         {
             Inventory.inventory.Money += moneyAmount;
         }

@@ -27,6 +27,7 @@ public abstract class Item : ScriptableObject
                 effectsAndWhen[i].eventSOs[p] = Instantiate(effectsAndWhen[i].eventSOs[p]);
             }
         }
+        Debug.Log("instantiated effects");
     }
 
     /// <summary>
@@ -41,9 +42,11 @@ public abstract class Item : ScriptableObject
                 foreach (BaseEventSO eventSO in effectAndWhen.eventSOs)
                 {
                     eventSO.RegisterEffect(effectSO);
+                    Debug.Log("registered effects on obj at position " + effectSO.toppingObj.transform.position);
                 }
             }
         }
+        
     }
 
     /// <summary>

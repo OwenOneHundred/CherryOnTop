@@ -222,8 +222,8 @@ public class ToppingPlacer : MonoBehaviour
 
         if (playSound) { SoundEffectManager.sfxmanager.PlayOneShot(placeSound); }
 
-        topping.RegisterEffects();
         topping.SetGameObjectOnEffects(newToppingObj);
+        topping.RegisterEffects();
 
         Inventory.inventory.RemoveOneOfItem(topping); // remove from inventory
     }

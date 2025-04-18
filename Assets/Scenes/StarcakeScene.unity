@@ -570,6 +570,9 @@ MonoBehaviour:
   cherryPrefab: {fileID: 4085270106411668407, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
   cherryStartPos: {x: 0, y: 0, z: 0}
   difficultyScalingAmount: 1.16
+  initialBigChance: 0.6
+  specialtyCherries: []
+  doSpecialtyCherrySpawning: 0
 --- !u!114 &814254364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,7 +586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cherries: []
-  calculateTrackLength: 0
+  calculateTrackLength: 1
 --- !u!114 &814254365
 MonoBehaviour:
   m_ObjectHideFlags: 0

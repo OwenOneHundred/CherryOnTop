@@ -11,7 +11,7 @@ public class CherryHitbox : MonoBehaviour
     [SerializeField] AudioFile deathSound;
     [SerializeField] GameObject onDamagedPS;
     [SerializeField] GameObject damageNumberPrefab;
-    [SerializeField] bool spawnDamageNumbers = true;
+    [SerializeField] bool spawnDamageNumbers = false;
     bool dead = false;
 
     public void Awake()

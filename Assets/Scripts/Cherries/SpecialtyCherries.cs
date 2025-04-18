@@ -13,18 +13,18 @@ public class SpecialtyCherry
 }
 
 [System.Serializable]
-public class CherryBlossom : SpecialtyCherry
+public class CherryBombData : SpecialtyCherry
 {
-    public CherryBlossom(float weight) : base(weight)
+    public CherryBombData(float weight) : base(weight)
     {
 
     }
 }
 
 [System.Serializable]
-public class CherryBomb : SpecialtyCherry
+public class CherryBlossomData : SpecialtyCherry
 {
-    public CherryBomb(float weight) : base(weight)
+    public CherryBlossomData(float weight) : base(weight)
     {
 
     }

@@ -9,7 +9,7 @@ public class CherryTypes : MonoBehaviour
     public CherryHitbox cherryHitbox;
     public CherryMovement cherryMovement;
 
-    public void Start()
+    public void Awake()
     {
         cherryHitbox = GetComponent<CherryHitbox>();
         cherryMovement = GetComponent<CherryMovement>();

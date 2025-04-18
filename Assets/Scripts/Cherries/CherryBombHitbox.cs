@@ -53,7 +53,11 @@ public class CherryBombHitbox : CherryHitbox
 
         foreach(Collider toppingCollider in toppingsInRange)
         {
-            toppingCollider.transform.root.GetComponentInChildren<AttackManager>().Stun(explosionStunTime);
+            AttackManager attackManager = toppingCollider.transform.root.GetComponentInChildren<AttackManager>();
+            if (attackManager != null)
+            {
+                attackManager.Stun(explosionStunTime);
+            }
         }
 
         Destroy(gameObject);

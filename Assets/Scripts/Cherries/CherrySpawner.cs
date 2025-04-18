@@ -18,14 +18,16 @@ public class CherrySpawner : MonoBehaviour
     float bigChance = 0.6f;
     public float initialBigChance = 0.6f;
 
-    float specialtyCherryChance = 0.01f;
+    float specialtyCherryChance = 0.02f;
     float specialtyCherryChanceScaleMultiplier = 2f;
     readonly int specialtyCherryRoundCap = 8;
     public List<SpecialtyCherry> specialtyCherries = new List<SpecialtyCherry>();
+    [SerializeField] bool doSpecialtyCherrySpawning = false;
 
     private void Start()
     {
         cherryManager = GetComponent<CherryManager>();
+        if (!doSpecialtyCherrySpawning) { specialtyCherryChance = 0; }
     }
     
     public void OnRoundStart()

@@ -748,7 +748,6 @@ GameObject:
   m_Component:
   - component: {fileID: 500564033}
   - component: {fileID: 500564036}
-  - component: {fileID: 500564035}
   - component: {fileID: 500564034}
   m_Layer: 5
   m_Name: Play (1)
@@ -867,20 +866,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &500564035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 500564032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feb82fcd4c81c4fff8f1f9cdbf75dc76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveDistance: {x: 0, y: 1.5, z: 0}
-  speed: 0.8
 --- !u!222 &500564036
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1126,7 +1111,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1371255535}
   - component: {fileID: 1371255538}
-  - component: {fileID: 1371255537}
   - component: {fileID: 1371255536}
   m_Layer: 5
   m_Name: Play
@@ -1245,20 +1229,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1371255537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1371255534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feb82fcd4c81c4fff8f1f9cdbf75dc76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveDistance: {x: 0, y: 1.5, z: 0}
-  speed: 0.8
 --- !u!222 &1371255538
 CanvasRenderer:
   m_ObjectHideFlags: 0

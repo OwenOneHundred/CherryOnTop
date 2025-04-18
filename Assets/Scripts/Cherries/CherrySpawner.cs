@@ -9,10 +9,10 @@ public class CherrySpawner : MonoBehaviour
 
     readonly float oddNumberCherryCountMultiplier = 1.5f;
     readonly float evenNumberCherrySpacingMultiplier = 1.5f;
-    [SerializeField] GameObject cherryPrefab;
+    [SerializeField] public GameObject cherryPrefab;
     [SerializeField] Vector3 cherryStartPos;
     [SerializeField] float difficultyScalingAmount = 1.16f;
-    CherryManager cherryManager;
+    [System.NonSerialized] public CherryManager cherryManager;
 
     float bigChance = 0.6f;
 

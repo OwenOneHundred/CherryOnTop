@@ -17,7 +17,7 @@ public class CherryMovement : MonoBehaviour
     private GameObject track;
     public LineRenderer lineRenderer;
     public Vector3[] linePositions;
-    private int currentTarget;
+    public int currentTarget;
     public int currentPosition;
     public int currentTrack;
     public float baseSpeed = 1f;

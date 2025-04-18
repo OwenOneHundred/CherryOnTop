@@ -168,4 +168,4 @@ MonoBehaviour:
   cherryDebuffs:
   - {fileID: 11400000, guid: 3de39f3ddbb8440eb9c8f962e4f274c6, type: 2}
   - {fileID: 11400000, guid: 1bf68d511d93641bfa13fed26da6d963, type: 2}
-  maxHits: 50
+  maxHits: 40

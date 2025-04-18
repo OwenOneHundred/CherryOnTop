@@ -273,6 +273,8 @@ MonoBehaviour:
   commonBG: {fileID: -595146240, guid: 1a6c47459c6a54d229e2d578e590935c, type: 3}
   uncommonBG: {fileID: 1383680594, guid: 1ecc66a5604914337b43eab13c8de41d, type: 3}
   rareBG: {fileID: -165889043, guid: 8a1c3974cb8da4bfbbebdb081eb231c7, type: 3}
+  yesColor: {r: 1, g: 0.85882354, b: 0.90588236, a: 1}
+  noColor: {r: 0.8235294, g: 0.039215688, b: 0, a: 1}
 --- !u!222 &8842151935230682953
 CanvasRenderer:
   m_ObjectHideFlags: 0

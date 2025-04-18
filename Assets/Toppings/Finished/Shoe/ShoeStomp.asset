@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62efe885a2a534589ab0f16ac9116b9b, type: 3}
   m_Name: ShoeStomp
   m_EditorClassIdentifier: 
-  cooldown: 2
-  damage: 17
+  cooldown: 1.55
+  damage: 19
   debuffs: []
   projectile: {fileID: 7438830141688384533, guid: 37c908ed60af649899415c69e6884087, type: 3}
   projectileSpeed: 0

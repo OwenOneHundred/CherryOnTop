@@ -150,7 +150,7 @@ public class InventoryRenderer : MonoBehaviour
     
     private void UpdatePageCount()
     {
-        pages = (Inventory.inventory.ownedItems.Count() / amountPerPage) + 1;
+        pages = Mathf.Clamp(Mathf.CeilToInt(Inventory.inventory.GetStackCount() / (float) amountPerPage), 1, 999);
         if (currentPage > pages)
         {
             currentPage = pages;

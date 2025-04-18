@@ -145,7 +145,7 @@ public class ToppingPlacer : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 100, placeableLayers))
             {
                 cakePos = hit.point;
-                objCenter = cakePos + new Vector3(0, lowestPointOffset, 0);
+                objCenter = GetObjCenter(cakePos, lowestPointOffset, toppingMeshFilter.transform);
 
                 transparentObject.SetActive(true);
                 transparentObject.transform.position = objCenter;
@@ -164,9 +164,14 @@ public class ToppingPlacer : MonoBehaviour
 
         if (placementValidCheck)
         {
-            PlaceTopping(topping, cakePos + new Vector3(0, lowestPointOffset, 0), topping.towerPrefab.transform.rotation, true);
+            PlaceTopping(topping, GetObjCenter(cakePos, lowestPointOffset, toppingMeshFilter.transform), topping.towerPrefab.transform.rotation, true);
         }
         StopPlacingTopping();
+    }
+
+    private Vector3 GetObjCenter(Vector3 cakePos, float lowestPointOffset, Transform toppingMeshFilter)
+    {
+        return cakePos + new Vector3(0, lowestPointOffset, 0) + toppingMeshFilter.localPosition;
     }
 
     private bool CheckIfPlacementValid(MeshFilter prefabMeshFilter, Vector3 pos, Mesh mesh, Vector3 cakePos)
@@ -222,8 +227,8 @@ public class ToppingPlacer : MonoBehaviour
 
         if (playSound) { SoundEffectManager.sfxmanager.PlayOneShot(placeSound); }
 
-        topping.RegisterEffects();
         topping.SetGameObjectOnEffects(newToppingObj);
+        topping.RegisterEffects();
 
         Inventory.inventory.RemoveOneOfItem(topping); // remove from inventory
     }

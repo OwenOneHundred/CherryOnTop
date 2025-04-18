@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GlobeAttack
   m_EditorClassIdentifier: 
   cooldown: 0.5
-  damage: 38
+  damage: 30
   debuffs:
   - {fileID: 11400000, guid: 10e00d44ac0fd42718be3b94836287e4, type: 2}
   projectile: {fileID: 1373519935423302513, guid: bd2dc24c334fb4cfcb56c953eb62c045, type: 3}

@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
         this.damage = damage;
     }
 
-    public void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
         if (hitCount >= maxHits) { return; }
         if (other.transform.root.TryGetComponent<CherryHitbox>(out CherryHitbox ch))

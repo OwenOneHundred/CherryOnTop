@@ -17,9 +17,26 @@ public class ExplodingProjectile : Projectile
 
     [SerializeField]
     float shockwaveRange;
+    [SerializeField] bool explodeOnTerrain = false;
+    [SerializeField] bool explodeOnCherry = true;
 
     public override void OnHitCherry(CherryHitbox ch) {
-        Explode();
+        if (explodeOnCherry)
+        {
+            Explode();
+        }
+    }
+
+    public override void OnTriggerEnter(UnityEngine.Collider other)
+    {
+        base.OnTriggerEnter(other);
+        if (explodeOnTerrain)
+        {
+            if (other.gameObject.layer == 7)
+            {
+                Explode();
+            }
+        }
     }
 
     [SerializeField] protected float cameraShakeViolence = 1;
@@ -35,6 +52,7 @@ public class ExplodingProjectile : Projectile
             shockwaveComponent.range = shockwaveRange;
             shockwaveComponent.SetDamage(shockwaveDamage);
             shockwaveComponent.owner = owner;
+            shockwaveComponent.speed = shockwaveSpeed;
             
             if (cameraShakeLength > 0)
             {

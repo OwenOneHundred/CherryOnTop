@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338a1bfe1cdf572469652e493d472c9e, type: 3}
   m_Name: ShoeSlow
   m_EditorClassIdentifier: 
-  movementSpeedMultiplier: 0.7
+  movementSpeedMultiplier: 0.5
   typesThatGetDamageMultiplier: 0
   damageMultiplier: 1
   debuffType: 0

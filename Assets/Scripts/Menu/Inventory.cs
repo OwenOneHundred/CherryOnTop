@@ -182,4 +182,29 @@ public class Inventory : MonoBehaviour
     {
         bufferedMoneyChanges.Add(change);
     }
+
+    public int GetStackCount()
+    {
+        return ownedItems.Select(x => x.name).Distinct().Count();
+    }
+
+    public int GetBiggestStack()
+    {
+        if (ownedItems.Count == 0) { return 0; }
+        Dictionary<string, int> values = new();
+
+        foreach (Item item in ownedItems)
+        {
+            if (values.ContainsKey(item.name))
+            {
+                values[item.name] += 1;
+                Debug.Log(values[item.name]);
+            }
+            else
+            {
+                values.Add(item.name, 1);
+            }
+        }
+        return values.Select(x => x.Value).Max();
+    }
 }

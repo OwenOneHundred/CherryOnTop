@@ -6,7 +6,6 @@ using EventBus;
 public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] TMPro.TextMeshProUGUI nameText;
-    [SerializeField] TMPro.TextMeshProUGUI itemType;
     [SerializeField] TMPro.TextMeshProUGUI description;
     [SerializeField] TMPro.TextMeshProUGUI toppingType;
     [SerializeField] TMPro.TextMeshProUGUI sellPriceText;
@@ -37,11 +36,6 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (item is Topping topping)
         {
             toppingType.text = ToTitleCase(topping.flags.ToString());
-            itemType.text = "Topping";
-        }
-        else
-        {
-            itemType.text = "Ingredient";
         }
 
         nameText.text = item.name;
@@ -60,11 +54,6 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (item is Topping topping)
         {
             toppingType.text = ToTitleCase(topping.flags.ToString());
-            itemType.text = "Topping";
-        }
-        else
-        {
-            itemType.text = "Ingredient";
         }
 
         nameText.text = item.name;
@@ -79,7 +68,6 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         nameText.text = "";
         description.text = "";
         sellPriceText.text = "";
-        itemType.text = "";
         toppingType.text = "";
         item = null;
         toppingObj = null;

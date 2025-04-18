@@ -3,7 +3,6 @@ using UnityEngine;
 public class ShopInfoPanel : MonoBehaviour
 {
     [SerializeField] TMPro.TextMeshProUGUI nameText;
-    [SerializeField] TMPro.TextMeshProUGUI itemType;
     [SerializeField] TMPro.TextMeshProUGUI description;
     [SerializeField] TMPro.TextMeshProUGUI toppingType;
     [SerializeField] TMPro.TextMeshProUGUI detailedInfo;
@@ -21,12 +20,7 @@ public class ShopInfoPanel : MonoBehaviour
         if (item is Topping topping)
         {
             toppingType.text = InfoPopup.ToTitleCase(topping.flags.ToString());
-            itemType.text = "Topping";
             SetUpDetailedStats(topping);
-        }
-        else
-        {
-            itemType.text = "Ingredient";
         }
 
         nameText.text = item.name;
@@ -56,7 +50,6 @@ public class ShopInfoPanel : MonoBehaviour
     {
         nameText.text = "";
         description.text = "";
-        itemType.text = "";
         toppingType.text = "";
         detailedInfo.text = "";
         item = null;

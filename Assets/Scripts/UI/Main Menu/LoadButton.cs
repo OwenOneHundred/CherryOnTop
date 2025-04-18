@@ -7,6 +7,7 @@ public class LoadButton : MonoBehaviour
 {
     public Button playButton;
     public string _sceneName;
+    public string _levelNameIngame;
     public string sceneName
     {
         get
@@ -16,7 +17,7 @@ public class LoadButton : MonoBehaviour
         set
         {
             _sceneName = value;
-            gameObject.SetActive(SaveDataUtility.GetSaveFileNameIfExists(_sceneName, out string saveFilePath, out string saveFileName));
+            //gameObject.SetActive(SaveDataUtility.GetSaveFileNameIfExists(_sceneName, out string saveFilePath, out string saveFileName));
         }
     }
     protected bool loadScene = false;

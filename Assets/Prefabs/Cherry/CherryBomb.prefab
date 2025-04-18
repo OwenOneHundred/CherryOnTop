@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4085270106411668407, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
       propertyPath: m_Name
-      value: TestCherryBomb
+      value: CherryBomb
       objectReference: {fileID: 0}
     - target: {fileID: 6635548703197320697, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
       propertyPath: cherryHitbox
@@ -92,7 +92,7 @@ MonoBehaviour:
     clip: {fileID: 0}
   onDamagedPS: {fileID: 4970616808093975513, guid: 96a946d776afd4dceaf88dd58fdb973e, type: 3}
   damageNumberPrefab: {fileID: 1117619847005422415, guid: 3646483419b9a4ce7aa9ae6b1b384a68, type: 3}
-  spawnDamageNumbers: 1
+  spawnDamageNumbers: 0
   explosionTime: 4
   explosionRadius: 3
   explosionStunTime: 5

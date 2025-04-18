@@ -56,6 +56,6 @@ public class CherryBombHitbox : CherryHitbox
             toppingCollider.transform.root.GetComponentInChildren<AttackManager>().Stun(explosionStunTime);
         }
 
-        Destroy(gameObject);
+        Die();
     }
 }

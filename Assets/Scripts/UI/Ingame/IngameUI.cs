@@ -33,6 +33,7 @@ public class IngameUI : MonoBehaviour
     [SerializeField] Color speedUpButtonUntoggled;
     [SerializeField] Color speedUpButtonToggled;
     [SerializeField] Image speedUpButton;
+    [SerializeField] TMPro.TextMeshProUGUI speedUpButtonText;
     public void PressSpeedUpButton()
     {
         if (speedupToggled)
@@ -45,5 +46,6 @@ public class IngameUI : MonoBehaviour
         }
         speedupToggled = !speedupToggled;
         speedUpButton.color = speedupToggled ? speedUpButtonToggled : speedUpButtonUntoggled;
+        speedUpButtonText.text = speedupToggled ? "2x" : "1x";
     }
 }

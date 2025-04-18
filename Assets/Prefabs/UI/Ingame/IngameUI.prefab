@@ -1211,6 +1211,7 @@ MonoBehaviour:
   speedUpButtonUntoggled: {r: 0.5529412, g: 0.45882353, b: 0.2901961, a: 1}
   speedUpButtonToggled: {r: 0.9433962, g: 0.816923, b: 0.5829477, a: 1}
   speedUpButton: {fileID: 6110504044283116686}
+  speedUpButtonText: {fileID: 2430840553585872026}
 --- !u!114 &1204338498259045828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1970,7 +1971,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '>>'
+  m_text: 1x
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3059,6 +3060,7 @@ GameObject:
   - component: {fileID: 51339828149921654}
   - component: {fileID: 6110504044283116686}
   - component: {fileID: 2106198139628889034}
+  - component: {fileID: 7532242185405995690}
   m_Layer: 5
   m_Name: SpeedUp
   m_TagString: Untagged
@@ -3075,7 +3077,7 @@ RectTransform:
   m_GameObject: {fileID: 4927674824071269334}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9144893284777617049}
@@ -3083,7 +3085,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 447.1133, y: -456.79}
+  m_AnchoredPosition: {x: 469.87, y: -469}
   m_SizeDelta: {x: 148.8936, y: 124.09}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &51339828149921654
@@ -3180,6 +3182,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7532242185405995690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4927674824071269334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 3, y: -3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &5001037416238652582
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,8 +40,14 @@ public class CherryHitbox : MonoBehaviour
         if (spawnDamageNumbers) { SpawnDamageNumbers(Mathf.FloorToInt(damage)); }
 
         debuffManager.OnDamaged(damage);
+        OnTakeDamage();
 
         return cherryHealth;
+    }
+
+    public virtual void OnTakeDamage()
+    {
+        // should be overridden by child classes
     }
 
     private void SpawnDamageNumbers(int damage)

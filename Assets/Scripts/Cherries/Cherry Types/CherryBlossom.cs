@@ -32,7 +32,6 @@ public class CherryBlossom : CherryHitbox
             newCherryMovement.currentTarget = cherryMovement.currentTarget;
             CherryTypes newCherryType = newCherry.GetComponent<CherryTypes>();
             newCherryType.cherrySize = CherryTypes.CherrySize.Small;
-            newCherryType.cherryType = CherryTypes.CherryType.DefaultCherry;
             newCherryType.SetCherryHealthAndSpeed();
         }
     }

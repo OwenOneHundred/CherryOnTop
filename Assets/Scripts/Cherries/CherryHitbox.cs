@@ -57,7 +57,7 @@ public class CherryHitbox : MonoBehaviour
         newNumber.transform.position = transform.position + new Vector3 (0, 1, 0);
     }
 
-    private void Die()
+    protected void Die()
     {
         dead = true;
         CherryManager.Instance.OnCherryKilled(GetComponent<CherryMovement>());

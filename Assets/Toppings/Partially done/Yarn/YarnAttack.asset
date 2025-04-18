@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa5ddee62ca0e145b2a85463bea3cdf, type: 3}
   m_Name: YarnAttack
   m_EditorClassIdentifier: 
-  cooldown: 0.6
+  cooldown: 0.65
   damage: 12
   debuffs: []
   projectile: {fileID: 1373519935423302513, guid: d1c197f4e957242b58acf9db29a836a1, type: 3}

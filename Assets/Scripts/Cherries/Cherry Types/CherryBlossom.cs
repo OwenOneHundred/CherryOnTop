@@ -3,19 +3,13 @@ using UnityEngine;
 
 public class CherryBlossom : CherryHitbox
 {
-    public float timer;
 
     // Update is called once per frame
     void Update()
     {
-        if (timer > 0)
-        {
-            timer -= Time.deltaTime;
-        }
-        else
-        {
-            bloom(5);
-            Die();
+        if (cherryHealth <= 0) {
+            int numSpawned = UnityEngine.Random.Range(4, 7);
+            bloom(numSpawned);
         }
     }
 

@@ -1462,7 +1462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iconPrefab: {fileID: 7875255754724816196, guid: dc658d28d7f1a423698f6c629d6963b5, type: 3}
   columns: 3
-  rows: 2
+  rows: 7
   iconStartPos: {x: -196, y: 591}
   bottomDistance: 810
   iconDistances: {x: 190, y: 193}

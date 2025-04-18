@@ -1,5 +1,6 @@
 using System.Collections;
-using Unity.VisualScripting;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CherrySpawner : MonoBehaviour
@@ -15,6 +16,12 @@ public class CherrySpawner : MonoBehaviour
     [System.NonSerialized] public CherryManager cherryManager;
 
     float bigChance = 0.6f;
+    public float initialBigChance = 0.6f;
+
+    float specialtyCherryChance = 0.01f;
+    float specialtyCherryChanceScaleMultiplier = 2f;
+    readonly int specialtyCherryRoundCap = 8;
+    public List<SpecialtyCherry> specialtyCherries = new List<SpecialtyCherry>();
 
     private void Start()
     {
@@ -34,16 +41,35 @@ public class CherrySpawner : MonoBehaviour
         RoundManager.roundManager.totalCherriesThisRound = totalCherries;
         float timeBetweenCherries = defaultTimeBetweenCherries / (scaleFactor * (roundNumberIsOdd ? 1 : evenNumberCherrySpacingMultiplier));
 
-        bigChance = Mathf.Clamp(bigChance * difficultyScalingAmount, 0, 100);
+        bigChance = Mathf.Clamp(initialBigChance * Mathf.Pow(difficultyScalingAmount, RoundManager.roundManager.roundNumber - 1), 0, 100);
+
+        SpecialtyCherry specialtyCherryType = GetIsSpecialtyCherryRound();
 
         for (int i = 0; i < totalCherries; i++)
         {
-            GameObject newCherry = Instantiate(cherryPrefab, cherryStartPos, Quaternion.identity);
+            GameObject prefab = specialtyCherryType == null ? cherryPrefab : specialtyCherryType.prefab;
+            GameObject newCherry = Instantiate(prefab, cherryStartPos, Quaternion.identity);
             cherryManager.RegisterCherry(newCherry.GetComponentInChildren<CherryMovement>());
             ApplyVariants(newCherry);
 
             yield return new WaitForSeconds(timeBetweenCherries);
         }
+    }
+
+    public SpecialtyCherry GetIsSpecialtyCherryRound()
+    {
+        if (RoundManager.roundManager.roundNumber < specialtyCherryRoundCap)
+        {
+            return null;
+        }
+        specialtyCherryChance *= specialtyCherryChanceScaleMultiplier;
+
+        if (UnityEngine.Random.value <= specialtyCherryChance)
+        {
+            specialtyCherryChance = 0;
+            return specialtyCherries[GeneralUtil.RandomWeighted(specialtyCherries.Select(x => x.weight).ToList())];
+        }
+        return null;
     }
 
     void ApplyVariants(GameObject cherry)

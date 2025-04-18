@@ -711,14 +711,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd93aa43fc4a54be0a82d857730480cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cherryPrefab: {fileID: 8212864766905315278, guid: 43a53466f5579a240afa2d3df885ecee, type: 3}
+  cherryPrefab: {fileID: 4085270106411668407, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
   cherryStartPos: {x: 0, y: 0, z: 0}
   difficultyScalingAmount: 1.14
+  initialBigChance: 0.6
   specialtyCherries:
   - weight: 1
     prefab: {fileID: 618466874522788365, guid: 397b617b3b3edca458cf9e2c5ed9a9a5, type: 3}
   - weight: 1
-    prefab: {fileID: 8212864766905315278, guid: 954d9735dbbfe5a4892a20157f4779bc, type: 3}
+    prefab: {fileID: 8212864766905315278, guid: 43a53466f5579a240afa2d3df885ecee, type: 3}
 --- !u!114 &814254364
 MonoBehaviour:
   m_ObjectHideFlags: 0

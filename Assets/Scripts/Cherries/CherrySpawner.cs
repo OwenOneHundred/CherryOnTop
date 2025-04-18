@@ -43,11 +43,22 @@ public class CherrySpawner : MonoBehaviour
 
         bigChance = Mathf.Clamp(initialBigChance * Mathf.Pow(difficultyScalingAmount, RoundManager.roundManager.roundNumber - 1), 0, 100);
 
+        Debug.Log("Chance of specialty round: " + specialtyCherryChance);
+        
         SpecialtyCherry specialtyCherryType = GetIsSpecialtyCherryRound();
+        if (specialtyCherryType != null) { Debug.Log("Specialty cherry round!"); }
 
         for (int i = 0; i < totalCherries; i++)
         {
-            GameObject prefab = specialtyCherryType == null ? cherryPrefab : specialtyCherryType.prefab;
+            GameObject prefab = cherryPrefab;
+            if (specialtyCherryType != null && Random.value <= 0.5f)
+            {
+                prefab = specialtyCherryType.prefab;
+            }
+            if (Random.value <= 0.01f)
+            {
+                prefab = GetRandomSpecialtyCherry().prefab;
+            }
             GameObject newCherry = Instantiate(prefab, cherryStartPos, Quaternion.identity);
             cherryManager.RegisterCherry(newCherry.GetComponentInChildren<CherryMovement>());
             ApplyVariants(newCherry);
@@ -67,9 +78,14 @@ public class CherrySpawner : MonoBehaviour
         if (UnityEngine.Random.value <= specialtyCherryChance)
         {
             specialtyCherryChance = 0;
-            return specialtyCherries[GeneralUtil.RandomWeighted(specialtyCherries.Select(x => x.weight).ToList())];
+            return GetRandomSpecialtyCherry();
         }
         return null;
+    }
+
+    private SpecialtyCherry GetRandomSpecialtyCherry()
+    {
+        return specialtyCherries[GeneralUtil.RandomWeighted(specialtyCherries.Select(x => x.weight).ToList())];
     }
 
     void ApplyVariants(GameObject cherry)

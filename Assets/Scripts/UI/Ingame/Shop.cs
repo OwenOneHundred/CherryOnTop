@@ -13,7 +13,8 @@ public class Shop : MonoBehaviour
     readonly float openPos = -230;
     RectTransform rect;
 
-    [SerializeField] int columns = 3;
+    public int columns = 3;
+    public int rows = 2;
     public int totalItems = 6;
     [SerializeField] int iconSpacing = 100;
 
@@ -176,7 +177,7 @@ public class Shop : MonoBehaviour
             shopObjs.Add(shopObj);
             shopObj.SetUp(currentItems[i]);
             newIcon.GetComponent<RectTransform>().anchoredPosition +=
-                new Vector2((i % columns), (int) (-i / columns)) * iconSpacing;
+                new Vector2((i % columns), (int) (-i / rows)) * iconSpacing;
         }
     }
 

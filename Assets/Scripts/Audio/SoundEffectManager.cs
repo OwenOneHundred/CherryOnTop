@@ -60,7 +60,7 @@ public class SoundEffectManager : MonoBehaviour
         audioSource.volume = audioFile.volume;
         audioSource.clip = audioFile.clip;
         audioSource.Play();
-        Destroy(audioSource.gameObject, audioFile.clip.length + 0.1f);
+        Destroy(audioSource.gameObject, audioFile.clip.length * 2.05f);
         audioClipsPlayedThisFrame.Add(new AudioClipAndTime(audioFile.clip));
     }
 

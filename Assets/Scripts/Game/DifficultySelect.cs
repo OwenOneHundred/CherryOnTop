@@ -30,7 +30,7 @@ public class DifficultySelect : MonoBehaviour
     {
         images[1].color = Color.white;
         images[2].color = Color.white;
-        difficulty = new Hard(1.26f);
+        difficulty = new Hard(1.28f);
     }
 
     public class Difficulty
@@ -76,7 +76,9 @@ public class DifficultySelect : MonoBehaviour
 
         public override void OnRoundStart()
         {
-            Shop.shop.totalItems = 3;
+            Shop.shop.totalItems = 4;
+            Shop.shop.columns = 2;
+            Shop.shop.rows = 2;
             //Inventory.inventory.initialMoney = 10;
             Shop.shop.Rerolls += 1;
         }

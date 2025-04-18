@@ -4,7 +4,6 @@ using UnityEngine;
 public class CherryTypes : MonoBehaviour
 {
     public CherrySize cherrySize = CherrySize.Normal;
-    public CherryType cherryType = CherryType.DefaultCherry;
     public float cherryHealth;
     public float cherrySpeed;
     public CherryHitbox cherryHitbox;
@@ -26,22 +25,13 @@ public class CherryTypes : MonoBehaviour
         SuperLarge = 3
     }
 
-
-    public enum CherryType
-    {
-        DefaultCherry = 0,
-        FrozenCherry = 1,
-        CherryBomb = 2,
-        CherryBlossom = 3
-    }
-
     // Sets Cherry Health and Speed based on a cherry's given size
     public void SetCherryHealthAndSpeed()
     {
         switch (cherrySize)
         {
             case CherrySize.Small:
-                cherryHitbox.cherryHealth *= 0.75f;
+                cherryHitbox.cherryHealth *= 4f;
                 cherryMovement.baseSpeed *= 2f;
                 transform.localScale *= 0.6f;
                 break;

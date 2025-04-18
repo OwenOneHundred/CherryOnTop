@@ -714,6 +714,11 @@ MonoBehaviour:
   cherryPrefab: {fileID: 4085270106411668407, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
   cherryStartPos: {x: 0, y: 0, z: 0}
   difficultyScalingAmount: 1.14
+  specialtyCherries:
+  - weight: 1
+    prefab: {fileID: 618466874522788365, guid: 397b617b3b3edca458cf9e2c5ed9a9a5, type: 3}
+  - weight: 1
+    prefab: {fileID: 8212864766905315278, guid: 954d9735dbbfe5a4892a20157f4779bc, type: 3}
 --- !u!114 &814254364
 MonoBehaviour:
   m_ObjectHideFlags: 0

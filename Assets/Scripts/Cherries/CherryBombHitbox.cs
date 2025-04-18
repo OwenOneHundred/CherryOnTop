@@ -48,7 +48,8 @@ public class CherryBombHitbox : CherryHitbox
     {
         Collider[] toppingsInRange = Physics.OverlapSphere(transform.position, explosionRadius, layerMask);
 
-        Instantiate(shockwave, transform.position, Quaternion.identity);
+        GameObject newShockwave = Instantiate(shockwave, transform.position, Quaternion.identity);
+        newShockwave.GetComponent<Shockwave>().range = explosionRadius;
 
         foreach(Collider toppingCollider in toppingsInRange)
         {

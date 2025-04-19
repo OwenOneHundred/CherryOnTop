@@ -187,7 +187,7 @@ public class ToppingPlacer : MonoBehaviour
 
         Vector3 worldExtents = Vector3.Scale(bounds.extents, prefabMeshFilter.transform.lossyScale);
 
-        var result = Physics.OverlapBox(pos, worldExtents * 0.8f, prefabMeshFilter.transform.rotation, layersThatBlockPlacement);
+        var result = Physics.OverlapBox(pos, worldExtents * 0.875f, prefabMeshFilter.transform.rotation, layersThatBlockPlacement);
 
         bool notOverlappingAnything = result.Count() == 0;
 

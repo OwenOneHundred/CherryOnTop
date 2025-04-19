@@ -1639,6 +1639,10 @@ PrefabInstance:
       value: Level Select Button
       objectReference: {fileID: 0}
     - target: {fileID: 4829941980000832944, guid: 0e38a2b878937a94da91744a88026120, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4829941980000832944, guid: 0e38a2b878937a94da91744a88026120, type: 3}
       propertyPath: m_Colors.m_PressedColor.b
       value: 0.6226415
       objectReference: {fileID: 0}

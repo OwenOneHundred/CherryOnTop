@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ArrowSpawner : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ArrowSpawner : MonoBehaviour
     readonly int arrowsPerSet = 3;
     int arrowsSpawnedThisSet = 0;
     [SerializeField] GameObject arrowPrefab;
+    
     public bool goBackToPosition0 = true;
 
     Vector3 trackStartPos;

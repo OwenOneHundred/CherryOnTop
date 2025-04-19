@@ -729,7 +729,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cherries: []
-  calculateTrackLength: 1
+  calculateTrackLength: 0
 --- !u!114 &814254365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,6 +756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 045a3638afca84165bf7057717eab5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tracks: []
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,7 +1348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: startingInventoryItems.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: 'startingInventoryItems.Array.data[0]'

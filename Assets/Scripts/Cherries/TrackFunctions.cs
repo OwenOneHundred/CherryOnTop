@@ -6,7 +6,7 @@ public class TrackFunctions : MonoBehaviour
 {
     List<Vector3[]> trackPositions = new();
     public int PositionsAmount { get; private set; }
-    List<LineRenderer> tracks = new();
+    public List<LineRenderer> tracks = new();
     public static TrackFunctions trackFunctions;
 
     

@@ -13,15 +13,17 @@ public class TrapAttack : ToppingAttack
     List<TrackFunctions.LineSegment3D> lineSegments = new();
     protected int activeTraps;
     protected float timer = 0;
+    [SerializeField] protected bool instaFireBetweenRounds = true;
     public virtual GameObject SpawnTrap(GameObject projectile, Vector3 goal, int damage, float lifetime)
     {
         if (activeTraps >= maxTraps) { return null; }
 
         GameObject newProjectile = Instantiate(projectile, toppingObj.transform.position, Quaternion.identity);
-        Projectile projectileScript = newProjectile.GetComponent<Projectile>();
-        projectileScript.damage = damage;
-        projectileScript.owner = toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping;
-        projectileScript.SetTarget(goal);
+        TrackTrap trackTrapScript = newProjectile.GetComponent<TrackTrap>();
+        trackTrapScript.damage = damage;
+        trackTrapScript.owner = toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping;
+        trackTrapScript.SetTarget(goal);
+        trackTrapScript.trapAttack = this;
 
         // Destroy the projectile after 8 seconds in case it misses the target
         Destroy(newProjectile, lifetime);
@@ -35,19 +37,22 @@ public class TrapAttack : ToppingAttack
 
     public override void OnStart()
     {
-        Debug.Log("here");
         SetLineSegments(toppingObj.transform.position, range);
     }
 
     public override void EveryFrame()
     {
         timer += Time.deltaTime;
-        if (timer > cooldown)
+        if (GetCanInstaFire() || timer > cooldown)
         {
             SpawnTrap(trapPrefab, GetGoalPosition(), damage, lifetime);
             timer = 0;
-            Debug.Log("spawn trap");
         }
+    }
+
+    protected bool GetCanInstaFire()
+    {
+        return instaFireBetweenRounds && (RoundManager.roundManager.roundState == RoundManager.RoundState.shop);
     }
 
     public void SetLineSegments(Vector3 toppingPosition, float radius)
@@ -134,5 +139,9 @@ public class TrapAttack : ToppingAttack
         
     }
 
+    public void TrapDestroyed()
+    {
+        activeTraps -= 1;
+    }
 
 }

@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class TrackTrap : Projectile
+public class TrackTrap : ExplodingProjectile
 {
     Vector3 target;
     [SerializeField] float slideSpeed = 5;
     bool atGoal = false;
+    [System.NonSerialized] public TrapAttack trapAttack;
 
     void Update()
     {
-        Debug.Log(atGoal + " , target: " + target);
         if (!atGoal && target != Vector3.zero)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, slideSpeed * Time.deltaTime);
@@ -23,10 +23,15 @@ public class TrackTrap : Projectile
     {
         return Vector3.up;
     }
-
+    
     public override void SetTarget(Vector3 target)
     {
         Debug.Log(target);
         this.target = target;
+    }
+
+    void OnDestroy()
+    {
+        trapAttack.TrapDestroyed();
     }
 }

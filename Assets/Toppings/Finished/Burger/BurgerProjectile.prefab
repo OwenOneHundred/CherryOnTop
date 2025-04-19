@@ -54,8 +54,10 @@ MonoBehaviour:
   shockwaveDamage: 8
   shockwaveSpeed: 5
   shockwaveRange: 1.25
-  cameraShakeViolence: 0.2
-  cameraShakeLength: 0.1
+  explodeOnTerrain: 0
+  explodeOnCherry: 1
+  cameraShakeViolence: 0
+  cameraShakeLength: 0
   explodeSound:
     volume: 0.5
     clip: {fileID: 0}

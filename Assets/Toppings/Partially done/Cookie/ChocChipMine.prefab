@@ -152,5 +152,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cherryDebuffs: []
-  maxHits: 5
+  maxHits: 8
+  shockwave: {fileID: 8297310373101223584, guid: 28cb94d55579548a894bd4798d0780af, type: 3}
+  shockwaveDamage: 20
+  shockwaveSpeed: 5
+  shockwaveRange: 0.8
+  explodeOnTerrain: 0
+  explodeOnCherry: 1
+  cameraShakeViolence: 0.2
+  cameraShakeLength: 0.1
+  explodeSound:
+    volume: 0.2
+    clip: {fileID: 8300000, guid: 6eeaf067bd5484455843dde71669cb78, type: 3}
   slideSpeed: 5

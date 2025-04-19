@@ -16,10 +16,10 @@ public class XylophoneAttack : SimpleAttack
 
     public override void EveryFrame()
     {
-        int count = Inventory.inventory.ownedItems.Count;
+        int count = Inventory.inventory.GetInventoryCount(false);
         if (count != lastFrameOwnedItems)
         {
-            cooldown = Mathf.Clamp(baseCooldown - (scaleAmountPerItem * Inventory.inventory.GetBiggestStack()), 0.05f, baseCooldown);
+            cooldown = Mathf.Clamp(baseCooldown - (scaleAmountPerItem * Inventory.inventory.GetBiggestStack(true)), 0.05f, baseCooldown);
             lastFrameOwnedItems = count;
         }
     }

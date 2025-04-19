@@ -148,7 +148,7 @@ public class Inventory : MonoBehaviour
             {
                 ApplyMoneyChange(bufferedMoneyChanges[0]);
                 bufferedMoneyChanges.RemoveAt(0);
-                scalingMoneyGainTime = Mathf.Clamp(scalingMoneyGainTime - 0.02f, 0.02f, 1);
+                scalingMoneyGainTime = Mathf.Clamp(scalingMoneyGainTime - 0.015f, 0.15f, 1);
                 moneyGainPitch = Mathf.Clamp(moneyGainPitch + 0.04f, 1, 2.5f);
             }
             else

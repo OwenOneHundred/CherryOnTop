@@ -10,7 +10,7 @@ public class ExplodingProjectile : Projectile
     protected GameObject shockwave;
 
     [SerializeField]
-    int shockwaveDamage;
+    public int shockwaveDamage;
 
     [SerializeField]
     float shockwaveSpeed = 1;

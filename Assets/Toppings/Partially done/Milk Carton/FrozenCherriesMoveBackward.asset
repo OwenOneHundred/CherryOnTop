@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32aef77c2b4cf4c82a9af52f5f1b509c, type: 3}
   m_Name: FrozenCherriesMoveBackward
   m_EditorClassIdentifier: 
-  modifiedType: 0
+  modifiedType: 2
   movementSpeedMultiplier: 1
-  movementSpeedChange: 0
+  movementSpeedChange: -0.3
   durationMultiplier: 1
   damageMultiplier: 1

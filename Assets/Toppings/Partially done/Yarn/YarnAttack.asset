@@ -16,7 +16,7 @@ MonoBehaviour:
   damage: 12
   debuffs: []
   projectile: {fileID: 1373519935423302513, guid: d1c197f4e957242b58acf9db29a836a1, type: 3}
-  projectileSpeed: 3
+  projectileSpeed: 4
   fireSound:
-    volume: 0.5
+    volume: 0.2
     clip: {fileID: 8300000, guid: 5ba3203a8ddc54ad8b3902c70ab5d827, type: 3}

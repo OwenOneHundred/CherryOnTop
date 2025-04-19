@@ -115,12 +115,7 @@ public class ToppingPlacer : MonoBehaviour
 
         transparentObject.SetActive(false);
 
-        float lowestPointOffset =
-            GetLowestPointOffset(
-                toppingMeshFilter.sharedMesh.bounds,
-                toppingMeshFilter.transform.rotation * Vector3.down,
-                toppingMeshFilter.transform.lossyScale.y
-            ); // find distance between topping center and the point on the topping closest to downward after rotation
+        float lowestPointOffset = GetLowestPointOffset(toppingMeshFilter.sharedMesh.bounds, toppingMeshFilter.transform, Vector3.down);
 
         bool placementValidCheck = false;
 
@@ -145,12 +140,12 @@ public class ToppingPlacer : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 100, placeableLayers))
             {
                 cakePos = hit.point;
-                objCenter = GetObjCenter(cakePos, lowestPointOffset, toppingMeshFilter.transform);
+                objCenter = CalculatePreviewPosition(cakePos, toppingMeshFilter.sharedMesh, lowestPointOffset, transparentMeshFilter.transform, toppingMeshFilter.transform);
 
                 transparentObject.SetActive(true);
                 transparentObject.transform.position = objCenter;
 
-                placementValidCheck = CheckIfPlacementValid(toppingMeshFilter, objCenter, toppingMeshFilter.sharedMesh, cakePos);
+                placementValidCheck = CheckIfPlacementValid(toppingMeshFilter, GetCenterOfPreviewMesh(transparentMeshFilter), toppingMeshFilter.sharedMesh, cakePos);
                 meshRenderer.material = placementValidCheck ? white : red;
                 circleLineRenderer.startColor = placementValidCheck ? Color.white : Color.red;
                 circleLineRenderer.endColor = placementValidCheck ? Color.white : Color.red;
@@ -164,14 +159,26 @@ public class ToppingPlacer : MonoBehaviour
 
         if (placementValidCheck)
         {
-            PlaceTopping(topping, GetObjCenter(cakePos, lowestPointOffset, toppingMeshFilter.transform), topping.towerPrefab.transform.rotation, true);
+            PlaceTopping(topping, transparentMeshFilter.transform.position, topping.towerPrefab.transform.rotation, true);
         }
         StopPlacingTopping();
     }
 
-    private Vector3 GetObjCenter(Vector3 cakePos, float lowestPointOffset, Transform toppingMeshFilter)
+    private Vector3 CalculatePreviewPosition(Vector3 cakePos, Mesh mesh, float lowestPointOffset, Transform transparentObjectMesh, Transform toppingMeshFilterTransform)
     {
-        return cakePos + new Vector3(0, lowestPointOffset, 0) + toppingMeshFilter.localPosition;
+        Vector3 localCenterOffset = mesh.bounds.center;
+        Vector3 worldCenterOffset = transparentObjectMesh.rotation * Vector3.Scale(localCenterOffset, transparentObjectMesh.lossyScale);
+
+        Vector3 objCenter = cakePos - worldCenterOffset + new Vector3(0, lowestPointOffset, 0);
+
+        return objCenter;
+    }
+
+    private Vector3 GetCenterOfPreviewMesh(MeshFilter transparentObjectMesh)
+    {
+        Vector3 localCenter = transparentObjectMesh.sharedMesh.bounds.center;
+        Vector3 result = transparentObjectMesh.transform.TransformPoint(localCenter);
+        return result;
     }
 
     private bool CheckIfPlacementValid(MeshFilter prefabMeshFilter, Vector3 pos, Mesh mesh, Vector3 cakePos)
@@ -180,8 +187,7 @@ public class ToppingPlacer : MonoBehaviour
 
         Vector3 worldExtents = Vector3.Scale(bounds.extents, prefabMeshFilter.transform.lossyScale);
 
-        var result = Physics.OverlapBox(pos + checkAreaVerticalOffset, worldExtents * 0.8f, prefabMeshFilter.transform.rotation, layersThatBlockPlacement);
-        
+        var result = Physics.OverlapBox(pos, worldExtents * 0.8f, prefabMeshFilter.transform.rotation, layersThatBlockPlacement);
 
         bool notOverlappingAnything = result.Count() == 0;
 
@@ -196,15 +202,11 @@ public class ToppingPlacer : MonoBehaviour
         return TrackFunctions.trackFunctions.GetAllLineSegmentsThatIntersectSphere(cakePos, acceptableDistance).Count != 0;
     }
 
-    private float GetLowestPointOffset(Bounds bounds, Vector3 groundDirection, float scale)
+    private float GetLowestPointOffset(Bounds bounds, Transform meshTransform, Vector3 groundDirection)
     {
-        Vector3 farthestPoint = bounds.ClosestPoint(groundDirection.normalized * 10000);
-
-        float distanceFromCenter = Vector3.Distance(bounds.center, farthestPoint);
-
-        float scaledDistanceFromCenter = distanceFromCenter * scale;
-
-        return scaledDistanceFromCenter;
+        Vector3 worldExtents = Vector3.Scale(bounds.extents, meshTransform.lossyScale);
+        float toGround = Mathf.Abs(Vector3.Dot(worldExtents, groundDirection));
+        return toGround;
     }
 
     private void StopPlacingTopping()

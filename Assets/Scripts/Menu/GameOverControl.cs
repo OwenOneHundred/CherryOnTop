@@ -25,5 +25,6 @@ public class GameOverControl : MonoBehaviour
     public void GoToMenu()
     {
         SceneManager.LoadScene("MenuScene");
+        Time.timeScale = 1;
     }
 }

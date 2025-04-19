@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bell Shockwave Attack
   m_EditorClassIdentifier: 
   cooldown: 16
-  damage: 50
+  damage: 45
   debuffs: []
   projectile: {fileID: 0}
   projectileSpeed: 6

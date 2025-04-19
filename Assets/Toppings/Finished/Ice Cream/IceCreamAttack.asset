@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e70b6d21bc9f406995843afd2b0f108, type: 3}
   m_Name: IceCreamAttack
   m_EditorClassIdentifier: 
-  cooldown: 0.7
+  cooldown: 0.95
   damage: 3
   debuffs: []
   projectile: {fileID: 1373519935423302513, guid: 3a7bb6ee206e24afb87b1c081cc90db8, type: 3}

@@ -15,10 +15,11 @@ MonoBehaviour:
   price: 5
   shopSprite: {fileID: 21300000, guid: 68654e78329bb4b92b6a5c8bdc83fbb2, type: 3}
   effectsAndWhen: []
-  description: Cherries that are frozen slide backward at a stacking constant rate.
+  description: No attack. Cherries that are frozen slide backward at a stacking constant
+    rate.
   rarity: 1
   towerPrefab: {fileID: 514578492973709642, guid: a375fe8c1c49248bcbe9c74716d736e4, type: 3}
-  flags: 0
+  flags: 4097
   cakePoints: 10
   onHitCherry: []
   onKillCherry: []

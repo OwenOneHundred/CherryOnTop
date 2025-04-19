@@ -11,6 +11,7 @@ public class SettingsManager : MonoBehaviour
     public void GotoMainMenu()
     {
         SceneManager.LoadScene("MenuScene");
+        Time.timeScale = 1;
     }
 
 

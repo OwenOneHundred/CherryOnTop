@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class BuffManager : MonoBehaviour {
     //Creating all variables
@@ -19,11 +20,14 @@ public class BuffManager : MonoBehaviour {
     * Also retrieves the base damage, cooldown, and range values from the AttackManager and TargetingSystem.
     */
     void InitializeBuffManager() {
-        attackManager = GetComponent<AttackManager>();
+        Debug.Log($"BuffManager initialized for {gameObject.name}");
+        attackManager = GetComponentInChildren<AttackManager>();
+        Debug.Log($" Found BuffManager component AttackManager: {attackManager != null}");
         targetingSystem = GetComponent<TargetingSystem>();
 
         if (attackManager != null)
         {
+            Debug.Log("Base attacks set");
             baseDamage = attackManager.AttackDamage;
             baseCooldown = attackManager.GetAttackCooldown();
         }
@@ -47,8 +51,9 @@ public class BuffManager : MonoBehaviour {
         }
     }
 
-    public void RemoveBuff(BuffZone buffZone)
+    public void RemoveBuff(BuffZone buffZone, AttackManager attackManager)
     {
+        Debug.Log("Removing buff");
         if (activeBuffs.Contains(buffZone))
         {
             activeBuffs.Remove(buffZone);
@@ -66,6 +71,7 @@ public class BuffManager : MonoBehaviour {
     // It uses the base values stored in the BuffManager to apply the multipliers.
     // The multipliers are applied in a way that allows for multiple buffs of the same type to stack.
     void RecalculateTowerStats() {
+        Debug.Log($"Recalculating stats for {gameObject.name}");
         float cooldownMultiplier = 1f;
         float damageMultiplier = 1f;
         float rangeMultiplier = 1f;
@@ -87,6 +93,7 @@ public class BuffManager : MonoBehaviour {
             }
         }
 
+        Debug.Log($"Buffs applied: Cooldown {cooldownMultiplier}, Damage {damageMultiplier}, Range {rangeMultiplier}");
         // Update the AttackManager and TargetingSystem with the new values
         if (attackManager != null) {
             attackManager.SetAttackCooldown(baseCooldown * cooldownMultiplier);
@@ -94,6 +101,8 @@ public class BuffManager : MonoBehaviour {
 
             attackManager.AttackDamage = Mathf.RoundToInt(baseDamage * damageMultiplier);
             Debug.Log($"Tower {gameObject.name} Damage Update: {baseDamage * damageMultiplier}");
+        } else {
+            Debug.LogWarning($"BuffManager: AttackManager not found on {gameObject.name}");
         }
         if (targetingSystem != null) {
             targetingSystem.SetRange(baseRange * rangeMultiplier);

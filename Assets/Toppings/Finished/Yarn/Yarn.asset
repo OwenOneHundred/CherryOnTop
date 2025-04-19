@@ -15,8 +15,8 @@ MonoBehaviour:
   price: 3
   shopSprite: {fileID: 21300000, guid: aa4dca5c95a2947a385a220ca71b5a59, type: 3}
   effectsAndWhen: []
-  description: Fires slow moving balls of yarn at cherries. Whenever you count the
-    items in your inventory, this item counts as 4 items.
+  description: Fires slow moving balls of yarn at cherries. Counts as 4 items while
+    in your inventory.
   rarity: 0
   towerPrefab: {fileID: 4299761263970024024, guid: a2b18e8658af84242a026585f0941195, type: 3}
   flags: 0

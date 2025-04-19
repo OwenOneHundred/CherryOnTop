@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BuffZone : MonoBehaviour {
-    [SerializeField] private float buffRadius = 5f;
     [SerializeField] private ToppingTypes.Flags flags;
     [SerializeField] private BuffType buffType;
     [SerializeField] private float buffValue = 0.6f; // Buffs should be >1 for increase
@@ -12,24 +11,11 @@ public class BuffZone : MonoBehaviour {
 
     public BuffType BuffType => buffType;
     public float BuffValue => buffValue; // the comment below doesn't apply to these, they just make a mini function that returns the lowercase one
-    private Collider coll; // the => makes a lambda, so whatever you do after the => gets called whenever anyone accesses the variable.
-    // That means "coll => GetComponent<Collider>();" says "whenever you need the collider, run GetComponent." This is much slower than
-    // running GetComponent once and storing the value to be read directly whenever it's needed. I've changed the code to that way.
 
     void Awake()
     {
-        coll = GetComponent<Collider>();
-        if (coll == null) {
-            Debug.LogError("BuffZone needs a Collider component.");
-        } else {
-            coll.isTrigger = true; // Ensure it's a trigger.
-        }
-
-         var rb = GetComponent<Rigidbody>();
-     if (rb == null) rb = gameObject.AddComponent<Rigidbody>();
-     rb.isKinematic = true;         // so physics won’t move it
-     rb.useGravity = false;  
         toppingLayer = LayerMask.GetMask("Topping");
+        GetComponentInChildren<SphereCollider>().radius = GetComponentInChildren<TargetingSystem>().GetRange();
     }
 
 /*
@@ -99,49 +85,49 @@ public class BuffZone : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         Debug.Log("OnTriggerEnter called");
 
-    // 1) Layer check
-    if ((toppingLayer & (1 << other.gameObject.layer)) == 0)
-        return;
-    Debug.Log("Object is on topping layer");
+        // 1) Layer check
+        if ((toppingLayer & (1 << other.gameObject.layer)) == 0)
+            return;
+        Debug.Log("Object is on topping layer");
 
-    // 2) Find the ToppingObjectScript on parent
-    var toppingObj = other.GetComponentInParent<ToppingObjectScript>();
-    if (toppingObj == null)
-    {
-        Debug.Log("  → no ToppingObjectScript found");
-        return;
-    }
-    Debug.Log("Object has ToppingObjectScript");
+        // 2) Find the ToppingObjectScript on parent
+        var toppingObj = other.GetComponentInParent<ToppingObjectScript>();
+        if (toppingObj == null)
+        {
+            Debug.Log("  → no ToppingObjectScript found");
+            return;
+        }
+        Debug.Log("Object has ToppingObjectScript");
 
-    // 3) Flag filter
-    if ((toppingObj.topping.flags & flags) == 0)
-    {
-        Debug.Log("  → topping flags do not match");
-        return;
-    }
-    Debug.Log("Object has the required topping flags");
+        // 3) Flag filter
+        if ((toppingObj.topping.flags & flags) == 0)
+        {
+            Debug.Log("  → topping flags do not match");
+            return;
+        }
+        Debug.Log("Object has the required topping flags");
 
-    // 4) Find BuffManager on the same root
-    var buffManager = other.GetComponentInParent<BuffManager>();
-    if (buffManager == null)
-    {
-        Debug.Log("  → no BuffManager found");
-        return;
-    }
-    Debug.Log("Found BuffManager");
+        // 4) Find BuffManager on the same root
+        var buffManager = other.GetComponentInParent<BuffManager>();
+        if (buffManager == null)
+        {
+            Debug.Log("  → no BuffManager found");
+            return;
+        }
+        Debug.Log("Found BuffManager");
 
 
-    // 6) Finally apply buff if new
-    if (!affectedToppings.Contains(buffManager))
-    {
-        Debug.Log("Calling AddBuff()");
-        buffManager.AddBuff(this);
-        affectedToppings.Add(buffManager);
-    }
-    else
-    {
-        Debug.Log("  → buff already applied to this tower");
-    }
+        // 6) Finally apply buff if new
+        if (!affectedToppings.Contains(buffManager))
+        {
+            Debug.Log("Calling AddBuff()");
+            buffManager.AddBuff(this);
+            affectedToppings.Add(buffManager);
+        }
+        else
+        {
+            Debug.Log("  → buff already applied to this tower");
+        }
     }
 
     // When an object leaves the trigger zone:
@@ -167,13 +153,9 @@ public class BuffZone : MonoBehaviour {
     void OnDestroy() {
         foreach (BuffManager buffManager in affectedToppings)
         {
+            if (buffManager == null) { continue; }
             buffManager.RemoveBuff(this, buffManager.GetComponentInParent<AttackManager>());
         }
-    }
-
-    void OnDrawGizmosSelected() {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, buffRadius);
     }
 }
 

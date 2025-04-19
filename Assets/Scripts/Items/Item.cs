@@ -44,6 +44,7 @@ public abstract class Item : ScriptableObject
                 }
             }
         }
+        
     }
 
     /// <summary>

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class IngameUI : MonoBehaviour
 {
@@ -26,5 +27,25 @@ public class IngameUI : MonoBehaviour
     {
         goalScoreText.text = "Next goal: " + goal;
         goalRoundText.text = "by round " + roundNumber;
+    }
+
+    bool speedupToggled = false; 
+    [SerializeField] Color speedUpButtonUntoggled;
+    [SerializeField] Color speedUpButtonToggled;
+    [SerializeField] Image speedUpButton;
+    [SerializeField] TMPro.TextMeshProUGUI speedUpButtonText;
+    public void PressSpeedUpButton()
+    {
+        if (speedupToggled)
+        {
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            Time.timeScale = 2f;
+        }
+        speedupToggled = !speedupToggled;
+        speedUpButton.color = speedupToggled ? speedUpButtonToggled : speedUpButtonUntoggled;
+        speedUpButtonText.text = speedupToggled ? "2x" : "1x";
     }
 }

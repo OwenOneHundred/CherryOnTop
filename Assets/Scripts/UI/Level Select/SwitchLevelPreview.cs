@@ -33,15 +33,14 @@ public class SwitchLevelPreview : MonoBehaviour
         level = new GameObject[levelPreviews.Length];
         moveButton.onClick.AddListener(OnForwardsButtonClick);
         
-        
         backButton.SetActive(false);
         for (int i = 0; i < levelPreviews.Length; i++)
         {
             Spawn(levelPreviews[i]);
             
             level[i] = levelPreviews[i].levelPrefab;
-            
         }
+
         InstantiateBaseBox();
     }
 
@@ -50,10 +49,11 @@ public class SwitchLevelPreview : MonoBehaviour
         preview.levelPrefab = Instantiate(preview.emptyLevelPrefab);
         GameObject panel = preview.levelPrefab.transform.GetChild(0).gameObject;
         panel.GetComponent<UnityEngine.UI.Image>().sprite = preview.levelImage;
-        GameObject sceneChangeButton = preview.levelPrefab.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
+        GameObject sceneChangeButton = preview.levelPrefab.transform.GetChild(0).GetChild(0).gameObject;
         sceneChangeButton.GetComponent<PlayButton>().sceneName = preview.sceneNameInEditor;
         LoadButton loadButton = preview.levelPrefab.GetComponentInChildren<LoadButton>();
         loadButton.sceneName = preview.sceneNameInEditor;
+        loadButton._levelNameIngame = preview.sceneNameIngame;
     }
 
     private void Update()
@@ -146,6 +146,8 @@ public class SwitchLevelPreview : MonoBehaviour
             return; 
         }
         GameObject newLevel = Instantiate(level[levelIndex], new Vector3(xpos, 0, 0), Quaternion.identity, canvasTransform);
+        newLevel.transform.SetSiblingIndex(1);
+        newLevel.transform.GetChild(0).Find("SceneName").GetComponent<TMPro.TextMeshProUGUI>().text = level[levelIndex].GetComponentInChildren<LoadButton>()._levelNameIngame;
         previousLoadedLevel = loadedLevel;
         loadedLevel = newLevel;
         newLevel.transform.localPosition = new Vector3(xpos, 0, 0); // Set local position relative to the parent
@@ -154,6 +156,8 @@ public class SwitchLevelPreview : MonoBehaviour
     void InstantiateBaseBox()
     {
         GameObject baseBox = Instantiate(level[0], Vector3.zero, Quaternion.identity, canvasTransform);
+        baseBox.transform.GetChild(0).Find("SceneName").GetComponent<TMPro.TextMeshProUGUI>().text = level[0].GetComponentInChildren<LoadButton>()._levelNameIngame;
+        baseBox.transform.SetSiblingIndex(1);
         loadedLevel = baseBox;
         baseBox.transform.localPosition = Vector3.zero; // Set local position relative to the parent
     }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0237efc63aff42fba4c44c81a34042b, type: 3}
   m_Name: TopHatAttack
   m_EditorClassIdentifier: 
-  cooldown: 0.95
+  cooldown: 0.9
   damage: 10
   debuffs: []
   projectile: {fileID: 9120266674150736113, guid: 834a7e66475c24b6ca8178adfd9eba84, type: 3}

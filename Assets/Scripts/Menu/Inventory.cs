@@ -182,4 +182,38 @@ public class Inventory : MonoBehaviour
     {
         bufferedMoneyChanges.Add(change);
     }
+
+    readonly int yarnAmountMultiplier = 4;
+    public int GetStackCount()
+    {
+        return ownedItems.Select(x => x.name).Distinct().Count();
+    }
+
+    public int GetBiggestStack(bool countYarnMultiplier)
+    {
+        if (ownedItems.Count == 0) { return 0; }
+        Dictionary<string, int> values = new();
+
+        foreach (Item item in ownedItems)
+        {
+            int increaseAmount = 1;
+            if (countYarnMultiplier && item.name == "Yarn") { increaseAmount = yarnAmountMultiplier; }
+            if (values.ContainsKey(item.name))
+            {
+                values[item.name] += increaseAmount;
+                Debug.Log(values[item.name]);
+            }
+            else
+            {
+                values.Add(item.name, increaseAmount);
+            }
+        }
+        return values.Select(x => x.Value).Max();
+    }
+
+    public int GetInventoryCount(bool countYarnMultiplier)
+    {
+        int yarnAmount = countYarnMultiplier ? ownedItems.Select(x => x.name == "Yarn").Count() * (yarnAmountMultiplier - 1) : 0;
+        return ownedItems.Count + yarnAmount;
+    }
 }

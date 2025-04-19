@@ -44,4 +44,9 @@ public abstract class ToppingAttack : ScriptableObject
 
     }
 
+    public virtual int GetVisibleDamage()
+    {
+        return damage;
+    }
+
 }

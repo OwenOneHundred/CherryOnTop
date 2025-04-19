@@ -117,9 +117,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cherryDebuffs:
   - {fileID: 11400000, guid: ef3d28925d78448a18ce594b85de52db, type: 2}
-  maxHits: 5
+  maxHits: 15
   startHeight: 3
   fallSpeed: 12
+  delayTime: 0.2
+  stopHeightOffset: 0
 --- !u!136 &6317505062270889204
 CapsuleCollider:
   m_ObjectHideFlags: 0

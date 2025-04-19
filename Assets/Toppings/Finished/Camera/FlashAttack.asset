@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c800f951eb64d548b6ac90c1de93f9, type: 3}
+  m_Name: FlashAttack
+  m_EditorClassIdentifier: 
+  cooldown: 4
+  damage: 10
+  debuffs:
+  - {fileID: 11400000, guid: 174cc4770ced2437aa141842a7fe9f59, type: 2}
+  pierce: 30
+  cakeLayer:
+    serializedVersion: 2
+    m_Bits: 0

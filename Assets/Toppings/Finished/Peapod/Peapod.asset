@@ -16,7 +16,8 @@ MonoBehaviour:
   shopSprite: {fileID: 21300000, guid: 327ddfa7d4ef7405f9ae71f41d663ed5, type: 3}
   effectsAndWhen: []
   description: Drops a giant pea on the track that rolls backward along the track
-    and damages the first 5 cherries it hits on that strip of track.
+    and damages the first 5 cherries it hits.
+  rarity: 0
   towerPrefab: {fileID: 5768842945418701966, guid: 24e6a02a670924c93b7c00e6bd90b6ac, type: 3}
   flags: 48
   cakePoints: 5

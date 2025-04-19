@@ -79,6 +79,7 @@ public class InventoryRenderer : MonoBehaviour
 
     public int RemoveOneFromItemFromDisplay(Item item)
     {
+        Debug.Log("here");
         if (item is not Topping topping) { return 0; } // Remove this once there's functionality for ingredients in display
 
         ItemAndObj itemAndObj = displayList.First(x => x.item == topping);
@@ -150,7 +151,7 @@ public class InventoryRenderer : MonoBehaviour
     
     private void UpdatePageCount()
     {
-        pages = (Inventory.inventory.ownedItems.Count() / amountPerPage) + 1;
+        pages = Mathf.Clamp(Mathf.CeilToInt(Inventory.inventory.GetStackCount() / (float) amountPerPage), 1, 999);
         if (currentPage > pages)
         {
             currentPage = pages;

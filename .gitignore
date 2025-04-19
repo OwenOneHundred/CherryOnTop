@@ -73,3 +73,5 @@ crashlytics-build.properties
 .vsconfig
 /Packages
 Assets/TextMesh Pro/Fonts/PlaywriteTZ-VariableFont_wght SDF.asset
+Assets/Sprites/UI/ScrollingDiamonMat.mat
+Assets/Sprites/UI/ScrollingCherryMat.mat

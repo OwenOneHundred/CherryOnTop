@@ -11,7 +11,7 @@ public class CherryHitbox : MonoBehaviour
     [SerializeField] AudioFile deathSound;
     [SerializeField] GameObject onDamagedPS;
     [SerializeField] GameObject damageNumberPrefab;
-    [SerializeField] bool spawnDamageNumbers = true;
+    [SerializeField] bool spawnDamageNumbers = false;
     bool dead = false;
 
     public void Awake()
@@ -40,8 +40,14 @@ public class CherryHitbox : MonoBehaviour
         if (spawnDamageNumbers) { SpawnDamageNumbers(Mathf.FloorToInt(damage)); }
 
         debuffManager.OnDamaged(damage);
+        OnTakeDamage();
 
         return cherryHealth;
+    }
+
+    public virtual void OnTakeDamage()
+    {
+        // should be overridden by child classes
     }
 
     private void SpawnDamageNumbers(int damage)
@@ -51,7 +57,7 @@ public class CherryHitbox : MonoBehaviour
         newNumber.transform.position = transform.position + new Vector3 (0, 1, 0);
     }
 
-    private void Die()
+    protected void Die()
     {
         dead = true;
         CherryManager.Instance.OnCherryKilled(GetComponent<CherryMovement>());

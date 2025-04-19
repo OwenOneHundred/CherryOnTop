@@ -16,7 +16,7 @@ MonoBehaviour:
   shopSprite: {fileID: 21300000, guid: ec9be9929db0b47ee80c4587ca16a683, type: 3}
   effectsAndWhen: []
   description: Launches shockwaves that inflict the chocolate effect. Chocolated
-    cherries take double damage from hot attacks.
+    cherries take double damage from hot attacks. (Chocolate doesn't stack)
   rarity: 1
   towerPrefab: {fileID: 449745754928225580, guid: eb70e76209c2b4a99976fdc60f25c42a, type: 3}
   flags: 2

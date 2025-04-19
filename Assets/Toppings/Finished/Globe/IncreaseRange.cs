@@ -18,7 +18,8 @@ public class IncreaseRange : EffectSO
             range = targetingSystem.GetRange();
             firstCall = false;
         }
-        targetingSystem.SetRange(range * (1 + percentageToChangeRange));
+        range *= 1 + percentageToChangeRange;
+        targetingSystem.SetRange(range);
         ToppingActivatedGlow toppingGlow = GetToppingActivatedGlow();
         if (toppingGlow != null) {
             toppingGlow.StartNewFireEffect("ChangeRange", Color.yellow, 3);

@@ -766,6 +766,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b08a3f95245044847afbd0298274bfb4, type: 2}
   - {fileID: 11400000, guid: 33aead3dbac0f433c9669456ab41b1b7, type: 2}
   - {fileID: 11400000, guid: 49aa7e781e6674cd38869265dbf3554d, type: 2}
+  - {fileID: 11400000, guid: 59eb2b5f8656e43adbffe6c00fee0e25, type: 2}
   itemParent: {fileID: 7862030300564659347}
   rerollsText: {fileID: 4060922254059177220}
   rerollButtonText: {fileID: 4712727569409509211}

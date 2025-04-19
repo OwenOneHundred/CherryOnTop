@@ -14,7 +14,6 @@ public class GetMoneyIfCherryDiedWasFrozen : EffectSO
         if (Random.value > chanceOfHappening0to1) { return; }
         if (eventObject is CherryDiesEvent diesEvent)
         {
-            Debug.Log(Vector3.Distance(toppingObj.transform.position, diesEvent.cherry.transform.position));
             if (useRadius && (Vector3.Distance(toppingObj.transform.position, diesEvent.cherry.transform.position) > targetingSystem.GetRange())) { return; }
             if (diesEvent.cherry.GetComponentInChildren<DebuffManager>().HasDebuffType(CherryDebuff.DebuffType.freeze))
             {

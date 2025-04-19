@@ -9,9 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b9bf699661ae49e3b2ba7ca69eca979, type: 3}
-  m_Name: No Attack
+  m_Script: {fileID: 11500000, guid: 01c800f951eb64d548b6ac90c1de93f9, type: 3}
+  m_Name: FlashAttack
   m_EditorClassIdentifier: 
-  cooldown: 0
-  damage: 0
-  debuffs: []
+  cooldown: 4
+  damage: 10
+  debuffs:
+  - {fileID: 11400000, guid: 174cc4770ced2437aa141842a7fe9f59, type: 2}
+  pierce: 30
+  cakeLayer:
+    serializedVersion: 2
+    m_Bits: 0

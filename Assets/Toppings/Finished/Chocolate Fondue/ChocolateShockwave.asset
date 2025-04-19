@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChocolateShockwave
   m_EditorClassIdentifier: 
   cooldown: 0.7
-  damage: 7
+  damage: 6
   debuffs: []
   projectile: {fileID: 0}
   projectileSpeed: 0

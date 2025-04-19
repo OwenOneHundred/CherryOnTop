@@ -60,6 +60,6 @@ public class CherryBombHitbox : CherryHitbox
             }
         }
 
-        Destroy(gameObject);
+        Die();
     }
 }

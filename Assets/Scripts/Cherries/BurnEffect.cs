@@ -22,9 +22,15 @@ public class BurnEffect : CherryDebuff
         cherryHitbox = cherry.GetComponent<CherryHitbox>();
 
         firePSObj = Instantiate(fireParticleSystemPrefab, cherry.transform.position, Quaternion.identity, cherry.transform);
-        ParticleSystem.ShapeModule shape = firePSObj.GetComponent<ParticleSystem>().shape;
-        shape.mesh = cherry.transform.GetChild(0).GetComponent<MeshFilter>().sharedMesh;
         firePSObj.transform.localScale = cherry.transform.GetChild(0).localScale;
+
+        // actual scrub code lmao. Breaks open/close bc this number is balancing related, breaks responsibility separation
+        // but look man, it's literally ONE line and it does something that requires 2 classes
+        // so if you're reading this SHHHHHHHHHHH
+        if (cherry.GetComponent<DebuffManager>().HasDebuffType(DebuffType.fondue))
+        {
+            dps *= 2;
+        }
     }
 
     public override void OnRemoved(GameObject cherry)

@@ -1346,34 +1346,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: startingInventoryItems.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: 'startingInventoryItems.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 1a7d1419538e34493891572cced33a96, type: 2}
-    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: 'startingInventoryItems.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: f652f189027e742ac937041cf8e7bac1, type: 2}
-    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: 'startingInventoryItems.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: f652f189027e742ac937041cf8e7bac1, type: 2}
-    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: 'startingInventoryItems.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 86dbcbf8bdcb846c39632dd0677ed90e, type: 2}
-    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: 'startingInventoryItems.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 86dbcbf8bdcb846c39632dd0677ed90e, type: 2}
-    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: 'startingInventoryItems.Array.data[5]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 86dbcbf8bdcb846c39632dd0677ed90e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

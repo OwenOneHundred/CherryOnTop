@@ -22,9 +22,8 @@ public class PoisonEffect : CherryDebuff
         
         // Adding particles to cherry
         this.cherry = cherry;
-        cherryHitbox = cherry.transform.root.GetComponent<CherryHitbox>();
-        poisonPSObj = Instantiate(poisonParticleSystemPrefab, this.cherry.transform.position, Quaternion.identity, this.cherry.transform);
-        poisonPSObj.transform.localScale = this.cherry.transform.GetChild(0).lossyScale;
+        poisonPSObj = Instantiate(poisonPSObj, cherry.transform.position, Quaternion.identity, cherry.transform);
+        poisonPSObj.transform.localScale = cherry.transform.GetChild(0).localScale;
     }
 
     public override void OnRemoved(GameObject cherry)

@@ -15,7 +15,7 @@ MonoBehaviour:
   movementSpeedMultiplier: 1
   typesThatGetDamageMultiplier: 2
   damageMultiplier: 2
-  debuffType: 0
+  debuffType: 8
   effectDuration: 1
   onAppliedSFX:
     volume: 0.5

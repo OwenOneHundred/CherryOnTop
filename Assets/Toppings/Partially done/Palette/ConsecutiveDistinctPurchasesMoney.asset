@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841aea2e082be4749bbf9997bf76bd40, type: 3}
   m_Name: ConsecutiveDistinctPurchasesMoney
   m_EditorClassIdentifier: 
+  triggeredSound:
+    volume: 0.5
+    clip: {fileID: 8300000, guid: f3d588b4253cf485a8f52fe8243eb690, type: 3}
   number: 5

@@ -18,8 +18,8 @@ MonoBehaviour:
   projectile: {fileID: 0}
   projectileSpeed: 0
   fireSound:
-    volume: 0.5
-    clip: {fileID: 0}
+    volume: 0.2
+    clip: {fileID: 8300000, guid: e9b2d5b4eb8854fb98d59bed33201831, type: 3}
   shockwave: {fileID: 5503282234501958175, guid: 5921180e306e7469588b64667bbb8288, type: 3}
   speed: 3
   range: 3.5

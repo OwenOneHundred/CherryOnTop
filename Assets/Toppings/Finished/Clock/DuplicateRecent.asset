@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4150f2675774d441ca61346dfa8c2981, type: 3}
   m_Name: DuplicateRecent
   m_EditorClassIdentifier: 
+  triggeredSound:
+    volume: 0.2
+    clip: {fileID: 8300000, guid: 1337fae6ef3674ab3b278dfe09df0433, type: 3}

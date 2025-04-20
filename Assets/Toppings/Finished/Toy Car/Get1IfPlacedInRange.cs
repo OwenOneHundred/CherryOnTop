@@ -26,6 +26,7 @@ public class Get1IfPlacedInRange : EffectSO
             if (Vector3.Distance(toppingObj.transform.position, towerPlacedEvent.newToppingObj.transform.position) <= toppingObj.GetComponentInChildren<TargetingSystem>().GetRange())
             {
                 Inventory.inventory.Money += 1;
+                PlayTriggeredSound();
                 ToppingActivatedGlow toppingActivatedGlow = GetToppingActivatedGlow();
                 if (toppingActivatedGlow != null)
                 {

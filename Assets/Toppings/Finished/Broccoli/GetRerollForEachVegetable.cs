@@ -13,7 +13,9 @@ public class GetRerollForEachToppingOfType : EffectSO
         {
             if (Random.value <= chanceOfHappening0to1)
             {
+                GetToppingActivatedGlow().StartNewFireEffect("Green", Color.green, 2);
                 Shop.shop.Rerolls += 1;
+                PlayTriggeredSound();
             }
         }
 

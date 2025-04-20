@@ -12,6 +12,7 @@ public class GetCommonOnBoughtUncommon : EffectSO
             var allCommons = Shop.shop.availableItems.Where(x => x.rarity == ToppingTypes.Rarity.Common).ToList();
             Item randomCommon = allCommons[Random.Range(0, allCommons.Count)];
             Inventory.inventory.AddItem(randomCommon);
+            PlayTriggeredSound();
             GetToppingActivatedGlow().StartNewFireEffect("Fire", Color.yellow, 2);
         }
     }

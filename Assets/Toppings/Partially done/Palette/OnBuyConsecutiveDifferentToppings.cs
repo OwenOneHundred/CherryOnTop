@@ -23,6 +23,10 @@ public class OnBuyConsecutiveDifferentToppings : EffectSO
             {
                 Inventory.inventory.Money += 4;
 
+                GetToppingActivatedGlow().StartNewFireEffect("Red", Color.red, 2);
+
+                PlayTriggeredSound();
+
                 recentToppings.Clear();
             }
         }

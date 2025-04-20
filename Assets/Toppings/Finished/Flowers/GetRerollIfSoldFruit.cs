@@ -13,6 +13,7 @@ public class GetRerollIfSoldFruit : EffectSO
             {
                 Shop.shop.Rerolls += 1;
                 GetToppingActivatedGlow().StartNewFireEffect("Red", Color.red, 2);
+                PlayTriggeredSound();
             }
         }
     }

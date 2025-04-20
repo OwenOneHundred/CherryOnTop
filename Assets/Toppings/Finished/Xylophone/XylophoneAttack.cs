@@ -9,6 +9,8 @@ public class XylophoneAttack : SimpleAttack
     float pitchBend = -0.5f;
     readonly int pitchBendCount = 6;
     int pitchBendCounter = 0;
+    [SerializeField] AudioFile scaleSound;
+    ToppingActivatedGlow toppingActivatedGlow;
     public override void OnStart()
     {
         baseCooldown = cooldown;
@@ -16,10 +18,16 @@ public class XylophoneAttack : SimpleAttack
 
     public override void EveryFrame()
     {
+        if (toppingActivatedGlow == null) { toppingActivatedGlow = toppingObj.transform.root.GetComponentInChildren<ToppingActivatedGlow>();}
         int count = Inventory.inventory.GetInventoryCount(false);
         if (count != lastFrameOwnedItems)
         {
-            cooldown = Mathf.Clamp(baseCooldown - (scaleAmountPerItem * Inventory.inventory.GetBiggestStack(true)), 0.05f, baseCooldown);
+            float newCooldown = Mathf.Clamp(baseCooldown - (scaleAmountPerItem * Inventory.inventory.GetBiggestStack(true)), 0.05f, baseCooldown);
+            if (newCooldown < cooldown) {
+                SoundEffectManager.sfxmanager.PlayOneShot(scaleSound);
+                toppingActivatedGlow.StartNewFireEffect("Purple", Color.magenta, 2.5f);
+            }
+            cooldown = newCooldown;
             lastFrameOwnedItems = count;
         }
     }

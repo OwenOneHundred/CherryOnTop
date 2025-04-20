@@ -15,6 +15,7 @@ public class GetDuplicateOfRecent : EffectSO
 
             Inventory.inventory.GetItemForFree(Shop.shop.mostRecentlyBoughtItem);
             GetToppingActivatedGlow().StartNewFireEffect("Yellow", Color.yellow, 2);
+            PlayTriggeredSound();
         }
     }
 }

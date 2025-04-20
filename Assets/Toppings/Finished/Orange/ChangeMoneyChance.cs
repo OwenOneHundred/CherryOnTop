@@ -11,6 +11,7 @@ public class ChangeMoneyChance : EffectSO
         if (Random.value <= chanceOfHappening0to1)
         {
             Inventory.inventory.Money += amountToChangeMoney;
+            GetToppingActivatedGlow().StartNewFireEffect("Orange", new Color(1, 0.57f, 0.2f), 2);
         }
     }
 }

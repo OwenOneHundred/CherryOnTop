@@ -132,6 +132,13 @@ public class Inventory : MonoBehaviour
         return inventoryRenderer.RemoveOneFromItemFromDisplay(item); 
     }
 
+    public int RemoveItemByID(Guid id)
+    {
+        int index = ownedItems.FindIndex(x => x.ID.Equals(id));
+        if (index >= 0) ownedItems.RemoveAt(index);
+        return inventoryRenderer.RemoveOneByIDFromDisplay(id);
+    }
+
     float moneyChangeTimer = 0;
 
     public void Update()

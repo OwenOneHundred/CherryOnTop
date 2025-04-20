@@ -56,7 +56,6 @@ public abstract class Item : ScriptableObject
                         effectSO.toppingObj = toppingObj;
                     }
                     eventSO.RegisterEffect(effectSO);
-                    Debug.Log(ID.ToString() + ": Registered effect " + effectSO.name + " under event " + eventSO.name);
                 }
             }
         }

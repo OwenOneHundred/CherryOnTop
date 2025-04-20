@@ -19,7 +19,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 80c0ab2a4b735499ea6d5cad11474126, type: 2}
     eventSOs:
     - {fileID: 11400000, guid: 61a179cbcbc324e68b5581dcdf2f2cb9, type: 2}
-  description: 'No attack. Gain $4 if money ends with 0 (EX: 0, 10, 20, 150) at round
+  description: 'No attack. Gain $3 if money ends with 0 (EX: 0, 10, 20, 150) at round
     start.'
   rarity: 0
   towerPrefab: {fileID: 3168703936671645054, guid: 9637d26c2e2d74f2cae7d29bc25a49d4, type: 3}

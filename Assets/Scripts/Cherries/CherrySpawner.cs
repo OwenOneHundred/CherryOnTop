@@ -23,6 +23,7 @@ public class CherrySpawner : MonoBehaviour
     readonly int specialtyCherryRoundCap = 8;
     public List<SpecialtyCherry> specialtyCherries = new List<SpecialtyCherry>();
     [SerializeField] bool doSpecialtyCherrySpawning = false;
+    public List<RoundScalingMultipliers> roundScalingMultipliers = new List<RoundScalingMultipliers>();
 
     private void Start()
     {
@@ -38,7 +39,7 @@ public class CherrySpawner : MonoBehaviour
     IEnumerator RoundCoroutine()
     {
         bool roundNumberIsOdd = RoundManager.roundManager.roundNumber % 2 == 1;
-        float scaleFactor = (Mathf.Pow(RoundManager.roundManager.roundNumber, 1.1f) / 2.5f) + 0.6f;
+        float scaleFactor = (Mathf.Pow(RoundManager.roundManager.roundNumber, difficultyScalingAmount) / 2.5f) + 0.6f;
         int totalCherries = Mathf.RoundToInt(scaleFactor * defaultCherriesPerRound * (roundNumberIsOdd ? oddNumberCherryCountMultiplier : 1));
         RoundManager.roundManager.totalCherriesThisRound = totalCherries;
         float timeBetweenCherries = defaultTimeBetweenCherries / (scaleFactor * (roundNumberIsOdd ? 1 : evenNumberCherrySpacingMultiplier));
@@ -110,5 +111,12 @@ public class CherrySpawner : MonoBehaviour
         }
         
         cherryTypes.SetCherryHealthAndSpeed();
+    }
+
+    [System.Serializable]
+    public class RoundScalingMultipliers
+    {
+        public int startRoundNumber = 1;
+        public float multiplier = 1;
     }
 }

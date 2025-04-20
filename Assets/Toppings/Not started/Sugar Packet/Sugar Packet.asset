@@ -15,7 +15,10 @@ MonoBehaviour:
   price: 5
   shopSprite: {fileID: 21300000, guid: 5ca9310e22e0d4f3793504f0c8e6f830, type: 3}
   effectsAndWhen: []
-  description: Shoots a stream of sugar.
+  description: 'Shoots a stream of sugar.
+
+    Bonus - Sugar Rush: Boosts dmg of
+    nearby sugar-related toppings ("Fruit, "Sweet", "Candy") by 20%'
   rarity: 0
   towerPrefab: {fileID: 2202449905636776714, guid: e52be3d400dc142c3a757a8bd0a68232, type: 3}
   flags: 128

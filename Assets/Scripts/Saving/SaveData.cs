@@ -77,6 +77,18 @@ namespace GameSaves
             return data.Remove(dataName);
         }
 
+        public T GetOrDefault<T>(string dataName, T defaultValue) where T : DataEntry
+        {
+            if (TryGetDataEntry(dataName, out T existingEntry))
+            {
+                return existingEntry;
+            } else
+            {
+                SetDataEntry(dataName, defaultValue);
+                return defaultValue;
+            }
+        }
+
         public string saveFileName { get; protected set; }
         public string saveLevelName { get;protected set; }
         public SaveData(string saveFile, bool load = false) : this(saveFile, null, load)

@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -82,6 +84,24 @@ public class InventoryRenderer : MonoBehaviour
         if (item is not Topping topping) { return 0; } // Remove this once there's functionality for ingredients in display
 
         ItemAndObj itemAndObj = displayList.First(x => x.item == topping);
+        InventoryIconControl iconControl = itemAndObj.obj.GetComponent<InventoryIconControl>();
+
+        iconControl.AmountInStack -= 1;
+        if (iconControl.AmountInStack <= 0)
+        {
+            Destroy(itemAndObj.obj);
+            displayList.Remove(itemAndObj);
+        }
+
+        UpdatePageCount();
+        UpdateAllIconPositions();
+
+        return iconControl.AmountInStack;
+    }
+
+    public int RemoveOneByIDFromDisplay(Guid id)
+    {
+        ItemAndObj itemAndObj = displayList.First(x => x.item.ID.Equals(id));
         InventoryIconControl iconControl = itemAndObj.obj.GetComponent<InventoryIconControl>();
 
         iconControl.AmountInStack -= 1;

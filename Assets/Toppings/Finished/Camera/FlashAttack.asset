@@ -20,3 +20,6 @@ MonoBehaviour:
   cakeLayer:
     serializedVersion: 2
     m_Bits: 0
+  attackSound:
+    volume: 0.2
+    clip: {fileID: 8300000, guid: 0839c59aa0e524deea0cbf80884ccd6d, type: 3}

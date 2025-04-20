@@ -118,7 +118,14 @@ public class LevelManager : MonoBehaviour
         {
             Debug.LogWarning("LevelManager Instance already set!!! Destroying this new one: " + gameObject.name);
             Destroy(gameObject);
+            return;
         }
+
+
+        Debug.Log("Initializing achievements...");
+        AchievementsTracker tracker = AchievementsTracker.Instance;
+        tracker._encryptData = _encryptData;
+        tracker.MarkLevelAsCompleted(-1);
     }
 
     protected bool _validInstance = true;
@@ -137,15 +144,16 @@ public class LevelManager : MonoBehaviour
                 int extIndex = saveFileName.IndexOf(SaveDataFileUtility._saveFileExtension);
                 while (extIndex >= 0)
                 {
-                    saveFileName = saveFileName.Substring(0, extIndex) + 
-                        (extIndex + SaveDataFileUtility._saveFileExtension.Length < saveFileName.Length 
-                            ? saveFileName.Substring(extIndex + SaveDataFileUtility._saveFileExtension.Length) 
+                    saveFileName = saveFileName.Substring(0, extIndex) +
+                        (extIndex + SaveDataFileUtility._saveFileExtension.Length < saveFileName.Length
+                            ? saveFileName.Substring(extIndex + SaveDataFileUtility._saveFileExtension.Length)
                             : "");
                     extIndex = saveFileName.IndexOf(SaveDataFileUtility._saveFileExtension);
                 }
                 _saveFileName = saveFileName;
                 _saveData = SaveDataUtility.LoadSaveData(this.saveFileName, levelName);
-            } else
+            }
+            else
             {
                 _saveData = SaveDataUtility.CreateSaveData(this.saveFileName, levelName);
             }

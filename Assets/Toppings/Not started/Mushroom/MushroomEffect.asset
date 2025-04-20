@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03929da0df2d94f919847b854582e986, type: 3}
   m_Name: MushroomEffect
   m_EditorClassIdentifier: 
-  chance: 1
+  chance: 0.5

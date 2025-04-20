@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a0f673c33c444be9f9d9e977e8e995, type: 3}
   m_Name: MoneyStrawberry
   m_EditorClassIdentifier: 
+  triggeredSound:
+    volume: 0.5
+    clip: {fileID: 0}
   endingNumber: 48
-  moneyChange: 4
+  moneyChange: 3

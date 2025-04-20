@@ -41,7 +41,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         nameText.text = item.name;
         description.text = item.description;
         sellPrice = item.price / 2;
-        sellPriceText.text = "Sell: $" + sellPrice;
+        sellPriceText.text = "$" + sellPrice;
         this.toppingObj = toppingObj;
         gameObject.SetActive(true);
     }
@@ -59,7 +59,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         nameText.text = item.name;
         description.text = item.description;
         sellPrice = item.price / 2;
-        sellPriceText.text = "Sell: $" + sellPrice;
+        sellPriceText.text = "$" + sellPrice;
         gameObject.SetActive(true);
     }
 

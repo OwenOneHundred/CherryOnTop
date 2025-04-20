@@ -16,5 +16,5 @@ MonoBehaviour:
     volume: 0.2
     clip: {fileID: 0}
   amountToChangeMoney: 1
-  chanceOfHappening0to1: 0.5
+  chanceOfHappening0to1: 0.25
   useRadius: 1

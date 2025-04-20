@@ -96,6 +96,11 @@ public class AchievementsTracker : MonoBehaviour
             levelsDE.completedLevels.Add(level);
         else
             levelsDE.completedLevels.Remove(level);
+        UpdateSaveData();
+    }
+
+    public void UpdateSaveData()
+    {
         SaveDataUtility._useEncryptions = _encryptData;
         SaveDataUtility.WriteSaveData(saveData);
         Debug.Log("Updated achievements data!");

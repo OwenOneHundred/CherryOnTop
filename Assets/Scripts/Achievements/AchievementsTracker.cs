@@ -64,38 +64,47 @@ public class AchievementsTracker : MonoBehaviour
         if (_initialized) return;
 
         SaveData data = saveData;
-        List<int> levels = new List<int>();
-        CompletedLevelsDE levelsDE = saveData.GetOrDefault(completedLevelName, new CompletedLevelsDE(completedLevelName, new List<int>()));
+        List<CompletedLevelDifficulty> levels = new List<CompletedLevelDifficulty>();
+        CompletedLevelsDE levelsDE = saveData.GetOrDefault(completedLevelName, new CompletedLevelsDE(completedLevelName, new List<CompletedLevelDifficulty>()));
         levels = levelsDE.completedLevels;
         Debug.Log("Initialized Achievements. Current levels completed: " + string.Join(", ", levels));
 
         _initialized = true;
     }
 
-    public List<int> GetCompletedLevels()
+    public List<CompletedLevelDifficulty> GetCompletedLevels()
     {
-        CompletedLevelsDE levelsDE = saveData.GetOrDefault(completedLevelName, new CompletedLevelsDE(completedLevelName, new List<int>()));
+        CompletedLevelsDE levelsDE = saveData.GetOrDefault(completedLevelName, new CompletedLevelsDE(completedLevelName, new List<CompletedLevelDifficulty>()));
         return levelsDE.completedLevels;
     }
 
-    public bool HasCompletedLevel(int level)
+    public bool HasCompletedLevel(int level, int difficulty)
     {
+        CompletedLevelDifficulty levelDiff = new CompletedLevelDifficulty(level, difficulty);
         if (saveData.TryGetDataEntry(completedLevelName, out CompletedLevelsDE levelsDE))
         {
-            return levelsDE.completedLevels.Contains(level);
+            if (levelsDE.completedLevels.Find(l => l.level == levelDiff.level && l.difficulty == levelDiff.difficulty) != null)
+            {
+                return true;
+            }
         }
         return false;
     }
 
-    public void MarkLevelAsCompleted(int level, bool isCompleted = true)
+    public void MarkLevelAsCompleted(int level, int difficulty, bool isCompleted = true)
     {
-        bool hasCompleted = HasCompletedLevel(level);
+        bool hasCompleted = HasCompletedLevel(level, difficulty);
         if (isCompleted == hasCompleted) return;
-        CompletedLevelsDE levelsDE = saveData.GetOrDefault(completedLevelName, new CompletedLevelsDE(completedLevelName, new List<int>()));
-        if (isCompleted)
-            levelsDE.completedLevels.Add(level);
-        else
-            levelsDE.completedLevels.Remove(level);
+        CompletedLevelDifficulty levelDiff = new CompletedLevelDifficulty(level, difficulty);
+        CompletedLevelsDE levelsDE = saveData.GetOrDefault(completedLevelName, new CompletedLevelsDE(completedLevelName, new List<CompletedLevelDifficulty>()));
+        CompletedLevelDifficulty existing = levelsDE.completedLevels.Find(l => l.level == levelDiff.level && l.difficulty == levelDiff.difficulty);
+        if (existing != null)
+        {
+            levelsDE.completedLevels.Remove(existing);
+        } else
+        {
+            levelsDE.completedLevels.Add(levelDiff);
+        }
         UpdateSaveData();
     }
 
@@ -109,10 +118,22 @@ public class AchievementsTracker : MonoBehaviour
     [System.Serializable]
     public class CompletedLevelsDE : DataEntry
     {
-        [SerializeField] public List<int> completedLevels;
-        public CompletedLevelsDE(string dataName, List<int> levels) : base(dataName)
+        [SerializeField] public List<CompletedLevelDifficulty> completedLevels;
+        public CompletedLevelsDE(string dataName, List<CompletedLevelDifficulty> levels) : base(dataName)
         {
             completedLevels = levels;
+        }
+    }
+
+    [System.Serializable]
+    public class CompletedLevelDifficulty
+    {
+        [SerializeField] public int difficulty;
+        [SerializeField] public int level;
+        public CompletedLevelDifficulty(int difficulty, int level)
+        {
+            this.difficulty = difficulty;
+            this.level = level;
         }
     }
 }

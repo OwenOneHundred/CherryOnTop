@@ -229,10 +229,11 @@ public class ToppingPlacer : MonoBehaviour
 
         if (playSound) { SoundEffectManager.sfxmanager.PlayOneShot(placeSound); }
 
+        Debug.Log("here");
         topping.SetGameObjectOnEffects(newToppingObj);
-        topping.RegisterEffects();
+        topping.RegisterEffects(newToppingObj);
 
-        Inventory.inventory.RemoveOneOfItem(topping); // remove from inventory
+        Inventory.inventory.RemoveItemByID(topping.ID); // remove from inventory
     }
 
     public void PlaceToppingViaLoad(Topping topping, Vector3 position, Quaternion rotation)
@@ -244,7 +245,7 @@ public class ToppingPlacer : MonoBehaviour
         newToppingObj.GetComponent<ToppingObjectScript>().topping = topping; // set topping on object to be read later
         newToppingObj.transform.root.GetComponentInChildren<ToppingObjInteractions>().OnClickedOff();
 
-        topping.RegisterEffects();
+        topping.RegisterEffects(newToppingObj);
         topping.SetGameObjectOnEffects(newToppingObj);
     }
 }

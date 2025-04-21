@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class InventoryRenderer : MonoBehaviour
 {
@@ -96,6 +99,36 @@ public class InventoryRenderer : MonoBehaviour
         UpdateAllIconPositions();
 
         return iconControl.AmountInStack;
+    }
+
+    public int RemoveOneByIDFromDisplay(Item item, Item replacementItem = null)
+    {
+        try
+        {
+            if (item is not Topping topping) return 0;
+            ItemAndObj itemAndObj = displayList.First(x => x.item.name.Equals(topping.name));
+            InventoryIconControl iconControl = itemAndObj.obj.GetComponent<InventoryIconControl>();
+
+            iconControl.AmountInStack -= 1;
+            if (iconControl.AmountInStack <= 0)
+            {
+                Destroy(itemAndObj.obj);
+                displayList.Remove(itemAndObj);
+            }
+            else if (replacementItem != null && replacementItem is Topping replacement)
+            {
+                iconControl.assignedTopping = replacement;
+            }
+
+            UpdatePageCount();
+            UpdateAllIconPositions();
+
+            return iconControl.AmountInStack;
+        } catch (InvalidOperationException exception)
+        {
+            Debug.LogWarning("Error when attempting to remove item: " + item.name + ": " + exception.Message);
+            return 0;
+        }
     }
 
     public void UpdateAllIconPositions()

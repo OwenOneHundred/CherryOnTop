@@ -1,5 +1,9 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MusicController : MonoBehaviour
 {
@@ -10,6 +14,7 @@ public class MusicController : MonoBehaviour
     [System.NonSerialized] public bool playing = true;
     [SerializeField] private bool playOnAwake = true;
     [SerializeField] Song defaultSong;
+    [SerializeField] List<SceneAndSong> scenesAndSongs;
 
     private AudioSource audioSource;
 
@@ -23,6 +28,16 @@ public class MusicController : MonoBehaviour
         if (playOnAwake)
         {
             audioSource.Play();
+        }
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode arg1)
+    {
+        SceneAndSong sceneAndSong = scenesAndSongs.FirstOrDefault(x => x.sceneName == scene.name);
+        if (sceneAndSong != null && audioSource.clip != sceneAndSong.song.clip)
+        {
+            ChangeSong(sceneAndSong.song);
         }
     }
 
@@ -74,5 +89,13 @@ public class MusicController : MonoBehaviour
 
         RecalculateSamples(song);
         audioSource.Play();
+    }
+
+    [System.Serializable]
+    class SceneAndSong
+    {
+        public string sceneName;
+        public Song song;
+
     }
 }

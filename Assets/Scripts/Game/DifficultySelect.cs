@@ -9,33 +9,33 @@ public class DifficultySelect : MonoBehaviour
 
     void Start()
     {
-        difficulty = new Easy(1.14f);
+        difficulty = new Easy(1.12f);
     }
 
     public void PressEasy()
     {
         images[1].color = Color.gray;
         images[2].color = Color.gray;
-        difficulty = new Easy(1.14f);
+        difficulty = new Easy(1.12f);
     }
 
     public void PressMedium()
     {
         images[1].color = Color.white;
         images[2].color = Color.gray;
-        difficulty = new Medium(1.225f);
+        difficulty = new Medium(1.16f);
     }
 
     public void PressHard()
     {
         images[1].color = Color.white;
         images[2].color = Color.white;
-        difficulty = new Hard(1.31f);
+        difficulty = new Hard(1.2f);
     }
 
     public class Difficulty
     {
-        public float value = 1.16f;
+        public float value = 1.12f;
         public virtual void OnRoundStart()
         {
 

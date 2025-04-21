@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af58476a96724777a5456a6708a8634, type: 3}
   m_Name: RerollChanceForEachProduce
   m_EditorClassIdentifier: 
+  triggeredSound:
+    volume: 0.2
+    clip: {fileID: 8300000, guid: f3d588b4253cf485a8f52fe8243eb690, type: 3}
   chanceOfHappening0to1: 0.1
-  type: 16
+  type: 32

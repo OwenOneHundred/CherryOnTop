@@ -30,6 +30,7 @@ public class BuffManager : MonoBehaviour {
             Debug.Log("Base attacks set");
             baseDamage = attackManager.AttackDamage;
             baseCooldown = attackManager.GetAttackCooldown();
+            Debug.Log($"Base Damage: {baseDamage}, Base Cooldown: {baseCooldown}");
         }
 
         if (targetingSystem != null)
@@ -93,7 +94,7 @@ public class BuffManager : MonoBehaviour {
             }
         }
 
-        Debug.Log($"Buffs applied: Cooldown {cooldownMultiplier}, Damage {damageMultiplier}, Range {rangeMultiplier}");
+        Debug.Log($"Buffs applied on {gameObject.name}: Cooldown {cooldownMultiplier}, Damage {damageMultiplier}, Range {rangeMultiplier}");
         // Update the AttackManager and TargetingSystem with the new values
         if (attackManager != null) {
             attackManager.SetAttackCooldown(baseCooldown * cooldownMultiplier);

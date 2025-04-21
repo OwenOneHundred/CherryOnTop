@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa5ddee62ca0e145b2a85463bea3cdf, type: 3}
   m_Name: BurgerAttack
   m_EditorClassIdentifier: 
-  cooldown: 0.5
+  cooldown: 1
   damage: 2
   debuffs: []
   projectile: {fileID: 8446781529688628737, guid: c0997f13448f84fa9a10100a748215b5, type: 3}
-  projectileSpeed: 5
+  projectileSpeed: 6
   fireSound:
     volume: 0.25
     clip: {fileID: 8300000, guid: 5ba3203a8ddc54ad8b3902c70ab5d827, type: 3}

@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d564066e508044479a7f2db6a0fbf7d, type: 3}
   m_Name: DonutAddDamageIfBoughtSweet
   m_EditorClassIdentifier: 
+  triggeredSound:
+    volume: 0.2
+    clip: {fileID: 8300000, guid: 45d125a89e40e4e31925000d1a6d3b4c, type: 3}
   damageChange: 2

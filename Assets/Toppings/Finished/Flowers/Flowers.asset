@@ -20,7 +20,7 @@ MonoBehaviour:
     eventSOs:
     - {fileID: 11400000, guid: 5c002f4c4c477426aaac7cb591501e67, type: 2}
   description: Fires a spread of weak flower petals at cherries, poisoning them.
-    Whenever you sell a fruit, 50% chance to get a free reroll.
+    Whenever you sell a fruit, 75% chance to get a free reroll.
   rarity: 0
   towerPrefab: {fileID: 8348561096287582968, guid: 8d9ab5b472e7a44cfb1423f7145cff73, type: 3}
   flags: 0

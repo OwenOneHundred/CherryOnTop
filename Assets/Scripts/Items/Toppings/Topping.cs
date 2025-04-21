@@ -27,6 +27,16 @@ public class Topping : Item
                 effectsAndWhen[i].effectSOs[j].toppingObj = obj;
             }
         }
+
+        for (int i = 0; i < onHitCherry.Count; i++)
+        {
+            onHitCherry[i].toppingObj = obj;
+        }
+
+        for (int i = 0; i < onKillCherry.Count; i++)
+        {   
+            onKillCherry[i].toppingObj = obj;
+        }
     }
     public int cakePoints = 10;
 

@@ -16,7 +16,7 @@ MonoBehaviour:
   typesThatGetDamageMultiplier: 0
   damageMultiplier: 1
   debuffType: 2
-  effectDuration: 0.25
+  effectDuration: 0.2
   onAppliedSFX:
     volume: 0.25
     clip: {fileID: 8300000, guid: 74a81c3aac12848cc9f9e250a870e596, type: 3}

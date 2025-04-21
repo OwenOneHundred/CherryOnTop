@@ -132,6 +132,27 @@ public class Inventory : MonoBehaviour
         return inventoryRenderer.RemoveOneFromItemFromDisplay(item); 
     }
 
+    public int RemoveItemByID(Guid id)
+    {
+        int index = ownedItems.FindIndex(x => x.ID.Equals(id));
+        if (index >= 0)
+        {
+            Item item = ownedItems[index];
+            ownedItems.RemoveAt(index);
+            Item replacementItem;
+            try
+            {
+                replacementItem = ownedItems.First(x => x.name.Equals(item.name));
+            }
+            catch
+            {
+                replacementItem = null;
+            }
+            return inventoryRenderer.RemoveOneByIDFromDisplay(item, replacementItem);
+        }
+        return 0;
+    }
+
     float moneyChangeTimer = 0;
 
     public void Update()
@@ -148,7 +169,7 @@ public class Inventory : MonoBehaviour
             {
                 ApplyMoneyChange(bufferedMoneyChanges[0]);
                 bufferedMoneyChanges.RemoveAt(0);
-                scalingMoneyGainTime = Mathf.Clamp(scalingMoneyGainTime - 0.02f, 0.02f, 1);
+                scalingMoneyGainTime = Mathf.Clamp(scalingMoneyGainTime - 0.015f, 0.15f, 1);
                 moneyGainPitch = Mathf.Clamp(moneyGainPitch + 0.04f, 1, 2.5f);
             }
             else

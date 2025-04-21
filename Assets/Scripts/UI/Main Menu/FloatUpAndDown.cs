@@ -10,14 +10,15 @@ public class FloatUpAndDown : MonoBehaviour
 
     void Start()
     {
+        Debug.Log(moveDistance);
         startPos = transform.position;
-        goalPos = startPos + moveDistance / 2;
+        goalPos = startPos + (moveDistance / 2);
     }
 
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, goalPos, speed * Time.deltaTime);
-        if (transform.position == goalPos)
+        if (Vector3.Distance(transform.position, goalPos) < 0.01f)
         {
             if (movingUp)
             {

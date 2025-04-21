@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5251bf28080314eda98fb589e3db699a, type: 3}
   m_Name: ChangeRange
   m_EditorClassIdentifier: 
-  amountToChangeRange: 5
+  triggeredSound:
+    volume: 0.2
+    clip: {fileID: 8300000, guid: d94114ed66fd64b9188dd9f02ef14dd1, type: 3}
+  percentageToChangeRange: 0.1

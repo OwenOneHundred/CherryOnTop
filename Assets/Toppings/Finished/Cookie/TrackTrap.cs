@@ -26,7 +26,6 @@ public class TrackTrap : ExplodingProjectile
     
     public override void SetTarget(Vector3 target)
     {
-        Debug.Log(target);
         this.target = target;
     }
 

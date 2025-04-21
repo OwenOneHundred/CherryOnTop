@@ -18,70 +18,7 @@ public class BuffZone : MonoBehaviour {
         GetComponentInChildren<SphereCollider>().radius = GetComponentInChildren<TargetingSystem>().GetRange();
     }
 
-/*
-    void Update() {
-        UpdateBuffs();
-    }
-
-
-    void UpdateBuffs() {
-        Collider[] toppings = Physics.OverlapSphere(transform.position, buffRadius, toppingLayer);
-        
-        // Running the overlap sphere every frame is slower than using OnTriggerEnter and OnTriggerExit
-        // and keeping a list of everything inside the collider.
-
-        // Also, you're creating a hash set, creating a toppings array, moving everything from the array to the hash set, and then not using the array.
-        // You could use the toppings array for everything "current towers" does (they're identical), and then add/remove from affectedToppings
-        // so you don't have to delete and reallocate memory. 
-
-        HashSet<BuffManager> currentTowers = new HashSet<BuffManager>(); // holds everything found this frame
-
-        foreach (Collider foundCollider in toppings) {
-            Debug.Log($"Found collider: {foundCollider.gameObject.name}");
-            // using the line below for if check does work but probably costs more
-             BuffManager buffManager = foundCollider.GetComponentInParent<BuffManager>();
-            // foundCollider.TryGetComponent(out BuffManager buffManager);
-            if (buffManager != null) {
-                Debug.Log("found buff manager");
-            } else {
-                Debug.Log("found no buff manager");
-            }       
-
-    
-            if (foundCollider != coll) {
-                // This statement is not seen during tests
-                Debug.Log($"Found BuffManager: {buffManager.gameObject.name} and collider is not self");
-
-                currentTowers.Add(buffManager);
-                
-                if (!affectedToppings.Contains(buffManager) && foundCollider.TryGetComponent(out AttackManager attackManager)) {
-                    // DID NOT PRINT BELOW
-                    Debug.Log("NEW RECORD");
-                    if(foundCollider.TryGetComponent(out ToppingObjectScript toppingObj)) {
-                        if ((toppingObj.topping.flags & flags) != 0) {
-                            // Check if the object's topping flags include the required flag.
-                            // Get its BuffManager.
-                            // Add the buff to the tower
-                            Debug.Log($"BuffZone {gameObject.name} applied {buffType} buff to {foundCollider.gameObject.name}");
-                            buffManager.AddBuff(this);
-                        }
-                    }
-                }
-            }
-        }
-
-        foreach (BuffManager buffManager in new HashSet<BuffManager>(affectedToppings)) {
-            if (!currentTowers.Contains(buffManager) && buffManager != this) {
-                buffManager.RemoveBuff(this);
-            }
-        }
-
-        affectedToppings = currentTowers;
-    }
-
-*/
-
-      // When an object enters the trigger zone:
+    // When an object enters the trigger zone:
     void OnTriggerEnter(Collider other) {
         Debug.Log("OnTriggerEnter called");
 
@@ -117,7 +54,7 @@ public class BuffZone : MonoBehaviour {
         Debug.Log("Found BuffManager");
 
 
-        // 6) Finally apply buff if new
+        // 5) Finally apply buff if new
         if (!affectedToppings.Contains(buffManager))
         {
             Debug.Log("Calling AddBuff()");

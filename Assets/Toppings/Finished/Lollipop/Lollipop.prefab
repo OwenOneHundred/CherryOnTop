@@ -176,8 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5781c5ff9c0f84e01b5bf376fce3a5f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffRadius: 3
-  flags: 128
+  flags: 256
   buffType: 0
   buffValue: 0.8
 --- !u!54 &7185885520630772962

@@ -157,8 +157,15 @@ public class CherryMovement : MonoBehaviour
 
     private void OnReachEndOfMap()
     {
-        GameOverControl.gameOverControl.OnGameOver();
-        Destroy(gameObject);
+        if (GameOverControl.gameOverControl.isGameOver)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            GameOverControl.gameOverControl.OnGameOver(gameObject);
+            this.enabled = false;
+        }
     }
 
     private void SetNewTrack() {

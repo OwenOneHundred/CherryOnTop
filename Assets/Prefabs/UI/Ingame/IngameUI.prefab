@@ -1039,7 +1039,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 86dbcbf8bdcb846c39632dd0677ed90e, type: 2}
   - {fileID: 11400000, guid: fee4fb20abbf746abb1a96d37a76028e, type: 2}
   - {fileID: 11400000, guid: fc8447cf6d7749e499d5a495ff33c615, type: 2}
+  - {fileID: 11400000, guid: f652f189027e742ac937041cf8e7bac1, type: 2}
+  - {fileID: 11400000, guid: 432eab5753cea4b9d8f3a7790056a8cb, type: 2}
   - {fileID: 11400000, guid: 32e3947f085444a0e8fe65b294b7f9d0, type: 2}
+  - {fileID: 11400000, guid: 64d66b28711274a4ba1e912718499d1b, type: 2}
   - {fileID: 11400000, guid: 9ca9f78176f7b49b696bc2b6c5c7b0ee, type: 2}
   - {fileID: 11400000, guid: 1a7d1419538e34493891572cced33a96, type: 2}
   - {fileID: 11400000, guid: f91ebb90466a44f10a53f18e6b00baec, type: 2}
@@ -1050,6 +1053,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b3cf5f9d2c2dd4002beb6cb1d5487960, type: 2}
   - {fileID: 11400000, guid: ed367cf4325964f17ae8515110ffb0e4, type: 2}
   - {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}
+  - {fileID: 11400000, guid: b66a93231f1a446fab7f5b9321bc2f31, type: 2}
   - {fileID: 11400000, guid: aad0b3e8494e34396bcd12d917efaa23, type: 2}
   - {fileID: 11400000, guid: c259efe27a1484004aa200566bb9b5d2, type: 2}
   - {fileID: 11400000, guid: 9d3eb83265682496898d8e9bd7f73867, type: 2}
@@ -1165,7 +1169,7 @@ RectTransform:
   m_GameObject: {fileID: 2088701398529840985}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.01, y: 1.01, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2450385625261103727}
@@ -1188,6 +1192,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c843c394df643af86f514845bc1482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cherryPositionAtGameEnd: {x: 0.13, y: 5.22, z: -0.5}
+  cameraSpeed: 3
+  isGameOver: 0
 --- !u!1 &2358145866799796368
 GameObject:
   m_ObjectHideFlags: 0
@@ -1250,7 +1257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 0.43137255}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.972549}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1693,6 +1700,7 @@ GameObject:
   - component: {fileID: 8261018233752003573}
   - component: {fileID: 5619231450221874589}
   - component: {fileID: 4544394672671800700}
+  - component: {fileID: 4869306203268660757}
   m_Layer: 5
   m_Name: Cherry
   m_TagString: Untagged
@@ -1757,6 +1765,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4869306203268660757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2715171665570291574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb82fcd4c81c4fff8f1f9cdbf75dc76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDistance: {x: 0, y: 70, z: 0}
+  speed: 70
 --- !u!1 &2754401812495216918
 GameObject:
   m_ObjectHideFlags: 0
@@ -3859,8 +3881,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0.00023651123}
+  m_SizeDelta: {x: -380, y: -144.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &794357903626613405
 CanvasRenderer:
@@ -4329,6 +4351,7 @@ GameObject:
   - component: {fileID: 6388854819493720502}
   - component: {fileID: 3808654641529890125}
   - component: {fileID: 3646694528876663870}
+  - component: {fileID: 5893395075813242344}
   m_Layer: 5
   m_Name: Cherry (1)
   m_TagString: Untagged
@@ -4393,6 +4416,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5893395075813242344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6595338337768939278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb82fcd4c81c4fff8f1f9cdbf75dc76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDistance: {x: 0, y: 80, z: 0}
+  speed: 65
 --- !u!1 &6642707267255062058
 GameObject:
   m_ObjectHideFlags: 0

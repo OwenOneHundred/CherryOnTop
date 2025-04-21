@@ -8,4 +8,5 @@ public class LevelPreview : ScriptableObject
     [System.NonSerialized] public GameObject levelPrefab;
     public Sprite levelImage;
     public string sceneNameInEditor;
+    public string sceneNameIngame;
 }

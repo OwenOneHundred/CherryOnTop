@@ -39,4 +39,14 @@ public abstract class ToppingAttack : ScriptableObject
     /// </summary>
     public abstract void OnCycle(GameObject targetedCherry);
 
+    public virtual void EveryFrame()
+    {
+
+    }
+
+    public virtual int GetVisibleDamage()
+    {
+        return damage;
+    }
+
 }

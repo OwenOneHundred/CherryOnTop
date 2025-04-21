@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf61d44350abc415985ebc9a0a0de2e8, type: 3}
   m_Name: DonutChangeDamage
   m_EditorClassIdentifier: 
-  damageChange: 1
+  damageChange: 3

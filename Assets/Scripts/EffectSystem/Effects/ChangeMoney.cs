@@ -8,6 +8,7 @@ public class ChangeMoney : EffectSO
     public override void OnTriggered(EventBus.IEvent eventObject)
     {
         Inventory.inventory.Money += amountToChangeMoney;
-        GetToppingActivatedGlow().StartNewFireEffect("ChangeMoney", Color.yellow, 3);
+        ToppingActivatedGlow toppingGlow = GetToppingActivatedGlow();
+        if (toppingGlow != null) { toppingGlow.StartNewFireEffect("ChangeMoney", Color.yellow, 3); }
     }
 }

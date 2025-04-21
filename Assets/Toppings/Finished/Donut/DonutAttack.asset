@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: DonutAttack
   m_EditorClassIdentifier: 
   cooldown: 1
-  damage: 8
+  damage: 9
+  debuffs: []
   projectile: {fileID: 8446781529688628737, guid: 77746357283ce45a8891dd2b596324a1, type: 3}
-  projectileSpeed: 4
+  projectileSpeed: 8
+  fireSound:
+    volume: 0.5
+    clip: {fileID: 0}

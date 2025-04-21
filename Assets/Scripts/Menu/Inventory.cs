@@ -8,7 +8,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public static Inventory inventory;
-    [SerializeField] int initialMoney = 20;
+    public int initialMoney = 15;
     [SerializeField] float baseTimeBetweenMoneyChanges = 0.35f;
     float scalingMoneyGainTime = 0;
     float moneyGainPitch = 1;
@@ -37,7 +37,10 @@ public class Inventory : MonoBehaviour
     [SerializeField] AudioFile error;
     void Start()
     {
-        Money = initialMoney;
+        if (!LevelManager.levelWasLoadedFromSave)
+        {
+            Money = initialMoney;
+        }
 
         inventoryEffectManager = GetComponent<InventoryEffectManager>();
         ingameUI = GameObject.FindAnyObjectByType<IngameUI>();
@@ -74,17 +77,7 @@ public class Inventory : MonoBehaviour
         }
     }
     List<int> bufferedMoneyChanges = new();
-
-    int cakePoints = 0;
-    public int CakePoints
-    {
-        get { return cakePoints; }
-        set
-        {
-            cakePoints = value;
-            ingameUI.SetCakeScore(value);
-        }
-    }
+    
     [SerializeField] MoneyChangeDisplay moneyChangeDisplay;
 
     public bool TryBuyItem(Item item)
@@ -102,6 +95,8 @@ public class Inventory : MonoBehaviour
         SoundEffectManager.sfxmanager.PlayOneShot(buySFX);
 
         AddItem(item);
+
+        Shop.shop.mostRecentlyBoughtItem = item;
         return true;
     }
 
@@ -112,19 +107,29 @@ public class Inventory : MonoBehaviour
         AddItem(item);
     }
 
-    public void AddItem(Item item)
+    public void AddItem(Item template, Guid id = default)
     {
-        item = Instantiate(item); // Item SOs are currently instantiated here, when added to inventory.
+        Item item = Instantiate(template); // Item SOs are currently instantiated here, when added to inventory.
         item.SetUpEffectsAndWhen(); // Item SOs' effects are instantiated here.
+        item.name = template.name;
+        
+        if (id == default)
+        {
+            item.ID = Guid.NewGuid();
+        }
+        else
+        {
+            item.ID = id;
+        }
 
         ownedItems.Add(item);
         inventoryRenderer.AddItemToDisplay(item);
     }
 
-    public void RemoveItem(Item item)
+    public int RemoveOneOfItem(Item item)
     {
         ownedItems.Remove(item);
-        inventoryRenderer.RemoveItemFromDisplay(item);
+        return inventoryRenderer.RemoveOneFromItemFromDisplay(item); 
     }
 
     float moneyChangeTimer = 0;
@@ -169,10 +174,46 @@ public class Inventory : MonoBehaviour
         {
             SoundEffectManager.sfxmanager.PlayOneShotWithPitch(getMoneySFX, moneyGainPitch);
         }
+
+        Shop.shop.UpdateRerollButtonFadedness();
     }
 
     private void BufferMoneyChange(int change)
     {
         bufferedMoneyChanges.Add(change);
+    }
+
+    readonly int yarnAmountMultiplier = 4;
+    public int GetStackCount()
+    {
+        return ownedItems.Select(x => x.name).Distinct().Count();
+    }
+
+    public int GetBiggestStack(bool countYarnMultiplier)
+    {
+        if (ownedItems.Count == 0) { return 0; }
+        Dictionary<string, int> values = new();
+
+        foreach (Item item in ownedItems)
+        {
+            int increaseAmount = 1;
+            if (countYarnMultiplier && item.name == "Yarn") { increaseAmount = yarnAmountMultiplier; }
+            if (values.ContainsKey(item.name))
+            {
+                values[item.name] += increaseAmount;
+                Debug.Log(values[item.name]);
+            }
+            else
+            {
+                values.Add(item.name, increaseAmount);
+            }
+        }
+        return values.Select(x => x.Value).Max();
+    }
+
+    public int GetInventoryCount(bool countYarnMultiplier)
+    {
+        int yarnAmount = countYarnMultiplier ? ownedItems.Select(x => x.name == "Yarn").Count() * (yarnAmountMultiplier - 1) : 0;
+        return ownedItems.Count + yarnAmount;
     }
 }

@@ -19,12 +19,15 @@ public class PoisonEffect : CherryDebuff
     public override void OnAdded(GameObject cherry)
     {
         SoundEffectManager.sfxmanager.PlayOneShot(onAppliedSFX);
+
+        // Set cherry field to the GameObject cherry argument
+        this.cherry = cherry;
+        cherryHitbox = cherry.GetComponent<CherryHitbox>();
         
         // Adding particles to cherry
         this.cherry = cherry;
-        cherryHitbox = cherry.transform.root.GetComponent<CherryHitbox>();
-        poisonPSObj = Instantiate(poisonParticleSystemPrefab, this.cherry.transform.position, Quaternion.identity, this.cherry.transform);
-        poisonPSObj.transform.localScale = this.cherry.transform.GetChild(0).lossyScale;
+        poisonPSObj = Instantiate(poisonParticleSystemPrefab, cherry.transform.position, Quaternion.identity, cherry.transform);
+        poisonPSObj.transform.localScale = cherry.transform.GetChild(0).localScale;
     }
 
     public override void OnRemoved(GameObject cherry)

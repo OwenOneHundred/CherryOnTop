@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1395271760591438111, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -2432090755550338912, guid: 28eba9bb3476c43798436f9d58ad5b2e, type: 3}
+    - target: {fileID: 2483940146065237387, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ad64bb1d8adf04fa7a4d88dd269c4f59, type: 2}
+    - target: {fileID: 3678773368687669692, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
+      propertyPath: baseSpeed
+      value: 1.3
+      objectReference: {fileID: 0}
     - target: {fileID: 3745335902927374605, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -50,10 +62,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4085270106411668407, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
       propertyPath: m_Name
-      value: Cherry_2
+      value: CherryBlossom
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6635548703197320697, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
+      propertyPath: cherryHitbox
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5343877452891195099, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4085270106411668407, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6762971314692008083}
   m_SourcePrefab: {fileID: 100100000, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
+--- !u!1 &618466874522788365 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4085270106411668407, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
+  m_PrefabInstance: {fileID: 3469170137674183098}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6762971314692008083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618466874522788365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 550c46d361a223e4faef4efa1202e4f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cherryHealth: 50
+  deathSound:
+    volume: 0.9
+    clip: {fileID: 8300000, guid: 1a721d67063d14f578a286bbadf93210, type: 3}
+  onDamagedPS: {fileID: 4970616808093975513, guid: 96a946d776afd4dceaf88dd58fdb973e, type: 3}
+  damageNumberPrefab: {fileID: 1117619847005422415, guid: 3646483419b9a4ce7aa9ae6b1b384a68, type: 3}
+  spawnDamageNumbers: 0

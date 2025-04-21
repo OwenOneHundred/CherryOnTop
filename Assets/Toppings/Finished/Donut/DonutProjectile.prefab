@@ -51,7 +51,7 @@ MonoBehaviour:
   cherryDebuffs: []
   maxHits: 2
   shockwave: {fileID: 7150832022460626818, guid: f244ff7079a1540f4ac0ff54269c126a, type: 3}
-  shockwaveDamage: 5
+  shockwaveDamage: 7
   shockwaveSpeed: 5
   shockwaveRange: 1.25
   cameraShakeViolence: 0.2

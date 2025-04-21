@@ -15,11 +15,8 @@ EditorBuildSettings:
     path: Assets/Scenes/WeddingCakeScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/MenuScene.unity
-    guid: af1539ee86c744f179823d8f81d1e0b6
-  - enabled: 1
-    path: Assets/Scenes/LevelSelectScene.unity
-    guid: b3004961d5dd1e74491ce40a89a0ca47
+    path: Assets/Scenes/Charcuterie Board.unity
+    guid: e093e77af63d1467ba43a21ddc07b2d7
   - enabled: 1
     path: Assets/Scenes/StarcakeScene.unity
     guid: 0c8490286d8064606b06932c7e08383a

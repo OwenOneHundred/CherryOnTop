@@ -1,14 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using GameSaves;
 
 public abstract class Item : ScriptableObject
 {
     public int price = 5;
     public Sprite shopSprite;
+    public Guid ID;
 
     public List<EffectAndWhen> effectsAndWhen = new List<EffectAndWhen>();
 
     [TextArea] public string description;
+    public ToppingTypes.Rarity rarity = ToppingTypes.Rarity.Common;
 
     public void SetUpEffectsAndWhen()
     {
@@ -40,6 +44,7 @@ public abstract class Item : ScriptableObject
                 }
             }
         }
+        
     }
 
     /// <summary>
@@ -52,6 +57,28 @@ public abstract class Item : ScriptableObject
             foreach (BaseEventSO eventSO in effectAndWhen.eventSOs)
             {
                 eventSO.DeregisterAllEffects();
+            }
+        }
+    }
+
+    public void LoadToppingData(SaveData saveData)
+    {
+        foreach (EffectAndWhen effectAndWhen in effectsAndWhen)
+        {
+            foreach (EffectSO effectSO in effectAndWhen.effectSOs)
+            {
+                effectSO.Load(saveData);
+            }
+        }
+    }
+
+    public void SaveToppingData(SaveData saveData)
+    {
+        foreach (EffectAndWhen effectAndWhen in effectsAndWhen)
+        {
+            foreach (EffectSO effectSO in effectAndWhen.effectSOs)
+            {
+                effectSO.Save(saveData);
             }
         }
     }

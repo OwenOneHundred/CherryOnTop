@@ -49,6 +49,11 @@ public class DebuffManager : MonoBehaviour
         }
     }
 
+    public bool HasDebuffType(CherryDebuff.DebuffType debuffType)
+    {
+        return (debuffs.FirstOrDefault(x => x.debuffType == debuffType) != null);
+    }
+
     /// <summary>
     /// Removes a debuff from a cherry
     /// </summary>

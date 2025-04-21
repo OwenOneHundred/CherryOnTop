@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4baf0569fe9ee744e925815b297fe6a1, type: 3}
   m_Name: Shockwave (Cot candy)
   m_EditorClassIdentifier: 
-  cooldown: 1.6
+  cooldown: 1.5
   damage: 5
+  debuffs: []
+  projectile: {fileID: 0}
+  projectileSpeed: 0
+  fireSound:
+    volume: 0.5
+    clip: {fileID: 0}
   shockwave: {fileID: 5503282234501958175, guid: 7dee0616547dc4bbc84cb62faa648519, type: 3}
-  speed: 1
+  speed: 3
   range: 1.5

@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using EventBus;
+using UnityEditor;
 using UnityEngine;
+using System;
 
 public class ToppingPlacer : MonoBehaviour
 {
@@ -24,6 +26,8 @@ public class ToppingPlacer : MonoBehaviour
     [SerializeField] GameObject toppingPlaceEffect;
 
     List<List<Vector3>> trackPoints = new();
+
+    CameraControl cameraControl;
 
     readonly Vector3 checkAreaVerticalOffset = new Vector3(0, 0.02f, 0);
     public bool PlacingTopping
@@ -50,6 +54,8 @@ public class ToppingPlacer : MonoBehaviour
         transparentObject.SetActive(false);
 
         StoreAllTrackPositions();
+
+        cameraControl = Camera.main.transform.root.GetComponent<CameraControl>();
     }
 
     private void StoreAllTrackPositions()
@@ -83,20 +89,33 @@ public class ToppingPlacer : MonoBehaviour
         MeshFilter transparentMeshFilter = transparentObject.GetComponent<MeshFilter>();
         MeshFilter toppingMeshFilter = topping.towerPrefab.GetComponentInChildren<MeshFilter>();
         MeshRenderer meshRenderer = transparentObject.GetComponent<MeshRenderer>();
+        Transform circleTransform = transparentObject.transform.GetChild(0);
+        LineRenderer circleLineRenderer = circleTransform.GetComponent<LineRenderer>();
+
+        // set up circle
+        TargetingSystem targetingSystem = topping.towerPrefab.GetComponentInChildren<TargetingSystem>();
+        if (targetingSystem != null)
+        {
+            float range = targetingSystem.GetRange();
+            circleTransform.transform.localScale = new Vector3(range, 1, range) / toppingMeshFilter.transform.lossyScale.x;
+            circleTransform.gameObject.SetActive(true);
+        }
+        else
+        {
+            circleTransform.gameObject.SetActive(false);
+        }
 
         // set up transparent mesh
         transparentMeshFilter.mesh = toppingMeshFilter.sharedMesh; // set transparent mesh to topping mesh
         transparentObject.transform.localScale = toppingMeshFilter.transform.lossyScale; // set transparent obj scale
         transparentObject.transform.rotation = toppingMeshFilter.transform.rotation; // set transparent obj rotation
 
+        // re-rotate circle to flat
+        circleTransform.rotation = Quaternion.identity;
+
         transparentObject.SetActive(false);
 
-        float lowestPointOffset =
-            GetLowestPointOffset(
-                toppingMeshFilter.sharedMesh.bounds,
-                toppingMeshFilter.transform.rotation * Vector3.down,
-                toppingMeshFilter.transform.lossyScale.y
-            ); // find distance between topping center and the point on the topping closest to downward after rotation
+        float lowestPointOffset = GetLowestPointOffset(toppingMeshFilter.sharedMesh.bounds, toppingMeshFilter.transform, Vector3.down);
 
         bool placementValidCheck = false;
 
@@ -113,18 +132,23 @@ public class ToppingPlacer : MonoBehaviour
 
             if (!mouseIsInSidebar) { mouseLeftSidebar = true; } 
 
+            Vector3 cameraPositionWithShake = cameraControl.transform.position;
+            cameraControl.transform.position = Vector3.zero; // Holy hack lmao part 1
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            cameraControl.transform.position = cameraPositionWithShake; // Holy hack lmao part 2
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100, placeableLayers))
             {
                 cakePos = hit.point;
-                objCenter = cakePos + new Vector3(0, lowestPointOffset, 0);
+                objCenter = CalculatePreviewPosition(cakePos, toppingMeshFilter.sharedMesh, lowestPointOffset, transparentMeshFilter.transform, toppingMeshFilter.transform);
 
                 transparentObject.SetActive(true);
                 transparentObject.transform.position = objCenter;
 
-                placementValidCheck = CheckIfPlacementValid(toppingMeshFilter, objCenter, toppingMeshFilter.sharedMesh, cakePos);
+                placementValidCheck = CheckIfPlacementValid(toppingMeshFilter, GetCenterOfPreviewMesh(transparentMeshFilter), toppingMeshFilter.sharedMesh, cakePos);
                 meshRenderer.material = placementValidCheck ? white : red;
+                circleLineRenderer.startColor = placementValidCheck ? Color.white : Color.red;
+                circleLineRenderer.endColor = placementValidCheck ? Color.white : Color.red;
             }
             else
             {
@@ -135,9 +159,26 @@ public class ToppingPlacer : MonoBehaviour
 
         if (placementValidCheck)
         {
-            PlaceTopping(topping, cakePos + new Vector3(0, lowestPointOffset, 0), topping.towerPrefab.transform.rotation, true);
+            PlaceTopping(topping, transparentMeshFilter.transform.position, topping.towerPrefab.transform.rotation, true);
         }
         StopPlacingTopping();
+    }
+
+    private Vector3 CalculatePreviewPosition(Vector3 cakePos, Mesh mesh, float lowestPointOffset, Transform transparentObjectMesh, Transform toppingMeshFilterTransform)
+    {
+        Vector3 localCenterOffset = mesh.bounds.center;
+        Vector3 worldCenterOffset = transparentObjectMesh.rotation * Vector3.Scale(localCenterOffset, transparentObjectMesh.lossyScale);
+
+        Vector3 objCenter = cakePos - worldCenterOffset + new Vector3(0, lowestPointOffset, 0);
+
+        return objCenter;
+    }
+
+    private Vector3 GetCenterOfPreviewMesh(MeshFilter transparentObjectMesh)
+    {
+        Vector3 localCenter = transparentObjectMesh.sharedMesh.bounds.center;
+        Vector3 result = transparentObjectMesh.transform.TransformPoint(localCenter);
+        return result;
     }
 
     private bool CheckIfPlacementValid(MeshFilter prefabMeshFilter, Vector3 pos, Mesh mesh, Vector3 cakePos)
@@ -146,58 +187,26 @@ public class ToppingPlacer : MonoBehaviour
 
         Vector3 worldExtents = Vector3.Scale(bounds.extents, prefabMeshFilter.transform.lossyScale);
 
-        var result = Physics.OverlapBox(pos + checkAreaVerticalOffset, worldExtents * 0.8f, prefabMeshFilter.transform.rotation, layersThatBlockPlacement);
-        
+        var result = Physics.OverlapBox(pos, worldExtents * 0.875f, prefabMeshFilter.transform.rotation, layersThatBlockPlacement);
 
         bool notOverlappingAnything = result.Count() == 0;
 
-        //bool tooCloseToTrack = CheckIfTooCloseToTrack(cakePos); this doesn't work, idk why
+        //bool tooCloseToTrack = CheckIfOnTrack(cakePos);
         bool tooCloseToTrack = false;
 
         return notOverlappingAnything && (!tooCloseToTrack);
     }
 
-    private bool CheckIfTooCloseToTrack(Vector3 cakePos, float acceptableDistance = 0.525f)
+    private bool CheckIfOnTrack(Vector3 cakePos, float acceptableDistance = 0.26f)
     {
-        foreach (List<Vector3> trackPositions in trackPoints)
-        {
-            for (int i = 0; i < trackPositions.Count - 1; i++)
-            {
-                Vector3 startPos = trackPositions[i];
-                Vector3 endPos = trackPositions[i + 1];
-                
-
-                Vector3 closestOnPoints = ClosestPointOnLineSegment(startPos, endPos, cakePos);
-                float distance = Vector3.Distance(cakePos, closestOnPoints);
-
-                //Debug.Log("startpos: " + startPos + " endpos: " + endPos + " closestPoint: " + closestOnPoints + " distance: " + distance + " obj pos: " + cakePos);
-
-                if (distance < acceptableDistance)
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return TrackFunctions.trackFunctions.GetAllLineSegmentsThatIntersectSphere(cakePos, acceptableDistance).Count != 0;
     }
 
-    Vector3 ClosestPointOnLineSegment(Vector3 A, Vector3 B, Vector3 target)
+    private float GetLowestPointOffset(Bounds bounds, Transform meshTransform, Vector3 groundDirection)
     {
-        Vector3 fromAtoB = B - A;
-        Vector3 fromAtoTarget = target - A;
-        float t = Mathf.Clamp01(Vector2.Dot(fromAtoTarget, fromAtoB) / fromAtoB.sqrMagnitude);
-        return A + t * fromAtoB;
-    }
-
-    private float GetLowestPointOffset(Bounds bounds, Vector3 groundDirection, float scale)
-    {
-        Vector3 farthestPoint = bounds.ClosestPoint(groundDirection.normalized * 10000);
-
-        float distanceFromCenter = Vector3.Distance(bounds.center, farthestPoint);
-
-        float scaledDistanceFromCenter = distanceFromCenter * scale;
-
-        return scaledDistanceFromCenter;
+        Vector3 worldExtents = Vector3.Scale(bounds.extents, meshTransform.lossyScale);
+        float toGround = Mathf.Abs(Vector3.Dot(worldExtents, groundDirection));
+        return toGround;
     }
 
     private void StopPlacingTopping()
@@ -220,9 +229,22 @@ public class ToppingPlacer : MonoBehaviour
 
         if (playSound) { SoundEffectManager.sfxmanager.PlayOneShot(placeSound); }
 
+        topping.SetGameObjectOnEffects(newToppingObj);
+        topping.RegisterEffects();
+
+        Inventory.inventory.RemoveOneOfItem(topping); // remove from inventory
+    }
+
+    public void PlaceToppingViaLoad(Topping topping, Vector3 position, Quaternion rotation)
+    {
+        GameObject newToppingObj = Instantiate(topping.towerPrefab, position, rotation); // spawn obj
+
+        ToppingRegistry.toppingRegistry.RegisterPlacedTopping(topping, newToppingObj); // register
+
+        newToppingObj.GetComponent<ToppingObjectScript>().topping = topping; // set topping on object to be read later
+        newToppingObj.transform.root.GetComponentInChildren<ToppingObjInteractions>().OnClickedOff();
+
         topping.RegisterEffects();
         topping.SetGameObjectOnEffects(newToppingObj);
-
-        Inventory.inventory.RemoveItem(topping); // remove from inventory
     }
 }

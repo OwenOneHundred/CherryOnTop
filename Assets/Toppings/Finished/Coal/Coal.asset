@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
+  m_Name: Coal
+  m_EditorClassIdentifier: 
+  price: 0
+  shopSprite: {fileID: 744995806, guid: 8d430c9a2fff04f52b7adf9e11ebddb8, type: 3}
+  effectsAndWhen: []
+  description: Better luck next time!
+  rarity: 0
+  towerPrefab: {fileID: 3514054292707464288, guid: eac0985acda4e4238ba7505e91c6fad7, type: 3}
+  flags: 0
+  cakePoints: -20
+  onHitCherry: []
+  onKillCherry: []

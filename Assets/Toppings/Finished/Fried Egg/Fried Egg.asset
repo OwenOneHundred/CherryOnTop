@@ -16,6 +16,7 @@ MonoBehaviour:
   shopSprite: {fileID: 21300000, guid: 2b58c3923b9cd4937891dd7fc05b203a, type: 3}
   effectsAndWhen: []
   description: No attack. All fire effects also inflict a stacking 20% slow.
+  rarity: 1
   towerPrefab: {fileID: 5457713735334105415, guid: cca15b7e192b3437eb4a661205934afc, type: 3}
   flags: 20480
   cakePoints: -30

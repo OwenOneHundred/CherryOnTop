@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0237efc63aff42fba4c44c81a34042b, type: 3}
+  m_Name: TopHatAttack
+  m_EditorClassIdentifier: 
+  cooldown: 0.9
+  damage: 10
+  debuffs: []
+  projectile: {fileID: 9120266674150736113, guid: 834a7e66475c24b6ca8178adfd9eba84, type: 3}
+  projectileSpeed: 8
+  fireSound:
+    volume: 0.2
+    clip: {fileID: 8300000, guid: 195545f66bd8a4a1abcc786d1ec615ff, type: 3}
+  wand: {fileID: 4294087937477487106, guid: efe1dee98eda040f6be06f0d0218e5bb, type: 3}

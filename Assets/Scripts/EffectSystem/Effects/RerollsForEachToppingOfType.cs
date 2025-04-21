@@ -9,7 +9,7 @@ public class RerollsForEachToppingOfType : EffectSO
     [SerializeField] ToppingTypes.Flags flag;
     public override void OnTriggered(EventBus.IEvent eventObject)
     {
-        foreach (ToppingRegistry.ItemInfo itemInfo in ToppingRegistry.toppingRegistry.GetAllPlacedToppings())
+        foreach (ToppingRegistry.ItemInfo itemInfo in ToppingRegistry.toppingRegistry.PlacedToppings)
         {
             if (itemInfo.topping.flags.HasFlag(flag))
             {

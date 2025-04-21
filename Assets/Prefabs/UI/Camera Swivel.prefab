@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8eece2de6ba64368a323bcc134207f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  keyMovementSpeed: 120
+  mouseScrollMovementSpeed: -300
 --- !u!1 &1743589394122867184
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +214,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 80e84a78afe2545d5ac638167ff72423, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c501cdd1d936409cbef1e40c3c332d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -235,6 +236,7 @@ GameObject:
   - component: {fileID: 8272073943620950224}
   - component: {fileID: 4693757561248895572}
   - component: {fileID: 3759606933750893787}
+  - component: {fileID: 1637267844664090002}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -361,3 +363,19 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1637267844664090002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5638512380818682109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4859
+  m_MaxRayIntersections: 0

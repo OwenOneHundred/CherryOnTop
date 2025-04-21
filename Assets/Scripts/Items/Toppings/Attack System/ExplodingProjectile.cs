@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// A special kind of projectile that explodes on impact with a Cherry.
@@ -6,7 +7,7 @@ using UnityEngine;
 public class ExplodingProjectile : Projectile
 {
     [SerializeField]
-    GameObject shockwave;
+    protected GameObject shockwave;
 
     [SerializeField]
     int shockwaveDamage;
@@ -16,28 +17,50 @@ public class ExplodingProjectile : Projectile
 
     [SerializeField]
     float shockwaveRange;
+    [SerializeField] bool explodeOnTerrain = false;
+    [SerializeField] bool explodeOnCherry = true;
 
     public override void OnHitCherry(CherryHitbox ch) {
-        Destroy(gameObject);
-        Explode();
+        if (explodeOnCherry)
+        {
+            Explode();
+        }
     }
 
-    [SerializeField] float cameraShakeViolence = 1;
-    [SerializeField] float cameraShakeLength = 0;
-    [SerializeField] AudioFile onHitSound;
-
-    private void Explode() {
-        GameObject newShockwave = Instantiate(shockwave, transform.position, Quaternion.identity);
-        Shockwave shockwaveComponent = newShockwave.GetComponent<Shockwave>();
-        newShockwave.GetComponent<Shockwave>().speed = shockwaveSpeed;
-        shockwaveComponent.range = shockwaveRange;
-        shockwaveComponent.SetDamage(shockwaveDamage);
-        shockwaveComponent.owner = owner;
-        
-        if (cameraShakeLength > 0)
+    public override void OnTriggerEnter(UnityEngine.Collider other)
+    {
+        base.OnTriggerEnter(other);
+        if (explodeOnTerrain)
         {
-            Camera.main.transform.parent.GetComponent<CameraControl>().ApplyCameraShake(cameraShakeLength, cameraShakeViolence);
+            if (other.gameObject.layer == 7)
+            {
+                Explode();
+            }
         }
-        SoundEffectManager.sfxmanager.PlayOneShot(onHitSound);
+    }
+
+    [SerializeField] protected float cameraShakeViolence = 1;
+    [SerializeField] protected float cameraShakeLength = 0;
+    [SerializeField] protected AudioFile explodeSound;
+
+    protected virtual void Explode() {
+        if (shockwave != null)
+        {
+            GameObject newShockwave = Instantiate(shockwave, transform.position, Quaternion.identity);
+            Shockwave shockwaveComponent = newShockwave.GetComponent<Shockwave>();
+            newShockwave.GetComponent<Shockwave>().speed = shockwaveSpeed;
+            shockwaveComponent.range = shockwaveRange;
+            shockwaveComponent.SetDamage(shockwaveDamage);
+            shockwaveComponent.owner = owner;
+            shockwaveComponent.speed = shockwaveSpeed;
+            
+            if (cameraShakeLength > 0)
+            {
+                Camera.main.transform.parent.GetComponent<CameraControl>().ApplyCameraShake(cameraShakeLength, cameraShakeViolence);
+            }
+            if (explodeSound.clip != null) { SoundEffectManager.sfxmanager.PlayOneShot(explodeSound); }
+        }
+        
+        Destroy(gameObject);
     }
 }

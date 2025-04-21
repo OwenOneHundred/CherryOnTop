@@ -11,7 +11,7 @@ public abstract class ProjectileAttack : ToppingAttack
     // Represents the speed of the projectiles shot by this ToppingAttack
     public float projectileSpeed;
 
-    [SerializeField] AudioFile fireSound;
+    [SerializeField] protected AudioFile fireSound;
 
     /// <summary>
     /// Spawn a projectile with an initial position, velocity, rotation, and damage.
@@ -23,12 +23,13 @@ public abstract class ProjectileAttack : ToppingAttack
     /// <param name="velocity"></param>
     /// <param name="rotation"></param>
     /// <param name="damage"></param>
-    public virtual void SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, int damage)
+    public virtual GameObject SpawnProjectile(GameObject projectile, Vector3 position, Vector3 velocity, Quaternion rotation, int damage)
     {
         GameObject newProjectile = Instantiate(projectile, position, rotation);
         newProjectile.GetComponent<Rigidbody>().linearVelocity = velocity;
-        newProjectile.GetComponent<Projectile>().damage = damage;
-        newProjectile.GetComponent<Projectile>().owner = toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping;
+        Projectile projectileScript = newProjectile.GetComponent<Projectile>();
+        projectileScript.damage = damage;
+        projectileScript.owner = toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping;
 
         // Destroy the projectile after 8 seconds in case it misses the target
         Destroy(newProjectile, 8);
@@ -36,6 +37,8 @@ public abstract class ProjectileAttack : ToppingAttack
         if (fireSound != null && fireSound.clip != null) { SoundEffectManager.sfxmanager.PlayOneShot(fireSound);}
 
         CustomProjectileActions(newProjectile);
+
+        return newProjectile;
     }
 
     /// <summary>

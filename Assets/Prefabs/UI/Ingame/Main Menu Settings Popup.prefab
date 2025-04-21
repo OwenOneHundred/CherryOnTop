@@ -294,18 +294,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 3181088761205223646}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -645,7 +633,7 @@ GameObject:
   - component: {fileID: 7879002061686683501}
   - component: {fileID: 2216830822508938531}
   - component: {fileID: 1583421564190679176}
-  - component: {fileID: 3029767895221558320}
+  - component: {fileID: 6327066306548155817}
   m_Layer: 5
   m_Name: Quit Game Button
   m_TagString: Untagged
@@ -755,9 +743,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3029767895221558320}
-        m_TargetAssemblyTypeName: ExitGame, Assembly-CSharp
-        m_MethodName: FunctionThatEndsTheGameNamedCherryOnTopImmediatelyAsLongAsItIsNotInTheUnityEditor
+      - m_Target: {fileID: 6327066306548155817}
+        m_TargetAssemblyTypeName: ExitGameButton, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -767,7 +755,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3029767895221558320
+--- !u!114 &6327066306548155817
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -776,7 +764,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8020608122419817992}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11eb0ac15ca90a047a4d4f0d2db5f8c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d251d19f530b4063bd56a265c886847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8618615734852836309

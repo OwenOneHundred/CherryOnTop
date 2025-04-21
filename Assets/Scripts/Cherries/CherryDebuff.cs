@@ -67,5 +67,6 @@ public abstract class CherryDebuff : ScriptableObject
         fire = 1,
         freeze = 2,
         poison = 4,
+        fondue = 8
     }
 }

@@ -57,7 +57,7 @@ public class LimitedAttack : DirectAttack
     /// <returns></returns>
     private IEnumerator DelayedConditionalAttack(GameObject targetedCherry, float delay) {
         yield return new WaitForSeconds(delay);
-        if (targetedCherry == this.toppingObj.GetComponent<AttackManager>().GetTargetedCherry()) {
+        if (targetedCherry != null && targetedCherry == this.toppingObj.GetComponent<AttackManager>().GetTargetedCherry()) {
             AttackCherry(targetedCherry);
             this.toppingObj.GetComponent<TargetingSystem>().AddTargetedCherry(targetedCherry);
         }

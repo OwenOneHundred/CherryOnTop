@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="Effects/MoneyIfMoneyEndsWith")]
+[CreateAssetMenu(menuName ="Effects/Money/MoneyIfMoneyEndsWith")]
 public class MoneyIfMoneyEndsWithNumber : EffectSO
 {
     [SerializeField] char endingNumber;
@@ -11,7 +11,10 @@ public class MoneyIfMoneyEndsWithNumber : EffectSO
         if (Inventory.inventory.Money.ToString().Last() == endingNumber)
         {
             Inventory.inventory.Money += moneyChange;
-            GetToppingActivatedGlow().StartNewFireEffect("EndingNum $" + moneyChange, Color.red, 3);
+            ToppingActivatedGlow toppingGlow = GetToppingActivatedGlow();
+            if (toppingGlow != null) {
+                toppingGlow.StartNewFireEffect("EndingNum $" + moneyChange, Color.red, 3);
+            }
         }
     }
 }

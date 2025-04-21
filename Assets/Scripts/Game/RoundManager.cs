@@ -12,7 +12,7 @@ public class RoundManager : MonoBehaviour
 
     [System.NonSerialized] public int totalCherriesThisRound = 10;
     int cherriesKilledThisRoundCount = 0;
-    [SerializeField] int moneyOnRoundEnd = 10;
+    public int moneyOnRoundEnd = 10;
 
     public static RoundManager roundManager; // Singleton
     [SerializeField] Button nextRoundButton;

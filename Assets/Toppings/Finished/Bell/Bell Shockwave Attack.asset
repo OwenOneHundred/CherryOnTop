@@ -27,4 +27,4 @@ MonoBehaviour:
   cameraShakeLength: 0.1
   onScale:
     volume: 0.2
-    clip: {fileID: 8300000, guid: d94114ed66fd64b9188dd9f02ef14dd1, type: 3}
+    clip: {fileID: 0}

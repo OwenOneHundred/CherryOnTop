@@ -18,7 +18,7 @@ public class BellShockwave : ShockwaveAttack
         float newCooldown = Mathf.Clamp(baseCooldown - (scaleAmountPerItem * Inventory.inventory.GetInventoryCount(true)), 1f, baseCooldown);
         if (newCooldown < cooldown)
         {
-            SoundEffectManager.sfxmanager.PlayOneShot(onScale);
+            //SoundEffectManager.sfxmanager.PlayOneShot(onScale);
             toppingActivatedGlow.StartNewFireEffect("Gold", Color.yellow, 2.5f);
         }
         cooldown = newCooldown;

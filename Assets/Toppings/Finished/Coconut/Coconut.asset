@@ -20,7 +20,7 @@ MonoBehaviour:
     eventSOs:
     - {fileID: 11400000, guid: 21a2b2029de304a2e9b962c8cd1956a1, type: 2}
   description: No attack. At the end of a round, if you have an odd number of coconuts,
-    including your inventory, get $4.
+    including your inventory, get $3.
   rarity: 0
   towerPrefab: {fileID: 110318608757407526, guid: 8d753c12f768b4d7d874aa54b4c21048, type: 3}
   flags: 80

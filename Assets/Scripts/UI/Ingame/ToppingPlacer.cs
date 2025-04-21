@@ -229,6 +229,7 @@ public class ToppingPlacer : MonoBehaviour
 
         if (playSound) { SoundEffectManager.sfxmanager.PlayOneShot(placeSound); }
 
+        Debug.Log("here");
         topping.SetGameObjectOnEffects(newToppingObj);
         topping.RegisterEffects(newToppingObj);
 

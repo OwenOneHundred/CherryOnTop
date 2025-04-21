@@ -16,10 +16,11 @@ public class SoundEffectManager : MonoBehaviour
         if (sfxmanager == null || sfxmanager == this)
         {
             sfxmanager = this;
+            DontDestroyOnLoad(transform.root);
         }
         else 
         {
-            Destroy(gameObject);
+            Destroy(transform.root.gameObject);
         }
     }
 

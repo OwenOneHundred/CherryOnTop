@@ -8,8 +8,8 @@ public class PlayButton : MonoBehaviour
     public Button playButton;
     public string sceneName;
     public bool alsoGetDifficulty = true;
+    [SerializeField] AudioFile audioFile;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playButton.onClick.AddListener(PlayGame);
@@ -19,6 +19,7 @@ public class PlayButton : MonoBehaviour
     {
         LevelManager.levelWasLoadedFromSave = false;
         SceneManager.LoadScene(sceneName);
+        SoundEffectManager.sfxmanager.PlayOneShot(audioFile);
 
         if (alsoGetDifficulty)
         {

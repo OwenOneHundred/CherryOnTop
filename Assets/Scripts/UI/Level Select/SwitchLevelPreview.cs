@@ -36,7 +36,7 @@ public class SwitchLevelPreview : MonoBehaviour
         backButton.SetActive(false);
         for (int i = 0; i < levelPreviews.Length; i++)
         {
-            Spawn(levelPreviews[i]);
+            Spawn(levelPreviews[i], i);
             
             levelPrefabs[i] = levelPreviews[i].levelPrefab;
         }
@@ -44,10 +44,10 @@ public class SwitchLevelPreview : MonoBehaviour
         LoadLevelBox(0, true);
     }
 
-    public void Spawn(LevelPreview preview)
+    public void Spawn(LevelPreview preview, int levelIndex)
     {
         preview.levelPrefab = Instantiate(preview.emptyLevelPrefab);
-        preview.levelPrefab.GetComponent<LevelPreviewManager>().Setup(preview.levelImage, preview.sceneNameIngame, preview.sceneNameInEditor);
+        preview.levelPrefab.GetComponent<LevelPreviewManager>().Setup(preview.levelImage, preview.sceneNameIngame, preview.sceneNameInEditor, levelIndex);
     }
 
     private void Update()

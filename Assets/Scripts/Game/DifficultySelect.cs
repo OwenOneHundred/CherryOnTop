@@ -9,6 +9,7 @@ public class DifficultySelect : MonoBehaviour
     List<Difficulty> difficulties = new();
     public List<Sprite> cupSprites;
     [SerializeField] AudioFile cupFillSound;
+    [SerializeField] TMPro.TextMeshProUGUI difficultyName;
 
     void Start()
     {
@@ -33,6 +34,7 @@ public class DifficultySelect : MonoBehaviour
             SoundEffectManager.sfxmanager.PlayOneShotWithPitch(cupFillSound, 1 + (0.25f * (difficultyIndex - 1)));
         }
         difficulty = difficulties[difficultyIndex];
+        difficultyName.text = difficulties[difficultyIndex].name;
 
         cup.sprite = cupSprites[difficultyIndex];
     }
@@ -41,6 +43,7 @@ public class DifficultySelect : MonoBehaviour
     public class Difficulty
     {
         public float value = 1.12f;
+        public string name;
         public virtual void OnRoundStart()
         {
 
@@ -57,6 +60,7 @@ public class DifficultySelect : MonoBehaviour
         public Easy(float value) : base(value)
         {
             number = 1;
+            name = "Easy";
         }
     }
     [System.Serializable]
@@ -65,6 +69,7 @@ public class DifficultySelect : MonoBehaviour
         public Medium(float value) : base(value)
         {
             number = 2;
+            name = "Medium";
         }
 
         public override void OnRoundStart()
@@ -79,6 +84,7 @@ public class DifficultySelect : MonoBehaviour
         public Hard(float value) : base(value)
         {
             number = 3;
+            name = "Hard";
         }
 
         public override void OnRoundStart()

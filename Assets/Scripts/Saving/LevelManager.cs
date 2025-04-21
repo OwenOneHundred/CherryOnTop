@@ -125,7 +125,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Initializing achievements...");
         AchievementsTracker tracker = AchievementsTracker.Instance;
         tracker._encryptData = _encryptData;
-        tracker.MarkLevelAsCompleted(-1);
+        tracker.MarkLevelAsCompleted(1, 1, false);
     }
 
     protected bool _validInstance = true;

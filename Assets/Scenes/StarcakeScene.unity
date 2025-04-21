@@ -573,6 +573,7 @@ MonoBehaviour:
   initialBigChance: 0.6
   specialtyCherries: []
   doSpecialtyCherrySpawning: 0
+  roundScalingMultipliers: []
 --- !u!114 &814254364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,6 +600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 045a3638afca84165bf7057717eab5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tracks: []
 --- !u!114 &814254366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1224,33 +1226,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1732729818725182833, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -1632.1282
-      objectReference: {fileID: 0}
-    - target: {fileID: 1732729818725182833, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 55.117104
-      objectReference: {fileID: 0}
     - target: {fileID: 2453157323036994659, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: m_Name
       value: IngameUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 3115637630291950395, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 195
-      objectReference: {fileID: 0}
-    - target: {fileID: 3115637630291950395, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -391
-      objectReference: {fileID: 0}
-    - target: {fileID: 3459166160992311004, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -860.4715
-      objectReference: {fileID: 0}
-    - target: {fileID: 3459166160992311004, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 48.117043
       objectReference: {fileID: 0}
     - target: {fileID: 5964487472042778191, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: m_Pivot.x

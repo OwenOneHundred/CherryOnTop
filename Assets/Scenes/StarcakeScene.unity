@@ -572,7 +572,7 @@ MonoBehaviour:
   difficultyScalingAmount: 1.16
   initialBigChance: 0.6
   specialtyCherries: []
-  doSpecialtyCherrySpawning: 0
+  doSpecialtyCherrySpawning: 1
   roundScalingMultipliers: []
 --- !u!114 &814254364
 MonoBehaviour:

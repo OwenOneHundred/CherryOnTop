@@ -58,7 +58,7 @@ public class CherrySpawner : MonoBehaviour
             {
                 prefab = specialtyCherryType.prefab;
             }
-            if (doSpecialtyCherrySpawning && Random.value <= 0.01f)
+            if (doSpecialtyCherrySpawning && Random.value <= 0.005f)
             {
                 prefab = GetRandomSpecialtyCherry().prefab;
             }

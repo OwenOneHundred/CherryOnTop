@@ -106,6 +106,7 @@ public class SwitchLevelPreview : MonoBehaviour
 
     void OnForwardsButtonClick()
     {
+        if (moving) { return; }
         if (levelIndex + 1 == levelPrefabs.Length) { return; }
         levelIndex = Mathf.Clamp((levelIndex + 1), 0, levelPreviews.Length - 1);
         
@@ -120,6 +121,7 @@ public class SwitchLevelPreview : MonoBehaviour
 
     public void OnBackButtonClick()
     {
+        if (moving) { return; }
         if (levelIndex == 0) { return; }
         levelIndex = Mathf.Clamp((levelIndex - 1), 0, levelPreviews.Length - 1);
         
@@ -154,8 +156,9 @@ public class SwitchLevelPreview : MonoBehaviour
         yield return new WaitForSeconds(slideTime);
         //Snaps the level to the center if it is not already there
         if (box != null) { 
-            box.transform.localPosition = new Vector3(0, 0, 0);
+            StopMovingAndSnapToCenter();
         }
+
     }
 
     void DisableAllComponentsExceptThis(bool disable)

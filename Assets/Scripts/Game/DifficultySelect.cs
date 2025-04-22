@@ -16,7 +16,7 @@ public class DifficultySelect : MonoBehaviour
         difficulties.Add(new Easy(1.12f));
         difficulties.Add(new Medium(1.18f));
         difficulties.Add(new Hard(1.24f));
-        difficulties.Add(new Hard(1.26f));
+        difficulties.Add(new Impossible(1.265f));
         difficulty = difficulties[0];
     }
 
@@ -102,6 +102,7 @@ public class DifficultySelect : MonoBehaviour
         public Impossible(float value) : base(value)
         {
             number = 4;
+            name = "Impossible";
         }
 
         public override void OnRoundStart()

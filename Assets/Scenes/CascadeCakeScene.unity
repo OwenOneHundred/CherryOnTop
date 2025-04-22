@@ -743,7 +743,8 @@ MonoBehaviour:
     prefab: {fileID: 618466874522788365, guid: 397b617b3b3edca458cf9e2c5ed9a9a5, type: 3}
   - weight: 1
     prefab: {fileID: 8212864766905315278, guid: 43a53466f5579a240afa2d3df885ecee, type: 3}
-  doSpecialtyCherrySpawning: 0
+  doSpecialtyCherrySpawning: 1
+  roundScalingMultipliers: []
 --- !u!114 &814254364
 MonoBehaviour:
   m_ObjectHideFlags: 0

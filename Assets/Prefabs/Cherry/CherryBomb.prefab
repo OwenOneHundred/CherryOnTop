@@ -4847,7 +4847,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 37915a92d29734bb586398e8480546fe, type: 2}
     - target: {fileID: 3678773368687669692, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
       propertyPath: baseSpeed
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 3745335902927374605, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4934,8 +4934,8 @@ MonoBehaviour:
   damageNumberPrefab: {fileID: 1117619847005422415, guid: 3646483419b9a4ce7aa9ae6b1b384a68, type: 3}
   spawnDamageNumbers: 0
   explosionTime: 3
-  explosionRadius: 3
-  explosionStunTime: 4
+  explosionRadius: 1.5
+  explosionStunTime: 2
   layerMask:
     serializedVersion: 2
     m_Bits: 4096

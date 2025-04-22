@@ -2777,11 +2777,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4018459573636322658}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a8bdee40cd924d66ab1c28c00a7c0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sparklePrefab: {fileID: 0}
+  sparkleMovementPerimeter: {fileID: 0}
+  sparkleSpeed: 4
+  sparkleLifetimeRange: {x: 0, y: 0}
 --- !u!1 &4260448390806352939
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Sushi
   m_EditorClassIdentifier: 
-  price: 5
+  price: 6
   shopSprite: {fileID: 21300000, guid: 450b357d753084d9ab6206c9727c3ff8, type: 3}
   effectsAndWhen: []
   description: Rapidly lobs inaccurate, low damage sushi at cherries.

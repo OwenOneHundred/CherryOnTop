@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FlowerAttack
   m_EditorClassIdentifier: 
   cooldown: 0.65
-  damage: 6
+  damage: 4
   debuffs: []
   projectile: {fileID: 1373519935423302513, guid: b80d9abc0fe6243fa9af091e386ff28b, type: 3}
   projectileSpeed: 6.5

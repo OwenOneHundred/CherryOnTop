@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa5ddee62ca0e145b2a85463bea3cdf, type: 3}
   m_Name: RubberDuckAttack
   m_EditorClassIdentifier: 
-  cooldown: 0.35
+  cooldown: 0.4
   damage: 6
   debuffs: []
   projectile: {fileID: 9206927958419992560, guid: d5289e0d463f34d35b63d39f353e5b43, type: 3}

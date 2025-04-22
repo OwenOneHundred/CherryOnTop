@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OrangeAttack
   m_EditorClassIdentifier: 
   cooldown: 1
-  damage: 4
+  damage: 6
   debuffs: []
   projectile: {fileID: 1373519935423302513, guid: 484fa7696cc1442249fb9591359bae30, type: 3}
   projectileSpeed: 7

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Peapod
   m_EditorClassIdentifier: 
-  price: 5
+  price: 4
   shopSprite: {fileID: 21300000, guid: 327ddfa7d4ef7405f9ae71f41d663ed5, type: 3}
   effectsAndWhen: []
   description: Drops a giant pea on the track that rolls backward along the track

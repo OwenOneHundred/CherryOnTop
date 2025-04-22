@@ -92,7 +92,7 @@ public class DifficultySelect : MonoBehaviour
             Shop.shop.totalItems = 4;
             Shop.shop.columns = 2;
             Shop.shop.rows = 2;
-            Inventory.inventory.initialMoney = 12;
+            Inventory.inventory.initialMoney = 13;
             Shop.shop.Rerolls += 1;
         }
     }
@@ -110,7 +110,7 @@ public class DifficultySelect : MonoBehaviour
             Shop.shop.totalItems = 3;
             Shop.shop.columns = 2;
             Shop.shop.rows = 2;
-            Inventory.inventory.initialMoney = 10;
+            Inventory.inventory.initialMoney = 12;
             Shop.shop.Rerolls += 1;
             RoundManager.roundManager.moneyOnRoundEnd -= 1;
         }

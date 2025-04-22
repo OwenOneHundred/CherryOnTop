@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Bell
   m_EditorClassIdentifier: 
-  price: 12
+  price: 11
   shopSprite: {fileID: 21300000, guid: 16a1b009d82d94b7dbdf08518522f941, type: 3}
   effectsAndWhen: []
   description: Attacks once every 16 seconds with a large, powerful shockwave. Attacks

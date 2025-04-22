@@ -11,7 +11,6 @@ public class InventoryRenderer : MonoBehaviour
     [SerializeField] int columns = 3;
     [SerializeField] int rows = 7;
     [SerializeField] Vector2 iconStartPos;
-    [SerializeField] float bottomDistance = 488;
     [SerializeField] Vector2 iconDistances;
     private List<ItemAndObj> displayList = new List<ItemAndObj>();
     [SerializeField] Transform iconParent;

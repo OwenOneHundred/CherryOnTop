@@ -20,11 +20,9 @@ public class SwitchLevelPreview : MonoBehaviour
     private bool slideLeft = true;
     public float slideTime;
     private bool moving = false;
-    private int stopRadius = 10;
     public Sprite backButtonImg;
     public HoverImgChange forwardHover;
     public HoverImgChange backHover;
-    float heldIntervalToMove = 0.5f;
 
     void Start()
     {

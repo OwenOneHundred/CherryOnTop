@@ -10,7 +10,6 @@ public class FloatUpAndDown : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(moveDistance);
         startPos = transform.position;
         goalPos = startPos + (moveDistance / 2);
     }

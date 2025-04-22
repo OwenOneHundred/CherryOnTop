@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class DifficultyInfo : MonoBehaviour
 {
-    [System.NonSerialized] public DifficultySelect.Difficulty difficulty;
+    [System.NonSerialized] public Difficulty difficulty;
     public static DifficultyInfo difficultyInfo;
     [SerializeField] List<Sprite> measuringCupSprites = new();
     void Awake()
@@ -22,7 +22,6 @@ public class DifficultyInfo : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        difficulty = new DifficultySelect.Easy(1.12f);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
@@ -35,7 +34,7 @@ public class DifficultyInfo : MonoBehaviour
 
     private void OnLoadedGameScene()
     {
-        FindAnyObjectByType<CherrySpawner>().difficultyScalingAmount = difficulty.value;
+        FindAnyObjectByType<CherrySpawner>().difficulty = difficulty;
 
         Image difficultyIcon = GameObject.Find("DifficultyIcon").GetComponent<Image>();
         difficultyIcon.sprite = measuringCupSprites[difficulty.number - 1];

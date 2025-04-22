@@ -46,8 +46,8 @@ public class CherryTypes : MonoBehaviour
                 transform.localScale *= 2f;
                 break;
             case CherrySize.SuperLarge:
-                cherryHitbox.cherryHealth *= 20f;
-                cherryMovement.baseSpeed *= 0.5f;
+                cherryHitbox.cherryHealth *= 18f;
+                cherryMovement.baseSpeed *= 0.45f;
                 transform.localScale *= 5f;
                 break;
         }

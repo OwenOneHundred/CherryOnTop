@@ -802,6 +802,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cup: {fileID: 6763118488366197041}
+  difficulties:
+  - {fileID: 11400000, guid: 9e1ce81bba6bc4b5d81e13e4ab145df3, type: 2}
+  - {fileID: 11400000, guid: c433ba82f6e554a9b9dffeb5dff12ae2, type: 2}
+  - {fileID: 11400000, guid: 729bc5f0f3af6419987126270cd8e23c, type: 2}
+  - {fileID: 11400000, guid: bbc97536c7563469286dd2393055eb0e, type: 2}
   cupSprites:
   - {fileID: 262248273, guid: 6c1eded1bf65f4a8bad827432db4d252, type: 3}
   - {fileID: -279945532, guid: 6c1eded1bf65f4a8bad827432db4d252, type: 3}

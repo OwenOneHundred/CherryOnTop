@@ -22,7 +22,7 @@ public abstract class EffectSO : ScriptableObject
 
     public void PlayTriggeredSound()
     {
-        if (triggeredSound != null)
+        if (triggeredSound.clip != null)
         {
             SoundEffectManager.sfxmanager.PlayOneShot(triggeredSound);
         }

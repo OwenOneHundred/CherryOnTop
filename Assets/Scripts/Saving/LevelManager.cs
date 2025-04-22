@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using GameSaves;
 using NUnit.Framework;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -163,9 +164,15 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void InitializeSaveData(bool loadLevel = false)
+    {
+        Initialize(SceneManager.GetActiveScene().name, loadLevel);
+    }
+
     public void SaveLevel()
     {
         Debug.Log("Saving level data...");
+        InitializeSaveData();
 
         // Start: Create the index for the items and toppings
         List<Item> potentialItems = toppingRegistery.allItems;
@@ -229,6 +236,7 @@ public class LevelManager : MonoBehaviour
     public void LoadLevel()
     {
         Debug.Log("Loading level data...");
+        InitializeSaveData(true);
 
         // Grab the lists of toppings and items
         List<Item> potentialItems = toppingRegistery.allItems;

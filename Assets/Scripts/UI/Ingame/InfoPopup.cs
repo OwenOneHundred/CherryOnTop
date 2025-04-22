@@ -76,6 +76,14 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         gameObject.SetActive(false);
     }
 
+    void Update()
+    {
+        if (item != null && Input.GetKeyDown(KeyCode.X))
+        {
+            OnSell();
+        }
+    }
+
     public void OnSell()
     {
         Inventory.inventory.Money += sellPrice;

@@ -886,6 +886,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 432eab5753cea4b9d8f3a7790056a8cb, type: 2}
   - {fileID: 11400000, guid: 86dbcbf8bdcb846c39632dd0677ed90e, type: 2}
   - {fileID: 11400000, guid: fc8447cf6d7749e499d5a495ff33c615, type: 2}
+  - {fileID: 11400000, guid: 4a776783903da4ad4b46934518ae0135, type: 2}
 --- !u!114 &7835569952325439666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1058,6 +1059,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c259efe27a1484004aa200566bb9b5d2, type: 2}
   - {fileID: 11400000, guid: 9d3eb83265682496898d8e9bd7f73867, type: 2}
   - {fileID: 11400000, guid: bdc0e671f2a424ab18e15947a2eb1e69, type: 2}
+  - {fileID: 11400000, guid: 4a776783903da4ad4b46934518ae0135, type: 2}
   - {fileID: 11400000, guid: b08a3f95245044847afbd0298274bfb4, type: 2}
   - {fileID: 11400000, guid: 33aead3dbac0f433c9669456ab41b1b7, type: 2}
   - {fileID: 11400000, guid: 49aa7e781e6674cd38869265dbf3554d, type: 2}
@@ -1643,7 +1645,6 @@ MonoBehaviour:
   columns: 3
   rows: 7
   iconStartPos: {x: -196, y: 591}
-  bottomDistance: 810
   iconDistances: {x: 190, y: 193}
   iconParent: {fileID: 5570748389306598569}
   leftArrow: {fileID: 5898699295424254840}
@@ -2685,7 +2686,6 @@ GameObject:
   - component: {fileID: 6233291778923759286}
   - component: {fileID: 5441513314144962130}
   - component: {fileID: 5917666770896241322}
-  - component: {fileID: 1079709016964939341}
   m_Layer: 5
   m_Name: InfoPanel
   m_TagString: Untagged
@@ -2709,6 +2709,7 @@ RectTransform:
   - {fileID: 6361484414120407408}
   - {fileID: 7668422276183757656}
   - {fileID: 1597700668616117563}
+  - {fileID: 6269918592873941531}
   m_Father: {fileID: 6830749032049405005}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2770,22 +2771,6 @@ MonoBehaviour:
   description: {fileID: 507735693507010517}
   toppingType: {fileID: 476955989706584627}
   detailedInfo: {fileID: 3554545847722518233}
---- !u!114 &1079709016964939341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4018459573636322658}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a8bdee40cd924d66ab1c28c00a7c0fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sparklePrefab: {fileID: 0}
-  sparkleMovementPerimeter: {fileID: 0}
-  sparkleSpeed: 4
-  sparkleLifetimeRange: {x: 0, y: 0}
 --- !u!1 &4260448390806352939
 GameObject:
   m_ObjectHideFlags: 0
@@ -5380,6 +5365,58 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &8847849139834625775
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6269918592873941531}
+  - component: {fileID: 1647445710022898423}
+  m_Layer: 5
+  m_Name: SparkleSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6269918592873941531
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8847849139834625775}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4624202409210947764}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -7.2826, y: 7.3342}
+  m_SizeDelta: {x: 1022.9037, y: 251.7957}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1647445710022898423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8847849139834625775}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a8bdee40cd924d66ab1c28c00a7c0fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sparklePrefab: {fileID: 5387383876450135958, guid: 68bc015c2f5c84399bca3d97900cd09b, type: 3}
+  sparkleMovementPerimeter: {fileID: 6269918592873941531}
+  sparkleSpeed: 3
+  sparkleLifetimeRange: {x: 0.7, y: 1.5}
 --- !u!1 &8904912258550702457
 GameObject:
   m_ObjectHideFlags: 0
@@ -5550,7 +5587,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 104.06433, y: -522.1837}
+  m_AnchoredPosition: {x: 104.06445, y: -522.1837}
   m_SizeDelta: {x: 1392.193, y: 681.4264}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5814567253910686767

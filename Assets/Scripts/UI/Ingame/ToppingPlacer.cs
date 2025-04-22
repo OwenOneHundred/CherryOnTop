@@ -228,8 +228,7 @@ public class ToppingPlacer : MonoBehaviour
         Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 6); // create particle effect
 
         if (playSound) { SoundEffectManager.sfxmanager.PlayOneShot(placeSound); }
-
-        Debug.Log("here");
+        
         topping.SetGameObjectOnEffects(newToppingObj);
         topping.RegisterEffects(newToppingObj);
 

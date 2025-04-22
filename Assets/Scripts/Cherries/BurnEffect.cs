@@ -4,7 +4,6 @@ using UnityEngine.VFX;
 [CreateAssetMenu(menuName = "CherryDebuff/Burn")]
 public class BurnEffect : CherryDebuff
 {
-    [SerializeField] float dps = 3;
     CherryHitbox cherryHitbox;
     [SerializeField] GameObject fireParticleSystemPrefab;
     GameObject firePSObj;

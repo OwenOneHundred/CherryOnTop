@@ -12,6 +12,8 @@ public abstract class CherryDebuff : ScriptableObject
     public float damageMultiplier = 1; // this is read by DebuffManager, so debuffs can put multipliers on damage.
 
     public DebuffType debuffType = DebuffType.none;
+
+    public float dps = 0;
     
     [System.NonSerialized] public GameObject cherry; // should be set in OnAdd, 
     // so it can be read in EveryFrame to perform actions on the cherry this debuff is on

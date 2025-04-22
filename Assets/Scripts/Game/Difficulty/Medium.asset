@@ -15,15 +15,4 @@ MonoBehaviour:
   cherryAmountScaleValue: 1.14
   cherrySizeScaleValue: 1.16
   number: 2
-  hardCodedRounds:
-  - specialtyCherries:
-    - specialtyCherry:
-        weight: 0
-        prefab: {fileID: 0}
-      chance: 0
-    sizes:
-    - size: 2
-      chance: 1
-    round: 2
-    timeBetweenCherriesSeconds: 5
-    cherryCount: 3
+  hardCodedRounds: []

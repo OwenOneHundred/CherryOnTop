@@ -18,6 +18,7 @@ public class GetMoneyIfCherryDiedWasFrozen : EffectSO
             if (diesEvent.cherry.GetComponentInChildren<DebuffManager>().HasDebuffType(CherryDebuff.DebuffType.freeze))
             {
                 Inventory.inventory.Money += amountToChangeMoney;
+                GetToppingActivatedGlow().StartNewFireEffect("Red", Color.red, 1);
             }
         }
     }

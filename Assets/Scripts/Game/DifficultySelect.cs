@@ -92,7 +92,7 @@ public class DifficultySelect : MonoBehaviour
             Shop.shop.totalItems = 4;
             Shop.shop.columns = 2;
             Shop.shop.rows = 2;
-            Inventory.inventory.initialMoney = 13;
+            Inventory.inventory.initialMoney = 14;
             Shop.shop.Rerolls += 1;
         }
     }

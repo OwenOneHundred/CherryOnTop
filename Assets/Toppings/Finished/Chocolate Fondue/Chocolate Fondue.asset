@@ -19,7 +19,7 @@ MonoBehaviour:
     cherries take double damage from hot attacks. (Chocolate doesn't stack)
   rarity: 1
   towerPrefab: {fileID: 449745754928225580, guid: eb70e76209c2b4a99976fdc60f25c42a, type: 3}
-  flags: 2
+  flags: 130
   cakePoints: 10
   onHitCherry: []
   onKillCherry: []

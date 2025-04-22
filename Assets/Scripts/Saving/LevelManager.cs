@@ -32,6 +32,7 @@ public class LevelManager : MonoBehaviour
 
     public void RestartLevel()
     {
+        Time.timeScale = 1f;
         LevelManager.levelWasLoadedFromSave = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -121,7 +122,6 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
 
         Debug.Log("Initializing achievements...");
         AchievementsTracker tracker = AchievementsTracker.Instance;

@@ -4,9 +4,6 @@ using System.Linq;
 using Unity.Collections;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class InventoryRenderer : MonoBehaviour
 {

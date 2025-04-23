@@ -706,6 +706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd93aa43fc4a54be0a82d857730480cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultCherriesPerRound: 8
   cherryPrefab: {fileID: 4085270106411668407, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
   cherryStartPos: {x: 0, y: 0, z: 0}
   initialBigChance: 0.6
@@ -1265,6 +1266,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: IngameUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5165441279755291159, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: speedUpButtonToggled.b
+      value: 0.9528302
+      objectReference: {fileID: 0}
+    - target: {fileID: 5165441279755291159, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: speedUpButtonToggled.g
+      value: 0.9528302
+      objectReference: {fileID: 0}
+    - target: {fileID: 5165441279755291159, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: speedUpButtonToggled.r
+      value: 0.9528302
+      objectReference: {fileID: 0}
+    - target: {fileID: 5165441279755291159, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: speedUpButtonUntoggled.b
+      value: 0.6132076
+      objectReference: {fileID: 0}
+    - target: {fileID: 5165441279755291159, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: speedUpButtonUntoggled.g
+      value: 0.6132076
+      objectReference: {fileID: 0}
+    - target: {fileID: 5165441279755291159, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: speedUpButtonUntoggled.r
+      value: 0.6132076
+      objectReference: {fileID: 0}
     - target: {fileID: 5964487472042778191, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1344,6 +1369,22 @@ PrefabInstance:
     - target: {fileID: 5964487472042778191, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6110504044283116686, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6110504044283116686, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6110504044283116686, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: initialMoney
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

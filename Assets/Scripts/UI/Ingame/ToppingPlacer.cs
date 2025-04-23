@@ -233,6 +233,8 @@ public class ToppingPlacer : MonoBehaviour
         topping.RegisterEffects(newToppingObj);
 
         Inventory.inventory.RemoveItemByID(topping.ID); // remove from inventory
+
+        newToppingObj.GetComponent<ToppingObjInteractions>().OnPlacedFromInventory();
     }
 
     public void PlaceToppingViaLoad(Topping topping, Vector3 position, Quaternion rotation)

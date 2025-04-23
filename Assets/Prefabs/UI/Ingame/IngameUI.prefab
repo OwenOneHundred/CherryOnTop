@@ -1532,8 +1532,8 @@ MonoBehaviour:
   slowDownSound:
     volume: 0.2
     clip: {fileID: 8300000, guid: 9ff77b82e23a34275b8cdd5d62a54bef, type: 3}
-  speedUpButtonUntoggled: {r: 0.5529412, g: 0.45882353, b: 0.2901961, a: 1}
-  speedUpButtonToggled: {r: 0.9433962, g: 0.816923, b: 0.5829477, a: 1}
+  speedUpButtonUntoggled: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
+  speedUpButtonToggled: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 1}
   speedUpButton: {fileID: 6110504044283116686}
   speedUpButtonText: {fileID: 2430840553585872026}
 --- !u!114 &1204338498259045828
@@ -4023,7 +4023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6117647, g: 0.6117647, b: 0.6117647, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

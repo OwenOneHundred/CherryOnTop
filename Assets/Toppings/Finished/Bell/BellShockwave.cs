@@ -10,6 +10,7 @@ public class BellShockwave : ShockwaveAttack
     ToppingActivatedGlow toppingActivatedGlow;
     public override void OnStart()
     {
+        Debug.Log("onstart");
         baseCooldown = cooldown;
     }
     public override void EveryFrame()
@@ -21,6 +22,8 @@ public class BellShockwave : ShockwaveAttack
             //SoundEffectManager.sfxmanager.PlayOneShot(onScale);
             toppingActivatedGlow.StartNewFireEffect("Gold", Color.yellow, 2.5f);
         }
+        Debug.Log("Inventory count: " + Inventory.inventory.GetInventoryCount(true));
+        Debug.Log("every frame: " + newCooldown);
         cooldown = newCooldown;
     }
 

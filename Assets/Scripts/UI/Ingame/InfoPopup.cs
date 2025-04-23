@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Globalization;
 using EventBus;
+using System.Linq;
 
 public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -96,9 +97,14 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
         if (isInventoryItem)
         {
-            if (Inventory.inventory.RemoveOneOfItem(item) <= 0)
+            if (Inventory.inventory.RemoveItemByID(item.ID) <= 0)
             {
                 Clear();
+            }
+            else 
+            {
+                Item nextItemInStack = Inventory.inventory.ownedItems.First(x => x.name.Equals(item.name));
+                SetUpForInventoryItem(nextItemInStack);
             }
         }
         

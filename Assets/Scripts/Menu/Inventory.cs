@@ -198,6 +198,7 @@ public class Inventory : MonoBehaviour
             SoundEffectManager.sfxmanager.PlayOneShotWithPitch(getMoneySFX, moneyGainPitch);
         }
 
+        Shop.shop.UpdateAllIconText();
         Shop.shop.UpdateRerollButtonFadedness();
     }
 

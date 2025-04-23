@@ -15,7 +15,7 @@ public class DifficultyInfo : MonoBehaviour
         if (difficultyInfo == this || difficultyInfo == null)
         {
             difficultyInfo = this;
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            // SceneManager.sceneLoaded += OnSceneLoaded;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -25,16 +25,29 @@ public class DifficultyInfo : MonoBehaviour
         }
     }
 
+    public void SubscribeToLoadScene()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    public void UnsubscribeToLoadScene()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         if (scene.name != "LevelSelectScene" && scene.name != "MenuScene")
         {
-            OnLoadedGameScene();
+            LoadDifficulty(difficulty);
+            UnsubscribeToLoadScene();
         }
     }
 
-    private void OnLoadedGameScene()
+    public void LoadDifficulty(Difficulty difficulty = null)
     {
+        if (difficulty == null) difficulty = this.difficulty;
+        else this.difficulty = difficulty;
         FindAnyObjectByType<CherrySpawner>().difficulty = difficulty;
 
         Image difficultyIcon = GameObject.Find("DifficultyIcon").GetComponent<Image>();

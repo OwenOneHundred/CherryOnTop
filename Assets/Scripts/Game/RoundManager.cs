@@ -106,8 +106,8 @@ public class RoundManager : MonoBehaviour
         {
             SaveLevel(); // save after all round end things are called
         }
-        Debug.Log(roundNumber);
-        if (roundNumber == 31)
+
+        if (roundNumber == 30)
         {
             EndGame();
             return;

@@ -13,6 +13,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -2432090755550338912, guid: 28eba9bb3476c43798436f9d58ad5b2e, type: 3}
     - target: {fileID: 2483940146065237387, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2483940146065237387, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ad64bb1d8adf04fa7a4d88dd269c4f59, type: 2}
@@ -67,6 +71,10 @@ PrefabInstance:
     - target: {fileID: 6635548703197320697, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
       propertyPath: cherryHitbox
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7963788771583088766, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5343877452891195099, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}

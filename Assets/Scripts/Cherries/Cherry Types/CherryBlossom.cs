@@ -2,6 +2,7 @@ using GameSaves;
 using UnityEngine;
 using System.Collections;
 using EventBus;
+using UnityEngine.Rendering;
 
 public class CherryBlossom : CherryHitbox
 {
@@ -10,6 +11,7 @@ public class CherryBlossom : CherryHitbox
     public Mesh bloomMesh;
     public Material bloomMaterial;
     public float initialHealth;
+
 
     public void Start()
     {
@@ -39,6 +41,7 @@ public class CherryBlossom : CherryHitbox
         GameObject track = GameObject.FindGameObjectWithTag("Track");
         CherrySpawner spawner = track.GetComponent<CherrySpawner>();
         CherryMovement cherryMovement = GetComponent<CherryMovement>();
+        CherryTypes cherryType = GetComponent<CherryTypes>();
         cherryMovement.baseSpeed = 0;
         for (int i = 0; i < cherriesSpawn; i++)
         {
@@ -51,9 +54,13 @@ public class CherryBlossom : CherryHitbox
             newCherryMovement.currentTrack = cherryMovement.currentTrack;
             newCherryMovement.distanceTraveled = cherryMovement.distanceTraveled;
             CherryTypes newCherryType = newCherry.GetComponent<CherryTypes>();
-            newCherryType.cherrySize = CherryTypes.CherrySize.Small;
+            newCherryType.cherrySize = cherryType.cherrySize - 1;
+            if (newCherryType.cherrySize < 0) 
+            {
+                newCherryType.cherrySize = 0;
+            }
             newCherryType.SetCherryHealthAndSpeed();
-            yield return new WaitForSeconds(.2f);
+            yield return new WaitForSeconds(.3f);
         }
         CherryManager.Instance.OnCherryKilled(cherryMovement);
         EventBus<CherryDiesEvent>.Raise(new CherryDiesEvent(gameObject));

@@ -36,6 +36,11 @@ public class ShopInfoPanel : MonoBehaviour
         string damage = "-";
         if (attackManager != null)
         {
+            if (attackManager.attackTemplate == null) {
+                Debug.Log("ATTACK_TEMPLATE IS NULL");
+            } else {
+                Debug.Log("ATTACK_TEMPLATE IS NOT NULL");
+            }
             cooldown = attackManager.attackTemplate.cooldown + "";
             damage = attackManager.attackTemplate.GetVisibleDamage() + "";
         }

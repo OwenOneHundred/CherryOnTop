@@ -11,5 +11,6 @@ public class Impossible : Difficulty
         Inventory.inventory.initialMoney = 12;
         Shop.shop.Rerolls += 1;
         RoundManager.roundManager.moneyOnRoundEnd -= 1;
+        GameObject.FindAnyObjectByType<CherrySpawner>().defaultCherriesPerRound += 1;
     }
 }

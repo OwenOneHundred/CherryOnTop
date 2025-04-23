@@ -16,6 +16,7 @@ public class LevelPreviewManager : MonoBehaviour
     {
         previewImage.sprite = levelImage;
         playButton.sceneName = sceneNameInEditor;
+        playButton.levelIndex = levelIndex;
         GetComponentInChildren<LoadButton>().sceneName = sceneNameInEditor;
         GetComponentInChildren<LoadButton>()._levelNameIngame = sceneNameInGame;
         title.text = sceneNameInGame;

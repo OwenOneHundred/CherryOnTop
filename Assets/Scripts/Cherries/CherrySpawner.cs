@@ -6,7 +6,7 @@ using UnityEngine;
 public class CherrySpawner : MonoBehaviour
 {
     readonly float defaultTimeBetweenCherries = 1;
-    readonly float defaultCherriesPerRound = 8;
+    public float defaultCherriesPerRound = 8;
 
     [SerializeField] public GameObject cherryPrefab;
     [SerializeField] Vector3 cherryStartPos;

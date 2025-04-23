@@ -88,7 +88,6 @@ public class RoundManager : MonoBehaviour
 
     public void EndRound() // called by OnCherryKilled when last cherry dies
     {
-        
         roundState = RoundState.shop;
         nextRoundButton.interactable = true;
         shopButton.interactable = true;
@@ -107,7 +106,8 @@ public class RoundManager : MonoBehaviour
         {
             SaveLevel(); // save after all round end things are called
         }
-        if (roundNumber == 30)
+        Debug.Log(roundNumber);
+        if (roundNumber == 31)
         {
             EndGame();
             return;
@@ -131,5 +131,6 @@ public class RoundManager : MonoBehaviour
     public void EndGame()
     {
         ingameUI.transform.Find("WinPanel").GetChild(0).gameObject.SetActive(true);
+        AchievementsTracker.Instance.MarkLevelAsCompleted(DifficultyInfo.difficultyInfo.levelIndex, DifficultyInfo.difficultyInfo.difficulty.number);
     }
 }

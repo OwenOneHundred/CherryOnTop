@@ -36,7 +36,7 @@ public class Projectile : MonoBehaviour
                 owner.OnHitCherry(ch);
             }
             
-            if (remainingCherryHealth <= 0) { owner.OnKillCherry(ch); }
+            if (remainingCherryHealth <= 0 && owner != null) { owner.OnKillCherry(ch); }
 
             foreach (CherryDebuff originalDebuff in cherryDebuffs)
             {

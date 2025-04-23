@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9396085b529ca4107b907f350cb2761f, type: 3}
   m_Name: Hard
   m_EditorClassIdentifier: 
-  cherryAmountScaleValue: 1.18
-  cherrySizeScaleValue: 1.22
+  cherryAmountScaleValue: 1.185
+  cherrySizeScaleValue: 1.23
   number: 3
   hardCodedRounds: []

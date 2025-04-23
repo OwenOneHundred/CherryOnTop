@@ -19,8 +19,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7b14a28163d064317a51e744cadaaaab, type: 2}
     eventSOs:
     - {fileID: 11400000, guid: 2d615635485a64698bbc908c64183dc1, type: 2}
-  description: Every 4 seconds, freezes every cherry with a direct line of sight.
-    If a cherry dies in range while frozen, 25% chance to get $1.
+  description: Every 4 seconds, freezes the 10 closest cherries with a direct line
+    of sight. If a cherry dies in range while frozen, 25% chance to get $1.
   rarity: 1
   towerPrefab: {fileID: 693207556456993743, guid: 6c39197d521a14147aef013700384ac8, type: 3}
   flags: 2048

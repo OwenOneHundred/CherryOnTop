@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Orange
   m_EditorClassIdentifier: 
-  price: 4
+  price: 5
   shopSprite: {fileID: 21300000, guid: 34ce793ecdb094116a650a5b410120cb, type: 3}
   effectsAndWhen: []
   description: Attacks slowly with a weak projectile. Every time this tower gets

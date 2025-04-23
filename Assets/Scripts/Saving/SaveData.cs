@@ -16,7 +16,7 @@ namespace GameSaves
             {
                 dataEntry = JsonUtility.FromJson<T>(data);
                 return true;
-            } catch (Exception e)
+            } catch (Exception)
             {
                 dataEntry = default;
                 return false;

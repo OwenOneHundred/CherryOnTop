@@ -162,6 +162,6 @@ MonoBehaviour:
   cameraShakeViolence: 0.2
   cameraShakeLength: 0.1
   explodeSound:
-    volume: 0.2
+    volume: 0.15
     clip: {fileID: 8300000, guid: 6eeaf067bd5484455843dde71669cb78, type: 3}
   slideSpeed: 5

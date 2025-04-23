@@ -3,7 +3,7 @@ using GameSaves;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-[CreateAssetMenu(menuName = "Effects/ChangeDamageEveryRound")]
+[CreateAssetMenu(menuName = "Effects/ChangeDamage")]
 public class ChangeDamage : EffectSO
 {
     bool initializeOnCall = true;

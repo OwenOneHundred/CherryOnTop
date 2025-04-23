@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Coconut
   m_EditorClassIdentifier: 
-  price: 6
+  price: 5
   shopSprite: {fileID: 21300000, guid: 7cb4204fd80214b78b86e238d7c7270e, type: 3}
   effectsAndWhen:
   - effectSOs:

@@ -1,12 +1,14 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DifficultyInfo : MonoBehaviour
 {
-    public DifficultySelect.Difficulty difficulty;
+    [System.NonSerialized] public Difficulty difficulty;
     public static DifficultyInfo difficultyInfo;
+    [SerializeField] List<Sprite> measuringCupSprites = new();
     void Awake()
     {
         if (difficultyInfo == this || difficultyInfo == null)
@@ -20,7 +22,6 @@ public class DifficultyInfo : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        difficulty = new DifficultySelect.Easy(1.12f);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
@@ -33,23 +34,10 @@ public class DifficultyInfo : MonoBehaviour
 
     private void OnLoadedGameScene()
     {
-        FindAnyObjectByType<CherrySpawner>().difficultyScalingAmount = difficulty.value;
+        FindAnyObjectByType<CherrySpawner>().difficulty = difficulty;
 
-        Transform icons = GameObject.Find("DifficultyIcons").transform;
-        int budgetEnum = 0;
-        foreach (Transform trans in icons)
-        {
-            if (budgetEnum >= difficulty.number)
-            {
-                trans.GetComponent<Image>().color = Color.gray;
-            }
-            else
-            {
-                trans.GetComponent<Image>().color = Color.white;
-            }
-
-            budgetEnum += 1;
-        }
+        Image difficultyIcon = GameObject.Find("DifficultyIcon").GetComponent<Image>();
+        difficultyIcon.sprite = measuringCupSprites[difficulty.number - 1];
 
         difficulty.OnRoundStart();
     }

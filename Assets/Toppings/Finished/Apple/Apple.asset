@@ -19,7 +19,7 @@ MonoBehaviour:
     for splash damage.
   rarity: 0
   towerPrefab: {fileID: 2800392430929928222, guid: e8e3426b12d834bd796744e801bfaa2d, type: 3}
-  flags: 80
+  flags: 208
   cakePoints: 0
   onHitCherry: []
   onKillCherry: []

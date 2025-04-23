@@ -15,7 +15,7 @@ public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPoin
         infoPopup = Shop.shop.infoPopup;
     }
 
-    private void Start()
+    public void OnPlacedFromInventory()
     {
         OnClicked();
     }

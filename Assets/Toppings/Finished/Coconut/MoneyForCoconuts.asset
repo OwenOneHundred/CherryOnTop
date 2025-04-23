@@ -15,4 +15,5 @@ MonoBehaviour:
   triggeredSound:
     volume: 0.5
     clip: {fileID: 0}
+  odd: 1
   moneyAmount: 3

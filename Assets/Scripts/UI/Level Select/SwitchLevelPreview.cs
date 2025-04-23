@@ -20,11 +20,9 @@ public class SwitchLevelPreview : MonoBehaviour
     private bool slideLeft = true;
     public float slideTime;
     private bool moving = false;
-    private int stopRadius = 10;
     public Sprite backButtonImg;
     public HoverImgChange forwardHover;
     public HoverImgChange backHover;
-    float heldIntervalToMove = 0.5f;
 
     void Start()
     {
@@ -36,7 +34,7 @@ public class SwitchLevelPreview : MonoBehaviour
         backButton.SetActive(false);
         for (int i = 0; i < levelPreviews.Length; i++)
         {
-            Spawn(levelPreviews[i]);
+            Spawn(levelPreviews[i], i);
             
             levelPrefabs[i] = levelPreviews[i].levelPrefab;
         }
@@ -44,10 +42,10 @@ public class SwitchLevelPreview : MonoBehaviour
         LoadLevelBox(0, true);
     }
 
-    public void Spawn(LevelPreview preview)
+    public void Spawn(LevelPreview preview, int levelIndex)
     {
         preview.levelPrefab = Instantiate(preview.emptyLevelPrefab);
-        preview.levelPrefab.GetComponent<LevelPreviewManager>().Setup(preview.levelImage, preview.sceneNameIngame, preview.sceneNameInEditor);
+        preview.levelPrefab.GetComponent<LevelPreviewManager>().Setup(preview.levelImage, preview.sceneNameIngame, preview.sceneNameInEditor, levelIndex);
     }
 
     private void Update()
@@ -106,6 +104,7 @@ public class SwitchLevelPreview : MonoBehaviour
 
     void OnForwardsButtonClick()
     {
+        if (moving) { return; }
         if (levelIndex + 1 == levelPrefabs.Length) { return; }
         levelIndex = Mathf.Clamp((levelIndex + 1), 0, levelPreviews.Length - 1);
         
@@ -120,6 +119,7 @@ public class SwitchLevelPreview : MonoBehaviour
 
     public void OnBackButtonClick()
     {
+        if (moving) { return; }
         if (levelIndex == 0) { return; }
         levelIndex = Mathf.Clamp((levelIndex - 1), 0, levelPreviews.Length - 1);
         
@@ -154,8 +154,9 @@ public class SwitchLevelPreview : MonoBehaviour
         yield return new WaitForSeconds(slideTime);
         //Snaps the level to the center if it is not already there
         if (box != null) { 
-            box.transform.localPosition = new Vector3(0, 0, 0);
+            StopMovingAndSnapToCenter();
         }
+
     }
 
     void DisableAllComponentsExceptThis(bool disable)

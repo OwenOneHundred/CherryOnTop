@@ -4,9 +4,6 @@ using System.Linq;
 using Unity.Collections;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class InventoryRenderer : MonoBehaviour
 {
@@ -14,7 +11,6 @@ public class InventoryRenderer : MonoBehaviour
     [SerializeField] int columns = 3;
     [SerializeField] int rows = 7;
     [SerializeField] Vector2 iconStartPos;
-    [SerializeField] float bottomDistance = 488;
     [SerializeField] Vector2 iconDistances;
     private List<ItemAndObj> displayList = new List<ItemAndObj>();
     [SerializeField] Transform iconParent;
@@ -82,10 +78,9 @@ public class InventoryRenderer : MonoBehaviour
 
     public int RemoveOneFromItemFromDisplay(Item item)
     {
-        Debug.Log("here");
         if (item is not Topping topping) { return 0; } // Remove this once there's functionality for ingredients in display
 
-        ItemAndObj itemAndObj = displayList.First(x => x.item == topping);
+        ItemAndObj itemAndObj = displayList.First(x => x.item.name == topping.name);
         InventoryIconControl iconControl = itemAndObj.obj.GetComponent<InventoryIconControl>();
 
         iconControl.AmountInStack -= 1;
@@ -101,6 +96,12 @@ public class InventoryRenderer : MonoBehaviour
         return iconControl.AmountInStack;
     }
 
+    /// <summary>
+    /// Move item from inventory renderer display. Returns how many items in stack after operation.
+    /// </summary>
+    /// <param name="item">Item to remove</param>
+    /// <param name="replacementItem">What item to hold as top item in stack</param>
+    /// <returns>Remaining items in stack of items</returns>
     public int RemoveOneByIDFromDisplay(Item item, Item replacementItem = null)
     {
         try

@@ -16,7 +16,7 @@ public class CameraControl : MonoBehaviour
         if (shaking)
         {
             transform.position = Random.insideUnitCircle * shakeViolence;
-            shakeTimer += Time.deltaTime;
+            shakeTimer += Time.timeScale == 0 ? Time.unscaledDeltaTime : Time.deltaTime;
             if (shakeTimer >= shakeTime)
             {
                 shakeTimer = 0;

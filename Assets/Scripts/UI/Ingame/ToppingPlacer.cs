@@ -228,12 +228,13 @@ public class ToppingPlacer : MonoBehaviour
         Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 6); // create particle effect
 
         if (playSound) { SoundEffectManager.sfxmanager.PlayOneShot(placeSound); }
-
-        Debug.Log("here");
+        
         topping.SetGameObjectOnEffects(newToppingObj);
         topping.RegisterEffects(newToppingObj);
 
         Inventory.inventory.RemoveItemByID(topping.ID); // remove from inventory
+
+        newToppingObj.GetComponentInChildren<ToppingObjInteractions>().OnPlacedFromInventory();
     }
 
     public void PlaceToppingViaLoad(Topping topping, Vector3 position, Quaternion rotation)

@@ -27,7 +27,7 @@ public class PlayButton : MonoBehaviour
         }
     }
 
-    private DifficultySelect.Difficulty GetDifficultyValue()
+    private Difficulty GetDifficultyValue()
     {
         return transform.root.GetComponentInChildren<DifficultySelect>().difficulty;
     }

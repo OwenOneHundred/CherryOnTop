@@ -1451,6 +1451,12 @@ MonoBehaviour:
   roundNumberText: {fileID: 312049013074346797}
   goalRoundText: {fileID: 8762700298128969942}
   goalScoreText: {fileID: 8131357198590211462}
+  speedUpSound:
+    volume: 0.2
+    clip: {fileID: 8300000, guid: cbff077e3f9294ba8975de38ca4bd519, type: 3}
+  slowDownSound:
+    volume: 0.2
+    clip: {fileID: 8300000, guid: 9ff77b82e23a34275b8cdd5d62a54bef, type: 3}
   speedUpButtonUntoggled: {r: 0.5529412, g: 0.45882353, b: 0.2901961, a: 1}
   speedUpButtonToggled: {r: 0.9433962, g: 0.816923, b: 0.5829477, a: 1}
   speedUpButton: {fileID: 6110504044283116686}
@@ -2477,6 +2483,7 @@ GameObject:
   - component: {fileID: 1354671047066479524}
   - component: {fileID: 6631533523142642580}
   - component: {fileID: 8046277825079603991}
+  - component: {fileID: 7605091866412164161}
   m_Layer: 5
   m_Name: ToMenu
   m_TagString: Untagged
@@ -2598,6 +2605,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7605091866412164161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595656339799849375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3093b69114fc34054b78db22263428dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioFile:
+    volume: 0.2
+    clip: {fileID: 8300000, guid: 937b5f57df8fd46c2a9f500418626d04, type: 3}
 --- !u!1 &3739372307839502837
 GameObject:
   m_ObjectHideFlags: 0
@@ -5458,6 +5480,7 @@ GameObject:
   - component: {fileID: 1439772369057660111}
   - component: {fileID: 1303730684292729487}
   - component: {fileID: 3130307923222145821}
+  - component: {fileID: 3401632726854517046}
   m_Layer: 5
   m_Name: ContinueButton
   m_TagString: Untagged
@@ -5579,6 +5602,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3401632726854517046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7014386461990947397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3093b69114fc34054b78db22263428dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioFile:
+    volume: 0.2
+    clip: {fileID: 8300000, guid: 937b5f57df8fd46c2a9f500418626d04, type: 3}
 --- !u!1 &7162945015297341693
 GameObject:
   m_ObjectHideFlags: 0
@@ -6603,6 +6641,10 @@ PrefabInstance:
       propertyPath: m_Colors.m_HighlightedColor.r
       value: 0.745283
       objectReference: {fileID: 0}
+    - target: {fileID: 2333696763320562053, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2516482913335788729, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_Colors.m_PressedColor.b
       value: 0.5471698
@@ -6653,6 +6695,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3181088761205223646, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4987531159127680303, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7088423251718573688, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}

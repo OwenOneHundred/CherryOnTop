@@ -126,12 +126,11 @@ public class Inventory : MonoBehaviour
         inventoryRenderer.AddItemToDisplay(item);
     }
 
-    public int RemoveOneOfItem(Item item)
-    {
-        ownedItems.Remove(item);
-        return inventoryRenderer.RemoveOneFromItemFromDisplay(item); 
-    }
-
+    /// <summary>
+    /// Remove item from inventory by ID. Returns the number of items left in that stack after operation.
+    /// </summary>
+    /// <param name="id">ID of item to remove</param>
+    /// <returns>Number of items left in the stack</returns>
     public int RemoveItemByID(Guid id)
     {
         int index = ownedItems.FindIndex(x => x.ID.Equals(id));
@@ -234,6 +233,7 @@ public class Inventory : MonoBehaviour
 
     public int GetInventoryCount(bool countYarnMultiplier)
     {
+        Debug.Log(ownedItems.Count);
         int yarnAmount = countYarnMultiplier ? ownedItems.Select(x => x.name == "Yarn").Count() * (yarnAmountMultiplier - 1) : 0;
         return ownedItems.Count + yarnAmount;
     }

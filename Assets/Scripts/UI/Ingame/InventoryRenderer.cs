@@ -96,6 +96,12 @@ public class InventoryRenderer : MonoBehaviour
         return iconControl.AmountInStack;
     }
 
+    /// <summary>
+    /// Move item from inventory renderer display. Returns how many items in stack after operation.
+    /// </summary>
+    /// <param name="item">Item to remove</param>
+    /// <param name="replacementItem">What item to hold as top item in stack</param>
+    /// <returns>Remaining items in stack of items</returns>
     public int RemoveOneByIDFromDisplay(Item item, Item replacementItem = null)
     {
         try

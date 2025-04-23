@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   measuringCupSprites:
-  - {fileID: 262248273, guid: 6c1eded1bf65f4a8bad827432db4d252, type: 3}
-  - {fileID: -279945532, guid: 6c1eded1bf65f4a8bad827432db4d252, type: 3}
-  - {fileID: -143891777, guid: 6c1eded1bf65f4a8bad827432db4d252, type: 3}
-  - {fileID: 380617741, guid: ed96466e2cb4746c6aa6cb4827539df9, type: 3}
+  - {fileID: 1529385441, guid: 5589914acbf944b70bfdb3247f259898, type: 3}
+  - {fileID: -1419893046, guid: 5589914acbf944b70bfdb3247f259898, type: 3}
+  - {fileID: 259359628, guid: 5589914acbf944b70bfdb3247f259898, type: 3}
+  - {fileID: 1332639641, guid: 5589914acbf944b70bfdb3247f259898, type: 3}

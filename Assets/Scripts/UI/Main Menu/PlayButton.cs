@@ -8,6 +8,7 @@ public class PlayButton : MonoBehaviour
     public Button playButton;
     public string sceneName;
     public bool alsoGetDifficulty = true;
+    public int levelIndex = 0;
     [SerializeField] AudioFile audioFile;
 
     void Start()
@@ -24,6 +25,7 @@ public class PlayButton : MonoBehaviour
         if (alsoGetDifficulty)
         {
             DifficultyInfo.difficultyInfo.difficulty = GetDifficultyValue();
+            DifficultyInfo.difficultyInfo.levelIndex = levelIndex;
         }
     }
 

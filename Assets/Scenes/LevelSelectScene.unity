@@ -573,15 +573,15 @@ RectTransform:
   m_GameObject: {fileID: 751396938}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1650258061}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 434}
-  m_SizeDelta: {x: 1920, y: 555}
+  m_AnchoredPosition: {x: 0, y: 389}
+  m_SizeDelta: {x: 1920, y: 473}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &751396940
 MonoBehaviour:
@@ -640,7 +640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &813089712
 RectTransform:
   m_ObjectHideFlags: 0
@@ -657,7 +657,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -96, y: -96}
+  m_AnchoredPosition: {x: -119, y: -207}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &813089714
@@ -736,7 +736,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2067079787, guid: 8283d903c9fd7475aa2831bcc75682f5, type: 3}
+  m_Sprite: {fileID: -971760034, guid: 552ea9402a3db4cd79586c06fd5bf351, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1271,64 +1271,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1260255682}
     m_Modifications:
-    - target: {fileID: 1461601384100657347, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461601384100657347, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461601384100657347, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 694185262}
-    - target: {fileID: 1461601384100657347, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461601384100657347, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461601384100657347, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461601384100657347, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1461601384100657347, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333696763320562053, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333696763320562053, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2899235945510753775, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3181088761205223646, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
       propertyPath: m_Name
       value: Main Menu Settings Popup
       objectReference: {fileID: 0}
     - target: {fileID: 3181088761205223646, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4987531159127680303, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4987531159127680303, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}
-      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7088423251718573688, guid: 5fe2f5b2f1a32b141b0e60611a77b384, type: 3}

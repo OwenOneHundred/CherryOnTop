@@ -9,6 +9,7 @@ public class DifficultyInfo : MonoBehaviour
     [System.NonSerialized] public Difficulty difficulty;
     public static DifficultyInfo difficultyInfo;
     [SerializeField] List<Sprite> measuringCupSprites = new();
+    public int levelIndex = 0;
     void Awake()
     {
         if (difficultyInfo == this || difficultyInfo == null)

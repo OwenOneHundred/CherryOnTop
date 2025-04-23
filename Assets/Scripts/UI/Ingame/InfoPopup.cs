@@ -88,6 +88,8 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void OnSell()
     {
         Inventory.inventory.Money += sellPrice;
+        GameStats.gameStats.moneyEarned += sellPrice;
+        GameStats.gameStats.toppingsSold++;
         EventBus<SellEvent>.Raise(new SellEvent(item, toppingObj));
 
         if (toppingObj != null)

@@ -40,6 +40,7 @@ public class Inventory : MonoBehaviour
         if (!LevelManager.levelWasLoadedFromSave)
         {
             Money = initialMoney;
+            GameStats.gameStats.moneyEarned += initialMoney;
         }
 
         inventoryEffectManager = GetComponent<InventoryEffectManager>();
@@ -97,6 +98,8 @@ public class Inventory : MonoBehaviour
         AddItem(item);
 
         Shop.shop.mostRecentlyBoughtItem = item;
+        GameStats.gameStats.toppingsBought++;
+        GameStats.gameStats.moneySpent += item.price;
         return true;
     }
 

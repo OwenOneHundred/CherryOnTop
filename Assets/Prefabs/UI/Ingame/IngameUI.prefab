@@ -846,6 +846,61 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1161634211277946118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8109113069264803882}
+  - component: {fileID: 3762152239483038350}
+  m_Layer: 5
+  m_Name: GameStats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8109113069264803882
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161634211277946118}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5964487472042778191}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -496, y: 471}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3762152239483038350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161634211277946118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c2b887dec324ee4cbe9951616a60f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toppingsBought: 0
+  toppingsSold: 0
+  toppingsPlaced: 0
+  moneyEarned: 0
+  moneySpent: 0
+  roundsCompleted: 0
+  cherriesKilled: 0
 --- !u!1 &1561539517989251544
 GameObject:
   m_ObjectHideFlags: 0
@@ -1464,6 +1519,7 @@ RectTransform:
   m_Children:
   - {fileID: 1017223101855438045}
   - {fileID: 1261438764303226893}
+  - {fileID: 8109113069264803882}
   - {fileID: 2018362670908286748}
   - {fileID: 1448429069496941581}
   - {fileID: 5554135044340402896}
@@ -2332,7 +2388,6 @@ GameObject:
   - component: {fileID: 61775133959843158}
   - component: {fileID: 8744742810614556316}
   - component: {fileID: 8436862055313262847}
-  - component: {fileID: 7250540429030388243}
   m_Layer: 5
   m_Name: ScrollingDiamondBG
   m_TagString: Untagged
@@ -2397,19 +2452,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1.35
---- !u!114 &7250540429030388243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3381230976189993046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8c1f62bbb8fb46aa808fe654a044c0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetScrollSpeed: {x: 0.4, y: -0.15}
 --- !u!1 &3543682089119063026
 GameObject:
   m_ObjectHideFlags: 0

@@ -92,6 +92,7 @@ public class RoundManager : MonoBehaviour
         nextRoundButton.interactable = true;
         shopButton.interactable = true;
         Inventory.inventory.Money += moneyOnRoundEnd;
+        GameStats.gameStats.moneyEarned += moneyOnRoundEnd;
         cherriesKilledThisRoundCount = 0;
 
         EventBus<RoundEndEvent>.Raise(new RoundEndEvent()); // the order of this and OnRoundEnd DOES matter
@@ -117,6 +118,7 @@ public class RoundManager : MonoBehaviour
     public void OnCherryKilled()
     {
         cherriesKilledThisRoundCount += 1;
+        GameStats.gameStats.cherriesKilled++;
         if (cherriesKilledThisRoundCount >= totalCherriesThisRound)
         {
             EndRound();

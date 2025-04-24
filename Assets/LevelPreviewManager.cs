@@ -34,7 +34,7 @@ public class LevelPreviewManager : MonoBehaviour
     {
         for (int i = 0; i < ribbons.Count; i++)
         {
-            ribbons[i].SetActive(AchievementsTracker.Instance.HasCompletedLevel(levelIndex, i));
+            ribbons[i].SetActive(AchievementsTracker.Instance.HasCompletedLevel(levelIndex, i + 1));
         }
     }
 }

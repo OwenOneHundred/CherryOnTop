@@ -24,13 +24,16 @@ public class SwitchLevelPreview : MonoBehaviour
     public HoverImgChange forwardHover;
     public HoverImgChange backHover;
 
-    void Start()
+    void Awake()
     {
         forwardHover = GetComponent<HoverImgChange>();
         backHover = backButton.GetComponent<HoverImgChange>();
         moveButton.onClick.AddListener(OnForwardsButtonClick);
         backButton.SetActive(false);
+    }
 
+    private void Start()
+    {
         LoadLevelBox(0, true);
     }
 
@@ -123,7 +126,6 @@ public class SwitchLevelPreview : MonoBehaviour
             return; 
         }
         LevelPreview currentPreview = levelPreviews[levelIndex];
-        Debug.Log(levelPreviews[levelIndex].levelPrefab);
         GameObject newLevelObj = Instantiate(levelPreviews[levelIndex].levelPrefab, new Vector3(xpos, 0, 0), Quaternion.identity, canvasTransform);
         newLevelObj.GetComponent<LevelPreviewManager>().Setup(currentPreview.levelImage, currentPreview.sceneNameIngame, currentPreview.sceneNameInEditor, levelIndex);
         newLevelObj.transform.SetSiblingIndex(1);

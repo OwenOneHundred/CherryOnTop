@@ -7,6 +7,7 @@ public class GameOverControl : MonoBehaviour
     public static GameOverControl gameOverControl;
     [SerializeField] Vector3 cherryPositionAtGameEnd;
     [SerializeField] float cameraSpeed;
+    [SerializeField] Song gameOverSong;
     public bool isGameOver = false;
     private void Awake()
     {
@@ -29,6 +30,8 @@ public class GameOverControl : MonoBehaviour
 
     public IEnumerator GameOverCoroutine(GameObject cherry)
     {
+        SoundEffectManager.sfxmanager.transform.root.GetComponentInChildren<MusicController>().Pause();
+
         float timeScaleBefore = Time.timeScale;
         Time.timeScale = 0f;
 
@@ -54,6 +57,10 @@ public class GameOverControl : MonoBehaviour
         Time.timeScale = timeScaleBefore;
 
         transform.GetChild(0).gameObject.SetActive(true);
+
+        Debug.Log("here");
+        SoundEffectManager.sfxmanager.transform.root.GetComponentInChildren<AudioManager>().SetLowpass(0);
+        SoundEffectManager.sfxmanager.transform.root.GetComponentInChildren<MusicController>().ChangeSong(gameOverSong);
     }
 
     private void OnCherryLand()

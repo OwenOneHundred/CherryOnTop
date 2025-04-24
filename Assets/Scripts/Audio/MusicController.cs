@@ -39,6 +39,7 @@ public class MusicController : MonoBehaviour
         {
             ChangeSong(sceneAndSong.song);
         }
+        transform.root.GetComponentInChildren<AudioManager>().SetLowpass(0);
     }
 
     private void RecalculateSamples(Song song)

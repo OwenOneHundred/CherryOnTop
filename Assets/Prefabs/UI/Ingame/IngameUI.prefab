@@ -1274,7 +1274,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b08a3f95245044847afbd0298274bfb4, type: 2}
   - {fileID: 11400000, guid: 33aead3dbac0f433c9669456ab41b1b7, type: 2}
   - {fileID: 11400000, guid: 49aa7e781e6674cd38869265dbf3554d, type: 2}
-  - {fileID: 11400000, guid: 3016b4f8ef1284bdc8fe8a1780ff1723, type: 2}
   itemParent: {fileID: 7862030300564659347}
   rerollsText: {fileID: 4060922254059177220}
   rerollButtonText: {fileID: 4712727569409509211}
@@ -1408,6 +1407,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cherryPositionAtGameEnd: {x: 0.13, y: 5.22, z: -0.5}
   cameraSpeed: 3
+  gameOverSong:
+    volume: 0.2
+    clip: {fileID: 8300000, guid: 0998ff54502dc4dfea0c0affbe5269cf, type: 3}
+    loopStartTime: 0
+    timeCutOffFromEnd: 0
   isGameOver: 0
 --- !u!1 &2358145866799796368
 GameObject:
@@ -1565,7 +1569,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0

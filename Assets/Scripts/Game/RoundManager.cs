@@ -110,7 +110,7 @@ public class RoundManager : MonoBehaviour
 
         if (roundNumber == 30)
         {
-            EndGame();
+            OnPlayerWins();
             return;
         }
     }
@@ -130,7 +130,7 @@ public class RoundManager : MonoBehaviour
         none, cherries, shop 
     }
 
-    public void EndGame()
+    public void OnPlayerWins()
     {
         ingameUI.transform.Find("WinPanel").GetChild(0).gameObject.SetActive(true);
         AchievementsTracker.Instance.MarkLevelAsCompleted(DifficultyInfo.difficultyInfo.levelIndex, DifficultyInfo.difficultyInfo.difficulty.number);

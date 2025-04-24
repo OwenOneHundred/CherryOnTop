@@ -55,6 +55,7 @@ public class CherryManager : MonoBehaviour
 
     private void UpdateAudioCutoff()
     {
+        if (GameOverControl.gameOverControl.isGameOver) { return; }
         float farthestCherryCoveredTrackPercentage;
 
         if (cherries.Count == 0) { farthestCherryCoveredTrackPercentage = 0; }

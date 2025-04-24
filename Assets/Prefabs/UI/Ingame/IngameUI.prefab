@@ -1121,6 +1121,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e081e3c501cda4dad4c3413dbbf3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficultyList:
+  - {fileID: 11400000, guid: 9e1ce81bba6bc4b5d81e13e4ab145df3, type: 2}
+  - {fileID: 11400000, guid: c433ba82f6e554a9b9dffeb5dff12ae2, type: 2}
+  - {fileID: 11400000, guid: 729bc5f0f3af6419987126270cd8e23c, type: 2}
+  - {fileID: 11400000, guid: bbc97536c7563469286dd2393055eb0e, type: 2}
   _encryptData: 0
 --- !u!1 &1997559020666774139
 GameObject:
@@ -1559,8 +1564,8 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_VertexColorAlwaysGammaSpace: 1
+  m_AdditionalShaderChannelsFlag: 1
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1609,7 +1614,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0.7
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

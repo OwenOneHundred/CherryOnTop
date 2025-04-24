@@ -1185,7 +1185,7 @@ GameObject:
   - component: {fileID: 8879555266572230539}
   - component: {fileID: 5244087984846650167}
   m_Layer: 5
-  m_Name: BG (1)
+  m_Name: DifficultyBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

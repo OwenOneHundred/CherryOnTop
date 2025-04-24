@@ -9,7 +9,6 @@ public class PlayButton : MonoBehaviour
     public string sceneName;
     public bool alsoGetDifficulty = true;
     public int levelIndex = 0;
-    [SerializeField] AudioFile audioFile;
 
     void Start()
     {
@@ -20,10 +19,10 @@ public class PlayButton : MonoBehaviour
     {
         LevelManager.levelWasLoadedFromSave = false;
         SceneManager.LoadScene(sceneName);
-        SoundEffectManager.sfxmanager.PlayOneShot(audioFile);
 
         if (alsoGetDifficulty)
         {
+            DifficultyInfo.difficultyInfo.SubscribeToLoadScene();
             DifficultyInfo.difficultyInfo.difficulty = GetDifficultyValue();
             DifficultyInfo.difficultyInfo.levelIndex = levelIndex;
         }

@@ -1266,6 +1266,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: IngameUI
       objectReference: {fileID: 0}
+    - target: {fileID: 2865202321287263778, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: difficultyList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2865202321287263778, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'difficultyList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9e1ce81bba6bc4b5d81e13e4ab145df3, type: 2}
+    - target: {fileID: 2865202321287263778, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'difficultyList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c433ba82f6e554a9b9dffeb5dff12ae2, type: 2}
+    - target: {fileID: 2865202321287263778, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'difficultyList.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 729bc5f0f3af6419987126270cd8e23c, type: 2}
+    - target: {fileID: 2865202321287263778, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'difficultyList.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: bbc97536c7563469286dd2393055eb0e, type: 2}
     - target: {fileID: 5964487472042778191, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: m_Pivot.x
       value: 0

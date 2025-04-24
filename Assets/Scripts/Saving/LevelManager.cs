@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(RoundManager))]
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] protected List<Difficulty> difficultyList = new List<Difficulty>();
+    public List<Difficulty> DifficultyList { get { return difficultyList; } }
+
     protected static LevelManager _instance;
     public static LevelManager Instance
     {
@@ -215,12 +218,14 @@ public class LevelManager : MonoBehaviour
         DEAllItemsInventory items = new DEAllItemsInventory("allinventory", allInventory);
         DEIntEntry money = new DEIntEntry("money", Inventory.inventory.Money);
         DEUIntEntry round = new DEUIntEntry("round", roundManager.roundNumber);
+        DEInt2Entry difficulty = new DEInt2Entry("difficulty", DifficultyInfo.difficultyInfo.difficulty.number, DifficultyInfo.difficultyInfo.levelIndex);
 
         // Set the data entries
         saveData.SetDataEntry(towers, true);
         saveData.SetDataEntry(items, true);
         saveData.SetDataEntry(money, true);
         saveData.SetDataEntry(round, true);
+        saveData.SetDataEntry(difficulty, true);
 
         toppingRegistery.SaveAll(saveData);
 

@@ -32,7 +32,7 @@ public class ChangeDamage : EffectSO
 
     public override void Load(SaveData saveData)
     {
-        attackManager = toppingObj.GetComponent<AttackManager>();
+        attackManager = toppingObj.GetComponentInChildren<AttackManager>();
         initializeOnCall = false;
         if (saveData.TryGetDataEntry(GetID() + "-Damage", out DEIntEntry intEntry))
         {

@@ -10,7 +10,7 @@ public class SettingsManager : MonoBehaviour
 
     public void GotoMainMenu()
     {
-        if (LevelManager.Instance != null)
+        if (LevelManager.Instance != null && LevelManager.Instance.roundManager.roundState != RoundManager.RoundState.cherries)
         {
             LevelManager.Instance.SaveLevel();
         }

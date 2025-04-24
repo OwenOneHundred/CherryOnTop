@@ -16,7 +16,6 @@ public class AudioManager : MonoBehaviour
         float lowpassNumber = Mathf.Lerp(10, lowpassThreshold, 1 - value0to1);
         if (value0to1 <= 0)
         {
-            Debug.Log("lowpass off");
             audioMixer.SetFloat("MusicLowpass", 22000);
         }
         else
@@ -28,6 +27,5 @@ public class AudioManager : MonoBehaviour
     void Update()
     {
         audioMixer.GetFloat("MusicLowpass", out float lowpass);
-        Debug.Log("Lowpass: " + lowpass);
     }
 }

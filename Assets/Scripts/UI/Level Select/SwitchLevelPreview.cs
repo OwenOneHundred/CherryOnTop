@@ -3,13 +3,13 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class SwitchLevelPreview : MonoBehaviour
 {
     [SerializeField] private bool forwards;
     public UnityEngine.UI.Button moveButton;
-    public LevelPreview[] levelPreviews;
-    private GameObject[] levelPrefabs;
+    public List<LevelPreview> levelPreviews;
     [SerializeField] private GameObject loadedLevel;
     [SerializeField] private GameObject previousLoadedLevel;
     public GameObject backButton;
@@ -28,24 +28,10 @@ public class SwitchLevelPreview : MonoBehaviour
     {
         forwardHover = GetComponent<HoverImgChange>();
         backHover = backButton.GetComponent<HoverImgChange>();
-        levelPrefabs = new GameObject[levelPreviews.Length];
         moveButton.onClick.AddListener(OnForwardsButtonClick);
-        
         backButton.SetActive(false);
-        for (int i = 0; i < levelPreviews.Length; i++)
-        {
-            Spawn(levelPreviews[i], i);
-            
-            levelPrefabs[i] = levelPreviews[i].levelPrefab;
-        }
 
         LoadLevelBox(0, true);
-    }
-
-    public void Spawn(LevelPreview preview, int levelIndex)
-    {
-        preview.levelPrefab = Instantiate(preview.emptyLevelPrefab);
-        preview.levelPrefab.GetComponent<LevelPreviewManager>().Setup(preview.levelImage, preview.sceneNameIngame, preview.sceneNameInEditor, levelIndex);
     }
 
     private void Update()
@@ -105,13 +91,13 @@ public class SwitchLevelPreview : MonoBehaviour
     void OnForwardsButtonClick()
     {
         if (moving) { return; }
-        if (levelIndex + 1 == levelPrefabs.Length) { return; }
-        levelIndex = Mathf.Clamp((levelIndex + 1), 0, levelPreviews.Length - 1);
+        if (levelIndex + 1 == levelPreviews.Count) { return; }
+        levelIndex = Mathf.Clamp((levelIndex + 1), 0, levelPreviews.Count - 1);
         
         slideLeft = true;
         LoadLevelBox((int) loadedLevel.transform.position.x + boxLoadDistance);
         StartCoroutine(SlideLevelSelectBox(loadedLevel));
-        if (levelIndex == levelPrefabs.Length - 1) { DisableAllComponentsExceptThis(true); }
+        if (levelIndex == levelPreviews.Count - 1) { DisableAllComponentsExceptThis(true); }
         else { DisableAllComponentsExceptThis(false); }
         if (levelIndex == 0) { backButton.SetActive(false); }
         else { backButton.SetActive(true); }
@@ -121,22 +107,25 @@ public class SwitchLevelPreview : MonoBehaviour
     {
         if (moving) { return; }
         if (levelIndex == 0) { return; }
-        levelIndex = Mathf.Clamp((levelIndex - 1), 0, levelPreviews.Length - 1);
+        levelIndex = Mathf.Clamp((levelIndex - 1), 0, levelPreviews.Count - 1);
         
         slideLeft = false;
         LoadLevelBox((int)loadedLevel.transform.position.x - boxLoadDistance);
         SlideBox(loadedLevel);
         if (levelIndex == 0) { backButton.SetActive(false); }
         else { backButton.SetActive(true); }
-        if (levelIndex == levelPrefabs.Length - 1) { DisableAllComponentsExceptThis(true); }
+        if (levelIndex == levelPreviews.Count - 1) { DisableAllComponentsExceptThis(true); }
         else { DisableAllComponentsExceptThis(false); }
     }
 
     void LoadLevelBox(int xpos, bool isFirstLevel = false) {
-        if (levelPrefabs[levelIndex] == null) { 
+        if (levelPreviews[levelIndex] == null) { 
             return; 
         }
-        GameObject newLevelObj = Instantiate(levelPrefabs[levelIndex], new Vector3(xpos, 0, 0), Quaternion.identity, canvasTransform);
+        LevelPreview currentPreview = levelPreviews[levelIndex];
+        Debug.Log(levelPreviews[levelIndex].levelPrefab);
+        GameObject newLevelObj = Instantiate(levelPreviews[levelIndex].levelPrefab, new Vector3(xpos, 0, 0), Quaternion.identity, canvasTransform);
+        newLevelObj.GetComponent<LevelPreviewManager>().Setup(currentPreview.levelImage, currentPreview.sceneNameIngame, currentPreview.sceneNameInEditor, levelIndex);
         newLevelObj.transform.SetSiblingIndex(1);
         if (!isFirstLevel) { previousLoadedLevel = loadedLevel; }
         loadedLevel = newLevelObj;

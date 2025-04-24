@@ -17,14 +17,15 @@ public class CherryMovement : MonoBehaviour
     private GameObject track;
     public LineRenderer lineRenderer;
     public Vector3[] linePositions;
-    public int currentTarget;
-    public int currentPosition;
+    public int currentTarget = 1;
+    public int currentPosition = 0;
     public int currentTrack;
     public float baseSpeed = 1f;
     private int positionsAmount;
     public float distanceTraveled = 0f;
     private Vector3 previousCoords;
     bool goBackToPosition0;
+    public Vector3 startPosition;
 
     DebuffManager debuffManager;
 
@@ -39,8 +40,6 @@ public class CherryMovement : MonoBehaviour
         positionsAmount = lineRenderer.positionCount;
         linePositions = new Vector3[positionsAmount];
         lineRenderer.GetPositions(linePositions);
-        currentPosition = 0;
-        currentTarget = currentPosition + 1;
         currentTrack = 0;
         goBackToPosition0 = track.GetComponent<ArrowSpawner>().goBackToPosition0;
 

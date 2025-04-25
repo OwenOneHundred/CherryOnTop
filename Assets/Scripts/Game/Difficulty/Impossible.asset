@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Impossible
   m_EditorClassIdentifier: 
   cherryAmountScaleValue: 1.235
-  cherrySizeScaleValue: 1.28
+  cherrySizeScaleValue: 1.255
   number: 4
   hardCodedRounds: []

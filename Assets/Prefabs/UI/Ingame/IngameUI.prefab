@@ -2397,6 +2397,7 @@ GameObject:
   - component: {fileID: 61775133959843158}
   - component: {fileID: 8744742810614556316}
   - component: {fileID: 8436862055313262847}
+  - component: {fileID: 3535667245904686984}
   m_Layer: 5
   m_Name: ScrollingDiamondBG
   m_TagString: Untagged
@@ -2461,6 +2462,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1.35
+--- !u!114 &3535667245904686984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3381230976189993046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c1f62bbb8fb46aa808fe654a044c0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetScrollSpeed: {x: 0.4, y: -0.3}
 --- !u!1 &3543682089119063026
 GameObject:
   m_ObjectHideFlags: 0

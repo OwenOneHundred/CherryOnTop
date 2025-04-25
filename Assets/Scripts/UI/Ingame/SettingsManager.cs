@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -14,8 +13,8 @@ public class SettingsManager : MonoBehaviour
         {
             LevelManager.Instance.SaveLevel();
         }
-        SceneManager.LoadScene("MenuScene");
         Time.timeScale = 1;
+        TransitionManager.transitionManager.LoadScene("MenuScene");
     }
 
 

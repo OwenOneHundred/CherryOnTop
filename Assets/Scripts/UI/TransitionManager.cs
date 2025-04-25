@@ -43,7 +43,12 @@ public class TransitionManager : MonoBehaviour
         }
     }
 
-    public void TransitionOut(string newScene)
+    public void LoadScene(string newScene)
+    {
+        TransitionOut(newScene);
+    }
+
+    private void TransitionOut(string newScene)
     {
         if (transitioning) { return; }
         StartCoroutine(TransitionOutRoutine(newScene));
@@ -53,8 +58,6 @@ public class TransitionManager : MonoBehaviour
     {
         StartCoroutine(TransitionInRoutine());
     }
-
-    
 
     private IEnumerator TransitionOutRoutine(string newScene)
     {
@@ -85,6 +88,8 @@ public class TransitionManager : MonoBehaviour
         imageRect.anchoredPosition = Vector3.zero;
 
         SoundEffectManager.sfxmanager.PlayOneShot(splashIn);
+
+        for (int i = 0; i < 6; i++) { yield return null; }
 
         while (imageRect.anchoredPosition.y > bottomPos.y)
         {

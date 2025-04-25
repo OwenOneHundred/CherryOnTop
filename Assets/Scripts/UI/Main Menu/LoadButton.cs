@@ -1,4 +1,5 @@
 using GameSaves;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -31,7 +32,7 @@ public class LoadButton : MonoBehaviour
     void PlayGame()
     {
         SceneManager.sceneLoaded += LoadSceneData;
-        SceneManager.LoadScene(sceneName);
+        TransitionManager.transitionManager.LoadScene(sceneName);
 
         //DifficultyInfo.difficultyInfo.difficulty = GetDifficultyValue();
         //DifficultyInfo.difficultyInfo.levelIndex = levelIndex;

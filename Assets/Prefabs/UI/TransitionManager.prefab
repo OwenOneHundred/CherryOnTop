@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionObject: {fileID: 8619972280321199600, guid: 0692d9fa1fde046d390be2833b4f08bc, type: 3}
-  transitionSpeed: 7000
+  transitionSpeed: 5500
   waitTime: 0.01
   splashIn:
     volume: 0.25

@@ -18,7 +18,7 @@ public class PlayButton : MonoBehaviour
     void PlayGame()
     {
         LevelManager.levelWasLoadedFromSave = false;
-        TransitionManager.transitionManager.TransitionOut(sceneName);
+        TransitionManager.transitionManager.LoadScene(sceneName);
 
         if (alsoGetDifficulty)
         {

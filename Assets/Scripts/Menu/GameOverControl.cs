@@ -116,7 +116,7 @@ public class GameOverControl : MonoBehaviour
 
     public void GoToMenu()
     {
-        SceneManager.LoadScene("MenuScene");
         Time.timeScale = 1;
+        TransitionManager.transitionManager.LoadScene("MenuScene");
     }
 }

@@ -49,3 +49,5 @@ MonoBehaviour:
   - {fileID: -1419893046, guid: 5589914acbf944b70bfdb3247f259898, type: 3}
   - {fileID: 259359628, guid: 5589914acbf944b70bfdb3247f259898, type: 3}
   - {fileID: 1332639641, guid: 5589914acbf944b70bfdb3247f259898, type: 3}
+  levelIndex: 0
+  defaultDifficulty: {fileID: 11400000, guid: 9e1ce81bba6bc4b5d81e13e4ab145df3, type: 2}

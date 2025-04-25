@@ -10,12 +10,13 @@ public class DifficultyInfo : MonoBehaviour
     public static DifficultyInfo difficultyInfo;
     [SerializeField] List<Sprite> measuringCupSprites = new();
     public int levelIndex = 0;
+    [SerializeField] Difficulty defaultDifficulty;
     void Awake()
     {
         if (difficultyInfo == this || difficultyInfo == null)
         {
             difficultyInfo = this;
-            // SceneManager.sceneLoaded += OnSceneLoaded;
+            difficulty = defaultDifficulty;
             DontDestroyOnLoad(gameObject);
         }
         else

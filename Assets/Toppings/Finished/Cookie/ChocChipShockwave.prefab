@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4572830537787321442}
   - component: {fileID: 3645906944458710081}
   - component: {fileID: 313931645460733950}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ChocChipShockwave
   m_TagString: Untagged
   m_Icon: {fileID: 0}

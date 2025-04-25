@@ -34,6 +34,7 @@ public class LevelManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         LevelManager.levelWasLoadedFromSave = false;
+        DifficultyInfo.difficultyInfo.SubscribeToLoadScene(); // so difficulty is loaded on scene load
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

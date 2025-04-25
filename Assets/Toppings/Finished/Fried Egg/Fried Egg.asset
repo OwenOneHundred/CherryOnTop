@@ -18,7 +18,7 @@ MonoBehaviour:
   description: No attack. All fire effects also inflict a stacking 20% slow.
   rarity: 1
   towerPrefab: {fileID: 5457713735334105415, guid: cca15b7e192b3437eb4a661205934afc, type: 3}
-  flags: 20480
+  flags: 20482
   cakePoints: -30
   onHitCherry: []
   onKillCherry: []

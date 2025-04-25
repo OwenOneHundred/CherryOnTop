@@ -58,7 +58,6 @@ public class GameOverControl : MonoBehaviour
 
         transform.GetChild(0).gameObject.SetActive(true);
 
-        Debug.Log("here");
         SoundEffectManager.sfxmanager.transform.root.GetComponentInChildren<AudioManager>().SetLowpass(0);
         SoundEffectManager.sfxmanager.transform.root.GetComponentInChildren<MusicController>().ChangeSong(gameOverSong);
     }

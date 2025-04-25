@@ -36,6 +36,8 @@ public class LevelManager : MonoBehaviour
         LevelManager.levelWasLoadedFromSave = false;
         DifficultyInfo.difficultyInfo.SubscribeToLoadScene(); // so difficulty is loaded on scene load
         SoundEffectManager.sfxmanager.transform.root.GetComponentInChildren<AudioManager>().SetLowpass(0);
+        MusicController musicController = SoundEffectManager.sfxmanager.transform.root.GetComponentInChildren<MusicController>();
+        if (!musicController.playing) { musicController.Play(); }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

@@ -61,13 +61,13 @@ public class MusicController : MonoBehaviour
 
     public void Play() 
     {
-        playing = false;
+        playing = true;
         audioSource.Play();
     }
 
     public void Pause()
     {
-        playing = true;
+        playing = false;
         audioSource.Stop();
     }
 

@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cherryDebuffs: []
-  maxHits: 50
+  maxHits: 100
   shockwave: {fileID: 9014841120415768667, guid: 871ee27fe4a09462abbe75853ead3baf, type: 3}
   shockwaveDamage: 1
   shockwaveSpeed: 3

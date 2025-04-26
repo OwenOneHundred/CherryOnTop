@@ -71,7 +71,14 @@ public class DebuffManager : MonoBehaviour
         float movementSpeedMultiplier = 1.0f;
         for (int i = 0; i < debuffs.Count; i++)
         {
-            movementSpeedMultiplier *= debuffs[i].movementSpeedMultiplier;
+            if (!debuffs[i].canResultInNegativeTimesNegativeSpeed && movementSpeedMultiplier < 0 && debuffs[i].movementSpeedMultiplier < 0)
+            {
+                movementSpeedMultiplier *= -debuffs[i].movementSpeedMultiplier;
+            }
+            else
+            {
+                movementSpeedMultiplier *= debuffs[i].movementSpeedMultiplier;
+            }
         }
         return movementSpeedMultiplier; // return the product of all debuff movementSpeedMultipliers
     }

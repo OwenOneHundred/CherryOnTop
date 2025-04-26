@@ -141,19 +141,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d79d7a5e29d1545f99c080ccec791af5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d79d7a5e29d1545f99c080ccec791af5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.79
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d79d7a5e29d1545f99c080ccec791af5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d79d7a5e29d1545f99c080ccec791af5, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9961947
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d79d7a5e29d1545f99c080ccec791af5, type: 3}
       propertyPath: m_LocalRotation.x
@@ -161,11 +161,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d79d7a5e29d1545f99c080ccec791af5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.08715578
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d79d7a5e29d1545f99c080ccec791af5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d79d7a5e29d1545f99c080ccec791af5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -173,7 +173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d79d7a5e29d1545f99c080ccec791af5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d79d7a5e29d1545f99c080ccec791af5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -186,7 +186,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: d79d7a5e29d1545f99c080ccec791af5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -876546973899608171, guid: ce443d7a1337f4bdbad14903beece6f9, type: 3}
+      objectReference: {fileID: 2100000, guid: ad35e2f57619d4cccb92bd03a1e9d77e, type: 2}
     - target: {fileID: -7635826562936255635, guid: d79d7a5e29d1545f99c080ccec791af5, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
@@ -194,7 +194,7 @@ PrefabInstance:
     - target: {fileID: -6400281290468069383, guid: d79d7a5e29d1545f99c080ccec791af5, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -2432090755550338912, guid: ce443d7a1337f4bdbad14903beece6f9, type: 3}
+      objectReference: {fileID: -2432090755550338912, guid: 379fe39e7e43846df861cafd55df2264, type: 3}
     - target: {fileID: 919132149155446097, guid: d79d7a5e29d1545f99c080ccec791af5, type: 3}
       propertyPath: m_Name
       value: Cake
@@ -202,6 +202,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d79d7a5e29d1545f99c080ccec791af5, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: d79d7a5e29d1545f99c080ccec791af5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: d79d7a5e29d1545f99c080ccec791af5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: d79d7a5e29d1545f99c080ccec791af5, type: 3}
       propertyPath: m_Layer
@@ -255,7 +263,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111280415}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -734,17 +742,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd93aa43fc4a54be0a82d857730480cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultCherriesPerRound: 8
   cherryPrefab: {fileID: 4085270106411668407, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
   cherryStartPos: {x: 0, y: 0, z: 0}
-  difficultyScalingAmount: 1.14
   initialBigChance: 0.6
   specialtyCherries:
   - weight: 1
     prefab: {fileID: 618466874522788365, guid: 397b617b3b3edca458cf9e2c5ed9a9a5, type: 3}
   - weight: 1
     prefab: {fileID: 8212864766905315278, guid: 43a53466f5579a240afa2d3df885ecee, type: 3}
-  doSpecialtyCherrySpawning: 1
-  roundScalingMultipliers: []
+  difficulty: {fileID: 0}
 --- !u!114 &814254364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,7 +882,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010996032}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1023,7 +1030,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054437289}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

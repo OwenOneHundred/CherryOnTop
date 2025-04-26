@@ -31,6 +31,7 @@ public class GameOverControl : MonoBehaviour
     public IEnumerator GameOverCoroutine(GameObject cherry)
     {
         SoundEffectManager.sfxmanager.transform.root.GetComponentInChildren<MusicController>().Pause();
+        cherry.GetComponentInChildren<Collider>().enabled = false;
 
         float timeScaleBefore = Time.timeScale;
         Time.timeScale = 0f;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Camera
   m_EditorClassIdentifier: 
-  price: 7
+  price: 8
   shopSprite: {fileID: 21300000, guid: c27fcd928f5164d1ea11b641e3555193, type: 3}
   effectsAndWhen:
   - effectSOs:

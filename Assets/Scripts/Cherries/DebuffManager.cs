@@ -94,7 +94,7 @@ public class DebuffManager : MonoBehaviour
         float damageMultiplier = 1.0f;
         for (int i = 0; i < debuffs.Count; i++)
         {
-            if (debuffs[i].typesThatGetDamageMultiplier.HasAny(attacker.flags))
+            if (debuffs[i].typesThatGetDamageMultiplier.HasAllFlags() || debuffs[i].typesThatGetDamageMultiplier.HasAny(attacker.flags))
             {
                 damageMultiplier *= debuffs[i].damageMultiplier;
             }

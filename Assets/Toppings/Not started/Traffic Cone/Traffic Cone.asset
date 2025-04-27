@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Traffic Cone
   m_EditorClassIdentifier: 
   price: 5
-  shopSprite: {fileID: -1766812487, guid: 5e74c6d29026a43a69ab899c701744d0, type: 3}
+  shopSprite: {fileID: 1924475474, guid: 6b2f0d1b2358d454a9a3c70ebdd89db7, type: 3}
   effectsAndWhen: []
   description: 'When placed, freezes every cherry on the map for 4 seconds. '
   rarity: 1

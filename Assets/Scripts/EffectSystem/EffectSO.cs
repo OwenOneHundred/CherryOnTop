@@ -28,6 +28,16 @@ public abstract class EffectSO : ScriptableObject
         }
     }
 
+    public virtual void OnRegistered()
+    {
+
+    }
+
+    public virtual void OnDeregistered()
+    {
+
+    }
+
     public virtual void Save(SaveData saveData)
     {
 

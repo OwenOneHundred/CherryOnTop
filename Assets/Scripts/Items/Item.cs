@@ -58,6 +58,11 @@ public abstract class Item : ScriptableObject
                     eventSO.RegisterEffect(effectSO);
                 }
             }
+
+            foreach (EffectSO effect in effectAndWhen.effectSOs)
+            {
+                effect.OnDeregistered();
+            }
         }
         
     }
@@ -72,7 +77,12 @@ public abstract class Item : ScriptableObject
             foreach (BaseEventSO eventSO in effectAndWhen.eventSOs)
             {
                 eventSO.DeregisterAllEffects();
-                Debug.Log(ID.ToString() + ": Dereigstered all effects under event " + eventSO.name);
+                //Debug.Log(ID.ToString() + ": Dereigstered all effects under event " + eventSO.name);
+            }
+
+            foreach (EffectSO effect in effectAndWhen.effectSOs)
+            {
+                effect.OnDeregistered();
             }
         }
     }

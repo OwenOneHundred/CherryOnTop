@@ -15,9 +15,9 @@ public abstract class EventSO <T> : BaseEventSO where T : IEvent
 
     public override void DeregisterAllEffects()
     {
-        foreach (EventBinding<T> towerPlacedEvent in events)
+        foreach (EventBinding<T> eventObject in events)
         {
-            EventBus<T>.Deregister(towerPlacedEvent);
+            EventBus<T>.Deregister(eventObject);
         }
         events.Clear();
     }

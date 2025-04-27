@@ -17,7 +17,7 @@ MonoBehaviour:
   effectsAndWhen: []
   description: Fires a ball of light with massive pierce that does low damage and
     sets cherries on fire for an extra long time of 5 seconds.
-  rarity: 0
+  rarity: 1
   towerPrefab: {fileID: 8678400762290400018, guid: 163e0fe0764544de4bf89f157e18b01e, type: 3}
   flags: 0
   cakePoints: 10

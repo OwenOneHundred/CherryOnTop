@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Traffic Cone
   m_EditorClassIdentifier: 
   price: 5
-  shopSprite: {fileID: 0}
+  shopSprite: {fileID: -1766812487, guid: 5e74c6d29026a43a69ab899c701744d0, type: 3}
   effectsAndWhen: []
   description: 'When placed, freezes every cherry on the map for 4 seconds. '
-  rarity: 0
+  rarity: 1
   towerPrefab: {fileID: 1047831861318861368, guid: 4ae8a78d829d04a06a6fe86697ac57ec, type: 3}
   flags: 0
   cakePoints: 10

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbe39a8650d8421a8b3e05a9647fc06, type: 3}
   m_Name: Freeze 4 seconds
   m_EditorClassIdentifier: 
-  movementSpeedMultiplier: 1
+  movementSpeedMultiplier: 0
   canResultInNegativeTimesNegativeSpeed: 0
   typesThatGetDamageMultiplier: 0
   damageMultiplier: 1

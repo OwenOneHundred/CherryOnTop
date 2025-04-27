@@ -4,11 +4,12 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Effects/Money/GetMoneyEqualToTotalSales")]
 public class GetMoneyEqualToTotalSales : EffectSO
 {
-    EventSO<SellEvent> sellEvent;
+    OnSellAnyTopping sellEvent;
     int totalSales = 0;
     public override void OnRegistered()
     {
-        CalledOnSellEffect calledOnSellEffect = new();
+        sellEvent = (OnSellAnyTopping) CreateInstance(typeof(OnSellAnyTopping));
+        CalledOnSellEffect calledOnSellEffect = (CalledOnSellEffect) CreateInstance(typeof(CalledOnSellEffect));
         calledOnSellEffect.owner = this;
         sellEvent.RegisterEffect(calledOnSellEffect);
     }
@@ -40,7 +41,7 @@ public class GetMoneyEqualToTotalSales : EffectSO
         {
             if (eventObject is SellEvent sellEvent)
             {
-                if (Vector3.Distance(sellEvent.toppingObj.transform.position, toppingObj.transform.position) <= 1.75f)
+                if (Vector3.Distance(sellEvent.toppingObj.transform.position, owner.toppingObj.transform.position) <= 1.75f)
                 {
                     owner.OnSellNearby();
                 }

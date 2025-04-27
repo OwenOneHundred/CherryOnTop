@@ -61,7 +61,7 @@ public abstract class Item : ScriptableObject
 
             foreach (EffectSO effect in effectAndWhen.effectSOs)
             {
-                effect.OnDeregistered();
+                effect.OnRegistered();
             }
         }
         

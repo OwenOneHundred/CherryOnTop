@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3109ad0e00b7f48469ac9b000c85def7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -151,3 +151,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cherryDebuffs:
   - {fileID: 11400000, guid: d3cba3ad6d9544f079791329ba4958ce, type: 2}
+  maxHits: 5

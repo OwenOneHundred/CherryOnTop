@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Banana
   m_EditorClassIdentifier: 
   price: 4
-  shopSprite: {fileID: -1011709132, guid: b2b952da9bee04bf18dbb89f5fbf7ecc, type: 3}
+  shopSprite: {fileID: 2017626105, guid: 8bba025f182a44ad4a075e32b07cc793, type: 3}
   effectsAndWhen: []
   description: Occasionally drops banana peels on the track. Hit cherries slip backwards
     for a second, and while slipping, take 4x damage.

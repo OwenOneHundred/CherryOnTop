@@ -113,12 +113,12 @@ TextureImporter:
       name: gas tank png2_0
       rect:
         serializedVersion: 2
-        x: 318
-        y: 15
-        width: 1318
-        height: 1059
+        x: 438
+        y: 0
+        width: 1072
+        height: 1080
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

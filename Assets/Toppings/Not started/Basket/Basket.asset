@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
-  m_Name: Traffic Cone
+  m_Name: Basket
   m_EditorClassIdentifier: 
-  price: 3
-  shopSprite: {fileID: 1924475474, guid: 6b2f0d1b2358d454a9a3c70ebdd89db7, type: 3}
+  price: 5
+  shopSprite: {fileID: 220325972, guid: c1ef7f7f883324105ba4cf05570bbef6, type: 3}
   effectsAndWhen: []
-  description: 'When placed, freezes every cherry on the map for 4 seconds. '
-  rarity: 1
-  towerPrefab: {fileID: 1047831861318861368, guid: 4ae8a78d829d04a06a6fe86697ac57ec, type: 3}
+  description: At the end of even numbered rounds, gain sell value equal to the number
+    of fruit nearby.
+  rarity: 0
+  towerPrefab: {fileID: 3656761891722631670, guid: db5ccc8ae1f4344cfba1ae72b2d59f0e, type: 3}
   flags: 0
   cakePoints: 10
   onHitCherry: []

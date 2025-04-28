@@ -17,7 +17,7 @@ MonoBehaviour:
   effectsAndWhen: []
   description: 'Fires piercing nails at cherries. Does more 2 damage for each topping
     on the cake. '
-  rarity: 1
+  rarity: 0
   towerPrefab: {fileID: 7157496025150107615, guid: dc50fe1cfb66947aaa53fc437f365dba, type: 3}
   flags: 0
   cakePoints: 10

@@ -1099,6 +1099,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 68462d03fb0644d86b6b16e1567f5321, type: 2}
   - {fileID: 11400000, guid: 15b64a07ed532493d8f78ca7020bd8d9, type: 2}
   - {fileID: 11400000, guid: 4b1e78edb981c4b418cd454fad741ee5, type: 2}
+  - {fileID: 11400000, guid: 63c91784945e9463b82219b58b53473a, type: 2}
 --- !u!114 &7835569952325439666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1421,6 +1422,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b08a3f95245044847afbd0298274bfb4, type: 2}
   - {fileID: 11400000, guid: 33aead3dbac0f433c9669456ab41b1b7, type: 2}
   - {fileID: 11400000, guid: 49aa7e781e6674cd38869265dbf3554d, type: 2}
+  - {fileID: 11400000, guid: 4b1e78edb981c4b418cd454fad741ee5, type: 2}
+  - {fileID: 11400000, guid: 63c91784945e9463b82219b58b53473a, type: 2}
   itemParent: {fileID: 7862030300564659347}
   rerollsText: {fileID: 4060922254059177220}
   rerollButtonText: {fileID: 4712727569409509211}

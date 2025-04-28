@@ -51,7 +51,7 @@ public abstract class CherryDebuff : ScriptableObject
             return;
         }
 
-        cherry.GetComponentInChildren<DebuffManager>().RemoveDebuff(this);
+        cherry.GetComponentInChildren<DebuffManager>().RemoveDebuffSpecifically(this);
     }
 
     public static CherryDebuff CreateInstance(CherryDebuff template)

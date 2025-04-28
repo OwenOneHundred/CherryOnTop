@@ -10,7 +10,13 @@ public class CameraControl : MonoBehaviour
     bool shaking = false;
     void Update()
     {
-        transform.Rotate(0, keyMovementSpeed * Time.deltaTime * Input.GetAxisRaw("Horizontal"), 0);
+        Vector3 eulerAngles = transform.rotation.eulerAngles;
+        float intendedHorizontalRotation = eulerAngles.y + keyMovementSpeed * Time.deltaTime * Input.GetAxisRaw("Horizontal");
+        float intendedVerticalRotation = eulerAngles.x + keyMovementSpeed * Time.deltaTime * Input.GetAxisRaw("Vertical");
+        if (intendedVerticalRotation > 45 && intendedVerticalRotation < 120) { intendedVerticalRotation = 45; }
+        if (intendedVerticalRotation < 315 && intendedVerticalRotation > 200) { intendedVerticalRotation = 315; }
+        transform.rotation = Quaternion.Euler(intendedVerticalRotation, intendedHorizontalRotation, 0);
+
         transform.Rotate(0, mouseScrollMovementSpeed * Time.deltaTime * Input.mouseScrollDelta.y, 0);
 
         if (shaking)

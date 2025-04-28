@@ -45,7 +45,7 @@ public static class ToppingTypes
         switch (rarity)
         {
             case Rarity.Common: return 1f;
-            case Rarity.Uncommon: return 0.25f;
+            case Rarity.Uncommon: return 0.2f;
             case Rarity.Rare: return 0.1f;
             default: return 1;
         }

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Lightbulb
   m_EditorClassIdentifier: 
-  price: 5
+  price: 6
   shopSprite: {fileID: 2083512459, guid: 767312ec35b6749828c5156698b9255d, type: 3}
   effectsAndWhen: []
   description: Fires a ball of light with massive pierce that does low damage and
     sets cherries on fire for an extra long time of 5 seconds.
-  rarity: 1
+  rarity: 0
   towerPrefab: {fileID: 8678400762290400018, guid: 163e0fe0764544de4bf89f157e18b01e, type: 3}
   flags: 0
   cakePoints: 10

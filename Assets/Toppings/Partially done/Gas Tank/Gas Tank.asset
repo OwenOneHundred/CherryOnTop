@@ -15,7 +15,7 @@ MonoBehaviour:
   price: 6
   shopSprite: {fileID: -165372345, guid: 81b4b1ab3e4924bd8b6fb774dcca4f35, type: 3}
   effectsAndWhen: []
-  description: No attack. Fire does 2x damage.
+  description: No attack. Fire does 2x damage. This effect stacks.
   rarity: 1
   towerPrefab: {fileID: 8334505119076532296, guid: 8097f5f04f86647ee8eeb31cbc6365b2, type: 3}
   flags: 2

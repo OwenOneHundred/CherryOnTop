@@ -49,4 +49,9 @@ public abstract class ProjectileAttack : ToppingAttack
     {
 
     }
+
+    public override string GetPierce()
+    {
+        return projectile.GetComponent<Projectile>().maxHits + "";
+    }
 }

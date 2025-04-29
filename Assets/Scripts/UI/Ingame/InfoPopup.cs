@@ -3,6 +3,8 @@ using UnityEngine.EventSystems;
 using System.Globalization;
 using EventBus;
 using System.Linq;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -11,12 +13,28 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     [SerializeField] TMPro.TextMeshProUGUI toppingType;
     [SerializeField] TMPro.TextMeshProUGUI sellPriceText;
     [SerializeField] GameObject sellButton;
+    [SerializeField] GameObject backObject;
+    [SerializeField] List<TMPro.TextMeshProUGUI> stats;
+    [SerializeField] TMPro.TextMeshProUGUI specialInfo;
+    [SerializeField] Image backIcon;
     EventSystem eventSystem;
     public bool hovered = false;
     Item item;
     GameObject toppingObj;
     int sellPrice = 0;
     bool isInventoryItem = false;
+    bool _flipped = false;
+    bool Flipped
+    {
+        get { return _flipped; }
+        set
+        {
+            if (_flipped == value) { return; }
+            backObject.SetActive(value);
+            _flipped = value;
+            if (value) { SetUpBack(); }
+        }
+    }
 
     void Awake()
     {
@@ -75,6 +93,57 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         hovered = false;
         if (sellButton == null) { return; }
         gameObject.SetActive(false);
+        Flipped = false;
+    }
+
+    public void OnClickI()
+    {
+        Flipped = !Flipped;
+    }
+
+    private void SetUpBack()
+    {
+        if (item is Topping topping)
+        {
+            AttackManager attackManager = GetAttackManager();
+            if (attackManager == null) // no attack on object
+            {
+                SetAllBlank();
+            }
+            else
+            {
+                if (toppingObj == null) // there's an attack on the object, but it's in your inventory
+                {
+                    stats[0].text = "Damage: " + attackManager.attackTemplate.GetVisibleDamage();
+                    stats[1].text = "Cooldown: " + attackManager.attackTemplate.cooldown;
+                    stats[2].text = "Range: " + attackManager.GetComponent<TargetingSystem>().GetRange();
+                    stats[3].text = "Pierce: " + attackManager.attackTemplate.GetPierce();
+                }
+                else // there's an attack on the object, and it's placed on the cake
+                {
+                    stats[0].text = "Damage: " + attackManager.GetAttack().GetVisibleDamage();
+                    stats[1].text = "Cooldown: " + attackManager.GetAttack().cooldown;
+                    stats[2].text = "Range: " + attackManager.GetComponent<TargetingSystem>().GetRange();
+                    stats[3].text = "Pierce: " + attackManager.GetAttack().GetPierce();
+                }
+            }
+
+            backIcon.sprite = topping.shopSprite;
+            specialInfo.text = topping.GetSpecialInfo();
+        }
+
+        AttackManager GetAttackManager()
+        {
+            return toppingObj == null ? topping.towerPrefab.GetComponentInChildren<AttackManager>() : toppingObj.GetComponentInChildren<AttackManager>();
+        }
+
+        void SetAllBlank()
+        {
+            stats[0].text = "Damage: -";
+            stats[1].text = "Cooldown: -";
+            stats[2].text = "Range: -";
+            stats[3].text = "Pierce: -";
+        }
     }
 
     void Update()

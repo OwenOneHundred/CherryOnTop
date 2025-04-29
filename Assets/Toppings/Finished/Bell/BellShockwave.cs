@@ -8,23 +8,23 @@ public class BellShockwave : ShockwaveAttack
     [SerializeField] protected float cameraShakeLength = 0.1f;
     [SerializeField] AudioFile onScale;
     ToppingActivatedGlow toppingActivatedGlow;
+    Topping topping;
     public override void OnStart()
     {
-        Debug.Log("onstart");
         baseCooldown = cooldown;
+        topping = toppingObj.GetComponent<ToppingObjectScript>().topping;
     }
     public override void EveryFrame()
     {
         if (toppingActivatedGlow == null) { toppingActivatedGlow = toppingObj.transform.root.GetComponentInChildren<ToppingActivatedGlow>();}
-        float newCooldown = Mathf.Clamp(baseCooldown - (scaleAmountPerItem * Inventory.inventory.GetInventoryCount(true)), 1f, baseCooldown);
+        int itemCount = Inventory.inventory.GetInventoryCount(true);
+        float newCooldown = Mathf.Clamp(baseCooldown - (scaleAmountPerItem * itemCount), 1f, baseCooldown);
         if (newCooldown < cooldown)
         {
-            //SoundEffectManager.sfxmanager.PlayOneShot(onScale);
             toppingActivatedGlow.StartNewFireEffect("Gold", Color.yellow, 2.5f);
         }
-        Debug.Log("Inventory count: " + Inventory.inventory.GetInventoryCount(true));
-        Debug.Log("every frame: " + newCooldown);
         cooldown = newCooldown;
+        topping.triggersCount = itemCount;
     }
 
     public override void OnCycle(GameObject targetedCherry)

@@ -24,6 +24,7 @@ public class GetMoneyEqualToTotalSales : EffectSO
     {
         if (totalSales > 0)
         {
+            GetTopping().moneyGained += totalSales;
             Inventory.inventory.Money += totalSales;
         }
     }

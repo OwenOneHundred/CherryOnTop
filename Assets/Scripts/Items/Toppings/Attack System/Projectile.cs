@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour
     [System.NonSerialized] public Topping owner;
     [SerializeField] List<CherryDebuff> cherryDebuffs;
     [System.NonSerialized] public Rigidbody rb;
-    [SerializeField] int maxHits = 5;
+    public int maxHits = 5;
     int hitCount = 0;
 
     public void Awake()

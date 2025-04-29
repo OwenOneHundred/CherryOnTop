@@ -38,6 +38,11 @@ public abstract class EffectSO : ScriptableObject
 
     }
 
+    public Topping GetTopping()
+    {
+        return toppingObj == null ? null : toppingObj.GetComponent<ToppingObjectScript>().topping;
+    }
+
     public virtual void Save(SaveData saveData)
     {
 

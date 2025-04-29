@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7356920667028709558}
   - component: {fileID: 4772487155524029748}
   - component: {fileID: 7992313262080251818}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GetMoneyPS
   m_TagString: Untagged
   m_Icon: {fileID: 0}

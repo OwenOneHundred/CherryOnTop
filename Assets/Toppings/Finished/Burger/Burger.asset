@@ -24,6 +24,9 @@ MonoBehaviour:
   rarity: 2
   towerPrefab: {fileID: 3295862008953742197, guid: d9df9e44457e94fa38fd07df340caf2e, type: 3}
   flags: 0
+  specialInfoText: 'Total toppings sold: [Triggers]'
   cakePoints: -120
   onHitCherry: []
   onKillCherry: []
+  moneyGained: 0
+  triggersCount: 0

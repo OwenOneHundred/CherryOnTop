@@ -14,6 +14,7 @@ public class GetMoneyIfOddCoconuts : EffectSO
         int inInventory = Inventory.inventory.ownedItems.Where(x => x.name == "Coconut").Count();
         if (odd ? (onCake + inInventory) % 2 == 1 : (onCake + inInventory) % 2 == 0)
         {
+            GetTopping().moneyGained += moneyAmount;
             Inventory.inventory.Money += moneyAmount;
         }
     }

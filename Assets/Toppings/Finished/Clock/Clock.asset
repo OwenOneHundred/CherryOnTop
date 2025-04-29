@@ -24,6 +24,9 @@ MonoBehaviour:
   rarity: 2
   towerPrefab: {fileID: 5286104097913148031, guid: b5a1052e90ec64ff189325d8cb793534, type: 3}
   flags: 2048
+  specialInfoText: 'Remaining triggers: [Triggers]'
   cakePoints: 0
   onHitCherry: []
   onKillCherry: []
+  moneyGained: 0
+  triggersCount: 0

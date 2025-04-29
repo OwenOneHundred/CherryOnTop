@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c800f951eb64d548b6ac90c1de93f9, type: 3}
   m_Name: FlashAttack
   m_EditorClassIdentifier: 
-  cooldown: 4
+  cooldown: 5
   damage: 10
   debuffs:
   - {fileID: 11400000, guid: 174cc4770ced2437aa141842a7fe9f59, type: 2}

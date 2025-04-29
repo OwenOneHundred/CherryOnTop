@@ -21,6 +21,8 @@ public class OnBuyConsecutiveDifferentToppings : EffectSO
 
             if (recentToppings.Count == number)
             {
+                GetTopping().moneyGained += 4;
+
                 Inventory.inventory.Money += 4;
 
                 GetToppingActivatedGlow().StartNewFireEffect("Red", Color.red, 2);

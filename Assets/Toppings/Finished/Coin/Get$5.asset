@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d51b6c20e10444d8ab52a513e03c0ce8, type: 3}
   m_Name: Get$5
   m_EditorClassIdentifier: 
+  triggeredSound:
+    volume: 0.5
+    clip: {fileID: 0}
   amountToChangeMoney: 5

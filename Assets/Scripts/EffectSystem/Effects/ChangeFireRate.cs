@@ -23,6 +23,7 @@ public class ChangeFireRate : EffectSO
         cooldown += cooldown * cooldownPercentChange;
         cooldown = Mathf.Clamp(cooldown, 0.1f, 100000);
         GetToppingActivatedGlow().StartNewFireEffect("Green", Color.green, 2);
+        GetTopping().triggersCount += 1;
 
         attackManager.SetAttackCooldown(cooldown);
     }

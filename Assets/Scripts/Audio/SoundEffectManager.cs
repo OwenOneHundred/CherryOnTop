@@ -11,6 +11,7 @@ public class SoundEffectManager : MonoBehaviour
     private AudioSource aus;
     List<AudioClipAndTime> audioClipsPlayedThisFrame = new();
     [SerializeField] float timeBetweenSounds = 1f;
+    [SerializeField] UnityEngine.Audio.AudioMixerGroup sfxMixerGroup;
     void Awake()
     {
         if (sfxmanager == null || sfxmanager == this)
@@ -60,6 +61,7 @@ public class SoundEffectManager : MonoBehaviour
         audioSource.pitch = pitch;
         audioSource.volume = audioFile.volume;
         audioSource.clip = audioFile.clip;
+        audioSource.outputAudioMixerGroup = sfxMixerGroup;
         audioSource.Play();
         Destroy(audioSource.gameObject, audioFile.clip.length * 2.05f);
         audioClipsPlayedThisFrame.Add(new AudioClipAndTime(audioFile.clip));

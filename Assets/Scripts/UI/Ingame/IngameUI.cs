@@ -10,6 +10,13 @@ public class IngameUI : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI goalScoreText;
     [SerializeField] AudioFile speedUpSound;
     [SerializeField] AudioFile slowDownSound;
+    [SerializeField] SettingsManager settingsManager;
+
+    void Start()
+    {
+        settingsManager.OnStart();
+    }
+
     public void SetMoney(int money)
     {
         //moneyText.text = "Money: $" + money;

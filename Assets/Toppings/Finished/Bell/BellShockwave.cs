@@ -24,6 +24,7 @@ public class BellShockwave : ShockwaveAttack
             toppingActivatedGlow.StartNewFireEffect("Gold", Color.yellow, 2.5f);
         }
         cooldown = newCooldown;
+        if (topping == null) { topping = toppingObj.GetComponent<ToppingObjectScript>().topping; }
         topping.triggersCount = itemCount;
     }
 

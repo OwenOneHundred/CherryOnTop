@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenSounds: 0.03
+  sfxMixerGroup: {fileID: 7381583022179741340, guid: f830f85ca31d345b78ad0c6b96db1305, type: 2}
 --- !u!82 &4075003723360062448
 AudioSource:
   m_ObjectHideFlags: 0

@@ -29,11 +29,32 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         get { return _flipped; }
         set
         {
-            if (_flipped == value) { return; }
-            backObject.SetActive(value);
-            _flipped = value;
-            if (value) { SetUpBack(); }
+            if (_flipped == value || flipping) { return; }
+            if (gameObject.activeInHierarchy) { StartCoroutine(Flip(value)); }
+            else { _flipped = false; backObject.SetActive(value); }
         }
+    }
+    bool flipping = false;
+
+    private System.Collections.IEnumerator Flip(bool flipped)
+    {
+        flipping = true;
+        while (transform.localScale.x > 0.05f)
+        {
+            transform.localScale -= new Vector3(14 * Time.deltaTime, 0, 0);
+            yield return null;
+        }
+        backObject.SetActive(flipped);
+        SetUpBack();
+        while (transform.localScale.x < 1f)
+        {
+            transform.localScale += new Vector3(14 * Time.deltaTime, 0, 0);
+            yield return null;
+        }
+        transform.localScale = Vector3.one;
+
+        _flipped = flipped;
+        flipping = false;
     }
 
     void Awake()
@@ -94,6 +115,8 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (sellButton == null) { return; }
         gameObject.SetActive(false);
         Flipped = false;
+        StopAllCoroutines();
+        transform.localScale = Vector3.one;
     }
 
     public void OnClickI()

@@ -1516,6 +1516,10 @@ PrefabInstance:
       propertyPath: startingInventoryItems.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: 'startingInventoryItems.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c3beb3884c6234ce5964eb360b5ce8a9, type: 2}
     - target: {fileID: 7609143458023244062, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

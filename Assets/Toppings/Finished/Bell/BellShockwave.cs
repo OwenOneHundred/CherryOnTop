@@ -12,7 +12,7 @@ public class BellShockwave : ShockwaveAttack
     public override void OnStart()
     {
         baseCooldown = cooldown;
-        topping = toppingObj.GetComponent<ToppingObjectScript>().topping;
+        topping = toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping;
     }
     public override void EveryFrame()
     {
@@ -24,7 +24,7 @@ public class BellShockwave : ShockwaveAttack
             toppingActivatedGlow.StartNewFireEffect("Gold", Color.yellow, 2.5f);
         }
         cooldown = newCooldown;
-        if (topping == null) { topping = toppingObj.GetComponent<ToppingObjectScript>().topping; }
+        if (topping == null) { topping = toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping; }
         topping.triggersCount = itemCount;
     }
 

@@ -21,10 +21,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 21a2b2029de304a2e9b962c8cd1956a1, type: 2}
   description: At the end of every round, gain money equal to the total number of
     toppings sold near this topping this run.
-  rarity: 0
+  rarity: 2
   towerPrefab: {fileID: 2963828599317477604, guid: a471d0776340743c881e7bc32dbfeff9, type: 3}
   flags: 80
-  specialInfoText: 'Total money gained: [Money]'
+  specialInfoText: 'Total money gained: [Money]\nMoney per round: [Triggers]'
   cakePoints: 10
   onHitCherry: []
   onKillCherry: []

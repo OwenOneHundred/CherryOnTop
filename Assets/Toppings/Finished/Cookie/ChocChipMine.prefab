@@ -162,7 +162,7 @@ MonoBehaviour:
   cherryDebuffs: []
   maxHits: 8
   shockwave: {fileID: 8297310373101223584, guid: 28cb94d55579548a894bd4798d0780af, type: 3}
-  shockwaveDamage: 20
+  shockwaveDamage: 40
   shockwaveSpeed: 5
   shockwaveRange: 0.8
   explodeOnTerrain: 0

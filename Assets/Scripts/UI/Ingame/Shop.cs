@@ -33,11 +33,11 @@ public class Shop : MonoBehaviour
         set
         { 
             rerollsText.text = "Free rerolls: " + value;
-            rerollButtonText.text = (value > 0) ? "Free\nReroll" : "Reroll\n$4";
+            rerollButtonText.text = (value > 0) ? "Free\nReroll" : "Reroll\n$" + rerollPrice;
             rerolls = value;
         }
     }
-    public int rerollPrice = 4;
+    public int rerollPrice = 3;
     [SerializeField] AudioFile error;
     [SerializeField] AudioFile openShop;
     [SerializeField] AudioFile closeShop;
@@ -46,6 +46,7 @@ public class Shop : MonoBehaviour
     public InfoPopup infoPopup; // shop probably shouldn't have this but it needs to be cached so whatever
 
     public Item mostRecentlyBoughtItem { get; set; }
+    public int purchasesThisRound = 0;
 
     public static Shop shop;
     public ShopInfoPanel shopInfoPanel;
@@ -59,6 +60,7 @@ public class Shop : MonoBehaviour
     {
         rect = GetComponent<RectTransform>();
         RerollItems();
+        Rerolls = Rerolls;
     }
 
     private void Update()
@@ -135,6 +137,7 @@ public class Shop : MonoBehaviour
     public void OnRoundEnd()
     {
         RerollItems();
+        purchasesThisRound = 0;
     }
 
     public void PlayRerollAnim()

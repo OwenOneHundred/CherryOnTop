@@ -83,17 +83,16 @@ public class Inventory : MonoBehaviour
 
     public bool TryBuyItem(Item item)
     {
-        if (item.price > money)
+        if (item.price > money || Shop.shop.purchasesThisRound >= inventoryEffectManager.GetLimit<LimitBuying>())
         {
             SoundEffectManager.sfxmanager.PlayOneShot(error);
             return false;
         } 
 
-        if (0 > inventoryEffectManager.GetLimit<LimitBuying>()) { return false; } // TODO replace 0 with shop manager purchases count 
-
         Money -= item.price;
         EventBus<BuyEvent>.Raise(new BuyEvent(item));
         SoundEffectManager.sfxmanager.PlayOneShot(buySFX);
+        Shop.shop.purchasesThisRound += 1;
 
         AddItem(item);
 

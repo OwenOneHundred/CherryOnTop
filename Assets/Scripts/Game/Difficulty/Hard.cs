@@ -9,6 +9,5 @@ public class Hard : Difficulty
         //Shop.shop.columns = 3;
         //Shop.shop.rows = 2;
         Inventory.inventory.initialMoney = 14;
-        Shop.shop.Rerolls += 1;
     }
 }

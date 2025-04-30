@@ -32,6 +32,7 @@ public class GetMoneyEqualToTotalSales : EffectSO
     public void OnSellNearby()
     {
         totalSales += 1;
+        GetTopping().triggersCount += totalSales;
         PlayTriggeredSound();
     }
 
@@ -40,7 +41,7 @@ public class GetMoneyEqualToTotalSales : EffectSO
         public GetMoneyEqualToTotalSales owner;
         public override void OnTriggered(IEvent eventObject)
         {
-            if (eventObject is SellEvent sellEvent)
+            if (eventObject is SellEvent sellEvent && sellEvent.toppingObj != null)
             {
                 if (Vector3.Distance(sellEvent.toppingObj.transform.position, owner.toppingObj.transform.position) <= 1.75f)
                 {

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
+  m_Name: Cannoli
+  m_EditorClassIdentifier: 
+  price: 5
+  shopSprite: {fileID: -640157071, guid: 8a017e75ed199407db48a486137bd4b1, type: 3}
+  effectsAndWhen: []
+  description: Fires chocolate chips at cherries.
+  rarity: 0
+  towerPrefab: {fileID: 861823699272404723, guid: edcae4d0103de40609f576f92d836fa3, type: 3}
+  flags: 128
+  specialInfoText: 
+  cakePoints: 10
+  onHitCherry: []
+  onKillCherry: []
+  moneyGained: 0
+  triggersCount: 0

@@ -1506,6 +1506,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 15b64a07ed532493d8f78ca7020bd8d9, type: 2}
   - {fileID: 11400000, guid: 4b1e78edb981c4b418cd454fad741ee5, type: 2}
   - {fileID: 11400000, guid: 63c91784945e9463b82219b58b53473a, type: 2}
+  - {fileID: 11400000, guid: 5f0342ce50c184bd98e0ca80551ca78b, type: 2}
 --- !u!114 &7835569952325439666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1830,12 +1831,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 49aa7e781e6674cd38869265dbf3554d, type: 2}
   - {fileID: 11400000, guid: 4b1e78edb981c4b418cd454fad741ee5, type: 2}
   - {fileID: 11400000, guid: 63c91784945e9463b82219b58b53473a, type: 2}
+  - {fileID: 11400000, guid: 5f0342ce50c184bd98e0ca80551ca78b, type: 2}
   itemParent: {fileID: 7862030300564659347}
   rerollsText: {fileID: 4060922254059177220}
   rerollButtonText: {fileID: 4712727569409509211}
   rerollButton: {fileID: 2698525333416134776}
   shopObjs: []
-  rerollPrice: 4
+  rerollPrice: 3
   error:
     volume: 0.7
     clip: {fileID: 8300000, guid: 382894518adea457bb5d9b53857b6c9d, type: 3}
@@ -1852,6 +1854,7 @@ MonoBehaviour:
     volume: 0.75
     clip: {fileID: 8300000, guid: f2af97ffae28d4641ab1b35c86cb5f9a, type: 3}
   infoPopup: {fileID: 4059898336848414035}
+  purchasesThisRound: 0
   shopInfoPanel: {fileID: 5917666770896241322}
 --- !u!1 &2081781367253558207
 GameObject:

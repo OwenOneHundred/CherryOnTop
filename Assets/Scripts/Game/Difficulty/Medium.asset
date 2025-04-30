@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88cce51e615b846bc93c4bf389603f16, type: 3}
   m_Name: Medium
   m_EditorClassIdentifier: 
-  cherryAmountScaleValue: 1.14
+  cherryAmountScaleValue: 1.145
   cherrySizeScaleValue: 1.16
   number: 2
   hardCodedRounds: []
+  batter: {fileID: 0}

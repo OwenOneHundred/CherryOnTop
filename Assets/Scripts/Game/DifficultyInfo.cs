@@ -54,6 +54,8 @@ public class DifficultyInfo : MonoBehaviour
         Image difficultyIcon = GameObject.Find("DifficultyIcon").GetComponent<Image>();
         difficultyIcon.sprite = measuringCupSprites[difficulty.number - 1];
 
-        difficulty.OnRoundStart();
+        difficulty.OnGameStart();
+
+        difficulty.batter.OnGameStart();
     }
 }

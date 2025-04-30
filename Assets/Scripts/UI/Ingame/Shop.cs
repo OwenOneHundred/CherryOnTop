@@ -61,6 +61,14 @@ public class Shop : MonoBehaviour
         RerollItems();
     }
 
+    private void Update()
+    {
+        if (RoundManager.roundManager.roundState == RoundManager.RoundState.shop && Input.GetKeyDown(KeyCode.Z))
+        {
+            ToggleOpen();
+        }
+    }
+
     public void ToggleOpen()
     {
         Open = !Open;

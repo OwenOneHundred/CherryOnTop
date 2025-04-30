@@ -3,7 +3,7 @@ using UnityEngine;
 [System.Serializable] [CreateAssetMenu(menuName = "Difficulty/Impossible")]
 public class Impossible : Difficulty
 {
-    public override void OnRoundStart()
+    public override void OnGameStart()
     {
         Shop.shop.totalItems = 4;
         Shop.shop.columns = 2;

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,10 @@ public class DifficultySelect : MonoBehaviour
     public List<Sprite> cupSprites;
     [SerializeField] AudioFile cupFillSound;
     [SerializeField] TMPro.TextMeshProUGUI difficultyName;
+    [SerializeField] List<Batter> batters;
+    [SerializeField] TMP_Dropdown dropdown;
+    [SerializeField] TMPro.TextMeshProUGUI batterDescription;
+    [SerializeField] GameObject batterDescriptionObj;
 
     void Start()
     {
@@ -17,6 +22,13 @@ public class DifficultySelect : MonoBehaviour
     }
 
     int difficultyIndex = 0;
+
+    void Update()
+    {
+        batterDescriptionObj.SetActive(!dropdown.IsExpanded && dropdown.value != 0);
+    }
+
+    // add code disabling description in update if dropdown.isExpanded, and update description in ChangeBatter
 
     public void Click()
     {
@@ -29,10 +41,28 @@ public class DifficultySelect : MonoBehaviour
         {
             SoundEffectManager.sfxmanager.PlayOneShotWithPitch(cupFillSound, 1 + (0.25f * (difficultyIndex - 1)));
         }
-        difficulty = difficulties[difficultyIndex];
-        difficultyName.text = difficulties[difficultyIndex].name;
+        
+        UpdateDifficulty();
 
         cup.sprite = cupSprites[difficultyIndex];
+    }
+
+    public void ChangeBatter()
+    {
+        UpdateDifficulty();
+    }
+
+    private void UpdateDifficulty()
+    {
+        difficulty = difficulties[difficultyIndex];
+        difficulty.batter = GetActiveBatter();
+        difficultyName.text = difficulties[difficultyIndex].name;
+        batterDescription.text = difficulty.batter.description;
+    }
+
+    private Batter GetActiveBatter()
+    {
+        return batters[dropdown.value];
     }
 }
 

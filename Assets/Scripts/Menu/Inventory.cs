@@ -237,7 +237,6 @@ public class Inventory : MonoBehaviour
 
     public int GetInventoryCount(bool countYarnMultiplier)
     {
-        Debug.Log(ownedItems.Count);
         int yarnAmount = countYarnMultiplier ? ownedItems.Select(x => x.name == "Yarn").Count() * (yarnAmountMultiplier - 1) : 0;
         return ownedItems.Count + yarnAmount;
     }

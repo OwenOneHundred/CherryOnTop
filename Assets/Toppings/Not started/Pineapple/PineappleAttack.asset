@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e317524dacab9e4688ffe974ee817f2, type: 3}
+  m_Name: PineappleAttack
+  m_EditorClassIdentifier: 
+  cooldown: 0.8
+  damage: 9
+  debuffs: []
+  projectile: {fileID: 1373519935423302513, guid: 16801bc2122f041889048c44ea2581e7, type: 3}
+  projectileSpeed: 7
+  fireSound:
+    volume: 0.5
+    clip: {fileID: 0}
+  quantity: 8
+  spreadAngle: 6.28318531

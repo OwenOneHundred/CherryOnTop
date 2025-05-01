@@ -32,7 +32,7 @@ public class GetMoneyEqualToTotalSales : EffectSO
     public void OnSellNearby()
     {
         totalSales += 1;
-        GetTopping().triggersCount += totalSales;
+        GetTopping().triggersCount += 1;
         PlayTriggeredSound();
     }
 

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
+  m_Name: Pineapple
+  m_EditorClassIdentifier: 
+  price: 5
+  shopSprite: {fileID: -1915590028, guid: 7361f506e6abd43489cf808144915ad0, type: 3}
+  effectsAndWhen: []
+  description: Shoots spikes out in all directions when cherries are nearby. At the
+    end of each round, if you bought exactly 2 items from the shop, gain $2.
+  rarity: 0
+  towerPrefab: {fileID: 4831661171408888501, guid: 4e9e1703041f543fc8eb18e01d0c35a7, type: 3}
+  flags: 208
+  specialInfoText: 'Total money gained: [Money]\nTimes triggered: [Triggers]'
+  cakePoints: 30
+  onHitCherry: []
+  onKillCherry: []
+  moneyGained: 0
+  triggersCount: 0

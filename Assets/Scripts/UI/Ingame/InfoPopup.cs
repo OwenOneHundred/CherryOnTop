@@ -114,6 +114,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         hovered = false;
         if (sellButton == null) { return; }
         gameObject.SetActive(false);
+        flipping = false;
         Flipped = false;
         StopAllCoroutines();
         transform.localScale = Vector3.one;
@@ -141,6 +142,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                     stats[1].text = "Cooldown: " + attackManager.attackTemplate.cooldown;
                     stats[2].text = "Range: " + attackManager.GetComponent<TargetingSystem>().GetRange();
                     stats[3].text = "Pierce: " + attackManager.attackTemplate.GetPierce();
+                    stats[4].text = "Cake Points: " + topping.cakePoints;
                 }
                 else // there's an attack on the object, and it's placed on the cake
                 {
@@ -148,6 +150,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                     stats[1].text = "Cooldown: " + attackManager.GetAttack().cooldown;
                     stats[2].text = "Range: " + attackManager.GetComponent<TargetingSystem>().GetRange();
                     stats[3].text = "Pierce: " + attackManager.GetAttack().GetPierce();
+                    stats[4].text = "Cake Points: " + topping.cakePoints;
                 }
             }
 
@@ -166,6 +169,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             stats[1].text = "Cooldown: -";
             stats[2].text = "Range: -";
             stats[3].text = "Pierce: -";
+            stats[4].text = "Cake Points: 0";
         }
     }
 
@@ -201,7 +205,6 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 SetUpForInventoryItem(nextItemInStack);
             }
         }
-        
     }
 
     public void OnPointerExit(PointerEventData eventData)

@@ -1430,7 +1430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundState: 2
-  roundNumber: 1
+  roundNumber: 0
   moneyOnRoundEnd: 5
   nextRoundButton: {fileID: 1390693133404687419}
   shopButton: {fileID: 1848900876542587564}

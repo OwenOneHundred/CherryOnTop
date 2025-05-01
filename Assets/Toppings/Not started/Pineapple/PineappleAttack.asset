@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e317524dacab9e4688ffe974ee817f2, type: 3}
   m_Name: PineappleAttack
   m_EditorClassIdentifier: 
-  cooldown: 0.8
-  damage: 9
+  cooldown: 0.7
+  damage: 6
   debuffs: []
   projectile: {fileID: 1373519935423302513, guid: 16801bc2122f041889048c44ea2581e7, type: 3}
   projectileSpeed: 7
   fireSound:
     volume: 0.5
     clip: {fileID: 0}
-  quantity: 8
+  bulletLifetime: 0.2
+  quantity: 15
   spreadAngle: 6.28318531

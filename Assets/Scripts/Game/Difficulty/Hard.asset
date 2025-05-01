@@ -16,4 +16,4 @@ MonoBehaviour:
   cherrySizeScaleValue: 1.23
   number: 3
   hardCodedRounds: []
-  batter: {fileID: 11400000, guid: ceba9871bda1f4145b818cbeb80d0d68, type: 2}
+  batter: {fileID: 11400000, guid: 5540b61db41664bb7b8b8a3518e4f5be, type: 2}

@@ -122,6 +122,9 @@ public class ToppingPlacer : MonoBehaviour
         bool mouseIsInSidebar;
         bool mouseLeftSidebar = false;
 
+        var whiteArray = MakeArrayOfMaterial(topping.towerPrefab.GetComponentInChildren<MeshRenderer>().sharedMaterials.Length, white);
+        var redArray = MakeArrayOfMaterial(topping.towerPrefab.GetComponentInChildren<MeshRenderer>().sharedMaterials.Length, red);
+
         while (Input.GetMouseButton(0))
         {
             mouseIsInSidebar = Input.mousePosition.x > inventoryXPos;
@@ -146,7 +149,7 @@ public class ToppingPlacer : MonoBehaviour
                 transparentObject.transform.position = objCenter;
 
                 placementValidCheck = CheckIfPlacementValid(toppingMeshFilter, GetCenterOfPreviewMesh(transparentMeshFilter), toppingMeshFilter.sharedMesh, cakePos);
-                meshRenderer.material = placementValidCheck ? white : red;
+                meshRenderer.sharedMaterials = placementValidCheck ? whiteArray : redArray;
                 circleLineRenderer.startColor = placementValidCheck ? Color.white : Color.red;
                 circleLineRenderer.endColor = placementValidCheck ? Color.white : Color.red;
             }
@@ -162,6 +165,16 @@ public class ToppingPlacer : MonoBehaviour
             PlaceTopping(topping, transparentMeshFilter.transform.position, topping.towerPrefab.transform.rotation, true);
         }
         StopPlacingTopping();
+    }
+
+    private Material[] MakeArrayOfMaterial(int num, Material material)
+    {
+        Material[] materials = new Material[num];
+        for (int i = 0; i < num; i++)
+        {
+            materials[i] = material;
+        }
+        return materials;
     }
 
     private Vector3 CalculatePreviewPosition(Vector3 cakePos, Mesh mesh, float lowestPointOffset, Transform transparentObjectMesh, Transform toppingMeshFilterTransform)

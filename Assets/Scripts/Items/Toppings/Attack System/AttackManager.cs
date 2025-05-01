@@ -37,6 +37,7 @@ public class AttackManager : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log("REACHED AWAKE IN AttackManager");
         this.attack = Instantiate(attackTemplate);
         this.attack.toppingObj = gameObject;
         timer = attack.cooldown;
@@ -44,6 +45,11 @@ public class AttackManager : MonoBehaviour
 
     void Start()
     {
+        if (attackTemplate == null) {
+            Debug.Log("AttackManager: ATTACK_TEMPLATE IS NULL");
+        } else {
+            Debug.Log("AttackManager: ATTACK_TEMPLATE IS NOT NULL");
+        }
         if (this.attack != null) {
             this.attack.OnStart();
         }

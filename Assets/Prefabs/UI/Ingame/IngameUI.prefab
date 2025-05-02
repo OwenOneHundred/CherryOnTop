@@ -1508,6 +1508,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 63c91784945e9463b82219b58b53473a, type: 2}
   - {fileID: 11400000, guid: 5f0342ce50c184bd98e0ca80551ca78b, type: 2}
   - {fileID: 11400000, guid: 2bacf6d76fd36476cbf4e86e9ab9afbb, type: 2}
+  - {fileID: 11400000, guid: b889417c129dd4f2993ac94017913b07, type: 2}
 --- !u!114 &7835569952325439666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1786,6 +1787,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8628b5031472646ae86561ad2d59b776, type: 2}
   - {fileID: 11400000, guid: 59eb2b5f8656e43adbffe6c00fee0e25, type: 2}
   - {fileID: 11400000, guid: ecabe900cc5204aa6b3ca5af6e6d11f3, type: 2}
+  - {fileID: 11400000, guid: 5f0342ce50c184bd98e0ca80551ca78b, type: 2}
   - {fileID: 11400000, guid: 1635e4ff1811a452e914a7998974906b, type: 2}
   - {fileID: 11400000, guid: 37436afdd3ed94eccb945b18ff3f93d3, type: 2}
   - {fileID: 11400000, guid: d96d45040cce94e72815229c5c2e88c2, type: 2}
@@ -1800,8 +1802,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8e72834b04d344366baeaff47b329115, type: 2}
   - {fileID: 11400000, guid: d2d327fe9da5d41fdb40a4aea5474448, type: 2}
   - {fileID: 11400000, guid: ef112ccab09004451a087619f5391a65, type: 2}
+  - {fileID: 11400000, guid: 3016b4f8ef1284bdc8fe8a1780ff1723, type: 2}
   - {fileID: 11400000, guid: 5d4c3a01cf4e74901ba2a080092b0c86, type: 2}
   - {fileID: 11400000, guid: 86dbcbf8bdcb846c39632dd0677ed90e, type: 2}
+  - {fileID: 11400000, guid: 63c91784945e9463b82219b58b53473a, type: 2}
   - {fileID: 11400000, guid: fee4fb20abbf746abb1a96d37a76028e, type: 2}
   - {fileID: 11400000, guid: 68462d03fb0644d86b6b16e1567f5321, type: 2}
   - {fileID: 11400000, guid: fc8447cf6d7749e499d5a495ff33c615, type: 2}
@@ -1812,6 +1816,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ca9f78176f7b49b696bc2b6c5c7b0ee, type: 2}
   - {fileID: 11400000, guid: 1a7d1419538e34493891572cced33a96, type: 2}
   - {fileID: 11400000, guid: f91ebb90466a44f10a53f18e6b00baec, type: 2}
+  - {fileID: 11400000, guid: 2bacf6d76fd36476cbf4e86e9ab9afbb, type: 2}
+  - {fileID: 11400000, guid: 4b1e78edb981c4b418cd454fad741ee5, type: 2}
   - {fileID: 11400000, guid: 25ffcaf8f139f434d8e22a6a914363de, type: 2}
   - {fileID: 11400000, guid: 64164d5af1743421fa7ffd2e6df4b48a, type: 2}
   - {fileID: 11400000, guid: f5bd03e1997664743af1946ac5321a88, type: 2}
@@ -1830,10 +1836,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b08a3f95245044847afbd0298274bfb4, type: 2}
   - {fileID: 11400000, guid: 33aead3dbac0f433c9669456ab41b1b7, type: 2}
   - {fileID: 11400000, guid: 49aa7e781e6674cd38869265dbf3554d, type: 2}
-  - {fileID: 11400000, guid: 4b1e78edb981c4b418cd454fad741ee5, type: 2}
-  - {fileID: 11400000, guid: 63c91784945e9463b82219b58b53473a, type: 2}
-  - {fileID: 11400000, guid: 5f0342ce50c184bd98e0ca80551ca78b, type: 2}
-  - {fileID: 11400000, guid: 2bacf6d76fd36476cbf4e86e9ab9afbb, type: 2}
+  - {fileID: 11400000, guid: b889417c129dd4f2993ac94017913b07, type: 2}
   itemParent: {fileID: 7862030300564659347}
   rerollsText: {fileID: 4060922254059177220}
   rerollButtonText: {fileID: 4712727569409509211}
@@ -9766,7 +9769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2333696763320562053, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2516482913335788729, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_Colors.m_PressedColor.b
@@ -9858,7 +9861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4987531159127680303, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7088423251718573688, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_Pivot.x

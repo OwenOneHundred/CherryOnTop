@@ -38,6 +38,8 @@ public abstract class Item : ScriptableObject
             effectsAndWhens.Add(effectAndWhen);
         }
         effectsAndWhen = effectsAndWhens;
+
+        UpdateHighestSellPrice();
     }
 
     /// <summary>
@@ -121,5 +123,28 @@ public abstract class Item : ScriptableObject
         /// What events trigger the above effects
         /// </summary>
         public List<BaseEventSO> eventSOs;
+    }
+
+    private int sellPrice = -1;
+    public int SellPrice
+    {
+        get
+        {
+            if (sellPrice == -1) { sellPrice = price / 2; }
+            UpdateHighestSellPrice();
+            return sellPrice;
+        }
+        set
+        { 
+            if (sellPrice == -1) { sellPrice = price / 2; }
+            sellPrice = value;
+            UpdateHighestSellPrice();
+        }
+    }
+    public static int highestSellPrice = -1;
+    public void UpdateHighestSellPrice()
+    {
+        if (sellPrice == -1) { sellPrice = price / 2; }
+        if (sellPrice > highestSellPrice) { highestSellPrice = sellPrice; }
     }
 }

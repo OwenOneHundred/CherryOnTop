@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6d5af3d3979c4e6a9a88ad93cee2969, type: 3}
+  m_Name: Vault Attack
+  m_EditorClassIdentifier: 
+  cooldown: 4
+  damage: 20
+  debuffs: []
+  projectile: {fileID: 1373519935423302513, guid: a10b40c7713284aef8f9c9744b90b147, type: 3}
+  projectileSpeed: 8
+  fireSound:
+    volume: 0.5
+    clip: {fileID: 0}
+  bulletLifetime: 8
+  reductionAmount: 0.05

@@ -28,6 +28,7 @@ public class ToppingRegistry : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        Item.highestSellPrice = -1;
     }
 
     public void RegisterPlacedTopping(Topping topping, GameObject gameObject)

@@ -199,4 +199,19 @@ public class Shop : MonoBehaviour
             shopObj.UpdateInfo();
         }
     }
+
+    public void SellItemOffCake(Item item, GameObject toppingObj)
+    {
+        Inventory.inventory.Money += item.SellPrice;
+        GameStats.gameStats.moneyEarned += item.SellPrice;
+        GameStats.gameStats.toppingsSold++;
+        EventBus<SellEvent>.Raise(new SellEvent(item, toppingObj));
+
+        if (toppingObj != null)
+        {
+            Destroy(toppingObj);
+        }
+
+        // clear infopopup if it has this
+    }
 }

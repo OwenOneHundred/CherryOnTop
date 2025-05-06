@@ -49,4 +49,9 @@ public abstract class ToppingAttack : ScriptableObject
         return damage;
     }
 
+    public virtual string GetPierce()
+    {
+        return "-";
+    }
+
 }

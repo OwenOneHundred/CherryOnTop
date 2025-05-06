@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -21,9 +22,17 @@ public class TargetingSystem : MonoBehaviour
 
     void Update()
     {
-        GameObject found = Search();
-        attackManager.UpdateTargetedCherry(found);
-        currentCherry = found;
+        if ((currentCherry == null || !InRangeAndHasLOS(currentCherry)) && RoundManager.roundManager.roundState == RoundManager.RoundState.cherries) // for performance
+        {
+            GameObject found = Search();
+            attackManager.UpdateTargetedCherry(found);
+            currentCherry = found;
+        }
+    }
+
+    private bool InRangeAndHasLOS(GameObject cherry)
+    {
+        return HasClearLineOfSight(currentCherry.transform) && (Vector3.Distance(transform.position, cherry.transform.position) <= range);
     }
 
     GameObject Search()

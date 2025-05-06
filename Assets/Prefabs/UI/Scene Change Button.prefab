@@ -148,6 +148,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playButton: {fileID: 4829941980000832944}
   sceneName: WeddingCakeScene
+  alsoGetDifficulty: 1
+  audioFile:
+    volume: 0.2
+    clip: {fileID: 8300000, guid: 937b5f57df8fd46c2a9f500418626d04, type: 3}
 --- !u!1 &7874863201899724175
 GameObject:
   m_ObjectHideFlags: 0

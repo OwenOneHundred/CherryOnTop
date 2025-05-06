@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using GameSaves;
+using static ToppingActivatedGlow;
 
 public abstract class Item : ScriptableObject
 {
@@ -14,25 +15,37 @@ public abstract class Item : ScriptableObject
     [TextArea] public string description;
     public ToppingTypes.Rarity rarity = ToppingTypes.Rarity.Common;
 
-    public void SetUpEffectsAndWhen()
+    public void SetUpEffectsAndWhen(GameObject obj = null)
     {
+        List<EffectAndWhen> effectsAndWhens = new List<EffectAndWhen>(effectsAndWhen.Count);
         for (int i = 0; i < effectsAndWhen.Count; i++)
         {
+            EffectAndWhen effectAndWhen = new EffectAndWhen() { 
+                effectSOs = new List<EffectSO>(effectsAndWhen[i].effectSOs.Count), 
+                eventSOs = new List<BaseEventSO>(effectsAndWhen[i].eventSOs.Count) };
             for (int j = 0; j < effectsAndWhen[i].effectSOs.Count; j++)
-            {   
-                effectsAndWhen[i].effectSOs[j] = Instantiate(effectsAndWhen[i].effectSOs[j]);
+            {
+                EffectSO effect = Instantiate(effectsAndWhen[i].effectSOs[j]);
+                if (obj != null) effect.toppingObj = obj;
+                effectAndWhen.effectSOs.Add(effect);
+                //effectsAndWhen[i].effectSOs[j] = Instantiate(effectsAndWhen[i].effectSOs[j]);
             }
             for (int p = 0; p < effectsAndWhen[i].eventSOs.Count; p++)
-            {   
-                effectsAndWhen[i].eventSOs[p] = Instantiate(effectsAndWhen[i].eventSOs[p]);
+            {
+                effectAndWhen.eventSOs.Add(Instantiate(effectsAndWhen[i].eventSOs[p]));
+                //effectsAndWhen[i].eventSOs[p] = Instantiate(effectsAndWhen[i].eventSOs[p]);
             }
+            effectsAndWhens.Add(effectAndWhen);
         }
+        effectsAndWhen = effectsAndWhens;
+
+        UpdateHighestSellPrice();
     }
 
     /// <summary>
     /// Should be called when the item is purchased. Registers the events in the effects list.
     /// </summary>
-    public void RegisterEffects()
+    public void RegisterEffects(GameObject toppingObj = null)
     {
         foreach (EffectAndWhen effectAndWhen in effectsAndWhen)
         {
@@ -40,8 +53,17 @@ public abstract class Item : ScriptableObject
             {
                 foreach (BaseEventSO eventSO in effectAndWhen.eventSOs)
                 {
+                    if (toppingObj != null)
+                    {
+                        effectSO.toppingObj = toppingObj;
+                    }
                     eventSO.RegisterEffect(effectSO);
                 }
+            }
+
+            foreach (EffectSO effect in effectAndWhen.effectSOs)
+            {
+                effect.OnRegistered();
             }
         }
         
@@ -57,6 +79,12 @@ public abstract class Item : ScriptableObject
             foreach (BaseEventSO eventSO in effectAndWhen.eventSOs)
             {
                 eventSO.DeregisterAllEffects();
+                //Debug.Log(ID.ToString() + ": Dereigstered all effects under event " + eventSO.name);
+            }
+
+            foreach (EffectSO effect in effectAndWhen.effectSOs)
+            {
+                effect.OnDeregistered();
             }
         }
     }
@@ -95,5 +123,28 @@ public abstract class Item : ScriptableObject
         /// What events trigger the above effects
         /// </summary>
         public List<BaseEventSO> eventSOs;
+    }
+
+    private int sellPrice = -1;
+    public int SellPrice
+    {
+        get
+        {
+            if (sellPrice == -1) { sellPrice = price / 2; }
+            UpdateHighestSellPrice();
+            return sellPrice;
+        }
+        set
+        { 
+            if (sellPrice == -1) { sellPrice = price / 2; }
+            sellPrice = value;
+            UpdateHighestSellPrice();
+        }
+    }
+    public static int highestSellPrice = -1;
+    public void UpdateHighestSellPrice()
+    {
+        if (sellPrice == -1) { sellPrice = price / 2; }
+        if (sellPrice > highestSellPrice) { highestSellPrice = sellPrice; }
     }
 }

@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab4ac6f7c01b476c95e7cfdcc666083, type: 3}
+  m_Name: StrawberryBatter
+  m_EditorClassIdentifier: 
+  description: No longer get money at the end of each round, but start with 2 strawberries.
+  strawberry: {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}

@@ -8,10 +8,12 @@ public class CameraAttack : ToppingAttack
     [SerializeField] int pierce = 30;
     Topping topping;
     [SerializeField] LayerMask cakeLayer;
+    [SerializeField] AudioFile attackSound;
     public override void OnCycle(GameObject targetedCherry)
     {
         if (topping == null) { topping = toppingObj.transform.root.GetComponentInChildren<ToppingObjectScript>().topping; }
         Attack();
+        SoundEffectManager.sfxmanager.PlayOneShot(attackSound);
         PlayPS();
     }
 

@@ -6,91 +6,88 @@ using UnityEngine;
 public class CherrySpawner : MonoBehaviour
 {
     readonly float defaultTimeBetweenCherries = 1;
-    readonly float defaultCherriesPerRound = 10;
+    public float defaultCherriesPerRound = 8;
 
-    readonly float oddNumberCherryCountMultiplier = 1.5f;
-    readonly float evenNumberCherrySpacingMultiplier = 1.5f;
     [SerializeField] public GameObject cherryPrefab;
     [SerializeField] Vector3 cherryStartPos;
-    public float difficultyScalingAmount = 1.16f;
     [System.NonSerialized] public CherryManager cherryManager;
 
     float bigChance = 0.6f;
     public float initialBigChance = 0.6f;
 
-    float specialtyCherryChance = 0.02f;
-    float specialtyCherryChanceScaleMultiplier = 2f;
-    readonly int specialtyCherryRoundCap = 8;
     public List<SpecialtyCherry> specialtyCherries = new List<SpecialtyCherry>();
-    [SerializeField] bool doSpecialtyCherrySpawning = false;
+
+    public Difficulty difficulty;
 
     private void Start()
     {
         cherryManager = GetComponent<CherryManager>();
-        if (!doSpecialtyCherrySpawning) { specialtyCherryChance = 0; }
     }
     
     public void OnRoundStart()
     {
-        StartCoroutine(RoundCoroutine());
+        if (difficulty == null) { difficulty = DifficultyInfo.difficultyInfo.difficulty; }
+        if (difficulty.TryGetHardCodedRound((int) RoundManager.roundManager.roundNumber, out HardCodedRound hardCodedRound))
+        {
+            StartCoroutine(HardCodedRoundCoroutine(hardCodedRound));
+        }
+        else
+        {
+            StartCoroutine(ProceduralRoundCoroutine());
+        }
     }
 
-    IEnumerator RoundCoroutine()
+    IEnumerator ProceduralRoundCoroutine()
     {
-        bool roundNumberIsOdd = RoundManager.roundManager.roundNumber % 2 == 1;
-        float scaleFactor = (Mathf.Pow(RoundManager.roundManager.roundNumber, 1.1f) / 2.5f) + 0.6f;
-        int totalCherries = Mathf.RoundToInt(scaleFactor * defaultCherriesPerRound * (roundNumberIsOdd ? oddNumberCherryCountMultiplier : 1));
+        float amountMultiplier = CalculateAmountScaleFactor(difficulty.cherryAmountScaleValue);
+        int totalCherries = Mathf.RoundToInt(amountMultiplier * defaultCherriesPerRound);
+
+        float timeBetweenCherries = defaultTimeBetweenCherries / amountMultiplier;
+
+        bigChance = CalculateCherrySize(difficulty.cherrySizeScaleValue);
+
         RoundManager.roundManager.totalCherriesThisRound = totalCherries;
-        float timeBetweenCherries = defaultTimeBetweenCherries / (scaleFactor * (roundNumberIsOdd ? 1 : evenNumberCherrySpacingMultiplier));
-
-        bigChance = Mathf.Clamp(initialBigChance * Mathf.Pow(difficultyScalingAmount, RoundManager.roundManager.roundNumber - 1), 0, 100);
-
-        Debug.Log("Chance of specialty round: " + specialtyCherryChance);
-        
-        SpecialtyCherry specialtyCherryType = GetIsSpecialtyCherryRound();
-        if (specialtyCherryType != null) { Debug.Log("Specialty cherry round!"); }
 
         for (int i = 0; i < totalCherries; i++)
         {
-            GameObject prefab = cherryPrefab;
-            if (specialtyCherryType != null && Random.value <= 0.5f)
-            {
-                prefab = specialtyCherryType.prefab;
-            }
-            if (doSpecialtyCherrySpawning && Random.value <= 0.01f)
-            {
-                prefab = GetRandomSpecialtyCherry().prefab;
-            }
-            GameObject newCherry = Instantiate(prefab, cherryStartPos, Quaternion.identity);
+            GameObject newCherry = Instantiate(cherryPrefab, cherryStartPos, Quaternion.identity);
             cherryManager.RegisterCherry(newCherry.GetComponentInChildren<CherryMovement>());
-            ApplyVariants(newCherry);
+            SetSizeRandom(newCherry, bigChance);
 
             yield return new WaitForSeconds(timeBetweenCherries);
         }
     }
 
-    public SpecialtyCherry GetIsSpecialtyCherryRound()
+    IEnumerator HardCodedRoundCoroutine(HardCodedRound hardCodedRound)
     {
-        if (RoundManager.roundManager.roundNumber < specialtyCherryRoundCap)
-        {
-            return null;
-        }
-        specialtyCherryChance *= specialtyCherryChanceScaleMultiplier;
+        RoundManager.roundManager.totalCherriesThisRound = hardCodedRound.cherryCount;
 
-        if (UnityEngine.Random.value <= specialtyCherryChance)
+        for (int i = 0; i < hardCodedRound.cherryCount; i++)
         {
-            specialtyCherryChance = 0;
-            return GetRandomSpecialtyCherry();
+            SpecialtyCherry specialtyCherry = hardCodedRound.GetCherryPrefab();
+            GameObject prefab;
+            if (specialtyCherry.prefab == null) { prefab = cherryPrefab; }
+            else { prefab = specialtyCherry.prefab; }
+
+            GameObject newCherry = Instantiate(prefab, cherryStartPos, Quaternion.identity);
+            cherryManager.RegisterCherry(newCherry.GetComponentInChildren<CherryMovement>());
+            SetSize(newCherry, hardCodedRound.GetCherrySize());
+
+            yield return new WaitForSeconds(hardCodedRound.timeBetweenCherriesSeconds);
         }
-        return null;
     }
 
-    private SpecialtyCherry GetRandomSpecialtyCherry()
+    private float CalculateAmountScaleFactor(float amountScaleValue)
     {
-        return specialtyCherries[GeneralUtil.RandomWeighted(specialtyCherries.Select(x => x.weight).ToList())];
+        return (Mathf.Pow(RoundManager.roundManager.roundNumber, amountScaleValue) / 2.5f) + 0.6f;
     }
 
-    void ApplyVariants(GameObject cherry)
+    private float CalculateCherrySize(float sizeScaleValue)
+    {
+        return Mathf.Clamp(initialBigChance * Mathf.Pow(sizeScaleValue, RoundManager.roundManager.roundNumber - 1), 0, 100);
+    }
+
+    void SetSizeRandom(GameObject cherry, float bigChance)
     {
         CherryTypes cherryTypes = cherry.GetComponent<CherryTypes>();
 
@@ -110,5 +107,21 @@ public class CherrySpawner : MonoBehaviour
         }
         
         cherryTypes.SetCherryHealthAndSpeed();
+    }
+
+    private void SetSize(GameObject cherry, CherryTypes.CherrySize size)
+    {
+        CherryTypes cherryTypes = cherry.GetComponent<CherryTypes>();
+
+        cherryTypes.cherrySize = size;
+
+        cherryTypes.SetCherryHealthAndSpeed();
+    }
+
+    [System.Serializable]
+    public class RoundScalingMultipliers
+    {
+        public int startRoundNumber = 1;
+        public float multiplier = 1;
     }
 }

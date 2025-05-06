@@ -18,6 +18,7 @@ public class IncreaseRange : EffectSO
             range = targetingSystem.GetRange();
             firstCall = false;
         }
+        PlayTriggeredSound();
         range *= 1 + percentageToChangeRange;
         targetingSystem.SetRange(range);
         ToppingActivatedGlow toppingGlow = GetToppingActivatedGlow();

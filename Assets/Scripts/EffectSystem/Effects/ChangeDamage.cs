@@ -3,7 +3,7 @@ using GameSaves;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-[CreateAssetMenu(menuName = "Effects/ChangeDamageEveryRound")]
+[CreateAssetMenu(menuName = "Effects/ChangeDamage")]
 public class ChangeDamage : EffectSO
 {
     bool initializeOnCall = true;
@@ -32,7 +32,7 @@ public class ChangeDamage : EffectSO
 
     public override void Load(SaveData saveData)
     {
-        attackManager = toppingObj.GetComponent<AttackManager>();
+        attackManager = toppingObj.GetComponentInChildren<AttackManager>();
         initializeOnCall = false;
         if (saveData.TryGetDataEntry(GetID() + "-Damage", out DEIntEntry intEntry))
         {

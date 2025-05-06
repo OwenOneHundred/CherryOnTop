@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
+  m_Name: Wallet
+  m_EditorClassIdentifier: 
+  price: 6
+  shopSprite: {fileID: 962275441, guid: 9bf35d138f2cd4eaab726aa84c08846b, type: 3}
+  effectsAndWhen: []
+  description: Very slowly shoots heavy, piercing coins at cherries. Fires 1% faster
+    for every dollar you have.
+  rarity: 1
+  towerPrefab: {fileID: 6610647951763740417, guid: 105a9b431943446eab2bd312f14eb42a, type: 3}
+  flags: 0
+  specialInfoText: 
+  cakePoints: -25
+  onHitCherry: []
+  onKillCherry: []
+  moneyGained: 0
+  triggersCount: 0

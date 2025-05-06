@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8aaf1da6fe0e4ca0b8945752aa6d2ae, type: 3}
   m_Name: MoneyForCoconuts
   m_EditorClassIdentifier: 
-  moneyAmount: 4
+  triggeredSound:
+    volume: 0.5
+    clip: {fileID: 0}
+  odd: 1
+  moneyAmount: 3

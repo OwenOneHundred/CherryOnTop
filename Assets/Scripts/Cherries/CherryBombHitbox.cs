@@ -20,6 +20,7 @@ public class CherryBombHitbox : CherryHitbox
 
     [SerializeField]
     private GameObject shockwave;
+    [SerializeField] ParticleSystem fusePS;
 
     public void Start()
     {
@@ -41,7 +42,9 @@ public class CherryBombHitbox : CherryHitbox
 
     public override void OnTakeDamage()
     {
+        if (damaged == true) { return; }
         damaged = true;
+        fusePS.Play();
     }
 
     public void Explode()

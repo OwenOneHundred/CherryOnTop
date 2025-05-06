@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Teacup
   m_EditorClassIdentifier: 
-  price: 5
+  price: 6
   shopSprite: {fileID: 21300000, guid: 21c63de5ca8be4d67aacaf5b71bdb3f2, type: 3}
   effectsAndWhen: []
   description: Splashes tea onto the track, doing low damage but burning and slowing
     many cherries at once. (Fire and slow effects don't stack)
   rarity: 0
   towerPrefab: {fileID: 7788620283348746490, guid: a34521d22c1bc4a9a9e63e91d7281542, type: 3}
-  flags: 0
+  flags: 2
   cakePoints: 10
   onHitCherry: []
   onKillCherry: []

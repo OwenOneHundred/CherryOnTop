@@ -26,6 +26,8 @@ public class ChangeDamageIfBoughtSweet : EffectSO
             initializeOnCall = false;
         }
 
+        PlayTriggeredSound();
+        GetToppingActivatedGlow().StartNewFireEffect("Purple", Color.magenta, 2);
         damage = Mathf.Clamp(damage + damageChange, 0, int.MaxValue);
         attackManager.AttackDamage = damage;
     }

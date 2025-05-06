@@ -1,87 +1,68 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DifficultySelect : MonoBehaviour
 {
-    [SerializeField] List<Image> images;
-    public Difficulty difficulty;
+    [SerializeField] Image cup;
+    [System.NonSerialized] public Difficulty difficulty;
+    [SerializeField] List<Difficulty> difficulties;
+    public List<Sprite> cupSprites;
+    [SerializeField] AudioFile cupFillSound;
+    [SerializeField] TMPro.TextMeshProUGUI difficultyName;
+    [SerializeField] List<Batter> batters;
+    [SerializeField] TMP_Dropdown dropdown;
+    [SerializeField] TMPro.TextMeshProUGUI batterDescription;
+    [SerializeField] GameObject batterDescriptionObj;
 
     void Start()
     {
-        difficulty = new Easy(1.14f);
+        difficulty = difficulties[0];
     }
 
-    public void PressEasy()
+    int difficultyIndex = 0;
+
+    void Update()
     {
-        images[1].color = Color.gray;
-        images[2].color = Color.gray;
-        difficulty = new Easy(1.14f);
+        batterDescriptionObj.SetActive(!dropdown.IsExpanded && dropdown.value != 0);
     }
 
-    public void PressMedium()
+    // add code disabling description in update if dropdown.isExpanded, and update description in ChangeBatter
+
+    public void Click()
     {
-        images[1].color = Color.white;
-        images[2].color = Color.gray;
-        difficulty = new Medium(1.225f);
+        difficultyIndex += 1;
+        if (difficultyIndex >= difficulties.Count)
+        {
+            difficultyIndex = 0;
+        }
+        else
+        {
+            SoundEffectManager.sfxmanager.PlayOneShotWithPitch(cupFillSound, 1 + (0.25f * (difficultyIndex - 1)));
+        }
+        
+        UpdateDifficulty();
+
+        cup.sprite = cupSprites[difficultyIndex];
     }
 
-    public void PressHard()
+    public void ChangeBatter()
     {
-        images[1].color = Color.white;
-        images[2].color = Color.white;
-        difficulty = new Hard(1.31f);
+        UpdateDifficulty();
     }
 
-    public class Difficulty
+    private void UpdateDifficulty()
     {
-        public float value = 1.16f;
-        public virtual void OnRoundStart()
-        {
-
-        }
-        public int number = 1;
-        public Difficulty(float value)
-        {
-            this.value = value;
-        }
+        difficulty = difficulties[difficultyIndex];
+        difficulty.batter = GetActiveBatter();
+        difficultyName.text = difficulties[difficultyIndex].name;
+        batterDescription.text = difficulty.batter.description;
     }
 
-    public class Easy : Difficulty
+    private Batter GetActiveBatter()
     {
-        public Easy(float value) : base(value)
-        {
-            number = 1;
-        }
-    }
-    public class Medium : Difficulty
-    {
-        public Medium(float value) : base(value)
-        {
-            number = 2;
-        }
-
-        public override void OnRoundStart()
-        {
-            Shop.shop.totalItems = 5;
-            //Inventory.inventory.initialMoney = 12;
-        }
-    }
-    public class Hard : Difficulty
-    {
-        public Hard(float value) : base(value)
-        {
-            number = 3;
-        }
-
-        public override void OnRoundStart()
-        {
-            Shop.shop.totalItems = 4;
-            Shop.shop.columns = 2;
-            Shop.shop.rows = 2;
-            //Inventory.inventory.initialMoney = 10;
-            Shop.shop.Rerolls += 1;
-        }
+        return batters[dropdown.value];
     }
 }
 

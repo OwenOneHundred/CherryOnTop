@@ -144,4 +144,9 @@ public class TrapAttack : ToppingAttack
         activeTraps -= 1;
     }
 
+    public override int GetVisibleDamage()
+    {
+        return trapPrefab.GetComponent<TrackTrap>().shockwaveDamage;
+    }
+
 }

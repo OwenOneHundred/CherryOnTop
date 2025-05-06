@@ -12,22 +12,4 @@ public class SpecialtyCherry
     }
 }
 
-[System.Serializable]
-public class CherryBombData : SpecialtyCherry
-{
-    public CherryBombData(float weight) : base(weight)
-    {
-
-    }
-}
-
-[System.Serializable]
-public class CherryBlossomData : SpecialtyCherry
-{
-    public CherryBlossomData(float weight) : base(weight)
-    {
-
-    }
-}
-
 

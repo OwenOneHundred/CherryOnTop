@@ -17,6 +17,7 @@ public class Topping : Item
 {
     public GameObject towerPrefab;
     public ToppingTypes.Flags flags;
+    [SerializeField] string specialInfoText;
 
     public void SetGameObjectOnEffects(GameObject obj)
     {
@@ -26,6 +27,16 @@ public class Topping : Item
             {   
                 effectsAndWhen[i].effectSOs[j].toppingObj = obj;
             }
+        }
+
+        for (int i = 0; i < onHitCherry.Count; i++)
+        {
+            onHitCherry[i].toppingObj = obj;
+        }
+
+        for (int i = 0; i < onKillCherry.Count; i++)
+        {   
+            onKillCherry[i].toppingObj = obj;
         }
     }
     public int cakePoints = 10;
@@ -57,5 +68,12 @@ public class Topping : Item
     {
         killsThisRound = 0;
         damagedCherriesThisRound = 0;
+    }
+
+    public int moneyGained = 0;
+    public int triggersCount = 0;
+    public string GetSpecialInfo()
+    {
+        return specialInfoText.Replace("[Money]", moneyGained + "").Replace("[Triggers]", triggersCount + "");
     }
 }

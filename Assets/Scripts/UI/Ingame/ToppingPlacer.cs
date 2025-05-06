@@ -122,6 +122,9 @@ public class ToppingPlacer : MonoBehaviour
         bool mouseIsInSidebar;
         bool mouseLeftSidebar = false;
 
+        var whiteArray = MakeArrayOfMaterial(topping.towerPrefab.GetComponentInChildren<MeshRenderer>().sharedMaterials.Length, white);
+        var redArray = MakeArrayOfMaterial(topping.towerPrefab.GetComponentInChildren<MeshRenderer>().sharedMaterials.Length, red);
+
         while (Input.GetMouseButton(0))
         {
             mouseIsInSidebar = Input.mousePosition.x > inventoryXPos;
@@ -146,7 +149,7 @@ public class ToppingPlacer : MonoBehaviour
                 transparentObject.transform.position = objCenter;
 
                 placementValidCheck = CheckIfPlacementValid(toppingMeshFilter, GetCenterOfPreviewMesh(transparentMeshFilter), toppingMeshFilter.sharedMesh, cakePos);
-                meshRenderer.material = placementValidCheck ? white : red;
+                meshRenderer.sharedMaterials = placementValidCheck ? whiteArray : redArray;
                 circleLineRenderer.startColor = placementValidCheck ? Color.white : Color.red;
                 circleLineRenderer.endColor = placementValidCheck ? Color.white : Color.red;
             }
@@ -162,6 +165,16 @@ public class ToppingPlacer : MonoBehaviour
             PlaceTopping(topping, transparentMeshFilter.transform.position, topping.towerPrefab.transform.rotation, true);
         }
         StopPlacingTopping();
+    }
+
+    private Material[] MakeArrayOfMaterial(int num, Material material)
+    {
+        Material[] materials = new Material[num];
+        for (int i = 0; i < num; i++)
+        {
+            materials[i] = material;
+        }
+        return materials;
     }
 
     private Vector3 CalculatePreviewPosition(Vector3 cakePos, Mesh mesh, float lowestPointOffset, Transform transparentObjectMesh, Transform toppingMeshFilterTransform)
@@ -228,11 +241,13 @@ public class ToppingPlacer : MonoBehaviour
         Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 6); // create particle effect
 
         if (playSound) { SoundEffectManager.sfxmanager.PlayOneShot(placeSound); }
-
+        
         topping.SetGameObjectOnEffects(newToppingObj);
-        topping.RegisterEffects();
+        topping.RegisterEffects(newToppingObj);
 
-        Inventory.inventory.RemoveOneOfItem(topping); // remove from inventory
+        Inventory.inventory.RemoveItemByID(topping.ID); // remove from inventory
+
+        newToppingObj.GetComponentInChildren<ToppingObjInteractions>().OnPlacedFromInventory();
     }
 
     public void PlaceToppingViaLoad(Topping topping, Vector3 position, Quaternion rotation)
@@ -244,7 +259,7 @@ public class ToppingPlacer : MonoBehaviour
         newToppingObj.GetComponent<ToppingObjectScript>().topping = topping; // set topping on object to be read later
         newToppingObj.transform.root.GetComponentInChildren<ToppingObjInteractions>().OnClickedOff();
 
-        topping.RegisterEffects();
+        topping.RegisterEffects(newToppingObj);
         topping.SetGameObjectOnEffects(newToppingObj);
     }
 }

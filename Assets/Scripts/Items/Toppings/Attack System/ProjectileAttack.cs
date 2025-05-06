@@ -12,6 +12,7 @@ public abstract class ProjectileAttack : ToppingAttack
     public float projectileSpeed;
 
     [SerializeField] protected AudioFile fireSound;
+    public float bulletLifetime = 8;
 
     /// <summary>
     /// Spawn a projectile with an initial position, velocity, rotation, and damage.
@@ -31,8 +32,8 @@ public abstract class ProjectileAttack : ToppingAttack
         projectileScript.damage = damage;
         projectileScript.owner = toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping;
 
-        // Destroy the projectile after 8 seconds in case it misses the target
-        Destroy(newProjectile, 8);
+        // Destroy the projectile after bulletLifetime seconds in case it misses the target
+        Destroy(newProjectile, bulletLifetime);
 
         if (fireSound != null && fireSound.clip != null) { SoundEffectManager.sfxmanager.PlayOneShot(fireSound);}
 
@@ -48,5 +49,10 @@ public abstract class ProjectileAttack : ToppingAttack
     public virtual void CustomProjectileActions(GameObject projectile)
     {
 
+    }
+
+    public override string GetPierce()
+    {
+        return projectile.GetComponent<Projectile>().maxHits + "";
     }
 }

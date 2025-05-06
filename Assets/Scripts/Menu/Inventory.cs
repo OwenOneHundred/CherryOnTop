@@ -40,6 +40,7 @@ public class Inventory : MonoBehaviour
         if (!LevelManager.levelWasLoadedFromSave)
         {
             Money = initialMoney;
+            GameStats.gameStats.moneyEarned += initialMoney;
         }
 
         inventoryEffectManager = GetComponent<InventoryEffectManager>();
@@ -82,21 +83,22 @@ public class Inventory : MonoBehaviour
 
     public bool TryBuyItem(Item item)
     {
-        if (item.price > money)
+        if (item.price > money || Shop.shop.purchasesThisRound >= inventoryEffectManager.GetLimit<LimitBuying>())
         {
             SoundEffectManager.sfxmanager.PlayOneShot(error);
             return false;
         } 
 
-        if (0 > inventoryEffectManager.GetLimit<LimitBuying>()) { return false; } // TODO replace 0 with shop manager purchases count 
-
         Money -= item.price;
         EventBus<BuyEvent>.Raise(new BuyEvent(item));
         SoundEffectManager.sfxmanager.PlayOneShot(buySFX);
+        Shop.shop.purchasesThisRound += 1;
 
         AddItem(item);
 
         Shop.shop.mostRecentlyBoughtItem = item;
+        GameStats.gameStats.toppingsBought++;
+        GameStats.gameStats.moneySpent += item.price;
         return true;
     }
 
@@ -126,10 +128,30 @@ public class Inventory : MonoBehaviour
         inventoryRenderer.AddItemToDisplay(item);
     }
 
-    public int RemoveOneOfItem(Item item)
+    /// <summary>
+    /// Remove item from inventory by ID. Returns the number of items left in that stack after operation.
+    /// </summary>
+    /// <param name="id">ID of item to remove</param>
+    /// <returns>Number of items left in the stack</returns>
+    public int RemoveItemByID(Guid id)
     {
-        ownedItems.Remove(item);
-        return inventoryRenderer.RemoveOneFromItemFromDisplay(item); 
+        int index = ownedItems.FindIndex(x => x.ID.Equals(id));
+        if (index >= 0)
+        {
+            Item item = ownedItems[index];
+            ownedItems.RemoveAt(index);
+            Item replacementItem;
+            try
+            {
+                replacementItem = ownedItems.First(x => x.name.Equals(item.name));
+            }
+            catch
+            {
+                replacementItem = null;
+            }
+            return inventoryRenderer.RemoveOneByIDFromDisplay(item, replacementItem);
+        }
+        return 0;
     }
 
     float moneyChangeTimer = 0;
@@ -148,7 +170,7 @@ public class Inventory : MonoBehaviour
             {
                 ApplyMoneyChange(bufferedMoneyChanges[0]);
                 bufferedMoneyChanges.RemoveAt(0);
-                scalingMoneyGainTime = Mathf.Clamp(scalingMoneyGainTime - 0.02f, 0.02f, 1);
+                scalingMoneyGainTime = Mathf.Clamp(scalingMoneyGainTime - 0.015f, 0.15f, 1);
                 moneyGainPitch = Mathf.Clamp(moneyGainPitch + 0.04f, 1, 2.5f);
             }
             else
@@ -175,6 +197,7 @@ public class Inventory : MonoBehaviour
             SoundEffectManager.sfxmanager.PlayOneShotWithPitch(getMoneySFX, moneyGainPitch);
         }
 
+        Shop.shop.UpdateAllIconText();
         Shop.shop.UpdateRerollButtonFadedness();
     }
 

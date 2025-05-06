@@ -17,7 +17,9 @@ public class GetMoneyIfCherryDiedWasFrozen : EffectSO
             if (useRadius && (Vector3.Distance(toppingObj.transform.position, diesEvent.cherry.transform.position) > targetingSystem.GetRange())) { return; }
             if (diesEvent.cherry.GetComponentInChildren<DebuffManager>().HasDebuffType(CherryDebuff.DebuffType.freeze))
             {
+                GetTopping().moneyGained += amountToChangeMoney;
                 Inventory.inventory.Money += amountToChangeMoney;
+                GetToppingActivatedGlow().StartNewFireEffect("Red", Color.red, 1);
             }
         }
     }

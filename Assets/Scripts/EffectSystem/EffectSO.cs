@@ -6,6 +6,7 @@ public abstract class EffectSO : ScriptableObject
     [System.NonSerialized]
     public GameObject toppingObj;
     public abstract void OnTriggered(EventBus.IEvent eventObject);
+    [SerializeField] AudioFile triggeredSound;
 
     public ToppingActivatedGlow GetToppingActivatedGlow()
     {
@@ -17,6 +18,34 @@ public abstract class EffectSO : ScriptableObject
     {
         Debug.Log("Get ID on " + this.name + " on " + toppingObj);
         return toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping.ID.ToString();
+    }
+
+    public void PlayTriggeredSound()
+    {
+        if (triggeredSound.clip != null)
+        {
+            SoundEffectManager.sfxmanager.PlayOneShot(triggeredSound);
+        }
+    }
+
+    public virtual void OnRegistered()
+    {
+
+    }
+
+    public virtual void OnDeregistered()
+    {
+
+    }
+
+    public Topping GetTopping()
+    {
+        if (toppingObj == null)
+        {
+            Debug.LogError("No toppingObj found for effect " + this.name);
+            return null;
+        }
+        else return toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping;
     }
 
     public virtual void Save(SaveData saveData)

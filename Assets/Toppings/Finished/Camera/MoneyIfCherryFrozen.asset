@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cfbc21b172714af6a4d413ea857504f, type: 3}
   m_Name: MoneyIfCherryFrozen
   m_EditorClassIdentifier: 
+  triggeredSound:
+    volume: 0.2
+    clip: {fileID: 0}
   amountToChangeMoney: 1
-  chanceOfHappening0to1: 0.5
+  chanceOfHappening0to1: 0.2
   useRadius: 1

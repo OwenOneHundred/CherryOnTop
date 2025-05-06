@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc44cab6a576d4a50965dc53c8596af8, type: 3}
   m_Name: ReduceCooldown
   m_EditorClassIdentifier: 
-  cooldownPercentChange: -0.05
+  triggeredSound:
+    volume: 0.2
+    clip: {fileID: 0}
+  cooldownPercentChange: -0.04

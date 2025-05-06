@@ -12,7 +12,7 @@ public class RoundManager : MonoBehaviour
 
     [System.NonSerialized] public int totalCherriesThisRound = 10;
     int cherriesKilledThisRoundCount = 0;
-    [SerializeField] int moneyOnRoundEnd = 10;
+    public int moneyOnRoundEnd = 10;
 
     public static RoundManager roundManager; // Singleton
     [SerializeField] Button nextRoundButton;
@@ -92,6 +92,7 @@ public class RoundManager : MonoBehaviour
         nextRoundButton.interactable = true;
         shopButton.interactable = true;
         Inventory.inventory.Money += moneyOnRoundEnd;
+        GameStats.gameStats.moneyEarned += moneyOnRoundEnd;
         cherriesKilledThisRoundCount = 0;
 
         EventBus<RoundEndEvent>.Raise(new RoundEndEvent()); // the order of this and OnRoundEnd DOES matter
@@ -105,12 +106,19 @@ public class RoundManager : MonoBehaviour
         if (savingEnabled)
         {
             SaveLevel(); // save after all round end things are called
-        }   
+        }
+
+        if (roundNumber == 30)
+        {
+            OnPlayerWins();
+            return;
+        }
     }
 
     public void OnCherryKilled()
     {
         cherriesKilledThisRoundCount += 1;
+        GameStats.gameStats.cherriesKilled++;
         if (cherriesKilledThisRoundCount >= totalCherriesThisRound)
         {
             EndRound();
@@ -120,5 +128,11 @@ public class RoundManager : MonoBehaviour
     public enum RoundState
     {
         none, cherries, shop 
+    }
+
+    public void OnPlayerWins()
+    {
+        ingameUI.transform.Find("WinPanel").GetChild(0).gameObject.SetActive(true);
+        AchievementsTracker.Instance.MarkLevelAsCompleted(DifficultyInfo.difficultyInfo.levelIndex, DifficultyInfo.difficultyInfo.difficulty.number);
     }
 }

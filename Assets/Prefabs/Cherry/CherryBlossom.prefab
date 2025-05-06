@@ -13,6 +13,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -2432090755550338912, guid: 28eba9bb3476c43798436f9d58ad5b2e, type: 3}
     - target: {fileID: 2483940146065237387, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2483940146065237387, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ad64bb1d8adf04fa7a4d88dd269c4f59, type: 2}
@@ -68,6 +72,10 @@ PrefabInstance:
       propertyPath: cherryHitbox
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7963788771583088766, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5343877452891195099, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
     m_RemovedGameObjects: []
@@ -101,3 +109,7 @@ MonoBehaviour:
   onDamagedPS: {fileID: 4970616808093975513, guid: 96a946d776afd4dceaf88dd58fdb973e, type: 3}
   damageNumberPrefab: {fileID: 1117619847005422415, guid: 3646483419b9a4ce7aa9ae6b1b384a68, type: 3}
   spawnDamageNumbers: 0
+  spawnPrefab: {fileID: 4085270106411668407, guid: 8a7a3fdc11c57494192b64d0401d24bd, type: 3}
+  bloomMesh: {fileID: -2432090755550338912, guid: 58ea85f87d6994c49a77ea5b6fd252d6, type: 3}
+  bloomMaterial: {fileID: 2100000, guid: bf95035a897d04aa5ba5237addb565e8, type: 2}
+  initialHealth: 0

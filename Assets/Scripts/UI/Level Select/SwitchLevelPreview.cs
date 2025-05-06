@@ -3,13 +3,13 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class SwitchLevelPreview : MonoBehaviour
 {
     [SerializeField] private bool forwards;
     public UnityEngine.UI.Button moveButton;
-    public LevelPreview[] levelPreviews;
-    private GameObject[] level;
+    public List<LevelPreview> levelPreviews;
     [SerializeField] private GameObject loadedLevel;
     [SerializeField] private GameObject previousLoadedLevel;
     public GameObject backButton;
@@ -20,40 +20,21 @@ public class SwitchLevelPreview : MonoBehaviour
     private bool slideLeft = true;
     public float slideTime;
     private bool moving = false;
-    private int stopRadius = 10;
     public Sprite backButtonImg;
     public HoverImgChange forwardHover;
     public HoverImgChange backHover;
-    float heldIntervalToMove = 0.5f;
 
-    void Start()
+    void Awake()
     {
         forwardHover = GetComponent<HoverImgChange>();
         backHover = backButton.GetComponent<HoverImgChange>();
-        level = new GameObject[levelPreviews.Length];
         moveButton.onClick.AddListener(OnForwardsButtonClick);
-        
         backButton.SetActive(false);
-        for (int i = 0; i < levelPreviews.Length; i++)
-        {
-            Spawn(levelPreviews[i]);
-            
-            level[i] = levelPreviews[i].levelPrefab;
-        }
-
-        InstantiateBaseBox();
     }
 
-    public void Spawn(LevelPreview preview)
+    private void Start()
     {
-        preview.levelPrefab = Instantiate(preview.emptyLevelPrefab);
-        GameObject panel = preview.levelPrefab.transform.GetChild(0).gameObject;
-        panel.GetComponent<UnityEngine.UI.Image>().sprite = preview.levelImage;
-        GameObject sceneChangeButton = preview.levelPrefab.transform.GetChild(0).GetChild(0).gameObject;
-        sceneChangeButton.GetComponent<PlayButton>().sceneName = preview.sceneNameInEditor;
-        LoadButton loadButton = preview.levelPrefab.GetComponentInChildren<LoadButton>();
-        loadButton.sceneName = preview.sceneNameInEditor;
-        loadButton._levelNameIngame = preview.sceneNameIngame;
+        LoadLevelBox(0, true);
     }
 
     private void Update()
@@ -108,18 +89,18 @@ public class SwitchLevelPreview : MonoBehaviour
         moving = false;
         loadedLevel.transform.localPosition = new Vector3(0, 0, 0);
         Destroy(previousLoadedLevel);
-
     }
 
     void OnForwardsButtonClick()
     {
-        if (levelIndex + 1 == level.Length) { return; }
-        levelIndex = Mathf.Clamp((levelIndex + 1), 0, levelPreviews.Length - 1);
+        if (moving) { return; }
+        if (levelIndex + 1 == levelPreviews.Count) { return; }
+        levelIndex = Mathf.Clamp((levelIndex + 1), 0, levelPreviews.Count - 1);
         
         slideLeft = true;
         LoadLevelBox((int) loadedLevel.transform.position.x + boxLoadDistance);
         StartCoroutine(SlideLevelSelectBox(loadedLevel));
-        if (levelIndex == level.Length - 1) { DisableAllComponentsExceptThis(true); }
+        if (levelIndex == levelPreviews.Count - 1) { DisableAllComponentsExceptThis(true); }
         else { DisableAllComponentsExceptThis(false); }
         if (levelIndex == 0) { backButton.SetActive(false); }
         else { backButton.SetActive(true); }
@@ -127,46 +108,35 @@ public class SwitchLevelPreview : MonoBehaviour
 
     public void OnBackButtonClick()
     {
+        if (moving) { return; }
         if (levelIndex == 0) { return; }
-        levelIndex = Mathf.Clamp((levelIndex - 1), 0, levelPreviews.Length - 1);
+        levelIndex = Mathf.Clamp((levelIndex - 1), 0, levelPreviews.Count - 1);
         
         slideLeft = false;
         LoadLevelBox((int)loadedLevel.transform.position.x - boxLoadDistance);
         SlideBox(loadedLevel);
         if (levelIndex == 0) { backButton.SetActive(false); }
         else { backButton.SetActive(true); }
-        if (levelIndex == level.Length - 1) { DisableAllComponentsExceptThis(true); }
+        if (levelIndex == levelPreviews.Count - 1) { DisableAllComponentsExceptThis(true); }
         else { DisableAllComponentsExceptThis(false); }
-        backButton.GetComponent<UnityEngine.UI.Image>().sprite = backButtonImg;
-
     }
 
-    void LoadLevelBox(int xpos) {
-        if (level[levelIndex] == null) { 
+    void LoadLevelBox(int xpos, bool isFirstLevel = false) {
+        if (levelPreviews[levelIndex] == null) { 
             return; 
         }
-        GameObject newLevel = Instantiate(level[levelIndex], new Vector3(xpos, 0, 0), Quaternion.identity, canvasTransform);
-        newLevel.transform.SetSiblingIndex(1);
-        newLevel.transform.GetChild(0).Find("SceneName").GetComponent<TMPro.TextMeshProUGUI>().text = level[levelIndex].GetComponentInChildren<LoadButton>()._levelNameIngame;
-        previousLoadedLevel = loadedLevel;
-        loadedLevel = newLevel;
-        newLevel.transform.localPosition = new Vector3(xpos, 0, 0); // Set local position relative to the parent
+        LevelPreview currentPreview = levelPreviews[levelIndex];
+        GameObject newLevelObj = Instantiate(levelPreviews[levelIndex].levelPrefab, new Vector3(xpos, 0, 0), Quaternion.identity, canvasTransform);
+        newLevelObj.GetComponent<LevelPreviewManager>().Setup(currentPreview.levelImage, currentPreview.sceneNameIngame, currentPreview.sceneNameInEditor, levelIndex);
+        newLevelObj.transform.SetSiblingIndex(1);
+        if (!isFirstLevel) { previousLoadedLevel = loadedLevel; }
+        loadedLevel = newLevelObj;
+        newLevelObj.transform.localPosition = new Vector3(xpos, 0, 0); // Set local position relative to the parent
     }
 
-    void InstantiateBaseBox()
-    {
-        GameObject baseBox = Instantiate(level[0], Vector3.zero, Quaternion.identity, canvasTransform);
-        baseBox.transform.GetChild(0).Find("SceneName").GetComponent<TMPro.TextMeshProUGUI>().text = level[0].GetComponentInChildren<LoadButton>()._levelNameIngame;
-        baseBox.transform.SetSiblingIndex(1);
-        loadedLevel = baseBox;
-        baseBox.transform.localPosition = Vector3.zero; // Set local position relative to the parent
-    }
     void SlideBox(GameObject box)
     {
-
-        //box.transform.localPosition = new Vector3(0, 0, 0);
         StartCoroutine(SlideLevelSelectBox(box));
-
     }
 
     IEnumerator SlideLevelSelectBox(GameObject box)
@@ -175,8 +145,9 @@ public class SwitchLevelPreview : MonoBehaviour
         yield return new WaitForSeconds(slideTime);
         //Snaps the level to the center if it is not already there
         if (box != null) { 
-            box.transform.localPosition = new Vector3(0, 0, 0);
+            StopMovingAndSnapToCenter();
         }
+
     }
 
     void DisableAllComponentsExceptThis(bool disable)

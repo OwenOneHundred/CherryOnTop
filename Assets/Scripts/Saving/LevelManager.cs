@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using GameSaves;
-using NUnit.Framework;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(RoundManager))]
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] protected List<Difficulty> difficultyList = new List<Difficulty>();
+    public List<Difficulty> DifficultyList { get { return difficultyList; } }
+
     protected static LevelManager _instance;
     public static LevelManager Instance
     {
@@ -31,7 +32,12 @@ public class LevelManager : MonoBehaviour
 
     public void RestartLevel()
     {
+        Time.timeScale = 1f;
         LevelManager.levelWasLoadedFromSave = false;
+        DifficultyInfo.difficultyInfo.SubscribeToLoadScene(); // so difficulty is loaded on scene load
+        SoundEffectManager.sfxmanager.transform.root.GetComponentInChildren<AudioManager>().SetLowpass(0);
+        MusicController musicController = SoundEffectManager.sfxmanager.transform.root.GetComponentInChildren<MusicController>();
+        if (!musicController.playing) { musicController.Play(); }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -118,7 +124,13 @@ public class LevelManager : MonoBehaviour
         {
             Debug.LogWarning("LevelManager Instance already set!!! Destroying this new one: " + gameObject.name);
             Destroy(gameObject);
+            return;
         }
+
+        Debug.Log("Initializing achievements...");
+        AchievementsTracker tracker = AchievementsTracker.Instance;
+        tracker._encryptData = _encryptData;
+        tracker.MarkLevelAsCompleted(1, 1, false);
     }
 
     protected bool _validInstance = true;
@@ -137,15 +149,16 @@ public class LevelManager : MonoBehaviour
                 int extIndex = saveFileName.IndexOf(SaveDataFileUtility._saveFileExtension);
                 while (extIndex >= 0)
                 {
-                    saveFileName = saveFileName.Substring(0, extIndex) + 
-                        (extIndex + SaveDataFileUtility._saveFileExtension.Length < saveFileName.Length 
-                            ? saveFileName.Substring(extIndex + SaveDataFileUtility._saveFileExtension.Length) 
+                    saveFileName = saveFileName.Substring(0, extIndex) +
+                        (extIndex + SaveDataFileUtility._saveFileExtension.Length < saveFileName.Length
+                            ? saveFileName.Substring(extIndex + SaveDataFileUtility._saveFileExtension.Length)
                             : "");
                     extIndex = saveFileName.IndexOf(SaveDataFileUtility._saveFileExtension);
                 }
                 _saveFileName = saveFileName;
                 _saveData = SaveDataUtility.LoadSaveData(this.saveFileName, levelName);
-            } else
+            }
+            else
             {
                 _saveData = SaveDataUtility.CreateSaveData(this.saveFileName, levelName);
             }
@@ -155,9 +168,15 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void InitializeSaveData(bool loadLevel = false)
+    {
+        Initialize(SceneManager.GetActiveScene().name, loadLevel);
+    }
+
     public void SaveLevel()
     {
         Debug.Log("Saving level data...");
+        InitializeSaveData();
 
         // Start: Create the index for the items and toppings
         List<Item> potentialItems = toppingRegistery.allItems;
@@ -203,12 +222,14 @@ public class LevelManager : MonoBehaviour
         DEAllItemsInventory items = new DEAllItemsInventory("allinventory", allInventory);
         DEIntEntry money = new DEIntEntry("money", Inventory.inventory.Money);
         DEUIntEntry round = new DEUIntEntry("round", roundManager.roundNumber);
+        DEInt2Entry difficulty = new DEInt2Entry("difficulty", DifficultyInfo.difficultyInfo.difficulty.number, DifficultyInfo.difficultyInfo.levelIndex);
 
         // Set the data entries
         saveData.SetDataEntry(towers, true);
         saveData.SetDataEntry(items, true);
         saveData.SetDataEntry(money, true);
         saveData.SetDataEntry(round, true);
+        saveData.SetDataEntry(difficulty, true);
 
         toppingRegistery.SaveAll(saveData);
 
@@ -221,6 +242,7 @@ public class LevelManager : MonoBehaviour
     public void LoadLevel()
     {
         Debug.Log("Loading level data...");
+        InitializeSaveData(true);
 
         // Grab the lists of toppings and items
         List<Item> potentialItems = toppingRegistery.allItems;

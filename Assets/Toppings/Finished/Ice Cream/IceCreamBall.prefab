@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1373519935423302513}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -2432090755550338912, guid: 51fd25a4008d548b78ad1e7e7fcd9f72, type: 3}
 --- !u!23 &7735933043339609696
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -67,7 +67,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2cb1f4b92962543bea9cbb6a06efbd76, type: 2}
+  - {fileID: 2100000, guid: e0a4c6d6df2db4960ba41c7be9fb7ce7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -150,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cherryDebuffs: []
-  maxHits: 50
+  maxHits: 100
   shockwave: {fileID: 9014841120415768667, guid: 871ee27fe4a09462abbe75853ead3baf, type: 3}
   shockwaveDamage: 1
   shockwaveSpeed: 3

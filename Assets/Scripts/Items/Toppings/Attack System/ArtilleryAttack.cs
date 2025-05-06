@@ -26,6 +26,6 @@ public class ArtilleryAttack : ProjectileAttack
 
     public override int GetVisibleDamage()
     {
-        return projectile.GetComponent<Projectile>().damage;
+        return projectile.GetComponent<ArtilleryProjectile>().shockwaveDamage;
     }
 }

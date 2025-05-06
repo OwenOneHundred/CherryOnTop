@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenSounds: 0.03
+  sfxMixerGroup: {fileID: 7381583022179741340, guid: f830f85ca31d345b78ad0c6b96db1305, type: 2}
 --- !u!82 &4075003723360062448
 AudioSource:
   m_ObjectHideFlags: 0
@@ -191,9 +192,46 @@ MonoBehaviour:
   playOnAwake: 1
   defaultSong:
     volume: 0.2
-    clip: {fileID: 8300000, guid: 79b645254f14c432d8eea0d5ef166aea, type: 3}
+    clip: {fileID: 8300000, guid: 33d577fb267ea437e836b50bd7683dba, type: 3}
     loopStartTime: 0
     timeCutOffFromEnd: 0.075
+  scenesAndSongs:
+  - sceneName: MenuScene
+    song:
+      volume: 0.2
+      clip: {fileID: 8300000, guid: 33d577fb267ea437e836b50bd7683dba, type: 3}
+      loopStartTime: 0
+      timeCutOffFromEnd: 0
+  - sceneName: LevelSelectScene
+    song:
+      volume: 0.2
+      clip: {fileID: 8300000, guid: 33d577fb267ea437e836b50bd7683dba, type: 3}
+      loopStartTime: 0
+      timeCutOffFromEnd: 0
+  - sceneName: WeddingCakeScene
+    song:
+      volume: 0.2
+      clip: {fileID: 8300000, guid: 009e533790d79419e924df30ce2834c0, type: 3}
+      loopStartTime: 0
+      timeCutOffFromEnd: 0
+  - sceneName: StarcakeScene
+    song:
+      volume: 0.2
+      clip: {fileID: 8300000, guid: 79b645254f14c432d8eea0d5ef166aea, type: 3}
+      loopStartTime: 0
+      timeCutOffFromEnd: 0
+  - sceneName: CascadeCakeScene
+    song:
+      volume: 0.2
+      clip: {fileID: 8300000, guid: 79b645254f14c432d8eea0d5ef166aea, type: 3}
+      loopStartTime: 0
+      timeCutOffFromEnd: 0
+  - sceneName: Charcuterie Board
+    song:
+      volume: 0.2
+      clip: {fileID: 8300000, guid: 79b645254f14c432d8eea0d5ef166aea, type: 3}
+      loopStartTime: 0
+      timeCutOffFromEnd: 0
 --- !u!82 &1741885517659912224
 AudioSource:
   m_ObjectHideFlags: 0
@@ -209,7 +247,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

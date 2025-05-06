@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
+  m_Name: Banana
+  m_EditorClassIdentifier: 
+  price: 4
+  shopSprite: {fileID: 2017626105, guid: 8bba025f182a44ad4a075e32b07cc793, type: 3}
+  effectsAndWhen: []
+  description: Occasionally drops banana peels on the track. Hit cherries slip backwards
+    for a second, and while slipping, take 4x damage.
+  rarity: 0
+  towerPrefab: {fileID: 879448511096041216, guid: e7dbd598c43714f2eb7b6744fe8128e7, type: 3}
+  flags: 0
+  specialInfoText: 
+  cakePoints: 30
+  onHitCherry: []
+  onKillCherry: []
+  moneyGained: 0
+  triggersCount: 0

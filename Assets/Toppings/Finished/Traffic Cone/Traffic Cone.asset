@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
+  m_Name: Traffic Cone
+  m_EditorClassIdentifier: 
+  price: 3
+  shopSprite: {fileID: 1924475474, guid: 6b2f0d1b2358d454a9a3c70ebdd89db7, type: 3}
+  effectsAndWhen: []
+  description: 'When placed, freezes every cherry on the map for 4 seconds. '
+  rarity: 1
+  towerPrefab: {fileID: 1047831861318861368, guid: 4ae8a78d829d04a06a6fe86697ac57ec, type: 3}
+  flags: 0
+  cakePoints: 10
+  onHitCherry: []
+  onKillCherry: []

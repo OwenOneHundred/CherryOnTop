@@ -12,13 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: White Flag
   m_EditorClassIdentifier: 
-  price: 4
+  price: 3
   shopSprite: {fileID: 21300000, guid: b7a536b6cbeb1430aa2a5f13db10258f, type: 3}
   effectsAndWhen: []
   description: Freezes the first 5 cherries each round that come near for 5 seconds.
+    Nearby hot and cold tagged toppings gain a 10% damage boost.
   rarity: 0
   towerPrefab: {fileID: 2739821202564184481, guid: 879c277a3e56f45a991a2ecb22b4676f, type: 3}
   flags: 0
+  specialInfoText: 
   cakePoints: 25
   onHitCherry: []
   onKillCherry: []
+  moneyGained: 0
+  triggersCount: 0

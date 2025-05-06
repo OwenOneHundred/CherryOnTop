@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e70b6d21bc9f406995843afd2b0f108, type: 3}
   m_Name: IceCreamAttack
   m_EditorClassIdentifier: 
-  cooldown: 0.95
-  damage: 3
+  cooldown: 0.9
+  damage: 2
   debuffs: []
   projectile: {fileID: 1373519935423302513, guid: 3a7bb6ee206e24afb87b1c081cc90db8, type: 3}
   projectileSpeed: 0
@@ -21,5 +21,5 @@ MonoBehaviour:
     volume: 0.5
     clip: {fileID: 0}
   baseOffset: {x: 0, y: 3.5, z: 0}
-  randomOffsetRadius: {x: 1.25, y: 0, z: 1.25}
+  randomOffsetRadius: {x: 0.75, y: 0, z: 0.75}
   speed: 10

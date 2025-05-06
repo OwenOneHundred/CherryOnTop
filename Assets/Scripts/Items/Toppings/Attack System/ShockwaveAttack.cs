@@ -7,8 +7,7 @@ using UnityEngine;
 public class ShockwaveAttack : ProjectileAttack
 {
     // Stores a reference to the prefab used as the shockwave
-    [SerializeField]
-    GameObject shockwave;
+    [SerializeField] GameObject shockwave;
 
     // Represents the speed of the shockwave produced by this attack, in radius units per second
     [SerializeField]
@@ -53,5 +52,10 @@ public class ShockwaveAttack : ProjectileAttack
 
     private void AttackCherry(GameObject targetedCherry) {
         SpawnProjectile(this.shockwave, toppingObj.transform.position, Vector3.zero, Quaternion.identity, this.damage);
+    }
+
+    public override string GetPierce()
+    {
+        return shockwave.GetComponent<Projectile>().maxHits + "";
     }
 }

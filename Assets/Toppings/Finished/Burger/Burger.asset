@@ -19,11 +19,14 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 42a6e8c1af8244020ac70372804f1d41, type: 2}
     eventSOs:
     - {fileID: 11400000, guid: 5c002f4c4c477426aaac7cb591501e67, type: 2}
-  description: Launches exploding burgers. Permanently gains 5% attack speed whenever
+  description: Launches exploding burgers. Permanently gains 4% attack speed whenever
     a tower is sold.
   rarity: 2
   towerPrefab: {fileID: 3295862008953742197, guid: d9df9e44457e94fa38fd07df340caf2e, type: 3}
   flags: 0
-  cakePoints: -120
+  specialInfoText: 'Total toppings sold: [Triggers]'
+  cakePoints: -100
   onHitCherry: []
   onKillCherry: []
+  moneyGained: 0
+  triggersCount: 0

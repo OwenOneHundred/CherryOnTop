@@ -5,7 +5,6 @@ using UnityEngine.VFX;
 [CreateAssetMenu(menuName = "CherryDebuff/PoisonEffect")]
 public class PoisonEffect : CherryDebuff
 {
-    [SerializeField] float dps = 3;
     CherryHitbox cherryHitbox;
     [SerializeField] GameObject poisonParticleSystemPrefab;
     GameObject poisonPSObj;

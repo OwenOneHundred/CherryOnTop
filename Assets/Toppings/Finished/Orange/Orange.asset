@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Orange
   m_EditorClassIdentifier: 
-  price: 4
+  price: 5
   shopSprite: {fileID: 21300000, guid: 34ce793ecdb094116a650a5b410120cb, type: 3}
   effectsAndWhen: []
   description: Attacks slowly with a weak projectile. Every time this tower gets
@@ -20,7 +20,10 @@ MonoBehaviour:
   rarity: 0
   towerPrefab: {fileID: 1854520228839802959, guid: 2bf54e0493afd4845b7e8d58ddc044b1, type: 3}
   flags: 208
+  specialInfoText: 'Total money gained: [Money]'
   cakePoints: 10
   onHitCherry: []
   onKillCherry:
   - {fileID: 11400000, guid: 398fd239b47924259af2f76b7dbe3b2c, type: 2}
+  moneyGained: 0
+  triggersCount: 0

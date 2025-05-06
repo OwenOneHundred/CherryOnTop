@@ -16,7 +16,7 @@ namespace GameSaves
             {
                 dataEntry = JsonUtility.FromJson<T>(data);
                 return true;
-            } catch (Exception e)
+            } catch (Exception)
             {
                 dataEntry = default;
                 return false;
@@ -75,6 +75,18 @@ namespace GameSaves
         public bool RemoveDataEntry<T>(string dataName) where T : DataEntry
         {
             return data.Remove(dataName);
+        }
+
+        public T GetOrDefault<T>(string dataName, T defaultValue) where T : DataEntry
+        {
+            if (TryGetDataEntry(dataName, out T existingEntry))
+            {
+                return existingEntry;
+            } else
+            {
+                SetDataEntry(dataName, defaultValue);
+                return defaultValue;
+            }
         }
 
         public string saveFileName { get; protected set; }
@@ -198,6 +210,18 @@ namespace GameSaves
         public DEIntEntry(string dataName, int value) : base(dataName)
         {
             this.value = value;
+        }
+    }
+
+    [System.Serializable]
+    public class DEInt2Entry : DataEntry
+    {
+        [SerializeField] public int value1;
+        [SerializeField] public int value2;
+        public DEInt2Entry(string dataName, int value1, int value2) : base(dataName)
+        {
+            this.value1 = value1;
+            this.value2 = value2;
         }
     }
 

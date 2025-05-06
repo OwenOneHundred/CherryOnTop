@@ -23,6 +23,9 @@ MonoBehaviour:
   rarity: 2
   towerPrefab: {fileID: 4737283054681329927, guid: 6c4fdfb2946fb49a1a3d71503ee2e9ab, type: 3}
   flags: 0
-  cakePoints: -30
+  specialInfoText: 'Total money gained: [Money]'
+  cakePoints: -10
   onHitCherry: []
   onKillCherry: []
+  moneyGained: 0
+  triggersCount: 0

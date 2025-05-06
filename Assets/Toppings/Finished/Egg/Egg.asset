@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
+  m_Name: Egg
+  m_EditorClassIdentifier: 
+  price: 8
+  shopSprite: {fileID: -1500764635, guid: b11cf1267c3aa451c9c49ae862a6458d, type: 3}
+  effectsAndWhen:
+  - effectSOs:
+    - {fileID: 11400000, guid: 693d94cecd03242758044bbc89978202, type: 2}
+    eventSOs:
+    - {fileID: 11400000, guid: 21a2b2029de304a2e9b962c8cd1956a1, type: 2}
+  description: No attack. At the end of every round, gains 2 sell value.
+  rarity: 0
+  towerPrefab: {fileID: 8215095973920262992, guid: 523234966a5024ef98f99a845e431895, type: 3}
+  flags: 20480
+  specialInfoText: 
+  cakePoints: -5
+  onHitCherry: []
+  onKillCherry: []
+  moneyGained: 0
+  triggersCount: 0

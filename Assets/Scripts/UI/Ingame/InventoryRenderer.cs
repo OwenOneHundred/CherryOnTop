@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class InventoryRenderer : MonoBehaviour
 {
@@ -11,7 +11,6 @@ public class InventoryRenderer : MonoBehaviour
     [SerializeField] int columns = 3;
     [SerializeField] int rows = 7;
     [SerializeField] Vector2 iconStartPos;
-    [SerializeField] float bottomDistance = 488;
     [SerializeField] Vector2 iconDistances;
     private List<ItemAndObj> displayList = new List<ItemAndObj>();
     [SerializeField] Transform iconParent;
@@ -79,10 +78,9 @@ public class InventoryRenderer : MonoBehaviour
 
     public int RemoveOneFromItemFromDisplay(Item item)
     {
-        Debug.Log("here");
         if (item is not Topping topping) { return 0; } // Remove this once there's functionality for ingredients in display
 
-        ItemAndObj itemAndObj = displayList.First(x => x.item == topping);
+        ItemAndObj itemAndObj = displayList.First(x => x.item.name == topping.name);
         InventoryIconControl iconControl = itemAndObj.obj.GetComponent<InventoryIconControl>();
 
         iconControl.AmountInStack -= 1;
@@ -96,6 +94,42 @@ public class InventoryRenderer : MonoBehaviour
         UpdateAllIconPositions();
 
         return iconControl.AmountInStack;
+    }
+
+    /// <summary>
+    /// Move item from inventory renderer display. Returns how many items in stack after operation.
+    /// </summary>
+    /// <param name="item">Item to remove</param>
+    /// <param name="replacementItem">What item to hold as top item in stack</param>
+    /// <returns>Remaining items in stack of items</returns>
+    public int RemoveOneByIDFromDisplay(Item item, Item replacementItem = null)
+    {
+        try
+        {
+            if (item is not Topping topping) return 0;
+            ItemAndObj itemAndObj = displayList.First(x => x.item.name.Equals(topping.name));
+            InventoryIconControl iconControl = itemAndObj.obj.GetComponent<InventoryIconControl>();
+
+            iconControl.AmountInStack -= 1;
+            if (iconControl.AmountInStack <= 0)
+            {
+                Destroy(itemAndObj.obj);
+                displayList.Remove(itemAndObj);
+            }
+            else if (replacementItem != null && replacementItem is Topping replacement)
+            {
+                iconControl.assignedTopping = replacement;
+            }
+
+            UpdatePageCount();
+            UpdateAllIconPositions();
+
+            return iconControl.AmountInStack;
+        } catch (InvalidOperationException exception)
+        {
+            Debug.LogWarning("Error when attempting to remove item: " + item.name + ": " + exception.Message);
+            return 0;
+        }
     }
 
     public void UpdateAllIconPositions()

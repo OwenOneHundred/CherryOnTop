@@ -1,18 +1,22 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DifficultyInfo : MonoBehaviour
 {
-    public DifficultySelect.Difficulty difficulty;
+    [System.NonSerialized] public Difficulty difficulty;
     public static DifficultyInfo difficultyInfo;
+    [SerializeField] List<Sprite> measuringCupSprites = new();
+    public int levelIndex = 0;
+    [SerializeField] Difficulty defaultDifficulty;
     void Awake()
     {
         if (difficultyInfo == this || difficultyInfo == null)
         {
             difficultyInfo = this;
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            difficulty = defaultDifficulty;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -20,37 +24,38 @@ public class DifficultyInfo : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        difficulty = new DifficultySelect.Easy(1.16f);
+    }
+
+    public void SubscribeToLoadScene()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    public void UnsubscribeToLoadScene()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         if (scene.name != "LevelSelectScene" && scene.name != "MenuScene")
         {
-            OnLoadedGameScene();
+            LoadDifficulty(difficulty);
+            UnsubscribeToLoadScene();
         }
     }
 
-    private void OnLoadedGameScene()
+    public void LoadDifficulty(Difficulty difficulty = null)
     {
-        FindAnyObjectByType<CherrySpawner>().difficultyScalingAmount = difficulty.value;
+        if (difficulty == null) difficulty = this.difficulty;
+        else this.difficulty = difficulty;
+        FindAnyObjectByType<CherrySpawner>().difficulty = difficulty;
 
-        Transform icons = GameObject.Find("DifficultyIcons").transform;
-        int budgetEnum = 0;
-        foreach (Transform trans in icons)
-        {
-            if (budgetEnum >= difficulty.number)
-            {
-                trans.GetComponent<Image>().color = Color.gray;
-            }
-            else
-            {
-                trans.GetComponent<Image>().color = Color.white;
-            }
+        Image difficultyIcon = GameObject.Find("DifficultyIcon").GetComponent<Image>();
+        difficultyIcon.sprite = measuringCupSprites[difficulty.number - 1];
 
-            budgetEnum += 1;
-        }
+        difficulty.OnGameStart();
 
-        difficulty.OnRoundStart();
+        difficulty.batter.OnGameStart();
     }
 }

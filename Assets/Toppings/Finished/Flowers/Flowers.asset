@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Flowers
   m_EditorClassIdentifier: 
-  price: 5
+  price: 4
   shopSprite: {fileID: 21300000, guid: e136b7c478cdf4785875a4c7b5ef2c32, type: 3}
   effectsAndWhen:
   - effectSOs:
@@ -20,10 +20,13 @@ MonoBehaviour:
     eventSOs:
     - {fileID: 11400000, guid: 5c002f4c4c477426aaac7cb591501e67, type: 2}
   description: Fires a spread of weak flower petals at cherries, poisoning them.
-    Whenever you sell a fruit, 50% chance to get a free reroll.
+    Whenever you sell a fruit, 75% chance to get a free reroll.
   rarity: 0
   towerPrefab: {fileID: 8348561096287582968, guid: 8d9ab5b472e7a44cfb1423f7145cff73, type: 3}
   flags: 0
-  cakePoints: 10
+  specialInfoText: 
+  cakePoints: 40
   onHitCherry: []
   onKillCherry: []
+  moneyGained: 0
+  triggersCount: 0

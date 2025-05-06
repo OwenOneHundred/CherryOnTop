@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
+  m_Name: Hammer
+  m_EditorClassIdentifier: 
+  price: 5
+  shopSprite: {fileID: 1457665196, guid: 66c147dcc67bf441b93029da93a0c6c9, type: 3}
+  effectsAndWhen: []
+  description: 'Fires piercing nails at cherries. Does more 2 damage for each topping
+    on the cake. '
+  rarity: 0
+  towerPrefab: {fileID: 7157496025150107615, guid: dc50fe1cfb66947aaa53fc437f365dba, type: 3}
+  flags: 0
+  specialInfoText: 
+  cakePoints: -40
+  onHitCherry: []
+  onKillCherry: []
+  moneyGained: 0
+  triggersCount: 0

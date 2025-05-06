@@ -31,7 +31,10 @@ public class LoadButton : MonoBehaviour
     void PlayGame()
     {
         SceneManager.sceneLoaded += LoadSceneData;
-        SceneManager.LoadScene(sceneName);
+        TransitionManager.transitionManager.LoadScene(sceneName);
+
+        //DifficultyInfo.difficultyInfo.difficulty = GetDifficultyValue();
+        //DifficultyInfo.difficultyInfo.levelIndex = levelIndex;
     }
 
     public void LoadSceneData(Scene scene, LoadSceneMode loadSceneMode)
@@ -42,6 +45,16 @@ public class LoadButton : MonoBehaviour
             LevelManager.levelWasLoadedFromSave = true;
             LevelManager.Instance.Initialize(scene.name, true);
             LevelManager.Instance.LoadLevel();
+            Difficulty diffObj = null;
+            if (LevelManager.Instance.saveData.TryGetDataEntry("difficulty", out DEInt2Entry difficulty))
+            {
+                diffObj = LevelManager.Instance.DifficultyList.Find(d => d.number == difficulty.value1);
+            }
+            DifficultyInfo.difficultyInfo.LoadDifficulty(diffObj);
+            //DifficultyInfo.difficultyInfo.LoadDifficulty()
+        } else
+        {
+            DifficultyInfo.difficultyInfo.LoadDifficulty();
         }
     }
 }

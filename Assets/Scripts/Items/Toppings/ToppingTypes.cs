@@ -45,10 +45,23 @@ public static class ToppingTypes
         switch (rarity)
         {
             case Rarity.Common: return 1f;
-            case Rarity.Uncommon: return 0.25f;
+            case Rarity.Uncommon: return 0.2f;
             case Rarity.Rare: return 0.1f;
             default: return 1;
         }
+    }
+
+    public static bool HasAllFlags(this ToppingTypes.Flags value)
+    {
+        ToppingTypes.Flags allFlags = 0;
+        foreach (ToppingTypes.Flags flag in Enum.GetValues(typeof(ToppingTypes.Flags)))
+        {
+            if (flag != ToppingTypes.Flags.none) // Usually we ignore "None"
+            {
+                allFlags |= flag;
+            }
+        }
+        return (value & allFlags) == allFlags;
     }
         
 

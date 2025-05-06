@@ -23,4 +23,9 @@ public class AudioManager : MonoBehaviour
             audioMixer.SetFloat("MusicLowpass", lowpassNumber);
         }
     }
+
+    void Update()
+    {
+        audioMixer.GetFloat("MusicLowpass", out float lowpass);
+    }
 }

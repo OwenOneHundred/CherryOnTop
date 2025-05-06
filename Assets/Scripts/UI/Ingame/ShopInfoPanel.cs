@@ -34,16 +34,23 @@ public class ShopInfoPanel : MonoBehaviour
         string range = "-";
         string cooldown = "-";
         string damage = "-";
+        string pierce = "-";
         if (attackManager != null)
         {
             cooldown = attackManager.attackTemplate.cooldown + "";
             damage = attackManager.attackTemplate.GetVisibleDamage() + "";
+            pierce = attackManager.attackTemplate.GetPierce();
         }
         if (targetingSystem != null)
         {
             range = targetingSystem.GetRange() + "";
         }
-        detailedInfo.text = "Damage: " + damage + "  |  Cooldown: " + cooldown + "  |  Range: " + range + "  |  Rarity: " + topping.rarity.ToString();
+
+        detailedInfo.text = "Damage: " + damage +
+            "  |  Cooldown: " + cooldown +
+            "  |  Range: " + range +
+            "  |  Pierce: " + pierce +
+            "  |  Cake Points: " + topping.cakePoints;
     }
 
     public void Clear()

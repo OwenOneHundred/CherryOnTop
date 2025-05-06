@@ -55,12 +55,22 @@ public class DebuffManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Removes a debuff from a cherry
+    /// Removes all debuffs from cherry that originate from a template "templateToRemove"
     /// </summary>
-    public void RemoveDebuff(CherryDebuff debuff)
+    public void RemoveDebuff(CherryDebuff templateToRemove)
     {
-        debuffs.Remove(debuff);
-        debuff.OnRemoved(gameObject);
+        var toRemove = debuffs.Where(x => x.template == templateToRemove);
+        debuffs = debuffs.Except(toRemove).ToList();
+        foreach (CherryDebuff cherryDebuff in toRemove) { cherryDebuff.OnRemoved(gameObject); }
+    }
+
+    /// <summary>
+    /// Removes a debuff from cherry by reference to that debuff, and not the template.
+    /// </summary>
+    public void RemoveDebuffSpecifically(CherryDebuff exactReference)
+    {
+        debuffs.Remove(exactReference);
+        exactReference.OnRemoved(gameObject);
     }
 
     /// <summary>
@@ -71,7 +81,14 @@ public class DebuffManager : MonoBehaviour
         float movementSpeedMultiplier = 1.0f;
         for (int i = 0; i < debuffs.Count; i++)
         {
-            movementSpeedMultiplier *= debuffs[i].movementSpeedMultiplier;
+            if (!debuffs[i].canResultInNegativeTimesNegativeSpeed && movementSpeedMultiplier < 0 && debuffs[i].movementSpeedMultiplier < 0)
+            {
+                movementSpeedMultiplier *= -debuffs[i].movementSpeedMultiplier;
+            }
+            else
+            {
+                movementSpeedMultiplier *= debuffs[i].movementSpeedMultiplier;
+            }
         }
         return movementSpeedMultiplier; // return the product of all debuff movementSpeedMultipliers
     }
@@ -87,7 +104,7 @@ public class DebuffManager : MonoBehaviour
         float damageMultiplier = 1.0f;
         for (int i = 0; i < debuffs.Count; i++)
         {
-            if (debuffs[i].typesThatGetDamageMultiplier.HasAny(attacker.flags))
+            if (debuffs[i].typesThatGetDamageMultiplier.HasAllFlags() || debuffs[i].typesThatGetDamageMultiplier.HasAny(attacker.flags))
             {
                 damageMultiplier *= debuffs[i].damageMultiplier;
             }

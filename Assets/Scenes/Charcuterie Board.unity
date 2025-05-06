@@ -481,7 +481,8 @@ MonoBehaviour:
   difficultyScalingAmount: 1.14
   initialBigChance: 0.6
   specialtyCherries: []
-  doSpecialtyCherrySpawning: 0
+  doSpecialtyCherrySpawning: 1
+  roundScalingMultipliers: []
 --- !u!114 &814254364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,6 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 045a3638afca84165bf7057717eab5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tracks: []
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,8 +8,8 @@ public class PlayButton : MonoBehaviour
     public Button playButton;
     public string sceneName;
     public bool alsoGetDifficulty = true;
+    public int levelIndex = 0;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playButton.onClick.AddListener(PlayGame);
@@ -18,15 +18,17 @@ public class PlayButton : MonoBehaviour
     void PlayGame()
     {
         LevelManager.levelWasLoadedFromSave = false;
-        SceneManager.LoadScene(sceneName);
+        TransitionManager.transitionManager.LoadScene(sceneName);
 
         if (alsoGetDifficulty)
         {
+            DifficultyInfo.difficultyInfo.SubscribeToLoadScene();
             DifficultyInfo.difficultyInfo.difficulty = GetDifficultyValue();
+            DifficultyInfo.difficultyInfo.levelIndex = levelIndex;
         }
     }
 
-    private DifficultySelect.Difficulty GetDifficultyValue()
+    private Difficulty GetDifficultyValue()
     {
         return transform.root.GetComponentInChildren<DifficultySelect>().difficulty;
     }

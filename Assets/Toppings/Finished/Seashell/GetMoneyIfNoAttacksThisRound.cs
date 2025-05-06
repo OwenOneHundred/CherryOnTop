@@ -1,7 +1,7 @@
 using EventBus;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Effects/GetMoneyIfNoDamageThisRound")]
+[CreateAssetMenu(menuName = "Effects/Money/GetMoneyIfNoDamageThisRound")]
 public class GetMoneyIfHitNothingThisRound : EffectSO
 {
     [SerializeField] int money;
@@ -9,6 +9,7 @@ public class GetMoneyIfHitNothingThisRound : EffectSO
     {
         if (toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping.damagedCherriesThisRound <= 0)
         {
+            GetTopping().moneyGained += money;
             Inventory.inventory.Money += money;
         }
     }

@@ -19,9 +19,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 0399766c0a2c34712a58acf021d63f7f, type: 2}
     eventSOs:
     - {fileID: 11400000, guid: a0cf5250f9b024f6d8365ad5e2540551, type: 2}
-  description: Fires tires that set cherries on fire. Whenever you place a topping
-    in this toppings' range, get $1. [Bug] All toy cars work a collective total of
-    5 times per round.
+  description: Fires tires that set cherries on fire. Five times per round, when
+    you place a topping in this toppings' range, get $1.
   rarity: 1
   towerPrefab: {fileID: 7752209280240988276, guid: 60222db8a7a40419089841d506bde252, type: 3}
   flags: 512

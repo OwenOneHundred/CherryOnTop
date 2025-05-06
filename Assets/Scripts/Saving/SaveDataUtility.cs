@@ -41,21 +41,21 @@ namespace GameSaves {
             return SaveDataFileUtility.GetSaveFileNames(levelName, out levelPath);
         }
 
-        public static string GetSaveFileName(string levelName, out string saveFilePath)
+        public static string GetSaveFileName(string levelName, out string saveFilePath, string defaultSaveFileName = "")
         {
-            saveFilePath = SaveDataFileUtility.GetSaveFilePath(_defaultSaveFile, levelName);
+            saveFilePath = SaveDataFileUtility.GetSaveFilePath(string.IsNullOrEmpty(defaultSaveFileName) ? _defaultSaveFile : defaultSaveFileName, levelName);
             string saveFileName = Path.GetFileName(saveFilePath);
             return saveFileName;
         }
 
-        public static string GetSaveFileName(string levelName)
+        public static string GetSaveFileName(string levelName, string defaultSaveFileName = "")
         {
-            return GetSaveFileName(levelName, out string saveFilePath);
+            return GetSaveFileName(levelName, out string saveFilePath, defaultSaveFileName);
         }
 
-        public static bool GetSaveFileNameIfExists(string levelName, out string saveFilePath, out string saveFileName)
+        public static bool GetSaveFileNameIfExists(string levelName, out string saveFilePath, out string saveFileName, string defaultSaveFileName = "")
         {
-            saveFileName = GetSaveFileName(levelName, out saveFilePath);
+            saveFileName = GetSaveFileName(levelName, out saveFilePath, defaultSaveFileName);
             return !string.IsNullOrEmpty(saveFileName) && File.Exists(saveFilePath);
         }
     }

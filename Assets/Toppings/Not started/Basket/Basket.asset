@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
+  m_Name: Basket
+  m_EditorClassIdentifier: 
+  price: 5
+  shopSprite: {fileID: 220325972, guid: c1ef7f7f883324105ba4cf05570bbef6, type: 3}
+  effectsAndWhen: []
+  description: Throw apples at cherries. At the end of each round, sell all nearby
+    fruit and gain 10% faster attack speed for each fruit sold.
+  rarity: 1
+  towerPrefab: {fileID: 3656761891722631670, guid: db5ccc8ae1f4344cfba1ae72b2d59f0e, type: 3}
+  flags: 0
+  specialInfoText: 
+  cakePoints: 10
+  onHitCherry: []
+  onKillCherry: []
+  moneyGained: 0
+  triggersCount: 0

@@ -8,14 +8,25 @@ public class IngameUI : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI roundNumberText;
     [SerializeField] TMPro.TextMeshProUGUI goalRoundText;
     [SerializeField] TMPro.TextMeshProUGUI goalScoreText;
+    [SerializeField] AudioFile speedUpSound;
+    [SerializeField] AudioFile slowDownSound;
+    [SerializeField] SettingsManager settingsManager;
+
+    void Start()
+    {
+        settingsManager.OnStart();
+    }
+
     public void SetMoney(int money)
     {
-        moneyText.text = "Money: $" + money;
+        //moneyText.text = "Money: $" + money;
+        moneyText.text = "$" + money;
     }
 
     public void SetCakePoints(int cakePoints)
     {
-        cakePointsText.text = "Cake Points: " + cakePoints;
+        //cakePointsText.text = "Cake Points: " + cakePoints;
+        cakePointsText.text = "" + cakePoints;
     }
 
     public void SetRound(uint roundNumber)
@@ -39,10 +50,12 @@ public class IngameUI : MonoBehaviour
         if (speedupToggled)
         {
             Time.timeScale = 1f;
+            SoundEffectManager.sfxmanager.PlayOneShot(slowDownSound);
         }
         else
         {
             Time.timeScale = 2f;
+            SoundEffectManager.sfxmanager.PlayOneShot(speedUpSound);
         }
         speedupToggled = !speedupToggled;
         speedUpButton.color = speedupToggled ? speedUpButtonToggled : speedUpButtonUntoggled;

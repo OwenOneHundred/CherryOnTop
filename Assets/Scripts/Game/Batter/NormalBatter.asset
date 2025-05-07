@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ed6cb355a6841b7909318502923291, type: 3}
   m_Name: NormalBatter
   m_EditorClassIdentifier: 
+  description: 
+  color: {r: 0.9056604, g: 0.78658307, b: 0.4229263, a: 1}

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,10 +16,12 @@ public class DifficultySelect : MonoBehaviour
     [SerializeField] TMP_Dropdown dropdown;
     [SerializeField] TMPro.TextMeshProUGUI batterDescription;
     [SerializeField] GameObject batterDescriptionObj;
+    [SerializeField] Image batterBackground;
 
     void Start()
     {
         difficulty = difficulties[0];
+        UpdateDifficulty();
     }
 
     int difficultyIndex = 0;
@@ -58,6 +61,7 @@ public class DifficultySelect : MonoBehaviour
         difficulty.batter = GetActiveBatter();
         difficultyName.text = difficulties[difficultyIndex].name;
         batterDescription.text = difficulty.batter.description;
+        batterBackground.color = difficulty.batter.color;
     }
 
     private Batter GetActiveBatter()

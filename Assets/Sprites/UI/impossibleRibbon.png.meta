@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 29257502e23bb4359a8b3c9b4a790c1a
+guid: 8d0b8ed710d4b4036834c96519befd6d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: medal1 1_0
+      name: impossibleRibbon_0
       rect:
         serializedVersion: 2
-        x: 705
-        y: 63
-        width: 513
-        height: 921
+        x: 16
+        y: 195
+        width: 553
+        height: 747
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04cf147083520490596e1f49a751dfbf
-      internalID: -527500845
+      spriteID: 786df8f3bd3fb4a108bba0c03caf1d22
+      internalID: -134393917
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 20051e3afdb8942df8b4cc9da0d16311
+    spriteID: 2e242c545d70f4615865333794bab86c
     internalID: 0
     vertices: []
     indices: 
@@ -145,7 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      medal1 1_0: -527500845
+      impossibleRibbon_0: -134393917
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

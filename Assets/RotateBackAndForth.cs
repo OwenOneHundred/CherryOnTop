@@ -18,7 +18,7 @@ public class RotateBackAndForth : MonoBehaviour
     {
         float currentRotation = transform.rotation.eulerAngles.z;
         transform.rotation = Quaternion.Euler(0, 0, Mathf.MoveTowardsAngle(currentRotation, goalRotation, speed * Time.deltaTime));
-        Debug.Log("current: " + currentRotation + " goal: " + goalRotation);
+        
         float standardizedGoalRotation = goalRotation < 0 ? goalRotation + 360 : goalRotation;
         if (Mathf.Abs(currentRotation - standardizedGoalRotation) < 0.02f)
         {

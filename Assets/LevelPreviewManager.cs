@@ -12,11 +12,14 @@ public class LevelPreviewManager : MonoBehaviour
     [SerializeField] GameObject continueButtonObject;
     [SerializeField] RectTransform playButtonRect;
 
+    public int levelIndex = 0;
+
     public void Setup(Sprite levelImage, string sceneNameInGame, string sceneNameInEditor, int levelIndex)
     {
         previewImage.sprite = levelImage;
         playButton.sceneName = sceneNameInEditor;
         playButton.levelIndex = levelIndex;
+        this.levelIndex = levelIndex;
         GetComponentInChildren<LoadButton>().sceneName = sceneNameInEditor;
         GetComponentInChildren<LoadButton>()._levelNameIngame = sceneNameInGame;
         title.text = sceneNameInGame;
@@ -36,5 +39,12 @@ public class LevelPreviewManager : MonoBehaviour
         {
             ribbons[i].SetActive(AchievementsTracker.Instance.HasCompletedLevel(levelIndex, i + 1));
         }
+
+        /*
+        for (int i = 0; i < batterRibbons.Count; i++)
+        {
+            batterRibbons[i].SetActive(AchievementsTracker.Instance.HasCompletedLevel(levelIndex, i + 1));
+        }
+        */
     }
 }

@@ -8,10 +8,10 @@ public class CherryHitbox : MonoBehaviour
 {
     public float cherryHealth;
     DebuffManager debuffManager;
-    [SerializeField] protected AudioFile deathSound;
     [SerializeField] GameObject onDamagedPS;
     [SerializeField] GameObject damageNumberPrefab;
     [SerializeField] bool spawnDamageNumbers = false;
+    [SerializeField] GameObject deathAnimation;
     protected bool dead = false;
 
     public void Awake()
@@ -62,7 +62,7 @@ public class CherryHitbox : MonoBehaviour
         dead = true;
         CherryManager.Instance.OnCherryKilled(GetComponent<CherryMovement>());
         EventBus<CherryDiesEvent>.Raise(new CherryDiesEvent(gameObject));
-        SoundEffectManager.sfxmanager.PlayOneShot(deathSound);
+        Instantiate(deathAnimation, transform.position, Quaternion.identity, null).transform.localScale = transform.localScale;
         Destroy(gameObject);
     }
 }

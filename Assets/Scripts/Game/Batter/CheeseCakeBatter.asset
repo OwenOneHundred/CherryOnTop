@@ -15,3 +15,4 @@ MonoBehaviour:
   description: You can only buy one item from the shop each round, but you get $2
     more on each round end.
   color: {r: 0.93333334, g: 0.89737713, b: 0.59607846, a: 1}
+  visibleName: Cheesecake

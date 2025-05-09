@@ -2166,6 +2166,7 @@ MonoBehaviour:
     volume: 0.2
     clip: {fileID: 8300000, guid: 9ff77b82e23a34275b8cdd5d62a54bef, type: 3}
   settingsManager: {fileID: 3891339781705546562}
+  tutorial: {fileID: 4215666401715418652, guid: ef1d99b4dd68f42eea4b2bd87eb99bfb, type: 3}
   speedUpButtonUntoggled: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
   speedUpButtonToggled: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 1}
   speedUpButton: {fileID: 6110504044283116686}
@@ -4037,7 +4038,7 @@ GameObject:
   - component: {fileID: 1209990546140157373}
   m_Layer: 5
   m_Name: ShopButton
-  m_TagString: Untagged
+  m_TagString: ShopButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9011,7 +9012,7 @@ GameObject:
   - component: {fileID: 7819553094747528872}
   m_Layer: 5
   m_Name: Start
-  m_TagString: Untagged
+  m_TagString: StartButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

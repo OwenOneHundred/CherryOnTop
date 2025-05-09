@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.7147, y: 23}
+  m_AnchoredPosition: {x: 8.7147, y: 13}
   m_SizeDelta: {x: 1242.0747, y: 161.0511}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7418558720993263783
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -92,12 +92,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 46
-  m_fontSizeBase: 46
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 38
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -251,6 +251,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8fced82afe7d45adb329f3ed7837666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 9010367111406043723}
+  charactersPerSecond: 60
+  welcome:
+    location: {x: 0, y: 0, z: 0}
+    text: Welcome to Cherry on Top!
+    textSize: 40
+  gameSummary:
+    location: {x: 0, y: 0, z: 0}
+    text: Here's your cake! You need to keep cherries from reaching the top, or there's
+      a "cherry on top," so your cake - and your run - are done!
+    textSize: 35
+  whatAreToppings:
+    location: {x: 0, y: 0, z: 0}
+    text: We need some toppings to defend our cake from cherries.
+    textSize: 40
+  openTheShop:
+    location: {x: 0, y: 0, z: 0}
+    text: Click the shop button on the left to open the shop.
+    textSize: 40
+  readDescriptionsAndBuySomething:
+    location: {x: 0, y: 0, z: 0}
+    text: Hover items in the shop to read what they do. Toppings have effects that
+      are active when they're placed! Click a few to buy them.
+    textSize: 35
+  onceSatisfiedCloseShop:
+    location: {x: 0, y: 0, z: 0}
+    text: You can reroll the options with the button at the bottom. Once you've bought
+      enough toppings for now, close the shop by pressing the shop button again.
+    textSize: 31
+  dragToppingsOntoCake:
+    location: {x: 0, y: 0, z: 0}
+    text: Now drag the toppings from your inventory on the right side of the screen
+      onto the cake! Most toppings attack cherries that are in the range shown.
+    textSize: 32
+  startWhenReady:
+    location: {x: 0, y: 0, z: 0}
+    text: Once you're ready, press start on the left side of the screen. If you beat
+      Round 30, you win! Good luck!
+    textSize: 35
+  textBoxGameObject: {fileID: 7456811145642537717}
+  textBoxImage: {fileID: 1096836567472392759}
+  arrowObject: {fileID: 6743120365027948563}
+  characterAppearSound:
+    volume: 0.25
+    clip: {fileID: 8300000, guid: 45ae1b3c0d1044910a2441d91fe1690f, type: 3}
+  dismissTextSound:
+    volume: 0.25
+    clip: {fileID: 8300000, guid: 5fc2adb31812e4bd98a68a0f433b9daa, type: 3}
 --- !u!1 &6743120365027948563
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +316,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8364329246430543857
 RectTransform:
   m_ObjectHideFlags: 0
@@ -354,7 +402,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1973448260300960149}
   - {fileID: 8364329246430543857}
@@ -387,7 +435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

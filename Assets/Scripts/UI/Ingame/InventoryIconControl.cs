@@ -18,7 +18,7 @@ public class InventoryIconControl : MonoBehaviour, IPointerEnterHandler, IPointe
         get { return amountInStack; }
         set 
         {
-            number.text = value + "";
+            number.text = value == 1 ? "" : value + "";
             amountInStack = value;
         }
     }

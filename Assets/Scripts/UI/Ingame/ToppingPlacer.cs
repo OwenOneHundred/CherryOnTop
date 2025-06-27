@@ -30,6 +30,7 @@ public class ToppingPlacer : MonoBehaviour
     CameraControl cameraControl;
 
     readonly Vector3 checkAreaVerticalOffset = new Vector3(0, 0.02f, 0);
+    readonly Vector3 arbitraryArtificialLift = new Vector3(0, 0.2f, 0);
     public bool PlacingTopping
     {
         get { return placingTopping; }
@@ -182,7 +183,7 @@ public class ToppingPlacer : MonoBehaviour
         Vector3 localCenterOffset = mesh.bounds.center;
         Vector3 worldCenterOffset = transparentObjectMesh.rotation * Vector3.Scale(localCenterOffset, transparentObjectMesh.lossyScale);
 
-        Vector3 objCenter = cakePos - worldCenterOffset + new Vector3(0, lowestPointOffset, 0);
+        Vector3 objCenter = cakePos - worldCenterOffset + new Vector3(0, lowestPointOffset, 0) + arbitraryArtificialLift;
 
         return objCenter;
     }

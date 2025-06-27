@@ -49,7 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPlaced: []
   onSell: []
-  topping: {fileID: 0}
 --- !u!114 &3219388457440055397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,6 +129,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: aa9bebbb776344a48a2dec901e810cb0, type: 2}
+  - {fileID: 2100000, guid: 43c52e01423f94b77970722c72644b2a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

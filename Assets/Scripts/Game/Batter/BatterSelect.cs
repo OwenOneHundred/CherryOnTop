@@ -14,6 +14,7 @@ public class BatterSelect : MonoBehaviour
     [SerializeField] LevelPreviewManager levelPreviewManager;
     [SerializeField] Transform batterListParent;
     [SerializeField] GameObject batterButtonPrefab;
+    [SerializeField] List<StateLockableButton> stateLockableButtons = new();
     public int batterIndex = 0;
 
     public void Start()
@@ -34,10 +35,9 @@ public class BatterSelect : MonoBehaviour
         {
             int index = i;
             GameObject batterButton = Instantiate(batterButtonPrefab, batterListParent);
-            batterButton.GetComponent<Button>().onClick.AddListener(() =>
-                ChangeBatter(index)
-            );
+            batterButton.GetComponent<Button>().onClick.AddListener(() => ChangeBatter(index));
             batterButton.GetComponentInChildren<TextMeshProUGUI>().text = batters[i].visibleName;
+            stateLockableButtons.Add(batterButton.GetComponent<StateLockableButton>());
         }
     }
 
@@ -47,6 +47,20 @@ public class BatterSelect : MonoBehaviour
         Batter newBatter = batters[batterIndex];
         batterName.text = newBatter.visibleName;
         batterDescription.text = newBatter.description;
+
+        for (int i = 0; i < stateLockableButtons.Count; i++)
+        {
+            if (i != index)
+            {
+                stateLockableButtons[i].stateLocks.Clear();
+                stateLockableButtons[i].TransitionToNormalState();
+            }
+            else
+            {
+                stateLockableButtons[index].TransitionToSelectedState();
+                stateLockableButtons[index].stateLocks.Add(new StateLockableButton.StateLock(StateLockableButton.StateLock.LockType.everything, ""));
+            }
+        }
 
         difficultySelect.SetDifficulty(newBatter.associatedDifficulty.number - 1, silent);
     }

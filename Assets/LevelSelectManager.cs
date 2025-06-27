@@ -20,6 +20,7 @@ public class LevelSelectManager : MonoBehaviour
     [SerializeField] BatterSelect batterSelect;
 
     [SerializeField] Batter defaultBatter;
+    [SerializeField] AudioFile switchTabs;
 
     void Start()
     {
@@ -67,7 +68,9 @@ public class LevelSelectManager : MonoBehaviour
         tabControllers[tabIndex].OnSwitchedTo();
         tabButtonImages[tabIndex].color = onColor;
 
+        if (tab != tabIndex) { SoundEffectManager.sfxmanager.PlayOneShot(switchTabs); }
         tab = tabIndex;
+
     }
 
     public void Update()

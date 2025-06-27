@@ -58,7 +58,7 @@ Material:
     - _Cull: 1
     - _Depth_Add: 0
     - _DstBlend: 0
-    - _OutlineThickness: 0.02
+    - _OutlineThickness: 0.015
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 1

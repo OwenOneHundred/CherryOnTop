@@ -26,7 +26,7 @@ public class CherrySpawner : MonoBehaviour
     
     public void OnRoundStart()
     {
-        if (difficulty == null) { difficulty = DifficultyInfo.difficultyInfo.difficulty; }
+        if (difficulty == null) { difficulty = DifficultyInfo.difficultyInfo.gameDifficultyParams.Difficulty; }
         if (difficulty.TryGetHardCodedRound((int) RoundManager.roundManager.roundNumber, out HardCodedRound hardCodedRound))
         {
             StartCoroutine(HardCodedRoundCoroutine(hardCodedRound));

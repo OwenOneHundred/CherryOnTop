@@ -11,19 +11,17 @@ public class DifficultySelect : MonoBehaviour
     [SerializeField] List<Difficulty> difficulties;
     public List<Sprite> cupSprites;
     [SerializeField] AudioFile cupFillSound;
-    [SerializeField] BatterSelect batterSelect;
     [SerializeField] TMPro.TextMeshProUGUI difficultyName;
-    [SerializeField] List<Batter> batters;
     [SerializeField] LevelPreviewManager levelPreviewManager;
     [SerializeField] ParticleSystem fire;
 
     void Start()
     {
         difficulty = difficulties[0];
-        UpdateDifficulty();
+        UpdateDifficulty(true);
         if (!AchievementsTracker.Instance.HasCompletedLevel(levelPreviewManager.levelIndex, 3))
         {
-            batters.RemoveAt(3);
+            difficulties.RemoveAt(3);
         }
     }
 
@@ -32,7 +30,7 @@ public class DifficultySelect : MonoBehaviour
     public void OnRightArrow()
     {
         difficultyIndex += 1;
-        if (difficultyIndex >= batters.Count)
+        if (difficultyIndex >= difficulties.Count)
         {
             difficultyIndex = 0;
         }
@@ -45,34 +43,37 @@ public class DifficultySelect : MonoBehaviour
         difficultyIndex -= 1;
         if (difficultyIndex < 0)
         {
-            difficultyIndex = batters.Count - 1;
+            difficultyIndex = difficulties.Count - 1;
         }
 
         UpdateDifficulty();
     }
 
-    public void OnChangeBatter()
+    public void SetDifficulty(int difficultyIndex, bool silent = false)
     {
-        UpdateDifficulty();
+        if (this.difficultyIndex == difficultyIndex) { return; }
+
+        this.difficultyIndex = difficultyIndex;
+
+        UpdateDifficulty(silent);
     }
 
-    private void UpdateDifficulty()
+    private void UpdateDifficulty(bool silent = false)
     {
         difficulty = difficulties[difficultyIndex];
-        difficulty.batter = GetActiveBatter();
         difficultyName.text = difficulties[difficultyIndex].name;
         if (difficultyIndex == 3) { fire.Play(); }
         else { fire.Stop(); }
-        if (difficultyIndex != 0)
+        if (!silent)
         {
-            SoundEffectManager.sfxmanager.PlayOneShotWithPitch(cupFillSound, 1 + (0.25f * (difficultyIndex - 1)));
+            SoundEffectManager.sfxmanager.PlayOneShotWithPitch(cupFillSound, 0.75f + (0.25f * difficultyIndex));
         }
         cup.sprite = cupSprites[difficultyIndex];
     }
 
-    private Batter GetActiveBatter()
+    public Difficulty GetDifficulty()
     {
-        return batterSelect.GetActiveBatter();
+        return difficulty;
     }
 }
 

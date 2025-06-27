@@ -12,52 +12,53 @@ public class BatterSelect : MonoBehaviour
     [SerializeField] Image batterBackground;
     [SerializeField] DifficultySelect difficultySelect;
     [SerializeField] LevelPreviewManager levelPreviewManager;
-    [SerializeField] GameObject batterLock;
+    [SerializeField] Transform batterListParent;
+    [SerializeField] GameObject batterButtonPrefab;
     public int batterIndex = 0;
 
     public void Start()
     {
         if (!AchievementsTracker.Instance.HasCompletedLevel(levelPreviewManager.levelIndex, 4))
         {
-            DisableBatterSelect();
+            //DisableBatterSelect();
         }
-        OnChange();
+
+        SetUp();
+
+        ChangeBatter(0, true);
     }
 
-    public void OnRightArrow()
+    private void SetUp()
     {
-        batterIndex += 1;
-        if (batterIndex >= batters.Count)
+        for (int i = 0; i < batters.Count; i++)
         {
-            batterIndex = 0;
+            int index = i;
+            GameObject batterButton = Instantiate(batterButtonPrefab, batterListParent);
+            batterButton.GetComponent<Button>().onClick.AddListener(() =>
+                ChangeBatter(index)
+            );
+            batterButton.GetComponentInChildren<TextMeshProUGUI>().text = batters[i].visibleName;
         }
-
-        OnChange();
     }
 
-    public void OnLeftArrow()
+    public void ChangeBatter(int index, bool silent = false)
     {
-        batterIndex -= 1;
-        if (batterIndex < 0)
-        {
-            batterIndex = batters.Count - 1;
-        }
-
-        OnChange();
-    }
-
-    public void OnChange()
-    {
+        batterIndex = index;
         Batter newBatter = batters[batterIndex];
         batterName.text = newBatter.visibleName;
         batterDescription.text = newBatter.description;
-        batterBackground.color = newBatter.color;
-        difficultySelect.OnChangeBatter();
+
+        difficultySelect.SetDifficulty(newBatter.associatedDifficulty.number - 1, silent);
     }
 
-    public Batter GetActiveBatter()
+    public Batter GetBatter()
     {
         return batters[batterIndex];
+    }
+
+    public Difficulty GetDifficulty()
+    {
+        return batters[batterIndex].associatedDifficulty;
     }
 
     private void DisableBatterSelect()
@@ -83,7 +84,5 @@ public class BatterSelect : MonoBehaviour
                 text.color = oldColor;
             }
         }
-
-        batterLock.SetActive(true);
     }
 }

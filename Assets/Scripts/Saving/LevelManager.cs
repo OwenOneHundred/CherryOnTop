@@ -8,6 +8,8 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] protected List<Difficulty> difficultyList = new List<Difficulty>();
     public List<Difficulty> DifficultyList { get { return difficultyList; } }
+    [SerializeField] protected List<Batter> batterList = new List<Batter>();
+    public List<Batter> BatterList { get { return batterList; } }
 
     protected static LevelManager _instance;
     public static LevelManager Instance
@@ -222,7 +224,8 @@ public class LevelManager : MonoBehaviour
         DEAllItemsInventory items = new DEAllItemsInventory("allinventory", allInventory);
         DEIntEntry money = new DEIntEntry("money", Inventory.inventory.Money);
         DEUIntEntry round = new DEUIntEntry("round", roundManager.roundNumber);
-        DEInt2Entry difficulty = new DEInt2Entry("difficulty", DifficultyInfo.difficultyInfo.difficulty.number, DifficultyInfo.difficultyInfo.levelIndex);
+        DEInt2Entry difficulty = new DEInt2Entry("difficulty", DifficultyInfo.difficultyInfo.gameDifficultyParams.Difficulty.number, DifficultyInfo.difficultyInfo.levelIndex);
+        DEIntEntry batter = new DEIntEntry("batter", DifficultyInfo.difficultyInfo.gameDifficultyParams.Batter.index);
 
         // Set the data entries
         saveData.SetDataEntry(towers, true);
@@ -230,6 +233,7 @@ public class LevelManager : MonoBehaviour
         saveData.SetDataEntry(money, true);
         saveData.SetDataEntry(round, true);
         saveData.SetDataEntry(difficulty, true);
+        saveData.SetDataEntry(batter, true);
 
         toppingRegistery.SaveAll(saveData);
 

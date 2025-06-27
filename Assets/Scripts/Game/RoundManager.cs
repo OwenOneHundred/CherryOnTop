@@ -133,6 +133,6 @@ public class RoundManager : MonoBehaviour
     public void OnPlayerWins()
     {
         ingameUI.transform.Find("WinPanel").GetChild(0).gameObject.SetActive(true);
-        AchievementsTracker.Instance.MarkLevelAsCompleted(DifficultyInfo.difficultyInfo.levelIndex, DifficultyInfo.difficultyInfo.difficulty.number);
+        AchievementsTracker.Instance.MarkLevelAsCompleted(DifficultyInfo.difficultyInfo.levelIndex, DifficultyInfo.difficultyInfo.gameDifficultyParams.Difficulty.number);
     }
 }

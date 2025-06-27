@@ -178,8 +178,6 @@ public class Shop : MonoBehaviour
 
     public void UpdateAllIcons()
     {
-        // Also resets the purchase status of shop items
-        // Not sure if this needs to be changed
         foreach (ShopObj shopObj in shopObjs) Destroy(shopObj.gameObject);
         shopObjs.Clear();
         for (int i = 0; i < currentItems.Count; i++) {

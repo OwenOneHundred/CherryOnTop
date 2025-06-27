@@ -15,4 +15,6 @@ MonoBehaviour:
   description: No longer get money at the end of each round, but start with 2 strawberries.
   color: {r: 1, g: 0.33490568, b: 0.33490568, a: 1}
   visibleName: Strawberry
+  index: 0
+  associatedDifficulty: {fileID: 11400000, guid: 729bc5f0f3af6419987126270cd8e23c, type: 2}
   strawberry: {fileID: 11400000, guid: 56752412b5f994d63bfd3a2eba459c90, type: 2}

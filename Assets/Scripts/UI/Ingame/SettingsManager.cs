@@ -11,7 +11,7 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] GameObject settingsMenuGameObject;
     [SerializeField] Vector2 volumeRange;
 
-    void Start()
+    void Awake()
     {
         OnStart();
     }
@@ -80,6 +80,7 @@ public class SettingsManager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(volumeSlider.name))
         {
+            Debug.Log(PlayerPrefs.GetFloat(volumeSlider.name));
             volumeSlider.slider.value = PlayerPrefs.GetFloat(volumeSlider.name);
         }
         else

@@ -5,30 +5,25 @@ using GameSaves;
 
 public class LevelPreviewManager : MonoBehaviour
 {
-    [SerializeField] Image previewImage;
-    [SerializeField] PlayButton playButton;
+    [SerializeField] List<Image> previewImages;
     [SerializeField] TMPro.TextMeshProUGUI title;
     [SerializeField] List<GameObject> ribbons;
-    [SerializeField] GameObject continueButtonObject;
-    [SerializeField] RectTransform playButtonRect;
+    public string sceneNameInEditor;
+
+    [SerializeField] LoadButton continueButton;
 
     public int levelIndex = 0;
 
     public void Setup(Sprite levelImage, string sceneNameInGame, string sceneNameInEditor, int levelIndex)
     {
-        previewImage.sprite = levelImage;
-        playButton.sceneName = sceneNameInEditor;
-        playButton.levelIndex = levelIndex;
+        foreach (Image image in previewImages) { image.sprite = levelImage; }
+        this.sceneNameInEditor = sceneNameInEditor;
         this.levelIndex = levelIndex;
-        GetComponentInChildren<LoadButton>().sceneName = sceneNameInEditor;
-        GetComponentInChildren<LoadButton>()._levelNameIngame = sceneNameInGame;
+        continueButton.sceneName = sceneNameInEditor;
+        continueButton._levelNameIngame = sceneNameInGame;
         title.text = sceneNameInGame;
 
-        if (!SaveDataUtility.GetSaveFileNameIfExists(sceneNameInEditor, out string saveFilePath, out string saveFileName))
-        {
-            playButtonRect.anchoredPosition = new Vector2(0, playButtonRect.anchoredPosition.y);
-            continueButtonObject.SetActive(false);
-        }
+        continueButton.gameObject.SetActive(SaveDataUtility.GetSaveFileNameIfExists(sceneNameInEditor, out string saveFilePath, out string saveFileName));
 
         SetUpRibbons(levelIndex);
     }
@@ -39,12 +34,5 @@ public class LevelPreviewManager : MonoBehaviour
         {
             ribbons[i].SetActive(AchievementsTracker.Instance.HasCompletedLevel(levelIndex, i + 1));
         }
-
-        /*
-        for (int i = 0; i < batterRibbons.Count; i++)
-        {
-            batterRibbons[i].SetActive(AchievementsTracker.Instance.HasCompletedLevel(levelIndex, i + 1));
-        }
-        */
     }
 }

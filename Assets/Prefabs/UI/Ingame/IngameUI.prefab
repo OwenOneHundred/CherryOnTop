@@ -2165,8 +2165,9 @@ MonoBehaviour:
   slowDownSound:
     volume: 0.2
     clip: {fileID: 8300000, guid: 9ff77b82e23a34275b8cdd5d62a54bef, type: 3}
-  settingsManager: {fileID: 3891339781705546562}
+  settingsManager: {fileID: 4907000284605429660}
   tutorial: {fileID: 4215666401715418652, guid: ef1d99b4dd68f42eea4b2bd87eb99bfb, type: 3}
+  DEBUG_ForceTutorial: 0
   speedUpButtonUntoggled: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
   speedUpButtonToggled: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 1}
   speedUpButton: {fileID: 6110504044283116686}
@@ -4803,7 +4804,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3891339781705546562}
+      - m_Target: {fileID: 4907000284605429660}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: Open
         m_Mode: 1
@@ -9691,6 +9692,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5964487472042778191}
     m_Modifications:
+    - target: {fileID: 491343323220504232, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 927711264437610271, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1461601384100657347, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_Transition
       value: 1
@@ -9771,6 +9780,10 @@ PrefabInstance:
       propertyPath: m_Colors.m_HighlightedColor.r
       value: 0.745283
       objectReference: {fileID: 0}
+    - target: {fileID: 2073157387769881426, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2333696763320562053, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -9826,7 +9839,7 @@ PrefabInstance:
     - target: {fileID: 2516482913335788729, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3891339781705546562}
+      objectReference: {fileID: 0}
     - target: {fileID: 2516482913335788729, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -9861,7 +9874,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3181088761205223646, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210168228344214014, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4987531159127680303, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_AnchorMax.y
@@ -9947,6 +9964,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8698463570368859350, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -9960,9 +9981,9 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1865907195600238655, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
   m_PrefabInstance: {fileID: 3219614700241806385}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3891339781705546562 stripped
+--- !u!114 &4907000284605429660 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1922630672379174771, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7545627520338252717, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
   m_PrefabInstance: {fileID: 3219614700241806385}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

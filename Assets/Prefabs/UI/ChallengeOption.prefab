@@ -101,8 +101,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.7764706, g: 0.34117648, b: 0.45490196, a: 1}
     m_HighlightedColor: {r: 0.9622642, g: 0.5582948, b: 0.66383624, a: 1}
-    m_PressedColor: {r: 0.5377358, g: 0.22574759, b: 0.30725792, a: 1}
-    m_SelectedColor: {r: 0.8962264, g: 0.6468049, b: 0.7114697, a: 1}
+    m_PressedColor: {r: 0.509434, g: 0.1754183, b: 0.2613081, a: 1}
+    m_SelectedColor: {r: 0.3018868, g: 0.0754717, b: 0.1309656, a: 1}
     m_DisabledColor: {r: 0.3679245, g: 0.23082057, b: 0.2682126, a: 0.50980395}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectPrefab: {fileID: 4923282430484679796, guid: f20fc8eaccc544ca0ae6ab405c958b32, type: 3}
+  lifetime: 4
+  scaleMultiplier: 1
 --- !u!1 &1996322769815696331
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +183,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.5, y: -1.9}
+  m_AnchoredPosition: {x: 5.5, y: 1}
   m_SizeDelta: {x: 465.74, y: 52.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4829941523448473785
@@ -214,8 +216,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Challenge Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3db40ba0652b54e17bd8ad1ca8d59f1a, type: 2}
+  m_sharedMaterial: {fileID: 5687482938499184141, guid: 3db40ba0652b54e17bd8ad1ca8d59f1a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -239,7 +241,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
+  m_fontSize: 38.05
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1

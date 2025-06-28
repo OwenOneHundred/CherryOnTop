@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7635826562936255635, guid: e1de9132c00da447584f992308220c05, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7635826562936255635, guid: e1de9132c00da447584f992308220c05, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff2ea0b327eb4834b2a2260822fe301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growTime: 0.25
+  growTime: 0.15
   maxSizeMultiplier: 1.6
   deathSound:
     volume: 0.9

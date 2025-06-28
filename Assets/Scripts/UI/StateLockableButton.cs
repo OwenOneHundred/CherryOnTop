@@ -11,9 +11,9 @@ public class StateLockableButton : Button
     {
         foreach (StateLock stateLock in stateLocks)
         {
-            if (stateLock.lockType == StateLock.LockType.everything) { return; }
-            if (stateLock.lockType == StateLock.LockType.cantEnter && stateLock.stateName == state.ToString()) { return; }
-            if (stateLock.lockType == StateLock.LockType.cantExit && stateLock.stateName == buttonState.ToString()) { return; }
+            if (stateLock.lockType == StateLock.LockType.everything) { state = buttonState; }
+            if (stateLock.lockType == StateLock.LockType.cantEnter && stateLock.stateName == state.ToString()) { state = buttonState; }
+            if (stateLock.lockType == StateLock.LockType.cantExit && stateLock.stateName == buttonState.ToString()) { state = buttonState; }
         }
 
         buttonState = state;

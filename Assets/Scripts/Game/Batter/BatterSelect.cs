@@ -15,7 +15,7 @@ public class BatterSelect : MonoBehaviour
     [SerializeField] Transform batterListParent;
     [SerializeField] GameObject batterButtonPrefab;
     [SerializeField] List<StateLockableButton> stateLockableButtons = new();
-    public int batterIndex = 0;
+    public int batterIndex = -1;
 
     public void Start()
     {
@@ -43,6 +43,11 @@ public class BatterSelect : MonoBehaviour
 
     public void ChangeBatter(int index, bool silent = false)
     {
+        Debug.Log("change batter");
+        if (index == batterIndex) { return; }
+
+        Debug.Log("here");
+
         batterIndex = index;
         Batter newBatter = batters[batterIndex];
         batterName.text = newBatter.visibleName;
@@ -50,9 +55,9 @@ public class BatterSelect : MonoBehaviour
 
         for (int i = 0; i < stateLockableButtons.Count; i++)
         {
+            stateLockableButtons[i].stateLocks.Clear();
             if (i != index)
             {
-                stateLockableButtons[i].stateLocks.Clear();
                 stateLockableButtons[i].TransitionToNormalState();
             }
             else

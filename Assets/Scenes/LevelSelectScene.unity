@@ -422,6 +422,7 @@ GameObject:
   - component: {fileID: 185816707}
   - component: {fileID: 185816706}
   - component: {fileID: 185816709}
+  - component: {fileID: 185816710}
   m_Layer: 5
   m_Name: Left Arrow
   m_TagString: Untagged
@@ -504,6 +505,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 185816710}
+        m_TargetAssemblyTypeName: ButtonEffectSpawner, Assembly-CSharp
+        m_MethodName: SpawnEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &185816707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,6 +570,19 @@ MonoBehaviour:
   audioFile:
     volume: 0.2
     clip: {fileID: 8300000, guid: 857d5241d09de4517a5bd8f67aef2c89, type: 3}
+--- !u!114 &185816710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185816704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01d4e516998e7435d8a42e5d7b571a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectPrefab: {fileID: 4923282430484679796, guid: f20fc8eaccc544ca0ae6ab405c958b32, type: 3}
 --- !u!1 &330669117
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,6 +794,7 @@ GameObject:
   - component: {fileID: 516144774}
   - component: {fileID: 516144773}
   - component: {fileID: 516144777}
+  - component: {fileID: 516144778}
   m_Layer: 5
   m_Name: Right Arrow
   m_TagString: Untagged
@@ -850,6 +877,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 516144778}
+        m_TargetAssemblyTypeName: ButtonEffectSpawner, Assembly-CSharp
+        m_MethodName: SpawnEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &516144774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -903,6 +942,19 @@ MonoBehaviour:
   audioFile:
     volume: 0.2
     clip: {fileID: 8300000, guid: 857d5241d09de4517a5bd8f67aef2c89, type: 3}
+--- !u!114 &516144778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516144771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01d4e516998e7435d8a42e5d7b571a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectPrefab: {fileID: 4923282430484679796, guid: f20fc8eaccc544ca0ae6ab405c958b32, type: 3}
 --- !u!1 &546968779
 GameObject:
   m_ObjectHideFlags: 0
@@ -4065,7 +4117,7 @@ MonoBehaviour:
   batterListParent: {fileID: 628518543}
   batterButtonPrefab: {fileID: 1161902033088672478, guid: 2ad27c187037049ff8ccfe65ab7234eb, type: 3}
   stateLockableButtons: []
-  batterIndex: 0
+  batterIndex: -1
 --- !u!224 &954731358180372390
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4942,6 +4994,30 @@ MonoBehaviour:
           m_StringArgument: WeddingCakeScene
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8541957204635409586}
+        m_TargetAssemblyTypeName: ButtonSoundScript, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8541957204635409587}
+        m_TargetAssemblyTypeName: ButtonEffectSpawner, Assembly-CSharp
+        m_MethodName: SpawnEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3753576774131378686
 GameObject:
   m_ObjectHideFlags: 0
@@ -5337,6 +5413,7 @@ GameObject:
   - component: {fileID: 6515775663930499962}
   - component: {fileID: 6421410993000363268}
   - component: {fileID: 4822318131970084947}
+  - component: {fileID: 6897467116677160432}
   m_Layer: 5
   m_Name: Continue Button
   m_TagString: Untagged
@@ -5415,6 +5492,8 @@ GameObject:
   - component: {fileID: 8339768893602340870}
   - component: {fileID: 8541957204635409585}
   - component: {fileID: 3080319760220024862}
+  - component: {fileID: 8541957204635409586}
+  - component: {fileID: 8541957204635409587}
   m_Layer: 5
   m_Name: New Game Button
   m_TagString: Untagged
@@ -5718,7 +5797,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4765062617393820948}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6515775663930499962}
+        m_TargetAssemblyTypeName: ButtonSoundScript, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6897467116677160432}
+        m_TargetAssemblyTypeName: ButtonEffectSpawner, Assembly-CSharp
+        m_MethodName: SpawnEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5555296145461098555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6590,6 +6693,19 @@ RectTransform:
   m_AnchoredPosition: {x: -667.29, y: 551}
   m_SizeDelta: {x: 440.919, y: 414.61206}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6897467116677160432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4581989196435690356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01d4e516998e7435d8a42e5d7b571a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectPrefab: {fileID: 4923282430484679796, guid: f6a1e25fdac2c4bd0885bc9180d0724a, type: 3}
 --- !u!224 &6915999074216976975
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12156,6 +12272,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sizeChange: 0.04
   speed: 0.02
+--- !u!114 &8541957204635409586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4620456543739424908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3093b69114fc34054b78db22263428dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioFile:
+    volume: 0.2
+    clip: {fileID: 8300000, guid: 937b5f57df8fd46c2a9f500418626d04, type: 3}
+--- !u!114 &8541957204635409587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4620456543739424908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01d4e516998e7435d8a42e5d7b571a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectPrefab: {fileID: 4923282430484679796, guid: f6a1e25fdac2c4bd0885bc9180d0724a, type: 3}
 --- !u!1 &8587600319597010884
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ public class DifficultySelect : MonoBehaviour
     {
         difficulty = difficulties[0];
         UpdateDifficulty(true);
-        if (!AchievementsTracker.Instance.HasCompletedLevel(levelPreviewManager.levelIndex, 3))
+        if (!AchievementsTracker.Instance.HasCompletedLevel(levelPreviewManager.levelIndex, 3, (int) Constants.Batter.None))
         {
             difficulties.RemoveAt(3);
         }

@@ -107,7 +107,7 @@ namespace GameSaves {
         {
             Dictionary<string, string> valueDict = new Dictionary<string, string>();
             string filepath = GetSaveFilePath(filename, levelName);
-            Debug.Log("Reading save data from filepath... " + filepath);
+            //Debug.Log("Reading save data from filepath... " + filepath);
             if (!File.Exists(filepath))
             {
                 Debug.LogWarning("Filepath does not exists! Using new SaveData. Given filepath: " + filepath);
@@ -120,7 +120,7 @@ namespace GameSaves {
             {
                 valueDict.Add(s.dataName, s.dataValue);
             }
-            Debug.Log("Finished reading save data from filepath: " + filepath);
+            //Debug.Log("Finished reading save data from filepath: " + filepath);
             return valueDict;
         }
 
@@ -132,7 +132,7 @@ namespace GameSaves {
         public static void WriteJson(ICollection<KeyValuePair<string, DataEntry>> data, string filename, string levelName, bool useEncryption = true)
         {
             string filepath = GetSaveFilePath(filename, levelName);
-            Debug.Log("Writing save data from filepath... " + filepath);
+            //Debug.Log("Writing save data from filepath... " + filepath);
             DataWrapper wrapper = new DataWrapper();
             foreach (KeyValuePair<string, DataEntry> keyPair in data)
             {
@@ -147,7 +147,7 @@ namespace GameSaves {
             string json = JsonUtility.ToJson(wrapper);
             byte[] encryptedData = EncryptionUtility.EncryptFile(json, useEncryption);
             File.WriteAllBytes(filepath, encryptedData);
-            Debug.Log("Finished writing save data from filepath: " + filepath);
+            //Debug.Log("Finished writing save data from filepath: " + filepath);
         }
 
         public static string WriteDataEntryFrom<T>(T dataEntry) where T : DataEntry

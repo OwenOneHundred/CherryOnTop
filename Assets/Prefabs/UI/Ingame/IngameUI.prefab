@@ -1544,6 +1544,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c433ba82f6e554a9b9dffeb5dff12ae2, type: 2}
   - {fileID: 11400000, guid: 729bc5f0f3af6419987126270cd8e23c, type: 2}
   - {fileID: 11400000, guid: bbc97536c7563469286dd2393055eb0e, type: 2}
+  batterList: []
   _encryptData: 0
 --- !u!1 &1975875662208499667
 GameObject:
@@ -2239,7 +2240,7 @@ MonoBehaviour:
   dragOutSound:
     volume: 0.5
     clip: {fileID: 8300000, guid: 94559303172804f93a531cfb142f5873, type: 3}
-  toppingPlaceEffect: {fileID: 7649228073842828853, guid: df90ad80c9e3b442d9558e2588fbf510, type: 3}
+  toppingPlaceEffect: {fileID: 6289165443263051929, guid: 1d18bb9d7fdcd4deeaa233905d21b751, type: 3}
 --- !u!114 &3727381933882899095
 MonoBehaviour:
   m_ObjectHideFlags: 0

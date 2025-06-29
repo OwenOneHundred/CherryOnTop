@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,7 @@ public class GenericSparkleSpawner : MonoBehaviour
     [SerializeField] GameObject sparkleObj;
     [SerializeField] RectTransform backgroundArea;
     [SerializeField] Color sparkleColor;
+    List<GameObject> sparkles = new();
 
     void Update()
     {
@@ -28,6 +30,7 @@ public class GenericSparkleSpawner : MonoBehaviour
     void SpawnSparkle()
     {
         GameObject newSparkle = Instantiate(sparkleObj, transform);
+        sparkles.Add(newSparkle);
         Rect rect = backgroundArea.rect;
         Vector2 positionInBounds = new Vector2(UnityEngine.Random.Range(rect.min.x, rect.max.x),
             UnityEngine.Random.Range(rect.min.y, rect.max.y));
@@ -52,9 +55,20 @@ public class GenericSparkleSpawner : MonoBehaviour
             sparkle.transform.localScale *= 1 - (15 * Time.deltaTime);
             yield return null;
         }
+
+        sparkles.Remove(sparkle);
         Destroy(sparkle);
     }
-
+    
+    void OnDisable()
+    {
+        foreach (GameObject sparkle in sparkles)
+        {
+            Destroy(sparkle);
+        }
+        sparkles.Clear();
+    } 
+    
     float GetCooldown()
     {
         return UnityEngine.Random.Range(cooldownRange.x, cooldownRange.y) * cooldownMultiplier;

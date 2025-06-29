@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GameSaves;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,34 +20,50 @@ public class BatterSelect : MonoBehaviour
 
     public void Start()
     {
-        if (!AchievementsTracker.Instance.HasCompletedLevel(levelPreviewManager.levelIndex, 4))
-        {
-            //DisableBatterSelect();
-        }
-
         SetUp();
 
         ChangeBatter(0, true);
+
+        UpdateBatterCompletions();
     }
 
     private void SetUp()
     {
+        if (stateLockableButtons.Count != 0) { return; }
+
         for (int i = 0; i < batters.Count; i++)
         {
+            batters[i].index = i;
+
             int index = i;
             GameObject batterButton = Instantiate(batterButtonPrefab, batterListParent);
             batterButton.GetComponent<Button>().onClick.AddListener(() => ChangeBatter(index));
             batterButton.GetComponentInChildren<TextMeshProUGUI>().text = batters[i].visibleName;
+
             stateLockableButtons.Add(batterButton.GetComponent<StateLockableButton>());
+        }
+    }
+
+    public void UpdateBatterCompletions()
+    {
+        if (stateLockableButtons.Count == 0) { SetUp(); }
+
+        for (int i = 0; i < batters.Count; i++)
+        {
+            if (AchievementsTracker.Instance.HasCompletedLevel(levelPreviewManager.levelIndex, 0, i))
+            {
+                stateLockableButtons[i].transform.GetChild(0).gameObject.SetActive(true);
+            }
+            else
+            {
+                stateLockableButtons[i].transform.GetChild(0).gameObject.SetActive(false);
+            }
         }
     }
 
     public void ChangeBatter(int index, bool silent = false)
     {
-        Debug.Log("change batter");
         if (index == batterIndex) { return; }
-
-        Debug.Log("here");
 
         batterIndex = index;
         Batter newBatter = batters[batterIndex];

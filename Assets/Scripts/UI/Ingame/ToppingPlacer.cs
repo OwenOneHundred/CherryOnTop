@@ -131,10 +131,14 @@ public class ToppingPlacer : MonoBehaviour
             mouseIsInSidebar = Input.mousePosition.x > inventoryXPos;
 
             if (!mouseLeftSidebar && !mouseIsInSidebar) { SoundEffectManager.sfxmanager.PlayOneShot(dragOutSound); }
-            
-            if (mouseLeftSidebar && mouseIsInSidebar) { StopPlacingTopping(); yield break; }
 
-            if (!mouseIsInSidebar) { mouseLeftSidebar = true; } 
+            if (mouseLeftSidebar && mouseIsInSidebar)
+            {
+                StopPlacingTopping();
+                yield break;
+            }
+
+            if (!mouseIsInSidebar) { mouseLeftSidebar = true; }
 
             Vector3 cameraPositionWithShake = cameraControl.transform.position;
             cameraControl.transform.position = Vector3.zero; // Holy hack lmao part 1
@@ -163,7 +167,7 @@ public class ToppingPlacer : MonoBehaviour
 
         if (placementValidCheck)
         {
-            PlaceTopping(topping, transparentMeshFilter.transform.position, topping.towerPrefab.transform.rotation, true);
+            yield return StartCoroutine(PlaceTopping(topping, transparentMeshFilter.transform.position, topping.towerPrefab.transform.rotation, true));
         }
         StopPlacingTopping();
     }
@@ -230,18 +234,17 @@ public class ToppingPlacer : MonoBehaviour
         transparentObject.SetActive(false);
     }
 
-    public void PlaceTopping(Topping topping, Vector3 position, Quaternion rotation, bool playSound = false)
+    public IEnumerator PlaceTopping(Topping topping, Vector3 position, Quaternion rotation, bool playSound = false)
     {
         GameObject newToppingObj = Instantiate(topping.towerPrefab, position, rotation); // spawn obj
+        newToppingObj.SetActive(false);
+        yield return StartCoroutine(PlaceToppingAnimation(playSound, position, newToppingObj));
 
         ToppingRegistry.toppingRegistry.RegisterPlacedTopping(topping, newToppingObj); // register
 
         newToppingObj.GetComponent<ToppingObjectScript>().topping = topping; // set topping on object to be read later
         
         EventBus<TowerPlacedEvent>.Raise(new TowerPlacedEvent(topping, newToppingObj)); // call placed tower event
-        Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 6); // create particle effect
-
-        if (playSound) { SoundEffectManager.sfxmanager.PlayOneShot(placeSound); }
         
         topping.SetGameObjectOnEffects(newToppingObj);
         topping.RegisterEffects(newToppingObj);
@@ -249,6 +252,24 @@ public class ToppingPlacer : MonoBehaviour
         Inventory.inventory.RemoveItemByID(topping.ID); // remove from inventory
 
         newToppingObj.GetComponentInChildren<ToppingObjInteractions>().OnPlacedFromInventory();
+    }
+
+    private IEnumerator PlaceToppingAnimation(bool playSound, Vector3 position, GameObject newToppingObj)
+    {
+        float riseDistance = 1.5f;
+        float fallSpeed = 15f;
+        Vector3 topPosition = position + new Vector3(0, riseDistance, 0);
+        newToppingObj.transform.position = topPosition;
+        newToppingObj.SetActive(true);
+        while (newToppingObj.transform.position.y > position.y)
+        {
+            newToppingObj.transform.position -= new Vector3(0, fallSpeed * Time.deltaTime, 0);
+            yield return null;
+        }
+
+        Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 5); // create particle effect
+
+        if (playSound) { SoundEffectManager.sfxmanager.PlayOneShot(placeSound); }
     }
 
     public void PlaceToppingViaLoad(Topping topping, Vector3 position, Quaternion rotation)

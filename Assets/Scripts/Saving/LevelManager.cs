@@ -122,7 +122,8 @@ public class LevelManager : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
-        } else if (_instance != this)
+        }
+        else if (_instance != this)
         {
             Debug.LogWarning("LevelManager Instance already set!!! Destroying this new one: " + gameObject.name);
             Destroy(gameObject);
@@ -132,7 +133,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Initializing achievements...");
         AchievementsTracker tracker = AchievementsTracker.Instance;
         tracker._encryptData = _encryptData;
-        tracker.MarkLevelAsCompleted(1, 1, false);
+        //tracker.MarkLevelAsCompleted(1, 1, Constants.Batter.None, false); // why was this here?
     }
 
     protected bool _validInstance = true;

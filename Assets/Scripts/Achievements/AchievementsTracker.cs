@@ -38,7 +38,7 @@ public class AchievementsTracker : MonoBehaviour
                     Debug.LogWarning("No achievements file found, creating a new instance...");
                     _saveData = SaveDataUtility.CreateSaveData(saveLevelName, saveLevelName);
                 }
-                Debug.Log("Initialized achievement save data file name: " + saveFileName);
+                //Debug.Log("Initialized achievement save data file name: " + saveFileName);
             }
             return _saveData;
         }
@@ -67,7 +67,7 @@ public class AchievementsTracker : MonoBehaviour
         List<CompletedLevelDifficulty> levels = new List<CompletedLevelDifficulty>();
         CompletedLevelsDE levelsDE = saveData.GetOrDefault(completedLevelName, new CompletedLevelsDE(completedLevelName, new List<CompletedLevelDifficulty>()));
         levels = levelsDE.completedLevels;
-        Debug.Log("Initialized Achievements. Current levels completed: " + string.Join(", ", levels));
+        //Debug.Log("Initialized Achievements. Current levels completed: " + string.Join(", ", levels));
 
         _initialized = true;
     }
@@ -78,26 +78,43 @@ public class AchievementsTracker : MonoBehaviour
         return levelsDE.completedLevels;
     }
 
-    public bool HasCompletedLevel(int level, int difficulty)
+    /// <summary>
+    /// Get if the given level, at the given difficulty, with the given batter is completed, where -1 batter means no/normal batter.
+    /// </summary>
+    /// <param name="level">Level index</param>
+    /// <param name="difficulty">Difficulty... number??</param>
+    /// <param name="batter">Batter index, where -1 means no/default batter</param>
+    /// <returns></returns>
+    public bool HasCompletedLevel(int level, int difficulty, int batter)
     {
-        CompletedLevelDifficulty levelDiff = new CompletedLevelDifficulty(level, difficulty);
+        CompletedLevelDifficulty levelDiff = new CompletedLevelDifficulty(level, difficulty, batter);
         if (saveData.TryGetDataEntry(completedLevelName, out CompletedLevelsDE levelsDE))
         {
-            if (levelsDE.completedLevels.Find(l => l.level == levelDiff.level && l.difficulty == levelDiff.difficulty) != null)
+            if (batter == -1)
             {
-                return true;
+                if (levelsDE.completedLevels.Find(l => l.level == levelDiff.level && l.difficulty == levelDiff.difficulty) != null)
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                if (levelsDE.completedLevels.Find(l => l.level == levelDiff.level && l.batter == levelDiff.batter) != null)
+                {
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    public void MarkLevelAsCompleted(int level, int difficulty, bool isCompleted = true)
+    public void MarkLevelAsCompleted(int level, int difficulty, int batter, bool isCompleted = true)
     {
-        bool hasCompleted = HasCompletedLevel(level, difficulty);
+        bool hasCompleted = HasCompletedLevel(level, difficulty, batter);
         if (isCompleted == hasCompleted) return;
-        CompletedLevelDifficulty levelDiff = new CompletedLevelDifficulty(level, difficulty);
+        CompletedLevelDifficulty levelDiff = new CompletedLevelDifficulty(level, difficulty, batter);
         CompletedLevelsDE levelsDE = saveData.GetOrDefault(completedLevelName, new CompletedLevelsDE(completedLevelName, new List<CompletedLevelDifficulty>()));
-        CompletedLevelDifficulty existing = levelsDE.completedLevels.Find(l => l.level == levelDiff.level && l.difficulty == levelDiff.difficulty);
+        CompletedLevelDifficulty existing = levelsDE.completedLevels.Find(l => l.level == levelDiff.level && l.difficulty == levelDiff.difficulty && l.batter == batter);
         if (existing != null)
         {
             levelsDE.completedLevels.Remove(existing);
@@ -112,7 +129,6 @@ public class AchievementsTracker : MonoBehaviour
     {
         SaveDataUtility._useEncryptions = _encryptData;
         SaveDataUtility.WriteSaveData(saveData);
-        Debug.Log("Updated achievements data!");
     }
 
     [System.Serializable]
@@ -130,10 +146,12 @@ public class AchievementsTracker : MonoBehaviour
     {
         [SerializeField] public int difficulty;
         [SerializeField] public int level;
-        public CompletedLevelDifficulty(int difficulty, int level)
+        [SerializeField] public int batter; // where -1 is no batter and anything else is a batter index
+        public CompletedLevelDifficulty(int level, int difficulty, int batter)
         {
             this.difficulty = difficulty;
             this.level = level;
+            this.batter = batter;
         }
     }
 }

@@ -15,3 +15,5 @@ MonoBehaviour:
   description: The normal batter.
   color: {r: 0.9056604, g: 0.78658307, b: 0.4229263, a: 1}
   visibleName: Chocolate
+  index: -1
+  associatedDifficulty: {fileID: 0}

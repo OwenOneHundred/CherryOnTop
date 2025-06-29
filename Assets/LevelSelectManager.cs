@@ -71,6 +71,17 @@ public class LevelSelectManager : MonoBehaviour
         if (tab != tabIndex) { SoundEffectManager.sfxmanager.PlayOneShot(switchTabs); }
         tab = tabIndex;
 
+        for (int i = 0; i < tabButtonImages.Count; i++) // reorder so selected tab is above the background panel
+        {
+            if (i == tab)
+            {
+                tabButtonImages[i].transform.SetAsLastSibling();
+            }
+            else
+            {
+                tabButtonImages[i].transform.SetAsFirstSibling();
+            }
+        }
     }
 
     public void Update()
@@ -89,6 +100,18 @@ public class LevelSelectManager : MonoBehaviour
         SoundEffectManager.sfxmanager.PlayOneShot(switchLevelSound);
 
         currentDisplayedLevel = index;
+
+        tabControllers[tab].OnLevelChangedWhileActiveTab();
+
+        foreach (TabController tabController in tabControllers)
+        {
+            tabController.EvaluateIfShouldBeLocked(index);
+        }
+
+        if (tabControllers[tab].Locked)
+        {
+            SwitchTabs(0);
+        }
     }
 
     private void LoadLevelSilent(int index)

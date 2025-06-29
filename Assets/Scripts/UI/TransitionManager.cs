@@ -22,7 +22,7 @@ public class TransitionManager : MonoBehaviour
 
     public void Awake()
     {
-        if (transitionManager == null || transitionManager == this) 
+        if (transitionManager == null || transitionManager == this)
         {
             transitionManager = this;
             DontDestroyOnLoad(this.gameObject);

@@ -15,5 +15,5 @@ MonoBehaviour:
   description: The shop only ever has one item, but rerolls cost $1.
   color: {r: 0.9433962, g: 0.91945034, b: 0.22694907, a: 1}
   visibleName: Lemon
-  index: 0
+  index: 1
   associatedDifficulty: {fileID: 11400000, guid: c433ba82f6e554a9b9dffeb5dff12ae2, type: 2}

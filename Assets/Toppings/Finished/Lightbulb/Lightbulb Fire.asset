@@ -20,6 +20,6 @@ MonoBehaviour:
   dps: 7.5
   effectDuration: 5
   onAppliedSFX:
-    volume: 0.2
+    volume: 0.15
     clip: {fileID: 8300000, guid: ccea8059f3c5649668f2ea658642b618, type: 3}
   fireParticleSystemPrefab: {fileID: 8237643331648977366, guid: 44a19c97d7004499589177abf49009c7, type: 3}

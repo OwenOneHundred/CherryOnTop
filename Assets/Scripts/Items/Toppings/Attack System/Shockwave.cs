@@ -12,7 +12,10 @@ public class Shockwave : Projectile
 
     void Start()
     {
-        transform.GetChild(0).GetComponent<ShockwaveParticleSystem>().SetUp(range, speed);
+        if (transform.GetChild(0).TryGetComponent<ShockwaveParticleSystem>(out ShockwaveParticleSystem shockwaveParticleSystem))
+        {
+            shockwaveParticleSystem.SetUp(range, speed);
+        }
 
         lifetime = (range / speed);
         Destroy(gameObject, lifetime);

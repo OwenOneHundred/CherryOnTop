@@ -229,16 +229,17 @@ public class ToppingPlacer : MonoBehaviour
 
     private void StopPlacingTopping()
     {
+        transparentObject.SetActive(false);
+
+        if (iconControl == null) { return; } // if the item is placed, the icon is destroyed by the inventory,
+        // so the "StopPlacing" call errors.
         iconControl.StopPlacing();
         iconControl = null;
-        transparentObject.SetActive(false);
     }
 
     public IEnumerator PlaceTopping(Topping topping, Vector3 position, Quaternion rotation, bool playSound = false)
     {
         GameObject newToppingObj = Instantiate(topping.towerPrefab, position, rotation); // spawn obj
-        newToppingObj.SetActive(false);
-        yield return StartCoroutine(PlaceToppingAnimation(playSound, position, newToppingObj));
 
         ToppingRegistry.toppingRegistry.RegisterPlacedTopping(topping, newToppingObj); // register
 
@@ -252,6 +253,8 @@ public class ToppingPlacer : MonoBehaviour
         Inventory.inventory.RemoveItemByID(topping.ID); // remove from inventory
 
         newToppingObj.GetComponentInChildren<ToppingObjInteractions>().OnPlacedFromInventory();
+
+        yield return StartCoroutine(PlaceToppingAnimation(playSound, position, newToppingObj));
     }
 
     private IEnumerator PlaceToppingAnimation(bool playSound, Vector3 position, GameObject newToppingObj)
@@ -260,12 +263,12 @@ public class ToppingPlacer : MonoBehaviour
         float fallSpeed = 15f;
         Vector3 topPosition = position + new Vector3(0, riseDistance, 0);
         newToppingObj.transform.position = topPosition;
-        newToppingObj.SetActive(true);
         while (newToppingObj.transform.position.y > position.y)
         {
             newToppingObj.transform.position -= new Vector3(0, fallSpeed * Time.deltaTime, 0);
             yield return null;
         }
+        newToppingObj.transform.position = position;
 
         Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 5); // create particle effect
 

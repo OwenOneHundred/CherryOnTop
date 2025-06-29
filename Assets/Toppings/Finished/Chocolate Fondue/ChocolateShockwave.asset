@@ -18,8 +18,9 @@ MonoBehaviour:
   projectile: {fileID: 0}
   projectileSpeed: 0
   fireSound:
-    volume: 0.2
+    volume: 0.175
     clip: {fileID: 8300000, guid: 37429a017c73d4fb1928ae1e71bc142a, type: 3}
+  bulletLifetime: 8
   shockwave: {fileID: 5503282234501958175, guid: 5921180e306e7469588b64667bbb8288, type: 3}
   speed: 3
   range: 3.5

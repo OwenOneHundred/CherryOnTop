@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class CherrySpawner : MonoBehaviour
@@ -18,6 +19,11 @@ public class CherrySpawner : MonoBehaviour
     public List<SpecialtyCherry> specialtyCherries = new List<SpecialtyCherry>();
 
     public Difficulty difficulty;
+
+    int metalCherryThreshold = 250;
+    int mediumMetalCherryValue = 200;
+    int largeMetalCherryValue = 600;
+    int superLargeMetalCherryValue = 1000;
 
     private void Start()
     {
@@ -48,13 +54,64 @@ public class CherrySpawner : MonoBehaviour
 
         RoundManager.roundManager.totalCherriesThisRound = totalCherries;
 
-        for (int i = 0; i < totalCherries; i++)
+        int[] metalCherriesCountBySize = new int[4] { 0, 0, 0, 0 }; // small, medium, large, superLarge. Small is unused.
+        if (totalCherries > metalCherryThreshold)
         {
-            GameObject newCherry = Instantiate(cherryPrefab, cherryStartPos, Quaternion.identity);
-            cherryManager.RegisterCherry(newCherry.GetComponentInChildren<CherryMovement>());
-            SetSizeRandom(newCherry, bigChance);
+            metalCherriesCountBySize = GetHowManyMetalCherries();
+        }
 
+        for (int i = 0; i < totalCherries; i++) 
+        {
+            SpawnCherry();
+        
             yield return new WaitForSeconds(timeBetweenCherries);
+        }
+
+        if (metalCherriesCountBySize.Where(x => x != 0).Count() != 0)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        for (int metalArrayIndex = 0; metalArrayIndex < metalCherriesCountBySize.Length; metalArrayIndex++) // spawn one metal cherry for each indicated in array
+        {
+            for (int metalCherryCounter = 0; metalCherryCounter < metalCherriesCountBySize[metalArrayIndex]; metalCherryCounter++)
+            {
+                SpawnCherry((CherryTypes.CherrySize)metalArrayIndex, true);
+
+                yield return new WaitForSeconds(timeBetweenCherries);
+            }
+        }
+
+        int[] GetHowManyMetalCherries()
+        {
+            int[] metalCherryCountBySize = new int[4] { 0, 0, 0, 0 };
+            while (totalCherries > mediumMetalCherryValue)
+            {
+                if (totalCherries > superLargeMetalCherryValue) { metalCherryCountBySize[3] += 1; totalCherries -= superLargeMetalCherryValue; }
+                if (totalCherries > largeMetalCherryValue) { metalCherryCountBySize[2] += 1; totalCherries -= largeMetalCherryValue; }
+                if (totalCherries > mediumMetalCherryValue) { metalCherryCountBySize[1] += 1; totalCherries -= mediumMetalCherryValue; }
+            }
+            return metalCherryCountBySize;
+        }
+    }
+
+    private void SpawnCherry(CherryTypes.CherrySize size = CherryTypes.CherrySize.None, bool isMetal = false)
+    {
+        GameObject newCherry = Instantiate(cherryPrefab, cherryStartPos, Quaternion.identity);
+        cherryManager.RegisterCherry(newCherry.GetComponentInChildren<CherryMovement>());
+
+        if (size == CherryTypes.CherrySize.None)
+        {
+            SetSizeRandom(newCherry, bigChance);
+        }
+        else
+        {
+            SetSize(newCherry, size);
+        }
+
+        if (isMetal)
+        {
+            newCherry.GetComponent<CherryTypes>().IsMetal = true;
         }
     }
 
@@ -64,16 +121,21 @@ public class CherrySpawner : MonoBehaviour
 
         for (int i = 0; i < hardCodedRound.cherryCount; i++)
         {
-            SpecialtyCherry specialtyCherry = hardCodedRound.GetCherryPrefab();
-            GameObject prefab;
-            if (specialtyCherry.prefab == null) { prefab = cherryPrefab; }
-            else { prefab = specialtyCherry.prefab; }
-
-            GameObject newCherry = Instantiate(prefab, cherryStartPos, Quaternion.identity);
-            cherryManager.RegisterCherry(newCherry.GetComponentInChildren<CherryMovement>());
-            SetSize(newCherry, hardCodedRound.GetCherrySize());
+            SpawnCherry(hardCodedRound.GetCherrySize());
 
             yield return new WaitForSeconds(hardCodedRound.timeBetweenCherriesSeconds);
+        }
+
+        if (hardCodedRound.metalCherries.Count > 0) { yield return new WaitForSeconds(0.5f); }
+
+        foreach (HardCodedRound.MetalCherry metalCherry in hardCodedRound.metalCherries)
+        {
+            for (int i = 0; i < metalCherry.sizeAndAmount.amount; i++)
+            {
+                SpawnCherry(metalCherry.sizeAndAmount.size, true);
+
+                yield return new WaitForSeconds(hardCodedRound.timeBetweenCherriesSeconds);
+            }
         }
     }
 
@@ -87,7 +149,7 @@ public class CherrySpawner : MonoBehaviour
         return Mathf.Clamp(initialBigChance * Mathf.Pow(sizeScaleValue, RoundManager.roundManager.roundNumber - 1), 0, 100);
     }
 
-    void SetSizeRandom(GameObject cherry, float bigChance)
+    CherryTypes.CherrySize SetSizeRandom(GameObject cherry, float bigChance)
     {
         CherryTypes cherryTypes = cherry.GetComponent<CherryTypes>();
 
@@ -105,8 +167,10 @@ public class CherrySpawner : MonoBehaviour
         {
             cherryTypes.cherrySize = CherryTypes.CherrySize.Normal;
         }
-        
+
         cherryTypes.SetCherryHealthAndSpeed();
+        
+        return cherryTypes.cherrySize;
     }
 
     private void SetSize(GameObject cherry, CherryTypes.CherrySize size)

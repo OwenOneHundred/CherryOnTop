@@ -44,6 +44,16 @@ public class SoundEffectManager : MonoBehaviour
         audioClipsPlayedThisFrame.Add(new AudioClipAndTime(audioFile.clip));
     }
 
+    public bool TryPlayOneShot(AudioFile audioFile)
+    {
+        if (audioFile == null || audioFile.clip == null) { return false; }
+        else
+        {
+            PlayOneShot(audioFile);
+            return true;
+        }
+    }
+
     private bool CheckIfBeenPlayedThisFrame(AudioClip audioClip)
     {
         return !(audioClipsPlayedThisFrame.FirstOrDefault(x => x.clip == audioClip) == null);

@@ -13,7 +13,7 @@ public class FreezeDebuff : CherryDebuff
 
     public override void OnAdded(GameObject cherry)
     {
-        SoundEffectManager.sfxmanager.PlayOneShot(onAppliedSFX);
+        SoundEffectManager.sfxmanager.TryPlayOneShot(onAppliedSFX);
         iceBlockSpawned = Instantiate(iceBlock, cherry.transform.position, Quaternion.identity);
         Vector3 lossyScale = cherry.GetComponentInChildren<MeshRenderer>().transform.lossyScale;
         iceBlockSpawned.transform.localScale = lossyScale;

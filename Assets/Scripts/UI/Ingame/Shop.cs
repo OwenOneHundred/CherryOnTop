@@ -137,7 +137,7 @@ public class Shop : MonoBehaviour
 
     public void OnRoundEnd()
     {
-        RerollItems();
+        //RerollItems();
         purchasesThisRound = 0;
     }
 

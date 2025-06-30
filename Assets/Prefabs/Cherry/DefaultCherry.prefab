@@ -126,6 +126,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2837457780467349543}
   m_SourcePrefab: {fileID: 100100000, guid: e1de9132c00da447584f992308220c05, type: 3}
+--- !u!23 &2483940146065237387 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7635826562936255635, guid: e1de9132c00da447584f992308220c05, type: 3}
+  m_PrefabInstance: {fileID: 3778698575538400998}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4085270106411668407 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e1de9132c00da447584f992308220c05, type: 3}
@@ -210,6 +215,8 @@ MonoBehaviour:
   cherrySpeed: 0
   cherryHitbox: {fileID: 5343877452891195099}
   cherryMovement: {fileID: 3678773368687669692}
+  meshRenderer: {fileID: 2483940146065237387}
+  metalMaterial: {fileID: 2100000, guid: 0f2e6e9759bf24acfa9970df8f3f068e, type: 2}
 --- !u!1 &4988862917418150766 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: e1de9132c00da447584f992308220c05, type: 3}

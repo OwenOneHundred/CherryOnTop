@@ -84,9 +84,10 @@ public class RoundManager : MonoBehaviour
         ingameUI.SetRound(roundNumber);
         roundState = RoundState.cherries;
         nextRoundButton.interactable = false;
-        shopButton.interactable = false;
         cherriesKilledThisRoundCount = 0;
-        if (shop.Open) shop.ToggleOpen();
+
+        //shopButton.interactable = false;
+        //if (shop.Open) shop.ToggleOpen();
 
         EventBus<RoundStartEvent>.Raise(new RoundStartEvent(roundNumber));
 

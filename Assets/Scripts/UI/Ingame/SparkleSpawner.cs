@@ -83,7 +83,6 @@ public class SparkleSpawner : MonoBehaviour
 
     void OnDisable()
     {
-        Debug.Log("ondisable");
         foreach (GameObject sparkle in sparkles)
         {
             Destroy(sparkle);

@@ -28,11 +28,11 @@ public class CherrySpawner : MonoBehaviour
     private void Start()
     {
         cherryManager = GetComponent<CherryManager>();
+        difficulty = DifficultyInfo.difficultyInfo.gameDifficultyParams.Difficulty;
     }
     
     public void OnRoundStart()
     {
-        if (difficulty == null) { difficulty = DifficultyInfo.difficultyInfo.gameDifficultyParams.Difficulty; }
         if (difficulty.TryGetHardCodedRound((int) RoundManager.roundManager.roundNumber, out HardCodedRound hardCodedRound))
         {
             StartCoroutine(HardCodedRoundCoroutine(hardCodedRound));

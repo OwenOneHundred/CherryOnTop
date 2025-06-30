@@ -129,5 +129,5 @@ MonoBehaviour:
   maxSizeMultiplier: 1.6
   deathSound:
     volume: 0.9
-    clip: {fileID: 8300000, guid: 1a721d67063d14f578a286bbadf93210, type: 3}
+    clip: {fileID: 8300000, guid: ad1c07d570b734fc4954b5f562654f2a, type: 3}
   deathPS: {fileID: 4970616808093975513, guid: 130770ffa55594e39bbd16bc96f286e6, type: 3}

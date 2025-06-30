@@ -178,7 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flags: 128
   buffType: 0
-  buffValue: 0.8
+  buffValue: 0.85
 --- !u!54 &7185885520630772962
 Rigidbody:
   m_ObjectHideFlags: 0

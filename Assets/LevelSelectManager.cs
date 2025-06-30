@@ -120,6 +120,20 @@ public class LevelSelectManager : MonoBehaviour
         levelPreviewManager.Setup(currentPreview.levelImage, currentPreview.sceneNameIngame, currentPreview.sceneNameInEditor, index);
 
         dotsButtonManager.SetActiveDot(index);
+
+        currentDisplayedLevel = index;
+
+        tabControllers[tab].OnLevelChangedWhileActiveTab();
+
+        foreach (TabController tabController in tabControllers)
+        {
+            tabController.EvaluateIfShouldBeLocked(index);
+        }
+
+        if (tabControllers[tab].Locked)
+        {
+            SwitchTabs(0);
+        }
     }
 
     public void OnPressedNewGame() // called when new game button pressed

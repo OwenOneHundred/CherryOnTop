@@ -4,8 +4,6 @@ using UnityEngine;
 public class CherryTypes : MonoBehaviour
 {
     public CherrySize cherrySize = CherrySize.Normal;
-    public float cherryHealth;
-    public float cherrySpeed;
     public CherryHitbox cherryHitbox;
     public CherryMovement cherryMovement;
     [SerializeField] MeshRenderer meshRenderer;
@@ -19,7 +17,7 @@ public class CherryTypes : MonoBehaviour
             if (value)
             {
                 meshRenderer.sharedMaterial = metalMaterial;
-                cherryHealth *= 100;
+                cherryHitbox.cherryHealth *= 100;
             }
         }
     }
@@ -31,8 +29,6 @@ public class CherryTypes : MonoBehaviour
     {
         cherryHitbox = GetComponent<CherryHitbox>();
         cherryMovement = GetComponent<CherryMovement>();
-        cherryHealth = cherryHitbox.cherryHealth;
-        cherrySpeed = cherryMovement.baseSpeed;
     }
 
     public enum CherrySize

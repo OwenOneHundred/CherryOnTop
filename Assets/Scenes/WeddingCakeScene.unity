@@ -1462,7 +1462,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: initialMoney
-      value: 300
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: startingInventoryItems.Array.size

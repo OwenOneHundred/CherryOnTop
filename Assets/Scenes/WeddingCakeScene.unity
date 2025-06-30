@@ -1461,6 +1461,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: initialMoney
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: startingInventoryItems.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -1468,6 +1472,10 @@ PrefabInstance:
       propertyPath: 'startingInventoryItems.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: 432eab5753cea4b9d8f3a7790056a8cb, type: 2}
+    - target: {fileID: 7180917606041530134, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: cherryPositionAtGameEnd.y
+      value: 5.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

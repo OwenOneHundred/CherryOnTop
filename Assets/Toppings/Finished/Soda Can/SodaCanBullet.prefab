@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 7878607336450634013}
   - component: {fileID: 7995874461765191869}
   m_Layer: 0
-  m_Name: DripTrail
+  m_Name: Drips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5103,7 +5103,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 0.7
       minScalar: 5
       maxCurve:
         serializedVersion: 2

@@ -1845,6 +1845,7 @@ MonoBehaviour:
   rerollsText: {fileID: 4060922254059177220}
   rerollButtonText: {fileID: 4712727569409509211}
   rerollButton: {fileID: 2698525333416134776}
+  sellParticleEffect: {fileID: 141433446842962269, guid: f080aa3c8d28744bf8cfe78db72a8133, type: 3}
   shopObjs: []
   rerollPrice: 3
   error:

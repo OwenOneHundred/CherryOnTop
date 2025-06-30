@@ -25,13 +25,14 @@ public class Shop : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI rerollsText;
     [SerializeField] TMPro.TextMeshProUGUI rerollButtonText;
     [SerializeField] Button rerollButton;
+    [SerializeField] GameObject sellParticleEffect;
     public List<ShopObj> shopObjs = new();
     int rerolls = 0;
     public int Rerolls
     {
         get { return rerolls; }
         set
-        { 
+        {
             rerollsText.text = "Free rerolls: " + value;
             rerollButtonText.text = (value > 0) ? "Free\nReroll" : "Reroll\n$" + rerollPrice;
             rerolls = value;
@@ -128,7 +129,7 @@ public class Shop : MonoBehaviour
             RerollItems();
             PlayRerollAnim();
         }
-        else 
+        else
         {
             SoundEffectManager.sfxmanager.PlayOneShot(error);
         }
@@ -180,13 +181,14 @@ public class Shop : MonoBehaviour
     {
         foreach (ShopObj shopObj in shopObjs) Destroy(shopObj.gameObject);
         shopObjs.Clear();
-        for (int i = 0; i < currentItems.Count; i++) {
+        for (int i = 0; i < currentItems.Count; i++)
+        {
             GameObject newIcon = Instantiate(shopObjPrefab, itemParent);
             ShopObj shopObj = newIcon.GetComponent<ShopObj>();
             shopObjs.Add(shopObj);
             shopObj.SetUp(currentItems[i]);
             newIcon.GetComponent<RectTransform>().anchoredPosition +=
-                new Vector2((i % columns), (int) (-i / rows)) * iconSpacing;
+                new Vector2((i % columns), (int)(-i / rows)) * iconSpacing;
         }
     }
 
@@ -200,16 +202,44 @@ public class Shop : MonoBehaviour
 
     public void SellItemOffCake(Item item, GameObject toppingObj)
     {
+        StartCoroutine(SellAnimation(toppingObj));
+
         Inventory.inventory.Money += item.SellPrice;
         GameStats.gameStats.moneyEarned += item.SellPrice;
         GameStats.gameStats.toppingsSold++;
         EventBus<SellEvent>.Raise(new SellEvent(item, toppingObj));
 
-        if (toppingObj != null)
+        // might need to clear infopopup if it is displaying an item that was just sold by something other than the player
+    }
+
+    private IEnumerator SellAnimation(GameObject toppingObj)
+    {
+        float shrinkSpeed = 10;
+        if (toppingObj == null) { yield break; }
+
+        while (toppingObj.transform.localScale.x > 0.001f)
         {
-            Destroy(toppingObj);
+            toppingObj.transform.localScale -= shrinkSpeed * Time.deltaTime * Vector3.one;
+            yield return null;
         }
 
-        // clear infopopup if it has this
+        Instantiate(sellParticleEffect, toppingObj.transform.position, Quaternion.identity);
+
+        Destroy(toppingObj);
+    }
+
+    /// <summary>
+    /// Sell item from inventory.
+    /// </summary>
+    /// <param name="item"></param>
+    /// <returns>Number of items left in the stack</returns>
+    public int SellItemFromInventory(Item item)
+    {
+        Inventory.inventory.Money += item.SellPrice;
+        GameStats.gameStats.moneyEarned += item.SellPrice;
+        GameStats.gameStats.toppingsSold++;
+        EventBus<SellEvent>.Raise(new SellEvent(item, null));
+
+        return Inventory.inventory.RemoveItemByID(item.ID);
     }
 }

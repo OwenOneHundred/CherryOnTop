@@ -183,23 +183,18 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnSell()
     {
-        Inventory.inventory.Money += sellPrice;
-        GameStats.gameStats.moneyEarned += sellPrice;
-        GameStats.gameStats.toppingsSold++;
-        EventBus<SellEvent>.Raise(new SellEvent(item, toppingObj));
-
         if (toppingObj != null)
         {
-            Destroy(toppingObj);
+            Shop.shop.SellItemOffCake(item, toppingObj);
             Clear();
         }
         if (isInventoryItem)
         {
-            if (Inventory.inventory.RemoveItemByID(item.ID) <= 0)
+            if (Shop.shop.SellItemFromInventory(item) <= 0)
             {
                 Clear();
             }
-            else 
+            else
             {
                 Item nextItemInStack = Inventory.inventory.ownedItems.First(x => x.name.Equals(item.name));
                 SetUpForInventoryItem(nextItemInStack);

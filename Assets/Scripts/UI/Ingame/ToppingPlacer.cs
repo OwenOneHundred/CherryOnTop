@@ -28,9 +28,7 @@ public class ToppingPlacer : MonoBehaviour
     List<List<Vector3>> trackPoints = new();
 
     CameraControl cameraControl;
-
-    readonly Vector3 checkAreaVerticalOffset = new Vector3(0, 0.02f, 0);
-    readonly Vector3 arbitraryArtificialLift = new Vector3(0, 0.2f, 0);
+    readonly Vector3 arbitraryArtificialLift = new Vector3(0, 0.09f, 0);
     public bool PlacingTopping
     {
         get { return placingTopping; }
@@ -259,9 +257,9 @@ public class ToppingPlacer : MonoBehaviour
 
     private IEnumerator PlaceToppingAnimation(bool playSound, Vector3 position, GameObject newToppingObj)
     {
-        float riseDistance = 1.5f;
+        float fallDistance = 1.25f;
         float fallSpeed = 15f;
-        Vector3 topPosition = position + new Vector3(0, riseDistance, 0);
+        Vector3 topPosition = position + new Vector3(0, fallDistance, 0);
         newToppingObj.transform.position = topPosition;
         while (newToppingObj.transform.position.y > position.y)
         {

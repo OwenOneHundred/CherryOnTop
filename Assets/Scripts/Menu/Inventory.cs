@@ -13,6 +13,7 @@ public class Inventory : MonoBehaviour
     float scalingMoneyGainTime = 0;
     float moneyGainPitch = 1;
     [SerializeField] List<Item> startingInventoryItems;
+    readonly float timeBetweenGainMoney = 0.1f;
     private void Awake()
     {
         if (inventory == null)
@@ -170,8 +171,8 @@ public class Inventory : MonoBehaviour
             {
                 ApplyMoneyChange(bufferedMoneyChanges[0]);
                 bufferedMoneyChanges.RemoveAt(0);
-                scalingMoneyGainTime = Mathf.Clamp(scalingMoneyGainTime - 0.015f, 0.15f, 1);
-                moneyGainPitch = Mathf.Clamp(moneyGainPitch + 0.04f, 1, 2.5f);
+                scalingMoneyGainTime = Mathf.Clamp(scalingMoneyGainTime - 0.015f, timeBetweenGainMoney, 1);
+                moneyGainPitch = Mathf.Clamp(moneyGainPitch + 0.04f, 1, 2.4f);
             }
             else
             {

@@ -26,7 +26,7 @@ public class LevelSelectManager : MonoBehaviour
     {
         dotsButtonManager.SetUp(levelPreviews.Count, LoadLevel); // order of this and loadlevel(0) does matter
 
-        LoadLevelSilent(0);
+        LoadLevelInitialLoad(0);
     }
 
     public void MoveRight()
@@ -114,7 +114,7 @@ public class LevelSelectManager : MonoBehaviour
         }
     }
 
-    private void LoadLevelSilent(int index)
+    private void LoadLevelInitialLoad(int index)
     {
         LevelPreview currentPreview = levelPreviews[index];
         levelPreviewManager.Setup(currentPreview.levelImage, currentPreview.sceneNameIngame, currentPreview.sceneNameInEditor, index);
@@ -130,10 +130,7 @@ public class LevelSelectManager : MonoBehaviour
             tabController.EvaluateIfShouldBeLocked(index);
         }
 
-        if (tabControllers[tab].Locked)
-        {
-            SwitchTabs(0);
-        }
+        SwitchTabs(0);
     }
 
     public void OnPressedNewGame() // called when new game button pressed

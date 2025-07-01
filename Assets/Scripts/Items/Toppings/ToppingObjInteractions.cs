@@ -7,7 +7,12 @@ public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPoin
     [SerializeField] GameObject radiusCirclePrefab;
     GameObject radiusCircle;
     InfoPopup infoPopup;
-    bool hovered = false;
+    private bool hovered = false;
+    private bool Hovered
+    {
+        get { return hovered; }
+        set { hovered = value; }
+    }
     [SerializeField] Vector3 radiusCircleOffset = default;
     bool selected = false;
     private void Awake()
@@ -24,7 +29,7 @@ public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPoin
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (!hovered && !infoPopup.hovered)
+            if (!Hovered && !infoPopup.hovered)
             {
                 OnClickedOff();
             }
@@ -35,7 +40,7 @@ public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPoin
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (hovered && !selected)
+            if (Hovered && !selected)
             {
                 OnClicked();
             }
@@ -52,6 +57,7 @@ public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public void OnClickedOff()
     {
+        if (!selected) { return; }
         selected = false;
         DestroyRadiusCircle();
         ClearInfoPopup();
@@ -87,12 +93,12 @@ public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        hovered = false;
+        Hovered = false;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        hovered = true;
+        Hovered = true;
     }
 
     public void OnDestroy()

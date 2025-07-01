@@ -18,7 +18,7 @@ public class InventoryIconControl : MonoBehaviour, IPointerEnterHandler, IPointe
         get { return amountInStack; }
         set 
         {
-            number.text = value + "";
+            number.text = value == 1 ? "" : value + "";
             amountInStack = value;
         }
     }
@@ -68,6 +68,7 @@ public class InventoryIconControl : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void StopPlacing() // called by topping placer
     {
+        if (image == null) { return; }
         beingPlaced = false;
         image.color = Color.white;
     }

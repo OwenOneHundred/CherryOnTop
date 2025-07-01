@@ -20,6 +20,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] IngameUI ingameUI;
     [SerializeField] Shop shop;
     [SerializeField] bool savingEnabled = true;
+    CherrySpawner cherrySpawner;
 
     LevelManager _levelManager;
     LevelManager levelManager
@@ -44,6 +45,13 @@ public class RoundManager : MonoBehaviour
             return;
         }
         roundState = RoundState.shop;
+
+        cherrySpawner = GameObject.FindAnyObjectByType<CherrySpawner>();
+    }
+
+    void Start()
+    {
+        ingameUI.SetRound(roundNumber);
     }
 
     void Update()
@@ -76,9 +84,10 @@ public class RoundManager : MonoBehaviour
         ingameUI.SetRound(roundNumber);
         roundState = RoundState.cherries;
         nextRoundButton.interactable = false;
-        shopButton.interactable = false;
         cherriesKilledThisRoundCount = 0;
-        if (shop.Open) shop.ToggleOpen();
+
+        //shopButton.interactable = false;
+        //if (shop.Open) shop.ToggleOpen();
 
         EventBus<RoundStartEvent>.Raise(new RoundStartEvent(roundNumber));
 
@@ -133,6 +142,10 @@ public class RoundManager : MonoBehaviour
     public void OnPlayerWins()
     {
         ingameUI.transform.Find("WinPanel").GetChild(0).gameObject.SetActive(true);
-        AchievementsTracker.Instance.MarkLevelAsCompleted(DifficultyInfo.difficultyInfo.levelIndex, DifficultyInfo.difficultyInfo.difficulty.number);
+        AchievementsTracker.Instance.MarkLevelAsCompleted(
+            DifficultyInfo.difficultyInfo.levelIndex,
+            DifficultyInfo.difficultyInfo.gameDifficultyParams.Difficulty.number,
+            DifficultyInfo.difficultyInfo.gameDifficultyParams.Batter.index
+            );
     }
 }

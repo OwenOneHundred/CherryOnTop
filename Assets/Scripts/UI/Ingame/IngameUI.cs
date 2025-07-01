@@ -11,10 +11,17 @@ public class IngameUI : MonoBehaviour
     [SerializeField] AudioFile speedUpSound;
     [SerializeField] AudioFile slowDownSound;
     [SerializeField] SettingsManager settingsManager;
+    [SerializeField] GameObject tutorial;
+    [SerializeField] bool DEBUG_ForceTutorial = false;
 
     void Start()
     {
         settingsManager.OnStart();
+
+        if (!PlayerPrefs.HasKey("TutorialFinished") || DEBUG_ForceTutorial)
+        {
+            Instantiate(tutorial);
+        }
     }
 
     public void SetMoney(int money)

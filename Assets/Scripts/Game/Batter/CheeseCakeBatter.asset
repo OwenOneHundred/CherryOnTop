@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: You can only buy one item from the shop each round, but you get $2
     more on each round end.
+  color: {r: 0.93333334, g: 0.89737713, b: 0.59607846, a: 1}
+  visibleName: Cheesecake
+  index: 2
+  associatedDifficulty: {fileID: 11400000, guid: 9e1ce81bba6bc4b5d81e13e4ab145df3, type: 2}

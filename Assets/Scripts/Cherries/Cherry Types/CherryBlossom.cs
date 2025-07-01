@@ -64,7 +64,6 @@ public class CherryBlossom : CherryHitbox
         }
         CherryManager.Instance.OnCherryKilled(cherryMovement);
         EventBus<CherryDiesEvent>.Raise(new CherryDiesEvent(gameObject));
-        SoundEffectManager.sfxmanager.PlayOneShot(deathSound);
         Destroy(gameObject);
     }
 

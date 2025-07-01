@@ -22,7 +22,7 @@ public class TransitionManager : MonoBehaviour
 
     public void Awake()
     {
-        if (transitionManager == null || transitionManager == this) 
+        if (transitionManager == null || transitionManager == this)
         {
             transitionManager = this;
             DontDestroyOnLoad(this.gameObject);
@@ -82,7 +82,6 @@ public class TransitionManager : MonoBehaviour
 
     private IEnumerator TransitionInRoutine()
     {
-        Debug.Log("here");
         GameObject canvas = Instantiate(transitionObject);
         RectTransform imageRect = canvas.transform.GetChild(0).GetComponent<RectTransform>();
         imageRect.anchoredPosition = Vector3.zero;

@@ -8,20 +8,24 @@ public class OnBuyConsecutiveDifferentToppings : EffectSO
 {
     [SerializeField] int number = 5;
     List<Topping> recentToppings = new List<Topping>();
+    Topping topping;
     public override void OnTriggered(IEvent eventObject)
     {
-        if (eventObject is BuyEvent buyEvent && buyEvent.item is Topping topping)
+        if (topping == null) { topping = GetTopping(); }
+
+        if (eventObject is BuyEvent buyEvent && buyEvent.item is Topping boughtTopping)
         {
-            recentToppings.Add(topping);
+            recentToppings.Add(boughtTopping);
             if (!CheckIfAllToppingsDifferent())
             {
                 recentToppings.Clear();
+                topping.triggersCount = 0;
                 return;
             }
 
             if (recentToppings.Count == number)
             {
-                GetTopping().moneyGained += 4;
+                topping.moneyGained += 4;
 
                 Inventory.inventory.Money += 4;
 
@@ -30,6 +34,12 @@ public class OnBuyConsecutiveDifferentToppings : EffectSO
                 PlayTriggeredSound();
 
                 recentToppings.Clear();
+
+                topping.triggersCount = 0;
+            }
+            else
+            {
+                topping.triggersCount += 1;
             }
         }
     }

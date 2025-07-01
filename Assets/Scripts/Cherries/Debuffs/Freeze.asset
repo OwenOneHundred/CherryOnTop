@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Freeze
   m_EditorClassIdentifier: 
   movementSpeedMultiplier: 0
+  canResultInNegativeTimesNegativeSpeed: 0
   typesThatGetDamageMultiplier: 0
   damageMultiplier: 1
   debuffType: 2
   dps: 0
   effectDuration: 1
   onAppliedSFX:
-    volume: 0.25
+    volume: 0.15
     clip: {fileID: 8300000, guid: 74a81c3aac12848cc9f9e250a870e596, type: 3}
   iceBlock: {fileID: 4561420359707221265, guid: 7783a1a7603694c6e94c80b779719bbb, type: 3}

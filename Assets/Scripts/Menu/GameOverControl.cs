@@ -8,7 +8,7 @@ public class GameOverControl : MonoBehaviour
     [SerializeField] Vector3 cherryPositionAtGameEnd;
     [SerializeField] float cameraSpeed;
     [SerializeField] Song gameOverSong;
-    public bool isGameOver = false;
+    [System.NonSerialized] public bool isGameOver = false;
     private void Awake()
     {
         if (gameOverControl == null)

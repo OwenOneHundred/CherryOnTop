@@ -19,8 +19,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: be616b0ea5d3d44118eabbcdf6a50126, type: 2}
     eventSOs:
     - {fileID: 11400000, guid: 61a179cbcbc324e68b5581dcdf2f2cb9, type: 2}
-  description: Shoots spikes out in all directions when cherries are nearby. At the
-    start of each round, if you bought exactly 2 items from the shop, gain $2.
+  description: Shoots a spread of spikes at nearby cherries. At the start of each
+    round, if you bought exactly 2 items from the shop, gain $2.
   rarity: 0
   towerPrefab: {fileID: 4831661171408888501, guid: 4e9e1703041f543fc8eb18e01d0c35a7, type: 3}
   flags: 208

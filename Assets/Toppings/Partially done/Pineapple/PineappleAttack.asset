@@ -21,5 +21,5 @@ MonoBehaviour:
     volume: 0.5
     clip: {fileID: 0}
   bulletLifetime: 0.2
-  quantity: 10
+  quantity: 3
   spreadAngle: 6.28318531

@@ -8,6 +8,8 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] protected List<Difficulty> difficultyList = new List<Difficulty>();
     public List<Difficulty> DifficultyList { get { return difficultyList; } }
+    [SerializeField] protected List<Batter> batterList = new List<Batter>();
+    public List<Batter> BatterList { get { return batterList; } }
 
     protected static LevelManager _instance;
     public static LevelManager Instance
@@ -120,7 +122,8 @@ public class LevelManager : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
-        } else if (_instance != this)
+        }
+        else if (_instance != this)
         {
             Debug.LogWarning("LevelManager Instance already set!!! Destroying this new one: " + gameObject.name);
             Destroy(gameObject);
@@ -130,7 +133,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Initializing achievements...");
         AchievementsTracker tracker = AchievementsTracker.Instance;
         tracker._encryptData = _encryptData;
-        tracker.MarkLevelAsCompleted(1, 1, false);
+        //tracker.MarkLevelAsCompleted(1, 1, Constants.Batter.None, false); // why was this here?
     }
 
     protected bool _validInstance = true;
@@ -222,7 +225,8 @@ public class LevelManager : MonoBehaviour
         DEAllItemsInventory items = new DEAllItemsInventory("allinventory", allInventory);
         DEIntEntry money = new DEIntEntry("money", Inventory.inventory.Money);
         DEUIntEntry round = new DEUIntEntry("round", roundManager.roundNumber);
-        DEInt2Entry difficulty = new DEInt2Entry("difficulty", DifficultyInfo.difficultyInfo.difficulty.number, DifficultyInfo.difficultyInfo.levelIndex);
+        DEInt2Entry difficulty = new DEInt2Entry("difficulty", DifficultyInfo.difficultyInfo.gameDifficultyParams.Difficulty.number, DifficultyInfo.difficultyInfo.levelIndex);
+        DEIntEntry batter = new DEIntEntry("batter", DifficultyInfo.difficultyInfo.gameDifficultyParams.Batter.index);
 
         // Set the data entries
         saveData.SetDataEntry(towers, true);
@@ -230,6 +234,7 @@ public class LevelManager : MonoBehaviour
         saveData.SetDataEntry(money, true);
         saveData.SetDataEntry(round, true);
         saveData.SetDataEntry(difficulty, true);
+        saveData.SetDataEntry(batter, true);
 
         toppingRegistery.SaveAll(saveData);
 

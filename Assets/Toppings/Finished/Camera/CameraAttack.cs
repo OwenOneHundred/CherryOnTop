@@ -13,13 +13,13 @@ public class CameraAttack : ToppingAttack
     {
         if (topping == null) { topping = toppingObj.transform.root.GetComponentInChildren<ToppingObjectScript>().topping; }
         Attack();
-        SoundEffectManager.sfxmanager.PlayOneShot(attackSound);
         PlayPS();
     }
 
     private void PlayPS()
     {
         toppingObj.transform.root.GetChild(2).GetComponent<ParticleSystem>().Play();
+        SoundEffectManager.sfxmanager.PlayOneShot(attackSound);
     }
 
     private void Attack()

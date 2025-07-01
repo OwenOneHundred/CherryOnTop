@@ -38,6 +38,7 @@ public class CameraControl : MonoBehaviour
 
     public void ApplyCameraShake(float length, float violence = 1)
     {
+        if (length == 0 || violence == 0) { return; }
         if (length < shakeTime - shakeTimer) { return; }
 
         shakeTime = length;

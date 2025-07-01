@@ -17,7 +17,7 @@ public class PoisonEffect : CherryDebuff
 
     public override void OnAdded(GameObject cherry)
     {
-        SoundEffectManager.sfxmanager.PlayOneShot(onAppliedSFX);
+        SoundEffectManager.sfxmanager.TryPlayOneShot(onAppliedSFX);
 
         // Set cherry field to the GameObject cherry argument
         this.cherry = cherry;

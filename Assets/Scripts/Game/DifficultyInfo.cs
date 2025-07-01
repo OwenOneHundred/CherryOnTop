@@ -6,17 +6,20 @@ using UnityEngine.UI;
 
 public class DifficultyInfo : MonoBehaviour
 {
-    [System.NonSerialized] public Difficulty difficulty;
+    [System.NonSerialized] public GameDifficultyParams gameDifficultyParams;
     public static DifficultyInfo difficultyInfo;
     [SerializeField] List<Sprite> measuringCupSprites = new();
     public int levelIndex = 0;
     [SerializeField] Difficulty defaultDifficulty;
+    [SerializeField] Batter defaultBatter;
     void Awake()
     {
+        gameDifficultyParams = new();
         if (difficultyInfo == this || difficultyInfo == null)
         {
             difficultyInfo = this;
-            difficulty = defaultDifficulty;
+            gameDifficultyParams.Batter = defaultBatter;
+            gameDifficultyParams.Difficulty = defaultDifficulty;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -40,22 +43,25 @@ public class DifficultyInfo : MonoBehaviour
     {
         if (scene.name != "LevelSelectScene" && scene.name != "MenuScene")
         {
-            LoadDifficulty(difficulty);
+            SetUpDifficulty();
             UnsubscribeToLoadScene();
         }
     }
 
-    public void LoadDifficulty(Difficulty difficulty = null)
+    public void SetUpDifficulty(GameDifficultyParams incomingParams = null)
     {
-        if (difficulty == null) difficulty = this.difficulty;
-        else this.difficulty = difficulty;
-        FindAnyObjectByType<CherrySpawner>().difficulty = difficulty;
-
+        if (incomingParams != null)
+        {
+            if (incomingParams.Batter == null) { incomingParams.Batter = defaultBatter; }
+            if (incomingParams.Difficulty == null) { incomingParams.Difficulty = defaultDifficulty; }
+            gameDifficultyParams = incomingParams;
+        }
+        
         Image difficultyIcon = GameObject.Find("DifficultyIcon").GetComponent<Image>();
-        difficultyIcon.sprite = measuringCupSprites[difficulty.number - 1];
+        difficultyIcon.sprite = measuringCupSprites[gameDifficultyParams.Difficulty.number - 1];
 
-        difficulty.OnGameStart();
+        gameDifficultyParams.Difficulty.OnGameStart();
 
-        difficulty.batter.OnGameStart();
+        gameDifficultyParams.Batter.OnGameStart();
     }
 }

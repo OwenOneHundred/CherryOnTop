@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7635826562936255635, guid: e1de9132c00da447584f992308220c05, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7635826562936255635, guid: e1de9132c00da447584f992308220c05, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5372e7f38400f4d8cbaee6eb0ff6387d, type: 2}
     - target: {fileID: 919132149155446097, guid: e1de9132c00da447584f992308220c05, type: 3}
       propertyPath: m_Name
-      value: Cherry_2
+      value: DefaultCherry
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e1de9132c00da447584f992308220c05, type: 3}
       propertyPath: m_Layer
@@ -126,6 +126,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2837457780467349543}
   m_SourcePrefab: {fileID: 100100000, guid: e1de9132c00da447584f992308220c05, type: 3}
+--- !u!23 &2483940146065237387 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7635826562936255635, guid: e1de9132c00da447584f992308220c05, type: 3}
+  m_PrefabInstance: {fileID: 3778698575538400998}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4085270106411668407 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e1de9132c00da447584f992308220c05, type: 3}
@@ -157,12 +162,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cherryHealth: 50
-  deathSound:
-    volume: 0.9
-    clip: {fileID: 8300000, guid: 1a721d67063d14f578a286bbadf93210, type: 3}
   onDamagedPS: {fileID: 4970616808093975513, guid: 96a946d776afd4dceaf88dd58fdb973e, type: 3}
   damageNumberPrefab: {fileID: 1117619847005422415, guid: 3646483419b9a4ce7aa9ae6b1b384a68, type: 3}
   spawnDamageNumbers: 0
+  deathAnimation: {fileID: 5304418502988450439, guid: 00ad7ce5c68e94d589bf52e7688d91e0, type: 3}
 --- !u!114 &1015859626595762296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,10 +192,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 0}
   linePositions: []
+  currentTarget: 1
   currentPosition: 0
   currentTrack: 0
   baseSpeed: 1.3
   distanceTraveled: 0
+  startPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &6635548703197320697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,11 +211,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cherrySize: 0
-  cherryType: 0
   cherryHealth: 0
   cherrySpeed: 0
   cherryHitbox: {fileID: 5343877452891195099}
   cherryMovement: {fileID: 3678773368687669692}
+  meshRenderer: {fileID: 2483940146065237387}
+  metalMaterial: {fileID: 2100000, guid: 0f2e6e9759bf24acfa9970df8f3f068e, type: 2}
 --- !u!1 &4988862917418150766 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: e1de9132c00da447584f992308220c05, type: 3}

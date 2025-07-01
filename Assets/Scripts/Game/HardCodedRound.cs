@@ -7,6 +7,7 @@ public class HardCodedRound
 {
     public List<SpecialtyCherryAndChance> specialtyCherries;
     public List<SizeAndChance> sizes;
+    public List<MetalCherry> metalCherries;
     public int round;
     public float timeBetweenCherriesSeconds = 0.2f;
     public int cherryCount;
@@ -38,5 +39,18 @@ public class HardCodedRound
     {
         public CherryTypes.CherrySize size;
         public float chance;
+    }
+
+    [System.Serializable]
+    public class MetalCherry
+    {
+        public SizeAndAmount sizeAndAmount;
+
+        [System.Serializable]
+        public class SizeAndAmount
+        {
+            public CherryTypes.CherrySize size;
+            public int amount;
+        }
     }
 }

@@ -15,5 +15,13 @@ MonoBehaviour:
   cherryAmountScaleValue: 1.19
   cherrySizeScaleValue: 1.23
   number: 3
-  hardCodedRounds: []
-  batter: {fileID: 11400000, guid: 5540b61db41664bb7b8b8a3518e4f5be, type: 2}
+  hardCodedRounds:
+  - specialtyCherries: []
+    sizes: []
+    metalCherries:
+    - sizeAndAmount:
+        size: 1
+        amount: 1
+    round: 26
+    timeBetweenCherriesSeconds: 0.1
+    cherryCount: 0

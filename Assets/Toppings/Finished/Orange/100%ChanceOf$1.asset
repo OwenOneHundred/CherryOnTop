@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e31b6ca4d5542208e97ee137d8f894, type: 3}
   m_Name: 100%ChanceOf$1
   m_EditorClassIdentifier: 
+  triggeredSound:
+    volume: 0.5
+    clip: {fileID: 0}
   amountToChangeMoney: 1
   chanceOfHappening0to1: 1
+  effectToSpawn: {fileID: 2993670778262019103, guid: 79408620fa60c4bd2aca6c4eba920215, type: 3}
+  spawnOnCamera: 1

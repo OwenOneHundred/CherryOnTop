@@ -28,8 +28,7 @@ public class ToppingPlacer : MonoBehaviour
     List<List<Vector3>> trackPoints = new();
 
     CameraControl cameraControl;
-
-    readonly Vector3 checkAreaVerticalOffset = new Vector3(0, 0.02f, 0);
+    readonly Vector3 arbitraryArtificialLift = new Vector3(0, 0.09f, 0);
     public bool PlacingTopping
     {
         get { return placingTopping; }
@@ -130,10 +129,14 @@ public class ToppingPlacer : MonoBehaviour
             mouseIsInSidebar = Input.mousePosition.x > inventoryXPos;
 
             if (!mouseLeftSidebar && !mouseIsInSidebar) { SoundEffectManager.sfxmanager.PlayOneShot(dragOutSound); }
-            
-            if (mouseLeftSidebar && mouseIsInSidebar) { StopPlacingTopping(); yield break; }
 
-            if (!mouseIsInSidebar) { mouseLeftSidebar = true; } 
+            if (mouseLeftSidebar && mouseIsInSidebar)
+            {
+                StopPlacingTopping();
+                yield break;
+            }
+
+            if (!mouseIsInSidebar) { mouseLeftSidebar = true; }
 
             Vector3 cameraPositionWithShake = cameraControl.transform.position;
             cameraControl.transform.position = Vector3.zero; // Holy hack lmao part 1
@@ -162,7 +165,7 @@ public class ToppingPlacer : MonoBehaviour
 
         if (placementValidCheck)
         {
-            PlaceTopping(topping, transparentMeshFilter.transform.position, topping.towerPrefab.transform.rotation, true);
+            yield return StartCoroutine(PlaceTopping(topping, transparentMeshFilter.transform.position, topping.towerPrefab.transform.rotation, true));
         }
         StopPlacingTopping();
     }
@@ -182,7 +185,7 @@ public class ToppingPlacer : MonoBehaviour
         Vector3 localCenterOffset = mesh.bounds.center;
         Vector3 worldCenterOffset = transparentObjectMesh.rotation * Vector3.Scale(localCenterOffset, transparentObjectMesh.lossyScale);
 
-        Vector3 objCenter = cakePos - worldCenterOffset + new Vector3(0, lowestPointOffset, 0);
+        Vector3 objCenter = cakePos - worldCenterOffset + new Vector3(0, lowestPointOffset, 0) + arbitraryArtificialLift;
 
         return objCenter;
     }
@@ -224,12 +227,15 @@ public class ToppingPlacer : MonoBehaviour
 
     private void StopPlacingTopping()
     {
+        transparentObject.SetActive(false);
+
+        if (iconControl == null) { return; } // if the item is placed, the icon is destroyed by the inventory,
+        // so the "StopPlacing" call errors.
         iconControl.StopPlacing();
         iconControl = null;
-        transparentObject.SetActive(false);
     }
 
-    public void PlaceTopping(Topping topping, Vector3 position, Quaternion rotation, bool playSound = false)
+    public IEnumerator PlaceTopping(Topping topping, Vector3 position, Quaternion rotation, bool playSound = false)
     {
         GameObject newToppingObj = Instantiate(topping.towerPrefab, position, rotation); // spawn obj
 
@@ -238,9 +244,6 @@ public class ToppingPlacer : MonoBehaviour
         newToppingObj.GetComponent<ToppingObjectScript>().topping = topping; // set topping on object to be read later
         
         EventBus<TowerPlacedEvent>.Raise(new TowerPlacedEvent(topping, newToppingObj)); // call placed tower event
-        Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 6); // create particle effect
-
-        if (playSound) { SoundEffectManager.sfxmanager.PlayOneShot(placeSound); }
         
         topping.SetGameObjectOnEffects(newToppingObj);
         topping.RegisterEffects(newToppingObj);
@@ -248,6 +251,26 @@ public class ToppingPlacer : MonoBehaviour
         Inventory.inventory.RemoveItemByID(topping.ID); // remove from inventory
 
         newToppingObj.GetComponentInChildren<ToppingObjInteractions>().OnPlacedFromInventory();
+
+        yield return StartCoroutine(PlaceToppingAnimation(playSound, position, newToppingObj));
+    }
+
+    private IEnumerator PlaceToppingAnimation(bool playSound, Vector3 position, GameObject newToppingObj)
+    {
+        float fallDistance = 1.25f;
+        float fallSpeed = 15f;
+        Vector3 topPosition = position + new Vector3(0, fallDistance, 0);
+        newToppingObj.transform.position = topPosition;
+        while (newToppingObj.transform.position.y > position.y)
+        {
+            newToppingObj.transform.position -= new Vector3(0, fallSpeed * Time.deltaTime, 0);
+            yield return null;
+        }
+        newToppingObj.transform.position = position;
+
+        Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 5); // create particle effect
+
+        if (playSound) { SoundEffectManager.sfxmanager.PlayOneShot(placeSound); }
     }
 
     public void PlaceToppingViaLoad(Topping topping, Vector3 position, Quaternion rotation)

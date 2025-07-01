@@ -1544,6 +1544,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c433ba82f6e554a9b9dffeb5dff12ae2, type: 2}
   - {fileID: 11400000, guid: 729bc5f0f3af6419987126270cd8e23c, type: 2}
   - {fileID: 11400000, guid: bbc97536c7563469286dd2393055eb0e, type: 2}
+  batterList: []
   _encryptData: 0
 --- !u!1 &1975875662208499667
 GameObject:
@@ -1796,7 +1797,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aac752fa2360c40efa7b0f59ab189fa7, type: 2}
   - {fileID: 11400000, guid: 3e0ad8fdbfdaf4fd8a8f254ae88867c1, type: 2}
   - {fileID: 11400000, guid: 6ff2c491db4744e26b06477d3f38ec57, type: 2}
-  - {fileID: 11400000, guid: d9067dbf9b6dd4062bdf28e4a0376b06, type: 2}
   - {fileID: 11400000, guid: 0ce4de383c30c46d39d7c8a1ff38e9fc, type: 2}
   - {fileID: 11400000, guid: 948a41667ff104a3abb8d512f4ace65d, type: 2}
   - {fileID: 11400000, guid: 8ab36e68da999477ab33ff8f629f7968, type: 2}
@@ -1844,6 +1844,7 @@ MonoBehaviour:
   rerollsText: {fileID: 4060922254059177220}
   rerollButtonText: {fileID: 4712727569409509211}
   rerollButton: {fileID: 2698525333416134776}
+  sellParticleEffect: {fileID: 141433446842962269, guid: f080aa3c8d28744bf8cfe78db72a8133, type: 3}
   shopObjs: []
   rerollPrice: 3
   error:
@@ -2165,7 +2166,9 @@ MonoBehaviour:
   slowDownSound:
     volume: 0.2
     clip: {fileID: 8300000, guid: 9ff77b82e23a34275b8cdd5d62a54bef, type: 3}
-  settingsManager: {fileID: 3891339781705546562}
+  settingsManager: {fileID: 4907000284605429660}
+  tutorial: {fileID: 4215666401715418652, guid: ef1d99b4dd68f42eea4b2bd87eb99bfb, type: 3}
+  DEBUG_ForceTutorial: 0
   speedUpButtonUntoggled: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
   speedUpButtonToggled: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 1}
   speedUpButton: {fileID: 6110504044283116686}
@@ -2237,7 +2240,7 @@ MonoBehaviour:
   dragOutSound:
     volume: 0.5
     clip: {fileID: 8300000, guid: 94559303172804f93a531cfb142f5873, type: 3}
-  toppingPlaceEffect: {fileID: 7649228073842828853, guid: df90ad80c9e3b442d9558e2588fbf510, type: 3}
+  toppingPlaceEffect: {fileID: 6289165443263051929, guid: 1d18bb9d7fdcd4deeaa233905d21b751, type: 3}
 --- !u!114 &3727381933882899095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4037,7 +4040,7 @@ GameObject:
   - component: {fileID: 1209990546140157373}
   m_Layer: 5
   m_Name: ShopButton
-  m_TagString: Untagged
+  m_TagString: ShopButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4802,7 +4805,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3891339781705546562}
+      - m_Target: {fileID: 4907000284605429660}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: Open
         m_Mode: 1
@@ -9011,7 +9014,7 @@ GameObject:
   - component: {fileID: 7819553094747528872}
   m_Layer: 5
   m_Name: Start
-  m_TagString: Untagged
+  m_TagString: StartButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9690,6 +9693,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5964487472042778191}
     m_Modifications:
+    - target: {fileID: 491343323220504232, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 927711264437610271, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1461601384100657347, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_Transition
       value: 1
@@ -9770,6 +9781,10 @@ PrefabInstance:
       propertyPath: m_Colors.m_HighlightedColor.r
       value: 0.745283
       objectReference: {fileID: 0}
+    - target: {fileID: 2073157387769881426, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2333696763320562053, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -9825,7 +9840,7 @@ PrefabInstance:
     - target: {fileID: 2516482913335788729, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3891339781705546562}
+      objectReference: {fileID: 0}
     - target: {fileID: 2516482913335788729, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -9860,7 +9875,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3181088761205223646, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210168228344214014, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4987531159127680303, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_AnchorMax.y
@@ -9946,6 +9965,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8698463570368859350, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -9959,9 +9982,9 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1865907195600238655, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
   m_PrefabInstance: {fileID: 3219614700241806385}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3891339781705546562 stripped
+--- !u!114 &4907000284605429660 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1922630672379174771, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7545627520338252717, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
   m_PrefabInstance: {fileID: 3219614700241806385}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

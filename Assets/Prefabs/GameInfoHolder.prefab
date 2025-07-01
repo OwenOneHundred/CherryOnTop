@@ -51,3 +51,4 @@ MonoBehaviour:
   - {fileID: 1332639641, guid: 5589914acbf944b70bfdb3247f259898, type: 3}
   levelIndex: 0
   defaultDifficulty: {fileID: 11400000, guid: 9e1ce81bba6bc4b5d81e13e4ab145df3, type: 2}
+  defaultBatter: {fileID: 11400000, guid: 5540b61db41664bb7b8b8a3518e4f5be, type: 2}

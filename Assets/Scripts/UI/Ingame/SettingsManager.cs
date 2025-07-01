@@ -11,7 +11,7 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] GameObject settingsMenuGameObject;
     [SerializeField] Vector2 volumeRange;
 
-    void Start()
+    void Awake()
     {
         OnStart();
     }

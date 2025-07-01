@@ -28,16 +28,13 @@ public class LoadButton : MonoBehaviour
         playButton.onClick.AddListener(PlayGame);
     }
 
-    void PlayGame()
+    void PlayGame() // called when load game button pressed
     {
         SceneManager.sceneLoaded += LoadSceneData;
         TransitionManager.transitionManager.LoadScene(sceneName);
-
-        //DifficultyInfo.difficultyInfo.difficulty = GetDifficultyValue();
-        //DifficultyInfo.difficultyInfo.levelIndex = levelIndex;
     }
 
-    public void LoadSceneData(Scene scene, LoadSceneMode loadSceneMode)
+    public void LoadSceneData(Scene scene, LoadSceneMode loadSceneMode) // called when new scene is loaded for load game
     {
         SceneManager.sceneLoaded -= LoadSceneData;
         if (SaveDataUtility.GetSaveFileNameIfExists(scene.name, out string saveFilePath, out string saveFileName))
@@ -45,16 +42,20 @@ public class LoadButton : MonoBehaviour
             LevelManager.levelWasLoadedFromSave = true;
             LevelManager.Instance.Initialize(scene.name, true);
             LevelManager.Instance.LoadLevel();
-            Difficulty diffObj = null;
+            GameDifficultyParams gameDifficultyParams = new();
             if (LevelManager.Instance.saveData.TryGetDataEntry("difficulty", out DEInt2Entry difficulty))
             {
-                diffObj = LevelManager.Instance.DifficultyList.Find(d => d.number == difficulty.value1);
+                gameDifficultyParams.Difficulty = LevelManager.Instance.DifficultyList.Find(d => d.number == difficulty.value1);
             }
-            DifficultyInfo.difficultyInfo.LoadDifficulty(diffObj);
-            //DifficultyInfo.difficultyInfo.LoadDifficulty()
+            if (LevelManager.Instance.saveData.TryGetDataEntry("batter", out DEInt2Entry batter))
+            {
+                gameDifficultyParams.Batter = LevelManager.Instance.BatterList.Find(b => b.index == batter.value1);
+            }
+
+            DifficultyInfo.difficultyInfo.SetUpDifficulty(gameDifficultyParams);
         } else
         {
-            DifficultyInfo.difficultyInfo.LoadDifficulty();
+            DifficultyInfo.difficultyInfo.SetUpDifficulty();
         }
     }
 }

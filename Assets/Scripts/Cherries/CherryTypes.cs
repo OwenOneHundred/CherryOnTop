@@ -4,17 +4,31 @@ using UnityEngine;
 public class CherryTypes : MonoBehaviour
 {
     public CherrySize cherrySize = CherrySize.Normal;
-    public float cherryHealth;
-    public float cherrySpeed;
     public CherryHitbox cherryHitbox;
     public CherryMovement cherryMovement;
+    [SerializeField] MeshRenderer meshRenderer;
+
+    public bool IsMetal
+    {
+        get { return _isMetal; }
+        set
+        {
+            _isMetal = value;
+            if (value)
+            {
+                meshRenderer.sharedMaterial = metalMaterial;
+                cherryHitbox.cherryHealth *= 100;
+            }
+        }
+    }
+    bool _isMetal = false;
+
+    [SerializeField] Material metalMaterial;
 
     public void Awake()
     {
         cherryHitbox = GetComponent<CherryHitbox>();
         cherryMovement = GetComponent<CherryMovement>();
-        cherryHealth = cherryHitbox.cherryHealth;
-        cherrySpeed = cherryMovement.baseSpeed;
     }
 
     public enum CherrySize
@@ -22,7 +36,8 @@ public class CherryTypes : MonoBehaviour
         Small = 0,
         Normal = 1,
         Large = 2,
-        SuperLarge = 3
+        SuperLarge = 3,
+        None = 999
     }
 
     // Sets Cherry Health and Speed based on a cherry's given size

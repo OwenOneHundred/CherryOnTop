@@ -49,7 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPlaced: []
   onSell: []
-  topping: {fileID: 0}
 --- !u!114 &3219388457440055397
 MonoBehaviour:
   m_ObjectHideFlags: 0

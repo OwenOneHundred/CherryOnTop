@@ -8,7 +8,17 @@ public class BouncingProjectile : Projectile
     List<CherryHitbox> hitCherries = new List<CherryHitbox>();
     [SerializeField] float reboundVelocity = 10;
     [SerializeField] int maxBounces = 3;
+    [SerializeField] bool randomRotation = false;
+    [SerializeField] float randomSpinSpeed = 0;
     int bounces = 0;
+    public void Start()
+    {
+        rb.rotation = randomRotation ? Random.rotation : Quaternion.identity;
+
+        rb.angularVelocity =
+            new Vector2(Random.Range(-randomSpinSpeed, randomSpinSpeed), Random.Range(-randomSpinSpeed, randomSpinSpeed));
+    }
+
     public override void OnHitCherry(CherryHitbox ch)
     {
         if (bounces >= maxBounces) { return; }

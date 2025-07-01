@@ -9,6 +9,8 @@ TagManager:
   - AudioManager
   - InfoPanel
   - IngameUI
+  - StartButton
+  - ShopButton
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - 
   - Placeable
   - 
-  - 
+  - VFX
   - Topping
   - EffectRadius
   - 

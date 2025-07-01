@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Poison
   m_EditorClassIdentifier: 
   movementSpeedMultiplier: 0.9
+  canResultInNegativeTimesNegativeSpeed: 0
   typesThatGetDamageMultiplier: 0
   damageMultiplier: 1
   debuffType: 4
   dps: 4
   effectDuration: 4
   onAppliedSFX:
-    volume: 0.25
-    clip: {fileID: 8300000, guid: 30842a2ca05ae4275a5af8f740c5bce2, type: 3}
+    volume: 0.15
+    clip: {fileID: 0}
   poisonParticleSystemPrefab: {fileID: 8237643331648977366, guid: 513b3fd3fe193fb45bc10485188a2985, type: 3}

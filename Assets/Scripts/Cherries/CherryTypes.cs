@@ -17,7 +17,7 @@ public class CherryTypes : MonoBehaviour
             if (value)
             {
                 meshRenderer.sharedMaterial = metalMaterial;
-                cherryHitbox.cherryHealth *= 100;
+                cherryHitbox.cherryHealth *= 120;
             }
         }
     }

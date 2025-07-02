@@ -1438,6 +1438,9 @@ MonoBehaviour:
   shop: {fileID: 8966158542567257680}
   savingEnabled: 1
   winPanel: {fileID: 3739372307839502837}
+  startButtonSound:
+    volume: 0.3
+    clip: {fileID: 8300000, guid: 857d5241d09de4517a5bd8f67aef2c89, type: 3}
 --- !u!114 &8392582136422224834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1860,6 +1863,9 @@ MonoBehaviour:
   rerollSound:
     volume: 0.25
     clip: {fileID: 8300000, guid: 03f382c3b6f5b4f43bfc892e8ba009fb, type: 3}
+  shopButtonSound:
+    volume: 0.3
+    clip: {fileID: 8300000, guid: 857d5241d09de4517a5bd8f67aef2c89, type: 3}
   onRollRare:
     volume: 0.75
     clip: {fileID: 8300000, guid: f2af97ffae28d4641ab1b35c86cb5f9a, type: 3}
@@ -2169,8 +2175,14 @@ MonoBehaviour:
   settingsManager: {fileID: 4907000284605429660}
   tutorial: {fileID: 4215666401715418652, guid: ef1d99b4dd68f42eea4b2bd87eb99bfb, type: 3}
   startButtonLock: {fileID: 2739173205566515212}
+  speedUpButtonClickSound:
+    volume: 0.5
+    clip: {fileID: 8300000, guid: 857d5241d09de4517a5bd8f67aef2c89, type: 3}
   lockedLock: {fileID: -927851725, guid: 564a572e7b486452ea4ce7d9f4083569, type: 3}
   unlockedLock: {fileID: 222589515, guid: 12315a2b845954c8ead35ddc89093a1b, type: 3}
+  lockSound:
+    volume: 0.25
+    clip: {fileID: 8300000, guid: 8311db1812350418bb660eafc6028a54, type: 3}
   StartIsLocked: 0
   DEBUG_ForceTutorial: 0
   speedUpButtonUntoggled: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
@@ -4642,7 +4654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.995283, b: 0.995283, a: 1}
+  m_Color: {r: 0.65, g: 0.65, b: 0.65, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4729,7 +4741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0.509434, g: 0.12255251, b: 0.3455011, a: 1}
   m_EffectDistance: {x: 3, y: -3}
-  m_UseGraphicAlpha: 1
+  m_UseGraphicAlpha: 0
 --- !u!1 &4606226220186703218
 GameObject:
   m_ObjectHideFlags: 0
@@ -5254,6 +5266,12 @@ MonoBehaviour:
   - {fileID: 354765984179434795}
   specialInfo: {fileID: 1995774571235025260}
   backIcon: {fileID: 9205639168691355494}
+  infoButtonSound:
+    volume: 0.3
+    clip: {fileID: 8300000, guid: 857d5241d09de4517a5bd8f67aef2c89, type: 3}
+  selectToppingSound:
+    volume: 0.5
+    clip: {fileID: 8300000, guid: 617b7aa36c630453abeb1286835094c1, type: 3}
   hovered: 0
 --- !u!1 &4927674824071269334
 GameObject:

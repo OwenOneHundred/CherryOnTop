@@ -5,6 +5,11 @@ public class WinAnimationController : MonoBehaviour
 {
     [SerializeField] GameObject youWinUI;
     [SerializeField] float waitTime;
+
+    void Start()
+    {
+        PlayWinAnimation();
+    }
     public void PlayWinAnimation()
     {
         StartCoroutine(WinAnimation());

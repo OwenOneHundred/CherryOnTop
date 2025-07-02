@@ -13,9 +13,11 @@ public class IngameUI : MonoBehaviour
     [SerializeField] SettingsManager settingsManager;
     [SerializeField] GameObject tutorial;
     [SerializeField] Button startButtonLock;
+    [SerializeField] AudioFile speedUpButtonClickSound;
     Image startButtonLockImage;
     [SerializeField] Sprite lockedLock;
     [SerializeField] Sprite unlockedLock;
+    [SerializeField] AudioFile lockSound;
     public bool StartIsLocked = false;
     [SerializeField] bool DEBUG_ForceTutorial = false;
 
@@ -61,6 +63,7 @@ public class IngameUI : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI speedUpButtonText;
     public void PressSpeedUpButton()
     {
+        SoundEffectManager.sfxmanager.PlayOneShot(speedUpButtonClickSound);
         if (speedupToggled)
         {
             Time.timeScale = 1f;
@@ -80,7 +83,18 @@ public class IngameUI : MonoBehaviour
     {
         StartIsLocked = !StartIsLocked;
 
-        startButtonLockImage.sprite = StartIsLocked ? lockedLock : unlockedLock;
+        if (StartIsLocked)
+        {
+            startButtonLockImage.sprite = lockedLock;
+            SoundEffectManager.sfxmanager.PlayOneShotWithPitch(lockSound, 0.75f);
+            startButtonLockImage.color = Color.white;
+        }
+        else
+        {
+            startButtonLockImage.sprite = unlockedLock;
+            SoundEffectManager.sfxmanager.PlayOneShotWithPitch(lockSound, 1.25f);
+            startButtonLockImage.color = new Color(0.65f, 0.65f, 0.65f, 1);
+        }
     }
 
     public void DisableLock()

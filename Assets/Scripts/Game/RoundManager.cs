@@ -21,6 +21,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] Shop shop;
     [SerializeField] bool savingEnabled = true;
     [SerializeField] GameObject winPanel;
+    [SerializeField] AudioFile startButtonSound;
     CherrySpawner cherrySpawner;
 
     LevelManager _levelManager;
@@ -94,6 +95,8 @@ public class RoundManager : MonoBehaviour
 
         GameObject.FindAnyObjectByType<CherrySpawner>().OnRoundStart();
         shop.OnRoundEnd();
+
+        SoundEffectManager.sfxmanager.PlayOneShot(startButtonSound);
     }
 
     public void EndRound() // called by OnCherryKilled when last cherry dies

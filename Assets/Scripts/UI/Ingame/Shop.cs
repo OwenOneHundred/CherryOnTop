@@ -43,6 +43,7 @@ public class Shop : MonoBehaviour
     [SerializeField] AudioFile openShop;
     [SerializeField] AudioFile closeShop;
     [SerializeField] AudioFile rerollSound;
+    [SerializeField] AudioFile shopButtonSound;
     public AudioFile onRollRare;
     public InfoPopup infoPopup; // shop probably shouldn't have this but it needs to be cached so whatever
 
@@ -86,6 +87,7 @@ public class Shop : MonoBehaviour
             if (moving) { return; }
 
             SoundEffectManager.sfxmanager.PlayOneShot(!open ? openShop : closeShop);
+            //SoundEffectManager.sfxmanager.PlayOneShot(shopButtonSound);
 
             open = value;
             moving = true;

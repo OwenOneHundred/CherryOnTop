@@ -22,7 +22,7 @@ public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public void OnPlacedFromInventory()
     {
-        OnClicked();
+        OnClicked(false);
     }
 
     private void Update()
@@ -47,11 +47,11 @@ public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPoin
         }
     }
 
-    private void OnClicked()
+    private void OnClicked(bool playSound = true)
     {
         if (selected) { return; }
         selected = true;
-        SetUpPopupMenu();
+        SetUpPopupMenu(playSound);
         SetUpRadiusCircle();
     }
 
@@ -63,9 +63,9 @@ public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPoin
         ClearInfoPopup();
     }
 
-    private void SetUpPopupMenu()
+    private void SetUpPopupMenu(bool playSound = true)
     {
-        infoPopup.SetUp(GetComponentInParent<ToppingObjectScript>().topping, gameObject.transform.root.gameObject);
+        infoPopup.SetUp(GetComponentInParent<ToppingObjectScript>().topping, gameObject.transform.root.gameObject, playSound);
     }
 
     private void SetUpRadiusCircle()

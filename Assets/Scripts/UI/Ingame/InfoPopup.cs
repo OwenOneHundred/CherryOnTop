@@ -17,6 +17,8 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     [SerializeField] List<TMPro.TextMeshProUGUI> stats;
     [SerializeField] TMPro.TextMeshProUGUI specialInfo;
     [SerializeField] Image backIcon;
+    [SerializeField] AudioFile infoButtonSound;
+    [SerializeField] AudioFile selectToppingSound;
     EventSystem eventSystem;
     public bool hovered = false;
     Item item;
@@ -68,7 +70,7 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Clear();
     }
 
-    public void SetUp(Item item, GameObject toppingObj)
+    public void SetUp(Item item, GameObject toppingObj, bool playSound = true)
     {
         isInventoryItem = false;
         this.item = item;
@@ -77,6 +79,8 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {
             toppingType.text = ToTitleCase(topping.flags.ToString());
         }
+
+        if (playSound) { SoundEffectManager.sfxmanager.PlayOneShot(selectToppingSound); }
 
         nameText.text = item.name;
         description.text = item.description;
@@ -95,6 +99,8 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {
             toppingType.text = ToTitleCase(topping.flags.ToString());
         }
+
+        SoundEffectManager.sfxmanager.PlayOneShot(selectToppingSound);
 
         nameText.text = item.name;
         description.text = item.description;
@@ -122,6 +128,8 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnClickI()
     {
+        SoundEffectManager.sfxmanager.PlayOneShot(infoButtonSound);
+
         Flipped = !Flipped;
     }
 

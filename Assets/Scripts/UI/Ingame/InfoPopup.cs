@@ -139,16 +139,16 @@ public class InfoPopup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 if (toppingObj == null) // there's an attack on the object, but it's in your inventory
                 {
                     stats[0].text = "Damage: " + attackManager.attackTemplate.GetVisibleDamage();
-                    stats[1].text = "Cooldown: " + attackManager.attackTemplate.cooldown;
-                    stats[2].text = "Range: " + attackManager.GetComponent<TargetingSystem>().GetRange();
+                    stats[1].text = "Cooldown: " + attackManager.attackTemplate.cooldown.ToString("F2");
+                    stats[2].text = "Range: " + attackManager.GetComponent<TargetingSystem>().GetRange().ToString("F2");
                     stats[3].text = "Pierce: " + attackManager.attackTemplate.GetPierce();
                     stats[4].text = "Cake Points: " + topping.cakePoints;
                 }
                 else // there's an attack on the object, and it's placed on the cake
                 {
                     stats[0].text = "Damage: " + attackManager.GetAttack().GetVisibleDamage();
-                    stats[1].text = "Cooldown: " + attackManager.GetAttack().cooldown;
-                    stats[2].text = "Range: " + attackManager.GetComponent<TargetingSystem>().GetRange();
+                    stats[1].text = "Cooldown: " + attackManager.GetAttack().cooldown.ToString("F2");
+                    stats[2].text = "Range: " + attackManager.GetComponent<TargetingSystem>().GetRange().ToString("F2");
                     stats[3].text = "Pierce: " + attackManager.GetAttack().GetPierce();
                     stats[4].text = "Cake Points: " + topping.cakePoints;
                 }

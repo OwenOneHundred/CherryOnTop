@@ -24,7 +24,7 @@ public class Topping : Item
         for (int i = 0; i < effectsAndWhen.Count; i++)
         {
             for (int j = 0; j < effectsAndWhen[i].effectSOs.Count; j++)
-            {   
+            {
                 effectsAndWhen[i].effectSOs[j].toppingObj = obj;
             }
         }
@@ -35,7 +35,7 @@ public class Topping : Item
         }
 
         for (int i = 0; i < onKillCherry.Count; i++)
-        {   
+        {
             onKillCherry[i].toppingObj = obj;
         }
     }

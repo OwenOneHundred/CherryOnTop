@@ -2168,6 +2168,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 9ff77b82e23a34275b8cdd5d62a54bef, type: 3}
   settingsManager: {fileID: 4907000284605429660}
   tutorial: {fileID: 4215666401715418652, guid: ef1d99b4dd68f42eea4b2bd87eb99bfb, type: 3}
+  startButtonLock: {fileID: 2739173205566515212}
+  lockedLock: {fileID: -927851725, guid: 564a572e7b486452ea4ce7d9f4083569, type: 3}
+  unlockedLock: {fileID: 222589515, guid: 12315a2b845954c8ead35ddc89093a1b, type: 3}
+  StartIsLocked: 0
   DEBUG_ForceTutorial: 0
   speedUpButtonUntoggled: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
   speedUpButtonToggled: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 1}
@@ -4597,7 +4601,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &815439328789325892
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4645,7 +4649,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -579572718, guid: f70ebbebc222045cf8029f596ec41465, type: 3}
+  m_Sprite: {fileID: 222589515, guid: 12315a2b845954c8ead35ddc89093a1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4676,10 +4680,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.8235294}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -4698,7 +4702,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7356318307029695688}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5165441279755291159}
+        m_TargetAssemblyTypeName: IngameUI, Assembly-CSharp
+        m_MethodName: OnLockClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5595710179110145875
 MonoBehaviour:
   m_ObjectHideFlags: 0

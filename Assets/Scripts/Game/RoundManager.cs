@@ -74,7 +74,7 @@ public class RoundManager : MonoBehaviour
         levelManager.SaveLevel();
     }
 
-    public void StartNextRound() // called by start round button
+    public void StartNextRound() // called by start round button and if start locked
     {
         if (savingEnabled)
         {
@@ -122,6 +122,11 @@ public class RoundManager : MonoBehaviour
         {
             OnPlayerWins();
             return;
+        }
+
+        if (ingameUI.StartIsLocked)
+        {
+            StartNextRound();
         }
     }
 

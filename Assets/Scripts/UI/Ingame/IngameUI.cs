@@ -12,6 +12,11 @@ public class IngameUI : MonoBehaviour
     [SerializeField] AudioFile slowDownSound;
     [SerializeField] SettingsManager settingsManager;
     [SerializeField] GameObject tutorial;
+    [SerializeField] Button startButtonLock;
+    Image startButtonLockImage;
+    [SerializeField] Sprite lockedLock;
+    [SerializeField] Sprite unlockedLock;
+    public bool StartIsLocked = false;
     [SerializeField] bool DEBUG_ForceTutorial = false;
 
     void Start()
@@ -22,6 +27,8 @@ public class IngameUI : MonoBehaviour
         {
             Instantiate(tutorial);
         }
+
+        startButtonLockImage = startButtonLock.GetComponent<Image>();
     }
 
     public void SetMoney(int money)
@@ -47,7 +54,7 @@ public class IngameUI : MonoBehaviour
         goalRoundText.text = "by round " + roundNumber;
     }
 
-    bool speedupToggled = false; 
+    bool speedupToggled = false;
     [SerializeField] Color speedUpButtonUntoggled;
     [SerializeField] Color speedUpButtonToggled;
     [SerializeField] Image speedUpButton;
@@ -68,4 +75,23 @@ public class IngameUI : MonoBehaviour
         speedUpButton.color = speedupToggled ? speedUpButtonToggled : speedUpButtonUntoggled;
         speedUpButtonText.text = speedupToggled ? "2x" : "1x";
     }
+
+    public void OnLockClicked()
+    {
+        StartIsLocked = !StartIsLocked;
+
+        startButtonLockImage.sprite = StartIsLocked ? lockedLock : unlockedLock;
+    }
+
+    public void DisableLock()
+    {
+        startButtonLock.interactable = false;
+    }
+
+    public void EnableLock()
+    {
+        startButtonLock.interactable = true;
+    }
+
+
 }

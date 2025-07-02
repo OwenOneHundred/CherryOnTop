@@ -20,6 +20,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] IngameUI ingameUI;
     [SerializeField] Shop shop;
     [SerializeField] bool savingEnabled = true;
+    [SerializeField] GameObject winPanel;
     CherrySpawner cherrySpawner;
 
     LevelManager _levelManager;
@@ -141,7 +142,7 @@ public class RoundManager : MonoBehaviour
 
     public void OnPlayerWins()
     {
-        ingameUI.transform.Find("WinPanel").GetChild(0).gameObject.SetActive(true);
+        winPanel.SetActive(true);
         AchievementsTracker.Instance.MarkLevelAsCompleted(
             DifficultyInfo.difficultyInfo.levelIndex,
             DifficultyInfo.difficultyInfo.gameDifficultyParams.Difficulty.number,

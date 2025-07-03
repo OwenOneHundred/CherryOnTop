@@ -5,7 +5,7 @@ public class PineappleAttack : ProjectileAttack
 {
     [SerializeField] int numberOfBullets = 8;
     [SerializeField] float bulletOffsetFromCenter = 0.5f;
-    [SerializeField] float heightOffset = 0.4f;
+    [SerializeField] float heightOffset = -0.4f;
 
     public override void OnCycle(GameObject targetedCherry)
     {

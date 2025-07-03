@@ -12,17 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Basket
   m_EditorClassIdentifier: 
-  price: 5
+  price: 6
   shopSprite: {fileID: 220325972, guid: c1ef7f7f883324105ba4cf05570bbef6, type: 3}
-  effectsAndWhen: []
+  effectsAndWhen:
+  - effectSOs:
+    - {fileID: 11400000, guid: 0983ef93e51c647f7be4170266abadd7, type: 2}
+    eventSOs:
+    - {fileID: 11400000, guid: 21a2b2029de304a2e9b962c8cd1956a1, type: 2}
   description: Throw apples at cherries. At the end of each round, sell all nearby
-    fruit and gain 10% faster attack speed for each fruit sold.
-  rarity: 1
+    fruit and gain 15% faster attack speed for each fruit sold.
+  rarity: 2
   towerPrefab: {fileID: 3656761891722631670, guid: db5ccc8ae1f4344cfba1ae72b2d59f0e, type: 3}
-  flags: 0
-  specialInfoText: 
+  flags: 64
+  specialInfoText: 'Total sold: [Triggers]'
   cakePoints: 10
   onHitCherry: []
   onKillCherry: []
   moneyGained: 0
-  triggersCount: 0
+  TriggersCount: 0

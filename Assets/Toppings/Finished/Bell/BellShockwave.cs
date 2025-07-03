@@ -25,7 +25,7 @@ public class BellShockwave : ShockwaveAttack
         }
         cooldown = newCooldown;
         if (topping == null) { topping = toppingFirePointObj.transform.root.GetComponent<ToppingObjectScript>().topping; }
-        topping.triggersCount = itemCount;
+        topping.TriggersCount = itemCount;
     }
 
     public override void OnCycle(GameObject targetedCherry)

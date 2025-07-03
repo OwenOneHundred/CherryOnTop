@@ -15,7 +15,7 @@ public class VaultAttack : SimpleAttack
             baseAttackCooldown = attackManager.GetAttackCooldown();
         }
         
-        float newCooldown = baseAttackCooldown * Mathf.Pow(1 - reductionAmount, Item.highestSellPrice);
+        float newCooldown = baseAttackCooldown * Mathf.Pow(1 - reductionAmount, Item.HighestSellPrice);
         attackManager.SetAttackCooldown(newCooldown < 0.001f ? 0.001f : newCooldown);
     }
 }

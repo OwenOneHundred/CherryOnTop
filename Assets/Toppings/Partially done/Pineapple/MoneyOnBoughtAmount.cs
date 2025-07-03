@@ -12,7 +12,7 @@ public class MoneyOnBoughtAmount : EffectSO
         {
             Inventory.inventory.Money += moneyAmount;
             GetTopping().moneyGained += moneyAmount;
-            GetTopping().triggersCount += 1;
+            GetTopping().TriggersCount += 1;
         }
     }
 }

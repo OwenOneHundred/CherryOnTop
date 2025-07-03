@@ -19,7 +19,7 @@ public class OnBuyConsecutiveDifferentToppings : EffectSO
             if (!CheckIfAllToppingsDifferent())
             {
                 recentToppings.Clear();
-                topping.triggersCount = 0;
+                topping.TriggersCount = 0;
                 return;
             }
 
@@ -35,11 +35,11 @@ public class OnBuyConsecutiveDifferentToppings : EffectSO
 
                 recentToppings.Clear();
 
-                topping.triggersCount = 0;
+                topping.TriggersCount = 0;
             }
             else
             {
-                topping.triggersCount += 1;
+                topping.TriggersCount += 1;
             }
         }
     }

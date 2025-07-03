@@ -18,8 +18,8 @@ public class SellNearbyToppingsAndGetCoal : EffectSO
             if (collider.transform.root.TryGetComponent(out ToppingObjectScript toppingObjectScript))
             {
                 totalSellPrice += toppingObjectScript.topping.SellPrice;
-                Debug.Log(toppingObjectScript.topping.name + " sells for " + toppingObjectScript.topping.SellPrice);
                 Shop.shop.SellItemOffCake(toppingObjectScript.topping, toppingObjectScript.transform.root.gameObject);
+                toppingObjectScript.topping.TriggersCount += 1;
             }
         }
         int totalCoal = totalSellPrice / coalForEach;

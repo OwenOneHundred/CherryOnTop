@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 185edccc8af0a488eb94909f3c55cc5e, type: 3}
+  m_Name: BasketAttack
+  m_EditorClassIdentifier: 
+  cooldown: 1.1
+  damage: 0
+  debuffs: []
+  projectile: {fileID: 1373519935423302513, guid: 0e95ca6891ee04f2a94d0059c85e640c, type: 3}
+  projectileSpeed: 0
+  fireSound:
+    volume: 0.5
+    clip: {fileID: 0}
+  bulletLifetime: 8
+  reductionAmount: 0.15

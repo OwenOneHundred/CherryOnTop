@@ -71,9 +71,9 @@ public class Topping : Item
     }
 
     public int moneyGained = 0;
-    public int triggersCount = 0;
+    public int TriggersCount = 0;
     public string GetSpecialInfo()
     {
-        return specialInfoText.Replace("[Money]", moneyGained + "").Replace("[Triggers]", triggersCount + "");
+        return specialInfoText.Replace("[Money]", moneyGained + "").Replace("[Triggers]", TriggersCount + "");
     }
 }

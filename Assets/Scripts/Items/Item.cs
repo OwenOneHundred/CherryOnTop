@@ -141,10 +141,10 @@ public abstract class Item : ScriptableObject
             UpdateHighestSellPrice();
         }
     }
-    public static int highestSellPrice = -1;
+    public static int HighestSellPrice = -1;
     public void UpdateHighestSellPrice()
     {
         if (sellPrice == -1) { sellPrice = price / 2; }
-        if (sellPrice > highestSellPrice) { highestSellPrice = sellPrice; }
+        if (sellPrice > HighestSellPrice) { HighestSellPrice = sellPrice; }
     }
 }

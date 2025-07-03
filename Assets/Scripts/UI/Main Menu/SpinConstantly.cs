@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class SpinConstantly : MonoBehaviour
 {
-    [SerializeField] float spinSpeed = 1;
+    [SerializeField] Vector3 spinSpeed;
 
-    private void FixedUpdate()
+    private void Update()
     {
-        // Rotate the object around the Y axis
-        transform.Rotate(Vector3.up, spinSpeed);
+        transform.Rotate(spinSpeed * Time.deltaTime);
     }
 }

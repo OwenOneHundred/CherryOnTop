@@ -19,7 +19,7 @@ public class ReactiveAttack : ProjectileAttack
     private bool attackSuccessful = false;
 
     public override void OnStart() {
-        Debug.Log("Reactive attack with a cooldown of " + this.cooldown + " seconds assigned to topping " + this.toppingObj.name + ".");
+        Debug.Log("Reactive attack with a cooldown of " + this.cooldown + " seconds assigned to topping " + this.toppingFirePointObj.name + ".");
     }
 
     public override void OnNewCherryFound(GameObject newTargetedCherry) {
@@ -29,8 +29,8 @@ public class ReactiveAttack : ProjectileAttack
     public override void OnCycle(GameObject targetedCherry) {
         if (!attackSuccessful) {
             for (int i = 0; i < burstQuantity; i++) {
-                this.toppingObj.GetComponent<AttackManager>().StartCoroutine(DelayedAttack(targetedCherry, i * firingDelay));
-                this.toppingObj.GetComponent<TargetingSystem>().AddTargetedCherry(targetedCherry);
+                this.toppingFirePointObj.GetComponent<AttackManager>().StartCoroutine(DelayedAttack(targetedCherry, i * firingDelay));
+                this.toppingFirePointObj.GetComponent<TargetingSystem>().AddTargetedCherry(targetedCherry);
             }
             attackSuccessful = true;
         }
@@ -41,7 +41,7 @@ public class ReactiveAttack : ProjectileAttack
     /// </summary>
     /// <param name="targetedCherry"></param>
     private void AttackCherry(GameObject targetedCherry) {
-        SpawnProjectile(this.projectile, toppingObj.transform.position, FindTargetVector(targetedCherry), Quaternion.identity, this.damage);
+        SpawnProjectile(this.projectile, toppingFirePointObj.transform.position, FindTargetVector(targetedCherry), Quaternion.identity, this.damage);
     }
 
     /// <summary>
@@ -57,7 +57,7 @@ public class ReactiveAttack : ProjectileAttack
             return new Vector3(0, projectileSpeed, 0);
         }
 
-        Vector3 targetDirection = targetedCherry.transform.position - toppingObj.transform.position;
+        Vector3 targetDirection = targetedCherry.transform.position - toppingFirePointObj.transform.position;
         targetDirection.Normalize();
         return projectileSpeed * targetDirection;
     }

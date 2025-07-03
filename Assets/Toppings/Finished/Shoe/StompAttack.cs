@@ -10,7 +10,7 @@ public class StompAttack : ProjectileAttack
 
     private void AttackCherry(GameObject targetedCherry)
     {
-        GameObject newProjectile = SpawnProjectile(this.projectile, toppingObj.transform.position, Vector3.zero, Quaternion.identity, this.damage);
+        GameObject newProjectile = SpawnProjectile(this.projectile, toppingFirePointObj.transform.position, Vector3.zero, Quaternion.identity, this.damage);
         newProjectile.GetComponent<Projectile>().SetTarget(targetedCherry.transform.position);
     }
 

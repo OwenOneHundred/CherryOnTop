@@ -20,7 +20,6 @@ public class GameStats : MonoBehaviour
         if (gameStats == this || gameStats == null)
         {
             gameStats = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {

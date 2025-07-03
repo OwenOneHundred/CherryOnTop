@@ -9,7 +9,7 @@ public class HammerAttack : SimpleAttack
     {
         if (baseDamage == -9999)
         {
-            attackManager = toppingObj.transform.root.GetComponentInChildren<AttackManager>();
+            attackManager = toppingFirePointObj.transform.root.GetComponentInChildren<AttackManager>();
             baseDamage = attackManager.AttackDamage;
         }
         attackManager.AttackDamage = Mathf.FloorToInt(baseDamage + ToppingRegistry.toppingRegistry.PlacedToppings.Count);

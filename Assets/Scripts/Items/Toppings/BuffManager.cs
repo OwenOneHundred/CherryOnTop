@@ -20,17 +20,13 @@ public class BuffManager : MonoBehaviour {
     * Also retrieves the base damage, cooldown, and range values from the AttackManager and TargetingSystem.
     */
     void InitializeBuffManager() {
-        Debug.Log($"BuffManager initialized for {gameObject.name}");
         attackManager = GetComponentInChildren<AttackManager>();
-        Debug.Log($" Found BuffManager component AttackManager: {attackManager != null}");
         targetingSystem = GetComponent<TargetingSystem>();
 
         if (attackManager != null)
         {
-            Debug.Log("Base attacks set");
             baseDamage = attackManager.AttackDamage;
             baseCooldown = attackManager.GetAttackCooldown();
-            Debug.Log($"Base Damage: {baseDamage}, Base Cooldown: {baseCooldown}");
         }
 
         if (targetingSystem != null)

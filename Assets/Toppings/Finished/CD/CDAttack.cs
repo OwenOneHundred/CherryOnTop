@@ -25,8 +25,8 @@ public class CDAttack : ToppingAttack
 
     public override void OnStart()
     {
-        vfxObj = toppingObj.transform.root.GetChild(2).gameObject;
-        audioSource = toppingObj.transform.root.GetComponent<AudioSource>();
+        vfxObj = toppingFirePointObj.transform.root.GetChild(2).gameObject;
+        audioSource = toppingFirePointObj.transform.root.GetComponent<AudioSource>();
     }
 
     public override void EveryFrame()
@@ -34,7 +34,7 @@ public class CDAttack : ToppingAttack
         timer += Time.deltaTime;
         if (timer > timeBetweenAttacks)
         {
-            Collider[] colliders = Physics.OverlapSphere(toppingObj.transform.position, range, cherryLayer);
+            Collider[] colliders = Physics.OverlapSphere(toppingFirePointObj.transform.position, range, cherryLayer);
 
             int count = colliders.Length;
 
@@ -48,8 +48,8 @@ public class CDAttack : ToppingAttack
             {
                 collider.transform.parent.GetComponent<CherryHitbox>().TakeDamage(
                     damage * timeBetweenAttacks,
-                    toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping,
-                    collider.transform.position - toppingObj.transform.position);
+                    toppingFirePointObj.transform.root.GetComponent<ToppingObjectScript>().topping,
+                    collider.transform.position - toppingFirePointObj.transform.position);
                 budgetEnum += 1;
                 if (budgetEnum >= pierce)
                 {

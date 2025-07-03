@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf61d44350abc415985ebc9a0a0de2e8, type: 3}
   m_Name: GetWeaker
   m_EditorClassIdentifier: 
-  damageChangePerRound: -5
+  triggeredSound:
+    volume: 0.5
+    clip: {fileID: 0}
+  damageChange: -2
+  sellWhenReached0: 1

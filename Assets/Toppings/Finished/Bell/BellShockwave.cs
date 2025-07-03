@@ -12,11 +12,11 @@ public class BellShockwave : ShockwaveAttack
     public override void OnStart()
     {
         baseCooldown = cooldown;
-        topping = toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping;
+        topping = toppingFirePointObj.transform.root.GetComponent<ToppingObjectScript>().topping;
     }
     public override void EveryFrame()
     {
-        if (toppingActivatedGlow == null) { toppingActivatedGlow = toppingObj.transform.root.GetComponentInChildren<ToppingActivatedGlow>();}
+        if (toppingActivatedGlow == null) { toppingActivatedGlow = toppingFirePointObj.transform.root.GetComponentInChildren<ToppingActivatedGlow>();}
         int itemCount = Inventory.inventory.GetInventoryCount(true);
         float newCooldown = Mathf.Clamp(baseCooldown - (scaleAmountPerItem * itemCount), 1f, baseCooldown);
         if (newCooldown < cooldown)
@@ -24,7 +24,7 @@ public class BellShockwave : ShockwaveAttack
             toppingActivatedGlow.StartNewFireEffect("Gold", Color.yellow, 2.5f);
         }
         cooldown = newCooldown;
-        if (topping == null) { topping = toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping; }
+        if (topping == null) { topping = toppingFirePointObj.transform.root.GetComponent<ToppingObjectScript>().topping; }
         topping.triggersCount = itemCount;
     }
 

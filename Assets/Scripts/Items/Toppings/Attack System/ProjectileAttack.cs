@@ -30,7 +30,7 @@ public abstract class ProjectileAttack : ToppingAttack
         newProjectile.GetComponent<Rigidbody>().linearVelocity = velocity;
         Projectile projectileScript = newProjectile.GetComponent<Projectile>();
         projectileScript.damage = damage;
-        projectileScript.owner = toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping;
+        projectileScript.owner = toppingFirePointObj.transform.root.GetComponent<ToppingObjectScript>().topping;
 
         // Destroy the projectile after bulletLifetime seconds in case it misses the target
         Destroy(newProjectile, bulletLifetime);

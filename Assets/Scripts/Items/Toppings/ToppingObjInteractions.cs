@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] GameObject radiusCirclePrefab;
+    [SerializeField] LayerMask cakeLayer;
+    MeshRenderer meshRenderer;
     GameObject radiusCircle;
     InfoPopup infoPopup;
     private bool hovered = false;
@@ -13,11 +15,11 @@ public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPoin
         get { return hovered; }
         set { hovered = value; }
     }
-    [SerializeField] Vector3 radiusCircleOffset = default;
     bool selected = false;
     private void Awake()
     {
         infoPopup = Shop.shop.infoPopup;
+        meshRenderer = GetComponent<MeshRenderer>();
     }
 
     public void OnPlacedFromInventory()
@@ -72,7 +74,11 @@ public class ToppingObjInteractions : MonoBehaviour, IPointerEnterHandler, IPoin
     {
         if (transform.parent.GetChild(1).TryGetComponent(out TargetingSystem targetingSystem))
         {
-            radiusCircle = Instantiate(radiusCirclePrefab, transform.position + radiusCircleOffset, Quaternion.identity);
+            //RaycastHit hit;
+            //Physics.Raycast(transform.position, Vector3.down, out hit, 10, cakeLayer);
+            //float distanceToFloor = hit.distance;
+            Vector3 position = meshRenderer.bounds.center - new Vector3(0, meshRenderer.bounds.size.y / 2, 0);
+            radiusCircle = Instantiate(radiusCirclePrefab, position, Quaternion.identity);
             float range = targetingSystem.GetRange();
             radiusCircle.transform.localScale = new Vector3(range, range, range);
         }

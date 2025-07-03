@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e317524dacab9e4688ffe974ee817f2, type: 3}
-  m_Name: PineappleAttack
+  m_Script: {fileID: 11500000, guid: 1c6ff88781d7b46329772cda4b2231e0, type: 3}
+  m_Name: TackShooterAttack
   m_EditorClassIdentifier: 
-  cooldown: 0.7
-  damage: 4
+  cooldown: 0.3
+  damage: 6
   debuffs: []
   projectile: {fileID: 1373519935423302513, guid: 16801bc2122f041889048c44ea2581e7, type: 3}
   projectileSpeed: 7
@@ -21,5 +21,6 @@ MonoBehaviour:
     volume: 0.5
     clip: {fileID: 0}
   bulletLifetime: 0.2
-  quantity: 3
-  spreadAngle: 6.28318531
+  numberOfBullets: 8
+  bulletOffsetFromCenter: 0.5
+  heightOffset: -0.4

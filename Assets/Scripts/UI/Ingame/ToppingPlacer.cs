@@ -15,6 +15,7 @@ public class ToppingPlacer : MonoBehaviour
     [SerializeField] GameObject placePreview;
     [SerializeField] AudioFile placeSound;
     [SerializeField] AudioFile dragOutSound;
+    [SerializeField] float rotationSpeed = 5;
     readonly float inventoryXPos = 1460f;
 
     InventoryIconControl iconControl;
@@ -73,13 +74,13 @@ public class ToppingPlacer : MonoBehaviour
         PlacingTopping = true;
         iconControl = iic;
         iic.beingPlaced = true;
+        ControlsInfo.controlsInfo.ChangeState(ControlsInfo.ControlsState.placingTopping);
 
         StartCoroutine(StartPlace(topping));
     }
 
-    private IEnumerator StartPlace(Topping topping)
+    private IEnumerator StartPlace(Topping topping) // big function lol
     {
-        Vector3 cakePos = Vector3.zero;
         Vector3 objCenter;
 
         if (transparentObject == null) { transparentObject = Instantiate(placePreview); }
@@ -87,6 +88,7 @@ public class ToppingPlacer : MonoBehaviour
         // get all the components
         MeshFilter transparentMeshFilter = transparentObject.GetComponent<MeshFilter>();
         MeshFilter toppingMeshFilter = topping.towerPrefab.GetComponentInChildren<MeshFilter>();
+        MeshRenderer transparentMeshRenderer = transparentMeshFilter.GetComponent<MeshRenderer>();
         MeshRenderer meshRenderer = transparentObject.GetComponent<MeshRenderer>();
         Transform circleTransform = transparentObject.transform.GetChild(0);
         LineRenderer circleLineRenderer = circleTransform.GetComponent<LineRenderer>();
@@ -112,7 +114,9 @@ public class ToppingPlacer : MonoBehaviour
         // re-rotate circle to flat
         circleTransform.rotation = Quaternion.identity;
 
-        transparentObject.SetActive(false);
+        circleTransform.position = transparentMeshRenderer.bounds.center - new Vector3(0, (transparentMeshRenderer.bounds.size.y / 2), 0);
+
+        transparentObject.SetActive(true);
 
         float lowestPointOffset = GetLowestPointOffset(toppingMeshFilter.sharedMesh.bounds, toppingMeshFilter.transform, Vector3.down);
 
@@ -127,16 +131,15 @@ public class ToppingPlacer : MonoBehaviour
         while (Input.GetMouseButton(0))
         {
             mouseIsInSidebar = Input.mousePosition.x > inventoryXPos;
-
             if (!mouseLeftSidebar && !mouseIsInSidebar) { SoundEffectManager.sfxmanager.PlayOneShot(dragOutSound); }
-
             if (mouseLeftSidebar && mouseIsInSidebar)
             {
                 StopPlacingTopping();
                 yield break;
             }
-
             if (!mouseIsInSidebar) { mouseLeftSidebar = true; }
+
+            DoRotation(transparentObject.transform);
 
             Vector3 cameraPositionWithShake = cameraControl.transform.position;
             cameraControl.transform.position = Vector3.zero; // Holy hack lmao part 1
@@ -145,7 +148,7 @@ public class ToppingPlacer : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100, placeableLayers))
             {
-                cakePos = hit.point;
+                var cakePos = hit.point;
                 objCenter = CalculatePreviewPosition(cakePos, toppingMeshFilter.sharedMesh, lowestPointOffset, transparentMeshFilter.transform, toppingMeshFilter.transform);
 
                 transparentObject.SetActive(true);
@@ -159,15 +162,29 @@ public class ToppingPlacer : MonoBehaviour
             else
             {
                 transparentObject.SetActive(false);
+                placementValidCheck = false;
             }
             yield return null;
         }
 
         if (placementValidCheck)
         {
-            yield return StartCoroutine(PlaceTopping(topping, transparentMeshFilter.transform.position, topping.towerPrefab.transform.rotation, true));
+            yield return StartCoroutine(PlaceTopping(topping, transparentMeshFilter.transform.position, transparentMeshRenderer.transform.rotation, true));
         }
         StopPlacingTopping();
+    }
+
+    void DoRotation(Transform transparentTransform)
+    {
+        if (!(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
+        {
+            return;
+        }
+
+        float xInput = Input.GetAxisRaw("Horizontal");
+        xInput *= rotationSpeed * Time.deltaTime;
+
+        transparentTransform.Rotate(0, xInput, 0);
     }
 
     private Material[] MakeArrayOfMaterial(int num, Material material)
@@ -228,6 +245,8 @@ public class ToppingPlacer : MonoBehaviour
     private void StopPlacingTopping()
     {
         transparentObject.SetActive(false);
+        PlacingTopping = false;
+        ControlsInfo.controlsInfo.ChangeState(ControlsInfo.ControlsState.normal);
 
         if (iconControl == null) { return; } // if the item is placed, the icon is destroyed by the inventory,
         // so the "StopPlacing" call errors.
@@ -242,17 +261,16 @@ public class ToppingPlacer : MonoBehaviour
         ToppingRegistry.toppingRegistry.RegisterPlacedTopping(topping, newToppingObj); // register
 
         newToppingObj.GetComponent<ToppingObjectScript>().topping = topping; // set topping on object to be read later
-        
+
         EventBus<TowerPlacedEvent>.Raise(new TowerPlacedEvent(topping, newToppingObj)); // call placed tower event
-        
+
         topping.SetGameObjectOnEffects(newToppingObj);
         topping.RegisterEffects(newToppingObj);
 
         Inventory.inventory.RemoveItemByID(topping.ID); // remove from inventory
 
-        newToppingObj.GetComponentInChildren<ToppingObjInteractions>().OnPlacedFromInventory();
-
-        yield return StartCoroutine(PlaceToppingAnimation(playSound, position, newToppingObj));
+        yield return StartCoroutine(PlaceToppingAnimation(playSound, position, newToppingObj)); // also calls OnPlacedFromInventory,
+        // dont call that function twice.
     }
 
     private IEnumerator PlaceToppingAnimation(bool playSound, Vector3 position, GameObject newToppingObj)
@@ -267,6 +285,8 @@ public class ToppingPlacer : MonoBehaviour
             yield return null;
         }
         newToppingObj.transform.position = position;
+
+        newToppingObj.GetComponentInChildren<ToppingObjInteractions>().OnPlacedFromInventory();
 
         Destroy(Instantiate(toppingPlaceEffect, position, Quaternion.identity), 5); // create particle effect
 

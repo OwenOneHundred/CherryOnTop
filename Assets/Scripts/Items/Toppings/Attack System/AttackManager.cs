@@ -37,19 +37,13 @@ public class AttackManager : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("REACHED AWAKE IN AttackManager");
         this.attack = Instantiate(attackTemplate);
-        this.attack.toppingObj = gameObject;
+        this.attack.toppingFirePointObj = gameObject;
         timer = attack.cooldown;
     }
 
     void Start()
     {
-        if (attackTemplate == null) {
-            Debug.Log("AttackManager: ATTACK_TEMPLATE IS NULL");
-        } else {
-            Debug.Log("AttackManager: ATTACK_TEMPLATE IS NOT NULL");
-        }
         if (this.attack != null) {
             this.attack.OnStart();
         }
@@ -57,19 +51,27 @@ public class AttackManager : MonoBehaviour
 
     void Update()
     {
-        if (!isStunned) {
-            if (targetedCherry != null) {
-                if (timer >= attack.cooldown) {
+        Debug.Log(attack);
+        if (!isStunned)
+        {
+            if (targetedCherry != null)
+            {
+                if (timer >= attack.cooldown)
+                {
                     timer = 0;
                     attack.OnCycle(this.targetedCherry);
                 }
             }
-            if (timer <= attack.cooldown) {
+            if (timer <= attack.cooldown)
+            {
                 timer += Time.deltaTime;
             }
-        } else {
+        }
+        else
+        {
             stunTimer -= Time.deltaTime;
-            if (stunTimer <= 0) {
+            if (stunTimer <= 0)
+            {
                 stunTimer = 0;
                 isStunned = false;
             }

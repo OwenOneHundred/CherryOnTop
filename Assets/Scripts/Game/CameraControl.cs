@@ -10,14 +10,7 @@ public class CameraControl : MonoBehaviour
     bool shaking = false;
     void Update()
     {
-        Vector3 eulerAngles = transform.rotation.eulerAngles;
-        float intendedHorizontalRotation = eulerAngles.y + keyMovementSpeed * Time.deltaTime * Input.GetAxisRaw("Horizontal");
-        float intendedVerticalRotation = eulerAngles.x + keyMovementSpeed * Time.deltaTime * Input.GetAxisRaw("Vertical");
-        if (intendedVerticalRotation > 45 && intendedVerticalRotation < 120) { intendedVerticalRotation = 45; }
-        if (intendedVerticalRotation < 315 && intendedVerticalRotation > 200) { intendedVerticalRotation = 315; }
-        transform.rotation = Quaternion.Euler(intendedVerticalRotation, intendedHorizontalRotation, 0);
-
-        transform.Rotate(0, mouseScrollMovementSpeed * Time.deltaTime * Input.mouseScrollDelta.y, 0);
+        DoRotation();
 
         if (shaking)
         {
@@ -34,6 +27,23 @@ public class CameraControl : MonoBehaviour
         {
             transform.position = Vector3.zero;
         }
+    }
+
+    private void DoRotation()
+    {
+        if (ToppingPlacer.toppingPlacer.PlacingTopping && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
+        {
+            return;
+        }
+
+        Vector3 eulerAngles = transform.rotation.eulerAngles;
+        float intendedHorizontalRotation = eulerAngles.y + keyMovementSpeed * Time.deltaTime * Input.GetAxisRaw("Horizontal");
+        float intendedVerticalRotation = eulerAngles.x + keyMovementSpeed * Time.deltaTime * Input.GetAxisRaw("Vertical");
+        if (intendedVerticalRotation > 45 && intendedVerticalRotation < 120) { intendedVerticalRotation = 45; }
+        if (intendedVerticalRotation < 315 && intendedVerticalRotation > 200) { intendedVerticalRotation = 315; }
+        transform.rotation = Quaternion.Euler(intendedVerticalRotation, intendedHorizontalRotation, 0);
+
+        transform.Rotate(0, mouseScrollMovementSpeed * Time.deltaTime * Input.mouseScrollDelta.y, 0);
     }
 
     public void ApplyCameraShake(float length, float violence = 1)

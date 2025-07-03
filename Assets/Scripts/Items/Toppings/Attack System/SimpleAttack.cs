@@ -23,7 +23,7 @@ public class SimpleAttack : ProjectileAttack
     /// </summary>
     /// <param name="targetedCherry"></param>
     private void AttackCherry(GameObject targetedCherry) {
-        SpawnProjectile(this.projectile, toppingObj.transform.position, FindTargetVector(targetedCherry), Quaternion.identity, this.damage);
+        SpawnProjectile(this.projectile, toppingFirePointObj.transform.position, FindTargetVector(targetedCherry), Quaternion.identity, this.damage);
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ public class SimpleAttack : ProjectileAttack
             return new Vector3(0, projectileSpeed, 0);
         }
 
-        Vector3 targetDirection = targetedCherry.transform.position - toppingObj.transform.position;
+        Vector3 targetDirection = targetedCherry.transform.position - toppingFirePointObj.transform.position;
         targetDirection.Normalize();
         return projectileSpeed * targetDirection;
     }

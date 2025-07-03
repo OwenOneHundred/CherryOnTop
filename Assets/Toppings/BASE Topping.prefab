@@ -175,7 +175,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radiusCirclePrefab: {fileID: 3012567605006781236, guid: c0f227daa690a41dd9e7928132e96fdc, type: 3}
-  radiusCircleOffset: {x: 0, y: 0, z: 0}
+  cakeLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &2910716949551422463
 MonoBehaviour:
   m_ObjectHideFlags: 0

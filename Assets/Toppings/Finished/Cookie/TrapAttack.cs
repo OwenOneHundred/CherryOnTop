@@ -18,10 +18,10 @@ public class TrapAttack : ToppingAttack
     {
         if (activeTraps >= maxTraps) { return null; }
 
-        GameObject newProjectile = Instantiate(projectile, toppingObj.transform.position, Quaternion.identity);
+        GameObject newProjectile = Instantiate(projectile, toppingFirePointObj.transform.position, Quaternion.identity);
         TrackTrap trackTrapScript = newProjectile.GetComponent<TrackTrap>();
         trackTrapScript.damage = damage;
-        trackTrapScript.owner = toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping;
+        trackTrapScript.owner = toppingFirePointObj.transform.root.GetComponent<ToppingObjectScript>().topping;
         trackTrapScript.SetTarget(goal);
         trackTrapScript.trapAttack = this;
 
@@ -37,7 +37,7 @@ public class TrapAttack : ToppingAttack
 
     public override void OnStart()
     {
-        SetLineSegments(toppingObj.transform.position, range);
+        SetLineSegments(toppingFirePointObj.transform.position, range);
     }
 
     public override void EveryFrame()
@@ -71,7 +71,7 @@ public class TrapAttack : ToppingAttack
         List<TrackFunctions.LineSegment3D> newLineSegments = new();
 
         for (int i = 0; i < lineSegments.Count; i++) {
-            newLineSegments.Add(FindNewSegment(lineSegments[i], toppingObj.transform.position, range));
+            newLineSegments.Add(FindNewSegment(lineSegments[i], toppingFirePointObj.transform.position, range));
             totalLength += newLineSegments[i].length;
         }
         for (int i = 0; i < lineSegments.Count; i++) {

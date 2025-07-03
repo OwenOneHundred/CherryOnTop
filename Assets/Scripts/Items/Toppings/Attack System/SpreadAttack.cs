@@ -39,7 +39,7 @@ public class SpreadAttack : ProjectileAttack
                 offsetAngle = ((double) i / (quantity - 1) - 0.5) * spreadAngle;
             }
 
-            SpawnProjectile(this.projectile, toppingObj.transform.position, FindTargetVector(targetedCherry, offsetAngle), Quaternion.identity, (int)this.damage);
+            SpawnProjectile(this.projectile, toppingFirePointObj.transform.position, FindTargetVector(targetedCherry, offsetAngle), Quaternion.identity, (int)this.damage);
         }
     }
 
@@ -57,7 +57,7 @@ public class SpreadAttack : ProjectileAttack
         }
 
         // Finds and normalizes the direction directly to the Cherry
-        Vector3 targetDirection = targetedCherry.transform.position - toppingObj.transform.position;
+        Vector3 targetDirection = targetedCherry.transform.position - toppingFirePointObj.transform.position;
         targetDirection.Normalize();
 
         // Calculates the offset vector based on offsetAngle

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c02f157eca1604e9ba6d5def03c6e05c, type: 3}
+  m_Name: GlassesAttack
+  m_EditorClassIdentifier: 
+  cooldown: 0.6
+  damage: 7
+  debuffs: []
+  laser: {fileID: 1386367800970360195, guid: afae7767dfc2e4ddc86c6320a4dd5009, type: 3}
+  laserSound:
+    volume: 0.2
+    clip: {fileID: 8300000, guid: 117cc1d37df7d43db8e341b4d522e563, type: 3}

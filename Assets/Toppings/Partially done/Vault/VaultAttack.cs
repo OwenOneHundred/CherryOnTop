@@ -11,7 +11,7 @@ public class VaultAttack : SimpleAttack
     {
         if (baseAttackCooldown == -9999)
         {
-            attackManager = toppingObj.transform.root.GetComponentInChildren<AttackManager>();
+            attackManager = toppingFirePointObj.transform.root.GetComponentInChildren<AttackManager>();
             baseAttackCooldown = attackManager.GetAttackCooldown();
         }
         

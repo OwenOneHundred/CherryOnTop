@@ -11,20 +11,20 @@ public class CameraAttack : ToppingAttack
     [SerializeField] AudioFile attackSound;
     public override void OnCycle(GameObject targetedCherry)
     {
-        if (topping == null) { topping = toppingObj.transform.root.GetComponentInChildren<ToppingObjectScript>().topping; }
+        if (topping == null) { topping = toppingFirePointObj.transform.root.GetComponentInChildren<ToppingObjectScript>().topping; }
         Attack();
         PlayPS();
     }
 
     private void PlayPS()
     {
-        toppingObj.transform.root.GetChild(2).GetComponent<ParticleSystem>().Play();
+        toppingFirePointObj.transform.root.GetChild(2).GetComponent<ParticleSystem>().Play();
         SoundEffectManager.sfxmanager.PlayOneShot(attackSound);
     }
 
     private void Attack()
     {
-        Collider[] hits = Physics.OverlapSphere(toppingObj.transform.position, targetingSystem.GetRange());
+        Collider[] hits = Physics.OverlapSphere(toppingFirePointObj.transform.position, targetingSystem.GetRange());
 
         int totalHitCherries = 0;
         foreach (Collider hit in hits)
@@ -33,7 +33,7 @@ public class CameraAttack : ToppingAttack
             if (hit.transform.root.TryGetComponent(out CherryHitbox cherryHitbox))
             {
                 if (!HasClearLineOfSight(hit.transform)) { return; }
-                float remainingCherryHealth = cherryHitbox.TakeDamage(damage, topping, hit.transform.position - toppingObj.transform.position);
+                float remainingCherryHealth = cherryHitbox.TakeDamage(damage, topping, hit.transform.position - toppingFirePointObj.transform.position);
                 foreach (CherryDebuff debuff in debuffs)
                 {
                     cherryHitbox.GetComponent<DebuffManager>().AddDebuff(debuff);
@@ -52,10 +52,10 @@ public class CameraAttack : ToppingAttack
 
     bool HasClearLineOfSight(Transform target)
     {
-        Vector3 direction = (target.position - toppingObj.transform.position).normalized;
-        float distance = Vector3.Distance(toppingObj.transform.position, target.position);
+        Vector3 direction = (target.position - toppingFirePointObj.transform.position).normalized;
+        float distance = Vector3.Distance(toppingFirePointObj.transform.position, target.position);
         RaycastHit hit;
-        return !Physics.Raycast(toppingObj.transform.position, direction, out hit, distance, cakeLayer);
+        return !Physics.Raycast(toppingFirePointObj.transform.position, direction, out hit, distance, cakeLayer);
     }
 
     public override void OnNewCherryFound(GameObject newTargetedCherry)
@@ -65,6 +65,6 @@ public class CameraAttack : ToppingAttack
 
     public override void OnStart()
     {
-        targetingSystem = toppingObj.transform.root.GetComponentInChildren<TargetingSystem>();
+        targetingSystem = toppingFirePointObj.transform.root.GetComponentInChildren<TargetingSystem>();
     }
 }

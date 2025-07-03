@@ -18,7 +18,7 @@ public class XylophoneAttack : SimpleAttack
 
     public override void EveryFrame()
     {
-        if (toppingActivatedGlow == null) { toppingActivatedGlow = toppingObj.transform.root.GetComponentInChildren<ToppingActivatedGlow>();}
+        if (toppingActivatedGlow == null) { toppingActivatedGlow = toppingFirePointObj.transform.root.GetComponentInChildren<ToppingActivatedGlow>();}
         int count = Inventory.inventory.GetInventoryCount(false);
         if (count != lastFrameOwnedItems)
         {
@@ -38,7 +38,7 @@ public class XylophoneAttack : SimpleAttack
         newProjectile.GetComponent<Rigidbody>().linearVelocity = velocity;
         Projectile projectileScript = newProjectile.GetComponent<Projectile>();
         projectileScript.damage = damage;
-        projectileScript.owner = toppingObj.transform.root.GetComponent<ToppingObjectScript>().topping;
+        projectileScript.owner = toppingFirePointObj.transform.root.GetComponent<ToppingObjectScript>().topping;
 
         // Destroy the projectile after 8 seconds in case it misses the target
         Destroy(newProjectile, 8);

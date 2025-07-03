@@ -19,11 +19,14 @@ MonoBehaviour:
     - {fileID: 11400000, guid: d3c6285bb278b490ebb00f9c36f3b409, type: 2}
     eventSOs:
     - {fileID: 11400000, guid: 61a179cbcbc324e68b5581dcdf2f2cb9, type: 2}
-  description: Fires extremely high damage shockwaves, but gets 2 damage weaker every
-    round. (Starts at 20, so does 0 damage after 10 rounds)
+  description: Fires high damage shockwaves, but gets 2 damage weaker every round,
+    and is automatically sold when at 0 damage.
   rarity: 0
   towerPrefab: {fileID: 8844320974030995347, guid: 160ad15137fab478bb9643fe5eb7f2d3, type: 3}
   flags: 0
+  specialInfoText: 
   cakePoints: -30
   onHitCherry: []
   onKillCherry: []
+  moneyGained: 0
+  triggersCount: 0

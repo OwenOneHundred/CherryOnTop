@@ -9,6 +9,7 @@ public class ChangeDamage : EffectSO
     bool initializeOnCall = true;
     int damage = 0;
     [SerializeField] int damageChange = -2;
+    [SerializeField] bool sellWhenReached0 = false;
     AttackManager attackManager;
     public override void OnTriggered(EventBus.IEvent eventObject)
     {
@@ -22,6 +23,11 @@ public class ChangeDamage : EffectSO
 
         damage = Mathf.Clamp(damage + damageChange, 0, int.MaxValue);
         attackManager.AttackDamage = damage;
+
+        if (sellWhenReached0 && damage <= 0)
+        {
+            Shop.shop.SellItemOffCake(GetTopping(), toppingObj);
+        }
     }
 
     public override void Save(SaveData saveData)

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 public class UnlimitedAttack : DirectAttack
 {
     public override void OnStart() {
-        Debug.Log("Unlimited attack with a cooldown of " + this.cooldown + " seconds assigned to topping " + this.toppingObj.name + ".");
+        Debug.Log("Unlimited attack with a cooldown of " + this.cooldown + " seconds assigned to topping " + this.toppingFirePointObj.name + ".");
     }
 
     public override void OnNewCherryFound(GameObject newTargetedCherry) {

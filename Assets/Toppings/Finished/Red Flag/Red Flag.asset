@@ -15,7 +15,7 @@ MonoBehaviour:
   price: 3
   shopSprite: {fileID: 21300000, guid: c83517e5f73a441ec82292efc35a9309, type: 3}
   effectsAndWhen: []
-  description: Deals a massive 200 damage to the first 5 cherries to come near each
+  description: Deals a massive 200 damage to the first 6 cherries to come near each
     round. Increases range by 10% for all nearby figurine, decoration, or electronic
     toppings.
   rarity: 0
@@ -26,4 +26,4 @@ MonoBehaviour:
   onHitCherry: []
   onKillCherry: []
   moneyGained: 0
-  triggersCount: 0
+  TriggersCount: 0

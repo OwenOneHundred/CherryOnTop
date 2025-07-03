@@ -1540,6 +1540,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
+      propertyPath: initialMoney
+      value: 1500
+      objectReference: {fileID: 0}
     - target: {fileID: 7609143458023244062, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

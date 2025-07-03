@@ -8,6 +8,9 @@ using System.Collections.Generic;
 [CreateAssetMenu(menuName = "Attacks/Limited Attack")]
 public class LimitedAttack : DirectAttack
 {
+    [SerializeField] GameObject particleSystemOnAttack;
+    [SerializeField] AudioFile soundOnAttack;
+
     // Represents the maximum number of attacks that can be performed before the topping becomes idle.
     [SerializeField]
     int attackLimit;
@@ -45,6 +48,11 @@ public class LimitedAttack : DirectAttack
         if (attacks < attackLimit)
         {
             DealDamage(targetedCherry);
+            if (particleSystemOnAttack != null)
+            {
+                Destroy(Instantiate(particleSystemOnAttack, targetedCherry.transform.position, Quaternion.identity), 5);
+            }
+            SoundEffectManager.sfxmanager.TryPlayOneShot(soundOnAttack);
             attacks++;
         }
     }

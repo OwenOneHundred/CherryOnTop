@@ -15,7 +15,7 @@ MonoBehaviour:
   price: 3
   shopSprite: {fileID: 21300000, guid: b7a536b6cbeb1430aa2a5f13db10258f, type: 3}
   effectsAndWhen: []
-  description: Freezes the first 5 cherries each round that come near for 5 seconds.
+  description: Freezes the first 6 cherries each round that come near for 5 seconds.
     Nearby hot and cold tagged toppings gain a 10% damage boost.
   rarity: 0
   towerPrefab: {fileID: 2739821202564184481, guid: 879c277a3e56f45a991a2ecb22b4676f, type: 3}
@@ -25,4 +25,4 @@ MonoBehaviour:
   onHitCherry: []
   onKillCherry: []
   moneyGained: 0
-  triggersCount: 0
+  TriggersCount: 0

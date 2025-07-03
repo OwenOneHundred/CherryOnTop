@@ -20,6 +20,9 @@ MonoBehaviour:
   fireSound:
     volume: 0.5
     clip: {fileID: 0}
+  bulletLifetime: 8
   baseOffset: {x: 0, y: 3.5, z: 0}
   randomOffsetRadius: {x: 0.75, y: 0, z: 0.75}
   speed: 10
+  randomRotation: 1
+  randomSpinSpeed: 8

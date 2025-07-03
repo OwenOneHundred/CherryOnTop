@@ -33,12 +33,29 @@ public class Shop : MonoBehaviour
         get { return rerolls; }
         set
         {
-            rerollsText.text = "Free rerolls: " + value;
-            rerollButtonText.text = (value > 0) ? "Free\nReroll" : "Reroll\n$" + rerollPrice;
+            UpdateRerollsText(value);
             rerolls = value;
         }
     }
-    public int rerollPrice = 3;
+
+    private void UpdateRerollsText(int freeRerolls)
+    {
+        rerollsText.text = "Free rerolls: " + freeRerolls;
+        rerollButtonText.text = (freeRerolls > 0) ? "Free\nReroll" : "Reroll\n$" + LiveRerollPrice;
+    }
+
+    [SerializeField] private int _baseRerollPrice = 3;
+    private int _liveRerollPrice = 3;
+    public int LiveRerollPrice
+    {
+        get { return _liveRerollPrice; }
+        set
+        {
+            _liveRerollPrice = value;
+            UpdateRerollsText(Rerolls);
+        }
+    }
+
     [SerializeField] AudioFile error;
     [SerializeField] AudioFile openShop;
     [SerializeField] AudioFile closeShop;
@@ -122,14 +139,16 @@ public class Shop : MonoBehaviour
             SoundEffectManager.sfxmanager.PlayOneShot(rerollSound);
             RerollItems();
             PlayRerollAnim();
+            LiveRerollPrice += 1;
         }
-        else if (Inventory.inventory.Money >= rerollPrice)
+        else if (Inventory.inventory.Money >= LiveRerollPrice)
         {
-            Inventory.inventory.Money -= rerollPrice;
+            Inventory.inventory.Money -= LiveRerollPrice;
             EventBus<RerollEvent>.Raise(new RerollEvent());
             SoundEffectManager.sfxmanager.PlayOneShot(rerollSound);
             RerollItems();
             PlayRerollAnim();
+            LiveRerollPrice += 1;
         }
         else
         {
@@ -141,6 +160,7 @@ public class Shop : MonoBehaviour
     {
         //RerollItems();
         purchasesThisRound = 0;
+        LiveRerollPrice = _baseRerollPrice;
     }
 
     public void PlayRerollAnim()
@@ -176,7 +196,7 @@ public class Shop : MonoBehaviour
 
     public void UpdateRerollButtonFadedness()
     {
-        rerollButton.interactable = Inventory.inventory.Money >= rerollPrice || Rerolls > 0;
+        rerollButton.interactable = Inventory.inventory.Money >= LiveRerollPrice || Rerolls > 0;
     }
 
     public void UpdateAllIcons()

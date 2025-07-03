@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0
   damage: 200
-  attackLimit: 5
-  attackDelay: 0
   debuffs: []
+  particleSystemOnAttack: {fileID: 4697775935787032492, guid: 971e4227c9d864060aa2b1a6b64ee43f, type: 3}
+  soundOnAttack:
+    volume: 0.2
+    clip: {fileID: 8300000, guid: 6eeaf067bd5484455843dde71669cb78, type: 3}
+  attackLimit: 6
+  attackDelay: 0.1

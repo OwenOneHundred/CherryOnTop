@@ -10,10 +10,20 @@ public class ScrollingImage : MonoBehaviour
     void Start()
     {
         material = GetComponent<Image>().material;
+
+        DecreaseMaterialOffsetIfNumberTooHigh();
     }
 
     void Update()
     {
         material.mainTextureOffset += offsetScrollSpeed * Time.deltaTime;
+    }
+
+    void DecreaseMaterialOffsetIfNumberTooHigh()
+    {
+        if (material.mainTextureOffset.magnitude > 20000)
+        {
+            material.mainTextureOffset = Vector2.zero;
+        }
     }
 }

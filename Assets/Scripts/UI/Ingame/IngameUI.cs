@@ -21,6 +21,11 @@ public class IngameUI : MonoBehaviour
     public bool StartIsLocked = false;
     [SerializeField] bool DEBUG_ForceTutorial = false;
 
+    void Awake()
+    {
+        startButtonLockImage = startButtonLock.GetComponent<Image>();
+    }
+
     void Start()
     {
         settingsManager.OnStart();
@@ -29,8 +34,6 @@ public class IngameUI : MonoBehaviour
         {
             Instantiate(tutorial);
         }
-
-        startButtonLockImage = startButtonLock.GetComponent<Image>();
     }
 
     public void SetMoney(int money)
@@ -56,56 +59,81 @@ public class IngameUI : MonoBehaviour
         goalRoundText.text = "by round " + roundNumber;
     }
 
-    bool speedupToggled = false;
+    bool _playLockDisabled = false;
+    public bool PlayLockDisabled
+    {
+        get { return _playLockDisabled; }
+        set
+        {
+            _playLockDisabled = value;
+            startButtonLockImage.GetComponent<Button>().interactable = !value;
+        }
+    }
+
+    bool _speedUpButtonLocked = false;
+    public bool SpeedUpButtonLocked
+    {
+        get { return _speedUpButtonLocked; }
+        set
+        {
+            _speedUpButtonLocked = value;
+            speedUpButton.GetComponent<Button>().interactable = !value;
+        }
+    }
+
+    bool _speedupToggled = false;
+    public bool SpeedUpToggled => _speedupToggled;
     [SerializeField] Color speedUpButtonUntoggled;
     [SerializeField] Color speedUpButtonToggled;
     [SerializeField] Image speedUpButton;
     [SerializeField] TMPro.TextMeshProUGUI speedUpButtonText;
     public void PressSpeedUpButton()
     {
-        SoundEffectManager.sfxmanager.PlayOneShot(speedUpButtonClickSound);
-        if (speedupToggled)
+        SetSpeedUp(!SpeedUpToggled, false);
+    }
+
+    public void SetSpeedUp(bool speedUp, bool silent)
+    {
+        if (_speedupToggled == speedUp) { return; }
+
+        if (!silent) { SoundEffectManager.sfxmanager.PlayOneShot(speedUpButtonClickSound); }
+        if (speedUp)
         {
-            Time.timeScale = 1f;
-            SoundEffectManager.sfxmanager.PlayOneShot(slowDownSound);
+            Time.timeScale = 2f;
+            if (!silent) { SoundEffectManager.sfxmanager.PlayOneShot(speedUpSound); }
         }
         else
         {
-            Time.timeScale = 2f;
-            SoundEffectManager.sfxmanager.PlayOneShot(speedUpSound);
+            Time.timeScale = 1f;
+            if (!silent) { SoundEffectManager.sfxmanager.PlayOneShot(slowDownSound); }
         }
-        speedupToggled = !speedupToggled;
-        speedUpButton.color = speedupToggled ? speedUpButtonToggled : speedUpButtonUntoggled;
-        speedUpButtonText.text = speedupToggled ? "2x" : "1x";
+        _speedupToggled = speedUp;
+        speedUpButton.color = speedUp ? speedUpButtonToggled : speedUpButtonUntoggled;
+        speedUpButtonText.text = speedUp ? "2x" : "1x";
     }
 
     public void OnLockClicked()
     {
         StartIsLocked = !StartIsLocked;
 
+        SetLockValue(StartIsLocked, false);
+    }
+
+    public void SetLockValue(bool locked, bool silent)
+    {
+        StartIsLocked = locked;
+
         if (StartIsLocked)
         {
             startButtonLockImage.sprite = lockedLock;
-            SoundEffectManager.sfxmanager.PlayOneShotWithPitch(lockSound, 0.75f);
+            if (!silent) { SoundEffectManager.sfxmanager.PlayOneShotWithPitch(lockSound, 0.75f); }
             startButtonLockImage.color = Color.white;
         }
         else
         {
             startButtonLockImage.sprite = unlockedLock;
-            SoundEffectManager.sfxmanager.PlayOneShotWithPitch(lockSound, 1.25f);
+            if (!silent) { SoundEffectManager.sfxmanager.PlayOneShotWithPitch(lockSound, 1.25f); }
             startButtonLockImage.color = new Color(0.65f, 0.65f, 0.65f, 1);
         }
     }
-
-    public void DisableLock()
-    {
-        startButtonLock.interactable = false;
-    }
-
-    public void EnableLock()
-    {
-        startButtonLock.interactable = true;
-    }
-
-
 }

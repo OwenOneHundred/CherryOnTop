@@ -115,6 +115,13 @@ public class Shop : MonoBehaviour
         }
     }
 
+    private bool _doRerollPriceIncrease = true;
+    public bool DoRerollPriceIncrease
+    {
+        get { return _doRerollPriceIncrease; }
+        set { _doRerollPriceIncrease = DoRerollPriceIncrease; }
+    }
+
     public IEnumerator Mover()
     {
         float goal = open ? openPos : closedPos;
@@ -139,7 +146,7 @@ public class Shop : MonoBehaviour
             SoundEffectManager.sfxmanager.PlayOneShot(rerollSound);
             RerollItems();
             PlayRerollAnim();
-            LiveRerollPrice += 1;
+            if (DoRerollPriceIncrease) { LiveRerollPrice += 1; }
         }
         else if (Inventory.inventory.Money >= LiveRerollPrice)
         {
@@ -148,7 +155,7 @@ public class Shop : MonoBehaviour
             SoundEffectManager.sfxmanager.PlayOneShot(rerollSound);
             RerollItems();
             PlayRerollAnim();
-            LiveRerollPrice += 1;
+            if (DoRerollPriceIncrease) { LiveRerollPrice += 1; }
         }
         else
         {

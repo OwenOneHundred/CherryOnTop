@@ -9,5 +9,6 @@ public class LemonSurpriseBatter : Batter
         Shop.shop.rows = 1;
         Shop.shop.totalItems = 1;
         Shop.shop.LiveRerollPrice = 1;
+        Shop.shop.DoRerollPriceIncrease = false;
     }
 }

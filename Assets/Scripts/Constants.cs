@@ -7,6 +7,7 @@ public class Constants : MonoBehaviour
         None = -1,
         Strawberry = 0,
         Lemon = 1,
-        Cheesecake = 2
+        Cheesecake = 2,
+        Ready_Made = 3
     }
 }

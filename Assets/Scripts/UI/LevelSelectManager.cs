@@ -27,9 +27,6 @@ public class LevelSelectManager : MonoBehaviour
         dotsButtonManager.SetUp(levelPreviews.Count, LoadLevel); // order of this and loadlevel(0) DOES matter
 
         LoadLevelInitialLoad(0);
-
-
-        AchievementsTracker.Instance.MarkLevelAsCompleted(0, 4, -1, true);
     }   
 
     public void MoveRight()

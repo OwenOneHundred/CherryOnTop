@@ -64,7 +64,7 @@ public class LevelPreviewManager : MonoBehaviour
             "Round " + roundNumber +
             ", $" + moneyNumber;
         continueButton.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>().text =
-            batterIndex == -1 ? "" : ((Constants.Batter)batterIndex).ToString();
+            batterIndex == -1 ? "" : ((Constants.Batter)batterIndex).ToString().Replace('_', ' ');
     }
 
     private string CutExtensionOffOfFileName(string fileName)

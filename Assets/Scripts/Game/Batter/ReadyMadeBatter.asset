@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8008da25c942d4d2a98971dad663a04d, type: 3}
-  m_Name: ReadyMade
+  m_Name: ReadyMadeBatter
   m_EditorClassIdentifier: 
   description: The speedrunners' favorite. Once pressed, the start button is always
     locked, and speedup is always on.

@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa5ddee62ca0e145b2a85463bea3cdf, type: 3}
   m_Name: Cannoli Attack
   m_EditorClassIdentifier: 
-  cooldown: 0.375
-  damage: 9
+  cooldown: 0.475
+  damage: 8
   debuffs: []
   projectile: {fileID: 1373519935423302513, guid: 763dfca3e8fdc4a08b3a11f16bc3bc25, type: 3}
   projectileSpeed: 9
   fireSound:
     volume: 0.5
     clip: {fileID: 0}
+  bulletLifetime: 8

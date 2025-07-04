@@ -8,6 +8,14 @@ public class CameraControl : MonoBehaviour
     float shakeTime = 0;
     float shakeViolence = 0.2f;
     bool shaking = false;
+
+    bool _locked = false;
+    public bool Locked
+    {
+        get { return _locked; }
+        set { _locked = value; }
+    }
+
     void Update()
     {
         DoRotation();
@@ -21,11 +29,8 @@ public class CameraControl : MonoBehaviour
                 shakeTimer = 0;
                 shakeTime = 0;
                 shaking = false;
+                transform.position = Vector3.zero;
             }
-        }
-        else
-        {
-            transform.position = Vector3.zero;
         }
     }
 
@@ -35,6 +40,8 @@ public class CameraControl : MonoBehaviour
         {
             return;
         }
+        
+        if (Locked) { return; }
 
         Vector3 eulerAngles = transform.rotation.eulerAngles;
         float intendedHorizontalRotation = eulerAngles.y + keyMovementSpeed * Time.deltaTime * Input.GetAxisRaw("Horizontal");

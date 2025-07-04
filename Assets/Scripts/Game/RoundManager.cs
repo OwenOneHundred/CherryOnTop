@@ -20,7 +20,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] IngameUI ingameUI;
     [SerializeField] Shop shop;
     [SerializeField] bool savingEnabled = true;
-    [SerializeField] GameObject winPanel;
+    [SerializeField] WinAnimationController winAnimationController;
     [SerializeField] AudioFile startButtonSound;
     CherrySpawner cherrySpawner;
 
@@ -150,7 +150,7 @@ public class RoundManager : MonoBehaviour
 
     public void OnPlayerWins()
     {
-        winPanel.SetActive(true);
+        winAnimationController.PlayWinAnimation();
         AchievementsTracker.Instance.MarkLevelAsCompleted(
             DifficultyInfo.difficultyInfo.levelIndex,
             DifficultyInfo.difficultyInfo.gameDifficultyParams.Difficulty.number,

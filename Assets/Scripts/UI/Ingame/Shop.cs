@@ -44,8 +44,8 @@ public class Shop : MonoBehaviour
         rerollButtonText.text = (freeRerolls > 0) ? "Free\nReroll" : "Reroll\n$" + LiveRerollPrice;
     }
 
-    [SerializeField] private int _baseRerollPrice = 3;
-    private int _liveRerollPrice = 3;
+    [SerializeField] private int _baseRerollPrice = 2;
+    private int _liveRerollPrice = 2;
     public int LiveRerollPrice
     {
         get { return _liveRerollPrice; }

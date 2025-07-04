@@ -6,6 +6,6 @@ public class Medium : Difficulty
     public override void OnGameStart()
     {
         Shop.shop.totalItems = 6;
-        Inventory.inventory.initialMoney = 15;
+        Inventory.inventory.initialMoney = 20;
     }
 }

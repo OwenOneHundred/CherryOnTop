@@ -8,6 +8,6 @@ public class Hard : Difficulty
         Shop.shop.totalItems = 5;
         //Shop.shop.columns = 3;
         //Shop.shop.rows = 2;
-        Inventory.inventory.initialMoney = 14;
+        Inventory.inventory.initialMoney = 15;
     }
 }

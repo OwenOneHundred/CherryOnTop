@@ -51,7 +51,6 @@ public class AttackManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(attack);
         if (!isStunned)
         {
             if (targetedCherry != null)

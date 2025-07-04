@@ -8,7 +8,6 @@ public class MoneyOnBoughtAmount : EffectSO
     [SerializeField] int moneyAmount = 2;
     public override void OnTriggered(IEvent eventObject)
     {
-        GetTopping().TriggersCount = Shop.shop.purchasesThisRound;
         if (Shop.shop.purchasesThisRound == purchasesAmount)
         {
             Inventory.inventory.Money += moneyAmount;

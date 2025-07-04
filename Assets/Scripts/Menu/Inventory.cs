@@ -91,9 +91,9 @@ public class Inventory : MonoBehaviour
         } 
 
         Money -= item.price;
+        Shop.shop.purchasesThisRound += 1;
         EventBus<BuyEvent>.Raise(new BuyEvent(item));
         SoundEffectManager.sfxmanager.PlayOneShot(buySFX);
-        Shop.shop.purchasesThisRound += 1;
 
         AddItem(item);
 

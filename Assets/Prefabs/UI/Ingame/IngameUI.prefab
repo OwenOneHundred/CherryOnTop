@@ -1781,7 +1781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundState: 2
   roundNumber: 0
-  moneyOnRoundEnd: 5
+  moneyOnRoundEnd: 6
   nextRoundButton: {fileID: 1390693133404687419}
   shopButton: {fileID: 1848900876542587564}
   ingameUI: {fileID: 5165441279755291159}
@@ -11447,6 +11447,22 @@ PrefabInstance:
     - target: {fileID: 2333696763320562053, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2516482913335788729, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2865202321287263778}
+    - target: {fileID: 2516482913335788729, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: RestartLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2516482913335788729, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: LevelManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2516482913335788729, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3181088761205223646, guid: 845581ef1dadd7d4ca42002f2a104d2c, type: 3}
       propertyPath: m_Name

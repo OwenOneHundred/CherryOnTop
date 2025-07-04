@@ -19,6 +19,14 @@ MonoBehaviour:
     - {fileID: 11400000, guid: be616b0ea5d3d44118eabbcdf6a50126, type: 2}
     eventSOs:
     - {fileID: 11400000, guid: 61a179cbcbc324e68b5581dcdf2f2cb9, type: 2}
+  - effectSOs:
+    - {fileID: 11400000, guid: 899d87cdfe9764131a36d2997bbf4942, type: 2}
+    eventSOs:
+    - {fileID: 11400000, guid: 96555b3ac10af430da30e6926ffff4c6, type: 2}
+  - effectSOs:
+    - {fileID: 11400000, guid: 899d87cdfe9764131a36d2997bbf4942, type: 2}
+    eventSOs:
+    - {fileID: 11400000, guid: 21a2b2029de304a2e9b962c8cd1956a1, type: 2}
   description: Shoots a spread of spikes at nearby cherries. At the start of each
     round, if you bought exactly 2 items from the shop, gain $2.
   rarity: 0

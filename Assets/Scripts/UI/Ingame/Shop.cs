@@ -84,7 +84,7 @@ public class Shop : MonoBehaviour
 
     private void Update()
     {
-        if (RoundManager.roundManager.roundState == RoundManager.RoundState.shop && Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             ToggleOpen();
         }

@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5.5, y: 5.5, z: 5.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8616690912182548780}
@@ -51,7 +51,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 8
+  m_Radius: 1.75
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2933496355161938434
 GameObject:
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 3911621752971430390}
   - component: {fileID: 9170797088192210492}
   - component: {fileID: 3179611902061293158}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Lightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4965,9 +4965,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6317334755864154417}
-  - component: {fileID: 5399649182600389287}
-  m_Layer: 13
-  m_Name: EffectRadius
+  m_Layer: 0
+  m_Name: ParticleEffects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4990,27 +4989,6 @@ Transform:
   - {fileID: 887090993664331774}
   m_Father: {fileID: 8616690912182548780}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &5399649182600389287
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6781386823859029839}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 2
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8061040721194420690
 GameObject:
   m_ObjectHideFlags: 0
@@ -5022,7 +5000,7 @@ GameObject:
   - component: {fileID: 887090993664331774}
   - component: {fileID: 1370456844512547478}
   - component: {fileID: 5023575513247224935}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10019,6 +9997,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7811689376462688174, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
       insertIndex: -1
       addedObject: {fileID: -4717646149239759329}
+    - targetCorrespondingSourceObject: {fileID: 7811689376462688174, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2808598524301357797}
   m_SourcePrefab: {fileID: 100100000, guid: 9beb3544cdb2142e2a7d642fa23539bf, type: 3}
 --- !u!4 &8616690912182548780 stripped
 Transform:
@@ -10045,3 +10026,30 @@ MonoBehaviour:
   flags: 2048
   buffType: 1
   buffValue: 1.25
+--- !u!54 &2808598524301357797
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8913354036573227628}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

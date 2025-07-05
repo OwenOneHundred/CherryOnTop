@@ -1380,42 +1380,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: IngameUI
       objectReference: {fileID: 0}
-    - target: {fileID: 2698525333416134776, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: m_Colors.m_PressedColor.b
-      value: 0.6037736
-      objectReference: {fileID: 0}
-    - target: {fileID: 2698525333416134776, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: m_Colors.m_PressedColor.g
-      value: 0.6037736
-      objectReference: {fileID: 0}
-    - target: {fileID: 2698525333416134776, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: m_Colors.m_PressedColor.r
-      value: 0.6037736
-      objectReference: {fileID: 0}
-    - target: {fileID: 2698525333416134776, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: m_Colors.m_DisabledColor.b
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2698525333416134776, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: m_Colors.m_DisabledColor.g
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2698525333416134776, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: m_Colors.m_DisabledColor.r
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2698525333416134776, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: m_Colors.m_HighlightedColor.b
-      value: 0.764151
-      objectReference: {fileID: 0}
-    - target: {fileID: 2698525333416134776, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: m_Colors.m_HighlightedColor.g
-      value: 0.764151
-      objectReference: {fileID: 0}
-    - target: {fileID: 2698525333416134776, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: m_Colors.m_HighlightedColor.r
-      value: 0.764151
-      objectReference: {fileID: 0}
     - target: {fileID: 5964487472042778191, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1494,18 +1458,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5964487472042778191, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: startingInventoryItems.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: 'startingInventoryItems.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 10333703eee204decb0a713070e52c84, type: 2}
-    - target: {fileID: 8759114289087427388, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
-      propertyPath: roundNumber
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -19,58 +19,43 @@ public class BuffZone : MonoBehaviour {
     }
 
     // When an object enters the trigger zone:
-    void OnTriggerEnter(Collider other) {
-        Debug.Log("OnTriggerEnter called");
-
+    void OnTriggerEnter(Collider other)
+    {
         // 1) Layer check
         if ((toppingLayer & (1 << other.gameObject.layer)) == 0)
             return;
-        Debug.Log("Object is on topping layer");
 
         // 2) Find the ToppingObjectScript on parent
         var toppingObj = other.GetComponentInParent<ToppingObjectScript>();
         if (toppingObj == null)
         {
-            Debug.Log("  → no ToppingObjectScript found");
             return;
         }
-        Debug.Log("Object has ToppingObjectScript");
 
         // 3) Flag filter
         if ((toppingObj.topping.flags & flags) == 0)
         {
-            Debug.Log("  → topping flags do not match");
             return;
         }
-        Debug.Log("Object has the required topping flags");
 
         // 4) Find BuffManager on the same root
         var buffManager = other.GetComponentInParent<BuffManager>();
         if (buffManager == null)
         {
-            Debug.Log("  → no BuffManager found");
             return;
         }
-        Debug.Log("Found BuffManager");
-
 
         // 5) Finally apply buff if new
         if (!affectedToppings.Contains(buffManager))
         {
-            Debug.Log("Calling AddBuff()");
             buffManager.AddBuff(this);
             affectedToppings.Add(buffManager);
-        }
-        else
-        {
-            Debug.Log("  → buff already applied to this tower");
         }
     }
 
     // When an object leaves the trigger zone:
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("OnTriggerExit called");
         if ((toppingLayer & (1 << other.gameObject.layer)) != 0)
         {
             if (other.TryGetComponent(out BuffManager buffManager))
@@ -80,7 +65,6 @@ public class BuffZone : MonoBehaviour {
                     other.TryGetComponent(out AttackManager attackManager);
                     buffManager.RemoveBuff(this,attackManager);
                     affectedToppings.Remove(buffManager);
-                    Debug.Log($"BuffZone {gameObject.name} removed {buffType} buff from {other.gameObject.name}");
                 }
             }
         }

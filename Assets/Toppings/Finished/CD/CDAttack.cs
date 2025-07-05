@@ -12,10 +12,11 @@ public class CDAttack : ToppingAttack
     bool cherryInZone = false;
     GameObject vfxObj;
     AudioSource audioSource;
+    [SerializeField] bool doOnHitEffects = true;
 
     public override void OnCycle(GameObject targetedCherry)
     {
-        
+
     }
 
     public override void OnNewCherryFound(GameObject newTargetedCherry)
@@ -49,7 +50,7 @@ public class CDAttack : ToppingAttack
                 collider.transform.parent.GetComponent<CherryHitbox>().TakeDamage(
                     damage * timeBetweenAttacks,
                     toppingFirePointObj.transform.root.GetComponent<ToppingObjectScript>().topping,
-                    collider.transform.position - toppingFirePointObj.transform.position);
+                    doOnHitEffects ? collider.transform.position - toppingFirePointObj.transform.position : Vector2.zero);
                 budgetEnum += 1;
                 if (budgetEnum >= pierce)
                 {
@@ -63,7 +64,7 @@ public class CDAttack : ToppingAttack
 
     protected void OnFirstCherryEnters()
     {
-        if (vfxObj != null)
+        if (vfxObj != null && audioSource != null)
         {
             audioSource.Play();
             vfxObj.SetActive(true);
@@ -72,7 +73,7 @@ public class CDAttack : ToppingAttack
 
     protected void OnAllCherriesExit()
     {
-        if (vfxObj != null)
+        if (vfxObj != null && audioSource != null)
         {
             audioSource.Stop();
             vfxObj.SetActive(false);

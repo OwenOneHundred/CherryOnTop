@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9aebf633864240d9bfb6e199e23eb77, type: 3}
+  m_Name: MouseAttack
+  m_EditorClassIdentifier: 
+  cooldown: 0.33
+  damage: 14
+  debuffs: []
+  visualEffectOnHit: {fileID: 17027786738879577, guid: cee0d9884a12a458097123967399a601, type: 3}
+  effectLifetime: 0.8
+  sound:
+    volume: 0.2
+    clip: {fileID: 8300000, guid: b4685c2802fb242af9a9e7be8f24bebb, type: 3}

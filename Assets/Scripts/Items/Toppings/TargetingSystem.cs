@@ -87,6 +87,11 @@ public class TargetingSystem : MonoBehaviour
         }
     }
 
+    public Collider[] GetCherriesInRange()
+    {
+        return Physics.OverlapSphere(transform.position, range, cherryLayer);
+    }
+
     public void AddTargetedCherry(GameObject cherry)
     {
         if (!targetedCherries.Contains(cherry.GetComponent<Collider>()))

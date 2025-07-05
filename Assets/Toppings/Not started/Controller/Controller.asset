@@ -14,11 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 7
   shopSprite: {fileID: -1301659471, guid: e81b6cf22c114460f9ae58c40c96cc7f, type: 3}
-  effectsAndWhen: []
-  description: Throws ghosts at cherries. When placed, for every electronic topping
-    on the cake, get $1.
+  effectsAndWhen:
+  - effectSOs:
+    - {fileID: 11400000, guid: ae09c959062294416a220a12336c047f, type: 2}
+    eventSOs:
+    - {fileID: 11400000, guid: a0cf5250f9b024f6d8365ad5e2540551, type: 2}
+  description: Fires laser bullets at cherries. Whenever you place an electronic
+    topping freeze all cherries in range for 2 seconds.
   rarity: 0
-  towerPrefab: {fileID: 0}
+  towerPrefab: {fileID: 8288128998805443639, guid: 93bc1e81734a24ae88d4dbe1bd4edc07, type: 3}
   flags: 2048
   specialInfoText: 
   cakePoints: 10

@@ -11,6 +11,7 @@ public class WinAnimationController : MonoBehaviour
     {
         cameraControl = Camera.main.transform.root.GetComponent<CameraControl>();
     }
+
     public void PlayWinAnimation()
     {
         cameraControl.Locked = true;

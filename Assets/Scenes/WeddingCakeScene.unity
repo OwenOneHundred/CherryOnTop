@@ -1498,12 +1498,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: startingInventoryItems.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6429006251798782917, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: 'startingInventoryItems.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: f52a192ceea804edcb8dae667559570c, type: 2}
+      objectReference: {fileID: 11400000, guid: 10333703eee204decb0a713070e52c84, type: 2}
     - target: {fileID: 8759114289087427388, guid: 26693327e79c04c22b2e29f3f5af87c0, type: 3}
       propertyPath: roundNumber
       value: 0

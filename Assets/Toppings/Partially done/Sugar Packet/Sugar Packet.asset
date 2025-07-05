@@ -18,7 +18,10 @@ MonoBehaviour:
   description: No attack. Nearby sweet toppings get 20% increased damage.
   rarity: 1
   towerPrefab: {fileID: 2202449905636776714, guid: e52be3d400dc142c3a757a8bd0a68232, type: 3}
-  flags: 128
+  flags: 132
+  specialInfoText: 
   cakePoints: -25
   onHitCherry: []
   onKillCherry: []
+  moneyGained: 0
+  TriggersCount: 0

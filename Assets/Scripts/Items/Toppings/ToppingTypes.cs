@@ -22,19 +22,14 @@ public static class ToppingTypes
         none            = 0,
         cold            = 1 << 0,
         hot             = 1 << 1,
-            candle          = 1 << 2,
-                numberCandle    = 1 << 3,
-        produce         = 1 << 4,
-            vegetable       = 1 << 5,
-            fruit           = 1 << 6,
+        food            = 1 << 2,
+        vegetable       = 1 << 5,
+        fruit           = 1 << 6,
         sweet           = 1 << 7,
-            candy           = 1 << 8,
-        figurine        = 1 << 9,
-        decoration      = 1 << 10,
-        electronics     = 1 << 11,
+        electronic     = 1 << 11,
         animal          = 1 << 12,
             ocean           = 1 << 13,
-            bird            = 1 << 14,
+        sound           = 1 << 15
     }
 
     public static bool HasAny(this ToppingTypes.Flags value, ToppingTypes.Flags any)

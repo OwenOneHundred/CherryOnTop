@@ -19,10 +19,10 @@ MonoBehaviour:
     0.15s faster for each item in inventory, including stacked items.
   rarity: 1
   towerPrefab: {fileID: 6692871650783377581, guid: b93a3f886fe2943c4ba106666dff9eb9, type: 3}
-  flags: 1024
+  flags: 32768
   specialInfoText: 'Total items: [Triggers]'
   cakePoints: -25
   onHitCherry: []
   onKillCherry: []
   moneyGained: 0
-  triggersCount: 0
+  TriggersCount: 0

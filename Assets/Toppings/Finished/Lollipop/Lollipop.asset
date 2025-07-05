@@ -19,13 +19,13 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3eb231dcc12194ad980d5be504a0a482, type: 2}
     eventSOs:
     - {fileID: 11400000, guid: 96555b3ac10af430da30e6926ffff4c6, type: 2}
-  description: No attack. Nearby sweet toppings attack 15% faster.
+  description: No attack. Nearby sweet toppings attack a stacking 15% faster.
   rarity: 0
   towerPrefab: {fileID: 1478077881328383843, guid: f640ac6974e5e4f42a985a4cf477a74d, type: 3}
-  flags: 384
+  flags: 132
   specialInfoText: 
   cakePoints: 20
   onHitCherry: []
   onKillCherry: []
   moneyGained: 0
-  triggersCount: 0
+  TriggersCount: 0

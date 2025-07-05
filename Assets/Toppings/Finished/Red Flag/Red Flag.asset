@@ -16,11 +16,10 @@ MonoBehaviour:
   shopSprite: {fileID: 21300000, guid: c83517e5f73a441ec82292efc35a9309, type: 3}
   effectsAndWhen: []
   description: Deals a massive 200 damage to the first 6 cherries to come near each
-    round. Increases range by 10% for all nearby figurine, decoration, or electronic
-    toppings.
+    round. Increases damage by 10% for all nearby electronic toppings.
   rarity: 0
   towerPrefab: {fileID: 8950779018285670198, guid: b14f1f4b256964b0697ed15529a76a74, type: 3}
-  flags: 3584
+  flags: 0
   specialInfoText: 
   cakePoints: 50
   onHitCherry: []

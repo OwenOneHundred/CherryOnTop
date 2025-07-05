@@ -18,10 +18,10 @@ MonoBehaviour:
   description: Fires large high damage projectiles over a long range.
   rarity: 0
   towerPrefab: {fileID: 1885589363587769194, guid: 04cd5cc751bd64ea292003b5499329b3, type: 3}
-  flags: 384
+  flags: 134
   specialInfoText: 
   cakePoints: 45
   onHitCherry: []
   onKillCherry: []
   moneyGained: 0
-  triggersCount: 0
+  TriggersCount: 0

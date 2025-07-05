@@ -18,7 +18,10 @@ MonoBehaviour:
   description: Rapidly lobs inaccurate, low damage sushi at cherries.
   rarity: 0
   towerPrefab: {fileID: 6283636531662423883, guid: 0ebf1797c28b44b7aab0e74c3d3663e1, type: 3}
-  flags: 12336
+  flags: 12324
+  specialInfoText: 
   cakePoints: 0
   onHitCherry: []
   onKillCherry: []
+  moneyGained: 0
+  TriggersCount: 0

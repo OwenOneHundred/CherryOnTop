@@ -23,7 +23,10 @@ MonoBehaviour:
     every round, 50% chance to sell itself and add a mushroom to your inventory.
   rarity: 0
   towerPrefab: {fileID: 6677336781971105052, guid: 317d58dbdfd634ee29f0cab6c4437a4d, type: 3}
-  flags: 16
+  flags: 4
+  specialInfoText: 
   cakePoints: 0
   onHitCherry: []
   onKillCherry: []
+  moneyGained: 0
+  TriggersCount: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
   m_Name: Shoe
   m_EditorClassIdentifier: 
-  price: 5
+  price: 4
   shopSprite: {fileID: 21300000, guid: 746328103dc3b4ca7881a07e3d268c68, type: 3}
   effectsAndWhen: []
   description: Stomps on the track, slowing hit cherries.
@@ -24,4 +24,4 @@ MonoBehaviour:
   onHitCherry: []
   onKillCherry: []
   moneyGained: 0
-  triggersCount: 0
+  TriggersCount: 0

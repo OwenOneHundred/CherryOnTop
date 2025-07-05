@@ -19,10 +19,10 @@ MonoBehaviour:
     crosses over.
   rarity: 0
   towerPrefab: {fileID: 1114585432037479074, guid: da55f14a184144548a3b9948534cdbfe, type: 3}
-  flags: 130
+  flags: 134
   specialInfoText: 
   cakePoints: 50
   onHitCherry: []
   onKillCherry: []
   moneyGained: 0
-  triggersCount: 0
+  TriggersCount: 0

@@ -19,10 +19,10 @@ MonoBehaviour:
     for a second, and while slipping, take 4x damage.
   rarity: 0
   towerPrefab: {fileID: 879448511096041216, guid: e7dbd598c43714f2eb7b6744fe8128e7, type: 3}
-  flags: 0
+  flags: 68
   specialInfoText: 
   cakePoints: 30
   onHitCherry: []
   onKillCherry: []
   moneyGained: 0
-  triggersCount: 0
+  TriggersCount: 0

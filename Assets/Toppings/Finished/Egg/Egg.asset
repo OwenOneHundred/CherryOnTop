@@ -22,10 +22,10 @@ MonoBehaviour:
   description: No attack. At the end of every round, gains 2 sell value.
   rarity: 0
   towerPrefab: {fileID: 8215095973920262992, guid: 523234966a5024ef98f99a845e431895, type: 3}
-  flags: 20480
+  flags: 4100
   specialInfoText: 
   cakePoints: -5
   onHitCherry: []
   onKillCherry: []
   moneyGained: 0
-  triggersCount: 0
+  TriggersCount: 0

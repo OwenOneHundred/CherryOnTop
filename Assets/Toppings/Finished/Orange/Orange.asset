@@ -19,11 +19,11 @@ MonoBehaviour:
     a kill, get $1.
   rarity: 0
   towerPrefab: {fileID: 1854520228839802959, guid: 2bf54e0493afd4845b7e8d58ddc044b1, type: 3}
-  flags: 208
+  flags: 196
   specialInfoText: 'Total money gained: [Money]'
   cakePoints: 10
   onHitCherry: []
   onKillCherry:
   - {fileID: 11400000, guid: 398fd239b47924259af2f76b7dbe3b2c, type: 2}
   moneyGained: 0
-  triggersCount: 0
+  TriggersCount: 0

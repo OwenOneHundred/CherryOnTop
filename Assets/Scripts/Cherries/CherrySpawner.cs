@@ -30,10 +30,10 @@ public class CherrySpawner : MonoBehaviour
         cherryManager = GetComponent<CherryManager>();
         difficulty = DifficultyInfo.difficultyInfo.gameDifficultyParams.Difficulty;
     }
-    
+
     public void OnRoundStart()
     {
-        if (difficulty.TryGetHardCodedRound((int) RoundManager.roundManager.roundNumber, out HardCodedRound hardCodedRound))
+        if (difficulty.TryGetHardCodedRound((int)RoundManager.roundManager.roundNumber, out HardCodedRound hardCodedRound))
         {
             StartCoroutine(HardCodedRoundCoroutine(hardCodedRound));
         }
@@ -41,6 +41,8 @@ public class CherrySpawner : MonoBehaviour
         {
             StartCoroutine(ProceduralRoundCoroutine());
         }
+        
+        
     }
 
     IEnumerator ProceduralRoundCoroutine()
@@ -69,7 +71,7 @@ public class CherrySpawner : MonoBehaviour
 
         if (metalCherriesCountBySize.Where(x => x != 0).Count() != 0)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(3f);
         }
 
         for (int metalArrayIndex = 0; metalArrayIndex < metalCherriesCountBySize.Length; metalArrayIndex++) // spawn one metal cherry for each indicated in array

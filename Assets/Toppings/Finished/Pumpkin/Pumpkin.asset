@@ -23,10 +23,10 @@ MonoBehaviour:
     toppings sold near this topping this run.
   rarity: 2
   towerPrefab: {fileID: 2963828599317477604, guid: a471d0776340743c881e7bc32dbfeff9, type: 3}
-  flags: 80
+  flags: 68
   specialInfoText: 'Total money gained: [Money]\nMoney per round: [Triggers]'
   cakePoints: 35
   onHitCherry: []
   onKillCherry: []
   moneyGained: 0
-  triggersCount: 0
+  TriggersCount: 0

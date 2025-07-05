@@ -19,7 +19,10 @@ MonoBehaviour:
     and damages the first 5 cherries it hits.
   rarity: 0
   towerPrefab: {fileID: 5768842945418701966, guid: 24e6a02a670924c93b7c00e6bd90b6ac, type: 3}
-  flags: 48
+  flags: 36
+  specialInfoText: 
   cakePoints: 5
   onHitCherry: []
   onKillCherry: []
+  moneyGained: 0
+  TriggersCount: 0

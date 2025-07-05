@@ -19,10 +19,10 @@ MonoBehaviour:
     more damage from other attacks.
   rarity: 0
   towerPrefab: {fileID: 7133461406448433772, guid: a81335b5946c742a5bc3d4799e5a0319, type: 3}
-  flags: 384
+  flags: 132
   specialInfoText: 
   cakePoints: 35
   onHitCherry: []
   onKillCherry: []
   moneyGained: 0
-  triggersCount: 0
+  TriggersCount: 0

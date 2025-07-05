@@ -19,10 +19,10 @@ MonoBehaviour:
     item in the largest stack of items in your inventory.
   rarity: 1
   towerPrefab: {fileID: 8848895756928665520, guid: 5ed52b5a156514cb7b04394cf2587f84, type: 3}
-  flags: 0
+  flags: 32768
   specialInfoText: 
   cakePoints: -10
   onHitCherry: []
   onKillCherry: []
   moneyGained: 0
-  triggersCount: 0
+  TriggersCount: 0

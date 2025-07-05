@@ -23,10 +23,10 @@ MonoBehaviour:
     the cake at the end of the round, 10% chance to get a free reroll.
   rarity: 1
   towerPrefab: {fileID: 4464501068049243858, guid: 79fb4d51bc47149e4936c5862b0a6627, type: 3}
-  flags: 48
+  flags: 36
   specialInfoText: 
   cakePoints: 0
   onHitCherry: []
   onKillCherry: []
   moneyGained: 0
-  triggersCount: 0
+  TriggersCount: 0

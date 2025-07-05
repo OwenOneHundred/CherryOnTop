@@ -37,13 +37,26 @@ public class DebuffManager : MonoBehaviour
     {
         if (!allowDuplicates && debuffs.Any(x => x.template == debuffTemplate)) { return; }
 
-        CherryDebuff debuffCopy = CherryDebuff.CreateInstance(debuffTemplate);
+        CherryDebuff newDebuff = CherryDebuff.CreateInstance(debuffTemplate);
 
-        DebuffModifierManager.Instance.ApplyDebuffModifiersToDebuff(debuffCopy);
+        DebuffModifierManager.Instance.ApplyDebuffModifiersToDebuff(newDebuff);
+
+        if (!allowDuplicates)
+        {
+            var matchingTypes = debuffs.Where(x => x.debuffType == newDebuff.debuffType);
+            foreach (var debuff in matchingTypes)
+            {
+                if (newDebuff.effectDuration > debuff.effectDuration && newDebuff.dps <= debuff.dps)
+                {
+                    debuff.effectDuration = newDebuff.effectDuration;
+                    return;
+                }
+            }
+        }
         
-        debuffs.Add(debuffCopy);
-        debuffCopy.cherry = gameObject;
-        debuffCopy.OnAdded(gameObject);
+        debuffs.Add(newDebuff);
+        newDebuff.cherry = gameObject;
+        newDebuff.OnAdded(gameObject);
     }
 
     public void AddDebuffs(List<CherryDebuff> cherryDebuffs)

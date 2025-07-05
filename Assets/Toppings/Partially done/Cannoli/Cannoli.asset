@@ -18,10 +18,10 @@ MonoBehaviour:
   description: Fires chocolate chips at cherries.
   rarity: 0
   towerPrefab: {fileID: 861823699272404723, guid: edcae4d0103de40609f576f92d836fa3, type: 3}
-  flags: 128
+  flags: 132
   specialInfoText: 
   cakePoints: 50
   onHitCherry: []
   onKillCherry: []
   moneyGained: 0
-  triggersCount: 0
+  TriggersCount: 0

@@ -23,7 +23,10 @@ MonoBehaviour:
     you place a topping in this toppings' range, get $1.
   rarity: 1
   towerPrefab: {fileID: 7752209280240988276, guid: 60222db8a7a40419089841d506bde252, type: 3}
-  flags: 512
+  flags: 0
+  specialInfoText: 
   cakePoints: 10
   onHitCherry: []
   onKillCherry: []
+  moneyGained: 0
+  TriggersCount: 0

@@ -31,7 +31,7 @@ MonoBehaviour:
     round, if you bought exactly 2 items from the shop, gain $2.
   rarity: 0
   towerPrefab: {fileID: 4831661171408888501, guid: 4e9e1703041f543fc8eb18e01d0c35a7, type: 3}
-  flags: 208
+  flags: 196
   specialInfoText: 'Total money gained: [Money]\nPurchases this round: [Triggers]'
   cakePoints: 30
   onHitCherry: []

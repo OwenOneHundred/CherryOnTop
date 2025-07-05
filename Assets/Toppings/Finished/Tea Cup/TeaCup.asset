@@ -19,7 +19,10 @@ MonoBehaviour:
     many cherries at once. (Fire and slow effects don't stack)
   rarity: 0
   towerPrefab: {fileID: 7788620283348746490, guid: a34521d22c1bc4a9a9e63e91d7281542, type: 3}
-  flags: 2
+  flags: 6
+  specialInfoText: 
   cakePoints: 10
   onHitCherry: []
   onKillCherry: []
+  moneyGained: 0
+  TriggersCount: 0

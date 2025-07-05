@@ -23,7 +23,7 @@ MonoBehaviour:
     fruit and gain 15% faster attack speed for each fruit sold.
   rarity: 2
   towerPrefab: {fileID: 3656761891722631670, guid: db5ccc8ae1f4344cfba1ae72b2d59f0e, type: 3}
-  flags: 64
+  flags: 0
   specialInfoText: 'Total sold: [Triggers]'
   cakePoints: 10
   onHitCherry: []

@@ -19,10 +19,10 @@ MonoBehaviour:
     sets cherries on fire for an extra long time of 5 seconds.
   rarity: 0
   towerPrefab: {fileID: 8678400762290400018, guid: 163e0fe0764544de4bf89f157e18b01e, type: 3}
-  flags: 0
+  flags: 2050
   specialInfoText: 
   cakePoints: -30
   onHitCherry: []
   onKillCherry: []
   moneyGained: 0
-  triggersCount: 0
+  TriggersCount: 0

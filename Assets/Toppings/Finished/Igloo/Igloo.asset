@@ -18,10 +18,10 @@ MonoBehaviour:
   description: Cherries in radius are slowed 20%. This doesn't stack.
   rarity: 0
   towerPrefab: {fileID: 6219640833468061804, guid: fd80b4950bbdf4e01bf574b4448e35ae, type: 3}
-  flags: 513
+  flags: 1
   specialInfoText: 
   cakePoints: -10
   onHitCherry: []
   onKillCherry: []
   moneyGained: 0
-  triggersCount: 0
+  TriggersCount: 0

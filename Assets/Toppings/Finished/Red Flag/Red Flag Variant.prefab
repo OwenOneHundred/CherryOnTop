@@ -193,8 +193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5781c5ff9c0f84e01b5bf376fce3a5f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flags: 1536
-  buffType: 2
+  flags: 2048
+  buffType: 1
   buffValue: 1.1
 --- !u!54 &541898274020494335
 Rigidbody:

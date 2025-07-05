@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76037a5619770483cbf2c813eadf883c, type: 3}
+  m_Name: Glasses
+  m_EditorClassIdentifier: 
+  price: 7
+  shopSprite: {fileID: 21300000, guid: b12bb3198c7244e09923b9bac702cf19, type: 3}
+  effectsAndWhen: []
+  description: Fires lasers at cherries that do 5x more damage for each debuff on
+    the cherry.
+  rarity: 1
+  towerPrefab: {fileID: 8698287261469945695, guid: b85b8baab0ab1462e9bc76b435790b25, type: 3}
+  flags: 0
+  specialInfoText: 
+  cakePoints: 10
+  onHitCherry: []
+  onKillCherry: []
+  moneyGained: 0
+  triggersCount: 0

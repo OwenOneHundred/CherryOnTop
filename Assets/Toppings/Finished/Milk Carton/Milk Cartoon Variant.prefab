@@ -9675,7 +9675,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6424216135398306630}
-  - component: {fileID: 6731205522070891713}
   - component: {fileID: 2873254521457437693}
   m_Layer: 13
   m_Name: Threatening Aura
@@ -9701,21 +9700,6 @@ Transform:
   - {fileID: 1707976326972211898}
   m_Father: {fileID: 793227923363924490}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6731205522070891713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7493855903034658958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f809f47f335504c909e108f908a3c78d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cherryDebuff: {fileID: 11400000, guid: 09b2f73cd25eb41f2b589cbf1c62f5d6, type: 2}
-  coll: {fileID: 2873254521457437693}
-  targetingSystem: {fileID: 0}
 --- !u!135 &2873254521457437693
 SphereCollider:
   m_ObjectHideFlags: 0

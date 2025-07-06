@@ -146,7 +146,6 @@ public class Shop : MonoBehaviour
             SoundEffectManager.sfxmanager.PlayOneShot(rerollSound);
             RerollItems();
             PlayRerollAnim();
-            if (DoRerollPriceIncrease) { LiveRerollPrice += 1; }
         }
         else if (Inventory.inventory.Money >= LiveRerollPrice)
         {
